@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/05 23:56:08 by stanaka2          #+#    #+#              #
-#    Updated: 2026/03/06 14:25:59 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/04/05 23:46:14 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -200,10 +200,8 @@ ${LIBMLX}: | ${MINILIBX_DIR}
 	@make -C ${MINILIBX_DIR}
 
 ${MINILIBX_DIR}:
-	@curl -OL https://cdn.intra.42.fr/document/document/46275/minilibx-linux.tgz
-	@tar xzf minilibx-linux.tgz
-	@rm minilibx-linux.tgz
-	@echo -e "[miniRT] $(GREEN)Install Complete:$(DEF_COLOR) $@"
+	@git clone https://github.com/42Paris/minilibx-linux.git ${MINILIBX_DIR}
+	@echo -e "[cub3D] $(GREEN)Install Complete:$(DEF_COLOR) $@"
 
 # -------------------------- #
 #         Debug Rules        #
@@ -233,7 +231,9 @@ fclean:
 	@echo -e "[miniRT] $(BLUE)Deleted Target File and Object File Dir$(DEF_COLOR): $(NAME) $(OBJ_DIR) $(DEP_DIR)"
 
 # Full rebuild: clean everything and rebuild
-re:	fclean all
+re:
+	@$(MAKE) fclean
+	@$(MAKE) all 
 
 # -------------------------- #
 #  Include Dependency Files  #
