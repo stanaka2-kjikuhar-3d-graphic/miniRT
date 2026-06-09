@@ -5,240 +5,256 @@
 #                                                     +:+ +:+         +:+      #
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/03/05 23:56:08 by stanaka2          #+#    #+#              #
-#    Updated: 2026/04/05 23:46:14 by stanaka2         ###   ########.fr        #
+#    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
+#    Updated: 2026/06/09 16:28:10 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # -------------------------- #
-#         Phony Rules        #
+#       Phony Targets        #
 # -------------------------- #
 
-.PHONY: all bonus clean fclean re norm
+.PHONY: all bonus clean fclean re install uninstall norm san debug test help
+
+# -------------------------- #
+#         Extra Flags        #
+# -------------------------- #
+
+ifeq ($(filter san,$(MAKECMDGOALS)),san)
+override CFLAGS += -g -fsanitize=address,undefined
+endif
+
+ifeq ($(filter debug,$(MAKECMDGOALS)),debug)
+override CFLAGS += -g
+endif
+
+EXTRA_FLAGS :=	MAKEFLAGS='$(MAKEFLAGS)' \
+				CFLAGS='$(CFLAGS)' \
+				CPPFLAGS='$(CPPFLAGS)'
 
 # -------------------------- #
 #      Makefile Setting      #
 # -------------------------- #
 
-SHELL =	/bin/bash
+OS	:= $(shell uname -s)
 
-ifeq ($(filter re,$(MAKECMDGOALS)),re)
-MAKEFLAGS += --no-print-directory
-else
-MAKEFLAGS += --no-print-directory -j
-endif
+override MAKEFLAGS		+= -j --no-print-directory
 
-RM = rm -f
+override .DEFAULT_GOAL	:= all
 
-# -------------------------- #
-# 　　　　　　Target　　　      #
-# -------------------------- #
+.DEFAULT:
+	@printf "$(RED)make: *** No rule to make target '$@'.  Stop.$(DEF_COLOR)\n"
+	@$(MAKE) help;
+	@exit 2
 
-NAME = miniRT
+.DELETE_ON_ERROR:
 
-# -------------------------- #
-# 　　     　LIBFT            #
-# -------------------------- #
-
-LIBFT_DIR = ./libft
-LIBFT = $(LIBFT_DIR)/libft.a
-LIBFT_INCLUDE_DIR = $(LIBFT_DIR)/include
-
-
-# -------------------------- #
-#         MINILIBX           #
-# -------------------------- #
-
-MINILIBX_DIR	= minilibx-linux
-LIBMLX			= ${MINILIBX_DIR}/libmlx.a
-MINILIBX_INCLUDE_DIR	= -I ${MINILIBX_DIR}
-MINILIBX_LINK			= -lmlx -lXext -lX11 -L ${MINILIBX_DIR}
+help:
+	@printf "$(CYAN)Usage:$(DEF_COLOR)\n"
+	@printf "$(GREEN)all$(DEF_COLOR)        Build $(NAME)[mandatory part]\n"
+	@printf "$(GREEN)bonus$(DEF_COLOR)      Build $(NAME)[bonus part]\n"
+	@printf "$(GREEN)clean$(DEF_COLOR)      Remove object files, dependency files\n"
+	@printf "$(GREEN)fclean$(DEF_COLOR)     Remove all generated files and directories\n"
+	@printf "$(GREEN)re$(DEF_COLOR)         Rebuild with fclean and all\n"
+	@printf "$(BLUE)install$(DEF_COLOR)    Install minilibx\n"
+	@printf "$(BLUE)uninstall$(DEF_COLOR)  Remove minilibx\n"
+	@printf "$(YELLOW)san$(DEF_COLOR)        Build with -g -fsanitize=address,undefined\n"
+	@printf "$(YELLOW)debug$(DEF_COLOR)      Build with -g debug symbols\n"
+	@printf "$(YELLOW)norm$(DEF_COLOR)       Run norminette\n"
+	@printf "$(GRAY)help$(DEF_COLOR)       Show make rules\n"
 
 # -------------------------- #
-# 　　　Compiler Flags        #
+#           Target           #
 # -------------------------- #
 
-CC				= cc
-CFLAGS			= -Wall -Werror -Wextra
-LIBMATH_FLAG	= -lm
+NAME	:= cub3D
+
+# -------------------------- #
+#       Compiler Flags       #
+# -------------------------- #
+
+CC				:= cc
+
+override CFLAGS	+= -Wall -Wextra -Werror
+# when submit, it should change -W3
+override CFLAGS	+= -Wconversion -Wno-sign-conversion -Wshadow
 
 # -------------------------- #
 #          Include           #
 # -------------------------- #
 
-INCLUDE_DIR		= mandatory/include
-INCLUDE			= -I $(INCLUDE_DIR) -I $(LIBFT_INCLUDE_DIR) ${MINILIBX_INCLUDE_DIR}
-B_INCLUDE_DIR	= bonus/include
-B_INCLUDE		= -I $(B_INCLUDE_DIR) -I $(LIBFT_INCLUDE_DIR) ${MINILIBX_INCLUDE_DIR}
+INCLUDE_DIRS		:= include
+
+override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 
 # -------------------------- #
 #     Source Directories     #
 # -------------------------- #
 
-SRC_DIRS	=	mandatory/src \
-				$(addprefix mandatory/src/, \
+SRC_DIRS	:= src
+SRC_DIRS	+= $(addprefix src/, \
+					camera \
+					error \
+					ft_mlx \
+					light \
+					object \
+					parse_file \
+					phong_reflection_model \
 				)
 
-B_SRC_DIRS	=	bonus/src \
-				$(addprefix bonus/src/, \
-				)
+$(foreach dir, $(SRC_DIRS), $(eval vpath %.c $(dir)))
 
 # -------------------------- #
 #        Source Files        #
 # -------------------------- #
 
-# mandatory
-SRCS	=	main.c
-
-
-# bonus
-B_SRCS	=	main_bonus.c
+SRCS	:= 	main.c
 
 # -------------------------- #
-#       Bonus Switching      #
+#        Object Files        #
 # -------------------------- #
 
-ifeq ($(filter bonus,$(MAKECMDGOALS)),bonus)
-SRC_DIRS = $(B_SRC_DIRS)
-INCLUDE = $(B_INCLUDE)
-SRCS = $(B_SRCS)
-endif
+OBJ_DIR	:= .obj
 
-# -------------------------- #
-#        VPATH Setup         #
-# -------------------------- #
-
-# Dependency generation flags:
-# foreach: Iterate over each directory in SRC_DIRS
-# eval: Evaluate the string as Makefile syntax during parsing
-# vpath %.c $(dir): Set search path for .c files in the specified directory
-# Result: Make will search all SRC_DIRS when looking for .c source files
-$(foreach dir,$(SRC_DIRS), $(eval vpath %.c $(dir)))
-
-# -------------------------- #
-#     Object & Dependency    #
-# -------------------------- #
-
-# patsubst: Pattern substitution function
-OBJ_DIR		=	.obj
-OBJS		=	$(patsubst %.c, $(OBJ_DIR)/%.o, $(notdir $(SRCS)))
-B_OBJS		=	$(patsubst %.c, $(OBJ_DIR)/%.o, $(notdir $(B_SRCS)))
-
-# -MT: Set the target name in the dependency file (uses automatic variable $@ for current target)
-# -MMD: Generate dependency file (.d) during compilation, excluding system headers
-# -MP: Add phony targets for each dependency to avoid errors when header files are deleted
-# -MF: Specify the output path for the dependency file ($* is the stem without extension)
-DEP_DIR		=	.dep
-DEPFLAGS	=	-MT $@ -MMD -MP -MF $(DEP_DIR)/$*.d
-DEPS		=	$(patsubst %.c, $(DEP_DIR)/%.d, $(notdir $(SRCS)))
-B_DEPS		=	$(patsubst %.c, $(DEP_DIR)/%.d, $(notdir $(B_SRCS)))
-
-# -------------------------- #
-#    ANSI Escape Sequence    #
-# -------------------------- #
-
-DEF_COLOR	= \033[0;39m
-GRAY 		= \033[0;90m
-RED 		= \033[0;91m
-GREEN 		= \033[0;92m
-YELLOW 		= \033[0;93m
-BLUE 		= \033[0;94m
-MAGENTA 	= \033[0;95m
-CYAN 		= \033[0;96m
-WHITE 		= \033[0;97m
-
-# -------------------------- #
-#        Main Targets        #
-# -------------------------- #
-
-all: $(NAME)
-
-bonus:	$(NAME)
-
-# Link object files to create executable
-# $^: All prerequisites (all .o files)
-# |: Order-only prerequisites (directories must exist but don't trigger rebuild)
-# $@: Target name ($(NAME))
-$(NAME): $(OBJS) $(LIBFT) | ${LIBMLX}  
-	@$(CC) $(CFLAGS) $^ -o $@ ${LIBMATH_FLAG} ${MINILIBX_LINK}
-	@echo -e "[miniRT] $(GREEN)Build Complete:$(DEF_COLOR) $@"
-
-# -------------------------- #
-#        Build Rules         #
-# -------------------------- #
-
-# Pattern rule: compile .cpp to .o with dependency generation
-# |: Order-only prerequisites (directories must exist but don't trigger rebuild)
-# $<: First prerequisite (the .cpp file)
-# $@: Target (the .o file)
-$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR) $(DEP_DIR)
-	@$(CC) $(CFLAGS) $(DEPFLAGS) $(INCLUDE) -c $< -o $@
-
-# Create object directory if it doesn't exist
-# -: Ignore errors (no error if directory already exists)
 $(OBJ_DIR):
 	@-mkdir -p $@
 
-# Create dependency directory if it doesn't exist
+OBJS	:= $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
+
+# -------------------------- #
+#      Dependency Files      #
+# -------------------------- #
+
+DEP_DIR	:= .dep
+
 $(DEP_DIR):
 	@-mkdir -p $@
+
+DEPS		:= $(patsubst %.c, $(DEP_DIR)/%.d, $(SRCS))
+DEPFLAGS	= -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.d
+
+-include $(DEPS)
+$(DEP_DIR)/%.d: ;
 
 # -------------------------- #
 #         LIBFT Rule         #
 # -------------------------- #
 
+LIBFT_DIR	:= libft
+
+LIBFT		:= $(LIBFT_DIR)/libft.a
+
 $(LIBFT):
-	@echo -e "[miniRT] $(YELLOW)Build:$(DEF_COLOR) $@"
-	@$(MAKE) -C $(LIBFT_DIR)
+	@printf "[cub3D] $(YELLOW)Build:$(DEF_COLOR) $@\n"
+	@$(MAKE) -C $(LIBFT_DIR) $(EXTRA_FLAGS)
 
-
-# -------------------------- #
-#       MINILIBX Rule        #
-# -------------------------- #
-
-${LIBMLX}: | ${MINILIBX_DIR}
-	@make -C ${MINILIBX_DIR}
-
-${MINILIBX_DIR}:
-	@git clone https://github.com/42Paris/minilibx-linux.git ${MINILIBX_DIR}
-	@echo -e "[cub3D] $(GREEN)Install Complete:$(DEF_COLOR) $@"
+override CPPFLAGS	+= -I$(LIBFT_DIR)/include
+override LDFLAGS	+= -L$(LIBFT_DIR)
+override LDLIBS		+= -lft
 
 # -------------------------- #
-#         Debug Rules        #
+#       LIBMLX Rule          #
 # -------------------------- #
 
-norm:
-	@norminette -o mandatory bonus $(LIBFT_DIR) | grep Error || true
+LIBMLX_DIR	:= minilibx
+
+install:
+	@$(MAKE) uninstall
+	@git clone https://github.com/42Paris/minilibx-linux.git $(LIBMLX_DIR)
+	@printf "[cub3D] $(GREEN)Install Complete:$(DEF_COLOR) $(LIBMLX_DIR)\n"
+
+uninstall:
+	@$(RM) -r $(LIBMLX_DIR)
+	@printf "[cub3D] $(GREEN)Uninstall Complete:$(DEF_COLOR) $(LIBMLX_DIR)\n"
+
+$(LIBMLX_DIR):
+	@$(MAKE) install
+
+LIBMLX		:= $(LIBMLX_DIR)/libmlx.a
+
+$(LIBMLX): | $(LIBMLX_DIR)
+	@-$(MAKE) -s -C $(LIBMLX_DIR) > /dev/null 2>&1
+	@printf "[$(NAME)] $(GREEN)Build Complete:$(DEF_COLOR) $@\n"
+
+override CPPFLAGS	+= -I$(LIBMLX_DIR)
+override LDFLAGS	+= -L$(LIBMLX_DIR)
+ifeq ($(OS), Darwin)
+override CPPFLAGS	+= -I/usr/X11/include
+override LDFLAGS	+= -L/usr/X11/lib
+endif
+override LDLIBS	+= -lmlx -lXext -lX11
 
 # -------------------------- #
-#       Cleanup Rules        #
+#       Library Rules        #
+# -------------------------- #
+
+override LDLIBS	+= -lm
+
+# -------------------------- #
+#        Build Rules         #
+# -------------------------- #
+
+all: $(NAME)
+
+$(NAME): $(OBJS) | $(LIBFT) $(LIBMLX)
+	@$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
+	@printf "[$(NAME)] $(GREEN)Build Complete:$(DEF_COLOR) $@\n"
+
+$(OBJ_DIR)/%.o: %.c | $(LIBMLX_DIR) $(OBJ_DIR) $(DEP_DIR)
+	@$(CC) $(CFLAGS) $(CPPFLAGS) $(DEPFLAGS) -c $< -o $@
+
+# -------------------------- #
+#        Cleanup Rules       #
 # -------------------------- #
 
 # Remove object and dependency files only
 clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
-	@-$(MAKE) -C ${MINILIBX_DIR} clean
-	@$(RM) $(OBJS) $(DEPS) $(B_OBJS) $(B_DEPS)
-	@echo -e "[miniRT] $(BLUE)Deleted Compiled Files$(DEF_COLOR): *.o *.d"
+	@-$(MAKE) -s -C $(LIBMLX_DIR) clean > /dev/null 2>&1
+	@$(RM) $(OBJ_DIR)/* $(DEP_DIR)/*
+	@printf "[$(NAME)] $(BLUE)Deleted Complete$(DEF_COLOR): *.o *.d\n"
 
-# Remove everything including executable and directories
+# Remove everything
 fclean:
 	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@-$(MAKE) -C ${MINILIBX_DIR} clean
-	@$(RM) $(OBJS) $(DEPS) $(B_OBJS) $(B_DEPS)
-	@echo -e "[miniRT] $(BLUE)Deleted Compiled Files$(DEF_COLOR): *.o *.d"
+	@-$(MAKE) -s -C $(LIBMLX_DIR) clean > /dev/null 2>&1
+	@printf "[$(NAME)] $(BLUE)Delete Complete$(DEF_COLOR): $(LIBMLX) $(LIBMLX_DIR)/obj\n"
+	@$(RM) $(OBJ_DIR)/* $(DEP_DIR)/*
+	@printf "[$(NAME)] $(BLUE)Delete Complete$(DEF_COLOR): *.o *.d\n"
 	@$(RM) -r $(NAME) $(OBJ_DIR) $(DEP_DIR)
-	@echo -e "[miniRT] $(BLUE)Deleted Target File and Object File Dir$(DEF_COLOR): $(NAME) $(OBJ_DIR) $(DEP_DIR)"
+	@printf "[$(NAME)] $(BLUE)Delete Complete$(DEF_COLOR): $(NAME) $(OBJ_DIR) $(DEP_DIR)\n"
 
 # Full rebuild: clean everything and rebuild
 re:
 	@$(MAKE) fclean
-	@$(MAKE) all 
+	@$(MAKE) all $(EXTRA_FLAGS)
 
 # -------------------------- #
-#  Include Dependency Files  #
+#        Debug Rules         #
 # -------------------------- #
 
-# Include all .d files (dependency files generated by -MMD)
-# -: Ignore errors if .d files don't exist yet (first build)
--include $(DEPS) $(B_DEPS)
+san:
+	@$(MAKE) re $(EXTRA_FLAGS)
+
+debug:
+	@$(MAKE) re $(EXTRA_FLAGS)
+
+test:
+	@bash TEST/test.sh
+
+norm:
+	@norminette -o src include $(LIBFT_DIR) | grep Error || true
+
+# -------------------------- #
+#    ANSI Escape Sequence    #
+# -------------------------- #
+
+DEF_COLOR := \033[0;39m
+GRAY := \033[0;90m
+RED := \033[0;91m
+GREEN := \033[0;92m
+YELLOW := \033[0;93m
+BLUE := \033[0;94m
+MAGENTA := \033[0;95m
+CYAN := \033[0;96m
+WHITE := \033[0;97m
