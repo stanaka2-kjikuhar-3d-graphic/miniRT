@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/09 21:12:45 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/10 00:30:11 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,11 +94,11 @@ override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 SRC_DIRS	:= src
 SRC_DIRS	+= $(addprefix src/, \
 					camera \
-					error \
+					ft_error \
 					ft_mlx \
 					light \
 					object \
-					parse_file \
+					parse_file parse_file/utils \
 					phong_reflection_model \
 					vector \
 				)
@@ -111,17 +111,34 @@ $(foreach dir, $(SRC_DIRS), $(eval vpath %.c $(dir)))
 
 SRCS	:= 	main.c
 
-# vector
-SRCS	+=	dvec3_add.c \
-			dvec3_cross.c \
-			dvec3_length.c \
-			dvec3_rotate.c \
-			dvec3_sub.c \
-			dvec3.c \
-			dvec3_dot.c \
-			dvec3_normalize.c \
-			dvec3_scale.c
+# ft_error
+SRCS	+=	print_error.c
 
+# parse_file
+SRCS	+=	parse_file.c \
+			read_file_as_line_list.c \
+			validate_setting_ids.c \
+			parse_settings.c \
+			parse_ambient_lighting_setting.c \
+			parse_light_setting.c \
+			parse_camera_setting.c \
+			parse_plane_setting.c \
+			parse_sphere_setting.c \
+			parse_cylinder_setting.c
+SRCS	+=	read_next_line.c \
+			is_identifier.c
+
+# vector
+SRCS	+=	dvec3.c \
+			dvec3_add.c \
+			dvec3_sub.c \
+			dvec3_length.c \
+			dvec3_normalize.c \
+			dvec3_scale.c \
+			dvec3_dot.c \
+			dvec3_cross.c \
+			dvec3_rotate.c
+			
 # -------------------------- #
 #        Object Files        #
 # -------------------------- #
