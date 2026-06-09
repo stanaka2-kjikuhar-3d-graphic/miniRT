@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   dvec3_scale.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/09 21:11:11 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/05/22 17:34:08 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/09 16:44:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int argc, char const **argv)
+#include "vector.h"
+
+t_dvec3	dvec3_scale(double t, t_dvec3 v)
 {
-	(void)argc;
-	(void)argv;
-	return (0);	
+	return ((t_dvec3){t * v.x, t * v.y, t * v.z});
 }

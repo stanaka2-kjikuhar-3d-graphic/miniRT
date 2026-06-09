@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   dvec3_cross.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/09 21:11:11 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/05/21 22:08:06 by kjikuhar          #+#    #+#             */
+/*   Updated: 2026/06/09 16:58:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int argc, char const **argv)
+#include "vector.h"
+
+t_dvec3	dvec3_cross(t_dvec3 a, t_dvec3 b)
 {
-	(void)argc;
-	(void)argv;
-	return (0);	
+	return ((t_dvec3){\
+		a.y * b.z - a.z * b.y, \
+		a.z * b.x - a.x * b.z, \
+		a.x * b.y - a.y * b.x\
+	});
 }

@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/09 16:28:10 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/09 21:12:45 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ help:
 #           Target           #
 # -------------------------- #
 
-NAME	:= cub3D
+NAME	:= miniRT
 
 # -------------------------- #
 #       Compiler Flags       #
@@ -100,6 +100,7 @@ SRC_DIRS	+= $(addprefix src/, \
 					object \
 					parse_file \
 					phong_reflection_model \
+					vector \
 				)
 
 $(foreach dir, $(SRC_DIRS), $(eval vpath %.c $(dir)))
@@ -109,6 +110,17 @@ $(foreach dir, $(SRC_DIRS), $(eval vpath %.c $(dir)))
 # -------------------------- #
 
 SRCS	:= 	main.c
+
+# vector
+SRCS	+=	dvec3_add.c \
+			dvec3_cross.c \
+			dvec3_length.c \
+			dvec3_rotate.c \
+			dvec3_sub.c \
+			dvec3.c \
+			dvec3_dot.c \
+			dvec3_normalize.c \
+			dvec3_scale.c
 
 # -------------------------- #
 #        Object Files        #
@@ -145,7 +157,7 @@ LIBFT_DIR	:= libft
 LIBFT		:= $(LIBFT_DIR)/libft.a
 
 $(LIBFT):
-	@printf "[cub3D] $(YELLOW)Build:$(DEF_COLOR) $@\n"
+	@printf "[miniRT] $(YELLOW)Build:$(DEF_COLOR) $@\n"
 	@$(MAKE) -C $(LIBFT_DIR) $(EXTRA_FLAGS)
 
 override CPPFLAGS	+= -I$(LIBFT_DIR)/include
@@ -161,11 +173,11 @@ LIBMLX_DIR	:= minilibx
 install:
 	@$(MAKE) uninstall
 	@git clone https://github.com/42Paris/minilibx-linux.git $(LIBMLX_DIR)
-	@printf "[cub3D] $(GREEN)Install Complete:$(DEF_COLOR) $(LIBMLX_DIR)\n"
+	@printf "[miniRT] $(GREEN)Install Complete:$(DEF_COLOR) $(LIBMLX_DIR)\n"
 
 uninstall:
 	@$(RM) -r $(LIBMLX_DIR)
-	@printf "[cub3D] $(GREEN)Uninstall Complete:$(DEF_COLOR) $(LIBMLX_DIR)\n"
+	@printf "[miniRT] $(GREEN)Uninstall Complete:$(DEF_COLOR) $(LIBMLX_DIR)\n"
 
 $(LIBMLX_DIR):
 	@$(MAKE) install

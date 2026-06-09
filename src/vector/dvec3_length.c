@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   dvec3_length.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/09 21:11:11 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/05/21 22:08:06 by kjikuhar          #+#    #+#             */
+/*   Updated: 2026/06/09 16:46:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int argc, char const **argv)
+#include <math.h>
+
+#include "vector.h"
+
+double	dvec3_length(t_dvec3 v)
 {
-	(void)argc;
-	(void)argv;
-	return (0);	
+	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
 }

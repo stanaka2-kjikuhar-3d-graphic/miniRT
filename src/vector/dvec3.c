@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   dvec3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/09 21:11:11 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/05/22 17:00:03 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/09 16:36:57 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int argc, char const **argv)
+#include "vector.h"
+
+t_dvec3	dvec3(double x, double y, double z)
 {
-	(void)argc;
-	(void)argv;
-	return (0);	
+	return ((t_dvec3){x, y, z});
 }
