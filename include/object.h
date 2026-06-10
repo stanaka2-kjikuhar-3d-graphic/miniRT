@@ -1,4 +1,48 @@
 #ifndef OBJECT_H
 # define OBJECT_H
 
+# include <stddef.h>
+
+# include "vector.h"
+
+enum e_object_type
+{
+	OBJ_SPHERE,
+	OBJ_PLANE,
+	OBJ_CYLINDER
+};
+
+typedef struct s_sphere
+{
+	t_dvec3	pos;
+	double	diameter;
+}	t_sphere;
+
+typedef struct s_plane
+{
+	t_dvec3	pos;
+	t_dvec3	dir;
+}	t_plane;
+
+typedef struct s_cylinder
+{
+	t_dvec3	pos;
+	t_dvec3	dir;
+	double	diameter;
+	double	height;
+}	t_cylinder;
+
+typedef struct s_object
+{
+	size_t				id;
+	enum e_object_type	type;
+	int					color;
+	union
+	{
+		t_sphere	sphere;
+		t_plane		plane;
+		t_cylinder	cylinder;
+	};
+}	t_object;
+
 #endif

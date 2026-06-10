@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 02:41:50 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/01 20:48:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/10 17:59:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include "ft_ctype.h"
 #include "ft_stdlib.h"
 
-static uint64_t	calc_significand(const char *str);
-static int		calc_scaling_exponent(const char *str, uint64_t significand);
+static uint64_t	calc_significand(const char *nptr);
+static int		calc_scaling_exponent(const char *nptr, uint64_t significand);
 static int		get_digits(uint64_t n);
 
 /*
@@ -27,7 +27,7 @@ static int		get_digits(uint64_t n);
 ** as required by IEEE 754.
 ** Round-half-to-even is not implemented; results may differ by 1 ULP.
 */
-double	ft_atof(const char *str)
+double	ft_atof(const char *nptr)
 {
 	int				sign;
 	uint64_t		significand;
@@ -35,16 +35,18 @@ double	ft_atof(const char *str)
 	double			scaling_factor;
 	unsigned int	i;
 
+	while (ft_isspace(*nptr))
+		++nptr;
 	sign = 1;
-	if (*str == '-' || *str == '+')
+	if (*nptr == '-' || *nptr == '+')
 	{
-		if (*(str++) == '-')
+		if (*(nptr++) == '-')
 			sign = -1;
 	}
-	significand = calc_significand(str);
+	significand = calc_significand(nptr);
 	if (significand == 0)
 		return (sign * 0.0);
-	exponent = calc_scaling_exponent(str, significand);
+	exponent = calc_scaling_exponent(nptr, significand);
 	scaling_factor = 1.0;
 	i = 0;
 	while (i++ < ft_abs_uint(exponent))
@@ -54,45 +56,45 @@ double	ft_atof(const char *str)
 	return (sign * (double)significand / scaling_factor);
 }
 
-static uint64_t	calc_significand(const char *str)
+static uint64_t	calc_significand(const char *nptr)
 {
 	uint64_t	significand;
 	int			i;
 
 	significand = 0;
 	i = 0;
-	while (i < 19 && *str != '\0')
+	while (i < 19 && *nptr != '\0')
 	{
-		if (*str != '.' && !(i == 0 && *str == '0'))
+		if (*nptr != '.' && !(i == 0 && *nptr == '0'))
 		{
-			significand = significand * 10 + (uint64_t)(*str - '0');
+			significand = significand * 10 + (uint64_t)(*nptr - '0');
 			++i;
 		}
-		++str;
+		++nptr;
 	}
 	return (significand);
 }
 
-static int	calc_scaling_exponent(const char *str, uint64_t significand)
+static int	calc_scaling_exponent(const char *nptr, uint64_t significand)
 {
 	int			normalized_exponent;
 	const int	digits = get_digits(significand);
 	int			scaling_exponent;
 
-	while (*str == '0')
-		++str;
-	if (*str == '.')
+	while (*nptr == '0')
+		++nptr;
+	if (*nptr == '.')
 	{
-		str += 1;
+		nptr += 1;
 		normalized_exponent = -1;
-		while (*(str++) == '0' && normalized_exponent >= -1074)
+		while (*(nptr++) == '0' && normalized_exponent >= -1074)
 			--normalized_exponent;
 	}
 	else
 	{
-		str += 1;
+		nptr += 1;
 		normalized_exponent = 0;
-		while (ft_isdigit(*(str++)) && normalized_exponent <= 309)
+		while (ft_isdigit(*(nptr++)) && normalized_exponent <= 309)
 			++normalized_exponent;
 	}
 	if (normalized_exponent < 0 || normalized_exponent + 1 >= digits)

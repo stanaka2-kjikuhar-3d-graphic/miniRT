@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/10 00:30:11 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/10 22:12:59 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,13 +93,12 @@ override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 
 SRC_DIRS	:= src
 SRC_DIRS	+= $(addprefix src/, \
-					camera \
 					ft_error \
 					ft_mlx \
-					light \
 					object \
 					parse_file parse_file/utils \
 					phong_reflection_model \
+					scene \
 					vector \
 				)
 
