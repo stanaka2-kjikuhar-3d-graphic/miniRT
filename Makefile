@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/12 01:18:54 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/12 02:44:20 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,7 @@ override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 SRC_DIRS	:= src
 SRC_DIRS	+= $(addprefix src/, \
 					ft_error \
-					ft_mlx \
+					ft_mlx ft_mlx/utils \
 					object \
 					parse_file parse_file/utils \
 					phong_reflection_model \
@@ -112,6 +112,16 @@ SRCS	:= 	main.c
 
 # ft_error
 SRCS	+=	print_error.c
+
+# ft_mlx
+SRCS	+=	mlx_ptr.c \
+			win_ptr.c \
+			images.c \
+			ft_mlx_destroy.c \
+			ft_mlx_hooks.c \
+			get_pixel_addr.c
+SRCS	+=	expose_hook.c \
+			key_press_hook.c
 
 # object
 SRCS		+=	object.c
@@ -160,7 +170,7 @@ SRCS	+=	dvec3.c \
 			dvec3_dot.c \
 			dvec3_cross.c \
 			dvec3_rotate.c
-			
+
 # -------------------------- #
 #        Object Files        #
 # -------------------------- #

@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mlx_private.h                                   :+:      :+:    :+:   */
+/*   get_pixel_addr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/22 17:32:52 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 02:35:12 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/05/23 17:55:08 by kjikuhar          #+#    #+#             */
+/*   Updated: 2026/06/12 02:32:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MLX_PRIVATE_H
-# define FT_MLX_PRIVATE_H
+#include "ft_mlx.h"
 
-void	cleanup_mlx_connection(void);
-void	cleanup_window(void);
-void	cleanup_images(void);
-int		expose_hook(void *param);
-int		key_press_hook(int keycode, void *param);
-
-#endif
+unsigned int	*get_pixel_addr(t_image *image, int x, int y)
+{
+	return ((unsigned int *)(image->pixel \
+				+ y * image->line_size + x * image->bits_per_pixel / 8));
+}

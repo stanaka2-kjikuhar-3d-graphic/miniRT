@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mlx_private.h                                   :+:      :+:    :+:   */
+/*   ft_mlx_destroy.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/22 17:32:52 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 02:35:12 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/05/22 16:29:03 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/12 02:20:07 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MLX_PRIVATE_H
-# define FT_MLX_PRIVATE_H
+#include "./ft_mlx_private.h"
 
-void	cleanup_mlx_connection(void);
-void	cleanup_window(void);
-void	cleanup_images(void);
-int		expose_hook(void *param);
-int		key_press_hook(int keycode, void *param);
-
-#endif
+void	ft_mlx_destroy(void)
+{
+	cleanup_images();
+	cleanup_window();
+	cleanup_mlx_connection();
+}

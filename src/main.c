@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 01:31:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 02:40:38 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 #include <stdbool.h>
 #include <unistd.h>
 
+#include "mlx.h"
 #include "ft_stdio.h"
 #include "ft_string.h"
 #include "parse_file.h"
 #include "object.h"
+#include "ft_mlx.h"
 
 static bool	is_valid_argument(int argc, char const *argv[]);
 
@@ -31,7 +33,22 @@ int	main(int argc, char const *argv[])
 	}
 	if (!parse_file(argv[1]))
 		return (EXIT_FAILURE);
+	if (!create_mlx_connection())
+	{
+		cleanup_objects();
+		return (EXIT_FAILURE);
+	}
+	if (!create_image(IMG_WINDOW, WINDOW_WIDTH, WINDOW_HEIGHT) \
+		|| !create_window(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE))
+	{
+		cleanup_objects();
+		return (EXIT_FAILURE);
+	}
+	mlx_clear_window(get_mlx_ptr(), get_win_ptr());
+	ft_mlx_hooks();
+	mlx_loop(get_mlx_ptr());
 	cleanup_objects();
+	ft_mlx_destroy();
 	return (EXIT_SUCCESS);
 }
 
