@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   object.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/12 01:17:01 by stanaka2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef OBJECT_H
 # define OBJECT_H
 
 # include <stddef.h>
+# include <stdbool.h>
 
 # include "vector.h"
 
@@ -44,5 +57,9 @@ typedef struct s_object
 		t_cylinder	cylinder;
 	};
 }	t_object;
+
+bool	allocate_objects(size_t	add_count);
+bool	add_object(t_object *new);
+void	cleanup_objects(void);
 
 #endif

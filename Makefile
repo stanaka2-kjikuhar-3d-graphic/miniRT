@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/10 22:12:59 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/12 01:18:54 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,7 +98,7 @@ SRC_DIRS	+= $(addprefix src/, \
 					object \
 					parse_file parse_file/utils \
 					phong_reflection_model \
-					scene \
+					scene scene/utils\
 					vector \
 				)
 
@@ -113,6 +113,9 @@ SRCS	:= 	main.c
 # ft_error
 SRCS	+=	print_error.c
 
+# object
+SRCS		+=	object.c
+
 # parse_file
 SRCS	+=	parse_file.c \
 			read_file_as_line_list.c \
@@ -125,7 +128,27 @@ SRCS	+=	parse_file.c \
 			parse_sphere_setting.c \
 			parse_cylinder_setting.c
 SRCS	+=	read_next_line.c \
-			is_identifier.c
+			is_identifier.c \
+			count_splitted.c \
+			free_splitted.c \
+			parse_color.c \
+			parse_dir.c \
+			parse_pos.c \
+			parse_brightness.c \
+			parse_fov.c \
+			parse_diameter.c \
+			parse_height.c \
+			parse_dvec3.c \
+			parse_double.c \
+			parse_floating_point_format.c
+
+# scene
+SRCS	+=	ambient_lighting.c \
+			camera.c \
+			light.c \
+			viewport.c
+SRCS	+=	calc_camera_right.c \
+			calc_camera_up.c
 
 # vector
 SRCS	+=	dvec3.c \

@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   parse_fov.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 23:44:39 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/10 23:49:48 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/11 23:42:55 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/11 23:51:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
-#include "object.h"
+#include <stdbool.h>
 
-static t_sphere	g_sphere;
+#include "ft_math.h"
+#include "ft_error.h"
+#include "../parse_file_private.h"
 
-t_sphere const	*get_sphere(void)
+bool	parse_fov(char const *element, double *fov)
 {
-	return (&g_sphere);
-}
-
-void	set_sphere_pos(t_dvec3 pos)
-{
-	g_sphere.pos = pos;
-}
-
-void	set_sphere_diameter(double diameter)
-{
-	g_sphere.diameter = diameter;
+	if (!parse_double(element, fov))
+		return (false);
+	if (*fov <= 0.0 || 180.0 <= *fov)
+	{
+		print_error("");
+		return (false);
+	}
+	*fov *= DEG_TO_RAD;
+	return (true);
 }

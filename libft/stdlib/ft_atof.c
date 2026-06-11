@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 02:41:50 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/10 17:59:20 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 01:08:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,25 @@ static uint64_t	calc_significand(const char *nptr)
 	int			i;
 
 	significand = 0;
+	while (*nptr == '0')
+		++nptr;
 	i = 0;
-	while (i < 19 && *nptr != '\0')
+	while (i < 19 && ft_isdigit(*nptr))
 	{
-		if (*nptr != '.' && !(i == 0 && *nptr == '0'))
+		significand = significand * 10 + (uint64_t)(*nptr - '0');
+		++i;
+		++nptr;
+	}
+	if (*(nptr++) == '.')
+	{
+		while (i == 0 && *nptr == '0')
+			++nptr;
+		while (i < 19 && ft_isdigit(*nptr))
 		{
 			significand = significand * 10 + (uint64_t)(*nptr - '0');
 			++i;
+			++nptr;
 		}
-		++nptr;
 	}
 	return (significand);
 }
@@ -85,14 +95,14 @@ static int	calc_scaling_exponent(const char *nptr, uint64_t significand)
 		++nptr;
 	if (*nptr == '.')
 	{
-		nptr += 1;
+		++nptr;
 		normalized_exponent = -1;
 		while (*(nptr++) == '0' && normalized_exponent >= -1074)
 			--normalized_exponent;
 	}
 	else
 	{
-		nptr += 1;
+		++nptr;
 		normalized_exponent = 0;
 		while (ft_isdigit(*(nptr++)) && normalized_exponent <= 309)
 			++normalized_exponent;

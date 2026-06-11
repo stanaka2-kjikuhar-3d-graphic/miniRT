@@ -1,47 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_camera_setting.c                             :+:      :+:    :+:   */
+/*   parse_dir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 20:09:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 00:48:54 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/11 23:37:14 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/12 01:41:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include <stdbool.h>
 
-#include "ft_error.h"
 #include "vector.h"
-#include "scene.h"
-#include "./parse_file_private.h"
+#include "ft_error.h"
+#include "../parse_file_private.h"
 
-bool	parse_camera_setting(char const **elements)
+bool	parse_dir(char const *element, t_dvec3 *dir)
 {
-	size_t	count;
-	t_dvec3	pos;
-	t_dvec3	dir;
-	double	fov;
+	double	length;
 
-	count = count_splitted(elements);
-	if (count != 4)
+	if (!parse_dvec3(element, dir))
+		return (false);
+	length = dvec3_length(*dir);
+	if (length < 1.0 - 1e-6 || 1.0 + 1e-6 < length)
 	{
-		if (count < 4)
-			print_error("");
-		else
-			print_error("");
+		print_error("");
 		return (false);
 	}
-	if (!parse_pos(elements[1], &pos) \
-		|| !parse_dir(elements[2], &dir) \
-		|| !parse_fov(elements[3], &fov))
-	{
-		return (false);
-	}
-	set_camera_pos(pos);
-	set_camera_dir(dir);
-	set_viewport(fov);
 	return (true);
 }

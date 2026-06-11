@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 22:13:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/10 23:41:58 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 01:14:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	set_light_brightness(double brightness)
 	g_light.brightness = brightness;
 }
 
-void	set_light_color(double color)
+void	set_light_color(int color)
 {
 	g_light.color = color;
 }

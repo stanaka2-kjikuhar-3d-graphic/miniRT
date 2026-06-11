@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plane.c                                            :+:      :+:    :+:   */
+/*   parse_pos.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 23:44:36 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/10 23:50:53 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/11 23:31:24 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/11 23:49:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdbool.h>
+
 #include "vector.h"
-#include "object.h"
+#include "../parse_file_private.h"
 
-static t_plane	g_plane;
-
-t_plane const	*get_plane(void)
+bool	parse_pos(char const *element, t_dvec3 *pos)
 {
-	return (&g_plane);
+	if (!parse_dvec3(element, pos))
+		return (false);
+	return (true);
 }
-
-void	set_plane_pos(t_dvec3 pos)
-{
-	g_plane.pos = pos;
-}
-
-void	set_plane_dir(t_dvec3 dir)
-{
-	g_plane.dir = dir;
-}
-
-void	set_plane_color

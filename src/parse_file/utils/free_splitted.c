@@ -6,11 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 21:36:01 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/06/10 19:41:30 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 00:40:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <stdlib.h>
 
 void	free_splitted(char **splitted)
 {

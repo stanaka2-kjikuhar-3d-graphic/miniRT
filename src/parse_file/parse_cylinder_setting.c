@@ -6,75 +6,41 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:25:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/10 21:03:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 01:33:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-#include <unicode/utypes.h> is workaround for #include <float.h>
-due to norminette=3.3.55 bug.
-*/
-#include <unicode/utypes.h>
+#include <stddef.h>
 #include <stdbool.h>
 
+#include "object.h"
 #include "ft_error.h"
-#include "vector.h"
 #include "./parse_file_private.h"
-
-static bool	parse_cylinder_pos(char const *element);
-static bool	parse_cylinder_dir(char const *element);
-static bool	parse_cylinder_diameter(char const *element);
-static bool	parse_cylinder_height(char const *element);
-static bool	parse_cylinder_color(char const *element);
 
 bool	parse_cylinder_setting(char const **elements)
 {
-	if (elements[1] == NULL || elements[2] == NULL || elements[3] == NULL \
-		|| elements[4] != NULL)
+	size_t		count;
+	t_object	object;
+
+	count = count_splitted(elements);
+	if (count != 6)
 	{
-		if (elements[1] == NULL || elements[2] == NULL || elements[3] == NULL)
+		if (count < 6)
 			print_error("");
 		else
 			print_error("");
 		return (false);
 	}
-	if (!parse_cylinder_pos(elements[1]) \
-		|| !parse_cylinder_diameter(elements[2]) \
-		|| !parse_cylinder_color(elements[3]))
+	object.type = OBJ_CYLINDER;
+	if (!parse_pos(elements[1], &(object.cylinder.pos)) \
+		|| !parse_dir(elements[2], &(object.cylinder.dir)) \
+		|| !parse_diameter(elements[3], &(object.cylinder.diameter)) \
+		|| !parse_height(elements[4], &(object.cylinder.height)) \
+		|| !parse_color(elements[5], &(object.color)))
 	{
 		return (false);
 	}
-	return (true);
-}
-
-static bool	parse_cylinder_pos(char const *element)
-{
-	t_dvec3	pos;
-
-	if (!parse_dvec3(element, &pos))
-		return (false);
-	return (true);
-}
-
-static bool	parse_cylinder_diameter(char const *element)
-{
-	double	diameter;
-
-	if (!parse_double(element, &diameter))
-		return (false);
-	if (diameter <= 0.0)
-	{
-		print_error("");
-		return (false);
-	}
-	return (true);
-}
-
-static bool	parse_cylinder_color(char const *element)
-{
-	int	color;
-
-	if (!parse_color(element, &color))
+	if (!add_object(&object))
 		return (false);
 	return (true);
 }

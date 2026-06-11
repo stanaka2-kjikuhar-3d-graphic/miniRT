@@ -6,43 +6,60 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 21:05:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/11 00:04:25 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 01:16:36 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include <stdlib.h>
 
+#include "ft_stdlib.h"
 #include "object.h"
-#include "./object_private.h"
 
 static t_object	*g_objects;
-static size_t	g_object_count;
+static size_t	g_array_size;
+static size_t	g_max_id;
 
-bool	create_object(enum e_object_type type)
+bool	allocate_objects(size_t	add_count)
 {
-	objects = malloc(sizeof(t_object) );
-	
+	if (g_objects == NULL)
+	{
+		g_array_size = add_count;
+		g_objects = malloc(sizeof(t_object) * g_array_size);
+		if (g_objects == NULL)
+			return (false);
+	}
+	else
+	{
+		g_objects = ft_realloc(g_objects, \
+						sizeof(t_object) * g_array_size, \
+						sizeof(t_object) * (g_array_size + add_count));
+		if (g_objects == NULL)
+			return (false);
+		g_array_size += add_count;
+	}
+	return (true);
+}
+
+bool	add_object(t_object *new)
+{
+	if (g_max_id == g_array_size)
+	{
+		if (!allocate_objects(16))
+			return (false);
+	}
+	g_objects[g_max_id] = *new;
+	g_objects[g_max_id].id = g_max_id;
+	++g_max_id;
+	return (true);
 }
 
 void	cleanup_objects(void)
 {
-	size_t	i;
-
-	if (g_object_count == 0)
+	if (g_objects == NULL)
 		return ;
-	i = 0;
-	while (i < g_object_count)
-	{
-		free(g_objects[i]);
-		g_objects[i] = NULL;
-		++i;
-	}
 	free(g_objects);
-}
-
-void	clear_object(size_t	id)
-{
-	free(g_objects[id]);
-	g_objects[i] = NULL;
+	g_objects = NULL;
+	g_array_size = 0;
+	g_max_id = 0;
 }

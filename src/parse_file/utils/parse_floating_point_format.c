@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 17:51:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/10 19:28:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 01:47:59 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	parse_floating_point_format(const char **s)
 	if (**s == '-' || **s == '+')
 		++(*s);
 	if (!(ft_isdigit(**s) \
-		|| (((*s)[0] != '.') && ft_isdigit((*s)[1]))))
+		|| (((*s)[0] == '.') && ft_isdigit((*s)[1]))))
 	{
 		print_error("");
 		return (false);
@@ -34,9 +34,9 @@ bool	parse_floating_point_format(const char **s)
 		}
 		while (ft_isdigit(**s))
 			++(*s);
-		if (**s == '.')
-			++(*s);
 	}
+	if (**s == '.')
+		++(*s);
 	while (ft_isdigit(**s))
 		++(*s);
 	return (true);

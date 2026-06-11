@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:10:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/10 23:31:59 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 01:36:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 
 static t_viewport	g_viewport;
 
-t_viewport const *get_viewport(void)
+t_viewport const	*get_viewport(void)
 {
 	return (&g_viewport);
 }
 
-void	set_viewport(double	horizontal_fov)
+void	set_viewport(double horizontal_fov)
 {
 	g_viewport.pixel.width = VIEWPORT_WIDTH;
 	g_viewport.pixel.height = VIEWPORT_HEIGHT;

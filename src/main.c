@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/09 21:39:43 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 01:31:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 
 #include "ft_stdio.h"
 #include "ft_string.h"
+#include "parse_file.h"
+#include "object.h"
 
 static bool	is_valid_argument(int argc, char const *argv[]);
 
-int main(int argc, char const *argv[])
+int	main(int argc, char const *argv[])
 {
 	if (!is_valid_argument(argc, argv))
 	{
@@ -27,8 +29,10 @@ int main(int argc, char const *argv[])
 		ft_dprintf(STDERR_FILENO, "Usage: %s *.rt\n", argv[0]);
 		return (EXIT_FAILURE);
 	}
-	
-	return (EXIT_SUCCESS);	
+	if (!parse_file(argv[1]))
+		return (EXIT_FAILURE);
+	cleanup_objects();
+	return (EXIT_SUCCESS);
 }
 
 static bool	is_valid_argument(int argc, char const *argv[])
