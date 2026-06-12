@@ -26,9 +26,9 @@ bool	parse_plane_setting(char const **elements)
 	if (count != 4)
 	{
 		if (count < 4)
-			print_error("");
+			print_error_hint(ERROR_PLANE_FEW, HINT_PLANE);
 		else
-			print_error("");
+			print_error_hint(ERROR_PLANE_MANY, HINT_PLANE);
 		return (false);
 	}
 	object.type = OBJ_PLANE;

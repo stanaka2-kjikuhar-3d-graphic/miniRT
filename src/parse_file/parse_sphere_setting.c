@@ -26,9 +26,9 @@ bool	parse_sphere_setting(char const **elements)
 	if (count != 4)
 	{
 		if (count < 4)
-			print_error("");
+			print_error_hint(ERROR_SPHERE_FEW, HINT_SPHERE);
 		else
-			print_error("");
+			print_error_hint(ERROR_SPHERE_MANY, HINT_SPHERE);
 		return (false);
 	}
 	object.type = OBJ_SPHERE;

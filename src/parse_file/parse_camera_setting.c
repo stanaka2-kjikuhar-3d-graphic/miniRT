@@ -29,9 +29,9 @@ bool	parse_camera_setting(char const **elements)
 	if (count != 4)
 	{
 		if (count < 4)
-			print_error("");
+			print_error_hint(ERROR_CAMERA_FEW, HINT_CAMERA);
 		else
-			print_error("");
+			print_error_hint(ERROR_CAMERA_MANY, HINT_CAMERA);
 		return (false);
 	}
 	if (!parse_pos(elements[1], &pos) \

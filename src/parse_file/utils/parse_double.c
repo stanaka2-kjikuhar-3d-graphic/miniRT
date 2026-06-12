@@ -23,7 +23,7 @@ bool	parse_double(char const *s, double *value)
 		return (false);
 	if (*s != '\0')
 	{
-		print_error("");
+		print_error(ERROR_NUMBER_FORMAT);
 		return (false);
 	}
 	return (true);

@@ -22,14 +22,14 @@ bool	parse_floating_point_format(const char **s)
 	if (!(ft_isdigit(**s) \
 		|| (((*s)[0] == '.') && ft_isdigit((*s)[1]))))
 	{
-		print_error("");
+		print_error(ERROR_NUMBER_FORMAT);
 		return (false);
 	}
 	if (**s != '.')
 	{
 		if ((*s)[0] == '0' && ft_isdigit((*s)[1]))
 		{
-			print_error("");
+			print_error(ERROR_NUMBER_LEADING_ZERO);
 			return (false);
 		}
 		while (ft_isdigit(**s))

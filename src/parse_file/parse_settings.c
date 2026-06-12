@@ -6,14 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 01:12:52 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 12:23:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include <errno.h>
 
 #include "ft_lst.h"
 #include "ft_string.h"
@@ -35,7 +34,7 @@ bool	parse_settings(t_list **line_list)
 		free(setting);
 		if (elements == NULL)
 		{
-			print_error(strerror(errno));
+			print_errno();
 			cleanup_objects();
 			return (false);
 		}

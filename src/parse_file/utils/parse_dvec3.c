@@ -35,7 +35,7 @@ bool	parse_dvec3(char const *s, t_dvec3 *vector)
 		if (((axis == X_AXIS || axis == Y_AXIS) && *s != ',') \
 			|| (axis == Z_AXIS && *s != '\0'))
 		{
-			print_error("");
+			print_error(ERROR_VECTOR_FORMAT);
 			return (false);
 		}
 		++s;

@@ -21,7 +21,7 @@ bool	parse_diameter(char const *element, double *diameter)
 		return (false);
 	if (*diameter <= 0.0)
 	{
-		print_error("");
+		print_error(ERROR_DIAMETER_RANGE);
 		return (false);
 	}
 	return (true);

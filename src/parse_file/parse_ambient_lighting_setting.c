@@ -27,9 +27,9 @@ bool	parse_ambient_lighting_setting(char const **elements)
 	if (count != 3)
 	{
 		if (count < 3)
-			print_error("");
+			print_error_hint(ERROR_AMBIENT_FEW, HINT_AMBIENT);
 		else
-			print_error("");
+			print_error_hint(ERROR_AMBIENT_MANY, HINT_AMBIENT);
 		return (false);
 	}
 	if (!parse_brightness(elements[1], &brightness) \

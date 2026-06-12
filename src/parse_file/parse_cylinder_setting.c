@@ -26,9 +26,9 @@ bool	parse_cylinder_setting(char const **elements)
 	if (count != 6)
 	{
 		if (count < 6)
-			print_error("");
+			print_error_hint(ERROR_CYLINDER_FEW, HINT_CYLINDER);
 		else
-			print_error("");
+			print_error_hint(ERROR_CYLINDER_MANY, HINT_CYLINDER);
 		return (false);
 	}
 	object.type = OBJ_CYLINDER;

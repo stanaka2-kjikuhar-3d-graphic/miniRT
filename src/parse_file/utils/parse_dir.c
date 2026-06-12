@@ -25,7 +25,7 @@ bool	parse_dir(char const *element, t_dvec3 *dir)
 	length = dvec3_length(*dir);
 	if (length < 1.0 - 1e-6 || 1.0 + 1e-6 < length)
 	{
-		print_error("");
+		print_error(ERROR_DIR_NOT_NORMALIZED);
 		return (false);
 	}
 	return (true);

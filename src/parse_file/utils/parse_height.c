@@ -21,7 +21,7 @@ bool	parse_height(char const *element, double *height)
 		return (false);
 	if (*height <= 0.0)
 	{
-		print_error("");
+		print_error(ERROR_HEIGHT_RANGE);
 		return (false);
 	}
 	return (true);

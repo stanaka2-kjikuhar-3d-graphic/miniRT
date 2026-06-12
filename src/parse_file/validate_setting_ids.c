@@ -61,7 +61,7 @@ static bool	validate_invalid_id(char const *line)
 	}
 	else
 	{
-		print_error("");
+		print_error(ERROR_ID_UNKNOWN);
 		return (false);
 	}
 }
@@ -81,11 +81,11 @@ static bool	validate_duplicated_id(int flags, char const *line)
 	if (flags & (1 << setting_id))
 	{
 		if (setting_id == SETTING_AMBIENT_LIGHTING)
-			print_error("");
+			print_error(ERROR_ID_DUP_AMBIENT);
 		else if (setting_id == SETTING_LIGHT)
-			print_error("");
+			print_error(ERROR_ID_DUP_LIGHT);
 		else if (setting_id == SETTING_CAMERA)
-			print_error("");
+			print_error(ERROR_ID_DUP_CAMERA);
 		return (false);
 	}
 	return (true);
@@ -95,17 +95,17 @@ static bool	validate_required_id(int flags)
 {
 	if ((flags & (1 << SETTING_AMBIENT_LIGHTING)) == 0)
 	{
-		print_error("");
+		print_error(ERROR_ID_NO_AMBIENT);
 		return (false);
 	}
 	else if ((flags & (1 << SETTING_LIGHT)) == 0)
 	{
-		print_error("");
+		print_error(ERROR_ID_NO_LIGHT);
 		return (false);
 	}
 	else if ((flags & (1 << SETTING_CAMERA)) == 0)
 	{
-		print_error("");
+		print_error(ERROR_ID_NO_CAMERA);
 		return (false);
 	}
 	return (true);

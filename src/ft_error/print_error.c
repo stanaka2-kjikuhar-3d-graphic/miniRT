@@ -19,3 +19,10 @@ void	print_error(char const *msg)
 	ft_dprintf(STDERR_FILENO, "Error\n");
 	ft_dprintf(STDERR_FILENO, "%s\n", msg);
 }
+
+void	print_error_hint(char const *msg, char const *hint)
+{
+	ft_dprintf(STDERR_FILENO, "Error\n");
+	ft_dprintf(STDERR_FILENO, "%s\n", msg);
+	ft_dprintf(STDERR_FILENO, "%s\n", hint);
+}

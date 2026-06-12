@@ -22,7 +22,7 @@ bool	parse_fov(char const *element, double *fov)
 		return (false);
 	if (*fov <= 0.0 || 180.0 <= *fov)
 	{
-		print_error("");
+		print_error(ERROR_FOV_RANGE);
 		return (false);
 	}
 	*fov *= DEG_TO_RAD;

@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/12 02:44:20 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/12 12:24:09 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,7 +111,8 @@ $(foreach dir, $(SRC_DIRS), $(eval vpath %.c $(dir)))
 SRCS	:= 	main.c
 
 # ft_error
-SRCS	+=	print_error.c
+SRCS	+=	print_error.c \
+			print_errno.c
 
 # ft_mlx
 SRCS	+=	mlx_ptr.c \

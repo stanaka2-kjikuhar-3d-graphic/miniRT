@@ -29,9 +29,9 @@ bool	parse_light_setting(char const **elements)
 	if (count != 4)
 	{
 		if (count < 4)
-			print_error("");
+			print_error_hint(ERROR_LIGHT_FEW, HINT_LIGHT);
 		else
-			print_error("");
+			print_error_hint(ERROR_LIGHT_MANY, HINT_LIGHT);
 		return (false);
 	}
 	if (!parse_pos(elements[1], &pos) \

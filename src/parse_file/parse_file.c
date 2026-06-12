@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:15:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/10 00:28:01 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 12:22:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include <errno.h>
 #include <unistd.h>
 
 #include "ft_lst.h"
@@ -29,7 +28,7 @@ bool	parse_file(char const *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		print_error(strerror(errno));
+		print_errno();
 		return (false);
 	}
 	if (!read_file_as_line_list(fd, &line_list))

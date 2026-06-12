@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 13:53:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/10 00:27:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 12:23:36 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <string.h>
-#include <errno.h>
 
 #include "ft_stdlib.h"
 #include "ft_string.h"
@@ -69,7 +68,7 @@ static bool	read_file(int fd, t_buf *buf, t_line *line)
 			buf->read_bytes = read(fd, buf->data, BUFFER_SIZE);
 			if (buf->read_bytes < 0)
 			{
-				print_error(strerror(errno));
+				print_errno();
 				return (false);
 			}
 			else if (buf->read_bytes == 0)
@@ -104,7 +103,7 @@ static bool	append_to_line(t_buf *buf, t_line *line)
 	line->data = ft_reallocf(line->data, line->len, line->allocated_size);
 	if (line->data == NULL)
 	{
-		print_error(strerror(errno));
+		print_errno();
 		return (false);
 	}
 	ft_strlcpy(&(line->data[line->len]), &(buf->data[buf->used_bytes]), \
