@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:09:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 00:48:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 15:22:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	parse_camera_setting(char const **elements)
 	t_dvec3	dir;
 	double	fov;
 
-	count = count_splitted(elements);
+	count = count_split(elements);
 	if (count != 4)
 	{
 		if (count < 4)

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 00:12:32 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 01:35:05 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 15:22:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	parse_ambient_lighting_setting(char const **elements)
 	double	brightness;
 	int		color;
 
-	count = count_splitted(elements);
+	count = count_split(elements);
 	if (count != 3)
 	{
 		if (count < 3)

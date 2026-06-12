@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:17:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 00:53:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 15:22:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	parse_sphere_setting(char const **elements)
 	size_t		count;
 	t_object	object;
 
-	count = count_splitted(elements);
+	count = count_split(elements);
 	if (count != 4)
 	{
 		if (count < 4)

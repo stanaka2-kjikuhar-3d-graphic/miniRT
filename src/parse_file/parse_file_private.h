@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 01:34:58 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 15:22:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ bool	read_next_line(int fd, char **next_line);
 bool	validate_setting_ids(t_list *line_list);
 bool	is_identifier(char const *id, char const *line);
 bool	parse_settings(t_list **line_list);
-size_t	count_splitted(char const **splitted);
-void	free_splitted(char **splitted);
+size_t	count_split(char const **split);
+void	free_split(char **split);
 bool	parse_ambient_lighting_setting(char const **elements);
 bool	parse_light_setting(char const **elements);
 bool	parse_camera_setting(char const **elements);

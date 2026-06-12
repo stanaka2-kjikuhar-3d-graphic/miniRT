@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 14:23:30 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 15:22:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ bool	parse_settings(t_list **line_list)
 		}
 		if (!parse_setting((char const **)elements))
 		{
-			free_splitted(elements);
+			free_split(elements);
 			cleanup_objects();
 			return (false);
 		}
-		free_splitted(elements);
+		free_split(elements);
 	}
 	return (true);
 }

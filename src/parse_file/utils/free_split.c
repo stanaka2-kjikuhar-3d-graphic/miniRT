@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_splitted.c                                    :+:      :+:    :+:   */
+/*   free_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,16 +12,16 @@
 
 #include <stdlib.h>
 
-void	free_splitted(char **splitted)
+void	free_split(char **split)
 {
 	size_t	i;
 
-	if (splitted == NULL)
+	if (split == NULL)
 		return ;
 	i = 0;
-	while (splitted[i] != NULL)
+	while (split[i] != NULL)
 	{
-		free(splitted[i++]);
+		free(split[i++]);
 	}
-	free(splitted);
+	free(split);
 }

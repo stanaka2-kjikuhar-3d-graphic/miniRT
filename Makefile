@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/12 14:14:23 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/12 15:22:41 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -140,8 +140,8 @@ SRCS	+=	parse_file.c \
 			parse_cylinder_setting.c
 SRCS	+=	read_next_line.c \
 			is_identifier.c \
-			count_splitted.c \
-			free_splitted.c \
+			count_split.c \
+			free_split.c \
 			parse_color.c \
 			parse_dir.c \
 			parse_pos.c \

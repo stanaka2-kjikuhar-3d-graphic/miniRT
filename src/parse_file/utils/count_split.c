@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_splitted.c                                   :+:      :+:    :+:   */
+/*   count_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,14 +12,14 @@
 
 #include <stddef.h>
 
-size_t	count_splitted(char const **splitted)
+size_t	count_split(char const **split)
 {
 	size_t	count;
 
-	if (splitted == NULL)
+	if (split == NULL)
 		return (0);
 	count = 0;
-	while (splitted[count] != NULL)
+	while (split[count] != NULL)
 		++count;
 	return (count);
 }
