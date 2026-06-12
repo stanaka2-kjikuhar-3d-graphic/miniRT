@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 13:42:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/04 01:18:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 16:27:57 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,13 @@ static bool	read_width(
 	else if (**format == '*')
 	{
 		conv->width = va_arg(*ap, int);
-		if (conv->width < 0)
+		if (conv->width < 0 && conv->width != INT_MIN)
 		{
 			conv->width_flags = '-';
 			conv->width *= -1;
-			if (conv->width < 0)
-				return (false);
 		}
+		if (conv->width < 0)
+			return (false);
 		(*format)++;
 	}
 	if (PRINTF_RESULT_LIMIT - ctx->count < (size_t)conv->width)

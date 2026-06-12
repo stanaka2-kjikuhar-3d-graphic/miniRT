@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 02:31:25 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/03 21:28:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 16:19:28 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static void	get_frac_binary(t_pf_float *fp)
 {
 	int	offset;
 
-	if (fp->fraction_size < fp->exponent)
+	if (fp->fraction_size <= fp->exponent)
 	{
 		fp->frac_binary = 0;
 		return ;

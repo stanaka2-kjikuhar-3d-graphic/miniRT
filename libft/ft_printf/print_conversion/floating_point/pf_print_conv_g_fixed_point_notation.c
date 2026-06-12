@@ -6,12 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 17:00:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/03 21:33:25 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 16:17:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 
+#include "ft_stdlib.h"
 #include "ft_printf/ft_printf.h"
 #include "ft_printf/print_utils.h"
 #include "./floating_point_internal.h"
@@ -28,11 +29,8 @@ void	pf_print_conv_g_fixed_point(
 {
 	size_t		len;
 
-	if (conv->hash_flag != '#')
-	{
-		conv->precision = get_printable_precision_fixed_point(conv,
+	conv->precision = get_printable_precision_fixed_point(conv,
 				fp, decimal_exp);
-	}
 	len = get_length_g_fixed_point(conv, fp, decimal_exp);
 	if (conv->width_flags == '\0')
 		pf_print_space_width(ctx, conv, len);
@@ -51,15 +49,22 @@ static int	get_printable_precision_fixed_point(
 	int	precision;
 	int	i;
 
-	printable_prec = 0;
-	precision = 0;
-	i = -1 - decimal_exp;
-	while (i < 0 || (precision < conv->precision && i < fp->buf_frac_size))
+	if (conv->hash_flag != '#')
 	{
-		precision++;
-		if (i < 0 || fp->radix_point[i] != 0)
-			printable_prec = precision;
-		i++;
+		printable_prec = 0;
+		precision = 0;
+		i = -1 - decimal_exp;
+		while (i < 0 || (precision < conv->precision && i < fp->buf_frac_size))
+		{
+			precision++;
+			if (i < 0 || fp->radix_point[i] != 0)
+				printable_prec = precision;
+			i++;
+		}
+	}
+	else
+	{
+		printable_prec = conv->precision;
 	}
 	if (decimal_exp < 0)
 		printable_prec += -decimal_exp;
