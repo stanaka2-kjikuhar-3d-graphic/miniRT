@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 23:57:22 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/10 00:02:57 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 15:00:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ bool	is_identifier(char const *id, char const *line)
 	size_t	len;
 
 	len = ft_strlen(id);
+	while (*line == ' ')
+		++line;
 	return (ft_strncmp(id, line, len) == 0 \
 		&& (line[len] == ' ' || line[len] == '\0'));
 }

@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/12 12:24:09 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/12 14:14:23 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ NAME	:= miniRT
 #       Compiler Flags       #
 # -------------------------- #
 
-CC				:= cc
+CC	:= cc
 
 override CFLAGS	+= -Wall -Wextra -Werror
 # when submit, it should change -W3
@@ -125,7 +125,7 @@ SRCS	+=	expose_hook.c \
 			key_press_hook.c
 
 # object
-SRCS		+=	object.c
+SRCS	+=	object.c
 
 # parse_file
 SRCS	+=	parse_file.c \

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 12:23:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 14:23:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,8 @@ static bool	parse_setting(char const **elements)
 	else if (is_identifier("cy", elements[0]))
 		return (parse_cylinder_setting(elements));
 	else
+	{
+		print_error(ERROR_ID_UNKNOWN);
 		return (false);
+	}
 }
