@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 16:40:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/04 01:30:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 16:49:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	pf_print_conv_a(t_ctx *ctx, t_conv *conv, t_pf_float *fp)
 {
 	size_t	len;
 
-	if (!conv->has_prec && conv->hash_flag != '#')
+	if (!conv->has_prec)
 		conv->precision = get_printable_precision_hex(fp);
 	len = get_length_float_hex(conv, fp);
 	if (conv->width_flags == '\0')
