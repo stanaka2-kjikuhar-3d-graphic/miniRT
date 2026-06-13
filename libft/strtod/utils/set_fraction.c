@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 06:03:19 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/13 17:24:37 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/13 22:10:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "./ft_strtod_internal.h"
+#include "../ft_strtod_internal.h"
 
 static bool	is_infinity(t_to_double *to_double);
 static void	round_to_nearest_even(t_to_double *to_double);

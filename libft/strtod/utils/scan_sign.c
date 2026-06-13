@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   encode_double.c                                    :+:      :+:    :+:   */
+/*   scan_sign.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/13 06:09:36 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/13 20:41:29 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/13 20:55:13 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/13 20:59:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
-
 #include "../ft_strtod_internal.h"
 
-double	encode_double(t_to_double *to_double)
+void	scan_sign(const char **nptr, t_to_double *to_double)
 {
-	union u_double	num;
-
-	num.raw_bits = (to_double->sign << DBL_SIGN_SHIFT) \
-					| (to_double->exp << DBL_EXPONENT_SHIFT) \
-					| to_double->frac;
-	return (num.value);
+	if (**nptr == '-' || **nptr == '+')
+	{
+		if (**nptr == '-')
+			to_double->sign = 1ULL;
+		++(*nptr);
+	}
 }

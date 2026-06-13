@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   encode_double.c                                    :+:      :+:    :+:   */
+/*   scan_exponent.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/13 06:09:36 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/13 20:41:29 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/13 19:25:41 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/13 22:39:32 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
+#include <stddef.h>
 
+#include "ft_stdlib.h"
 #include "../ft_strtod_internal.h"
 
-double	encode_double(t_to_double *to_double)
+void	scan_exponent(const char **nptr, t_to_double *to_double)
 {
-	union u_double	num;
-
-	num.raw_bits = (to_double->sign << DBL_SIGN_SHIFT) \
-					| (to_double->exp << DBL_EXPONENT_SHIFT) \
-					| to_double->frac;
-	return (num.value);
+	if (to_double->base == 10 && (**nptr == 'e' || **nptr == 'E'))
+		ft_strtol(*nptr, NULL, 10);
+	else if (to_double->base == 16 && (**nptr == 'p' || **nptr == 'P'))
+		ft_strtol(*nptr, NULL, 10);
 }

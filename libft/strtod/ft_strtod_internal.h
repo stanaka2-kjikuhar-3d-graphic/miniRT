@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 00:44:43 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/13 17:37:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/13 22:49:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,20 +70,25 @@ union u_double
 */
 typedef struct s_to_double
 {
+	uint64_t		sign;
+	uint64_t		exp;
+	uint64_t		frac;
 	uint8_t			fixed[BUF_SIZE];
 	uint8_t			*int_tail;
 	uint8_t			*frac_head;
 	uint8_t			*end;
 	uint8_t			*lsb;
 	uint8_t			*msb;
-	uint64_t		sign;
-	uint64_t		exp;
-	uint64_t		frac;
+	uint8_t			base;
 	bool			is_inf;
 	bool			is_sticky;
 }	t_to_double;
 
-void	scan_digits(const char *nptr, t_to_double *to_double);
+void	scan_sign(const char **nptr, t_to_double *to_double);
+void	scan_base(const char **nptr, t_to_double *to_double);
+double	pre_scan_exponent(const char *nptr, t_to_double *to_double);
+void	scan_digits(const char **nptr, t_to_double *to_double, long exponent);
+long 	scan_exponent(const char **nptr, t_to_double *to_double);
 void	set_exponent(t_to_double *to_double);
 void	set_fraction(t_to_double *to_double);
 void	half_array(uint8_t *array_end, uint8_t **lsb, uint8_t **msb);

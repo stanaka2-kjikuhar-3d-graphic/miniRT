@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 15:32:39 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/10 17:58:30 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/13 19:19:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ unsigned int	ft_abs_uint(int n);
 unsigned long	ft_abs_ulong(long n);
 uintmax_t		ft_abs_uintmax(intmax_t n);
 int				ft_atoi(const char *nptr);
+long			ft_strtol(const char *nptr, char **endptr, int base);
 double			ft_atof(const char *nptr);
 void			*ft_calloc(size_t nmemb, size_t size);
 char			*ft_itoa(int n);
