@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/24 21:27:03 by stanaka2          #+#    #+#              #
-#    Updated: 2026/06/08 14:15:36 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/13 00:31:08 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,7 +125,9 @@ SRCS += ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c \
 		ft_putchar_fd_bytes.c ft_putendl_fd_bytes.c ft_putnbr_fd_bytes.c ft_putstr_fd_bytes.c
 
 # stdlib
-SRCS += ft_abs_uint.c ft_abs_ulong.c ft_abs_uintmax.c ft_atof.c ft_atoi.c ft_calloc.c ft_itoa.c ft_realloc.c ft_reallocf.c
+SRCS += ft_abs_uint.c ft_abs_ulong.c ft_abs_uintmax.c \
+		ft_atof.c ft_atoi.c ft_itoa.c ft_strtol.c \
+		ft_calloc.c  ft_realloc.c ft_reallocf.c
 
 # string
 SRCS += ft_bzero.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c \
