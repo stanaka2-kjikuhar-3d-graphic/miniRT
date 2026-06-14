@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 19:25:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/15 06:25:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/15 07:04:31 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	parse_double(char const *element, double *value)
 		return (false);
 	}
 	*value = ft_strtod(element, (char **)&element);
-	if (*element != '0')
+	if (*element != '\0')
 	{
 		print_error(ERROR_NUMBER_FORMAT);
 		return (false);

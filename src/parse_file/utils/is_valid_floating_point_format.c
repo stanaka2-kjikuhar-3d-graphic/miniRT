@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 23:26:52 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/15 06:33:43 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/15 07:04:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 bool	is_valid_floating_point_format(const char *s)
 {
-	if (ft_isspace(*s))
+	if (!ft_isspace(*s))
 		return (false);
 	if (*s == '+' || *s == '-')
 		++s;
-	if (ft_isdigit(*s))
+	if (!ft_isdigit(*s))
 		return (false);
 	return (true);
 }
