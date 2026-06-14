@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 20:01:36 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 20:03:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 20:34:38 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	strtod_set_exponent(t_to_double *to_double)
 		to_double->exp = 0;
 	else if (to_double->lsb <= to_double->ones_digit)
 	{
-		while (to_double->exp < 2047 && !is_normalized(to_double))
+		while (to_double->exp < DBL_NAN_INF_EXP && !is_normalized(to_double))
 		{
 			if (*(to_double->end) % 2 == 1)
 				to_double->has_sticky = true;

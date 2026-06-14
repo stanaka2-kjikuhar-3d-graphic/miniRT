@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 16:35:16 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 20:03:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 20:35:37 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 #include "ft_stdlib.h"
 #include "../ft_strtod_internal.h"
 
+/*
+When the result is NaN,
+the most significant bit of the fraction is the quiet bit.
+*/
 bool	strtod_scan_literal_nan(const char **nptr, t_to_double *to_double)
 {
 	size_t	i;
@@ -27,8 +31,8 @@ bool	strtod_scan_literal_nan(const char **nptr, t_to_double *to_double)
 	{
 		*nptr += 3;
 		strtod_set_sign(to_double);
-		to_double->exp = 2047;
-		to_double->frac = (1ULL << 51);
+		to_double->exp = DBL_NAN_INF_EXP;
+		to_double->frac = (1ULL << DBL_NAN_QUIET_BIT);
 		i = 0;
 		if ((*nptr)[i++] == '(')
 		{
@@ -36,8 +40,8 @@ bool	strtod_scan_literal_nan(const char **nptr, t_to_double *to_double)
 				++i;
 			if ((*nptr)[i] == ')')
 			{
-				to_double->frac \
-					|= ft_strtol(*nptr + 1, NULL, 0) & ((1ULL << 51) - 1);
+				to_double->frac |= ft_strtol(*nptr + 1, NULL, 0) \
+										& ((1ULL << DBL_NAN_QUIET_BIT) - 1);
 				*nptr = &((*nptr)[i + 1]);
 			}
 		}

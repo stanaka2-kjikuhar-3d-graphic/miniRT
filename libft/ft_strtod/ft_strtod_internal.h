@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 20:02:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 20:02:40 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 20:33:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 
 # define DBL_SIGN_SHIFT 63
 # define DBL_EXPONENT_SHIFT 52
+
+# define DBL_NAN_INF_EXP 2047
+# define DBL_NAN_QUIET_BIT 51
 
 union u_double
 {
