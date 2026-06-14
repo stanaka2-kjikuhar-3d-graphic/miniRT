@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/24 21:27:03 by stanaka2          #+#    #+#              #
-#    Updated: 2026/06/14 20:07:22 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/14 20:09:22 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -214,7 +214,7 @@ SRCS += pf_conv_a.c pf_print_conv_a.c pf_print_inf.c pf_print_nan.c
 endif
 
 # ft_strtod
-SRCS += ft_strtod.c ft_atoi.c \
+SRCS += ft_strtod.c ft_atof.c \
 		strtod_calc_array.c strtod_scan_base.c strtod_scan_literal.c strtod_set_fraction.c \
 		strtod_has_digit.c strtod_scan_digits.c strtod_scan_sign.c strtod_set_lsb_and_msb.c \
 		strtod_pre_scan_exponent.c strtod_scan_exponent.c strtod_set_exponent.c strtod_set_sign.c
