@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 20:02:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 22:09:09 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 23:02:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ union u_double
 
 /*
 ** t_to_double: working context for one decimal -> double conversion.
-** ft_atof MUST set ones_digit, tens_digit and end before any phase runs.
+** ft_strtod MUST set ones_digit, tens_digit and end before any phase runs.
 ** Each phase mutates this struct in place.
 **
 ** ones_digit : &fixed_point[INT_DIGITS-1], units digit
