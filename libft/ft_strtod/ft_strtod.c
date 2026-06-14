@@ -30,7 +30,7 @@ double	ft_strtod(const char *nptr, char **endptr)
 	ptr = (char *)nptr;
 	if (scan_string(&nptr, &ptr, &to_double))
 	{
-		strtod_set_lsb_and_msb(&to_double);
+		strtod_set_msd_and_lsd(&to_double);
 		strtod_set_sign(&to_double);
 		strtod_set_exponent(&to_double);
 		strtod_set_fraction(&to_double);

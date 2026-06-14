@@ -22,9 +22,9 @@ void	strtod_set_exponent(t_to_double *to_double)
 	to_double->exp = DBL_EMAX;
 	if (to_double->is_inf)
 		to_double->exp = DBL_NAN_INF_EXP;
-	else if (to_double->lsb == NULL)
+	else if (to_double->msd == NULL)
 		to_double->exp = 0;
-	else if (to_double->lsb <= to_double->ones_digit)
+	else if (to_double->msd <= to_double->ones_digit)
 	{
 		while (to_double->exp < DBL_NAN_INF_EXP && !is_normalized(to_double))
 		{
@@ -41,7 +41,7 @@ void	strtod_set_exponent(t_to_double *to_double)
 			strtod_double_array(to_double);
 			--(to_double->exp);
 		}
-		if (to_double->tens_digit <= to_double->lsb)
+		if (to_double->tens_digit <= to_double->msd)
 			to_double->exp = 0;
 	}
 }
@@ -49,5 +49,5 @@ void	strtod_set_exponent(t_to_double *to_double)
 static bool	is_normalized(t_to_double *to_double)
 {
 	return (*(to_double->ones_digit) == 1 \
-				&& to_double->lsb == to_double->ones_digit);
+				&& to_double->msd == to_double->ones_digit);
 }

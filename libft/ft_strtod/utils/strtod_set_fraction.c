@@ -21,7 +21,7 @@ void	strtod_set_fraction(t_to_double *to_double)
 {
 	size_t	i;
 
-	if (to_double->exp == DBL_NAN_INF_EXP || to_double->lsb == NULL)
+	if (to_double->exp == DBL_NAN_INF_EXP || to_double->msd == NULL)
 	{
 		to_double->frac = 0;
 		return ;
@@ -47,7 +47,7 @@ static void	round_to_nearest_even(t_to_double *to_double)
 		|| (*(to_double->tens_digit) == half \
 			&& (*(to_double->ones_digit) % 2 == 1
 				|| to_double->has_sticky \
-				|| to_double->tens_digit < to_double->msb)))
+				|| to_double->tens_digit < to_double->lsd)))
 	{
 		++(to_double->frac);
 	}

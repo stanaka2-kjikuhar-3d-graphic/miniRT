@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 13:46:30 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 22:09:23 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 22:56:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "../ft_strtod_internal.h"
 
-static void	update_lsb_and_msb(t_to_double *to_doubleb);
+static void	update_msd_and_lsd(t_to_double *to_double);
 
 void	strtod_half_array(t_to_double *to_double)
 {
@@ -23,8 +23,8 @@ void	strtod_half_array(t_to_double *to_double)
 	uint8_t	*right;
 	uint8_t	carry;
 
-	left = to_double->lsb;
-	right = to_double->msb;
+	left = to_double->msd;
+	right = to_double->lsd;
 	if (left == NULL || right == NULL)
 		return ;
 	carry = 0;
@@ -38,9 +38,9 @@ void	strtod_half_array(t_to_double *to_double)
 	if (carry != 0 && left <= to_double->end)
 	{
 		*left = (carry * to_double->base) / 2;
-		to_double->msb = left;
+		to_double->lsd = left;
 	}
-	update_lsb_and_msb(to_double);
+	update_msd_and_lsd(to_double);
 }
 
 void	strtod_double_array(t_to_double *to_double)
@@ -49,8 +49,8 @@ void	strtod_double_array(t_to_double *to_double)
 	uint8_t	*right;
 	uint8_t	carry;
 
-	left = to_double->lsb;
-	right = to_double->msb;
+	left = to_double->msd;
+	right = to_double->lsd;
 	if (left == NULL || right == NULL)
 		return ;
 	carry = 0;
@@ -64,31 +64,31 @@ void	strtod_double_array(t_to_double *to_double)
 	if (carry != 0 && to_double->fixed_point <= right)
 	{
 		*right = carry;
-		to_double->lsb = right;
+		to_double->msd = right;
 	}
-	update_lsb_and_msb(to_double);
+	update_msd_and_lsd(to_double);
 }
 
-static void	update_lsb_and_msb(t_to_double *to_double)
+static void	update_msd_and_lsd(t_to_double *to_double)
 {
-	if (to_double->lsb == NULL || to_double->msb == NULL)
+	if (to_double->msd == NULL || to_double->lsd == NULL)
 		return ;
-	while (to_double->lsb <= to_double->msb)
+	while (to_double->msd <= to_double->lsd)
 	{
-		if (*(to_double->lsb) != 0)
+		if (*(to_double->msd) != 0)
 			break ;
-		++(to_double->lsb);
+		++(to_double->msd);
 	}
-	if (to_double->lsb > to_double->msb)
+	if (to_double->msd > to_double->lsd)
 	{
-		to_double->lsb = NULL;
-		to_double->msb = NULL;
+		to_double->msd = NULL;
+		to_double->lsd = NULL;
 		return ;
 	}
-	while (to_double->lsb <= to_double->msb)
+	while (to_double->msd <= to_double->lsd)
 	{
-		if (*(to_double->msb) != 0)
+		if (*(to_double->lsd) != 0)
 			break ;
-		--(to_double->msb);
+		--(to_double->lsd);
 	}
 }

@@ -48,9 +48,9 @@ union u_double
 ** ones_digit : &fixed_point[INT_DIGITS-1], units digit
 ** tens_digit : &fixed_point[INT_DIGITS], first fraction digit
 ** end        : &fixed_point[BUF_SIZE-1], least significant fraction slot.
-** lsb, msb   : bound the active window of nonzero digits (lowest/highest
+** msd, lsd   : bound the active window of nonzero digits (lowest/highest
 **              array index). Both NULL when the value is zero. half_array
-**              and double_array work only on [lsb, msb] and keep them in
+**              and double_array work only on [msd, lsd] and keep them in
 **              sync: extend on carry-out, trim leading/trailing zeros.
 **
 ** sign       : IEEE sign bit (0 or 1).
@@ -70,8 +70,8 @@ typedef struct s_to_double
 	uint8_t			*ones_digit;
 	uint8_t			*tens_digit;
 	uint8_t			*end;
-	uint8_t			*lsb;
-	uint8_t			*msb;
+	uint8_t			*msd;
+	uint8_t			*lsd;
 	bool			is_negative;
 	bool			is_inf;
 	bool			has_sticky;
@@ -87,7 +87,7 @@ long	strtod_pre_scan_decimal_exponent(const char *nptr);
 void	strtod_scan_hex_digits(const char **nptr, t_to_double *to_double);
 long	strtod_pre_scan_hex_exponent(const char *nptr);
 void	strtod_scan_exponent(const char **nptr, t_to_double *to_double);
-void	strtod_set_lsb_and_msb(t_to_double *to_double);
+void	strtod_set_msd_and_lsd(t_to_double *to_double);
 void	strtod_set_sign(t_to_double *to_double);
 void	strtod_set_exponent(t_to_double *to_double);
 void	strtod_set_fraction(t_to_double *to_double);
