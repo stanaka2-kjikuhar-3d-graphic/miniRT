@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 20:01:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 20:03:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 22:12:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,16 @@ void	strtod_set_fraction(t_to_double *to_double)
 {
 	size_t	i;
 
+	if (to_double->exp == DBL_NAN_INF_EXP || to_double->lsb == NULL)
+	{
+		to_double->frac = 0;
+		return ;
+	}
 	*(to_double->ones_digit) = 0;
 	i = 0;
 	while (i++ < DBL_FRACTION)
 	{
-		strtod_double_array_base(to_double->fixed_point, \
-			&(to_double->lsb), &(to_double->msb), to_double->base);
+		strtod_double_array(to_double);
 		to_double->frac <<= 1;
 		if (*(to_double->ones_digit) % 2 == 1)
 			to_double->frac |= 1ULL;

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 20:02:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 20:33:53 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 22:09:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,7 @@ void	strtod_set_lsb_and_msb(t_to_double *to_double);
 void	strtod_set_sign(t_to_double *to_double);
 void	strtod_set_exponent(t_to_double *to_double);
 void	strtod_set_fraction(t_to_double *to_double);
-void	strtod_half_array_base(\
-			uint8_t *array_end, uint8_t **lsb, uint8_t **msb, uint8_t base);
-void	strtod_double_array_base(\
-			uint8_t *array_start, uint8_t **lsb, uint8_t **msb, uint8_t base);
+void	strtod_half_array(t_to_double *to_double);
+void	strtod_double_array(t_to_double *to_double);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 16:35:16 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 20:50:59 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 21:50:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ bool	strtod_scan_literal_inf(const char **nptr, t_to_double *to_double)
 		&& ft_tolower((*nptr)[2]) == 'f')
 	{
 		*nptr += 3;
-		to_double->is_inf = true;
+		strtod_set_sign(to_double);
+		to_double->exp = DBL_NAN_INF_EXP;
+		to_double->frac = 0;
 		if (ft_tolower((*nptr)[0]) == 'i' \
 			&& ft_tolower((*nptr)[1]) == 'n' \
 			&& ft_tolower((*nptr)[2]) == 'i' \

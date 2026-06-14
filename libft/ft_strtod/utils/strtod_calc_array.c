@@ -6,89 +6,89 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 13:46:30 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 20:00:30 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 22:09:23 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdint.h>
 #include <stddef.h>
 
-static void	update_lsb_and_msb(uint8_t **lsb, uint8_t **msb);
+#include "../ft_strtod_internal.h"
 
-void	strtod_half_array_base(\
-	uint8_t *array_end, uint8_t **lsb, uint8_t **msb, uint8_t base)
+static void	update_lsb_and_msb(t_to_double *to_doubleb);
+
+void	strtod_half_array(t_to_double *to_double)
 {
 	uint8_t	*left;
 	uint8_t	*right;
 	uint8_t	carry;
 
-	left = *lsb;
-	right = *msb;
+	left = to_double->lsb;
+	right = to_double->msb;
 	if (left == NULL || right == NULL)
 		return ;
 	carry = 0;
 	while (left <= right)
 	{
-		*left += carry * base;
+		*left += carry * to_double->base;
 		carry = *left % 2;
 		*left = *left / 2;
 		++left;
 	}
-	if (carry != 0 && left <= array_end)
+	if (carry != 0 && left <= to_double->end)
 	{
-		*left = (carry * base) / 2;
-		*msb = left;
+		*left = (carry * to_double->base) / 2;
+		to_double->msb = left;
 	}
-	update_lsb_and_msb(lsb, msb);
+	update_lsb_and_msb(to_double);
 }
 
-void	strtod_double_array_base(\
-	uint8_t *array_start, uint8_t **lsb, uint8_t **msb, uint8_t base)
+void	strtod_double_array(t_to_double *to_double)
 {
 	uint8_t	*left;
 	uint8_t	*right;
 	uint8_t	carry;
 
-	left = *lsb;
-	right = *msb;
+	left = to_double->lsb;
+	right = to_double->msb;
 	if (left == NULL || right == NULL)
 		return ;
 	carry = 0;
 	while (left <= right)
 	{
 		*right = *right * 2 + carry;
-		carry = *right / base;
-		*right %= base;
+		carry = *right / to_double->base;
+		*right %= to_double->base;
 		--right;
 	}
-	if (carry != 0 && array_start <= right)
+	if (carry != 0 && to_double->fixed_point <= right)
 	{
 		*right = carry;
-		*lsb = right;
+		to_double->lsb = right;
 	}
-	update_lsb_and_msb(lsb, msb);
+	update_lsb_and_msb(to_double);
 }
 
-static void	update_lsb_and_msb(uint8_t **lsb, uint8_t **msb)
+static void	update_lsb_and_msb(t_to_double *to_double)
 {
-	if (*lsb == NULL || *msb == NULL)
+	if (to_double->lsb == NULL || to_double->msb == NULL)
 		return ;
-	while (*lsb <= *msb)
+	while (to_double->lsb <= to_double->msb)
 	{
-		if (**lsb != 0)
+		if (*(to_double->lsb) != 0)
 			break ;
-		++(*lsb);
+		++(to_double->lsb);
 	}
-	if (*lsb > *msb)
+	if (to_double->lsb > to_double->msb)
 	{
-		*lsb = NULL;
-		*msb = NULL;
+		to_double->lsb = NULL;
+		to_double->msb = NULL;
 		return ;
 	}
-	while (*lsb <= *msb)
+	while (to_double->lsb <= to_double->msb)
 	{
-		if (**msb != 0)
+		if (*(to_double->msb) != 0)
 			break ;
-		--(*msb);
+		--(to_double->msb);
 	}
 }

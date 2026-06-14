@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 00:33:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 20:34:38 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 22:11:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,7 @@ double	ft_strtod(const char *nptr, char **endptr)
 		strtod_set_lsb_and_msb(&to_double);
 		strtod_set_sign(&to_double);
 		strtod_set_exponent(&to_double);
-		if (to_double.exp == DBL_NAN_INF_EXP)
-			to_double.is_inf = true;
-		else
-			strtod_set_fraction(&to_double);
-	}
-	if (to_double.is_inf)
-	{
-		strtod_set_sign(&to_double);
-		to_double.exp = DBL_NAN_INF_EXP;
-		to_double.frac = 0;
+		strtod_set_fraction(&to_double);
 	}
 	if (endptr != NULL)
 		*endptr = ptr;
@@ -74,7 +65,8 @@ static bool	scan_string(const char **nptr, char **ptr, t_to_double *to_double)
 		if (to_double->base == 10)
 			return (false);
 		*ptr = (char *)*nptr - 1;
-		return (true);
+		strtod_set_sign(to_double);
+		return (false);
 	}
 	if (to_double->base == 10)
 		strtod_scan_decimal_digits(nptr, to_double);
