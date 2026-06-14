@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 22:31:30 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/13 22:48:53 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 19:43:00 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 #include "ft_ctype.h"
 #include "ft_stdlib.h"
-#include "../ft_strtod_internal.h"
 
-long	pre_scan_exponent(const char *nptr, t_to_double *to_double)
+long	pre_scan_decimal_exponent(const char *nptr)
 {
 	while (ft_isdigit(*nptr))
 		++nptr;
@@ -24,10 +23,22 @@ long	pre_scan_exponent(const char *nptr, t_to_double *to_double)
 		++nptr;
 	while (ft_isdigit(*nptr))
 		++nptr;
-	if (to_double->base == 10 && (**nptr == 'e' || **nptr == 'E'))
-		return (ft_strtol(*nptr, NULL, 10));
-	else if (to_double->base == 16 && (**nptr == 'p' || **nptr == 'P'))
-		return (ft_strtol(*nptr, NULL, 10));
+	if ((*nptr == 'e' || *nptr == 'E') && !ft_isspace(*(nptr + 1)))
+		return (ft_strtol(nptr + 1, NULL, 10));
+	else
+		return (0);
+}
+
+long	pre_scan_hex_exponent(const char *nptr)
+{
+	while (ft_isxdigit(*nptr))
+		++nptr;
+	if (*nptr == '.')
+		++nptr;
+	while (ft_isxdigit(*nptr))
+		++nptr;
+	if ((*nptr == 'p' || *nptr == 'P') && !ft_isspace(*(nptr + 1)))
+		return (ft_strtol(nptr + 1, NULL, 10));
 	else
 		return (0);
 }

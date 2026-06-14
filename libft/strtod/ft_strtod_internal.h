@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 00:44:43 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/13 22:49:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 18:35:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,54 +45,58 @@ union u_double
 
 /*
 ** t_to_double: working context for one decimal -> double conversion.
-** ft_atof MUST set int_tail, frac_head and end before any phase runs.
+** ft_atof MUST set ones_digit, tens_digit and end before any phase runs.
 ** Each phase mutates this struct in place.
 **
-** fixed[]: the magnitude as a base-10 fixed-point number.
-**   fixed[0 .. INT_DIGITS-1]        integer part
-**   fixed[INT_DIGITS .. BUF_SIZE-1] fraction
-** The radix point is placed between fixed[INT_DIGITS-1] and fixed[INT_DIGITS].
+** ones_digit : &fixed_point[INT_DIGITS-1], units digit
+** tens_digit : &fixed_point[INT_DIGITS], first fraction digit
+** end        : &fixed_point[BUF_SIZE-1], least significant fraction slot.
+** lsb, msb   : bound the active window of nonzero digits (lowest/highest
+**              array index). Both NULL when the value is zero. half_array
+**              and double_array work only on [lsb, msb] and keep them in
+**              sync: extend on carry-out, trim leading/trailing zeros.
 **
-** int_tail : &fixed[INT_DIGITS-1], units digit; int_tail[-k] = higher.
-** frac_head: &fixed[INT_DIGITS], first fraction digit; frac_head[k] = lower.
-** end      : &fixed[BUF_SIZE-1], least significant fraction slot.
-** lsb, msb : bound the active window of nonzero digits (lowest/highest
-**            array index). Both NULL when the value is zero. half_array
-**            and double_array work only on [lsb, msb] and keep them in
-**            sync: extend on carry-out, trim leading/trailing zeros.
-**
-** sign     : IEEE sign bit (0 or 1).
-** exp      : IEEE biased exponent field (filled by set_exponent).
-** frac     : IEEE 52-bit mantissa field (filled by set_fraction).
-** is_inf   : set by scan_digits on integer overflow; forces infinity.
-** is_sticky: nonzero digits dropped past tracked precision; feeds
-**            round-half-to-even.
+** sign       : IEEE sign bit (0 or 1).
+** exp        : IEEE biased exponent field (filled by set_exponent).
+** frac       : IEEE 52-bit mantissa field (filled by set_fraction).
+** is_inf     : set by scan_digits on integer overflow; forces infinity.
+** has_sticky : nonzero digits dropped past tracked precision; feeds
+**              round-half-to-even.
 */
 typedef struct s_to_double
 {
 	uint64_t		sign;
 	uint64_t		exp;
 	uint64_t		frac;
-	uint8_t			fixed[BUF_SIZE];
-	uint8_t			*int_tail;
-	uint8_t			*frac_head;
+	uint8_t			base;
+	uint8_t			fixed_point[BUF_SIZE];
+	uint8_t			*ones_digit;
+	uint8_t			*tens_digit;
 	uint8_t			*end;
 	uint8_t			*lsb;
 	uint8_t			*msb;
-	uint8_t			base;
+	bool			is_negative;
 	bool			is_inf;
-	bool			is_sticky;
+	bool			has_sticky;
 }	t_to_double;
 
 void	scan_sign(const char **nptr, t_to_double *to_double);
+bool	scan_literal_nan(const char **nptr, t_to_double *to_double);
+bool	scan_literal_inf(const char **nptr, t_to_double *to_double);
 void	scan_base(const char **nptr, t_to_double *to_double);
-double	pre_scan_exponent(const char *nptr, t_to_double *to_double);
-void	scan_digits(const char **nptr, t_to_double *to_double, long exponent);
-long 	scan_exponent(const char **nptr, t_to_double *to_double);
+bool	has_digit(const char *nptr, t_to_double *to_double);
+void	scan_decimal_digits(const char **nptr, t_to_double *to_double);
+long	pre_scan_decimal_exponent(const char *nptr);
+void	scan_hex_digits(const char **nptr, t_to_double *to_double);
+long	pre_scan_hex_exponent(const char *nptr);
+void	scan_exponent(const char **nptr, t_to_double *to_double);
+void	set_lsb_and_msb(t_to_double *to_double);
+void	set_sign(t_to_double *to_double);
 void	set_exponent(t_to_double *to_double);
 void	set_fraction(t_to_double *to_double);
-void	half_array(uint8_t *array_end, uint8_t **lsb, uint8_t **msb);
-void	double_array(uint8_t *array_start, uint8_t **lsb, uint8_t **msb);
-double	encode_double(t_to_double *to_double);
+void	half_array_base(\
+			uint8_t *array_end, uint8_t **lsb, uint8_t **msb, uint8_t base);
+void	double_array_base(\
+			uint8_t *array_start, uint8_t **lsb, uint8_t **msb, uint8_t base);
 
 #endif
