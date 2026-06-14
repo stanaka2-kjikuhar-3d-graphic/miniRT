@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 09:47:15 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/10 19:42:01 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/15 06:50:59 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,27 @@
 #include "ft_error.h"
 #include "../parse_file_private.h"
 
-bool	parse_dvec3(char const *s, t_dvec3 *vector)
+bool	parse_dvec3(char const *element, t_dvec3 *vector)
 {
-	enum e_axis	axis;
+	double *const	v[3] = {&vector->x, &vector->y, &vector->z};
+	enum e_axis		axis;
 
 	axis = X_AXIS;
 	while (axis <= Z_AXIS)
 	{
-		if (axis == X_AXIS)
-			vector->x = ft_atof(s);
-		else if (axis == Y_AXIS)
-			vector->y = ft_atof(s);
-		else if (axis == Z_AXIS)
-			vector->z = ft_atof(s);
-		if (!parse_floating_point_format(&s))
-			return (false);
-		if (((axis == X_AXIS || axis == Y_AXIS) && *s != ',') \
-			|| (axis == Z_AXIS && *s != '\0'))
+		if (!is_valid_floating_point_format(element))
 		{
 			print_error(ERROR_VECTOR_FORMAT);
 			return (false);
 		}
-		++s;
+		*(v[axis]) = ft_strtod(element, (char **)&element);
+		if (((axis == X_AXIS || axis == Y_AXIS) && *element != ',') \
+			|| (axis == Z_AXIS && *element != '\0'))
+		{
+			print_error(ERROR_VECTOR_FORMAT);
+			return (false);
+		}
+		++element;
 		++axis;
 	}
 	return (true);

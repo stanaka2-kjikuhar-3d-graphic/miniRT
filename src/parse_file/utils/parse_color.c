@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:11:18 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/06/11 23:34:58 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/15 06:21:24 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "ft_error.h"
 #include "../parse_file_private.h"
 
-static bool	parse_color_channel(char const **element);
+static bool	parse_color_channel(char const **element, int *color);
 
 bool	parse_color(char const *element, int *color)
 {
@@ -27,8 +27,7 @@ bool	parse_color(char const *element, int *color)
 	channel = RED;
 	while (channel <= BLUE)
 	{
-		*color = (*color << 8) | ft_atoi(element);
-		if (!parse_color_channel(&element))
+		if (!parse_color_channel(&element, color))
 			return (false);
 		if (((channel == RED || channel == GREEN) && *element != ',') \
 			|| (channel == BLUE && *element != '\0'))
@@ -42,30 +41,21 @@ bool	parse_color(char const *element, int *color)
 	return (true);
 }
 
-static bool	parse_color_channel(char const **element)
+static bool	parse_color_channel(char const **element, int *color)
 {
-	int	value;
+	long	value;
 
-	if (!ft_isdigit((*element)[0]))
+	if (!ft_isdigit(**element) && **element != '-')
 	{
 		print_error(ERROR_COLOR_FORMAT);
 		return (false);
 	}
-	if ((*element)[0] == '0' && ft_isdigit((*element)[1]))
+	value = ft_strtol(*element, (char **)element, 10);
+	if (value < 0 || 255 < value)
 	{
-		print_error(ERROR_COLOR_LEADING_ZERO);
+		print_error(ERROR_COLOR_RANGE);
 		return (false);
 	}
-	value = 0;
-	while (ft_isdigit(**element))
-	{
-		value = value * 10 + (**element - '0');
-		if (value > 255)
-		{
-			print_error(ERROR_COLOR_RANGE);
-			return (false);
-		}
-		++(*element);
-	}
+	*color = (*color << 8) | (int)value;
 	return (true);
 }

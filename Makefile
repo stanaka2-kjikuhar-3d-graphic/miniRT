@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/12 15:22:41 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/14 23:25:50 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -151,7 +151,7 @@ SRCS	+=	read_next_line.c \
 			parse_height.c \
 			parse_dvec3.c \
 			parse_double.c \
-			parse_floating_point_format.c
+			is_valid_floating_point_format.c
 
 # scene
 SRCS	+=	ambient_lighting.c \
