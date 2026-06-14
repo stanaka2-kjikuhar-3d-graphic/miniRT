@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 16:35:16 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 20:35:37 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 20:50:59 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ bool	strtod_scan_literal_nan(const char **nptr, t_to_double *to_double)
 {
 	size_t	i;
 
-	if (((*nptr)[0] == 'n' || (*nptr)[0] == 'N') \
-		&& ((*nptr)[1] == 'a' || (*nptr)[1] == 'A') \
-		&& ((*nptr)[2] == 'n' || (*nptr)[2] == 'N'))
+	if (ft_tolower((*nptr)[0]) == 'n' \
+		&& ft_tolower((*nptr)[1]) == 'a' \
+		&& ft_tolower((*nptr)[2]) == 'n')
 	{
 		*nptr += 3;
 		strtod_set_sign(to_double);
@@ -36,7 +36,7 @@ bool	strtod_scan_literal_nan(const char **nptr, t_to_double *to_double)
 		i = 0;
 		if ((*nptr)[i++] == '(')
 		{
-			while (ft_isalnum((*nptr)[i]))
+			while (ft_isalnum((*nptr)[i]) || (*nptr)[i] == '_')
 				++i;
 			if ((*nptr)[i] == ')')
 			{
@@ -52,17 +52,17 @@ bool	strtod_scan_literal_nan(const char **nptr, t_to_double *to_double)
 
 bool	strtod_scan_literal_inf(const char **nptr, t_to_double *to_double)
 {
-	if (((*nptr)[0] == 'i' || (*nptr)[0] == 'I') \
-		&& ((*nptr)[1] == 'n' || (*nptr)[1] == 'N') \
-		&& ((*nptr)[2] == 'f' || (*nptr)[2] == 'F'))
+	if (ft_tolower((*nptr)[0]) == 'i' \
+		&& ft_tolower((*nptr)[1]) == 'n' \
+		&& ft_tolower((*nptr)[2]) == 'f')
 	{
 		*nptr += 3;
 		to_double->is_inf = true;
-		if (((*nptr)[0] == 'i' || (*nptr)[0] == 'I') \
-			&& ((*nptr)[1] == 'n' || (*nptr)[1] == 'N') \
-			&& ((*nptr)[2] == 'i' || (*nptr)[2] == 'I') \
-			&& ((*nptr)[3] == 't' || (*nptr)[3] == 'T') \
-			&& ((*nptr)[4] == 'y' || (*nptr)[4] == 'Y'))
+		if (ft_tolower((*nptr)[0]) == 'i' \
+			&& ft_tolower((*nptr)[1]) == 'n' \
+			&& ft_tolower((*nptr)[2]) == 'i' \
+			&& ft_tolower((*nptr)[3]) == 't' \
+			&& ft_tolower((*nptr)[4]) == 'y')
 		{
 			*nptr += 5;
 		}
