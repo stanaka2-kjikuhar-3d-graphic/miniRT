@@ -16,7 +16,7 @@
 
 bool	is_valid_floating_point_format(const char *s)
 {
-	if (!ft_isspace(*s))
+	if (ft_isspace(*s))
 		return (false);
 	if (*s == '+' || *s == '-')
 		++s;
