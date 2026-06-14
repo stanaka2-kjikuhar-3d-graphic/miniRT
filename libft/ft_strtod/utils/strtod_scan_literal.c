@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scan_literal.c                                     :+:      :+:    :+:   */
+/*   strtod_scan_literal.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 16:35:16 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 19:22:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 20:03:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "ft_stdlib.h"
 #include "../ft_strtod_internal.h"
 
-bool	scan_literal_nan(const char **nptr, t_to_double *to_double)
+bool	strtod_scan_literal_nan(const char **nptr, t_to_double *to_double)
 {
 	size_t	i;
 
@@ -26,7 +26,7 @@ bool	scan_literal_nan(const char **nptr, t_to_double *to_double)
 		&& ((*nptr)[2] == 'n' || (*nptr)[2] == 'N'))
 	{
 		*nptr += 3;
-		set_sign(to_double);
+		strtod_set_sign(to_double);
 		to_double->exp = 2047;
 		to_double->frac = (1ULL << 51);
 		i = 0;
@@ -46,7 +46,7 @@ bool	scan_literal_nan(const char **nptr, t_to_double *to_double)
 	return (false);
 }
 
-bool	scan_literal_inf(const char **nptr, t_to_double *to_double)
+bool	strtod_scan_literal_inf(const char **nptr, t_to_double *to_double)
 {
 	if (((*nptr)[0] == 'i' || (*nptr)[0] == 'I') \
 		&& ((*nptr)[1] == 'n' || (*nptr)[1] == 'N') \
@@ -54,6 +54,14 @@ bool	scan_literal_inf(const char **nptr, t_to_double *to_double)
 	{
 		*nptr += 3;
 		to_double->is_inf = true;
+		if (((*nptr)[0] == 'i' || (*nptr)[0] == 'I') \
+			&& ((*nptr)[1] == 'n' || (*nptr)[1] == 'N') \
+			&& ((*nptr)[2] == 'i' || (*nptr)[2] == 'I') \
+			&& ((*nptr)[3] == 't' || (*nptr)[3] == 'T') \
+			&& ((*nptr)[4] == 'y' || (*nptr)[4] == 'Y'))
+		{
+			*nptr += 5;
+		}
 		return (true);
 	}
 	return (false);

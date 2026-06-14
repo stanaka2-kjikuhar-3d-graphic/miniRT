@@ -6,13 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 00:33:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 19:32:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 20:03:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdint.h>
-
-#include "./ft_strtod_internal.h"
 
 #include "ft_ctype.h"
 #include "ft_string.h"
@@ -32,17 +30,17 @@ double	ft_strtod(const char *nptr, char **endptr)
 	ptr = (char *)nptr;
 	if (scan_string(&nptr, &ptr, &to_double))
 	{
-		set_lsb_and_msb(&to_double);
-		set_sign(&to_double);
-		set_exponent(&to_double);
-		if (to_double.exp == (1UL << DBL_EXPONENT) - 1)
+		strtod_set_lsb_and_msb(&to_double);
+		strtod_set_sign(&to_double);
+		strtod_set_exponent(&to_double);
+		if (to_double.exp == (1ULL << DBL_EXPONENT) - 1)
 			to_double.is_inf = true;
 		else
-			set_fraction(&to_double);
+			strtod_set_fraction(&to_double);
 	}
 	if (to_double.is_inf)
 	{
-		set_sign(&to_double);
+		strtod_set_sign(&to_double);
 		to_double.exp = (1ULL << DBL_EXPONENT) - 1;
 		to_double.frac = 0;
 	}
@@ -63,25 +61,25 @@ static bool	scan_string(const char **nptr, char **ptr, t_to_double *to_double)
 {
 	while (ft_isspace(**nptr))
 		++(*nptr);
-	scan_sign(nptr, to_double);
-	if (scan_literal_nan(nptr, to_double) \
-		|| scan_literal_inf(nptr, to_double))
+	strtod_scan_sign(nptr, to_double);
+	if (strtod_scan_literal_nan(nptr, to_double) \
+		|| strtod_scan_literal_inf(nptr, to_double))
 	{
 		*ptr = (char *)*nptr;
 		return (false);
 	}
-	scan_base(nptr, to_double);
-	if (!has_digit(*nptr, to_double))
+	strtod_scan_base(nptr, to_double);
+	if (!strtod_has_digit(*nptr, to_double))
 	{
 		if (to_double->base == 16)
 			*ptr = (char *)*nptr - 1;
 		return (false);
 	}
 	if (to_double->base == 10)
-		scan_decimal_digits(nptr, to_double);
+		strtod_scan_decimal_digits(nptr, to_double);
 	else if (to_double->base == 16)
-		scan_hex_digits(nptr, to_double);
-	scan_exponent(nptr, to_double);
+		strtod_scan_hex_digits(nptr, to_double);
+	strtod_scan_exponent(nptr, to_double);
 	*ptr = (char *)*nptr;
 	return (true);
 }

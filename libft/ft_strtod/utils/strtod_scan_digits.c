@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scan_digits.c                                      :+:      :+:    :+:   */
+/*   strtod_scan_digits.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 03:22:31 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 18:33:53 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 20:03:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static void		add_scaled_hex_digits(\
 static uint8_t	hex_to_decimal(char c);
 static void		add_digit(t_to_double *to_double, ptrdiff_t i, uint8_t digit);
 
-void	scan_decimal_digits(const char **nptr, t_to_double *to_double)
+void	strtod_scan_decimal_digits(const char **nptr, t_to_double *to_double)
 {
-	const long	exponent = pre_scan_decimal_exponent(*nptr);
+	const long	exponent = strtod_pre_scan_decimal_exponent(*nptr);
 	const long	shift = -exponent;
 	const char	*radix_point;
 	ptrdiff_t	i;
@@ -51,9 +51,9 @@ void	scan_decimal_digits(const char **nptr, t_to_double *to_double)
 	}
 }
 
-void	scan_hex_digits(const char **nptr, t_to_double *to_double)
+void	strtod_scan_hex_digits(const char **nptr, t_to_double *to_double)
 {
-	const long		exponent = pre_scan_hex_exponent(*nptr);
+	const long		exponent = strtod_pre_scan_hex_exponent(*nptr);
 	const long		shift = -(exponent / 4);
 	const int8_t	mod = exponent % 4;
 	const char		*radix_point;

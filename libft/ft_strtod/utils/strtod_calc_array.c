@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_array.c                                       :+:      :+:    :+:   */
+/*   strtod_calc_array.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 13:46:30 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 15:38:38 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 20:00:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static void	update_lsb_and_msb(uint8_t **lsb, uint8_t **msb);
 
-void	half_array_base(\
+void	strtod_half_array_base(\
 	uint8_t *array_end, uint8_t **lsb, uint8_t **msb, uint8_t base)
 {
 	uint8_t	*left;
@@ -42,7 +42,7 @@ void	half_array_base(\
 	update_lsb_and_msb(lsb, msb);
 }
 
-void	double_array_base(\
+void	strtod_double_array_base(\
 	uint8_t *array_start, uint8_t **lsb, uint8_t **msb, uint8_t base)
 {
 	uint8_t	*left;

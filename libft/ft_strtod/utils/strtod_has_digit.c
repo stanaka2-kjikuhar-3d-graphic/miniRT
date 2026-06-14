@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_sign.c                                         :+:      :+:    :+:   */
+/*   strtod_has_digit.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/14 17:38:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 17:40:09 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/14 20:00:32 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/14 20:03:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stdint.h"
+#include <stdbool.h>
 
+#include "ft_ctype.h"
 #include "../ft_strtod_internal.h"
 
-void	set_sign(t_to_double *to_double)
+bool	strtod_has_digit(const char *nptr, t_to_double *to_double)
 {
-	if (to_double->is_negative)
-		to_double->sign = (uint64_t)1;
+	if (*nptr == '.')
+		++nptr;
+	if (to_double->base == 16)
+		return (ft_isxdigit(*nptr));
+	return (ft_isdigit(*nptr));
 }

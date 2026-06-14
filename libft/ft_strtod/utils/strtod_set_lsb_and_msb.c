@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scan_base.c                                        :+:      :+:    :+:   */
+/*   strtod_set_lsb_and_msb.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/13 20:39:39 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/13 20:55:42 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/14 20:01:50 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/14 20:03:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
 #include "../ft_strtod_internal.h"
 
-void	scan_base(const char **nptr, t_to_double *to_double)
+void	strtod_set_lsb_and_msb(t_to_double *to_double)
 {
-	if (ft_strncmp("0x", *nptr, 2) == 0 \
-		|| ft_strncmp("0X", *nptr, 2) == 0)
+	size_t	i;
+
+	i = 0;
+	while (i < BUF_SIZE)
 	{
-		to_double->base = 16;
-		*nptr += 2;
+		if (to_double->fixed_point[i] != 0)
+		{
+			if (to_double->lsb == NULL)
+				to_double->lsb = &(to_double->fixed_point[i]);
+			to_double->msb = &(to_double->fixed_point[i]);
+		}
+		++i;
 	}
-	else
-		to_double->base = 10;
 }

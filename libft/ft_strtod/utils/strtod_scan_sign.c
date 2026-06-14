@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   has_digit.c                                        :+:      :+:    :+:   */
+/*   strtod_scan_sign.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/14 17:43:33 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 17:46:32 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/14 20:01:30 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/14 20:03:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-
-#include "ft_ctype.h"
 #include "../ft_strtod_internal.h"
 
-bool	has_digit(const char *nptr, t_to_double *to_double)
+void	strtod_scan_sign(const char **nptr, t_to_double *to_double)
 {
-	if (*nptr == '.')
-		++nptr;
-	if (to_double->base == 16)
-		return (ft_isxdigit(*nptr));
-	return (ft_isdigit(*nptr));
+	if (**nptr == '-' || **nptr == '+')
+	{
+		if (**nptr == '-')
+			to_double->is_negative = true;
+		++(*nptr);
+	}
 }

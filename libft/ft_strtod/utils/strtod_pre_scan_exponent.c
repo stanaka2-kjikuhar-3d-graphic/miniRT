@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pre_scan_exponent.c                                :+:      :+:    :+:   */
+/*   strtod_pre_scan_exponent.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 22:31:30 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 19:43:00 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/14 20:00:40 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "ft_ctype.h"
 #include "ft_stdlib.h"
 
-long	pre_scan_decimal_exponent(const char *nptr)
+long	strtod_pre_scan_decimal_exponent(const char *nptr)
 {
 	while (ft_isdigit(*nptr))
 		++nptr;
@@ -29,7 +29,7 @@ long	pre_scan_decimal_exponent(const char *nptr)
 		return (0);
 }
 
-long	pre_scan_hex_exponent(const char *nptr)
+long	strtod_pre_scan_hex_exponent(const char *nptr)
 {
 	while (ft_isxdigit(*nptr))
 		++nptr;

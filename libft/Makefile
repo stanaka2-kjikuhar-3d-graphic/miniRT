@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/24 21:27:03 by stanaka2          #+#    #+#              #
-#    Updated: 2026/06/13 00:31:08 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/14 20:07:22 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,7 @@ override CPPFLAGS += $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 
 SRC_DIRS := ctype stdio stdlib string lst math
 SRC_DIRS += get_next_line
-SRC_DIRS +=	ft_printf \
+SRC_DIRS += ft_printf \
 			$(addprefix ft_printf/, \
 				print_utils print_utils/utils\
 				read_conversion read_conversion/utils \
@@ -106,6 +106,7 @@ SRC_DIRS +=	ft_printf \
 					special \
 				)\
 			)
+SRC_DIRS += ft_strtod ft_strtod/utils
 
 # vpath %.c <dir>
 $(foreach dir,$(SRC_DIRS), $(eval vpath %.c $(dir)))
@@ -211,6 +212,12 @@ SRCS += pf_conv_a_darwin.c pf_print_conv_a_darwin.c pf_print_inf_darwin.c pf_pri
 else
 SRCS += pf_conv_a.c pf_print_conv_a.c pf_print_inf.c pf_print_nan.c
 endif
+
+# ft_strtod
+SRCS += ft_strtod.c ft_atoi.c \
+		strtod_calc_array.c strtod_scan_base.c strtod_scan_literal.c strtod_set_fraction.c \
+		strtod_has_digit.c strtod_scan_digits.c strtod_scan_sign.c strtod_set_lsb_and_msb.c \
+		strtod_pre_scan_exponent.c strtod_scan_exponent.c strtod_set_exponent.c strtod_set_sign.c
 
 # -------------------------- #
 #        Object Files        #

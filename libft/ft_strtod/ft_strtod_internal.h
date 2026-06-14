@@ -5,19 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/13 00:44:43 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 18:35:08 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/14 20:02:11 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/14 20:02:40 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_STRTOD_INTERNAL_H
 # define FT_STRTOD_INTERNAL_H
-
-/*
-#include <unicode/utypes.h> is workaround for #include <float.h>
-due to norminette=3.3.55 bug.
-*/
-# include <unicode/utypes.h>
 
 # include <stddef.h>
 # include <stdint.h>
@@ -57,8 +51,8 @@ union u_double
 **              sync: extend on carry-out, trim leading/trailing zeros.
 **
 ** sign       : IEEE sign bit (0 or 1).
-** exp        : IEEE biased exponent field (filled by set_exponent).
-** frac       : IEEE 52-bit mantissa field (filled by set_fraction).
+** exp        : IEEE biased exponent field (filled by strtod_set_exponent).
+** frac       : IEEE 52-bit mantissa field (filled by strtod_set_fraction).
 ** is_inf     : set by scan_digits on integer overflow; forces infinity.
 ** has_sticky : nonzero digits dropped past tracked precision; feeds
 **              round-half-to-even.
@@ -80,23 +74,23 @@ typedef struct s_to_double
 	bool			has_sticky;
 }	t_to_double;
 
-void	scan_sign(const char **nptr, t_to_double *to_double);
-bool	scan_literal_nan(const char **nptr, t_to_double *to_double);
-bool	scan_literal_inf(const char **nptr, t_to_double *to_double);
-void	scan_base(const char **nptr, t_to_double *to_double);
-bool	has_digit(const char *nptr, t_to_double *to_double);
-void	scan_decimal_digits(const char **nptr, t_to_double *to_double);
-long	pre_scan_decimal_exponent(const char *nptr);
-void	scan_hex_digits(const char **nptr, t_to_double *to_double);
-long	pre_scan_hex_exponent(const char *nptr);
-void	scan_exponent(const char **nptr, t_to_double *to_double);
-void	set_lsb_and_msb(t_to_double *to_double);
-void	set_sign(t_to_double *to_double);
-void	set_exponent(t_to_double *to_double);
-void	set_fraction(t_to_double *to_double);
-void	half_array_base(\
+void	strtod_scan_sign(const char **nptr, t_to_double *to_double);
+bool	strtod_scan_literal_nan(const char **nptr, t_to_double *to_double);
+bool	strtod_scan_literal_inf(const char **nptr, t_to_double *to_double);
+void	strtod_scan_base(const char **nptr, t_to_double *to_double);
+bool	strtod_has_digit(const char *nptr, t_to_double *to_double);
+void	strtod_scan_decimal_digits(const char **nptr, t_to_double *to_double);
+long	strtod_pre_scan_decimal_exponent(const char *nptr);
+void	strtod_scan_hex_digits(const char **nptr, t_to_double *to_double);
+long	strtod_pre_scan_hex_exponent(const char *nptr);
+void	strtod_scan_exponent(const char **nptr, t_to_double *to_double);
+void	strtod_set_lsb_and_msb(t_to_double *to_double);
+void	strtod_set_sign(t_to_double *to_double);
+void	strtod_set_exponent(t_to_double *to_double);
+void	strtod_set_fraction(t_to_double *to_double);
+void	strtod_half_array_base(\
 			uint8_t *array_end, uint8_t **lsb, uint8_t **msb, uint8_t base);
-void	double_array_base(\
+void	strtod_double_array_base(\
 			uint8_t *array_start, uint8_t **lsb, uint8_t **msb, uint8_t base);
 
 #endif

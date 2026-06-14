@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scan_exponent.c                                    :+:      :+:    :+:   */
+/*   strtod_scan_exponent.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/13 19:25:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 19:42:54 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/14 20:00:58 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/14 20:03:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "ft_stdlib.h"
 #include "../ft_strtod_internal.h"
 
-void	scan_exponent(const char **nptr, t_to_double *to_double)
+void	strtod_scan_exponent(const char **nptr, t_to_double *to_double)
 {
 	const char	*p;
 	char		*end;
