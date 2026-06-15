@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 03:22:31 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 20:03:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/15 15:49:36 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void		add_digit(t_to_double *to_double, ptrdiff_t i, uint8_t digit);
 void	strtod_scan_decimal_digits(const char **nptr, t_to_double *to_double)
 {
 	const long	exponent = strtod_pre_scan_decimal_exponent(*nptr);
-	const long	shift = -exponent;
+	const long	shift = exponent;
 	const char	*radix_point;
 	ptrdiff_t	i;
 
@@ -38,12 +38,12 @@ void	strtod_scan_decimal_digits(const char **nptr, t_to_double *to_double)
 	{
 		if (**nptr != '0' && **nptr != '.')
 		{
-			if (i < 0 && LONG_MIN - i < shift)
+			if (0 < shift && LONG_MIN + shift > i)
 				to_double->is_inf = true;
-			else if (0 < i && LONG_MAX - i < shift)
+			else if (shift < 0 && LONG_MAX + shift < i)
 				to_double->has_sticky = true;
 			else
-				add_digit(to_double, i + shift, **nptr - '0');
+				add_digit(to_double, i - shift, **nptr - '0');
 		}
 		if (**nptr != '.')
 			++i;
@@ -54,7 +54,7 @@ void	strtod_scan_decimal_digits(const char **nptr, t_to_double *to_double)
 void	strtod_scan_hex_digits(const char **nptr, t_to_double *to_double)
 {
 	const long		exponent = strtod_pre_scan_hex_exponent(*nptr);
-	const long		shift = -(exponent / 4);
+	const long		shift = exponent / 4;
 	const int8_t	mod = exponent % 4;
 	const char		*radix_point;
 	ptrdiff_t		i;
@@ -67,12 +67,12 @@ void	strtod_scan_hex_digits(const char **nptr, t_to_double *to_double)
 	{
 		if (**nptr != '0' && **nptr != '.')
 		{
-			if (i < 0 && LONG_MIN - i < shift)
+			if (0 < shift && LONG_MIN + shift > i)
 				to_double->is_inf = true;
-			else if (0 < i && LONG_MAX - i < shift)
+			else if (shift < 0 && LONG_MAX + shift < i)
 				to_double->has_sticky = true;
 			else
-				add_scaled_hex_digits(to_double, i + shift, **nptr, mod);
+				add_scaled_hex_digits(to_double, i - shift, **nptr, mod);
 		}
 		if (**nptr != '.')
 			++i;
