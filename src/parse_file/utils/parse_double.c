@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 19:25:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/15 07:04:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/15 22:26:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,40 @@
 #include "ft_error.h"
 #include "../parse_file_private.h"
 
+static bool	parse_floating_point(const char *element);
+
 bool	parse_double(char const *element, double *value)
 {
-	if (!is_valid_floating_point_format(element))
-	{
-		print_error(ERROR_NUMBER_FORMAT);
+	if (!parse_floating_point(element))
 		return (false);
-	}
 	*value = ft_strtod(element, (char **)&element);
 	if (*element != '\0')
 	{
-		print_error(ERROR_NUMBER_FORMAT);
+		print_error(ERROR_FLOAT_CHARACTER);
+		return (false);
+	}
+	return (true);
+}
+
+static bool	parse_floating_point(const char *element)
+{
+	if (*element == '-')
+		++element;
+	if (*element == '0' && (ft_tolower(*(element + 1)) == 'x'))
+	{
+		print_error(ERROR_FLOAT_CHARACTER);
+		return (false);
+	}
+	if (*element == '0' && ft_isdigit(*(element + 1)))
+	{
+		print_error(ERROR_FLOAT_LEADING_ZERO);
+		return (false);
+	}
+	if (*element == '.')
+		++element;
+	if (!ft_isdigit(*element))
+	{
+		print_error(ERROR_FLOAT_CHARACTER);
 		return (false);
 	}
 	return (true);

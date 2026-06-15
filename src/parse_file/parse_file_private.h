@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/15 06:08:19 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/15 21:07:37 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,5 @@ bool	parse_fov(char const *element, double *fov);
 bool	parse_height(char const *element, double *height);
 bool	parse_double(char const *s, double *value);
 bool	parse_dvec3(char const *s, t_dvec3 *vector);
-bool	is_valid_floating_point_format(const char *s);
 
 #endif

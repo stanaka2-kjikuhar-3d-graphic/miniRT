@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:11:18 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/06/15 06:21:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/15 21:55:24 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,16 @@ bool	parse_color(char const *element, int *color)
 	{
 		if (!parse_color_channel(&element, color))
 			return (false);
+		if (((channel == RED || channel == GREEN) && *element == '\0') \
+			|| (channel == BLUE && *element == ','))
+		{
+			print_error_hint(ERROR_COLOR_FORMAT, HINT_COLOR);
+			return (false);
+		}
 		if (((channel == RED || channel == GREEN) && *element != ',') \
 			|| (channel == BLUE && *element != '\0'))
 		{
-			print_error(ERROR_COLOR_FORMAT);
+			print_error(ERROR_COLOR_NON_DIGIT);
 			return (false);
 		}
 		++element;
@@ -45,13 +51,23 @@ static bool	parse_color_channel(char const **element, int *color)
 {
 	long	value;
 
-	if (!ft_isdigit(**element) && **element != '-')
+	if (**element == ',' || **element == '\0')
 	{
-		print_error(ERROR_COLOR_FORMAT);
+		print_error(ERROR_COLOR_EMPTY);
+		return (false);
+	}
+	if (!ft_isdigit(**element))
+	{
+		print_error(ERROR_COLOR_NON_DIGIT);
+		return (false);
+	}
+	if (**element == '0' && ft_isdigit(*(*element + 1)))
+	{
+		print_error(ERROR_COLOR_LEADING_ZERO);
 		return (false);
 	}
 	value = ft_strtol(*element, (char **)element, 10);
-	if (value < 0 || 255 < value)
+	if (255 < value)
 	{
 		print_error(ERROR_COLOR_RANGE);
 		return (false);

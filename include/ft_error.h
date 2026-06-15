@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 14:04:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/15 22:09:40 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@
 # define ERROR_PLANE_MANY "Invalid plane: too many fields."
 # define ERROR_CYLINDER_FEW "Invalid cylinder: missing fields."
 # define ERROR_CYLINDER_MANY "Invalid cylinder: too many fields."
-
-/* Element count hint */
 # define HINT_AMBIENT "Usage: A ratio R,G,B"
 # define HINT_LIGHT "Usage: L x,y,z brightness R,G,B"
 # define HINT_CAMERA "Usage: C x,y,z nx,ny,nz fov"
@@ -47,20 +45,31 @@
 # define HINT_PLANE "Usage: pl x,y,z nx,ny,nz R,G,B"
 # define HINT_CYLINDER "Usage: cy x,y,z nx,ny,nz diameter height R,G,B"
 
-/* Value range / format */
+/* Element */
 # define ERROR_BRIGHTNESS_RANGE "Invalid brightness: out of range (0.0-1.0)."
 # define ERROR_FOV_RANGE "Invalid FOV: out of range (0-180)."
 # define ERROR_DIR_NOT_NORMALIZED "Invalid direction: must be a unit vector."
 # define ERROR_DIAMETER_RANGE "Invalid diameter: must be positive."
 # define ERROR_HEIGHT_RANGE "Invalid height: must be positive."
-# define ERROR_VECTOR_FORMAT "Invalid vector: expected x,y,z."
-# define ERROR_NUMBER_FORMAT "Invalid number: bad floating-point value."
-# define ERROR_NUMBER_LEADING_ZERO "Invalid number: leading zero not allowed."
+
+/* Float */
+# define ERROR_FLOAT_CHARACTER "Invalid float: invalid character."
+# define ERROR_FLOAT_LEADING_ZERO "Invalid float: leading zero not allowed."
+
+/* Vector */
+# define ERROR_VECTOR_EMPTY "Invalid vector: empty component."
+# define ERROR_VECTOR_FORMAT "Invalid vector: invalid format."
+# define ERROR_VECTOR_CHARACTER "Invalid vector: invalid character."
+# define ERROR_VECTOR_LEADING_ZERO "Invalid vector: leading zero not allowed."
+# define HINT_VECTOR "Usage: x,y,z"
 
 /* Color */
-# define ERROR_COLOR_FORMAT "Invalid color: expected R,G,B (0-255)."
+# define ERROR_COLOR_EMPTY "Invalid color: empty color channel."
+# define ERROR_COLOR_FORMAT "Invalid color: invalid format."
+# define ERROR_COLOR_NON_DIGIT "Invalid color: only digit allowed."
 # define ERROR_COLOR_LEADING_ZERO "Invalid color: leading zero not allowed."
 # define ERROR_COLOR_RANGE "Invalid color: value out of range (0-255)."
+# define HINT_COLOR "Usage: R,G,B (0-255)"
 
 /* MLX */
 # define ERROR_MLX_CONNECTION "MLX: Failed to create X-Window connection."
