@@ -14,6 +14,7 @@
 
 #include "ft_string.h"
 #include "ft_printf/ft_printf.h"
+#include "../print_conversion/character/character_internal.h"
 
 static void	pf_print_utf8_to_fd(\
 				t_ctx *ctx, const unsigned char *utf8_str, size_t len);
@@ -87,5 +88,5 @@ static void	pf_print_utf8_to_str(
 
 static bool	is_utf8_leading_byte(unsigned char byte)
 {
-	return ((byte & 0b11000000) != 0b10000000);
+	return ((byte & UTF8_TOP2_MASK) != UTF8_CONT_MARKER);
 }

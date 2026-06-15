@@ -35,7 +35,7 @@ static void	convert_to_hex_frac(t_pf_float *fp)
 	int64_t	bit_mask;
 	int		i;
 
-	bit_mask = 0b1111;
+	bit_mask = 0x0F;
 	i = 0;
 	while (i < fp->buf_frac_size)
 	{
