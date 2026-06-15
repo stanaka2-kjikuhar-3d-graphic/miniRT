@@ -6,11 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 20:02:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/14 20:03:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/15 15:57:56 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stdint.h"
+#include <stdint.h>
 
 #include "../ft_strtod_internal.h"
 
