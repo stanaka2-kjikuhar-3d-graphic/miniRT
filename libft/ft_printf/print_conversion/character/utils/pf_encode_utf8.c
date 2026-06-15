@@ -14,7 +14,7 @@
 
 #include "../character_internal.h"
 
-static void				encode_utf8_0x0_0x1FFFFF(\
+static void				encode_utf8_0x0_0x1fffff(\
 							unsigned char *utf8, wchar_t wc);
 static void				encode_utf8_0x200000_0x7fffffff(\
 							unsigned char *utf8, wchar_t wc);
@@ -22,13 +22,13 @@ static unsigned char	encode_utf8_byte(wchar_t bits, int mask, int marker);
 
 void	pf_encode_utf8(wchar_t wc, unsigned char *utf8)
 {
-	if (0x0 <= wc && wc <= 0xFFFF)
-		encode_utf8_0x0_0x1FFFFF(utf8, wc);
-	else if (0x10000 <= wc && wc <= 0x7FFFFFFF)
+	if (0x0 <= wc && wc <= 0x1FFFFF)
+		encode_utf8_0x0_0x1fffff(utf8, wc);
+	else if (0x200000 <= wc && wc <= 0x7FFFFFFF)
 		encode_utf8_0x200000_0x7fffffff(utf8, wc);
 }
 
-static void	encode_utf8_0x0_0xffff(unsigned char *utf8, wchar_t wc)
+static void	encode_utf8_0x0_0x1fffff(unsigned char *utf8, wchar_t wc)
 {
 	if (0x0000 <= wc && wc <= 0x007F)
 	{
