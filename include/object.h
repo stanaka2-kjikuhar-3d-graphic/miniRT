@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 01:17:01 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/16 16:17:38 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ enum e_object_type
 typedef struct s_sphere
 {
 	t_dvec3	pos;
-	double	diameter;
+	double	radius;
 }	t_sphere;
 
 typedef struct s_plane
@@ -41,7 +41,7 @@ typedef struct s_cylinder
 {
 	t_dvec3	pos;
 	t_dvec3	dir;
-	double	diameter;
+	double	radius;
 	double	height;
 }	t_cylinder;
 

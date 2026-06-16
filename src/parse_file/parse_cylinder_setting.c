@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:25:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 15:22:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/16 16:33:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ bool	parse_cylinder_setting(char const **elements)
 	object.type = OBJ_CYLINDER;
 	if (!parse_pos(elements[1], &(object.cylinder.pos)) \
 		|| !parse_dir(elements[2], &(object.cylinder.dir)) \
-		|| !parse_diameter(elements[3], &(object.cylinder.diameter)) \
+		|| !parse_radius(elements[3], &(object.cylinder.radius)) \
 		|| !parse_height(elements[4], &(object.cylinder.height)) \
 		|| !parse_color(elements[5], &(object.color)))
 	{

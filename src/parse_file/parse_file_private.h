@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/16 15:59:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/16 16:22:07 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ bool	parse_cylinder_setting(char const **elements);
 bool	parse_color(char const *s, int *color);
 bool	parse_pos(char const *element, t_dvec3 *pos);
 bool	parse_brightness(char const *element, double *brightness);
-bool	parse_diameter(char const *element, double *diameter);
+bool	parse_radius(char const *element, double *radius);
 bool	parse_dir(char const *element, t_dvec3 *dir);
 bool	parse_fov(char const *element, double *fov);
 bool	parse_height(char const *element, double *height);

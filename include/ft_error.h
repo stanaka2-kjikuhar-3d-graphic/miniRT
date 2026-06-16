@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/16 15:02:53 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/16 16:33:12 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # define ERROR_FOV_RANGE "FOV: out of range (0-180)"
 # define ERROR_DIR_NOT_NORMALIZED "DIRECTION: must be a unit vector"
 # define ERROR_DIAMETER_RANGE "DIAMETER: must be positive"
+# define ERROR_DIAMETER_SMALL "DIAMETER: too small, diameter/2 underflows to 0"
 # define ERROR_HEIGHT_RANGE "HEIGHT: must be positive"
 
 /* Floating Number */

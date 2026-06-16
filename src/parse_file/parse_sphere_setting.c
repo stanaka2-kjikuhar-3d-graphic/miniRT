@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:17:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 15:22:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/16 16:34:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	parse_sphere_setting(char const **elements)
 	}
 	object.type = OBJ_SPHERE;
 	if (!parse_pos(elements[1], &(object.sphere.pos)) \
-		|| !parse_diameter(elements[2], &(object.sphere.diameter)) \
+		|| !parse_radius(elements[2], &(object.sphere.radius)) \
 		|| !parse_color(elements[3], &(object.color)))
 	{
 		return (false);

@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/15 21:07:53 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/16 16:35:40 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -147,7 +147,7 @@ SRCS	+=	read_next_line.c \
 			parse_pos.c \
 			parse_brightness.c \
 			parse_fov.c \
-			parse_diameter.c \
+			parse_radius.c \
 			parse_height.c \
 			parse_dvec3.c \
 			parse_double.c

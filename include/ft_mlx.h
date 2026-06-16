@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:40 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 02:44:53 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/16 16:16:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ void			*get_win_ptr(void);
 t_image			*get_image(enum e_image_id id);
 void			ft_mlx_hooks(void);
 void			ft_mlx_destroy(void);
-unsigned int	*get_pixel_addr(t_image *image, int const x, int const y);
+unsigned int	*get_pixel_addr(t_image *image, int x, int y);
 
 #endif

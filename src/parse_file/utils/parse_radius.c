@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_diameter.c                                   :+:      :+:    :+:   */
+/*   parse_radius.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 23:40:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/11 23:49:35 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/16 16:33:24 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,21 @@
 #include "ft_error.h"
 #include "../parse_file_private.h"
 
-bool	parse_diameter(char const *element, double *diameter)
+bool	parse_radius(char const *element, double *radius)
 {
-	if (!parse_double(element, diameter))
+	double	diameter;
+
+	if (!parse_double(element, &diameter))
 		return (false);
-	if (*diameter <= 0.0)
+	if (diameter <= 0.0)
 	{
 		print_error(ERROR_DIAMETER_RANGE);
+		return (false);
+	}
+	*radius = diameter / 2;
+	if (*radius == 0.0)
+	{
+		print_error(ERROR_DIAMETER_SMALL);
 		return (false);
 	}
 	return (true);
