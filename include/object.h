@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/16 16:17:38 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/16 23:15:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <stdbool.h>
 
 # include "vector.h"
+# include "ray.h"
+
+typedef struct s_object	t_object;
 
 enum e_object_type
 {
@@ -47,19 +50,21 @@ typedef struct s_cylinder
 
 typedef struct s_object
 {
-	size_t				id;
-	enum e_object_type	type;
-	int					color;
 	union
 	{
 		t_sphere	sphere;
 		t_plane		plane;
 		t_cylinder	cylinder;
 	};
+	enum e_object_type	type;
+	int					color;
 }	t_object;
 
-bool	allocate_objects(size_t	add_count);
-bool	add_object(t_object *new);
-void	cleanup_objects(void);
+t_object const	*get_objects(void);
+size_t			get_objects_count(void);
+bool			allocate_objects(size_t	add_count);
+bool			add_object(t_object *new);
+void			cleanup_objects(void);
+double			intersect_sphere(t_sphere const *sphere, t_ray const *ray);
 
 #endif

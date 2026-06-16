@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_dir.c                                        :+:      :+:    :+:   */
+/*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/11 23:37:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/16 19:41:01 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/16 19:51:41 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/16 22:32:19 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include <stdbool.h>
 
 #include "vector.h"
-#include "ft_error.h"
-#include "../parse_file_private.h"
+#include "object.h"
+#include "ray.h"
 
-bool	parse_dir(char const *element, t_dvec3 *dir)
+double	intersect_sphere(t_sphere const *sphere, t_ray const *ray)
 {
-	double	length;
+	t_dvec3	to_center;
+	double	t;
 
-	if (!parse_dvec3(element, dir))
-		return (false);
-	length = dvec3_length(*dir);
-	if (length < 1.0 - 1e-3 || 1.0 + 1e-3 < length)
+	to_center = dvec3_sub(sphere->pos, ray->origin);
+	t = dvec3_dot(to_center, ray->dir);
+	if (t < 0 \
+		|| dvec3_dot(to_center, to_center) - (t * t) \
+			> sphere->radius * sphere->radius)
 	{
-		print_error(ERROR_DIR_NOT_NORMALIZED);
-		return (false);
+		return (NAN);
 	}
-	*dir = dvec3_normalize(*dir);
-	return (true);
+	return (t);
 }

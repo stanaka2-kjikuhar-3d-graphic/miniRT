@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:19 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 01:37:49 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/16 17:20:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct s_viewport
 {
 	struct s_viewport_pixel
 	{
-		uint32_t	width;
-		uint32_t	height;
+		int	width;
+		int	height;
 	}	pixel;
 	double		aspect_ratio;
 	double		horizontal_fov;

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 21:05:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 14:22:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/16 23:55:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,18 @@
 
 static t_object	*g_objects;
 static size_t	g_array_size;
-static size_t	g_max_id;
+static size_t	g_count;
+t_object	*const *g_objects_ptr = &g_objects;
+
+t_object const	*get_objects(void)
+{
+	return (g_objects);
+}
+
+size_t	get_objects_count(void)
+{
+	return (g_count);
+}
 
 bool	allocate_objects(size_t	add_count)
 {
@@ -50,14 +61,13 @@ bool	allocate_objects(size_t	add_count)
 
 bool	add_object(t_object *new)
 {
-	if (g_max_id == g_array_size)
+	if (g_count == g_array_size)
 	{
 		if (!allocate_objects(16))
 			return (false);
 	}
-	g_objects[g_max_id] = *new;
-	g_objects[g_max_id].id = g_max_id;
-	++g_max_id;
+	g_objects[g_count] = *new;
+	++g_count;
 	return (true);
 }
 
@@ -68,5 +78,5 @@ void	cleanup_objects(void)
 	free(g_objects);
 	g_objects = NULL;
 	g_array_size = 0;
-	g_max_id = 0;
+	g_count = 0;
 }

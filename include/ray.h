@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phong_reflection_model.h                           :+:      :+:    :+:   */
+/*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/12 00:05:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/17 00:05:05 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/16 20:13:46 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/16 20:14:19 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONG_REFLECTION_MODEL_H
-# define PHONG_REFLECTION_MODEL_H
+#ifndef RAY_H
+# define RAY_H
 
-void	phong_reflection_model(void);
+# include "vector.h"
+
+typedef struct s_ray
+{
+	t_dvec3	dir;
+	t_dvec3	origin;
+}	t_ray;
 
 #endif

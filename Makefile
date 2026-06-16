@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/16 16:35:40 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/16 23:52:59 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,7 +125,12 @@ SRCS	+=	expose_hook.c \
 			key_press_hook.c
 
 # object
-SRCS	+=	object.c
+SRCS	+=	object.c \
+			sphere.c
+
+# phong_reflection_model
+SRCS	+=	phong_reflection_model.c \
+			intersects.c
 
 # parse_file
 SRCS	+=	parse_file.c \
