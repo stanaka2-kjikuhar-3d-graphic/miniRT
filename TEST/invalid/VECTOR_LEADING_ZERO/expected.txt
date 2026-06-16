@@ -1,0 +1,2 @@
+Error
+VECTOR: leading zero not allowed

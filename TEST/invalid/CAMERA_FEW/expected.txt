@@ -1,0 +1,3 @@
+Error
+CAMERA: missing fields
+USAGE: C x,y,z nx,ny,nz fov

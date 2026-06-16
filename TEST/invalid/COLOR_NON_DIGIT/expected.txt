@@ -1,0 +1,2 @@
+Error
+COLOR: only digit allowed

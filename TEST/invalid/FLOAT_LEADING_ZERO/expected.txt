@@ -1,0 +1,2 @@
+Error
+FLOATING NUMBER: leading zero not allowed

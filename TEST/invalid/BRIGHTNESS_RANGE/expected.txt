@@ -1,0 +1,2 @@
+Error
+BRIGHTNESS: out of range (0.0-1.0)

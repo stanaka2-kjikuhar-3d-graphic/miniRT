@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/15 21:07:37 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/16 15:59:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 enum e_setting_id
 {
 	SETTING_AMBIENT_LIGHTING,
-	SETTING_CAMERA,
 	SETTING_LIGHT,
+	SETTING_CAMERA,
 };
 
 enum e_color_channel
