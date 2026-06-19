@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:31:05 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:03:36 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 23:50:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 int	key_release_hook(int keycode, void *param)
 {
 	(void)param;
-	if (keycode == XK_Escape)
-		mlx_loop_end(get_mlx_ptr());
+	(void)keycode;
 	return (0);
 }

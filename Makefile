@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/19 20:57:22 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/19 23:49:00 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,6 +94,7 @@ override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 SRC_DIRS	:= src
 SRC_DIRS	+= $(addprefix src/, \
 					color \
+					drawer \
 					$(addprefix drawer/, \
 						monte_carlo_ray_tracing \
 						phong_reflection_model \
@@ -130,6 +131,10 @@ SRCS	+=	add_color.c \
 
 # editor
 
+# drawer
+SRCS	+=	drawer.c \
+			draw_flag.c
+
 # drawer/phong_reflection_model
 SRCS	+=	phong_reflection_model.c \
 			intersection.c \
@@ -147,8 +152,11 @@ SRCS	+=	mlx_ptr.c \
 			ft_mlx_destroy.c \
 			ft_mlx_hooks.c \
 			get_pixel_addr.c
-SRCS	+=	expose_hook.c \
-			key_press_hook.c
+SRCS	+=	draw_hook.c \
+			key_press_hook.c \
+			key_release_hook.c \
+			button_press_hook.c \
+			button1_motion_hook.c
 
 # light
 SRCS	+=	ambient_lighting.c \

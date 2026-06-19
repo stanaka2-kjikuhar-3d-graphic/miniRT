@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phong_reflection_model.h                           :+:      :+:    :+:   */
+/*   draw_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/12 00:05:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/17 00:05:05 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/19 21:23:48 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/19 21:29:29 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONG_REFLECTION_MODEL_H
-# define PHONG_REFLECTION_MODEL_H
+#include <stdbool.h>
 
-void	phong_reflection_model(void);
+static bool	g_draw_flag;
 
-#endif
+bool	check_draw_flag(void)
+{
+	return (g_draw_flag);
+}
+
+void	set_draw_flag(bool status)
+{
+	g_draw_flag = status;
+}

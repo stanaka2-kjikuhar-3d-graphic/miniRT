@@ -1,24 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   button1_motion_hook.c                              :+:      :+:    :+:   */
+/*   key_status.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/19 20:38:35 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:12:30 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/19 22:41:53 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/19 22:41:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <X11/keysym.h>
-
-#include "mlx.h"
-
-#include "ft_mlx.h"
-
-int	button1_motion_hook(int x, int y)
-{
-	(void)x;
-	(void)y;
-	return (0);
-}

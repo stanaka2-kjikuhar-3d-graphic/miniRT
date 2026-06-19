@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   button1_motion_hook.c                              :+:      :+:    :+:   */
+/*   draw_hook.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/19 20:38:35 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:12:30 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/19 20:28:56 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/19 23:51:35 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <X11/keysym.h>
+#include <sys/time.h>
+#include <stddef.h>
 
 #include "mlx.h"
 
 #include "ft_mlx.h"
+#include "drawer.h"
 
-int	button1_motion_hook(int x, int y)
+int	draw_hook(void *param)
 {
-	(void)x;
-	(void)y;
+	static struct timeval	last_time_stamp;
+	struct timeval			time_stamp;
+
+	(void)param;
+	gettimeofday(&time_stamp, NULL);
+	if (time_stamp.tv_sec > last_time_stamp.tv_sec)
+	{
+		drawer();
+		last_time_stamp = time_stamp;
+	}
 	return (0);
 }

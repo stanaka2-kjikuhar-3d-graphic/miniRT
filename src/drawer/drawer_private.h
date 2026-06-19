@@ -1,38 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expose_hook.c                                      :+:      :+:    :+:   */
+/*   drawer_private.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/22 17:32:12 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:03:26 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/19 21:44:48 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/19 21:49:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
+#ifndef DRAWER_PRIVATE_H
+# define DRAWER_PRIVATE_H
 
-#include "ft_mlx.h"
+# include <stdbool.h>
 
-#ifndef DEBUG
-
-int	expose_hook(void *param)
-{
-	(void)param;
-	mlx_put_image_to_window(\
-		get_mlx_ptr(), get_win_ptr(), get_image(IMG_WINDOW)->ptr, 0, 0);
-	return (0);
-}
-
-#else
-
-int	expose_hook(void *param)
-{
-	(void)param;
-	mlx_put_image_to_window(\
-		get_mlx_ptr(), get_win_ptr(), get_image(IMG_WINDOW)->ptr, 0, 0);
-	mlx_loop_end(get_mlx_ptr());
-	return (0);
-}
+bool	check_draw_flag(void);
+void	phong_reflection_model(void);
 
 #endif
