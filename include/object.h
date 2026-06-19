@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 02:33:05 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:58:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ typedef struct s_object
 	enum e_object_type	type;
 }	t_object;
 
-t_object const	*get_objects(void);
-size_t			get_objects_count(void);
+bool			get_next_object(t_object const **object);
 bool			allocate_objects(size_t	add_count);
 bool			add_object(t_object *new);
 void			cleanup_objects(void);

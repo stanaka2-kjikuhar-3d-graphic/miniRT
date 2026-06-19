@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:19 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 18:30:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:59:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ void						set_camera_dir(t_dvec3 dir);
 t_ambient_lighting const	*get_ambient_lighting(void);
 void						set_ambient_lighting(\
 								t_color color, double brightness);
-t_light const				*get_lights(void);
-size_t						get_lights_count(void);
+bool						get_next_light(t_light const	**light);
 bool						add_light(\
 								t_dvec3 pos, t_color color, double brightness);
 bool						allocate_lights(size_t add_count);

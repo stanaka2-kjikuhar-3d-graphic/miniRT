@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 22:13:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 18:37:12 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:59:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,29 @@ static t_light	*g_lights;
 static size_t	g_array_size;
 static size_t	g_count;
 
-t_light const	*get_lights(void)
+bool	get_next_light(t_light const	**light)
 {
-	return (g_lights);
-}
-
-size_t	get_lights_count(void)
-{
-	return (g_count);
+	if (*light == NULL)
+	{
+		if (g_count == 0)
+			return (false);
+		*light = &(g_lights[0]);
+		return (true);
+	}
+	else
+	{
+		if (*light == &(g_lights[g_count - 1]))
+			return (false);
+		++(*light);
+		return (true);
+	}
 }
 
 bool	add_light(t_dvec3 pos, t_color color, double brightness)
 {
 	if (g_count == g_array_size)
 	{
-		if (!allocate_lights(1))
+		if (!allocate_lights(4))
 			return (false);
 	}
 	g_lights[g_count].pos = pos;

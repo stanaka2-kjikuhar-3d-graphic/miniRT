@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:38:36 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 16:01:38 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:58:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,18 @@ bool	shadowing(t_hit const *hit, t_light const *light)
 
 static bool	shadow_intersection(t_ray const *shadow_ray, t_light const *light)
 {
-	t_object const *const	objects = get_objects();
-	size_t const			count = get_objects_count();
-	double					light_dist;
-	size_t					i;
-	double					t;
+	t_object const	*object;
+	double			light_dist;
+	double			t;
 
 	light_dist = dvec3_length(\
 					dvec3_sub(light->pos, shadow_ray->origin));
-	i = 0;
-	while (i < count)
+	object = NULL;
+	while (get_next_object(&object))
 	{
-		t = intersect(&(objects[i]), shadow_ray);
+		t = intersect(object, shadow_ray);
 		if (t != t || t <= 0 || light_dist <= t)
-		{
-			++i;
 			continue ;
-		}
 		return (true);
 	}
 	return (false);

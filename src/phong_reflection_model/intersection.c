@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 22:46:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 15:35:10 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:58:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,21 @@
 
 t_hit	intersection(t_ray const *ray)
 {
-	t_object const *const	objects = get_objects();
-	size_t const			count = get_objects_count();
-	t_hit					hit;
-	size_t					i;
-	double					t;
+	t_object const	*object;
+	t_hit			hit;
+	double			t;
 
 	hit.object = NULL;
 	hit.t = INFINITY;
-	i = 0;
-	while (i < count)
+	object = NULL;
+	while (get_next_object(&object))
 	{
-		t = intersect(&(objects[i]), ray);
+		t = intersect(object, ray);
 		if (hit.t > t)
 		{
-			hit.object = &(objects[i]);
+			hit.object = object;
 			hit.t = t;
 		}
-		++i;
 	}
 	if (hit.object == NULL)
 		return (hit);

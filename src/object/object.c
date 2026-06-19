@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 21:05:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 18:36:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:58:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,22 @@ static t_object	*g_objects;
 static size_t	g_array_size;
 static size_t	g_count;
 
-t_object const	*get_objects(void)
+bool	get_next_object(t_object const **object)
 {
-	return (g_objects);
-}
-
-size_t	get_objects_count(void)
-{
-	return (g_count);
+	if (*object == NULL)
+	{
+		if (g_count == 0)
+			return (false);
+		*object = &(g_objects[0]);
+		return (true);
+	}
+	else
+	{
+		if (*object == &(g_objects[g_count - 1]))
+			return (false);
+		++(*object);
+		return (true);
+	}
 }
 
 bool	allocate_objects(size_t add_count)
