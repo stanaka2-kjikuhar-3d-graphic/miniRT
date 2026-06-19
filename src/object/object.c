@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 21:05:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 18:20:19 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:36:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ bool	allocate_objects(size_t add_count)
 {
 	if (g_objects == NULL)
 	{
-		g_array_size = add_count;
-		g_objects = malloc(sizeof(t_object) * g_array_size);
+		g_objects = malloc(sizeof(t_object) * add_count);
 		if (g_objects == NULL)
 		{
 			print_errno();
 			return (false);
 		}
+		g_array_size = add_count;
 	}
 	else
 	{
