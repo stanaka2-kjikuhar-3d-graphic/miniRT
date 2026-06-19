@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:19 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 13:26:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 15:50:55 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 
 # include "vector.h"
 # include "color.h"
-
-# define VIEWPORT_WIDTH 1920
-# define VIEWPORT_HEIGHT 1080
 
 typedef struct s_camera
 {

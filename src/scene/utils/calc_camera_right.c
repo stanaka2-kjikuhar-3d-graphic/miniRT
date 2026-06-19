@@ -6,9 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 20:21:43 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 01:36:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 15:49:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <math.h>
 
 #include "vector.h"
 
@@ -17,7 +19,7 @@ t_dvec3	calc_camera_right(t_dvec3 dir)
 {
 	t_dvec3	vup;
 
-	if (dir.z != 1.0)
+	if (fabs(dir.z) <= 1.0 - 1e-6)
 		vup = (t_dvec3){0.0, 0.0, 1.0};
 	else
 		vup = (t_dvec3){0.0, -1.0, 0.0};

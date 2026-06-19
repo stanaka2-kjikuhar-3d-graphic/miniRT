@@ -6,12 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:10:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 01:36:18 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 15:51:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
+#include "ft_mlx.h"
 #include "vector.h"
 #include "scene.h"
 
@@ -24,9 +25,9 @@ t_viewport const	*get_viewport(void)
 
 void	set_viewport(double horizontal_fov)
 {
-	g_viewport.pixel.width = VIEWPORT_WIDTH;
-	g_viewport.pixel.height = VIEWPORT_HEIGHT;
-	g_viewport.aspect_ratio = (double)VIEWPORT_WIDTH / VIEWPORT_HEIGHT;
+	g_viewport.pixel.width = WINDOW_WIDTH;
+	g_viewport.pixel.height = WINDOW_HEIGHT;
+	g_viewport.aspect_ratio = (double)WINDOW_WIDTH / WINDOW_HEIGHT;
 	g_viewport.horizontal_fov = horizontal_fov;
 	g_viewport.vertical_fov \
 		= 2 * atan(tan(horizontal_fov / 2) / g_viewport.aspect_ratio);
