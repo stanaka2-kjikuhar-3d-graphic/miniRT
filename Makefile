@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/16 23:52:59 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/19 03:18:11 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,7 @@ override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 
 SRC_DIRS	:= src
 SRC_DIRS	+= $(addprefix src/, \
+					color \
 					ft_error \
 					ft_mlx ft_mlx/utils \
 					object \
@@ -110,6 +111,12 @@ $(foreach dir, $(SRC_DIRS), $(eval vpath %.c $(dir)))
 
 SRCS	:= 	main.c
 
+# color
+SRCS	+=	add_color.c \
+			mul_color.c \
+			scale_color.c \
+			calc_rgb.c
+
 # ft_error
 SRCS	+=	print_error.c \
 			print_errno.c
@@ -126,11 +133,19 @@ SRCS	+=	expose_hook.c \
 
 # object
 SRCS	+=	object.c \
-			sphere.c
+			sphere.c \
+			plane.c \
+			cylinder.c \
+			circle.c \
+			intersect.c \
+			calc_normal.c \
+			get_object_color.c
 
 # phong_reflection_model
 SRCS	+=	phong_reflection_model.c \
-			intersects.c
+			intersection.c \
+			lighting.c \
+			shadowing.c
 
 # parse_file
 SRCS	+=	parse_file.c \
@@ -153,7 +168,7 @@ SRCS	+=	read_next_line.c \
 			parse_brightness.c \
 			parse_fov.c \
 			parse_radius.c \
-			parse_height.c \
+			parse_half_height.c \
 			parse_dvec3.c \
 			parse_double.c
 

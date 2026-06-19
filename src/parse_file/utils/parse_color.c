@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:11:18 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/06/15 21:55:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 12:56:35 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,40 @@
 #include "ft_ctype.h"
 #include "ft_stdlib.h"
 #include "ft_error.h"
+#include "color.h"
 #include "../parse_file_private.h"
 
-static bool	parse_color_channel(char const **element, int *color);
+static bool	parse_color_channel(char const **element, double *channel);
 
-bool	parse_color(char const *element, int *color)
+bool	parse_color(char const *element, t_color *color)
 {
-	enum e_color_channel	channel;
+	double *const			channel[] = {&(color->r), &(color->g), &(color->b)};
+	enum e_color_channel	i;
 
-	*color = 0;
-	channel = RED;
-	while (channel <= BLUE)
+	i = RED;
+	while (i <= BLUE)
 	{
-		if (!parse_color_channel(&element, color))
+		if (!parse_color_channel(&element, channel[i]))
 			return (false);
-		if (((channel == RED || channel == GREEN) && *element == '\0') \
-			|| (channel == BLUE && *element == ','))
+		if (((i == RED || i == GREEN) && *element == '\0') \
+			|| (i == BLUE && *element == ','))
 		{
 			print_error_hint(ERROR_COLOR_FORMAT, HINT_COLOR);
 			return (false);
 		}
-		if (((channel == RED || channel == GREEN) && *element != ',') \
-			|| (channel == BLUE && *element != '\0'))
+		if (((i == RED || i == GREEN) && *element != ',') \
+			|| (i == BLUE && *element != '\0'))
 		{
 			print_error(ERROR_COLOR_NON_DIGIT);
 			return (false);
 		}
 		++element;
-		++channel;
+		++i;
 	}
 	return (true);
 }
 
-static bool	parse_color_channel(char const **element, int *color)
+static bool	parse_color_channel(char const **element, double *channel)
 {
 	long	value;
 
@@ -67,11 +68,11 @@ static bool	parse_color_channel(char const **element, int *color)
 		return (false);
 	}
 	value = ft_strtol(*element, (char **)element, 10);
-	if (255 < value)
+	if (0xFF < value)
 	{
 		print_error(ERROR_COLOR_RANGE);
 		return (false);
 	}
-	*color = (*color << 8) | (int)value;
+	*channel = (double)value / 0xFF;
 	return (true);
 }

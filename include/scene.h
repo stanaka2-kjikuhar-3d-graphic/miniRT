@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:19 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/16 17:20:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 13:26:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdint.h>
 
 # include "vector.h"
+# include "color.h"
 
 # define VIEWPORT_WIDTH 1920
 # define VIEWPORT_HEIGHT 1080
@@ -44,27 +45,28 @@ typedef struct s_viewport
 
 typedef struct s_ambient_lighting
 {
+	t_color	radiance;
+	t_color	color;
 	double	brightness;
-	int		color;
 }	t_ambient_lighting;
 
 typedef struct s_light
 {
 	t_dvec3	pos;
+	t_color	radiance;
+	t_color	color;
 	double	brightness;
-	int		color;
 }	t_light;
 
 t_camera const				*get_camera(void);
 void						set_camera_pos(t_dvec3 pos);
 void						set_camera_dir(t_dvec3 dir);
 t_ambient_lighting const	*get_ambient_lighting(void);
-void						set_ambient_lighting_brightness(double brightness);
-void						set_ambient_lighting_color(int color);
+void						set_ambient_lighting(\
+								t_color color, double brightness);
 t_light const				*get_light(void);
-void						set_light_pos(t_dvec3 pos);
-void						set_light_brightness(double brightness);
-void						set_light_color(int color);
+void						set_light(\
+								t_dvec3 pos, t_color color, double brightness);
 t_viewport const			*get_viewport(void);
 void						set_viewport(double horizontal_fov);
 

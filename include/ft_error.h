@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/16 16:33:12 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/18 20:44:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@
 # define ERROR_DIAMETER_RANGE "DIAMETER: must be positive"
 # define ERROR_DIAMETER_SMALL "DIAMETER: too small, diameter/2 underflows to 0"
 # define ERROR_HEIGHT_RANGE "HEIGHT: must be positive"
+# define ERROR_HEIGHT_SMALL "HEIGHT: too small, height/2 underflows to 0"
 
 /* Floating Number */
 # define ERROR_FLOAT_CHARACTER "FLOATING NUMBER: invalid character"

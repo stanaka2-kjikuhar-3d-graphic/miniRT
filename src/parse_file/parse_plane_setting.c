@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:22:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 15:22:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/18 21:04:24 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ bool	parse_plane_setting(char const **elements)
 	}
 	object.type = OBJ_PLANE;
 	if (!parse_pos(elements[1], &(object.plane.pos)) \
-		|| !parse_dir(elements[2], &(object.plane.dir)) \
-		|| !parse_color(elements[3], &(object.color)))
+		|| !parse_dir(elements[2], &(object.plane.normal)) \
+		|| !parse_color(elements[3], &(object.plane.color)))
 	{
 		return (false);
 	}

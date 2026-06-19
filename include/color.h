@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.c                                            :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 22:13:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 13:24:46 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/19 01:09:47 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/19 03:11:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
-#include "color.h"
-#include "scene.h"
+#ifndef COLOR_H
+# define COLOR_H
 
-static t_light	g_light;
-
-t_light const	*get_light(void)
+typedef struct s_color
 {
-	return (&g_light);
-}
+	double	r;
+	double	g;
+	double	b;
+}	t_color;
 
-void	set_light(t_dvec3 pos, t_color color, double brightness)
+enum e_color_channel
 {
-	g_light.pos = pos;
-	g_light.radiance = scale_color(brightness, color);
-	g_light.color = color;
-	g_light.brightness = brightness;
-}
+	RED,
+	GREEN,
+	BLUE
+};
+
+int		calc_rgb(t_color color);
+t_color	add_color(t_color a, t_color b);
+t_color	mul_color(t_color a, t_color b);
+t_color	scale_color(double t, t_color color);
+
+#endif

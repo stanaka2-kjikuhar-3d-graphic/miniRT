@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.c                                            :+:      :+:    :+:   */
+/*   get_object_color.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 22:13:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 13:24:46 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/19 02:28:56 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/19 02:31:52 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "object.h"
 #include "color.h"
-#include "scene.h"
 
-static t_light	g_light;
-
-t_light const	*get_light(void)
+t_color	get_object_color(t_object const *object)
 {
-	return (&g_light);
-}
-
-void	set_light(t_dvec3 pos, t_color color, double brightness)
-{
-	g_light.pos = pos;
-	g_light.radiance = scale_color(brightness, color);
-	g_light.color = color;
-	g_light.brightness = brightness;
+	if (object->type == OBJ_SPHERE)
+		return (object->sphere.color);
+	else if (object->type == OBJ_PLANE)
+		return (object->plane.color);
+	else if (object->type == OBJ_CYLINDER)
+		return (object->cylinder.color);
+	else if (object->type == OBJ_CIRCLE)
+		return (object->circle.color);
+	return ((t_color){0, 0, 0});
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 21:05:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/16 23:55:21 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/18 13:55:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 static t_object	*g_objects;
 static size_t	g_array_size;
 static size_t	g_count;
-t_object	*const *g_objects_ptr = &g_objects;
 
 t_object const	*get_objects(void)
 {

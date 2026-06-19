@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 00:12:32 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 15:22:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 13:32:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 
 #include "ft_error.h"
 #include "scene.h"
+#include "color.h"
 #include "./parse_file_private.h"
 
 bool	parse_ambient_lighting_setting(char const **elements)
 {
 	size_t	count;
 	double	brightness;
-	int		color;
+	t_color	color;
 
 	count = count_split(elements);
 	if (count != 3)
@@ -37,7 +38,6 @@ bool	parse_ambient_lighting_setting(char const **elements)
 	{
 		return (false);
 	}
-	set_ambient_lighting_brightness(brightness);
-	set_ambient_lighting_color(color);
+	set_ambient_lighting(color, brightness);
 	return (true);
 }

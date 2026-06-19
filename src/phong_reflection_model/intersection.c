@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersects.c                                       :+:      :+:    :+:   */
+/*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 22:46:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/16 23:52:28 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 15:35:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,31 @@
 #include "ray.h"
 #include "./phong_reflection_model_private.h"
 
-static double	intersect(t_object const *object, t_ray const *ray);
-
-t_hit	intersects(t_ray const *ray)
+t_hit	intersection(t_ray const *ray)
 {
-	t_object const	*const	objects = get_objects();
+	t_object const *const	objects = get_objects();
 	size_t const			count = get_objects_count();
 	t_hit					hit;
 	size_t					i;
-	double					tmp;
-	
+	double					t;
+
 	hit.object = NULL;
 	hit.t = INFINITY;
 	i = 0;
 	while (i < count)
 	{
-		tmp = intersect(&(objects[i]), ray);
-		if (hit.t > tmp)
+		t = intersect(&(objects[i]), ray);
+		if (hit.t > t)
 		{
 			hit.object = &(objects[i]);
-			hit.t = tmp;
+			hit.t = t;
 		}
 		++i;
 	}
+	if (hit.object == NULL)
+		return (hit);
+	hit.point = dvec3_add(ray->origin, dvec3_scale(hit.t, ray->dir));
+	hit.normal = calc_normal(hit.object, ray, hit.point);
+	hit.color = get_object_color(hit.object);
 	return (hit);
-}
-
-static double	intersect(t_object const *object, t_ray const *ray)
-{
-	if (object->type == OBJ_SPHERE)
-		return (intersect_sphere(&(object->sphere), ray));
-	return (NAN);
 }
