@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:32:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 03:45:47 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 04:55:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,15 @@
 #include "drawer.h"
 
 static t_ivec2	g_click;
+static bool		g_is_angle;
 
 int	button_press_hook(unsigned int button, int x, int y)
 {
 	if (button == Button1)
+	{
 		g_click = ivec2(x, y);
+		g_is_angle = true;
+	}
 	else if (button == Button4)
 	{
 		if (change_fov(1.0))
@@ -38,9 +42,36 @@ int	button_press_hook(unsigned int button, int x, int y)
 	return (0);
 }
 
-int	button1_motion_hook(int x, int y)
+int	button_release_hook(unsigned int button, int x, int y)
 {
 	(void)x;
 	(void)y;
+	if (button == Button1)
+	{
+		g_is_angle = false;
+	}
+	return (0);
+}
+
+int	button1_motion_hook(int x, int y)
+{
+	t_ivec2		delta;
+
+	if (!g_is_angle)
+		return (0);
+	delta.x = (x - g_click.x) / 16;
+	delta.y = (y - g_click.y) / 16;
+	if (delta.x != 0)
+	{
+		rotate_camera_yaw((double)delta.x);
+		g_click.x = x;
+		set_draw_flag(true);
+	}
+	if (delta.y != 0)
+	{
+		if (rotate_camera_pitch((double)delta.y))
+			set_draw_flag(true);
+		g_click.y = y;
+	}
 	return (0);
 }

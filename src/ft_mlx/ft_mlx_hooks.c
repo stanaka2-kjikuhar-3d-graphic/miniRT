@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 16:31:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 22:17:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 04:56:00 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	ft_mlx_hooks(void)
 								key_release_hook, NULL);
 	mlx_hook(get_win_ptr(), ButtonPress, ButtonPressMask, \
 								button_press_hook, NULL);
-	mlx_hook(get_win_ptr(), Button1Mask, Button1MotionMask, \
+	mlx_hook(get_win_ptr(), ButtonRelease, ButtonReleaseMask, \
+								button_release_hook, NULL);
+	mlx_hook(get_win_ptr(), MotionNotify, Button1MotionMask, \
 								button1_motion_hook, NULL);
 }
