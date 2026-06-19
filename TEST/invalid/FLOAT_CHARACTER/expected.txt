@@ -1,0 +1,2 @@
+Error
+FLOATING NUMBER: invalid character

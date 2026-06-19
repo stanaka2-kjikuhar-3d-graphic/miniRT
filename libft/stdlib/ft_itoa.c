@@ -6,11 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 10:41:20 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/01 20:50:45 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/15 16:11:38 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+
+#include "ft_stdlib.h"
 
 static int	count_digit(int n);
 
@@ -25,9 +27,7 @@ char	*ft_itoa(int n)
 	if (!num)
 		return (NULL);
 	num[digit] = '\0';
-	un = n;
-	if (n < 0)
-		un = -n;
+	un = ft_abs_uint(n);
 	while (digit--)
 	{
 		num[digit] = (un % 10) + '0';

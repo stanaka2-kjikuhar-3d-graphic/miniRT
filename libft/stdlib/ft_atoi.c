@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 21:40:26 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/01 20:49:30 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 14:35:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "ft_ctype.h"
 #include "ft_stdlib.h"
 
-static bool	is_long_overflow(long num, int sign, int n);
+static bool	is_long_limit(long num, int sign, int n);
 
 int	ft_atoi(const char *nptr)
 {
@@ -34,7 +34,7 @@ int	ft_atoi(const char *nptr)
 	num = 0;
 	while (ft_isdigit(*nptr))
 	{
-		if (is_long_overflow(num, sign, (*nptr - '0')))
+		if (is_long_limit(num, sign, (*nptr - '0')))
 		{
 			if (sign == 1)
 				return ((int)LONG_MAX);
@@ -47,7 +47,7 @@ int	ft_atoi(const char *nptr)
 	return ((int)(num * sign));
 }
 
-static bool	is_long_overflow(long num, int sign, int n)
+static bool	is_long_limit(long num, int sign, int n)
 {
 	long	limit;
 
@@ -56,7 +56,7 @@ static bool	is_long_overflow(long num, int sign, int n)
 	else
 		limit = LONG_MIN;
 	if (num > LONG_MAX / 10
-		|| (num == LONG_MAX / 10 && (int)(ft_abs_ulong(limit) % 10) < n))
+		|| (num == LONG_MAX / 10 && n >= (int)(ft_abs_ulong(limit) % 10)))
 		return (true);
 	return (false);
 }

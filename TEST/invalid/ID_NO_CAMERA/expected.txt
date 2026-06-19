@@ -1,0 +1,2 @@
+Error
+SCENE: missing camera (C)

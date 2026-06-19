@@ -1,0 +1,3 @@
+Error
+PLANE: missing fields
+USAGE: pl x,y,z nx,ny,nz R,G,B

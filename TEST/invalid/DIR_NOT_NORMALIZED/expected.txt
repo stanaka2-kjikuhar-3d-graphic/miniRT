@@ -1,0 +1,2 @@
+Error
+DIRECTION: must be a unit vector

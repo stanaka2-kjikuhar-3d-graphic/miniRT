@@ -1,0 +1,3 @@
+Error
+AMBIENT LIGHTING: too many fields
+USAGE: A ratio R,G,B

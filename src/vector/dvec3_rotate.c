@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:42:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/09 21:08:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 01:37:42 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_dvec3	dvec3_rotate(t_dvec3 v, t_dvec3 axis, double degree)
 	radian = degree * DEG_TO_RAD;
 	s = sin(radian);
 	c = cos(radian);
-	
 	return (dvec3_add(dvec3_add(\
 		dvec3_scale(c, v), \
 		dvec3_scale(s, dvec3_cross(axis, v))), \

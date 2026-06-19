@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/09 21:12:45 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/19 03:18:11 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ NAME	:= miniRT
 #       Compiler Flags       #
 # -------------------------- #
 
-CC				:= cc
+CC	:= cc
 
 override CFLAGS	+= -Wall -Wextra -Werror
 # when submit, it should change -W3
@@ -93,13 +93,13 @@ override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 
 SRC_DIRS	:= src
 SRC_DIRS	+= $(addprefix src/, \
-					camera \
-					error \
-					ft_mlx \
-					light \
+					color \
+					ft_error \
+					ft_mlx ft_mlx/utils \
 					object \
-					parse_file \
+					parse_file parse_file/utils \
 					phong_reflection_model \
+					scene scene/utils\
 					vector \
 				)
 
@@ -111,16 +111,85 @@ $(foreach dir, $(SRC_DIRS), $(eval vpath %.c $(dir)))
 
 SRCS	:= 	main.c
 
+# color
+SRCS	+=	add_color.c \
+			mul_color.c \
+			scale_color.c \
+			calc_rgb.c
+
+# ft_error
+SRCS	+=	print_error.c \
+			print_errno.c
+
+# ft_mlx
+SRCS	+=	mlx_ptr.c \
+			win_ptr.c \
+			images.c \
+			ft_mlx_destroy.c \
+			ft_mlx_hooks.c \
+			get_pixel_addr.c
+SRCS	+=	expose_hook.c \
+			key_press_hook.c
+
+# object
+SRCS	+=	object.c \
+			sphere.c \
+			plane.c \
+			cylinder.c \
+			circle.c \
+			intersect.c \
+			calc_normal.c \
+			get_object_color.c
+
+# phong_reflection_model
+SRCS	+=	phong_reflection_model.c \
+			intersection.c \
+			lighting.c \
+			shadowing.c
+
+# parse_file
+SRCS	+=	parse_file.c \
+			read_file_as_line_list.c \
+			validate_setting_ids.c \
+			parse_settings.c \
+			parse_ambient_lighting_setting.c \
+			parse_light_setting.c \
+			parse_camera_setting.c \
+			parse_plane_setting.c \
+			parse_sphere_setting.c \
+			parse_cylinder_setting.c
+SRCS	+=	read_next_line.c \
+			is_identifier.c \
+			count_split.c \
+			free_split.c \
+			parse_color.c \
+			parse_dir.c \
+			parse_pos.c \
+			parse_brightness.c \
+			parse_fov.c \
+			parse_radius.c \
+			parse_half_height.c \
+			parse_dvec3.c \
+			parse_double.c
+
+# scene
+SRCS	+=	ambient_lighting.c \
+			camera.c \
+			light.c \
+			viewport.c
+SRCS	+=	calc_camera_right.c \
+			calc_camera_up.c
+
 # vector
-SRCS	+=	dvec3_add.c \
-			dvec3_cross.c \
-			dvec3_length.c \
-			dvec3_rotate.c \
+SRCS	+=	dvec3.c \
+			dvec3_add.c \
 			dvec3_sub.c \
-			dvec3.c \
-			dvec3_dot.c \
+			dvec3_length.c \
 			dvec3_normalize.c \
-			dvec3_scale.c
+			dvec3_scale.c \
+			dvec3_dot.c \
+			dvec3_cross.c \
+			dvec3_rotate.c
 
 # -------------------------- #
 #        Object Files        #

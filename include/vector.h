@@ -6,14 +6,21 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:33:20 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/09 17:00:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/12 01:12:00 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_H
 # define VECTOR_H
 
-typedef struct	s_dvec3
+enum e_axis
+{
+	X_AXIS,
+	Y_AXIS,
+	Z_AXIS,
+};
+
+typedef struct s_dvec3
 {
 	double	x;
 	double	y;

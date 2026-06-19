@@ -1,0 +1,2 @@
+Error
+COLOR: empty color channel

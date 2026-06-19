@@ -1,0 +1,2 @@
+Error
+DIAMETER: too small, diameter/2 underflows to 0
