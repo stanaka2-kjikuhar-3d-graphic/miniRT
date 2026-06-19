@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 21:05:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 15:48:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:20:19 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ size_t	get_objects_count(void)
 	return (g_count);
 }
 
-bool	allocate_objects(size_t	add_count)
+bool	allocate_objects(size_t add_count)
 {
 	if (g_objects == NULL)
 	{
