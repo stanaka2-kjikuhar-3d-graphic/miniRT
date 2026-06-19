@@ -6,13 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 00:51:51 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 02:31:19 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 19:24:28 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 #include "object.h"
 #include "ray.h"
+
 #include "./object_private.h"
 
 t_dvec3	calc_normal(t_object const *object, t_ray const *ray, t_dvec3 point)

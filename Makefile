@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/19 03:18:11 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/19 19:32:51 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,6 +97,12 @@ SRC_DIRS	+= $(addprefix src/, \
 					ft_error \
 					ft_mlx ft_mlx/utils \
 					object \
+					$(addprefix object/, \
+						circle \
+						cylinder \
+						plane \
+						sphere \
+					) \
 					parse_file parse_file/utils \
 					phong_reflection_model \
 					scene scene/utils\
@@ -133,12 +139,16 @@ SRCS	+=	expose_hook.c \
 
 # object
 SRCS	+=	object.c \
-			sphere.c \
-			plane.c \
-			cylinder.c \
-			circle.c \
 			intersect.c \
+			intersect_circle.c \
+			intersect_cylinder.c \
+			intersect_plane.c \
+			intersect_sphere.c \
 			calc_normal.c \
+			calc_circle_normal.c \
+			calc_cylinder_normal.c \
+			calc_plane_normal.c \
+			calc_sphere_normal.c \
 			get_object_color.c
 
 # phong_reflection_model

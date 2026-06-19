@@ -15,7 +15,6 @@
 
 # include <stdbool.h>
 # include <stddef.h>
-# include <stdint.h>
 
 # include "vector.h"
 # include "color.h"
