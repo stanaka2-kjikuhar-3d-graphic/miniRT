@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/19 23:49:00 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/20 01:44:27 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,7 +111,11 @@ SRC_DIRS	+= $(addprefix src/, \
 						sphere \
 					) \
 					parse_file parse_file/utils \
-					vector \
+					$(addprefix vector/, \
+						dvec3 \
+						dvec2 \
+						ivec2 \
+					) \
 					view view/utils\
 				)
 
@@ -201,7 +205,7 @@ SRCS	+=	read_next_line.c \
 			parse_dvec3.c \
 			parse_double.c
 
-# vector
+# vector/dvec3
 SRCS	+=	dvec3.c \
 			dvec3_add.c \
 			dvec3_sub.c \
@@ -211,6 +215,12 @@ SRCS	+=	dvec3.c \
 			dvec3_dot.c \
 			dvec3_cross.c \
 			dvec3_rotate.c
+
+# vector/dvec2
+SRCS	+=	dvec2.c
+
+# vector/ivec2
+SRCS	+=	ivec2.c
 
 # view
 SRCS	+=	camera.c \
