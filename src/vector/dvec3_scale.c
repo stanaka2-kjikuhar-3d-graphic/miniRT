@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 17:34:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/09 16:44:10 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 19:06:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 
 t_dvec3	dvec3_scale(double t, t_dvec3 v)
 {
-	return ((t_dvec3){t * v.x, t * v.y, t * v.z});
+	return ((t_dvec3){\
+		.x = t * v.x, \
+		.y = t * v.y, \
+		.z = t * v.z \
+	});
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 22:08:06 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/06/12 01:35:23 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 19:05:07 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_dvec3	dvec3_cross(t_dvec3 a, t_dvec3 b)
 {
 	return ((t_dvec3){\
-		a.y * b.z - a.z * b.y, \
-		a.z * b.x - a.x * b.z, \
-		a.x * b.y - a.y * b.x \
+		.x = a.y * b.z - a.z * b.y, \
+		.y = a.z * b.x - a.x * b.z, \
+		.z = a.x * b.y - a.y * b.x \
 	});
 }
