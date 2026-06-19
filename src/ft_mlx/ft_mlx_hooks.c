@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 16:31:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 02:45:39 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:02:35 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 #include <X11/X.h>
 
 #include "mlx.h"
+
 #include "ft_mlx.h"
+
 #include "./ft_mlx_private.h"
 
 void	ft_mlx_hooks(void)

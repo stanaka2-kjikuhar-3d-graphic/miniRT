@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_dir.c                                        :+:      :+:    :+:   */
+/*   ambient_lighting.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/11 23:37:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:04:53 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/10 23:39:26 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/19 20:59:05 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-
 #include "vector.h"
-#include "ft_error.h"
+#include "light.h"
+#include "color.h"
 
-#include "../parse_file_private.h"
+static t_ambient_lighting	g_ambient_lighting;
 
-bool	parse_dir(char const *element, t_dvec3 *dir)
+t_ambient_lighting const	*get_ambient_lighting(void)
 {
-	double	length;
+	return (&g_ambient_lighting);
+}
 
-	if (!parse_dvec3(element, dir))
-		return (false);
-	length = dvec3_length(*dir);
-	if (length < 1.0 - 1e-3 || 1.0 + 1e-3 < length)
-	{
-		print_error(ERROR_DIR_NOT_NORMALIZED);
-		return (false);
-	}
-	*dir = dvec3_normalize(*dir);
-	return (true);
+void	set_ambient_lighting(t_color color, double brightness)
+{
+	g_ambient_lighting.radiance = scale_color(brightness, color);
+	g_ambient_lighting.color = color;
+	g_ambient_lighting.brightness = brightness;
 }

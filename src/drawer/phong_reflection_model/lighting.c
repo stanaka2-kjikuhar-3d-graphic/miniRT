@@ -6,14 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 00:45:12 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 18:59:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 20:58:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
 #include "color.h"
-#include "scene.h"
+#include "light.h"
 #include "./phong_reflection_model_private.h"
 
 t_color	lighting(t_hit const *hit)

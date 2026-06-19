@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:35:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 12:56:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 20:58:32 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # include "object.h"
 # include "ray.h"
-# include "scene.h"
+# include "light.h"
 # include "color.h"
 
 typedef struct s_hit

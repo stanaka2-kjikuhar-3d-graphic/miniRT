@@ -6,13 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:42:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 01:37:42 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:05:35 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
 #include "ft_math.h"
+
 #include "vector.h"
 
 /*

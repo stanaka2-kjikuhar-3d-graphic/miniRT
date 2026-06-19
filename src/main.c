@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 18:24:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:02:07 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 #include "mlx.h"
 #include "ft_stdio.h"
 #include "ft_string.h"
+
 #include "parse_file.h"
-#include "scene.h"
+#include "light.h"
 #include "object.h"
 #include "ft_mlx.h"
 #include "phong_reflection_model.h"

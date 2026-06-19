@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/29 15:26:47 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 02:45:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:03:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 #include <stdbool.h>
 
 #include "mlx.h"
+
 #include "ft_error.h"
 #include "ft_mlx.h"
+
 #include "./ft_mlx_private.h"
 
 static void	*g_win_ptr;

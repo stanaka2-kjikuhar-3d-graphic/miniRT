@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:11:18 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/06/19 12:56:35 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:04:48 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 #include "ft_ctype.h"
 #include "ft_stdlib.h"
+
 #include "ft_error.h"
 #include "color.h"
+
 #include "../parse_file_private.h"
 
 static bool	parse_color_channel(char const **element, double *channel);

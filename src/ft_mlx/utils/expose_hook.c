@@ -6,11 +6,12 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 17:32:12 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 16:06:52 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:03:26 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
+
 #include "ft_mlx.h"
 
 #ifndef DEBUG

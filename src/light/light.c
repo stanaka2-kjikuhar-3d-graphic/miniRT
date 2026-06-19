@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 22:13:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 18:59:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:01:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 #include <stdlib.h>
 
 #include "ft_stdlib.h"
+
 #include "ft_error.h"
 #include "vector.h"
 #include "color.h"
-#include "scene.h"
+#include "light.h"
 
 static t_light	*g_lights;
 static size_t	g_array_size;
 static size_t	g_count;
 
-bool	get_next_light(t_light const	**light)
+bool	get_next_light(t_light const **light)
 {
 	if (*light == NULL)
 	{

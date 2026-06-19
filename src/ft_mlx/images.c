@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/29 16:03:43 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 02:45:15 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:02:55 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 #include "mlx.h"
 #include "ft_string.h"
+
 #include "ft_error.h"
 #include "ft_mlx.h"
+
 #include "./ft_mlx_private.h"
 
 static t_image	g_images[IMG_COUNT];

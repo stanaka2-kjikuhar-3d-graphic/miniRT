@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 09:47:15 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/15 22:26:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:05:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 #include "ft_stdlib.h"
 #include "ft_ctype.h"
+
 #include "vector.h"
 #include "ft_error.h"
+
 #include "../parse_file_private.h"
 
 static bool	parse_axis(const char *element);

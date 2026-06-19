@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:02:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 18:23:30 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:04:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 #include "ft_error.h"
 #include "vector.h"
-#include "scene.h"
+#include "light.h"
+
 #include "./parse_file_private.h"
 
 bool	parse_light_setting(char const **elements)

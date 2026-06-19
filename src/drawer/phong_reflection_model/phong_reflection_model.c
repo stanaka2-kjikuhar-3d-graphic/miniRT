@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:15:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 15:33:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:02:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 #include <stdint.h>
 
 #include "mlx.h"
+
 #include "ft_mlx.h"
 #include "vector.h"
-#include "scene.h"
+#include "view.h"
 #include "ray.h"
 #include "color.h"
+
 #include "./phong_reflection_model_private.h"
 
 t_ray	calc_ray(int x, int y);
