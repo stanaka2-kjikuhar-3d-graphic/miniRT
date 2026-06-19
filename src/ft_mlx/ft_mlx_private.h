@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 17:32:52 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 01:08:00 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 02:58:39 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 
 # include <stdbool.h>
 # include <stddef.h>
+
+# include "vector.h"
+
+typedef struct s_key
+{
+	bool	shift;
+}	t_key;
 
 void	cleanup_mlx_connection(void);
 void	cleanup_window(void);

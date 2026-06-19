@@ -6,11 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:10:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 02:34:32 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 03:43:07 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include <stdbool.h>
+
+#include "ft_math.h"
 
 #include "config.h"
 #include "vector.h"
@@ -23,17 +26,29 @@ t_viewport const	*get_viewport(void)
 	return (&g_viewport);
 }
 
-void	set_viewport(double horizontal_fov)
+void	set_viewport(double fov)
 {
 	g_viewport.pixel_size.width = WINDOW_WIDTH;
 	g_viewport.pixel_size.height = WINDOW_HEIGHT;
 	g_viewport.pixel_half_size.width = WINDOW_WIDTH / 2.0;
 	g_viewport.pixel_half_size.height = WINDOW_HEIGHT / 2.0;
 	g_viewport.aspect_ratio = (double)WINDOW_WIDTH / WINDOW_HEIGHT;
-	g_viewport.fov.horizontal = horizontal_fov;
-	g_viewport.fov.vertical \
-		= 2 * atan(tan(horizontal_fov / 2) / g_viewport.aspect_ratio);
-	g_viewport.world_half_size.width = tan(horizontal_fov * 0.5);
+	g_viewport.fov = fov;
+	g_viewport.world_half_size.width = tan(g_viewport.fov * DEG_TO_RAD * 0.5);
 	g_viewport.world_half_size.height \
 		= g_viewport.world_half_size.width / g_viewport.aspect_ratio;
+}
+
+bool	change_fov(double degree)
+{
+	if (g_viewport.fov + degree <= 1e-6 \
+		|| 180.0 - 1e-6 <= g_viewport.fov + degree)
+	{
+		return (false);
+	}
+	g_viewport.fov = g_viewport.fov + degree;
+	g_viewport.world_half_size.width = tan(g_viewport.fov * DEG_TO_RAD * 0.5);
+	g_viewport.world_half_size.height \
+		= g_viewport.world_half_size.width / g_viewport.aspect_ratio;
+	return (true);
 }

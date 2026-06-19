@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/20 01:44:27 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/20 02:59:27 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -159,8 +159,7 @@ SRCS	+=	mlx_ptr.c \
 SRCS	+=	draw_hook.c \
 			key_press_hook.c \
 			key_release_hook.c \
-			button_press_hook.c \
-			button1_motion_hook.c
+			button_hooks.c
 
 # light
 SRCS	+=	ambient_lighting.c \

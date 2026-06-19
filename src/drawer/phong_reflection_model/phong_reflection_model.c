@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:15:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 02:46:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 03:47:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #include "./phong_reflection_model_private.h"
 
 static t_ray	calc_ray(t_ivec2 pixel);
-static void	put_color(t_color color, t_ivec2 pixel);
+static void		put_color(t_color color, t_ivec2 pixel);
 
 void	phong_reflection_model(void)
 {
