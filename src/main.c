@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 15:56:00 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:24:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,15 @@ int	main(int argc, char const *argv[])
 	if (!parse_file(argv[1]))
 		return (EXIT_FAILURE);
 	if (!set_mlx())
+	{
+		cleanup_objects();
+		cleanup_lights();
 		return (EXIT_FAILURE);
+	}
 	phong_reflection_model();
 	mlx_loop(get_mlx_ptr());
 	cleanup_objects();
+	cleanup_lights();
 	ft_mlx_destroy();
 	return (EXIT_SUCCESS);
 }
@@ -66,15 +71,11 @@ static bool	is_valid_argument(int argc, char const *argv[])
 static bool	set_mlx(void)
 {
 	if (!create_mlx_connection())
-	{
-		cleanup_objects();
 		return (false);
-	}
 	if (!create_image(IMG_WINDOW, WINDOW_WIDTH, WINDOW_HEIGHT) \
 		|| !create_window(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE))
 	{
 		ft_mlx_destroy();
-		cleanup_objects();
 		return (false);
 	}
 	mlx_clear_window(get_mlx_ptr(), get_win_ptr());

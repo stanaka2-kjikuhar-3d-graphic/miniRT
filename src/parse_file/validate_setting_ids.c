@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:52:34 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/10 00:27:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:14:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ static bool	validate_duplicated_id(int flags, char const *line)
 
 	if (is_identifier("A", line))
 		setting_id = SETTING_AMBIENT_LIGHTING;
-	else if (is_identifier("L", line))
-		setting_id = SETTING_LIGHT;
 	else if (is_identifier("C", line))
 		setting_id = SETTING_CAMERA;
 	else
@@ -82,8 +80,6 @@ static bool	validate_duplicated_id(int flags, char const *line)
 	{
 		if (setting_id == SETTING_AMBIENT_LIGHTING)
 			print_error(ERROR_ID_DUP_AMBIENT);
-		else if (setting_id == SETTING_LIGHT)
-			print_error(ERROR_ID_DUP_LIGHT);
 		else if (setting_id == SETTING_CAMERA)
 			print_error(ERROR_ID_DUP_CAMERA);
 		return (false);

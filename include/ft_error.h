@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/18 20:44:18 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:14:23 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 /* Identifier / Scene */
 # define ERROR_ID_UNKNOWN "SCENE: unknown identifier"
 # define ERROR_ID_DUP_AMBIENT "SCENE: duplicate ambient lighting (A)"
-# define ERROR_ID_DUP_LIGHT "SCENE: duplicate light (L)"
 # define ERROR_ID_DUP_CAMERA "SCENE: duplicate camera (C)"
 # define ERROR_ID_NO_AMBIENT "SCENE: missing ambient lighting (A)"
 # define ERROR_ID_NO_LIGHT "SCENE: missing light (L)"

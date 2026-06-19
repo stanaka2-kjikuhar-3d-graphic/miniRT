@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:02:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 13:33:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:23:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ bool	parse_light_setting(char const **elements)
 	{
 		return (false);
 	}
-	set_light(pos, color, brightness);
+	if (!add_light(pos, color, brightness))
+		return (false);
 	return (true);
 }
