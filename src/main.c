@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 22:05:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 01:00:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "ft_stdio.h"
 #include "ft_string.h"
 
+#include "config.h"
 #include "parse_file.h"
 #include "light.h"
 #include "object.h"

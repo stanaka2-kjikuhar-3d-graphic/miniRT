@@ -6,13 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:10:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 20:54:25 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 01:01:05 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
-#include "ft_mlx.h"
+#include "config.h"
 #include "vector.h"
 #include "view.h"
 
