@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_brightness.c                                 :+:      :+:    :+:   */
+/*   drawer.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/11 23:27:54 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:04:40 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/19 21:29:45 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/19 21:47:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#ifndef DRAWER_H
+# define DRAWER_H
 
-#include "ft_error.h"
+# include <stdbool.h>
 
-#include "../parse_file_private.h"
+void	drawer(void);
+void	set_draw_flag(bool status);
 
-bool	parse_brightness(char const *element, double *brightness)
-{
-	if (!parse_double(element, brightness))
-		return (false);
-	if (*brightness < 0.0 || 1.0 < *brightness)
-	{
-		print_error(ERROR_BRIGHTNESS_RANGE);
-		return (false);
-	}
-	return (true);
-}
+#endif

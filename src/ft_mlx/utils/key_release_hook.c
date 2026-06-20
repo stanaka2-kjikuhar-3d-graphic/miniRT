@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_brightness.c                                 :+:      :+:    :+:   */
+/*   key_release_hook.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/11 23:27:54 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:04:40 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/19 20:31:05 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/19 23:50:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include <X11/keysym.h>
 
-#include "ft_error.h"
+#include "mlx.h"
 
-#include "../parse_file_private.h"
+#include "ft_mlx.h"
 
-bool	parse_brightness(char const *element, double *brightness)
+int	key_release_hook(int keycode, void *param)
 {
-	if (!parse_double(element, brightness))
-		return (false);
-	if (*brightness < 0.0 || 1.0 < *brightness)
-	{
-		print_error(ERROR_BRIGHTNESS_RANGE);
-		return (false);
-	}
-	return (true);
+	(void)param;
+	(void)keycode;
+	return (0);
 }

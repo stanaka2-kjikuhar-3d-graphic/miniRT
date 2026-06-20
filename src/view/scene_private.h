@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_brightness.c                                 :+:      :+:    :+:   */
+/*   scene_private.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/11 23:27:54 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:04:40 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/10 22:11:33 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/20 13:16:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#ifndef SCENE_PRIVATE_H
+# define SCENE_PRIVATE_H
 
-#include "ft_error.h"
+# include "vector.h"
 
-#include "../parse_file_private.h"
+t_dvec3	calc_camera_dir(double pitch, double yaw);
+t_dvec3	calc_camera_right(double yaw);
+t_dvec3	calc_camera_up(t_dvec3 right, t_dvec3 dir);
 
-bool	parse_brightness(char const *element, double *brightness)
-{
-	if (!parse_double(element, brightness))
-		return (false);
-	if (*brightness < 0.0 || 1.0 < *brightness)
-	{
-		print_error(ERROR_BRIGHTNESS_RANGE);
-		return (false);
-	}
-	return (true);
-}
+#endif

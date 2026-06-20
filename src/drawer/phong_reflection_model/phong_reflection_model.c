@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:15:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 15:33:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 17:17:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,67 +14,69 @@
 #include <stdint.h>
 
 #include "mlx.h"
+
 #include "ft_mlx.h"
 #include "vector.h"
-#include "scene.h"
+#include "view.h"
 #include "ray.h"
 #include "color.h"
+
 #include "./phong_reflection_model_private.h"
 
-t_ray	calc_ray(int x, int y);
-void	put_color(t_color color, int x, int y);
+static t_ray	calc_ray(t_ivec2 pixel);
+static void		put_color(t_color color, t_ivec2 pixel);
 
 void	phong_reflection_model(void)
 {
 	t_viewport const	*viewport;
-	int					h;
-	int					w;
+	t_ivec2				pixel;
 	t_ray				ray;
 	t_hit				hit;
 
 	viewport = get_viewport();
-	h = 0;
-	while (h < viewport->pixel.height)
+	pixel.y = 0;
+	while (pixel.y < viewport->pixel_size.height)
 	{
-		w = 0;
-		while (w < viewport->pixel.width)
+		pixel.x = 0;
+		while (pixel.x < viewport->pixel_size.width)
 		{
-			ray = calc_ray(w, h);
+			ray = calc_ray(pixel);
 			hit = intersection(&ray);
 			if (hit.object != NULL)
-				put_color(lighting(&hit), w, h);
+				put_color(lighting(&ray, &hit), pixel);
 			else
-				put_color(get_ambient_lighting()->radiance, w, h);
-			++w;
+				put_color((t_color){.r = 0.0, .g = 0.0, .b = 0.0}, pixel);
+			++(pixel.x);
 		}
-		++h;
+		++(pixel.y);
 	}
 }
 
-t_ray	calc_ray(int x, int y)
+static t_ray	calc_ray(t_ivec2 pixel)
 {
 	t_ray				ray;
 	t_camera const		*camera;
 	t_viewport const	*viewport;
-	double				tx;
-	double				ty;
+	t_dvec2				t;
 
 	camera = get_camera();
 	viewport = get_viewport();
-	tx = ((x + 0.5) / (viewport->pixel.width / 2.0)) - 1.0;
-	ty = -(((y + 0.5) / (viewport->pixel.height / 2.0)) - 1.0);
+	t.x = ((pixel.x + 0.5) / viewport->pixel_half_size.width) - 1.0;
+	t.y = -(((pixel.y + 0.5) / viewport->pixel_half_size.height) - 1.0);
 	ray.dir = dvec3_normalize(\
 				dvec3_add(camera->dir, \
 				dvec3_add(\
-					dvec3_scale(tx * viewport->half_width, camera->right), \
-					dvec3_scale(ty * viewport->half_height, camera->up) \
+					dvec3_scale(t.x * viewport->world_half_size.width, \
+									camera->right), \
+					dvec3_scale(t.y * viewport->world_half_size.height, \
+									camera->up) \
 				)) \
 			);
 	ray.origin = camera->pos;
 	return (ray);
 }
 
-void	put_color(t_color color, int x, int y)
+static void	put_color(t_color color, t_ivec2 pixel)
 {
-	*get_pixel_addr(get_image(IMG_WINDOW), x, y) = calc_rgb(color);
+	*get_pixel_addr(get_image(IMG_WINDOW), pixel.x, pixel.y) = calc_rgb(color);
 }

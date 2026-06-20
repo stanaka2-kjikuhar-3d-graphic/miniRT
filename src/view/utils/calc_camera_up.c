@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_brightness.c                                 :+:      :+:    :+:   */
+/*   calc_camera_up.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/11 23:27:54 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:04:40 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/05/26 20:21:51 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/20 12:59:34 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include "vector.h"
 
-#include "ft_error.h"
-
-#include "../parse_file_private.h"
-
-bool	parse_brightness(char const *element, double *brightness)
+// left hand coordinate system
+t_dvec3	calc_camera_up(t_dvec3 right, t_dvec3 dir)
 {
-	if (!parse_double(element, brightness))
-		return (false);
-	if (*brightness < 0.0 || 1.0 < *brightness)
-	{
-		print_error(ERROR_BRIGHTNESS_RANGE);
-		return (false);
-	}
-	return (true);
+	return (dvec3_cross(right, dir));
 }

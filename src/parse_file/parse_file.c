@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:15:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 12:22:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:04:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 #include <unistd.h>
 
 #include "ft_lst.h"
+
 #include "ft_error.h"
+
 #include "./parse_file_private.h"
 
 bool	parse_file(char const *filename)

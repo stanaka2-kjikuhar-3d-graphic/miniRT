@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:52:34 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 18:14:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:04:34 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 #include "ft_string.h"
 #include "ft_lst.h"
+
 #include "ft_error.h"
+
 #include "./parse_file_private.h"
 
 static bool	validate_invalid_id(char const *line);

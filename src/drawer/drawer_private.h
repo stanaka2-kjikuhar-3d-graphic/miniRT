@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene_private.h                                    :+:      :+:    :+:   */
+/*   drawer_private.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 22:11:33 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 01:35:45 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/19 21:44:48 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/19 21:49:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_PRIVATE_H
-# define SCENE_PRIVATE_H
+#ifndef DRAWER_PRIVATE_H
+# define DRAWER_PRIVATE_H
 
-# include "vector.h"
+# include <stdbool.h>
 
-t_dvec3	calc_camera_up(t_dvec3 right, t_dvec3 dir);
-t_dvec3	calc_camera_right(t_dvec3 dir);
+bool	check_draw_flag(void);
+void	phong_reflection_model(void);
 
 #endif

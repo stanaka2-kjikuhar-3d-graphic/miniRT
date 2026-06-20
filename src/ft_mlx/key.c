@@ -1,19 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_camera_up.c                                   :+:      :+:    :+:   */
+/*   key_status.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/26 20:21:51 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/10 23:01:10 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/19 22:41:53 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/19 22:41:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
-
-// left hand coordinate system
-t_dvec3	calc_camera_up(t_dvec3 right, t_dvec3 dir)
-{
-	return (dvec3_normalize(dvec3_cross(right, dir)));
-}

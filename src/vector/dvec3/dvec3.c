@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_brightness.c                                 :+:      :+:    :+:   */
+/*   dvec3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/11 23:27:54 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:04:40 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/05/22 17:00:03 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/20 01:46:36 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include "vector.h"
 
-#include "ft_error.h"
-
-#include "../parse_file_private.h"
-
-bool	parse_brightness(char const *element, double *brightness)
+t_dvec3	dvec3(double x, double y, double z)
 {
-	if (!parse_double(element, brightness))
-		return (false);
-	if (*brightness < 0.0 || 1.0 < *brightness)
-	{
-		print_error(ERROR_BRIGHTNESS_RANGE);
-		return (false);
-	}
-	return (true);
+	return ((t_dvec3){.x = x, .y = y, .z = z});
 }

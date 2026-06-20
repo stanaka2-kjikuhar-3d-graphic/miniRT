@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 23:37:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/16 19:41:01 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 13:25:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include "vector.h"
 #include "ft_error.h"
+
 #include "../parse_file_private.h"
 
 bool	parse_dir(char const *element, t_dvec3 *dir)

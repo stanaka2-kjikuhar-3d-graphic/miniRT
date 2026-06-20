@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ambient_lighting.c                                 :+:      :+:    :+:   */
+/*   calc_camera_right.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 23:39:26 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 13:28:12 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/05/26 20:21:43 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/20 12:51:52 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
+
+#include "ft_math.h"
 #include "vector.h"
-#include "scene.h"
-#include "color.h"
 
-static t_ambient_lighting	g_ambient_lighting;
-
-t_ambient_lighting const	*get_ambient_lighting(void)
+// left hand coordinate system
+t_dvec3	calc_camera_right(double yaw)
 {
-	return (&g_ambient_lighting);
-}
-
-void	set_ambient_lighting(t_color color, double brightness)
-{
-	g_ambient_lighting.radiance = scale_color(brightness, color);
-	g_ambient_lighting.color = color;
-	g_ambient_lighting.brightness = brightness;
+	yaw *= DEG_TO_RAD;
+	return ((t_dvec3){.x = cos(yaw), .y = -sin(yaw), .z = 0.0});
 }

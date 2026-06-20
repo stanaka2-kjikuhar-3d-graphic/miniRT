@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 00:12:32 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 13:32:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:03:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 #include <stdbool.h>
 
 #include "ft_error.h"
-#include "scene.h"
+#include "light.h"
 #include "color.h"
+
 #include "./parse_file_private.h"
 
 bool	parse_ambient_lighting_setting(char const **elements)

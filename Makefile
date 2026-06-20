@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/19 19:32:51 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/20 17:49:38 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,8 +94,15 @@ override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 SRC_DIRS	:= src
 SRC_DIRS	+= $(addprefix src/, \
 					color \
+					drawer \
+					$(addprefix drawer/, \
+						monte_carlo_ray_tracing \
+						phong_reflection_model \
+					) \
+					editor \
 					ft_error \
 					ft_mlx ft_mlx/utils \
+					light \
 					object \
 					$(addprefix object/, \
 						circle \
@@ -104,9 +111,12 @@ SRC_DIRS	+= $(addprefix src/, \
 						sphere \
 					) \
 					parse_file parse_file/utils \
-					phong_reflection_model \
-					scene scene/utils\
-					vector \
+					$(addprefix vector/, \
+						dvec3 \
+						dvec2 \
+						ivec2 \
+					) \
+					view view/utils\
 				)
 
 $(foreach dir, $(SRC_DIRS), $(eval vpath %.c $(dir)))
@@ -123,6 +133,18 @@ SRCS	+=	add_color.c \
 			scale_color.c \
 			calc_rgb.c
 
+# editor
+
+# drawer
+SRCS	+=	drawer.c \
+			draw_flag.c
+
+# drawer/phong_reflection_model
+SRCS	+=	phong_reflection_model.c \
+			intersection.c \
+			lighting.c \
+			shadowing.c
+
 # ft_error
 SRCS	+=	print_error.c \
 			print_errno.c
@@ -135,7 +157,14 @@ SRCS	+=	mlx_ptr.c \
 			ft_mlx_hooks.c \
 			get_pixel_addr.c
 SRCS	+=	expose_hook.c \
-			key_press_hook.c
+			loop_hook.c \
+			key_press_hook.c \
+			key_release_hook.c \
+			button_hooks.c
+
+# light
+SRCS	+=	ambient_lighting.c \
+			light.c
 
 # object
 SRCS	+=	object.c \
@@ -150,12 +179,6 @@ SRCS	+=	object.c \
 			calc_plane_normal.c \
 			calc_sphere_normal.c \
 			get_object_color.c
-
-# phong_reflection_model
-SRCS	+=	phong_reflection_model.c \
-			intersection.c \
-			lighting.c \
-			shadowing.c
 
 # parse_file
 SRCS	+=	parse_file.c \
@@ -182,15 +205,7 @@ SRCS	+=	read_next_line.c \
 			parse_dvec3.c \
 			parse_double.c
 
-# scene
-SRCS	+=	ambient_lighting.c \
-			camera.c \
-			light.c \
-			viewport.c
-SRCS	+=	calc_camera_right.c \
-			calc_camera_up.c
-
-# vector
+# vector/dvec3
 SRCS	+=	dvec3.c \
 			dvec3_add.c \
 			dvec3_sub.c \
@@ -200,6 +215,19 @@ SRCS	+=	dvec3.c \
 			dvec3_dot.c \
 			dvec3_cross.c \
 			dvec3_rotate.c
+
+# vector/dvec2
+SRCS	+=	dvec2.c
+
+# vector/ivec2
+SRCS	+=	ivec2.c
+
+# view
+SRCS	+=	camera.c \
+			viewport.c
+SRCS	+=	calc_camera_dir.c \
+			calc_camera_right.c \
+			calc_camera_up.c
 
 # -------------------------- #
 #        Object Files        #

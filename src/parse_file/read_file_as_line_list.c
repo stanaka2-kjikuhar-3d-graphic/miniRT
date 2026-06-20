@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 09:26:53 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 12:23:18 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:04:28 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 #include <string.h>
 
 #include "ft_lst.h"
+
 #include "ft_error.h"
+
 #include "./parse_file_private.h"
 
 static bool	is_blank_line(const char *line);

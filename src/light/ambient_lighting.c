@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_brightness.c                                 :+:      :+:    :+:   */
+/*   ambient_lighting.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/11 23:27:54 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:04:40 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/10 23:39:26 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/19 20:59:05 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include "vector.h"
+#include "light.h"
+#include "color.h"
 
-#include "ft_error.h"
+static t_ambient_lighting	g_ambient_lighting;
 
-#include "../parse_file_private.h"
-
-bool	parse_brightness(char const *element, double *brightness)
+t_ambient_lighting const	*get_ambient_lighting(void)
 {
-	if (!parse_double(element, brightness))
-		return (false);
-	if (*brightness < 0.0 || 1.0 < *brightness)
-	{
-		print_error(ERROR_BRIGHTNESS_RANGE);
-		return (false);
-	}
-	return (true);
+	return (&g_ambient_lighting);
+}
+
+void	set_ambient_lighting(t_color color, double brightness)
+{
+	g_ambient_lighting.radiance = scale_color(brightness, color);
+	g_ambient_lighting.color = color;
+	g_ambient_lighting.brightness = brightness;
 }

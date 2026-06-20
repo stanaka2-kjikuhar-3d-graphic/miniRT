@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:40 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/16 16:16:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 02:44:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 # define FT_MLX_H
 
 # include <stdbool.h>
-
-# define WINDOW_WIDTH 1920
-# define WINDOW_HEIGHT 1080
-// # define WINDOW_WIDTH 1000
-// # define WINDOW_HEIGHT 600
-# define WINDOW_TITLE "miniRT"
 
 enum e_image_id
 {

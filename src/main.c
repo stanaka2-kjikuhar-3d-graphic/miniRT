@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 18:24:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 01:00:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 #include "mlx.h"
 #include "ft_stdio.h"
 #include "ft_string.h"
+
+#include "config.h"
 #include "parse_file.h"
-#include "scene.h"
+#include "light.h"
 #include "object.h"
 #include "ft_mlx.h"
-#include "phong_reflection_model.h"
+#include "drawer.h"
 
 static bool	is_valid_argument(int argc, char const *argv[]);
 static bool	set_mlx(void);
@@ -42,7 +44,7 @@ int	main(int argc, char const *argv[])
 		cleanup_lights();
 		return (EXIT_FAILURE);
 	}
-	phong_reflection_model();
+	set_draw_flag(true);
 	mlx_loop(get_mlx_ptr());
 	cleanup_objects();
 	cleanup_lights();

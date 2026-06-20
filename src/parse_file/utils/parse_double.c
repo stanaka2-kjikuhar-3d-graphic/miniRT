@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 19:25:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/15 22:26:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:04:58 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 #include "ft_stdlib.h"
 #include "ft_ctype.h"
+
 #include "ft_error.h"
+
 #include "../parse_file_private.h"
 
 static bool	parse_floating_point(const char *element);

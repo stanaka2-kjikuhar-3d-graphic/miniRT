@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 13:53:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 12:23:36 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:05:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 
 #include "ft_stdlib.h"
 #include "ft_string.h"
+
 #include "ft_error.h"
+
 #include "./read_next_line_private.h"
 
 static bool	read_file(int fd, t_buf *buf, t_line *line);

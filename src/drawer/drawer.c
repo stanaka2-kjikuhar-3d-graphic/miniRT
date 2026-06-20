@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_brightness.c                                 :+:      :+:    :+:   */
+/*   drawer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/11 23:27:54 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:04:40 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/19 21:38:45 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/20 16:06:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include "mlx.h"
 
-#include "ft_error.h"
+#include "ft_mlx.h"
+#include "drawer.h"
 
-#include "../parse_file_private.h"
+#include "./drawer_private.h"
 
-bool	parse_brightness(char const *element, double *brightness)
+void	drawer(void)
 {
-	if (!parse_double(element, brightness))
-		return (false);
-	if (*brightness < 0.0 || 1.0 < *brightness)
+	if (check_draw_flag())
 	{
-		print_error(ERROR_BRIGHTNESS_RANGE);
-		return (false);
+		phong_reflection_model();
+		mlx_put_image_to_window(\
+			get_mlx_ptr(), get_win_ptr(), get_image(IMG_WINDOW)->ptr, 0, 0);
+		set_draw_flag(false);
 	}
-	return (true);
 }

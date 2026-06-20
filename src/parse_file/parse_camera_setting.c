@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:09:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 15:22:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:03:56 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 #include "ft_error.h"
 #include "vector.h"
-#include "scene.h"
+#include "view.h"
+
 #include "./parse_file_private.h"
 
 bool	parse_camera_setting(char const **elements)

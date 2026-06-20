@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:17:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/18 21:04:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:04:23 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "object.h"
 #include "ft_error.h"
+
 #include "./parse_file_private.h"
 
 bool	parse_sphere_setting(char const **elements)
