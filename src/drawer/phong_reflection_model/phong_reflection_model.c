@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:15:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 03:47:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 17:17:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	phong_reflection_model(void)
 			ray = calc_ray(pixel);
 			hit = intersection(&ray);
 			if (hit.object != NULL)
-				put_color(lighting(&hit), pixel);
+				put_color(lighting(&ray, &hit), pixel);
 			else
-				put_color(get_ambient_lighting()->radiance, pixel);
+				put_color((t_color){.r = 0.0, .g = 0.0, .b = 0.0}, pixel);
 			++(pixel.x);
 		}
 		++(pixel.y);

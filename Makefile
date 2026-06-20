@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/20 13:16:26 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/20 17:49:38 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -156,7 +156,8 @@ SRCS	+=	mlx_ptr.c \
 			ft_mlx_destroy.c \
 			ft_mlx_hooks.c \
 			get_pixel_addr.c
-SRCS	+=	draw_hook.c \
+SRCS	+=	expose_hook.c \
+			loop_hook.c \
 			key_press_hook.c \
 			key_release_hook.c \
 			button_hooks.c

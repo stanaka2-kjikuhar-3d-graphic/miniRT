@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 18:58:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 16:20:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include "vector.h"
 # include "color.h"
 # include "ray.h"
-
-# define INTENSITY 1.0
 
 typedef struct s_object	t_object;
 

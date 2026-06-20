@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 16:31:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 04:56:00 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 17:48:57 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 void	ft_mlx_hooks(void)
 {
-	mlx_expose_hook(get_win_ptr(), draw_hook, NULL);
-	mlx_loop_hook(get_mlx_ptr(), draw_hook, NULL);
+	mlx_expose_hook(get_win_ptr(), expose_hook, NULL);
+	mlx_loop_hook(get_mlx_ptr(), loop_hook, NULL);
 	mlx_hook(get_win_ptr(), ClientMessage, NoEventMask, \
 								mlx_loop_end, get_mlx_ptr());
 	mlx_hook(get_win_ptr(), KeyPress, KeyPressMask, \

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_hook.c                                        :+:      :+:    :+:   */
+/*   loop_hook.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:28:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 12:13:25 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 17:47:38 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 static bool	frame_per_second(void);
 
-int	draw_hook(void *param)
+int	loop_hook(void *param)
 {
 	(void)param;
 	if (frame_per_second())
