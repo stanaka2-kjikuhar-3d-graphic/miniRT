@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/20 02:59:27 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/20 13:16:26 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -224,7 +224,8 @@ SRCS	+=	ivec2.c
 # view
 SRCS	+=	camera.c \
 			viewport.c
-SRCS	+=	calc_camera_right.c \
+SRCS	+=	calc_camera_dir.c \
+			calc_camera_right.c \
 			calc_camera_up.c
 
 # -------------------------- #

@@ -6,13 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:38:36 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:05:49 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 13:34:24 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include <stdbool.h>
 
+#include "config.h"
 #include "object.h"
 #include "view.h"
 #include "ray.h"
@@ -26,7 +27,7 @@ bool	shadowing(t_hit const *hit, t_light const *light)
 	t_ray	shadow_ray;
 	double	offset;
 
-	offset = 1e-8 * fmax(1.0, dvec3_length(hit->point));
+	offset = SHADOW_EPSOLON * fmax(1.0, dvec3_length(hit->point));
 	shadow_ray.origin = dvec3_add(hit->point, dvec3_scale(offset, hit->normal));
 	shadow_ray.dir = dvec3_normalize(\
 						dvec3_sub(light->pos, shadow_ray.origin));

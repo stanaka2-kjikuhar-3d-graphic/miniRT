@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:19 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 04:24:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 13:14:35 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_viewport
 t_camera const				*get_camera(void);
 void						set_camera_pos(t_dvec3 pos);
 void						set_camera_dir(t_dvec3 dir);
-bool						rotate_camera_pitch(double degree);
+void						rotate_camera_pitch(double degree);
 void						rotate_camera_yaw(double degree);
 t_viewport const			*get_viewport(void);
 void						set_viewport(double fov);

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:10:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 03:43:07 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 12:21:55 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	set_viewport(double fov)
 
 bool	change_fov(double degree)
 {
-	if (g_viewport.fov + degree <= 1e-6 \
-		|| 180.0 - 1e-6 <= g_viewport.fov + degree)
+	if (g_viewport.fov + degree <= EPSILON \
+		|| 180.0 - EPSILON <= g_viewport.fov + degree)
 	{
 		return (false);
 	}

@@ -6,13 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:41:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 19:26:26 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 12:18:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include <stdbool.h>
 
+#include "config.h"
 #include "vector.h"
 #include "object.h"
 #include "ray.h"
@@ -33,7 +34,7 @@ double	intersect_cylinder(t_cylinder const *cylinder, t_ray const *ray)
 	perp.ray = dvec3_sub(ray->dir, \
 				dvec3_scale(dvec3_dot(ray->dir, cylinder->dir), cylinder->dir));
 	perp.ray_len = dvec3_length(perp.ray);
-	if (perp.ray_len < 1e-8)
+	if (perp.ray_len < EPSILON)
 		return (NAN);
 	perp.ray = dvec3_scale(1 / perp.ray_len, perp.ray);
 	to_cylinder = dvec3_sub(cylinder->center, ray->origin);

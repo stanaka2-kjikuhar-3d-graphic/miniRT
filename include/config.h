@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 00:57:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 11:54:30 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 13:34:01 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,10 @@
 
 # define FRAME_RATE 24
 # define SEC_TO_USEC 1000000
+
+# define PIXEL_PER_ROTATE 16
+
+# define EPSILON 0.000001 // 1e-6
+# define SHADOW_EPSOLON 0.000000001 // 1e-8
 
 #endif
