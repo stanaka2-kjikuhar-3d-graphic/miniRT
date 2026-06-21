@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 14:05:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/21 17:20:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 #include "ft_error.h"
 #include "object.h"
+#include "light.h"
 
 #include "./parse_file_private.h"
 
@@ -37,12 +38,14 @@ bool	parse_settings(t_list **line_list)
 		if (elements == NULL)
 		{
 			print_errno();
+			cleanup_lights();
 			cleanup_objects();
 			return (false);
 		}
 		if (!parse_setting((char const **)elements))
 		{
 			free_split(elements);
+			cleanup_lights();
 			cleanup_objects();
 			return (false);
 		}
