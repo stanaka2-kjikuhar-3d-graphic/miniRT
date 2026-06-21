@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera.c                                           :+:      :+:    :+:   */
+/*   point_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 22:13:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 15:48:37 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/21 15:36:55 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/21 15:38:42 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
+#include <stdbool.h>
 
-#include "config.h"
-#include "ft_math.h"
-#include "vector.h"
-#include "view.h"
+#include "color.h"
+#include "light.h"
 
-#include "./scene_private.h"
+#include "./light_private.h"
 
-static t_camera	g_camera;
-
-t_camera const	*get_camera(void)
+bool	add_point_light(t_input_point_light const *input)
 {
-	return (&g_camera);
-}
+	t_light	light;
 
-t_camera	*get_mutable_camera(void)
-{
-	return (&g_camera);
-}
-
-void	set_camera(t_input_camera const *input)
-{
-	change_camera_pos(input->pos);
-	change_camera_dir(input->dir);
+	light.type = POINT_LIGHT;
+	light.pos = input->pos;
+	light.color = input->color;
+	light.brightness = input->brightness;
+	light.radiance = scale_color(input->brightness, input->color);
+	return (add_light(&light));
 }

@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/21 14:05:48 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/21 15:43:33 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -164,7 +164,9 @@ SRCS	+=	expose_hook.c \
 
 # light
 SRCS	+=	ambient_light.c \
-			light.c
+			light.c \
+			point_light.c \
+			spot_light.c
 
 # object
 SRCS	+=	object.c \
@@ -202,6 +204,7 @@ SRCS	+=	read_next_line.c \
 			parse_fov.c \
 			parse_radius.c \
 			parse_half_height.c \
+			parse_angle.c \
 			parse_dvec3.c \
 			parse_double.c
 
@@ -224,6 +227,9 @@ SRCS	+=	ivec2.c
 
 # view
 SRCS	+=	camera.c \
+			change_camera_pos.c \
+			change_camera_dir.c \
+			rotate_camera.c \
 			viewport.c
 SRCS	+=	calc_camera_dir.c \
 			calc_camera_right.c \

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 18:14:23 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/21 14:40:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,13 @@
 # define ERROR_ID_NO_CAMERA "SCENE: missing camera (C)"
 
 /* Element count */
-# define ERROR_AMBIENT_FEW "AMBIENT LIGHTING: missing fields"
-# define ERROR_AMBIENT_MANY "AMBIENT LIGHTING: too many fields"
-# define ERROR_LIGHT_FEW "LIGHT: missing fields"
-# define ERROR_LIGHT_MANY "LIGHT: too many fields"
-# define ERROR_CAMERA_FEW "CAMERA: missing fields"
-# define ERROR_CAMERA_MANY "CAMERA: too many fields"
-# define ERROR_SPHERE_FEW "SPHERE: missing fields"
-# define ERROR_SPHERE_MANY "SPHERE: too many fields"
-# define ERROR_PLANE_FEW "PLANE: missing fields"
-# define ERROR_PLANE_MANY "PLANE: too many fields"
-# define ERROR_CYLINDER_FEW "CYLINDER: missing fields"
-# define ERROR_CYLINDER_MANY "CYLINDER: too many fields"
+# define ERROR_AMBIENT_COUNT "AMBIENT LIGHTING: invalid fields count"
+# define ERROR_LIGHT_COUNT "LIGHT: invalid fields count"
+# define ERROR_LIGHT_COUNT "LIGHT: invalid fields count"
+# define ERROR_CAMERA_COUNT "CAMERA: invalid fields count"
+# define ERROR_SPHERE_COUNT "SPHERE: invalid fields count"
+# define ERROR_PLANE_COUNT "PLANE: invalid fields count"
+# define ERROR_CYLINDER_COUNT "CYLINDER: invalid fields count"
 # define HINT_AMBIENT "USAGE: A ratio R,G,B"
 # define HINT_LIGHT "USAGE: L x,y,z brightness R,G,B"
 # define HINT_CAMERA "USAGE: C x,y,z nx,ny,nz fov"
@@ -52,6 +47,7 @@
 # define ERROR_DIAMETER_SMALL "DIAMETER: too small, diameter/2 underflows to 0"
 # define ERROR_HEIGHT_RANGE "HEIGHT: must be positive"
 # define ERROR_HEIGHT_SMALL "HEIGHT: too small, height/2 underflows to 0"
+# define ERROR_ANGLE_RANGE "ANGLE: out of range (0-180)"
 
 /* Floating Number */
 # define ERROR_FLOAT_CHARACTER "FLOATING NUMBER: invalid character"

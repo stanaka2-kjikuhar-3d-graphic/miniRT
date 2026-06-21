@@ -1,38 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera.c                                           :+:      :+:    :+:   */
+/*   light.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 22:13:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 15:48:37 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/21 15:35:16 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/21 15:36:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
+#ifndef LIGHT_PRIVATE_H
+# define LIGHT_PRIVATE_H
 
-#include "config.h"
-#include "ft_math.h"
-#include "vector.h"
-#include "view.h"
+# include <stdbool.h>
 
-#include "./scene_private.h"
+# include "light.h"
 
-static t_camera	g_camera;
+bool	add_light(t_light *light);
 
-t_camera const	*get_camera(void)
-{
-	return (&g_camera);
-}
-
-t_camera	*get_mutable_camera(void)
-{
-	return (&g_camera);
-}
-
-void	set_camera(t_input_camera const *input)
-{
-	change_camera_pos(input->pos);
-	change_camera_dir(input->dir);
-}
+#endif

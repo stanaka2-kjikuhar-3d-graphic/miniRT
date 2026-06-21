@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 16:20:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/21 14:47:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_object
 
 bool			get_next_object(t_object const **object);
 bool			allocate_objects(size_t	add_count);
-bool			add_object(t_object *new);
+bool			add_object(t_object *object);
 void			cleanup_objects(void);
 double			intersect(t_object const *object, t_ray const *ray);
 t_dvec3			calc_normal(\

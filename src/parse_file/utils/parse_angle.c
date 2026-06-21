@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera.c                                           :+:      :+:    :+:   */
+/*   parse_angle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 22:13:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 15:48:37 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/21 14:38:08 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/21 14:39:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
+#include <stdbool.h>
 
-#include "config.h"
-#include "ft_math.h"
-#include "vector.h"
-#include "view.h"
+#include "ft_error.h"
 
-#include "./scene_private.h"
+#include "../parse_file_private.h"
 
-static t_camera	g_camera;
-
-t_camera const	*get_camera(void)
+bool	parse_angle(char const *element, double *angle)
 {
-	return (&g_camera);
-}
-
-t_camera	*get_mutable_camera(void)
-{
-	return (&g_camera);
-}
-
-void	set_camera(t_input_camera const *input)
-{
-	change_camera_pos(input->pos);
-	change_camera_dir(input->dir);
+	if (!parse_double(element, angle))
+		return (false);
+	if (*angle < 0.0 || 180.0 < *angle)
+	{
+		print_error(ERROR_ANGLE_RANGE);
+		return (false);
+	}
+	return (true);
 }

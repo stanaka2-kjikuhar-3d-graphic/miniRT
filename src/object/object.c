@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 21:05:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 19:24:12 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/21 14:46:58 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,14 @@ bool	allocate_objects(size_t add_count)
 	return (true);
 }
 
-bool	add_object(t_object *new)
+bool	add_object(t_object *object)
 {
 	if (g_count == g_array_size)
 	{
 		if (!allocate_objects(16))
 			return (false);
 	}
-	g_objects[g_count] = *new;
+	g_objects[g_count] = *object;
 	++g_count;
 	return (true);
 }

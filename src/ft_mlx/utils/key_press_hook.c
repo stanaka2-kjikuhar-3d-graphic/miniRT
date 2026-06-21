@@ -25,34 +25,34 @@ int	key_press_hook(int keycode, void *param)
 		mlx_loop_end(get_mlx_ptr());
 	if (keycode == XK_w)
 	{
-		set_camera_pos(dvec3_add(get_camera()->pos, get_camera()->dir));
+		change_camera_pos(dvec3_add(get_camera()->pos, get_camera()->dir));
 		set_draw_flag(true);
 	}
 	else if (keycode == XK_s)
 	{
-		set_camera_pos(dvec3_add(get_camera()->pos, \
+		change_camera_pos(dvec3_add(get_camera()->pos, \
 						dvec3_scale(-1, get_camera()->dir)));
 		set_draw_flag(true);
 	}
 	else if (keycode == XK_Right || keycode == XK_d)
 	{
-		set_camera_pos(dvec3_add(get_camera()->pos, get_camera()->right));
+		change_camera_pos(dvec3_add(get_camera()->pos, get_camera()->right));
 		set_draw_flag(true);
 	}
 	else if (keycode == XK_Left || keycode == XK_a)
 	{
-		set_camera_pos(dvec3_add(get_camera()->pos, \
+		change_camera_pos(dvec3_add(get_camera()->pos, \
 						dvec3_scale(-1, get_camera()->right)));
 		set_draw_flag(true);
 	}
 	else if (keycode == XK_Up)
 	{
-		set_camera_pos(dvec3_add(get_camera()->pos, get_camera()->up));
+		change_camera_pos(dvec3_add(get_camera()->pos, get_camera()->up));
 		set_draw_flag(true);
 	}
 	else if (keycode == XK_Down)
 	{
-		set_camera_pos(dvec3_add(get_camera()->pos, \
+		change_camera_pos(dvec3_add(get_camera()->pos, \
 						dvec3_scale(-1, get_camera()->up)));
 		set_draw_flag(true);
 	}

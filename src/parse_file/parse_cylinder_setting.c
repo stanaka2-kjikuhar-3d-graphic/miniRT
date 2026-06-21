@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:25:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:04:00 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/20 18:37:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,27 @@
 
 #include "./parse_file_private.h"
 
+static bool	parse_cylinder(char const **elements);
 static bool	add_cap_circles(t_cylinder *cylinder);
 
 bool	parse_cylinder_setting(char const **elements)
 {
-	size_t		count;
-	t_object	object;
+	size_t	count;
 
 	count = count_split(elements);
-	if (count != 6)
+	if (count == 6)
+		return (parse_cylinder(elements));
+	else
 	{
-		if (count < 6)
-			print_error_hint(ERROR_CYLINDER_FEW, HINT_CYLINDER);
-		else
-			print_error_hint(ERROR_CYLINDER_MANY, HINT_CYLINDER);
+		print_error_hint(ERROR_CYLINDER_COUNT, HINT_CYLINDER);
 		return (false);
 	}
+}
+
+static bool	parse_cylinder(char const **elements)
+{
+	t_object	object;
+
 	object.type = OBJ_CYLINDER;
 	if (!parse_pos(elements[1], &(object.cylinder.center)) \
 		|| !parse_dir(elements[2], &(object.cylinder.dir)) \

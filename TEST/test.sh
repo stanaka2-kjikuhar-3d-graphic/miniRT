@@ -53,14 +53,14 @@ run_test() {
 	wait $WATCHER 2>/dev/null
 
 	if [ $actual_code -eq 143 ] || [ $actual_code -eq 137 ]; then
-		echo -e "${RED}FAIL${NC}: ./cub3D $map (timeout)"
+		echo -e "${RED}FAIL${NC}: ./miniRT $map (timeout)"
 		((FAIL++))
 		echo ""
 		return
 	fi
 
 	if grep -q "ERROR: AddressSanitizer\|ERROR: LeakSanitizer\|runtime error:" $ERROR_LOG; then
-		echo -e "${RED}FAIL${NC}: ./cub3D $map (sanitizer error)"
+		echo -e "${RED}FAIL${NC}: ./miniRT $map (sanitizer error)"
 		cat $ERROR_LOG
 		((FAIL++))
 		echo ""
@@ -68,7 +68,7 @@ run_test() {
 	fi
 
 	if [ $actual_code -eq 139 ]; then
-		echo -e "${RED}FAIL${NC}: ./cub3D $map (segfault)"
+		echo -e "${RED}FAIL${NC}: ./miniRT $map (segfault)"
 		cat $ERROR_LOG
 		((FAIL++))
 		echo ""
@@ -76,7 +76,7 @@ run_test() {
 	fi
 
 	if [ "$actual_code" -ne "$expected_code" ]; then
-		echo -e "${RED}FAIL${NC}: ./cub3D $map (exit code: expected=$expected_code, actual=$actual_code)"
+		echo -e "${RED}FAIL${NC}: ./miniRT $map (exit code: expected=$expected_code, actual=$actual_code)"
 		cat $ERROR_LOG
 		((FAIL++))
 		echo ""
@@ -86,7 +86,7 @@ run_test() {
 	# expected.txtが渡されていれば比較
 	if [ -n "$expected_txt" ] && [ -f "$expected_txt" ]; then
 		if ! diff -q "$expected_txt" $ERROR_LOG > /dev/null; then
-			echo -e "${RED}FAIL${NC}: ./cub3D $map (stderr mismatch)"
+			echo -e "${RED}FAIL${NC}: ./miniRT $map (stderr mismatch)"
 			echo "--- expected ---"
 			echo "$(cat $expected_txt)"
 			echo "--- actual ---"
@@ -97,7 +97,7 @@ run_test() {
 		fi
 	fi
 
-	echo -e "${GREEN}PASS${NC}: ./cub3D $map"
+	echo -e "${GREEN}PASS${NC}: ./miniRT $map"
 	((PASS++))
 	echo ""
 }

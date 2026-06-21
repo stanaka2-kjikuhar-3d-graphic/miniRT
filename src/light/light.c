@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 22:13:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:01:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/21 15:44:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,14 @@ bool	get_next_light(t_light const **light)
 	}
 }
 
-bool	add_light(t_dvec3 pos, t_color color, double brightness)
+bool	add_light(t_light *light)
 {
 	if (g_count == g_array_size)
 	{
-		if (!allocate_lights(4))
+		if (!allocate_lights(16))
 			return (false);
 	}
-	g_lights[g_count].pos = pos;
-	g_lights[g_count].radiance = scale_color(brightness, color);
-	g_lights[g_count].color = color;
-	g_lights[g_count].brightness = brightness;
+	g_lights[g_count] = *light;
 	++g_count;
 	return (true);
 }

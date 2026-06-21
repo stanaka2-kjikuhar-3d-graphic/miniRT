@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 14:05:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/21 14:39:32 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ bool	parse_radius(char const *element, double *radius);
 bool	parse_dir(char const *element, t_dvec3 *dir);
 bool	parse_fov(char const *element, double *fov);
 bool	parse_half_height(char const *element, double *half_height);
+bool	parse_angle(char const *element, double *angle);
 bool	parse_double(char const *s, double *value);
 bool	parse_dvec3(char const *s, t_dvec3 *vector);
 

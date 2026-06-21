@@ -1,3 +1,0 @@
-Error
-CYLINDER: missing fields
-USAGE: cy x,y,z nx,ny,nz diameter height R,G,B

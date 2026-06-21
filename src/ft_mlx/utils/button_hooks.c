@@ -32,12 +32,12 @@ int	button_press_hook(unsigned int button, int x, int y)
 	}
 	else if (button == Button4)
 	{
-		if (change_fov(1.0))
+		if (change_viewport_fov(1.0))
 			set_draw_flag(true);
 	}
 	else if (button == Button5)
 	{
-		if (change_fov(-1.0))
+		if (change_viewport_fov(-1.0))
 			set_draw_flag(true);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 00:45:12 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 14:05:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/21 16:11:40 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_color	calc_ambient_color(\
 {
 	t_color	ambient;
 
-	ambient = scale_color(K_AMBIENT * I_AMBIENT, ambient_light->radiance);
+	ambient = scale_color(K_AMBIENT, ambient_light->radiance);
 	return (mul_color(hit->color, ambient));
 }
 
@@ -62,7 +62,7 @@ t_color	calc_diffuse_color(t_hit const *hit, t_light const *light)
 						dvec3_normalize(dvec3_sub(light->pos, hit->point)));
 	if (dot <= 0.0)
 		return ((t_color){.r = 0.0, .g = 0.0, .b = 0.0});
-	diffuse = scale_color(K_DIFFUSE * dot * I_DIFFUSE, light->radiance);
+	diffuse = scale_color(K_DIFFUSE * dot, light->radiance);
 	return (mul_color(hit->color, diffuse));
 }
 
@@ -83,7 +83,7 @@ t_color	calc_specular_color(\
 	dot = dvec3_dot(dvec3_scale(-1, ray->dir), reflection);
 	if (dot <= 0.0)
 		return ((t_color){.r = 0.0, .g = 0.0, .b = 0.0});
-	specular = scale_color(K_SPECULAR * pow(dot, SHININESS) * I_SPECULAR, \
+	specular = scale_color(K_SPECULAR * pow(dot, SHININESS), \
 				light->radiance);
 	return (specular);
 }
