@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 03:05:20 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/21 14:05:48 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 enum e_setting_id
 {
-	SETTING_AMBIENT_LIGHTING,
+	SETTING_ambient_light,
 	SETTING_LIGHT,
 	SETTING_CAMERA,
 };
@@ -34,7 +34,7 @@ bool	is_identifier(char const *id, char const *line);
 bool	parse_settings(t_list **line_list);
 size_t	count_split(char const **split);
 void	free_split(char **split);
-bool	parse_ambient_lighting_setting(char const **elements);
+bool	parse_ambient_light_setting(char const **elements);
 bool	parse_light_setting(char const **elements);
 bool	parse_camera_setting(char const **elements);
 bool	parse_sphere_setting(char const **elements);

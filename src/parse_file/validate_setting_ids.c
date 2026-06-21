@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:52:34 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:04:34 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/21 14:05:48 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	validate_setting_ids(t_list *line_list)
 		if (!validate_duplicated_id(flags, line))
 			return (false);
 		if (is_identifier("A", line))
-			flags |= (1 << SETTING_AMBIENT_LIGHTING);
+			flags |= (1 << SETTING_ambient_light);
 		else if (is_identifier("L", line))
 			flags |= (1 << SETTING_LIGHT);
 		else if (is_identifier("C", line))
@@ -73,14 +73,14 @@ static bool	validate_duplicated_id(int flags, char const *line)
 	enum e_setting_id	setting_id;
 
 	if (is_identifier("A", line))
-		setting_id = SETTING_AMBIENT_LIGHTING;
+		setting_id = SETTING_ambient_light;
 	else if (is_identifier("C", line))
 		setting_id = SETTING_CAMERA;
 	else
 		return (true);
 	if (flags & (1 << setting_id))
 	{
-		if (setting_id == SETTING_AMBIENT_LIGHTING)
+		if (setting_id == SETTING_ambient_light)
 			print_error(ERROR_ID_DUP_AMBIENT);
 		else if (setting_id == SETTING_CAMERA)
 			print_error(ERROR_ID_DUP_CAMERA);
@@ -91,7 +91,7 @@ static bool	validate_duplicated_id(int flags, char const *line)
 
 static bool	validate_required_id(int flags)
 {
-	if ((flags & (1 << SETTING_AMBIENT_LIGHTING)) == 0)
+	if ((flags & (1 << SETTING_ambient_light)) == 0)
 	{
 		print_error(ERROR_ID_NO_AMBIENT);
 		return (false);

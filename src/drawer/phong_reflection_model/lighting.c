@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 00:45:12 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 17:24:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/21 14:05:48 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include "./phong_reflection_model_private.h"
 
 t_color	calc_ambient_color(\
-			t_hit const *hit, t_ambient_lighting const *ambient_lighting);
+			t_hit const *hit, t_ambient_light const *ambient_light);
 t_color	calc_diffuse_color(t_hit const *hit, t_light const *light);
 t_color	calc_specular_color(\
 			t_ray const *ray, t_hit const *hit, t_light const *light);
@@ -31,7 +31,7 @@ t_color	lighting(t_ray const *ray, t_hit const *hit)
 	t_color			color;
 	t_light const	*light;
 
-	color = calc_ambient_color(hit, get_ambient_lighting());
+	color = calc_ambient_color(hit, get_ambient_light());
 	light = NULL;
 	while (get_next_light(&light))
 	{
@@ -45,11 +45,11 @@ t_color	lighting(t_ray const *ray, t_hit const *hit)
 }
 
 t_color	calc_ambient_color(\
-	t_hit const *hit, t_ambient_lighting const *ambient_lighting)
+	t_hit const *hit, t_ambient_light const *ambient_light)
 {
 	t_color	ambient;
 
-	ambient = scale_color(K_AMBIENT * I_AMBIENT, ambient_lighting->radiance);
+	ambient = scale_color(K_AMBIENT * I_AMBIENT, ambient_light->radiance);
 	return (mul_color(hit->color, ambient));
 }
 

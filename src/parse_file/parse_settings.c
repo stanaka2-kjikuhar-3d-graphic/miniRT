@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:04:20 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/21 14:05:48 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ bool	parse_settings(t_list **line_list)
 static bool	parse_setting(char const **elements)
 {
 	if (is_identifier("A", elements[0]))
-		return (parse_ambient_lighting_setting(elements));
+		return (parse_ambient_light_setting(elements));
 	else if (is_identifier("L", elements[0]))
 		return (parse_light_setting(elements));
 	else if (is_identifier("C", elements[0]))

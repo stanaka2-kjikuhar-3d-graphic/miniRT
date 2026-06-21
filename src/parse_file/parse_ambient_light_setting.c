@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ambient_lighting_setting.c                   :+:      :+:    :+:   */
+/*   parse_ambient_light_setting.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 00:12:32 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:03:53 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/21 14:06:28 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/21 14:06:34 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 #include "./parse_file_private.h"
 
-bool	parse_ambient_lighting_setting(char const **elements)
+bool	parse_ambient_light_setting(char const **elements)
 {
 	size_t	count;
 	double	brightness;
@@ -39,6 +39,6 @@ bool	parse_ambient_lighting_setting(char const **elements)
 	{
 		return (false);
 	}
-	set_ambient_lighting(color, brightness);
+	set_ambient_light(color, brightness);
 	return (true);
 }

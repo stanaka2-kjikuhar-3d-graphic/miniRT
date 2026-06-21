@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ambient_lighting.c                                 :+:      :+:    :+:   */
+/*   ambient_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 23:39:26 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 20:59:05 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/21 14:06:04 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/21 14:06:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 #include "light.h"
 #include "color.h"
 
-static t_ambient_lighting	g_ambient_lighting;
+static t_ambient_light	g_ambient_light;
 
-t_ambient_lighting const	*get_ambient_lighting(void)
+t_ambient_light const	*get_ambient_light(void)
 {
-	return (&g_ambient_lighting);
+	return (&g_ambient_light);
 }
 
-void	set_ambient_lighting(t_color color, double brightness)
+void	set_ambient_light(t_color color, double brightness)
 {
-	g_ambient_lighting.radiance = scale_color(brightness, color);
-	g_ambient_lighting.color = color;
-	g_ambient_lighting.brightness = brightness;
+	g_ambient_light.radiance = scale_color(brightness, color);
+	g_ambient_light.color = color;
+	g_ambient_light.brightness = brightness;
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:51:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:00:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/21 14:05:48 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 # include "color.h"
 # include "vector.h"
 
-typedef struct s_ambient_lighting
+typedef struct s_ambient_light
 {
 	t_color	radiance;
 	t_color	color;
 	double	brightness;
-}	t_ambient_lighting;
+}	t_ambient_light;
 
 typedef struct s_light
 {
@@ -34,8 +34,8 @@ typedef struct s_light
 	double	brightness;
 }	t_light;
 
-t_ambient_lighting const	*get_ambient_lighting(void);
-void						set_ambient_lighting(\
+t_ambient_light const	*get_ambient_light(void);
+void						set_ambient_light(\
 								t_color color, double brightness);
 bool						get_next_light(t_light const **light);
 bool						add_light(\
