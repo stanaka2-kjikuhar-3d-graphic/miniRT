@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 14:40:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/21 16:50:37 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 
 /* Element count */
 # define ERROR_AMBIENT_COUNT "AMBIENT LIGHTING: invalid fields count"
-# define ERROR_LIGHT_COUNT "LIGHT: invalid fields count"
 # define ERROR_LIGHT_COUNT "LIGHT: invalid fields count"
 # define ERROR_CAMERA_COUNT "CAMERA: invalid fields count"
 # define ERROR_SPHERE_COUNT "SPHERE: invalid fields count"
