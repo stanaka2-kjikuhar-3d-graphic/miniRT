@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/22 20:46:47 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/22 20:55:50 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -320,6 +320,8 @@ override LDLIBS	+= -lm
 # -------------------------- #
 
 all: $(NAME)
+
+bonus: $(NAME)
 
 $(NAME): $(OBJS) | $(LIBFT) $(LIBMLX)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
