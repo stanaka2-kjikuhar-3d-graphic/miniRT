@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 22:46:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 18:58:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/22 20:46:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "object.h"
 #include "ray.h"
-#include "./phong_reflection_model_private.h"
+#include "./phong_private.h"
 
 t_hit	intersection(t_ray const *ray)
 {

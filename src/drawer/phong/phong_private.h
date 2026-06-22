@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phong_reflection_model_private.h                   :+:      :+:    :+:   */
+/*   phong.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:35:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 17:17:04 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/22 20:46:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONG_REFLECTION_MODEL_PRIVATE_H
-# define PHONG_REFLECTION_MODEL_PRIVATE_H
+#ifndef PHONG_PRIVATE_H
+# define PHONG_PRIVATE_H
 
 # include <stdbool.h>
 

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:38:36 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 14:30:10 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/22 20:46:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "view.h"
 #include "ray.h"
 
-#include "./phong_reflection_model_private.h"
+#include "./phong_private.h"
 
 static bool	shadow_intersection(t_ray const *shadow_ray, t_light const *light);
 

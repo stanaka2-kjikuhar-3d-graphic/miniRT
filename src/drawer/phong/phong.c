@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phong_reflection_model.c                           :+:      :+:    :+:   */
+/*   phong.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:15:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 17:17:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/22 20:46:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 #include "ray.h"
 #include "color.h"
 
-#include "./phong_reflection_model_private.h"
+#include "./phong_private.h"
 
 static t_ray	calc_ray(t_ivec2 pixel);
 static void		put_color(t_color color, t_ivec2 pixel);
 
-void	phong_reflection_model(void)
+void	phong(void)
 {
 	t_viewport const	*viewport;
 	t_ivec2				pixel;

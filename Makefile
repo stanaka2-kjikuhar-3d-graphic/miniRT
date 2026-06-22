@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/21 15:43:33 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/22 20:46:47 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,7 @@ SRC_DIRS	+= $(addprefix src/, \
 					drawer \
 					$(addprefix drawer/, \
 						monte_carlo_ray_tracing \
-						phong_reflection_model \
+						phong \
 					) \
 					editor \
 					ft_error \
@@ -139,8 +139,8 @@ SRCS	+=	add_color.c \
 SRCS	+=	drawer.c \
 			draw_flag.c
 
-# drawer/phong_reflection_model
-SRCS	+=	phong_reflection_model.c \
+# drawer/phong
+SRCS	+=	phong.c \
 			intersection.c \
 			lighting.c \
 			shadowing.c
