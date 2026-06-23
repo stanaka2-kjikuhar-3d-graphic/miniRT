@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 22:13:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 20:37:35 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/24 01:54:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ bool	add_light(t_light *light)
 	if (g_count == g_array_size)
 	{
 		if (!allocate_lights(16))
+		{
+			g_count = 0;
 			return (false);
+		}
 	}
 	g_lights[g_count] = *light;
 	++g_count;
@@ -74,6 +77,7 @@ bool	allocate_lights(size_t add_count)
 		if (g_lights == NULL)
 		{
 			print_errno();
+			g_array_size = 0;
 			return (false);
 		}
 		g_array_size += add_count;

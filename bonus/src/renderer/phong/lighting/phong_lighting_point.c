@@ -1,65 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lighting.c                                         :+:      :+:    :+:   */
+/*   phong_lighting_point.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/19 00:45:12 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 21:37:20 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/24 03:38:56 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/24 04:34:26 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include <stddef.h>
 
 #include "config.h"
 #include "color.h"
 #include "ray.h"
 #include "light.h"
 
-#include "./phong_private.h"
+#include "../phong_private.h"
 
-static t_color	calc_ambient_color(\
-	t_hit const *hit, t_ambient_light const *light);
 static t_color	calc_diffuse_color(\
 	t_hit const *hit, t_point_light const *light);
 static t_color	calc_specular_color(\
 	t_ray const *ray, t_hit const *hit, t_point_light const *light);
 
-t_color	lighting(t_ray const *ray, t_hit const *hit)
+void phong_lighting_point(t_color *color, \
+	t_ray const *ray, t_hit const *hit, t_point_light const *light)
 {
-	t_color			color;
-	t_light const	*light;
+	t_vec3	to_light;
+	float	light_dist;
+	t_vec3	light_dir;
 
-	color = (t_color){.r = 0.0, .g = 0.0, .b = 0.0};
-	light = NULL;
-	while (get_next_light(&light))
+	to_light = vec3_sub(light->pos, hit->point);
+	light_dist = vec3_length(to_light);
+	light_dir = vec3_scale(1.0f / light_dist, to_light);
+	if (!phong_shading(hit, light_dir, light_dist))
 	{
-		if (light->type == AMBIENT_LIGHT)
-		{
-			color = add_color(color, \
-						calc_ambient_color(hit, &(light->ambient)));
-		}
-		else if (light->type == POINT_LIGHT \
-			&& !shadowing(hit, &(light->point)))
-		{
-			color = add_color(color, \
-						calc_diffuse_color(hit, &(light->point)));
-			color = add_color(color, \
-						calc_specular_color(ray, hit, &(light->point)));
-		}
+		*color = add_color(add_color(\
+					*color, \
+					calc_diffuse_color(hit, light)), \
+					calc_specular_color(ray, hit, light) \
+				);
 	}
-	return (color);
-}
-
-static t_color	calc_ambient_color(\
-	t_hit const *hit, t_ambient_light const *light)
-{
-	t_color	ambient;
-
-	ambient = light->radiance;
-	return (mul_color(hit->color, ambient));
 }
 
 static t_color	calc_diffuse_color(\

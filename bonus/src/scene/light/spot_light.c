@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 15:36:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 21:08:39 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/24 03:04:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,3 +33,5 @@ bool	add_spot_light(t_input_spot_light const *input)
 	light.spot.angle.inner = 0.8f * input->outer_angle;
 	return (add_light(&light));
 }
+
+

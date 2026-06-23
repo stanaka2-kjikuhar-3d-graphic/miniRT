@@ -1,2 +1,2 @@
 Error
-SCENE: missing ambient lighting (A)
+SCENE: missing ambient phong_lighting (A)

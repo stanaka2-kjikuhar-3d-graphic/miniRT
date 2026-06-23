@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:15:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 13:56:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/24 02:56:55 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	phong(void)
 			ray = calc_ray(pixel);
 			hit = intersection(&ray);
 			if (hit.object != NULL)
-				put_color(lighting(&ray, &hit), pixel);
+				put_color(phong_lighting(&ray, &hit), pixel);
 			else
 				put_color((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f}, pixel);
 			++(pixel.x);

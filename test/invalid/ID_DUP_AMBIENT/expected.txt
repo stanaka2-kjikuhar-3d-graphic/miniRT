@@ -1,2 +1,2 @@
 Error
-SCENE: duplicate ambient lighting (A)
+SCENE: duplicate ambient phong_lighting (A)

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 22:08:06 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/06/23 14:02:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/24 04:20:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 t_vec3	vec3_normalize(t_vec3 v)
 {
-	return (vec3_scale(1 / vec3_length(v), v));
+	return (vec3_scale(1.0f / vec3_length(v), v));
 }

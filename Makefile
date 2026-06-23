@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/24 01:32:14 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/24 04:50:51 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,8 +106,12 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 					) \
 					renderer \
 					$(addprefix renderer/, \
-						monte_carlo \
+						path_tracing \
 						phong \
+						$(addprefix phong/, \
+							lighting \
+							shading \
+						) \
 					) \
 					$(addprefix scene/, \
 						camera camera/internal \
@@ -191,9 +195,14 @@ SRCS	+=	renderer.c \
 
 # renderer/phong
 SRCS	+=	phong.c \
-			intersection.c \
-			lighting.c \
-			shadowing.c
+			intersection.c
+# renderer/phong/lighting
+SRCS	+=	phong_lighting.c \
+			phong_lighting_ambient.c \
+			phong_lighting_point.c \
+			phong_lighting_spot.c
+# renderer/phong/shading
+SRCS	+=	phong_shading.c
 
 # scene/camera
 SRCS	+=	camera.c \

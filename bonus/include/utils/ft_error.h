@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 16:50:37 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/24 02:56:55 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
 
 /* Identifier / Scene */
 # define ERROR_ID_UNKNOWN "SCENE: unknown identifier"
-# define ERROR_ID_DUP_AMBIENT "SCENE: duplicate ambient lighting (A)"
+# define ERROR_ID_DUP_AMBIENT "SCENE: duplicate ambient phong_lighting (A)"
 # define ERROR_ID_DUP_CAMERA "SCENE: duplicate camera (C)"
-# define ERROR_ID_NO_AMBIENT "SCENE: missing ambient lighting (A)"
+# define ERROR_ID_NO_AMBIENT "SCENE: missing ambient phong_lighting (A)"
 # define ERROR_ID_NO_LIGHT "SCENE: missing light (L)"
 # define ERROR_ID_NO_CAMERA "SCENE: missing camera (C)"
 
 /* Element count */
-# define ERROR_AMBIENT_COUNT "AMBIENT LIGHTING: invalid fields count"
+# define ERROR_AMBIENT_COUNT "AMBIENT phong_lighting: invalid fields count"
 # define ERROR_LIGHT_COUNT "LIGHT: invalid fields count"
 # define ERROR_CAMERA_COUNT "CAMERA: invalid fields count"
 # define ERROR_SPHERE_COUNT "SPHERE: invalid fields count"
