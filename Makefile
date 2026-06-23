@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/22 20:55:50 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/23 13:04:45 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -367,7 +367,7 @@ debug:
 	@$(MAKE) re $(EXTRA_FLAGS)
 
 test:
-	@bash TEST/test.sh
+	@bash test/test.sh
 
 norm:
 	@norminette -o src include $(LIBFT_DIR) | grep Error || true

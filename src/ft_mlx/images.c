@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/29 16:03:43 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:02:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:00:57 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ bool	create_image(enum e_image_id id, int width, int height)
 	return (true);
 }
 
-// bool	create_image_from_xpm(\
+// bool	create_image_from_xpm(
 // 	char *xpm, enum e_image_id id, int width, int height)
 // {
 // 	t_image	*image;
@@ -62,7 +62,7 @@ bool	create_image(enum e_image_id id, int width, int height)
 // 	image = &(g_images[id]);
 // 	image->width = width;
 // 	image->height = height;
-// 	image->ptr = mlx_xpm_file_to_image(\
+// 	image->ptr = mlx_xpm_file_to_image(
 // 					get_mlx_ptr(), xpm, &(image->width), &(image->height));
 // 	if (image->ptr == NULL)
 // 	{

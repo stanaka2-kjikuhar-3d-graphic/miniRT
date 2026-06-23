@@ -4,7 +4,7 @@ PASS=0
 FAIL=0
 PROGRAM=./miniRT
 TIMEOUT=30
-ERROR_LOG=TEST/error.log
+ERROR_LOG=test/error.log
 
 # 色
 RED='\033[0;31m'
@@ -103,10 +103,10 @@ run_test() {
 }
 
 # valid: exit 0を期待
-echo "=== Valid TEST ==="
+echo "=== Valid test ==="
 PASS=0
 FAIL=0
-for file in TEST/valid/*; do
+for file in test/valid/*; do
 	[ -f "$file" ] || continue
 	run_test "$file" 0 ""
 done
@@ -115,7 +115,7 @@ echo -e "${GREEN}$PASS passed${NC}, ${RED}$FAIL failed${NC}"
 echo ""
 
 # invalid: exit 1を期待
-echo "=== Invalid TEST ==="
+echo "=== Invalid test ==="
 PASS=0
 FAIL=0
 
@@ -123,13 +123,13 @@ run_test "" 1 ""
 run_test "no_exist.rt" 1 ""
 run_test "1.rt 2.rt" 1 ""
 
-rm -f TEST/invalid/read.rt
-cp TEST/valid/simple.rt TEST/invalid/read.rt
-chmod -r TEST/invalid/read.rt
-run_test "TEST/invalid/read.rt" 1 ""
-rm -f TEST/invalid/read.rt
+rm -f test/invalid/read.rt
+cp test/valid/simple.rt test/invalid/read.rt
+chmod -r test/invalid/read.rt
+run_test "test/invalid/read.rt" 1 ""
+rm -f test/invalid/read.rt
 
-for case_dir in TEST/invalid/*/; do
+for case_dir in test/invalid/*/; do
 	[ -d "$case_dir" ] || continue
 	expected_txt=""
 	[ -f "${case_dir}expected.txt" ] && expected_txt="${case_dir}expected.txt"
