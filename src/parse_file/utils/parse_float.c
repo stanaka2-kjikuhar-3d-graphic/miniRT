@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_double.c                                     :+:      :+:    :+:   */
+/*   parse_float.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 19:25:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:04:58 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:38:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 
 static bool	parse_floating_point(const char *element);
 
-bool	parse_double(char const *element, double *value)
+bool	parse_float(char const *element, float *value)
 {
 	if (!parse_floating_point(element))
 		return (false);
-	*value = ft_strtod(element, (char **)&element);
+	*value = (float)ft_strtod(element, (char **)&element);
 	if (*element != '\0')
 	{
 		print_error(ERROR_FLOAT_CHARACTER);

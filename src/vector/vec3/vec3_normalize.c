@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dvec3_normalize.c                                  :+:      :+:    :+:   */
+/*   vec3_normalize.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 22:08:06 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/06/09 16:36:57 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 14:02:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 
-t_dvec3	dvec3_normalize(t_dvec3 v)
+t_vec3	vec3_normalize(t_vec3 v)
 {
-	return (dvec3_scale(1 / dvec3_length(v), v));
+	return (vec3_scale(1 / vec3_length(v), v));
 }

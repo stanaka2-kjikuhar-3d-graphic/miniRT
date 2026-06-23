@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 19:25:57 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 19:26:39 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@
 
 #include "../object_private.h"
 
-t_dvec3	calc_cylinder_normal(\
-	t_cylinder const *cylinder, t_ray const *ray, t_dvec3 point)
+t_vec3	calc_cylinder_normal(\
+	t_cylinder const *cylinder, t_ray const *ray, t_vec3 point)
 {
-	t_dvec3	to_point;
-	double	h;
-	t_dvec3	normal;
+	t_vec3	to_point;
+	float	h;
+	t_vec3	normal;
 
-	to_point = dvec3_sub(point, cylinder->center);
-	h = dvec3_dot(to_point, cylinder->dir);
-	normal = dvec3_normalize(\
-				dvec3_sub(to_point, dvec3_scale(h, cylinder->dir)));
-	if (dvec3_dot(normal, ray->dir) > 0)
-		return (dvec3_scale(-1, normal));
+	to_point = vec3_sub(point, cylinder->center);
+	h = vec3_dot(to_point, cylinder->dir);
+	normal = vec3_normalize(\
+				vec3_sub(to_point, vec3_scale(h, cylinder->dir)));
+	if (vec3_dot(normal, ray->dir) > 0)
+		return (vec3_scale(-1, normal));
 	return (normal);
 }

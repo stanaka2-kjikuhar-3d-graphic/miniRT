@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dvec3_scale.c                                      :+:      :+:    :+:   */
+/*   vec3_scale.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 17:34:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 19:06:11 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 14:02:56 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 
-t_dvec3	dvec3_scale(double t, t_dvec3 v)
+t_vec3	vec3_scale(float t, t_vec3 v)
 {
-	return ((t_dvec3){\
+	return ((t_vec3){\
 		.x = t * v.x, \
 		.y = t * v.y, \
 		.z = t * v.z \

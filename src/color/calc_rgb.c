@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 01:27:25 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:02:18 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:52:38 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 int	calc_rgb(t_color color)
 {
 	int						rgb;
-	double const			channel[] = {color.r, color.g, color.b};
+	float const				channel[] = {color.r, color.g, color.b};
 	enum e_color_channel	i;
 
 	rgb = 0;

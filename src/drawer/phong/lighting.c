@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 00:45:12 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/22 20:47:28 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ t_color	calc_ambient_color(\
 
 t_color	calc_diffuse_color(t_hit const *hit, t_light const *light)
 {
-	double	dot;
+	float	dot;
 	t_color	diffuse;
 
-	dot = dvec3_dot(hit->normal, \
-						dvec3_normalize(dvec3_sub(light->pos, hit->point)));
+	dot = vec3_dot(hit->normal, \
+						vec3_normalize(vec3_sub(light->pos, hit->point)));
 	if (dot <= 0.0)
 		return ((t_color){.r = 0.0, .g = 0.0, .b = 0.0});
 	diffuse = scale_color(dot, light->radiance);
@@ -69,20 +69,20 @@ t_color	calc_diffuse_color(t_hit const *hit, t_light const *light)
 t_color	calc_specular_color(\
 	t_ray const *ray, t_hit const *hit, t_light const *light)
 {
-	t_dvec3	from_light;
-	t_dvec3	reflection;
-	double	dot;
+	t_vec3	from_light;
+	t_vec3	reflection;
+	float	dot;
 	t_color	specular;
 
-	from_light = dvec3_normalize(dvec3_sub(light->pos, hit->point));
-	if (dvec3_dot(hit->normal, from_light) <= 0.0)
+	from_light = vec3_normalize(vec3_sub(light->pos, hit->point));
+	if (vec3_dot(hit->normal, from_light) <= 0.0)
 		return ((t_color){.r = 0.0, .g = 0.0, .b = 0.0});
-	reflection = dvec3_normalize(dvec3_sub(\
-					dvec3_scale(2 * dvec3_dot(from_light, hit->normal), \
+	reflection = vec3_normalize(vec3_sub(\
+					vec3_scale(2 * vec3_dot(from_light, hit->normal), \
 						hit->normal), from_light));
-	dot = dvec3_dot(dvec3_scale(-1, ray->dir), reflection);
+	dot = vec3_dot(vec3_scale(-1, ray->dir), reflection);
 	if (dot <= 0.0)
 		return ((t_color){.r = 0.0, .g = 0.0, .b = 0.0});
-	specular = scale_color(pow(dot, SHININESS), light->radiance);
+	specular = scale_color(powf(dot, SHININESS), light->radiance);
 	return (specular);
 }

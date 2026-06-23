@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:11:18 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/06/19 21:04:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 
 #include "../parse_file_private.h"
 
-static bool	parse_color_channel(char const **element, double *channel);
+static bool	parse_color_channel(char const **element, float *channel);
 
 bool	parse_color(char const *element, t_color *color)
 {
-	double *const			channel[] = {&(color->r), &(color->g), &(color->b)};
+	float *const			channel[] = {&(color->r), &(color->g), &(color->b)};
 	enum e_color_channel	i;
 
 	i = RED;
@@ -50,7 +50,7 @@ bool	parse_color(char const *element, t_color *color)
 	return (true);
 }
 
-static bool	parse_color_channel(char const **element, double *channel)
+static bool	parse_color_channel(char const **element, float *channel)
 {
 	long	value;
 
@@ -75,6 +75,6 @@ static bool	parse_color_channel(char const **element, double *channel)
 		print_error(ERROR_COLOR_RANGE);
 		return (false);
 	}
-	*channel = (double)value / 0xFF;
+	*channel = (float)value / 0xFF;
 	return (true);
 }

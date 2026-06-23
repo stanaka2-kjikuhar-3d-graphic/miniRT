@@ -19,14 +19,14 @@
 
 #include "./scene_private.h"
 
-void	change_camera_dir(t_dvec3 dir)
+void	change_camera_dir(t_vec3 dir)
 {
 	t_camera	*camera;
 
 	camera = get_mutable_camera();
 	camera->dir = dir;
-	camera->pitch = asin(camera->dir.z) * RAD_TO_DEG;
-	camera->yaw = atan2(camera->dir.x, camera->dir.y) * RAD_TO_DEG;
+	camera->pitch = asinf(camera->dir.z) * (float)RAD_TO_DEG;
+	camera->yaw = atan2f(camera->dir.x, camera->dir.y) * (float)RAD_TO_DEG;
 	camera->right = calc_camera_right(camera->yaw);
 	camera->up = calc_camera_up(camera->right, camera->dir);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dvec3_length.c                                     :+:      :+:    :+:   */
+/*   vec3_length.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 22:08:06 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/06/09 16:46:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 14:02:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "vector.h"
 
-double	dvec3_length(t_dvec3 v)
+float	vec3_length(t_vec3 v)
 {
-	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
+	return (sqrtf(v.x * v.x + v.y * v.y + v.z * v.z));
 }

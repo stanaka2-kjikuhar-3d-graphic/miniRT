@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 15:46:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 15:56:12 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "./scene_private.h"
 
-void	rotate_camera_pitch(double degree)
+void	rotate_camera_pitch(float degree)
 {
 	t_camera	*camera;
 
@@ -30,16 +30,16 @@ void	rotate_camera_pitch(double degree)
 	camera->up = calc_camera_up(camera->right, camera->dir);
 }
 
-void	rotate_camera_yaw(double degree)
+void	rotate_camera_yaw(float degree)
 {
 	t_camera	*camera;
 
 	camera = get_mutable_camera();
 	camera->yaw += degree;
 	if (camera->yaw <= -180.0)
-		camera->yaw += 360.0;
+		camera->yaw += 360.0f;
 	else if (180.0 < camera->yaw)
-		camera->yaw -= 360.0;
+		camera->yaw -= 360.0f;
 	camera->dir = calc_camera_dir(camera->pitch, camera->yaw);
 	camera->right = calc_camera_right(camera->yaw);
 	camera->up = calc_camera_up(camera->right, camera->dir);

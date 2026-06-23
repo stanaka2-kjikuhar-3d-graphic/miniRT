@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 22:11:33 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 15:48:51 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "view.h"
 
 t_camera	*get_mutable_camera(void);
-t_dvec3		calc_camera_dir(double pitch, double yaw);
-t_dvec3		calc_camera_right(double yaw);
-t_dvec3		calc_camera_up(t_dvec3 right, t_dvec3 dir);
+t_vec3		calc_camera_dir(float pitch, float yaw);
+t_vec3		calc_camera_right(float yaw);
+t_vec3		calc_camera_up(t_vec3 right, t_vec3 dir);
 
 #endif

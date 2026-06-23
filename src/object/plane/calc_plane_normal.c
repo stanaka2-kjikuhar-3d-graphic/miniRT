@@ -14,9 +14,9 @@
 #include "object.h"
 #include "ray.h"
 
-t_dvec3	calc_plane_normal(t_plane const *plane, t_ray const *ray)
+t_vec3	calc_plane_normal(t_plane const *plane, t_ray const *ray)
 {
-	if (dvec3_dot(plane->normal, ray->dir) > 0)
-		return (dvec3_scale(-1, plane->normal));
+	if (vec3_dot(plane->normal, ray->dir) > 0)
+		return (vec3_scale(-1, plane->normal));
 	return (plane->normal);
 }

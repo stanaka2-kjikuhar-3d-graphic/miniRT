@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dvec3.c                                            :+:      :+:    :+:   */
+/*   vec3.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 17:00:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 01:46:36 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 14:03:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 
-t_dvec3	dvec3(double x, double y, double z)
+t_vec3	vec3(float x, float y, float z)
 {
-	return ((t_dvec3){.x = x, .y = y, .z = z});
+	return ((t_vec3){.x = x, .y = y, .z = z});
 }

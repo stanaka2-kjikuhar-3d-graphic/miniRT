@@ -14,9 +14,9 @@
 #include "object.h"
 #include "ray.h"
 
-t_dvec3	calc_circle_normal(t_circle const *circle, t_ray const *ray)
+t_vec3	calc_circle_normal(t_circle const *circle, t_ray const *ray)
 {
-	if (dvec3_dot(circle->normal, ray->dir) > 0)
-		return (dvec3_scale(-1, circle->normal));
+	if (vec3_dot(circle->normal, ray->dir) > 0)
+		return (vec3_scale(-1, circle->normal));
 	return (circle->normal);
 }

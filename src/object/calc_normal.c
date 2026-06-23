@@ -16,7 +16,7 @@
 
 #include "./object_private.h"
 
-t_dvec3	calc_normal(t_object const *object, t_ray const *ray, t_dvec3 point)
+t_vec3	calc_normal(t_object const *object, t_ray const *ray, t_vec3 point)
 {
 	if (object->type == OBJ_SPHERE)
 		return (calc_sphere_normal(&(object->sphere), ray, point));
@@ -26,5 +26,5 @@ t_dvec3	calc_normal(t_object const *object, t_ray const *ray, t_dvec3 point)
 		return (calc_cylinder_normal(&(object->cylinder), ray, point));
 	else if (object->type == OBJ_CIRCLE)
 		return (calc_circle_normal(&(object->circle), ray));
-	return ((t_dvec3){.x = 0, .y = 0, .z = 0});
+	return ((t_vec3){.x = 0, .y = 0, .z = 0});
 }

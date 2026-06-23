@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:51:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 15:57:19 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:40:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_ambient_light
 {
 	t_color	radiance;
 	t_color	color;
-	double	brightness;
+	float	brightness;
 }	t_ambient_light;
 
 enum e_light_type
@@ -35,14 +35,14 @@ enum e_light_type
 typedef struct s_light
 {
 	enum e_light_type	type;
-	t_dvec3				pos;
+	t_vec3				pos;
 	t_color				radiance;
 	t_color				color;
-	double				brightness;
+	float				brightness;
 	struct s_spot_light
 	{
-		t_dvec3	dir;
-		double	angle;
+		t_vec3	dir;
+		float	angle;
 	}	spot;
 }	t_light;
 
@@ -50,23 +50,23 @@ typedef struct s_light
 typedef struct s_input_ambient
 {
 	t_color	color;
-	double	brightness;
+	float	brightness;
 }	t_input_ambient;
 
 typedef struct s_input_point_light
 {
-	t_dvec3	pos;
+	t_vec3	pos;
 	t_color	color;
-	double	brightness;
+	float	brightness;
 }	t_input_point_light;
 
 typedef struct s_input_spot_light
 {
-	t_dvec3	pos;
+	t_vec3	pos;
 	t_color	color;
-	double	brightness;
-	t_dvec3	dir;
-	double	angle;
+	float	brightness;
+	t_vec3	dir;
+	float	angle;
 }	t_input_spot_light;
 
 t_ambient_light const	*get_ambient_light(void);

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 00:57:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/22 20:44:56 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:58:31 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@
 
 # define PIXEL_PER_ROTATE 16
 
-# define EPSILON 0.000001 // 1e-6
-# define SHADOW_EPSILON 0.000000001 // 1e-8
+# define EPSILON 0.000001f // 1e-6
 
-# define SHININESS 32.0
+# define SHININESS 32.0f
 
 #endif

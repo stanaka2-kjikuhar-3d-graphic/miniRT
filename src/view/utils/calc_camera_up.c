@@ -13,7 +13,7 @@
 #include "vector.h"
 
 // left hand coordinate system
-t_dvec3	calc_camera_up(t_dvec3 right, t_dvec3 dir)
+t_vec3	calc_camera_up(t_vec3 right, t_vec3 dir)
 {
-	return (dvec3_cross(right, dir));
+	return (vec3_cross(right, dir));
 }

@@ -14,13 +14,13 @@
 #include "object.h"
 #include "ray.h"
 
-t_dvec3	calc_sphere_normal(\
-	t_sphere const *sphere, t_ray const *ray, t_dvec3 point)
+t_vec3	calc_sphere_normal(\
+	t_sphere const *sphere, t_ray const *ray, t_vec3 point)
 {
-	t_dvec3	normal;
+	t_vec3	normal;
 
-	normal = dvec3_normalize(dvec3_sub(point, sphere->center));
-	if (dvec3_dot(normal, ray->dir) > 0)
-		return (dvec3_scale(-1, normal));
+	normal = vec3_normalize(vec3_sub(point, sphere->center));
+	if (vec3_dot(normal, ray->dir) > 0)
+		return (vec3_scale(-1, normal));
 	return (normal);
 }

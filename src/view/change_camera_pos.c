@@ -15,7 +15,7 @@
 
 #include "./scene_private.h"
 
-void	change_camera_pos(t_dvec3 pos)
+void	change_camera_pos(t_vec3 pos)
 {
 	get_mutable_camera()->pos = pos;
 }

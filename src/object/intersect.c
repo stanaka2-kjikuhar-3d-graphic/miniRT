@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 00:50:10 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 19:24:21 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "./object_private.h"
 
-double	intersect(t_object const *object, t_ray const *ray)
+float	intersect(t_object const *object, t_ray const *ray)
 {
 	if (object->type == OBJ_SPHERE)
 		return (intersect_sphere(&(object->sphere), ray));

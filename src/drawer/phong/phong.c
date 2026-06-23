@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:15:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/22 20:46:47 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:56:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	phong(void)
 			if (hit.object != NULL)
 				put_color(lighting(&ray, &hit), pixel);
 			else
-				put_color((t_color){.r = 0.0, .g = 0.0, .b = 0.0}, pixel);
+				put_color((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f}, pixel);
 			++(pixel.x);
 		}
 		++(pixel.y);
@@ -57,18 +57,19 @@ static t_ray	calc_ray(t_ivec2 pixel)
 	t_ray				ray;
 	t_camera const		*camera;
 	t_viewport const	*viewport;
-	t_dvec2				t;
+	t_vec2				t;
 
 	camera = get_camera();
 	viewport = get_viewport();
-	t.x = ((pixel.x + 0.5) / viewport->pixel_half_size.width) - 1.0;
-	t.y = -(((pixel.y + 0.5) / viewport->pixel_half_size.height) - 1.0);
-	ray.dir = dvec3_normalize(\
-				dvec3_add(camera->dir, \
-				dvec3_add(\
-					dvec3_scale(t.x * viewport->world_half_size.width, \
+	t.x = (((float)(pixel.x) + 0.5f) / viewport->pixel_half_size.width) - 1.0f;
+	t.y = -((((float)(pixel.y) + 0.5f) / viewport->pixel_half_size.height) \
+				- 1.0f);
+	ray.dir = vec3_normalize(\
+				vec3_add(camera->dir, \
+				vec3_add(\
+					vec3_scale(t.x * viewport->world_half_size.width, \
 									camera->right), \
-					dvec3_scale(t.y * viewport->world_half_size.height, \
+					vec3_scale(t.y * viewport->world_half_size.height, \
 									camera->up) \
 				)) \
 			);

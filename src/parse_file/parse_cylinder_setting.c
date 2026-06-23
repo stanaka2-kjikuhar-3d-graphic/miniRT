@@ -61,8 +61,8 @@ static bool	add_cap_circles(t_cylinder *cylinder)
 	top.type = OBJ_CIRCLE;
 	top.circle = (t_circle){\
 		.color = cylinder->color, \
-		.center = dvec3_add(cylinder->center, \
-			dvec3_scale(cylinder->half_height, cylinder->dir)), \
+		.center = vec3_add(cylinder->center, \
+			vec3_scale(cylinder->half_height, cylinder->dir)), \
 		.normal = cylinder->dir, \
 		.radius = cylinder->radius};
 	if (!add_object(&top))
@@ -70,9 +70,9 @@ static bool	add_cap_circles(t_cylinder *cylinder)
 	bottom.type = OBJ_CIRCLE;
 	bottom.circle = (t_circle){\
 		.color = cylinder->color,
-		.center = dvec3_add(cylinder->center, \
-			dvec3_scale(-(cylinder->half_height), cylinder->dir)), \
-		.normal = dvec3_scale(-1, cylinder->dir), \
+		.center = vec3_add(cylinder->center, \
+			vec3_scale(-(cylinder->half_height), cylinder->dir)), \
+		.normal = vec3_scale(-1, cylinder->dir), \
 		.radius = cylinder->radius};
 	if (!add_object(&bottom))
 		return (false);

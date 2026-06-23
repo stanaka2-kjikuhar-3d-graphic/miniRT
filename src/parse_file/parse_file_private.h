@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 14:39:32 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ bool	parse_sphere_setting(char const **elements);
 bool	parse_plane_setting(char const **elements);
 bool	parse_cylinder_setting(char const **elements);
 bool	parse_color(char const *element, t_color *color);
-bool	parse_pos(char const *element, t_dvec3 *pos);
-bool	parse_brightness(char const *element, double *brightness);
-bool	parse_radius(char const *element, double *radius);
-bool	parse_dir(char const *element, t_dvec3 *dir);
-bool	parse_fov(char const *element, double *fov);
-bool	parse_half_height(char const *element, double *half_height);
-bool	parse_angle(char const *element, double *angle);
-bool	parse_double(char const *s, double *value);
-bool	parse_dvec3(char const *s, t_dvec3 *vector);
+bool	parse_pos(char const *element, t_vec3 *pos);
+bool	parse_brightness(char const *element, float *brightness);
+bool	parse_radius(char const *element, float *radius);
+bool	parse_dir(char const *element, t_vec3 *dir);
+bool	parse_fov(char const *element, float *fov);
+bool	parse_half_height(char const *element, float *half_height);
+bool	parse_angle(char const *element, float *angle);
+bool	parse_float(char const *s, float *value);
+bool	parse_vec3(char const *s, t_vec3 *vector);
 
 #endif

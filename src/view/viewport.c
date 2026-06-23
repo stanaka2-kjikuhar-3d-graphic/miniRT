@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:10:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 15:51:59 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:54:01 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,15 @@ void	set_viewport(t_input_viewport const *input)
 	g_viewport.pixel_size.height = WINDOW_HEIGHT;
 	g_viewport.pixel_half_size.width = WINDOW_WIDTH / 2.0;
 	g_viewport.pixel_half_size.height = WINDOW_HEIGHT / 2.0;
-	g_viewport.aspect_ratio = (double)WINDOW_WIDTH / WINDOW_HEIGHT;
+	g_viewport.aspect_ratio = (float)WINDOW_WIDTH / WINDOW_HEIGHT;
 	g_viewport.fov = input->fov;
-	g_viewport.world_half_size.width = tan(g_viewport.fov * DEG_TO_RAD * 0.5);
+	g_viewport.world_half_size.width \
+		= tanf(g_viewport.fov * (float)DEG_TO_RAD * 0.5f);
 	g_viewport.world_half_size.height \
 		= g_viewport.world_half_size.width / g_viewport.aspect_ratio;
 }
 
-bool	change_viewport_fov(double degree)
+bool	change_viewport_fov(float degree)
 {
 	if (g_viewport.fov + degree <= EPSILON \
 		|| 180.0 - EPSILON <= g_viewport.fov + degree)
@@ -47,7 +48,8 @@ bool	change_viewport_fov(double degree)
 		return (false);
 	}
 	g_viewport.fov = g_viewport.fov + degree;
-	g_viewport.world_half_size.width = tan(g_viewport.fov * DEG_TO_RAD * 0.5);
+	g_viewport.world_half_size.width \
+		= tanf(g_viewport.fov * (float)DEG_TO_RAD * 0.5f);
 	g_viewport.world_half_size.height \
 		= g_viewport.world_half_size.width / g_viewport.aspect_ratio;
 	return (true);

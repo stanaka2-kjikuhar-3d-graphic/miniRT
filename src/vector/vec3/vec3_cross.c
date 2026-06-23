@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dvec3_cross.c                                      :+:      :+:    :+:   */
+/*   vec3_cross.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 22:08:06 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/06/19 19:05:07 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 14:02:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 
-t_dvec3	dvec3_cross(t_dvec3 a, t_dvec3 b)
+t_vec3	vec3_cross(t_vec3 a, t_vec3 b)
 {
-	return ((t_dvec3){\
+	return ((t_vec3){\
 		.x = a.y * b.z - a.z * b.y, \
 		.y = a.z * b.x - a.x * b.z, \
 		.z = a.x * b.y - a.y * b.x \

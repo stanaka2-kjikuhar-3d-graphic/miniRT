@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_dvec3.c                                      :+:      :+:    :+:   */
+/*   parse_vec3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 09:47:15 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:05:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 
 static bool	parse_axis(const char *element);
 
-bool	parse_dvec3(char const *element, t_dvec3 *vector)
+bool	parse_vec3(char const *element, t_vec3 *vector)
 {
-	double *const	v[3] = {&vector->x, &vector->y, &vector->z};
+	float *const	v[3] = {&vector->x, &vector->y, &vector->z};
 	enum e_axis		axis;
 
 	axis = X_AXIS;
@@ -32,7 +32,7 @@ bool	parse_dvec3(char const *element, t_dvec3 *vector)
 	{
 		if (!parse_axis(element))
 			return (false);
-		*(v[axis]) = ft_strtod(element, (char **)&element);
+		*(v[axis]) = (float)ft_strtod(element, (char **)&element);
 		if (((axis == X_AXIS || axis == Y_AXIS) && *element == '\0') \
 			|| (axis == Z_AXIS && *element == ','))
 		{

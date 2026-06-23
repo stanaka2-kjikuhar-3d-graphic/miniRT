@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 23:27:54 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 21:04:40 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 #include "../parse_file_private.h"
 
-bool	parse_brightness(char const *element, double *brightness)
+bool	parse_brightness(char const *element, float *brightness)
 {
-	if (!parse_double(element, brightness))
+	if (!parse_float(element, brightness))
 		return (false);
 	if (*brightness < 0.0 || 1.0 < *brightness)
 	{

@@ -15,9 +15,9 @@
 #include "vector.h"
 #include "../parse_file_private.h"
 
-bool	parse_pos(char const *element, t_dvec3 *pos)
+bool	parse_pos(char const *element, t_vec3 *pos)
 {
-	if (!parse_dvec3(element, pos))
+	if (!parse_vec3(element, pos))
 		return (false);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 09:20:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 12:18:40 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@
 #include "object.h"
 #include "ray.h"
 
-double	intersect_circle(t_circle const *circle, t_ray const *ray)
+float	intersect_circle(t_circle const *circle, t_ray const *ray)
 {
-	double	dot;
-	t_dvec3	to_camera;
-	double	t;
-	t_dvec3	point;
+	float	dot;
+	t_vec3	to_camera;
+	float	t;
+	t_vec3	point;
 
-	dot = dvec3_dot(circle->normal, ray->dir);
+	dot = vec3_dot(circle->normal, ray->dir);
 	if (fabs(dot) < EPSILON)
 		return (NAN);
-	to_camera = dvec3_sub(ray->origin, circle->center);
-	t = -dvec3_dot(circle->normal, to_camera) / dot;
+	to_camera = vec3_sub(ray->origin, circle->center);
+	t = -vec3_dot(circle->normal, to_camera) / dot;
 	if (t < 0)
 		return (NAN);
-	point = dvec3_add(ray->origin, dvec3_scale(t, ray->dir));
-	if (dvec3_length(dvec3_sub(point, circle->center)) > circle->radius)
+	point = vec3_add(ray->origin, vec3_scale(t, ray->dir));
+	if (vec3_length(vec3_sub(point, circle->center)) > circle->radius)
 		return (NAN);
 	return (t);
 }

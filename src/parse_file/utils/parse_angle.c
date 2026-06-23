@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 14:38:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 14:39:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 #include "../parse_file_private.h"
 
-bool	parse_angle(char const *element, double *angle)
+bool	parse_angle(char const *element, float *angle)
 {
-	if (!parse_double(element, angle))
+	if (!parse_float(element, angle))
 		return (false);
 	if (*angle < 0.0 || 180.0 < *angle)
 	{

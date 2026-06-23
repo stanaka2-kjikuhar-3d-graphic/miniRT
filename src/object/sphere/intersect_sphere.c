@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 19:51:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/19 19:29:42 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,24 @@
 #include "object.h"
 #include "ray.h"
 
-double	intersect_sphere(t_sphere const *sphere, t_ray const *ray)
+float	intersect_sphere(t_sphere const *sphere, t_ray const *ray)
 {
-	t_dvec3	to_center;
-	double	perp_t;
-	double	squared_dist;
-	double	squared_r;
-	double	t;
+	t_vec3	to_center;
+	float	perp_t;
+	float	squared_dist;
+	float	squared_r;
+	float	t;
 
-	to_center = dvec3_sub(sphere->center, ray->origin);
-	perp_t = dvec3_dot(to_center, ray->dir);
-	squared_dist = dvec3_dot(to_center, to_center) - (perp_t * perp_t);
+	to_center = vec3_sub(sphere->center, ray->origin);
+	perp_t = vec3_dot(to_center, ray->dir);
+	squared_dist = vec3_dot(to_center, to_center) - (perp_t * perp_t);
 	squared_r = sphere->radius * sphere->radius;
 	if (squared_dist > squared_r)
 		return (NAN);
-	t = perp_t - sqrt(squared_r - squared_dist);
+	t = perp_t - sqrtf(squared_r - squared_dist);
 	if (t >= 0)
 		return (t);
-	t = perp_t + sqrt(squared_r - squared_dist);
+	t = perp_t + sqrtf(squared_r - squared_dist);
 	if (t >= 0)
 		return (t);
 	return (NAN);

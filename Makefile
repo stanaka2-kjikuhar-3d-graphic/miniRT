@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/23 13:04:45 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/23 13:39:32 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,8 +112,8 @@ SRC_DIRS	+= $(addprefix src/, \
 					) \
 					parse_file parse_file/utils \
 					$(addprefix vector/, \
-						dvec3 \
-						dvec2 \
+						vec3 \
+						vec2 \
 						ivec2 \
 					) \
 					view view/utils\
@@ -205,22 +205,22 @@ SRCS	+=	read_next_line.c \
 			parse_radius.c \
 			parse_half_height.c \
 			parse_angle.c \
-			parse_dvec3.c \
-			parse_double.c
+			parse_vec3.c \
+			parse_float.c
 
-# vector/dvec3
-SRCS	+=	dvec3.c \
-			dvec3_add.c \
-			dvec3_sub.c \
-			dvec3_length.c \
-			dvec3_normalize.c \
-			dvec3_scale.c \
-			dvec3_dot.c \
-			dvec3_cross.c \
-			dvec3_rotate.c
+# vector/vec3
+SRCS	+=	vec3.c \
+			vec3_add.c \
+			vec3_sub.c \
+			vec3_length.c \
+			vec3_normalize.c \
+			vec3_scale.c \
+			vec3_dot.c \
+			vec3_cross.c \
+			vec3_rotate.c
 
-# vector/dvec2
-SRCS	+=	dvec2.c
+# vector/vec2
+SRCS	+=	vec2.c
 
 # vector/ivec2
 SRCS	+=	ivec2.c

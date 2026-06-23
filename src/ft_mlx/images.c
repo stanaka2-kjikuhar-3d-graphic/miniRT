@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/29 16:03:43 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 13:00:57 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 14:03:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ bool	create_image(enum e_image_id id, int width, int height)
 // 		ft_bzero(image, sizeof(t_image));
 // 		return (false);
 // 	}
-// 	image->pixel = mlx_get_data_addr(image->ptr, &(image->bits_per_pixel), \
+// 	image->pixel = mlx_get_data_addr(image->ptr, &(image->bits_per_pixel), 
 // 										&(image->line_size), &(image->endian));
 // 	if (image->pixel == NULL)
 // 	{

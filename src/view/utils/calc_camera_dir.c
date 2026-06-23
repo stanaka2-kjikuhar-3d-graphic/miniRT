@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 12:37:30 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 12:41:23 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 #include "ft_math.h"
 #include "vector.h"
 
-t_dvec3	calc_camera_dir(double pitch, double yaw)
+t_vec3	calc_camera_dir(float pitch, float yaw)
 {
-	pitch *= DEG_TO_RAD;
-	yaw *= DEG_TO_RAD;
-	return ((t_dvec3){\
-		.x = cos(pitch) * sin(yaw), \
-		.y = cos(pitch) * cos(yaw), \
-		.z = sin(pitch) \
+	pitch *= (float)DEG_TO_RAD;
+	yaw *= (float)DEG_TO_RAD;
+	return ((t_vec3){\
+		.x = cosf(pitch) * sinf(yaw), \
+		.y = cosf(pitch) * cosf(yaw), \
+		.z = sinf(pitch) \
 	});
 }

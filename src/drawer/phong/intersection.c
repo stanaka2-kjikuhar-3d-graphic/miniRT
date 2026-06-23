@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 22:46:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/22 20:46:47 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_hit	intersection(t_ray const *ray)
 {
 	t_object const	*object;
 	t_hit			hit;
-	double			t;
+	float			t;
 
 	hit.object = NULL;
 	hit.t = INFINITY;
@@ -36,7 +36,7 @@ t_hit	intersection(t_ray const *ray)
 	}
 	if (hit.object == NULL)
 		return (hit);
-	hit.point = dvec3_add(ray->origin, dvec3_scale(hit.t, ray->dir));
+	hit.point = vec3_add(ray->origin, vec3_scale(hit.t, ray->dir));
 	hit.normal = calc_normal(hit.object, ray, hit.point);
 	hit.color = get_object_color(hit.object);
 	return (hit);

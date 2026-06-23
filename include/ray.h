@@ -17,8 +17,8 @@
 
 typedef struct s_ray
 {
-	t_dvec3	dir;
-	t_dvec3	origin;
+	t_vec3	dir;
+	t_vec3	origin;
 }	t_ray;
 
 #endif

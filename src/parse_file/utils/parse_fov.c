@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 23:42:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 03:34:49 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 #include "../parse_file_private.h"
 
-bool	parse_fov(char const *element, double *fov)
+bool	parse_fov(char const *element, float *fov)
 {
-	if (!parse_double(element, fov))
+	if (!parse_float(element, fov))
 		return (false);
 	if (*fov <= 0.0 || 180.0 <= *fov)
 	{
