@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:35:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 14:41:35 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 21:35:12 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ typedef struct s_hit
 
 t_hit	intersection(t_ray const *ray);
 t_color	lighting(t_ray const *ray, t_hit const *hit);
-bool	shadowing(t_hit const *hit, t_light const *light);
+bool	shadowing(t_hit const *hit, t_point_light const *light);
 
 #endif

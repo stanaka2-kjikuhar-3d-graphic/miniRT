@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 00:45:12 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 21:37:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,40 +20,50 @@
 
 #include "./phong_private.h"
 
-t_color	calc_ambient_color(\
-			t_hit const *hit, t_ambient_light const *ambient_light);
-t_color	calc_diffuse_color(t_hit const *hit, t_light const *light);
-t_color	calc_specular_color(\
-			t_ray const *ray, t_hit const *hit, t_light const *light);
+static t_color	calc_ambient_color(\
+	t_hit const *hit, t_ambient_light const *light);
+static t_color	calc_diffuse_color(\
+	t_hit const *hit, t_point_light const *light);
+static t_color	calc_specular_color(\
+	t_ray const *ray, t_hit const *hit, t_point_light const *light);
 
 t_color	lighting(t_ray const *ray, t_hit const *hit)
 {
 	t_color			color;
 	t_light const	*light;
 
-	color = calc_ambient_color(hit, get_ambient_light());
+	color = (t_color){.r = 0.0, .g = 0.0, .b = 0.0};
 	light = NULL;
 	while (get_next_light(&light))
 	{
-		if (!shadowing(hit, light))
+		if (light->type == AMBIENT_LIGHT)
 		{
-			color = add_color(color, calc_diffuse_color(hit, light));
-			color = add_color(color, calc_specular_color(ray, hit, light));
+			color = add_color(color, \
+						calc_ambient_color(hit, &(light->ambient)));
+		}
+		else if (light->type == POINT_LIGHT \
+			&& !shadowing(hit, &(light->point)))
+		{
+			color = add_color(color, \
+						calc_diffuse_color(hit, &(light->point)));
+			color = add_color(color, \
+						calc_specular_color(ray, hit, &(light->point)));
 		}
 	}
 	return (color);
 }
 
-t_color	calc_ambient_color(\
-	t_hit const *hit, t_ambient_light const *ambient_light)
+static t_color	calc_ambient_color(\
+	t_hit const *hit, t_ambient_light const *light)
 {
 	t_color	ambient;
 
-	ambient = ambient_light->radiance;
+	ambient = light->radiance;
 	return (mul_color(hit->color, ambient));
 }
 
-t_color	calc_diffuse_color(t_hit const *hit, t_light const *light)
+static t_color	calc_diffuse_color(\
+	t_hit const *hit, t_point_light const *light)
 {
 	float	dot;
 	t_color	diffuse;
@@ -66,8 +76,8 @@ t_color	calc_diffuse_color(t_hit const *hit, t_light const *light)
 	return (mul_color(hit->color, diffuse));
 }
 
-t_color	calc_specular_color(\
-	t_ray const *ray, t_hit const *hit, t_light const *light)
+static t_color	calc_specular_color(\
+	t_ray const *ray, t_hit const *hit, t_point_light const *light)
 {
 	t_vec3	from_light;
 	t_vec3	reflection;

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 14:06:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 14:54:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 21:09:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ bool	parse_ambient_light_setting(char const **elements)
 
 static bool	parse_ambient_light(char const **elements)
 {
-	t_input_ambient	input;
+	t_input_ambient_light	input;
 
 	if (!parse_brightness(elements[1], &(input.brightness)) \
 		|| !parse_color(elements[2], &(input.color)))
 	{
 		return (false);
 	}
-	set_ambient_light(&input);
+	add_ambient_light(&input);
 	return (true);
 }

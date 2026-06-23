@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:02:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 14:42:23 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 20:48:15 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static bool	parse_spot_light(char const **elements)
 		|| !parse_brightness(elements[2], &(input.brightness)) \
 		|| !parse_color(elements[3], &(input.color))
 		|| !parse_dir(elements[4], &(input.dir)) \
-		|| !parse_angle(elements[5], &(input.angle)))
+		|| !parse_angle(elements[5], &(input.outer_angle)))
 	{
 		return (false);
 	}

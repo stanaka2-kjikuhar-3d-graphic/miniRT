@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 15:36:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 15:38:42 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 21:08:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ bool	add_point_light(t_input_point_light const *input)
 	t_light	light;
 
 	light.type = POINT_LIGHT;
-	light.pos = input->pos;
-	light.color = input->color;
-	light.brightness = input->brightness;
-	light.radiance = scale_color(input->brightness, input->color);
+	light.point.color = input->color;
+	light.point.brightness = input->brightness;
+	light.point.radiance = scale_color(input->brightness, input->color);
+	light.point.pos = input->pos;
 	return (add_light(&light));
 }

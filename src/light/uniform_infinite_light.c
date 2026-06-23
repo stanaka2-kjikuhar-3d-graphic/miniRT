@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ambient_light.c                                    :+:      :+:    :+:   */
+/*   uniform_infinite_light.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/21 14:06:04 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 21:38:18 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/23 20:27:48 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/23 20:39:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 
 #include "./light_private.h"
 
-bool	add_ambient_light(t_input_ambient_light const *input)
+bool	add_uniform_infinite_light(t_input_uniform_infinite_light const *input)
 {
 	t_light	light;
 
 	light.type = AMBIENT_LIGHT;
-	light.ambient.color = input->color;
-	light.ambient.brightness = input->brightness;
-	light.ambient.radiance = scale_color(input->brightness, input->color);
+	light.uniform_infinite.color = input->color;
+	light.uniform_infinite.brightness = input->brightness;
+	light.uniform_infinite.radiance \
+		= scale_color(input->brightness, input->color);
 	return (add_light(&light));
 }
