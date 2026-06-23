@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 16:50:32 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 13:56:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 23:56:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "ft_mlx.h"
 #include "view.h"
-#include "drawer.h"
+#include "renderer.h"
 
 int	key_press_hook(int keycode, void *param)
 {
@@ -26,35 +26,35 @@ int	key_press_hook(int keycode, void *param)
 	if (keycode == XK_w)
 	{
 		change_camera_pos(vec3_add(get_camera()->pos, get_camera()->dir));
-		set_draw_flag(true);
+		set_render_flag(true);
 	}
 	else if (keycode == XK_s)
 	{
 		change_camera_pos(vec3_add(get_camera()->pos, \
 						vec3_scale(-1, get_camera()->dir)));
-		set_draw_flag(true);
+		set_render_flag(true);
 	}
 	else if (keycode == XK_Right || keycode == XK_d)
 	{
 		change_camera_pos(vec3_add(get_camera()->pos, get_camera()->right));
-		set_draw_flag(true);
+		set_render_flag(true);
 	}
 	else if (keycode == XK_Left || keycode == XK_a)
 	{
 		change_camera_pos(vec3_add(get_camera()->pos, \
 						vec3_scale(-1, get_camera()->right)));
-		set_draw_flag(true);
+		set_render_flag(true);
 	}
 	else if (keycode == XK_Up)
 	{
 		change_camera_pos(vec3_add(get_camera()->pos, get_camera()->up));
-		set_draw_flag(true);
+		set_render_flag(true);
 	}
 	else if (keycode == XK_Down)
 	{
 		change_camera_pos(vec3_add(get_camera()->pos, \
 						vec3_scale(-1, get_camera()->up)));
-		set_draw_flag(true);
+		set_render_flag(true);
 	}
 	return (0);
 }

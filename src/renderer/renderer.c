@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drawer_private.h                                   :+:      :+:    :+:   */
+/*   renderer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/19 21:44:48 by stanaka2          #+#    #+#             */
+/*   Created: 2026/06/19 21:38:45 by stanaka2          #+#    #+#             */
 /*   Updated: 2026/06/22 20:46:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAWER_PRIVATE_H
-# define DRAWER_PRIVATE_H
+#include "mlx.h"
 
-# include <stdbool.h>
+#include "ft_mlx.h"
+#include "renderer.h"
 
-bool	check_draw_flag(void);
-void	phong(void);
+#include "./renderer_private.h"
 
-#endif
+void	renderer(void)
+{
+	if (check_render_flag())
+	{
+		phong();
+		mlx_put_image_to_window(\
+			get_mlx_ptr(), get_win_ptr(), get_image(IMG_WINDOW)->ptr, 0, 0);
+		set_render_flag(false);
+	}
+}

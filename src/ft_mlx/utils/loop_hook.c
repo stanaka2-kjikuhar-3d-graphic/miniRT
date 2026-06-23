@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:28:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/21 16:07:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 23:54:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdint.h>
 
 #include "config.h"
-#include "drawer.h"
+#include "renderer.h"
 
 #ifdef DEBUG 
 # include "mlx.h"
@@ -31,7 +31,7 @@ int	loop_hook(void *param)
 	(void)param;
 	if (frame_per_second())
 	{
-		drawer();
+		renderer();
 	}
 	return (0);
 }
@@ -43,7 +43,7 @@ int	loop_hook(void *param)
 	(void)param;
 	if (frame_per_second())
 	{
-		drawer();
+		renderer();
 		mlx_loop_end(get_mlx_ptr());
 	}
 	return (0);

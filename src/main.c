@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 01:00:25 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/23 23:56:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include "light.h"
 #include "object.h"
 #include "ft_mlx.h"
-#include "drawer.h"
+#include "renderer.h"
 
 static bool	is_valid_argument(int argc, char const *argv[]);
 static bool	set_mlx(void);
@@ -44,7 +44,7 @@ int	main(int argc, char const *argv[])
 		cleanup_lights();
 		return (EXIT_FAILURE);
 	}
-	set_draw_flag(true);
+	set_render_flag(true);
 	mlx_loop(get_mlx_ptr());
 	cleanup_objects();
 	cleanup_lights();

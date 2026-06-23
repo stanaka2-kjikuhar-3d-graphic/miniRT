@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/23 13:39:32 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/23 23:56:03 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,8 +94,8 @@ override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 SRC_DIRS	:= src
 SRC_DIRS	+= $(addprefix src/, \
 					color \
-					drawer \
-					$(addprefix drawer/, \
+					renderer \
+					$(addprefix renderer/, \
 						monte_carlo_ray_tracing \
 						phong \
 					) \
@@ -135,11 +135,11 @@ SRCS	+=	add_color.c \
 
 # editor
 
-# drawer
-SRCS	+=	drawer.c \
-			draw_flag.c
+# renderer
+SRCS	+=	renderer.c \
+			render_flag.c
 
-# drawer/phong
+# renderer/phong
 SRCS	+=	phong.c \
 			intersection.c \
 			lighting.c \
