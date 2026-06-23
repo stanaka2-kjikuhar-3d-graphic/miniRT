@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/23 23:56:03 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/24 01:32:14 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,11 @@ override CFLAGS	+= -Wconversion -Wno-sign-conversion -Wshadow
 #          Include           #
 # -------------------------- #
 
-INCLUDE_DIRS		:= include
+INCLUDE_DIRS		:=	bonus/include \
+						$(addprefix bonus/include/, \
+							scene \
+							utils \
+						)
 
 override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 
@@ -91,32 +95,42 @@ override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 #     Source Directories     #
 # -------------------------- #
 
-SRC_DIRS	:= src
-SRC_DIRS	+= $(addprefix src/, \
-					color \
+SRC_DIRS	:= bonus/src
+SRC_DIRS	+= $(addprefix bonus/src/, \
+					parser \
+					$(addprefix parser/, \
+						read_file \
+						parse_setting \
+						parse_element \
+						internal \
+					) \
 					renderer \
 					$(addprefix renderer/, \
-						monte_carlo_ray_tracing \
+						monte_carlo \
 						phong \
 					) \
-					editor \
-					ft_error \
-					ft_mlx ft_mlx/utils \
-					light \
-					object \
-					$(addprefix object/, \
-						circle \
-						cylinder \
-						plane \
-						sphere \
+					$(addprefix scene/, \
+						camera camera/internal \
+						light \
+						object \
+						$(addprefix object/, \
+							circle \
+							cylinder \
+							plane \
+							sphere \
+						) \
+						viewport \
 					) \
-					parse_file parse_file/utils \
-					$(addprefix vector/, \
-						vec3 \
-						vec2 \
-						ivec2 \
+					$(addprefix utils/, \
+						color \
+						ft_error \
+						$(addprefix vector/, \
+							vec3 \
+							vec2 \
+							ivec2 \
+						) \
 					) \
-					view view/utils\
+					ft_mlx ft_mlx/internal \
 				)
 
 $(foreach dir, $(SRC_DIRS), $(eval vpath %.c $(dir)))
@@ -125,15 +139,51 @@ $(foreach dir, $(SRC_DIRS), $(eval vpath %.c $(dir)))
 #        Source Files        #
 # -------------------------- #
 
-SRCS	:= 	main.c
+SRCS	:=	main.c
 
-# color
-SRCS	+=	add_color.c \
-			mul_color.c \
-			scale_color.c \
-			calc_rgb.c
+# ft_mlx
+SRCS	+=	mlx_ptr.c \
+			win_ptr.c \
+			images.c \
+			get_pixel_addr.c \
+			ft_mlx_hooks.c \
+			ft_mlx_destroy.c
+# ft_mlx/internal
+SRCS	+=	expose_hook.c \
+			loop_hook.c \
+			key_press_hook.c \
+			key_release_hook.c \
+			button_hooks.c
 
-# editor
+# parser
+SRCS	+=	parser.c \
+			validate_setting_ids.c
+# parser/read_file
+SRCS	+=	read_file_as_line_list.c \
+			read_next_line.c
+# parser/parse_setting
+SRCS	+=	parse_settings.c \
+			parse_ambient_light_setting.c \
+			parse_light_setting.c \
+			parse_camera_setting.c \
+			parse_plane_setting.c \
+			parse_sphere_setting.c \
+			parse_cylinder_setting.c
+# parser/parse_element
+SRCS	+=	parse_vec3.c \
+			parse_float.c \
+			parse_color.c \
+			parse_dir.c \
+			parse_pos.c \
+			parse_brightness.c \
+			parse_fov.c \
+			parse_radius.c \
+			parse_half_height.c \
+			parse_angle.c
+# parser/internal
+SRCS	+=	is_identifier.c \
+			count_split.c \
+			free_split.c
 
 # renderer
 SRCS	+=	renderer.c \
@@ -145,95 +195,69 @@ SRCS	+=	phong.c \
 			lighting.c \
 			shadowing.c
 
-# ft_error
-SRCS	+=	print_error.c \
-			print_errno.c
-
-# ft_mlx
-SRCS	+=	mlx_ptr.c \
-			win_ptr.c \
-			images.c \
-			ft_mlx_destroy.c \
-			ft_mlx_hooks.c \
-			get_pixel_addr.c
-SRCS	+=	expose_hook.c \
-			loop_hook.c \
-			key_press_hook.c \
-			key_release_hook.c \
-			button_hooks.c
-
-# light
-SRCS	+=	ambient_light.c \
-			light.c \
-			point_light.c \
-			spot_light.c
-
-# object
-SRCS	+=	object.c \
-			intersect.c \
-			intersect_circle.c \
-			intersect_cylinder.c \
-			intersect_plane.c \
-			intersect_sphere.c \
-			calc_normal.c \
-			calc_circle_normal.c \
-			calc_cylinder_normal.c \
-			calc_plane_normal.c \
-			calc_sphere_normal.c \
-			get_object_color.c
-
-# parse_file
-SRCS	+=	parse_file.c \
-			read_file_as_line_list.c \
-			validate_setting_ids.c \
-			parse_settings.c \
-			parse_ambient_light_setting.c \
-			parse_light_setting.c \
-			parse_camera_setting.c \
-			parse_plane_setting.c \
-			parse_sphere_setting.c \
-			parse_cylinder_setting.c
-SRCS	+=	read_next_line.c \
-			is_identifier.c \
-			count_split.c \
-			free_split.c \
-			parse_color.c \
-			parse_dir.c \
-			parse_pos.c \
-			parse_brightness.c \
-			parse_fov.c \
-			parse_radius.c \
-			parse_half_height.c \
-			parse_angle.c \
-			parse_vec3.c \
-			parse_float.c
-
-# vector/vec3
-SRCS	+=	vec3.c \
-			vec3_add.c \
-			vec3_sub.c \
-			vec3_length.c \
-			vec3_normalize.c \
-			vec3_scale.c \
-			vec3_dot.c \
-			vec3_cross.c \
-			vec3_rotate.c
-
-# vector/vec2
-SRCS	+=	vec2.c
-
-# vector/ivec2
-SRCS	+=	ivec2.c
-
-# view
+# scene/camera
 SRCS	+=	camera.c \
 			change_camera_pos.c \
 			change_camera_dir.c \
-			rotate_camera.c \
-			viewport.c
+			rotate_camera.c
+# scene/camera/internal
 SRCS	+=	calc_camera_dir.c \
 			calc_camera_right.c \
 			calc_camera_up.c
+
+# scene/light
+SRCS	+=	light.c \
+			ambient_light.c \
+			point_light.c \
+			spot_light.c
+
+# scene/object
+SRCS	+=	object.c \
+			intersect.c \
+			calc_normal.c \
+			get_object_color.c
+# scene/object/sphere
+SRCS	+=	intersect_sphere.c \
+			calc_sphere_normal.c
+# scene/object/plane
+SRCS	+=	intersect_plane.c \
+			calc_plane_normal.c
+# scene/object/cylinder
+SRCS	+=	intersect_cylinder.c \
+			calc_cylinder_normal.c
+# scene/object/circle
+SRCS	+=	intersect_circle.c \
+			calc_circle_normal.c
+
+# scene/viewport
+SRCS	+=	viewport.c
+
+# utils/color
+SRCS	+=	add_color.c \
+			mul_color.c \
+			scale_color.c \
+			calc_rgb.c
+
+# utils/ft_error
+SRCS	+=	print_error.c \
+			print_errno.c
+
+# utils/vector/vec3
+SRCS	+=	vec3.c \
+			vec3_add.c \
+			vec3_sub.c \
+			vec3_scale.c \
+			vec3_dot.c \
+			vec3_cross.c \
+			vec3_length.c \
+			vec3_normalize.c \
+			vec3_rotate.c
+
+# utils/vector/vec2
+SRCS	+=	vec2.c
+
+# utils/vector/ivec2
+SRCS	+=	ivec2.c
 
 # -------------------------- #
 #        Object Files        #
@@ -370,7 +394,7 @@ test:
 	@bash test/test.sh
 
 norm:
-	@norminette -o src include $(LIBFT_DIR) | grep Error || true
+	@norminette -o bonus/src bonus/include $(LIBFT_DIR) | grep Error || true
 
 # -------------------------- #
 #    ANSI Escape Sequence    #
