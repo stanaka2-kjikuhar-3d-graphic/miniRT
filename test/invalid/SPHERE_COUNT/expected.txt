@@ -1,0 +1,3 @@
+Error
+SPHERE: invalid fields count
+USAGE: sp x,y,z diameter R,G,B

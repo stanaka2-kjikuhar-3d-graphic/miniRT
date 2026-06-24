@@ -1,3 +1,0 @@
-Error
-LIGHT: too many fields
-USAGE: L x,y,z brightness R,G,B

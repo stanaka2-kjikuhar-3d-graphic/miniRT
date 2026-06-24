@@ -1,3 +1,0 @@
-Error
-AMBIENT LIGHTING: missing fields
-USAGE: A ratio R,G,B

@@ -1,2 +1,0 @@
-Error
-SCENE: missing ambient lighting (A)
