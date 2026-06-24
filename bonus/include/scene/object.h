@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 13:40:09 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/24 11:56:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ typedef struct s_object
 }	t_object;
 
 bool			get_next_object(t_object const **object);
-bool			allocate_objects(size_t	add_count);
 bool			add_object(t_object *object);
 void			cleanup_objects(void);
 float			intersect(t_object const *object, t_ray const *ray);
