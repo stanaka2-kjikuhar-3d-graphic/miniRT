@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 21:05:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 11:56:43 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/24 16:02:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool	get_next_object(t_object const **object)
 	}
 }
 
-bool	add_object(t_object *object)
+bool	add_object(t_object const *object)
 {
 	if (g_count == g_array_size)
 	{

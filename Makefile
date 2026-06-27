@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/24 04:50:51 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/25 21:34:32 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,6 +122,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 							cylinder \
 							plane \
 							sphere \
+							internal \
 						) \
 						viewport \
 					) \
@@ -226,17 +227,22 @@ SRCS	+=	object.c \
 			calc_normal.c \
 			get_object_color.c
 # scene/object/sphere
-SRCS	+=	intersect_sphere.c \
+SRCS	+=	add_sphere.c \
+			intersect_sphere.c \
 			calc_sphere_normal.c
 # scene/object/plane
-SRCS	+=	intersect_plane.c \
+SRCS	+=	add_plane.c \
+			intersect_plane.c \
 			calc_plane_normal.c
 # scene/object/cylinder
-SRCS	+=	intersect_cylinder.c \
+SRCS	+=	add_cylinder.c \
+			intersect_cylinder.c \
 			calc_cylinder_normal.c
 # scene/object/circle
-SRCS	+=	intersect_circle.c \
+SRCS	+=	add_circle.c \
+			intersect_circle.c \
 			calc_circle_normal.c
+SRCS	+=	compute_onb.c
 
 # scene/viewport
 SRCS	+=	viewport.c

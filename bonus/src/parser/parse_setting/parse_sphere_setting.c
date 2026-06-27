@@ -36,16 +36,13 @@ bool	parse_sphere_setting(char const **elements)
 
 static bool	parse_sphere(char const **elements)
 {
-	t_object	object;
+	t_input_sphere	input;
 
-	object.type = OBJ_SPHERE;
-	if (!parse_pos(elements[1], &(object.sphere.center)) \
-		|| !parse_radius(elements[2], &(object.sphere.radius)) \
-		|| !parse_color(elements[3], &(object.sphere.color)))
+	if (!parse_pos(elements[1], &(input.center)) \
+		|| !parse_radius(elements[2], &(input.radius)) \
+		|| !parse_color(elements[3], &(input.color)))
 	{
 		return (false);
 	}
-	if (!add_object(&object))
-		return (false);
-	return (true);
+	return (add_sphere(&input));
 }

@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_dir.c                                        :+:      :+:    :+:   */
+/*   add_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/11 23:37:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/25 21:57:27 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/24 15:48:24 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/25 23:29:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
-#include "vector.h"
-#include "ft_error.h"
+#include "object.h"
 
-#include "../parser_private.h"
+#include "../object_private.h"
 
-bool	parse_dir(char const *element, t_vec3 *dir)
+bool	add_plane(t_input_plane const *input)
 {
-	float	length;
+	t_object	object;
 
-	if (!parse_vec3(element, dir))
-		return (false);
-	length = vec3_length(*dir);
-	if (length < 1.0 - 1e-3 || 1.0 + 1e-3 < length)
-	{
-		print_error(ERROR_DIR_NOT_NORMALIZED);
-		return (false);
-	}
-	return (true);
+	object.type = OBJ_PLANE;
+	object.plane.color = input->color;
+	object.plane.pos = input->pos;
+	object.plane.normal = vec3_normalize(input->normal);
+	object.plane.onb.w = object.plane.normal;
+	compute_onb(object.plane.onb.w, \
+		&(object.plane.onb.u), &(object.plane.onb.v));
+	return (add_object(&object));
 }

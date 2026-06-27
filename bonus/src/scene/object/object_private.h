@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/25 21:46:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_perp_cylinder
 	float	half_chord;
 }	t_perp_cylinder;
 
+bool	add_object(t_object const *object);
 float	intersect_sphere(t_sphere const *sphere, t_ray const *ray);
 float	intersect_plane(t_plane const *plane, t_ray const *ray);
 float	intersect_cylinder(t_cylinder const *cylinder, t_ray const *ray);
@@ -33,5 +34,6 @@ t_vec3	calc_plane_normal(t_plane const *plane, t_ray const *ray);
 t_vec3	calc_cylinder_normal(\
 			t_cylinder const *cylinder, t_ray const *ray, t_vec3 point);
 t_vec3	calc_circle_normal(t_circle const *circle, t_ray const *ray);
+void	compute_onb(t_vec3 n, t_vec3 *tangent, t_vec3 *bitangent);
 
 #endif

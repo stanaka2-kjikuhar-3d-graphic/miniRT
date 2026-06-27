@@ -36,16 +36,13 @@ bool	parse_plane_setting(char const **elements)
 
 static bool	parse_plane(char const **elements)
 {
-	t_object	object;
+	t_input_plane	input;
 
-	object.type = OBJ_PLANE;
-	if (!parse_pos(elements[1], &(object.plane.pos)) \
-		|| !parse_dir(elements[2], &(object.plane.normal)) \
-		|| !parse_color(elements[3], &(object.plane.color)))
+	if (!parse_pos(elements[1], &(input.pos)) \
+		|| !parse_dir(elements[2], &(input.normal)) \
+		|| !parse_color(elements[3], &(input.color)))
 	{
 		return (false);
 	}
-	if (!add_object(&object))
-		return (false);
-	return (true);
+	return (add_plane(&input));
 }

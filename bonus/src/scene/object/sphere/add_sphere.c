@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_dir.c                                        :+:      :+:    :+:   */
+/*   add_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/11 23:37:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/25 21:57:27 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/25 23:28:31 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
-#include "vector.h"
-#include "ft_error.h"
+#include "object.h"
 
-#include "../parser_private.h"
+#include "../object_private.h"
 
-bool	parse_dir(char const *element, t_vec3 *dir)
+bool	add_sphere(t_input_sphere const *input)
 {
-	float	length;
+	t_object	object;
 
-	if (!parse_vec3(element, dir))
-		return (false);
-	length = vec3_length(*dir);
-	if (length < 1.0 - 1e-3 || 1.0 + 1e-3 < length)
-	{
-		print_error(ERROR_DIR_NOT_NORMALIZED);
-		return (false);
-	}
-	return (true);
+	object.type = OBJ_SPHERE;
+	object.sphere.color = input->color;
+	object.sphere.center = input->center;
+	object.sphere.radius = input->radius;
+	object.sphere.onb = (t_onb){\
+		.u = vec3(1.0f, 0.0f, 0.0f), \
+		.v = vec3(0.0f, 1.0f, 0.0f), \
+		.w = vec3(0.0f, 0.0f, 1.0f)};
+	return (add_object(&object));
 }

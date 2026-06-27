@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:33:20 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 13:40:09 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/25 13:04:15 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,9 @@ enum e_axis
 
 typedef struct s_vec3
 {
-	union
-	{
-		struct
-		{
-			float	x;
-			float	y;
-			float	z;
-		};
-		struct
-		{
-			float	u;
-			float	v;
-			float	w;
-		};
-	};
+	float	x;
+	float	y;
+	float	z;
 }	t_vec3;
 
 typedef struct s_vec2

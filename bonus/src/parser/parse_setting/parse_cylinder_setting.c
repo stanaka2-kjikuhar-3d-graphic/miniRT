@@ -19,7 +19,6 @@
 #include "../parser_private.h"
 
 static bool	parse_cylinder(char const **elements);
-static bool	add_cap_circles(t_cylinder *cylinder);
 
 bool	parse_cylinder_setting(char const **elements)
 {
@@ -37,44 +36,15 @@ bool	parse_cylinder_setting(char const **elements)
 
 static bool	parse_cylinder(char const **elements)
 {
-	t_object	object;
+	t_input_cylinder	input;
 
-	object.type = OBJ_CYLINDER;
-	if (!parse_pos(elements[1], &(object.cylinder.center)) \
-		|| !parse_dir(elements[2], &(object.cylinder.dir)) \
-		|| !parse_radius(elements[3], &(object.cylinder.radius)) \
-		|| !parse_half_height(elements[4], &(object.cylinder.half_height)) \
-		|| !parse_color(elements[5], &(object.cylinder.color)))
+	if (!parse_pos(elements[1], &(input.center)) \
+		|| !parse_dir(elements[2], &(input.dir)) \
+		|| !parse_radius(elements[3], &(input.radius)) \
+		|| !parse_half_height(elements[4], &(input.half_height)) \
+		|| !parse_color(elements[5], &(input.color)))
 	{
 		return (false);
 	}
-	if (!add_object(&object) || !add_cap_circles(&(object.cylinder)))
-		return (false);
-	return (true);
-}
-
-static bool	add_cap_circles(t_cylinder *cylinder)
-{
-	t_object	top;
-	t_object	bottom;
-
-	top.type = OBJ_CIRCLE;
-	top.circle = (t_circle){\
-		.color = cylinder->color, \
-		.center = vec3_add(cylinder->center, \
-			vec3_scale(cylinder->half_height, cylinder->dir)), \
-		.normal = cylinder->dir, \
-		.radius = cylinder->radius};
-	if (!add_object(&top))
-		return (false);
-	bottom.type = OBJ_CIRCLE;
-	bottom.circle = (t_circle){\
-		.color = cylinder->color,
-		.center = vec3_add(cylinder->center, \
-			vec3_scale(-(cylinder->half_height), cylinder->dir)), \
-		.normal = vec3_scale(-1, cylinder->dir), \
-		.radius = cylinder->radius};
-	if (!add_object(&bottom))
-		return (false);
-	return (true);
+	return (add_cylinder(&input));
 }
