@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_cylinder.c                                     :+:      :+:    :+:   */
+/*   create_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 04:17:42 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 05:59:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 static bool	add_cap_circles(t_input_cylinder const *input, t_vec3 dir);
 
-bool	add_cylinder(t_input_cylinder const *input)
+bool	create_cylinder(t_input_cylinder const *input)
 {
 	t_object	object;
 	t_vec3		dir;
@@ -34,7 +34,7 @@ bool	add_cylinder(t_input_cylinder const *input)
 	object.cylinder.onb.w = dir;
 	compute_onb(object.cylinder.onb.w, \
 		&(object.cylinder.onb.u), &(object.cylinder.onb.v));
-	if (!add_object(&object))
+	if (!create_object(&object))
 		return (false);
 	return (add_cap_circles(input, dir));
 }
@@ -54,5 +54,5 @@ static bool	add_cap_circles(t_input_cylinder const *input, t_vec3 dir)
 			vec3_scale(-(input->half_height), dir));
 	bottom.normal = vec3_scale(-1, dir);
 	bottom.radius = input->radius;
-	return (add_circle(&top) && add_circle(&bottom));
+	return (create_circle(&top) && create_circle(&bottom));
 }

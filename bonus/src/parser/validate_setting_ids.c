@@ -81,9 +81,9 @@ static bool	validate_duplicated_id(int flags, char const *line)
 	if (flags & (1 << setting_id))
 	{
 		if (setting_id == SETTING_AMBIENT_LIGHT)
-			print_error(ERROR_ID_DUP_AMBIENT);
+			print_error(ERROR_ID_DUP_A);
 		else if (setting_id == SETTING_CAMERA)
-			print_error(ERROR_ID_DUP_CAMERA);
+			print_error(ERROR_ID_DUP_C);
 		return (false);
 	}
 	return (true);
@@ -93,17 +93,17 @@ static bool	validate_required_id(int flags)
 {
 	if ((flags & (1 << SETTING_AMBIENT_LIGHT)) == 0)
 	{
-		print_error(ERROR_ID_NO_AMBIENT);
+		print_error(ERROR_ID_NO_A);
 		return (false);
 	}
 	else if ((flags & (1 << SETTING_LIGHT)) == 0)
 	{
-		print_error(ERROR_ID_NO_LIGHT);
+		print_error(ERROR_ID_NO_L);
 		return (false);
 	}
 	else if ((flags & (1 << SETTING_CAMERA)) == 0)
 	{
-		print_error(ERROR_ID_NO_CAMERA);
+		print_error(ERROR_ID_NO_C);
 		return (false);
 	}
 	return (true);

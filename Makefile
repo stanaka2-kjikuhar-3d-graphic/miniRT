@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/29 04:20:55 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/29 05:54:24 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -154,9 +154,11 @@ SRCS	+=	mlx_ptr.c \
 			win_ptr.c \
 			image.c \
 			texture.c \
-			get_pixel_addr.c \
-			ft_mlx_hooks.c \
-			ft_mlx_destroy.c
+			cleanup_mlx.c \
+			setup_mlx_window.c \
+			setup_mlx_hooks.c \
+			get_pixel_addr.c
+
 # ft_mlx/hooks
 SRCS	+=	expose_hook.c \
 			loop_hook.c \
@@ -173,7 +175,8 @@ SRCS	+=	read_file_as_line_list.c \
 # parser/parse_setting
 SRCS	+=	parse_settings.c \
 			parse_ambient_light_setting.c \
-			parse_light_setting.c \
+			parse_point_light_setting.c \
+			parse_spot_light_setting.c \
 			parse_camera_setting.c \
 			parse_plane_setting.c \
 			parse_sphere_setting.c \
@@ -231,19 +234,19 @@ SRCS	+=	object.c \
 			calc_normal.c \
 			get_object_color.c
 # scene/object/sphere
-SRCS	+=	add_sphere.c \
+SRCS	+=	create_sphere.c \
 			intersect_sphere.c \
 			calc_sphere_normal.c
 # scene/object/plane
-SRCS	+=	add_plane.c \
+SRCS	+=	create_plane.c \
 			intersect_plane.c \
 			calc_plane_normal.c
 # scene/object/cylinder
-SRCS	+=	add_cylinder.c \
+SRCS	+=	create_cylinder.c \
 			intersect_cylinder.c \
 			calc_cylinder_normal.c
 # scene/object/circle
-SRCS	+=	add_circle.c \
+SRCS	+=	create_circle.c \
 			intersect_circle.c \
 			calc_circle_normal.c
 SRCS	+=	compute_onb.c

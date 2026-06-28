@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_camera_setting.c                             :+:      :+:    :+:   */
+/*   parse_point_light_setting.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 20:09:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 06:26:28 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/10 20:02:37 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/29 06:25:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,36 @@
 
 #include "ft_error.h"
 #include "vector.h"
-#include "camera.h"
-#include "viewport.h"
+#include "light.h"
 
 #include "../parser_private.h"
 
-static bool	parse_camera(char const **elements);
+static bool	parse_point_light(char const **elements);
 
-bool	parse_camera_setting(char const **elements)
+bool	parse_point_light_setting(char const **elements)
 {
 	size_t	count;
 
 	count = count_split(elements);
 	if (count != 4)
 	{
-		print_error_hint(ERROR_C_COUNT, HINT_C);
+		print_error_hint(ERROR_L_COUNT, HINT_L);
 		return (false);
 	}
-	return (parse_camera(elements));
+	return (parse_point_light(elements));
 }
 
-static bool	parse_camera(char const **elements)
+static bool	parse_point_light(char const **elements)
 {
-	t_input_camera		camera;
-	t_input_viewport	viewport;
+	t_input_point_light	input;
 
-	if (!parse_pos(elements[1], &(camera.pos)) \
-		|| !parse_dir(elements[2], &(camera.dir)) \
-		|| !parse_fov(elements[3], &(viewport.fov)))
+	if (!parse_pos(elements[1], &(input.pos)) \
+		|| !parse_brightness(elements[2], &(input.brightness)) \
+		|| !parse_color(elements[3], &(input.color)))
 	{
 		return (false);
 	}
-	set_camera(&camera);
-	set_viewport(&viewport);
+	if (!create_point_light(&input))
+		return (false);
 	return (true);
 }

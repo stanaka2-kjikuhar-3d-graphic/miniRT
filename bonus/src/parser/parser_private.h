@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 04:05:58 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 05:09:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ bool	parse_settings(t_list **line_list);
 size_t	count_split(char const **split);
 void	free_split(char **split);
 bool	parse_ambient_light_setting(char const **elements);
-bool	parse_light_setting(char const **elements);
+bool	parse_point_light_setting(char const **elements);
 bool	parse_camera_setting(char const **elements);
+bool	parse_spot_light_setting(char const **elements);
 bool	parse_sphere_setting(char const **elements);
 bool	parse_plane_setting(char const **elements);
 bool	parse_cylinder_setting(char const **elements);

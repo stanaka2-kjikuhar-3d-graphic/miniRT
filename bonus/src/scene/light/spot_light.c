@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 15:36:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 04:23:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 05:56:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 #include "./light_private.h"
 
-bool	add_spot_light(t_input_spot_light const *input)
+bool	create_spot_light(t_input_spot_light const *input)
 {
 	t_light	light;
 
@@ -31,5 +31,5 @@ bool	add_spot_light(t_input_spot_light const *input)
 	light.spot.dir = input->dir;
 	light.spot.angle.outer = input->outer_angle;
 	light.spot.angle.inner = 0.8f * input->outer_angle;
-	return (add_light(&light));
+	return (create_light(&light));
 }

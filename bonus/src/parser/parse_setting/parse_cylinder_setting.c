@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:25:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 04:14:26 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 06:26:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ bool	parse_cylinder_setting(char const **elements)
 	size_t	count;
 
 	count = count_split(elements);
-	if (count == 6)
-		return (parse_cylinder(elements));
-	else
+	if (count != 6)
 	{
-		print_error_hint(ERROR_CYLINDER_COUNT, HINT_CYLINDER);
+		print_error_hint(ERROR_CY_COUNT, HINT_CY);
 		return (false);
 	}
+	return (parse_cylinder(elements));
 }
 
 static bool	parse_cylinder(char const **elements)
@@ -50,5 +49,5 @@ static bool	parse_cylinder(char const **elements)
 	{
 		return (false);
 	}
-	return (add_cylinder(&input));
+	return (create_cylinder(&input));
 }

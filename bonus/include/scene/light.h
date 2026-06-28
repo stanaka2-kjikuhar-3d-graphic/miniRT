@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:51:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 11:55:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 05:56:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,12 +123,12 @@ typedef struct s_input_directional_light
 
 bool					get_next_light(t_light const **light);
 void					cleanup_lights(void);
-bool					add_ambient_light(t_input_ambient_light const *input);
-bool					add_uniform_infinite_light(\
+bool					create_ambient_light(t_input_ambient_light const *input);
+bool					create_uniform_infinite_light(\
 							t_input_uniform_infinite_light const *input);
-bool					add_point_light(t_input_point_light const *input);
-bool					add_spot_light(t_input_spot_light const *input);
-bool					add_directional_light(\
+bool					create_point_light(t_input_point_light const *input);
+bool					create_spot_light(t_input_spot_light const *input);
+bool					create_directional_light(\
 							t_input_directional_light const *input);
 
 #endif

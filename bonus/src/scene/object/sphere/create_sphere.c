@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_sphere.c                                       :+:      :+:    :+:   */
+/*   create_sphere.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 04:08:53 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 05:59:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "../object_private.h"
 
-bool	add_sphere(t_input_sphere const *input)
+bool	create_sphere(t_input_sphere const *input)
 {
 	t_object	object;
 
@@ -28,5 +28,5 @@ bool	add_sphere(t_input_sphere const *input)
 		.u = vec3(1.0f, 0.0f, 0.0f), \
 		.v = vec3(0.0f, 1.0f, 0.0f), \
 		.w = vec3(0.0f, 0.0f, 1.0f)};
-	return (add_object(&object));
+	return (create_object(&object));
 }

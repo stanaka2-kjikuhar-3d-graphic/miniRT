@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/25 21:46:33 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 05:57:32 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_perp_cylinder
 	float	half_chord;
 }	t_perp_cylinder;
 
-bool	add_object(t_object const *object);
+bool	create_object(t_object const *object);
 float	intersect_sphere(t_sphere const *sphere, t_ray const *ray);
 float	intersect_plane(t_plane const *plane, t_ray const *ray);
 float	intersect_cylinder(t_cylinder const *cylinder, t_ray const *ray);

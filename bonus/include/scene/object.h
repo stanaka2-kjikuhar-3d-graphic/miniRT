@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 04:02:21 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 05:54:24 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,10 +139,10 @@ typedef struct s_input_circle
 	float		radius;
 }	t_input_circle;
 
-bool			add_sphere(t_input_sphere const *input);
-bool			add_plane(t_input_plane const *input);
-bool			add_cylinder(t_input_cylinder const *input);
-bool			add_circle(t_input_circle const *input);
+bool			create_sphere(t_input_sphere const *input);
+bool			create_plane(t_input_plane const *input);
+bool			create_cylinder(t_input_cylinder const *input);
+bool			create_circle(t_input_circle const *input);
 bool			get_next_object(t_object const **object);
 void			cleanup_objects(void);
 float			intersect(t_object const *object, t_ray const *ray);

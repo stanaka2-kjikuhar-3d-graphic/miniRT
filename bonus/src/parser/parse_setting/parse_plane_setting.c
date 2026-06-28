@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:22:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 04:15:57 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 06:26:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,11 @@ bool	parse_plane_setting(char const **elements)
 
 	count = count_split(elements);
 	if (count == 4)
-		return (parse_plane(elements));
-	else
 	{
-		print_error_hint(ERROR_PLANE_COUNT, HINT_PLANE);
+		print_error_hint(ERROR_PL_COUNT, HINT_PL);
 		return (false);
 	}
+	return (parse_plane(elements));
 }
 
 static bool	parse_plane(char const **elements)
@@ -48,5 +47,5 @@ static bool	parse_plane(char const **elements)
 	{
 		return (false);
 	}
-	return (add_plane(&input));
+	return (create_plane(&input));
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_circle.c                                       :+:      :+:    :+:   */
+/*   create_circle.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/24 15:48:30 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 04:17:18 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/29 05:59:00 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/06/29 05:59:05 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "../object_private.h"
 
-bool	add_circle(t_input_circle const *input)
+bool	create_circle(t_input_circle const *input)
 {
 	t_object	object;
 
@@ -28,5 +28,5 @@ bool	add_circle(t_input_circle const *input)
 	object.circle.onb.w = object.circle.normal;
 	compute_onb(object.circle.onb.w, \
 		&(object.circle.onb.u), &(object.circle.onb.v));
-	return (add_object(&object));
+	return (create_object(&object));
 }

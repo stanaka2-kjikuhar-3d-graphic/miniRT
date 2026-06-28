@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 20:34:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 21:08:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 05:56:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "./light_private.h"
 
-bool	add_directional_light(t_input_directional_light const *input)
+bool	create_directional_light(t_input_directional_light const *input)
 {
 	t_light	light;
 
@@ -26,5 +26,5 @@ bool	add_directional_light(t_input_directional_light const *input)
 	light.directional.brightness = input->brightness;
 	light.directional.radiance = scale_color(input->brightness, input->color);
 	light.directional.dir = input->dir;
-	return (add_light(&light));
+	return (create_light(&light));
 }

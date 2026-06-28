@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_plane.c                                        :+:      :+:    :+:   */
+/*   create_plane.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 04:09:10 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 05:59:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "../object_private.h"
 
-bool	add_plane(t_input_plane const *input)
+bool	create_plane(t_input_plane const *input)
 {
 	t_object	object;
 
@@ -27,5 +27,5 @@ bool	add_plane(t_input_plane const *input)
 	object.plane.onb.w = object.plane.normal;
 	compute_onb(object.plane.onb.w, \
 		&(object.plane.onb.u), &(object.plane.onb.v));
-	return (add_object(&object));
+	return (create_object(&object));
 }

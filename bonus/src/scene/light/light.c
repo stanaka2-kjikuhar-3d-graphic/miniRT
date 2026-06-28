@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 22:13:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 01:28:11 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 05:56:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ bool	get_next_light(t_light const **light)
 	}
 }
 
-bool	add_light(t_light *light)
+bool	create_light(t_light *light)
 {
 	if (g_count == g_capacity && !allocate_lights())
 	{

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 19:06:13 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 04:21:39 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 05:54:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_image	*get_texture(char *filepath)
 	return (NULL);
 }
 
-bool	add_texture(char *filepath)
+bool	create_texture(char *filepath)
 {
 	if (get_texture(filepath) != NULL)
 		return (true);

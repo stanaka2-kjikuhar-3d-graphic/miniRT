@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:40 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 01:44:23 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 05:54:45 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,16 @@ typedef struct s_image
 }	t_image;
 
 bool			create_mlx_connection(void);
+bool			setup_mlx_window(void);
 bool			create_window(int width, int height, char *title);
 bool			create_image(enum e_image_id id, int width, int height);
+bool			create_texture(char *filepath);
+void			cleanup_mlx(void);
+void			setup_mlx_hooks(void);
 void			*get_mlx_ptr(void);
 void			*get_win_ptr(void);
 t_image			*get_image(enum e_image_id id);
 t_image			*get_texture(char *filepath);
-bool			add_texture(char *filepath);
-void			ft_mlx_hooks(void);
-void			ft_mlx_destroy(void);
 unsigned int	*get_pixel_addr(t_image *image, int x, int y);
 
 #endif

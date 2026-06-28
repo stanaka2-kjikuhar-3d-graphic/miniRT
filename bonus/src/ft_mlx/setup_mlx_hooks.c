@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mlx_hooks.c                                     :+:      :+:    :+:   */
+/*   setup_mlx_hooks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 16:31:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 17:48:57 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 05:37:45 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 #include "./ft_mlx_private.h"
 
-void	ft_mlx_hooks(void)
+void	setup_mlx_hooks(void)
 {
 	mlx_expose_hook(get_win_ptr(), expose_hook, NULL);
 	mlx_loop_hook(get_mlx_ptr(), loop_hook, NULL);
