@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:52:34 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 02:07:47 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 06:30:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static bool	validate_invalid_id(char const *line)
 	if (is_identifier("A", line) \
 		|| is_identifier("L", line) \
 		|| is_identifier("C", line) \
+		|| is_identifier("sl", line) \
 		|| is_identifier("sp", line) \
 		|| is_identifier("pl", line) \
 		|| is_identifier("cy", line))

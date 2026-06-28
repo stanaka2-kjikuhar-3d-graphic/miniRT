@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 04:26:53 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 06:27:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 06:32:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ bool	parse_spot_light_setting(char const **elements)
 	size_t	count;
 
 	count = count_split(elements);
-	if (count == 6)
+	if (count != 6)
 	{
-		print_error_hint(ERROR_L_COUNT, HINT_L);
+		print_error_hint(ERROR_SL_COUNT, HINT_SL);
 		return (false);
 	}
 	return (parse_spot_light(elements));

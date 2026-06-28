@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 04:31:40 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 06:32:29 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@
 # define ERROR_SP_COUNT "sp: invalid fields count"
 # define ERROR_PL_COUNT "pl: invalid fields count"
 # define ERROR_CY_COUNT "cy: invalid fields count"
+# define ERROR_SL_COUNT "sl: invalid fields count"
 # define HINT_A "USAGE: A ratio R,G,B"
 # define HINT_L "USAGE: L x,y,z brightness R,G,B"
 # define HINT_C "USAGE: C x,y,z nx,ny,nz fov"
 # define HINT_SP "USAGE: sp x,y,z diameter R,G,B"
 # define HINT_PL "USAGE: pl x,y,z nx,ny,nz R,G,B"
 # define HINT_CY "USAGE: cy x,y,z nx,ny,nz diameter height R,G,B"
+# define HINT_SL "USAGE: sl x,y,z brightness R,G,B, nx,ny,nz angle"
 
 /* Element */
 # define ERROR_BRIGHTNESS_RANGE "BRIGHTNESS: out of range (0.0-1.0)"
