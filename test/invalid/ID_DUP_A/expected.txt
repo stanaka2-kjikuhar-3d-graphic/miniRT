@@ -1,0 +1,2 @@
+Error
+SCENE: duplicate ambient lighting (A)
