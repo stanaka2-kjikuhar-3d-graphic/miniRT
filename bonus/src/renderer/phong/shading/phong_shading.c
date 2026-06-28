@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:38:36 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 04:33:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 04:23:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,3 @@ bool	phong_shading(t_hit const *hit, t_vec3 light_dir, float light_dist)
 	}
 	return (false);
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/25 23:29:04 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 04:09:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ bool	add_plane(t_input_plane const *input)
 	t_object	object;
 
 	object.type = OBJ_PLANE;
-	object.plane.color = input->color;
-	object.plane.pos = input->pos;
+	object.plane.material = input->material;
+	object.plane.center = input->center;
 	object.plane.normal = vec3_normalize(input->normal);
 	object.plane.onb.w = object.plane.normal;
 	compute_onb(object.plane.onb.w, \

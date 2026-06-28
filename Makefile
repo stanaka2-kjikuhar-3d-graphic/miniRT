@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/25 21:34:32 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/29 04:20:55 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -135,7 +135,10 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 							ivec2 \
 						) \
 					) \
-					ft_mlx ft_mlx/internal \
+					ft_mlx \
+					$(addprefix ft_mlx/, \
+						hooks \
+					) \
 				)
 
 $(foreach dir, $(SRC_DIRS), $(eval vpath %.c $(dir)))
@@ -149,11 +152,12 @@ SRCS	:=	main.c
 # ft_mlx
 SRCS	+=	mlx_ptr.c \
 			win_ptr.c \
-			images.c \
+			image.c \
+			texture.c \
 			get_pixel_addr.c \
 			ft_mlx_hooks.c \
 			ft_mlx_destroy.c
-# ft_mlx/internal
+# ft_mlx/hooks
 SRCS	+=	expose_hook.c \
 			loop_hook.c \
 			key_press_hook.c \

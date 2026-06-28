@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 02:56:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 01:39:38 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@
 # define ERROR_MLX_CONNECTION "MLX: failed to create X-Window connection"
 # define ERROR_MLX_WINDOW "MLX: failed to create window"
 # define ERROR_MLX_IMAGE "MLX: failed to create image"
+# define ERROR_MLX_XPM_IMAGE "MLX: failed to create xpm image"
 # define ERROR_MLX_IMAGE_DATA "MLX: failed to get image data"
 
 void	print_error(char const *msg);

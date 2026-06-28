@@ -6,12 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:22:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 01:17:35 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 04:15:57 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdbool.h>
+
+#include "ft_string.h"
 
 #include "object.h"
 #include "ft_error.h"
@@ -38,9 +40,11 @@ static bool	parse_plane(char const **elements)
 {
 	t_input_plane	input;
 
-	if (!parse_pos(elements[1], &(input.pos)) \
+	ft_bzero(&(input.material), sizeof(t_material));
+	input.material.pattern_type = PATTERN_SOLID;
+	if (!parse_pos(elements[1], &(input.center)) \
 		|| !parse_dir(elements[2], &(input.normal)) \
-		|| !parse_color(elements[3], &(input.color)))
+		|| !parse_color(elements[3], &(input.material.albedo)))
 	{
 		return (false);
 	}

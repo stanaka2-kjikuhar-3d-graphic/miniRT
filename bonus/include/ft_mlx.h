@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:40 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 02:44:09 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 01:44:23 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ bool			create_image(enum e_image_id id, int width, int height);
 void			*get_mlx_ptr(void);
 void			*get_win_ptr(void);
 t_image			*get_image(enum e_image_id id);
+t_image			*get_texture(char *filepath);
+bool			add_texture(char *filepath);
 void			ft_mlx_hooks(void);
 void			ft_mlx_destroy(void);
 unsigned int	*get_pixel_addr(t_image *image, int x, int y);

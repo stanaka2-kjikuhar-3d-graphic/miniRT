@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 00:48:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 04:00:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ float	intersect_plane(t_plane const *plane, t_ray const *ray)
 	dot = vec3_dot(plane->normal, ray->dir);
 	if (fabs(dot) < EPSILON)
 		return (NAN);
-	to_camera = vec3_sub(ray->origin, plane->pos);
+	to_camera = vec3_sub(ray->origin, plane->center);
 	t = -vec3_dot(plane->normal, to_camera) / dot;
 	if (t < 0)
 		return (NAN);

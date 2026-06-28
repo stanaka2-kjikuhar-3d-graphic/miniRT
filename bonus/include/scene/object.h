@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/25 23:21:42 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 04:02:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,31 @@
 # include "vector.h"
 # include "color.h"
 # include "ray.h"
+# include "ft_mlx.h"
 
-typedef struct s_object	t_object;
+enum e_pattern_type
+{
+	PATTERN_SOLID,
+	PATTERN_TEXTURE,
+	PATTERN_CHECKERBOARD	
+};
+
+typedef struct s_checkerboard
+{
+	t_color	color1;
+	t_color	color2;
+	size_t	size;
+}	t_checkerboard;
+
+typedef struct s_material
+{
+	enum e_pattern_type	pattern_type;
+	t_color				albedo;
+	t_image				*texture;
+	t_checkerboard		checkerboard;
+	bool				metalness;
+	double				shininess;
+}	t_material;
 
 typedef struct s_onb
 {
@@ -39,37 +62,37 @@ enum e_object_type
 
 typedef struct s_sphere
 {
-	t_color	color;
-	t_vec3	center;
-	float	radius;
-	t_onb	onb;
+	t_material	material;
+	t_vec3		center;
+	float		radius;
+	t_onb		onb;
 }	t_sphere;
 
 typedef struct s_plane
 {
-	t_color	color;
-	t_vec3	pos;
-	t_vec3	normal;
-	t_onb	onb;
+	t_material	material;
+	t_vec3		center;
+	t_vec3		normal;
+	t_onb		onb;
 }	t_plane;
 
 typedef struct s_cylinder
 {
-	t_color	color;
-	t_vec3	center;
-	t_vec3	dir;
-	float	radius;
-	float	half_height;
-	t_onb	onb;
+	t_material	material;
+	t_vec3		center;
+	t_vec3		dir;
+	float		radius;
+	float		half_height;
+	t_onb		onb;
 }	t_cylinder;
 
 typedef struct s_circle
 {
-	t_color	color;
-	t_vec3	center;
-	t_vec3	normal;
-	float	radius;
-	t_onb	onb;
+	t_material	material;
+	t_vec3		center;
+	t_vec3		normal;
+	float		radius;
+	t_onb		onb;
 }	t_circle;
 
 typedef struct s_object
@@ -87,21 +110,21 @@ typedef struct s_object
 // input
 typedef struct s_input_sphere
 {
-	t_color	color;
-	t_vec3	center;
-	float	radius;
+	t_material	material;
+	t_vec3		center;
+	float		radius;
 }	t_input_sphere;
 
 typedef struct s_input_plane
 {
-	t_color	color;
-	t_vec3	pos;
-	t_vec3	normal;
+	t_material	material;
+	t_vec3		center;
+	t_vec3		normal;
 }	t_input_plane;
 
 typedef struct s_input_cylinder
 {
-	t_color		color;
+	t_material	material;
 	t_vec3		center;
 	t_vec3		dir;
 	float		radius;
@@ -110,10 +133,10 @@ typedef struct s_input_cylinder
 
 typedef struct s_input_circle
 {
-	t_color	color;
-	t_vec3	center;
-	t_vec3	normal;
-	float	radius;
+	t_material	material;
+	t_vec3		center;
+	t_vec3		normal;
+	float		radius;
 }	t_input_circle;
 
 bool			add_sphere(t_input_sphere const *input);

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/29 16:03:43 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/28 00:31:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 00:37:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,3 @@ void	cleanup_images(void)
 		++id;
 	}
 }
-
-
-
-https://zenn.dev/nekosato/books/816dcc4efcab67/viewer/9fbaf1

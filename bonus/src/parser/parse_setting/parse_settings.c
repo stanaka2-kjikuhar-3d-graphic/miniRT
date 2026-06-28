@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 01:17:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 02:13:24 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ static bool	parse_setting(char const **elements);
 
 bool	parse_settings(t_list **line_list)
 {
-	char	*setting;
+	char	*line;
 	char	**elements;
 
 	while (*line_list != NULL)
 	{
-		setting = ft_lst_pop_front(line_list);
-		elements = ft_split(setting, ' ');
-		free(setting);
+		line = ft_lst_pop_front(line_list);
+		elements = ft_split(line, ' ');
+		free(line);
 		if (elements == NULL)
 		{
 			print_errno();

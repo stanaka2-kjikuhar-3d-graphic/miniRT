@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:30 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/25 23:29:21 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 04:17:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	add_circle(t_input_circle const *input)
 	t_object	object;
 
 	object.type = OBJ_CIRCLE;
-	object.circle.color = input->color;
+	object.circle.material = input->material;
 	object.circle.center = input->center;
 	object.circle.normal = vec3_normalize(input->normal);
 	object.circle.radius = input->radius;

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/25 23:28:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 04:08:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	add_sphere(t_input_sphere const *input)
 	t_object	object;
 
 	object.type = OBJ_SPHERE;
-	object.sphere.color = input->color;
+	object.sphere.material = input->material;
 	object.sphere.center = input->center;
 	object.sphere.radius = input->radius;
 	object.sphere.onb = (t_onb){\

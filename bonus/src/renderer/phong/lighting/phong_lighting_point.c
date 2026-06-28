@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 03:38:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 04:34:26 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 04:22:56 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_color	calc_diffuse_color(\
 static t_color	calc_specular_color(\
 	t_ray const *ray, t_hit const *hit, t_point_light const *light);
 
-void phong_lighting_point(t_color *color, \
+void	phong_lighting_point(t_color *color, \
 	t_ray const *ray, t_hit const *hit, t_point_light const *light)
 {
 	t_vec3	to_light;

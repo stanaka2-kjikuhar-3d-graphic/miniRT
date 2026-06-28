@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/25 23:29:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 04:17:42 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	add_cylinder(t_input_cylinder const *input)
 
 	dir = vec3_normalize(input->dir);
 	object.type = OBJ_CYLINDER;
-	object.cylinder.color = input->color;
+	object.cylinder.material = input->material;
 	object.cylinder.center = input->center;
 	object.cylinder.dir = dir;
 	object.cylinder.radius = input->radius;
@@ -44,12 +44,12 @@ static bool	add_cap_circles(t_input_cylinder const *input, t_vec3 dir)
 	t_input_circle	top;
 	t_input_circle	bottom;
 
-	top.color = input->color;
+	top.material = input->material;
 	top.center = vec3_add(input->center, \
 			vec3_scale(input->half_height, dir));
 	top.normal = dir;
 	top.radius = input->radius;
-	bottom.color = input->color;
+	bottom.material = input->material;
 	bottom.center = vec3_add(input->center, \
 			vec3_scale(-(input->half_height), dir));
 	bottom.normal = vec3_scale(-1, dir);
