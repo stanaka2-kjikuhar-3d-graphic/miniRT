@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 13:53:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 01:18:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/02 21:33:52 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ bool	read_next_line(int fd, char **next_line)
 	static t_buf	buf;
 	t_line			line;
 
-	ft_bzero(&line, sizeof(t_line));
+	line.data = NULL;
+	line.len = 0;
 	if (!read_file(fd, &buf, &line))
 	{
 		buf.read_bytes = 0;
-		buf.used_bytes = 0;
 		free(line.data);
 		*next_line = NULL;
 		return (false);
@@ -64,9 +64,8 @@ static bool	read_file(int fd, t_buf *buf, t_line *line)
 {
 	while (true)
 	{
-		if (buf->used_bytes == buf->read_bytes)
+		if (buf->read_bytes == 0)
 		{
-			buf->used_bytes = 0;
 			buf->read_bytes = read(fd, buf->data, BUFFER_SIZE);
 			if (buf->read_bytes < 0)
 			{
@@ -75,44 +74,45 @@ static bool	read_file(int fd, t_buf *buf, t_line *line)
 			}
 			else if (buf->read_bytes == 0)
 				return (true);
-			if (ft_memchr(buf->data, '\0', buf->read_bytes) != NULL)
+			buf->head = buf->data;
+			if (ft_memchr(buf->head, '\0', buf->read_bytes) != NULL)
 			{
 				print_error(ERROR_FILE_BINARY);
 				return (false);
 			}
 		}
+		buf->newline = ft_memchr(buf->head, '\n', buf->read_bytes);
 		if (!append_to_line(buf, line))
 			return (false);
-		if (buf->data[buf->used_bytes - 1] == '\n')
+		if (buf->newline != NULL)
 			return (true);
 	}
 }
 
 static bool	append_to_line(t_buf *buf, t_line *line)
 {
-	char	*newline;
 	size_t	appended_size;
 
-	newline = ft_memchr(&(buf->data[buf->used_bytes]), \
-							'\n', buf->read_bytes - buf->used_bytes);
-	if (newline == NULL)
-		appended_size = buf->read_bytes - buf->used_bytes;
+	if (buf->newline == NULL)
+		appended_size = buf->read_bytes;
 	else
-		appended_size = newline - &(buf->data[buf->used_bytes]);
-	if (line->allocated_size == 0)
-		line->allocated_size += sizeof("");
-	line->allocated_size += appended_size;
-	line->data = ft_reallocf(line->data, line->len, line->allocated_size);
+		appended_size = buf->newline - buf->head;
+	line->data = ft_reallocf(line->data, sizeof(char) * line->len, \
+					sizeof(char) * (line->len + appended_size + 1));
 	if (line->data == NULL)
 	{
 		print_errno();
 		return (false);
 	}
-	ft_strlcpy(&(line->data[line->len]), &(buf->data[buf->used_bytes]), \
-			appended_size + 1);
+	ft_memcpy(&(line->data[line->len]), buf->head, appended_size);
 	line->len += appended_size;
-	buf->used_bytes += appended_size;
-	if (newline != NULL)
-		++(buf->used_bytes);
+	line->data[line->len] = (char)'\0';
+	buf->head += appended_size;
+	buf->read_bytes -= appended_size;
+	if (buf->newline != NULL)
+	{
+		buf->head += 1;
+		buf->read_bytes -= 1;
+	}
 	return (true);
 }
