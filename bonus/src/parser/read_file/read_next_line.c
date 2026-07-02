@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 13:53:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/02 21:33:52 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/02 21:51:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static bool	append_to_line(t_buf *buf, t_line *line)
 	}
 	ft_memcpy(&(line->data[line->len]), buf->head, appended_size);
 	line->len += appended_size;
-	line->data[line->len] = (char)'\0';
+	line->data[line->len] = (char)('\0');
 	buf->head += appended_size;
 	buf->read_bytes -= appended_size;
 	if (buf->newline != NULL)
