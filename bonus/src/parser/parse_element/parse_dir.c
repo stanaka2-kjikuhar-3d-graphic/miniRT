@@ -6,13 +6,12 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 23:37:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 03:26:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 04:39:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
-#include "config.h"
 #include "vector.h"
 #include "ft_error.h"
 

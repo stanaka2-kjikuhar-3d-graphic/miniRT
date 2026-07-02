@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 14:06:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 06:26:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 04:39:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include "ft_error.h"
 #include "light.h"
-#include "color.h"
 
 #include "../parser_private.h"
 

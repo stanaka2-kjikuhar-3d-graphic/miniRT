@@ -6,14 +6,12 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:17:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 03:43:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 04:38:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdbool.h>
-
-#include "ft_string.h"
 
 #include "object.h"
 #include "ft_error.h"
