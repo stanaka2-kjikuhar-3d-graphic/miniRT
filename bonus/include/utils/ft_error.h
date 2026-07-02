@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 06:32:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 03:44:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@
 # define ERROR_HEIGHT_RANGE "HEIGHT: must be positive"
 # define ERROR_HEIGHT_SMALL "HEIGHT: too small, height/2 underflows to 0"
 # define ERROR_ANGLE_RANGE "ANGLE: out of range (0-180)"
+# define ERROR_SIZE_RANGE "SIZE: must be positive"
+# define ERROR_SHININESS_RANGE "SHININESS: must be non-negative"
+# define ERROR_METALNESS_VALUE "METALNESS: must be true or false"
 
 /* Floating Number */
 # define ERROR_FLOAT_CHARACTER "FLOATING NUMBER: invalid character"
@@ -68,6 +71,15 @@
 # define ERROR_COLOR_LEADING_ZERO "COLOR: leading zero not allowed"
 # define ERROR_COLOR_RANGE "COLOR: value out of range (0-255)"
 # define HINT_COLOR "USAGE: R,G,B (0-255)"
+
+/* Material option */
+# define ERROR_OPTION_FORMAT "OPTION: missing '=' separator"
+# define ERROR_OPTION_UNKNOWN "OPTION: unknown option id"
+# define ERROR_OPTION_DUP "OPTION: duplicate option"
+# define HINT_MATERIAL_OPTION1 "USAGE: texture=file.xpm "
+# define HINT_MATERIAL_OPTION2 "checker_color1=R,G,B checker_color2=R,G,B "
+# define HINT_MATERIAL_OPTION3 "checker_size=N (0.0 < N) "
+# define HINT_MATERIAL_OPTION4 "metalness=false/true shininess=N (0.0 <= N)"
 
 /* MLX */
 # define ERROR_MLX_CONNECTION "MLX: failed to create X-Window connection"

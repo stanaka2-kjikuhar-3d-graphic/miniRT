@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 23:27:54 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 00:20:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 03:26:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	parse_brightness(char const *element, float *brightness)
 {
 	if (!parse_float(element, brightness))
 		return (false);
-	if (*brightness < 0.0 || 1.0 < *brightness)
+	if (*brightness < 0.0f || 1.0f < *brightness)
 	{
 		print_error(ERROR_BRIGHTNESS_RANGE);
 		return (false);

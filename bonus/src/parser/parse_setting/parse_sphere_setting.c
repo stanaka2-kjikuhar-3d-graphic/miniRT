@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:17:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 06:30:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 03:43:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	parse_sphere_setting(char const **elements)
 	size_t	count;
 
 	count = count_split(elements);
-	if (count != 4)
+	if (count < 4)
 	{
 		print_error_hint(ERROR_SP_COUNT, HINT_SP);
 		return (false);
@@ -39,11 +39,11 @@ static bool	parse_sphere(char const **elements)
 {
 	t_input_sphere	input;
 
-	ft_bzero(&(input.material), sizeof(t_material));
-	input.material.pattern_type = PATTERN_SOLID;
-	if (!parse_pos(elements[1], &(input.center)) \
+	init_material(&(input.material));
+	if (!parse_coordinate(elements[1], &(input.center)) \
 		|| !parse_radius(elements[2], &(input.radius)) \
-		|| !parse_color(elements[3], &(input.material.albedo)))
+		|| !parse_color(elements[3], &(input.material.albedo)) \
+		|| !parse_material_options(elements + 4, &(input.material)))
 	{
 		return (false);
 	}

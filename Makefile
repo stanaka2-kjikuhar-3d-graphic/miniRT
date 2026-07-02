@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/29 05:54:24 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/03 03:34:34 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,7 @@ SRC_DIRS	:= bonus/src
 SRC_DIRS	+= $(addprefix bonus/src/, \
 					parser \
 					$(addprefix parser/, \
-						read_file \
+						read_next_line \
 						parse_setting \
 						parse_element \
 						internal \
@@ -168,10 +168,10 @@ SRCS	+=	expose_hook.c \
 
 # parser
 SRCS	+=	parser.c \
+			read_file_as_line_list.c \
 			validate_setting_ids.c
-# parser/read_file
-SRCS	+=	read_file_as_line_list.c \
-			read_next_line.c
+# parser/read_next_line
+SRCS	+=	read_next_line.c
 # parser/parse_setting
 SRCS	+=	parse_settings.c \
 			parse_ambient_light_setting.c \
@@ -180,20 +180,26 @@ SRCS	+=	parse_settings.c \
 			parse_camera_setting.c \
 			parse_plane_setting.c \
 			parse_sphere_setting.c \
-			parse_cylinder_setting.c
+			parse_cylinder_setting.c \
+			parse_material_options.c
 # parser/parse_element
 SRCS	+=	parse_vec3.c \
 			parse_float.c \
 			parse_color.c \
 			parse_dir.c \
-			parse_pos.c \
+			parse_coordinate.c \
 			parse_brightness.c \
 			parse_fov.c \
 			parse_radius.c \
 			parse_half_height.c \
-			parse_angle.c
+			parse_angle.c \
+			parse_texture.c \
+			parse_size.c \
+			parse_metalness.c \
+			parse_shininess.c
 # parser/internal
-SRCS	+=	is_identifier.c \
+SRCS	+=	is_setting_id.c \
+			is_option_id.c \
 			count_split.c \
 			free_split.c
 
@@ -232,7 +238,8 @@ SRCS	+=	light.c \
 SRCS	+=	object.c \
 			intersect.c \
 			calc_normal.c \
-			get_object_color.c
+			get_object_color.c \
+			init_material.c
 # scene/object/sphere
 SRCS	+=	create_sphere.c \
 			intersect_sphere.c \

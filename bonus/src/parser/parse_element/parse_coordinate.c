@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_angle.c                                      :+:      :+:    :+:   */
+/*   parse_coordinate.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/21 14:38:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 03:26:45 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/11 23:31:24 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/03 03:09:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
-#include "ft_error.h"
-
+#include "vector.h"
 #include "../parser_private.h"
 
-bool	parse_angle(char const *element, float *angle)
+bool	parse_coordinate(char const *element, t_vec3 *pos)
 {
-	if (!parse_float(element, angle))
+	if (!parse_vec3(element, pos))
 		return (false);
-	if (*angle < 0.0f || 180.0f < *angle)
-	{
-		print_error(ERROR_ANGLE_RANGE);
-		return (false);
-	}
 	return (true);
 }

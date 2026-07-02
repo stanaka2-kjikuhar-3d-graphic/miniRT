@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 05:54:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 02:19:48 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_checkerboard
 {
 	t_color	color1;
 	t_color	color2;
-	size_t	size;
+	float	size;
 }	t_checkerboard;
 
 typedef struct s_material
@@ -42,7 +42,7 @@ typedef struct s_material
 	t_image				*texture;
 	t_checkerboard		checkerboard;
 	bool				metalness;
-	double				shininess;
+	float				shininess;
 }	t_material;
 
 typedef struct s_onb
@@ -139,15 +139,16 @@ typedef struct s_input_circle
 	float		radius;
 }	t_input_circle;
 
-bool			create_sphere(t_input_sphere const *input);
-bool			create_plane(t_input_plane const *input);
-bool			create_cylinder(t_input_cylinder const *input);
-bool			create_circle(t_input_circle const *input);
-bool			get_next_object(t_object const **object);
-void			cleanup_objects(void);
-float			intersect(t_object const *object, t_ray const *ray);
-t_vec3			calc_normal(\
+void	init_material(t_material *material);
+bool	create_sphere(t_input_sphere const *input);
+bool	create_plane(t_input_plane const *input);
+bool	create_cylinder(t_input_cylinder const *input);
+bool	create_circle(t_input_circle const *input);
+bool	get_next_object(t_object const **object);
+void	cleanup_objects(void);
+float	intersect(t_object const *object, t_ray const *ray);
+t_vec3	calc_normal(\
 					t_object const *object, t_ray const *ray, t_vec3 point);
-t_color			get_object_color(t_object const *object);
+t_color	get_object_color(t_object const *object);
 
 #endif

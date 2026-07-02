@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_angle.c                                      :+:      :+:    :+:   */
+/*   parse_size.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/21 14:38:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 03:26:45 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/03 03:12:55 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/03 03:27:34 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 
 #include "../parser_private.h"
 
-bool	parse_angle(char const *element, float *angle)
+bool	parse_size(char const *element, float *size)
 {
-	if (!parse_float(element, angle))
+	if (!parse_float(element, size))
 		return (false);
-	if (*angle < 0.0f || 180.0f < *angle)
+	if (*size <= 0.0f)
 	{
-		print_error(ERROR_ANGLE_RANGE);
+		print_error(ERROR_SIZE_RANGE);
 		return (false);
 	}
 	return (true);

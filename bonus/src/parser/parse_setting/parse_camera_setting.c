@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:09:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 06:26:28 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 03:09:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static bool	parse_camera(char const **elements)
 	t_input_camera		camera;
 	t_input_viewport	viewport;
 
-	if (!parse_pos(elements[1], &(camera.pos)) \
+	if (!parse_coordinate(elements[1], &(camera.pos)) \
 		|| !parse_dir(elements[2], &(camera.dir)) \
 		|| !parse_fov(elements[3], &(viewport.fov)))
 	{

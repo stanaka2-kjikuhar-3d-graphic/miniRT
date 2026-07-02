@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:22:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 06:30:57 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 03:45:55 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	parse_plane_setting(char const **elements)
 	size_t	count;
 
 	count = count_split(elements);
-	if (count != 4)
+	if (count < 4)
 	{
 		print_error_hint(ERROR_PL_COUNT, HINT_PL);
 		return (false);
@@ -39,11 +39,11 @@ static bool	parse_plane(char const **elements)
 {
 	t_input_plane	input;
 
-	ft_bzero(&(input.material), sizeof(t_material));
-	input.material.pattern_type = PATTERN_SOLID;
-	if (!parse_pos(elements[1], &(input.center)) \
+	init_material(&(input.material));
+	if (!parse_coordinate(elements[1], &(input.center)) \
 		|| !parse_dir(elements[2], &(input.normal)) \
-		|| !parse_color(elements[3], &(input.material.albedo)))
+		|| !parse_color(elements[3], &(input.material.albedo)) \
+		|| !parse_material_options(elements + 4, &(input.material)))
 	{
 		return (false);
 	}

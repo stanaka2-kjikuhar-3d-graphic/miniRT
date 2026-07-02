@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:02:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 06:25:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 03:09:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static bool	parse_point_light(char const **elements)
 {
 	t_input_point_light	input;
 
-	if (!parse_pos(elements[1], &(input.pos)) \
+	if (!parse_coordinate(elements[1], &(input.pos)) \
 		|| !parse_brightness(elements[2], &(input.brightness)) \
 		|| !parse_color(elements[3], &(input.color)))
 	{

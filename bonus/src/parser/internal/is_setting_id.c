@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_angle.c                                      :+:      :+:    :+:   */
+/*   is_setting_id.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/21 14:38:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 03:26:45 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/09 23:57:22 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/03 04:04:45 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
+#include <stddef.h>
 
-#include "ft_error.h"
+#include "ft_ctype.h"
+#include "ft_string.h"
 
-#include "../parser_private.h"
-
-bool	parse_angle(char const *element, float *angle)
+bool	is_setting_id(char const *id, char const *line)
 {
-	if (!parse_float(element, angle))
-		return (false);
-	if (*angle < 0.0f || 180.0f < *angle)
-	{
-		print_error(ERROR_ANGLE_RANGE);
-		return (false);
-	}
-	return (true);
+	size_t	len;
+
+	len = ft_strlen(id);
+	while (ft_isspace(*line))
+		++line;
+	return (ft_strncmp(id, line, len) == 0 \
+		&& (ft_isspace(line[len]) || line[len] == '\0'));
 }

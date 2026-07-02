@@ -6,10 +6,9 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 04:26:53 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 06:32:47 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 03:40:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <stddef.h>
 #include <stdbool.h>
@@ -39,7 +38,7 @@ static bool	parse_spot_light(char const **elements)
 {
 	t_input_spot_light	input;
 
-	if (!parse_pos(elements[1], &(input.pos)) \
+	if (!parse_coordinate(elements[1], &(input.pos)) \
 		|| !parse_brightness(elements[2], &(input.brightness)) \
 		|| !parse_color(elements[3], &(input.color))
 		|| !parse_dir(elements[4], &(input.dir)) \

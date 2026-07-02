@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_pos.c                                        :+:      :+:    :+:   */
+/*   parse_metalness.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/11 23:31:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 00:20:48 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/03 03:12:49 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/03 03:22:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
-#include "vector.h"
-#include "../parser_private.h"
+#include "ft_string.h"
 
-bool	parse_pos(char const *element, t_vec3 *pos)
+#include "ft_error.h"
+
+bool	parse_metalness(char const *element, bool *metalness)
 {
-	if (!parse_vec3(element, pos))
+	if (ft_strcmp("true", element) == 0)
+		*metalness = true;
+	else if (ft_strcmp("false", element) == 0)
+		*metalness = false;
+	else
+	{
+		print_error(ERROR_METALNESS_VALUE);
 		return (false);
+	}
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:25:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 06:26:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 03:46:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	parse_cylinder_setting(char const **elements)
 	size_t	count;
 
 	count = count_split(elements);
-	if (count != 6)
+	if (count < 6)
 	{
 		print_error_hint(ERROR_CY_COUNT, HINT_CY);
 		return (false);
@@ -39,13 +39,13 @@ static bool	parse_cylinder(char const **elements)
 {
 	t_input_cylinder	input;
 
-	ft_bzero(&(input.material), sizeof(t_material));
-	input.material.pattern_type = PATTERN_SOLID;
-	if (!parse_pos(elements[1], &(input.center)) \
+	init_material(&(input.material));
+	if (!parse_coordinate(elements[1], &(input.center)) \
 		|| !parse_dir(elements[2], &(input.dir)) \
 		|| !parse_radius(elements[3], &(input.radius)) \
 		|| !parse_half_height(elements[4], &(input.half_height)) \
-		|| !parse_color(elements[5], &(input.material.albedo)))
+		|| !parse_color(elements[5], &(input.material.albedo)) \
+		|| !parse_material_options(elements + 6, &(input.material)))
 	{
 		return (false);
 	}
