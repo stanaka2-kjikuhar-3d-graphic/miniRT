@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 03:25:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 04:28:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ enum e_option_id
 	OPTION_TEXTURE,
 	OPTION_CHECKERBOARD_COLOR1,
 	OPTION_CHECKERBOARD_COLOR2,
-	OPTION_CHECKERBOARD_SIZE,
 	OPTION_METALNESS,
 	OPTION_SHININESS
 };
@@ -69,7 +68,6 @@ bool	parse_vec3(char const *s, t_vec3 *vector);
 bool	parse_material_options(char const **optional_elements, \
 			t_material *material);
 bool	parse_texture(char const *element, t_image **texture);
-bool	parse_size(char const *element, float *size);
 bool	parse_metalness(char const *element, bool *metalness);
 bool	parse_shininess(char const *element, float *shininess);
 

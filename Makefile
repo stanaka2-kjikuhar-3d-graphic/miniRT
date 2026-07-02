@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/03 03:34:34 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/03 04:29:20 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -194,7 +194,6 @@ SRCS	+=	parse_vec3.c \
 			parse_half_height.c \
 			parse_angle.c \
 			parse_texture.c \
-			parse_size.c \
 			parse_metalness.c \
 			parse_shininess.c
 # parser/internal
