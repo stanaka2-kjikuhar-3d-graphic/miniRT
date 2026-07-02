@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 02:56:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 03:57:07 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 04:10:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_color	phong_lighting(t_ray const *ray, t_hit const *hit)
 	t_color			color;
 	t_light const	*light;
 
-	color = (t_color){.r = 0.0, .g = 0.0, .b = 0.0};
+	color = (t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f};
 	light = NULL;
 	while (get_next_light(&light))
 	{
