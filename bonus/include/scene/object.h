@@ -145,7 +145,7 @@ bool	create_cylinder(t_input_cylinder const *input);
 bool	create_circle(t_input_circle const *input);
 bool	get_next_object(t_object const **object);
 void	cleanup_objects(void);
-float	intersect(t_object const *object, t_ray const *ray);
+float	calc_object_intersection(t_object const *object, t_ray const *ray);
 t_vec2	calc_object_uv(t_object const *object, t_vec3 point);
 t_color	calc_object_color(t_object const *object, t_vec2 uv);
 t_vec3	calc_object_normal(\

@@ -33,7 +33,7 @@ bool	phong_shading(t_hit const *hit, t_vec3 light_dir, float light_dist)
 	object = NULL;
 	while (get_next_object(&object))
 	{
-		t = intersect(object, &shadow_ray);
+		t = calc_object_intersection(object, &shadow_ray);
 		if (t != t || t <= 0.0f || light_dist - EPSILON <= t)
 			continue ;
 		return (true);

@@ -235,28 +235,28 @@ SRCS	+=	light.c \
 
 # scene/object
 SRCS	+=	object.c \
-			intersect.c \
+			calc_object_intersection.c \
 			calc_object_uv.c \
 			calc_object_color.c \
 			calc_object_normal.c \
 			init_material.c
 # scene/object/sphere
 SRCS	+=	create_sphere.c \
-			intersect_sphere.c \
+			calc_sphere_intersection.c \
 			calc_sphere_normal.c
 # scene/object/plane
 SRCS	+=	create_plane.c \
-			intersect_plane.c \
+			calc_plane_intersection.c \
 			calc_plane_normal.c \
 			calc_plane_uv.c \
 			calc_plane_color.c
 # scene/object/cylinder
 SRCS	+=	create_cylinder.c \
-			intersect_cylinder.c \
+			calc_cylinder_intersection.c \
 			calc_cylinder_normal.c
 # scene/object/circle
 SRCS	+=	create_circle.c \
-			intersect_circle.c \
+			calc_circle_intersection.c \
 			calc_circle_normal.c
 SRCS	+=	compute_onb.c
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersect_sphere.c                                 :+:      :+:    :+:   */
+/*   calc_sphere_intersection.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 19:51:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 22:45:35 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "object.h"
 #include "ray.h"
 
-float	intersect_sphere(t_sphere const *sphere, t_ray const *ray)
+float	calc_sphere_intersection(t_sphere const *sphere, t_ray const *ray)
 {
 	t_vec3	to_center;
 	float	perp_t;

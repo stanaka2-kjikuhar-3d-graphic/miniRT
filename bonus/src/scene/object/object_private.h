@@ -24,10 +24,10 @@ typedef struct s_perp_cylinder
 }	t_perp_cylinder;
 
 bool	create_object(t_object const *object);
-float	intersect_sphere(t_sphere const *sphere, t_ray const *ray);
-float	intersect_plane(t_plane const *plane, t_ray const *ray);
-float	intersect_cylinder(t_cylinder const *cylinder, t_ray const *ray);
-float	intersect_circle(t_circle const *circle, t_ray const *ray);
+float	calc_sphere_intersection(t_sphere const *sphere, t_ray const *ray);
+float	calc_plane_intersection(t_plane const *plane, t_ray const *ray);
+float	calc_cylinder_intersection(t_cylinder const *cylinder, t_ray const *ray);
+float	calc_circle_intersection(t_circle const *circle, t_ray const *ray);
 t_vec2	calc_plane_uv(t_plane const *plane, t_vec3 point);
 t_color	calc_plane_color(t_plane const *plane, t_vec2 uv);
 t_vec3	calc_sphere_normal(\

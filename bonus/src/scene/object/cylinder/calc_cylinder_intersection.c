@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersect_cylinder.c                               :+:      :+:    :+:   */
+/*   calc_cylinder_intersection.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:41:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 22:45:26 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static float	select_cylinder_t(\
 static bool		check_cylinder_height(\
 					t_cylinder const *cylinder, t_ray const *ray, float t);
 
-float	intersect_cylinder(t_cylinder const *cylinder, t_ray const *ray)
+float	calc_cylinder_intersection(t_cylinder const *cylinder, t_ray const *ray)
 {
 	t_perp_cylinder	perp;
 	t_vec3			to_cylinder;

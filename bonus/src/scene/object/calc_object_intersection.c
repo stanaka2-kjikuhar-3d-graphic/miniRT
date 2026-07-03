@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersect.c                                        :+:      :+:    :+:   */
+/*   calc_object_intersection.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 00:50:10 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 22:45:15 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 
 #include "./object_private.h"
 
-float	intersect(t_object const *object, t_ray const *ray)
+float	calc_object_intersection(t_object const *object, t_ray const *ray)
 {
 	if (object->type == OBJ_SPHERE)
-		return (intersect_sphere(&(object->sphere), ray));
+		return (calc_sphere_intersection(&(object->sphere), ray));
 	else if (object->type == OBJ_PLANE)
-		return (intersect_plane(&(object->plane), ray));
+		return (calc_plane_intersection(&(object->plane), ray));
 	else if (object->type == OBJ_CYLINDER)
-		return (intersect_cylinder(&(object->cylinder), ray));
+		return (calc_cylinder_intersection(&(object->cylinder), ray));
 	else if (object->type == OBJ_CIRCLE)
-		return (intersect_circle(&(object->circle), ray));
+		return (calc_circle_intersection(&(object->circle), ray));
 	return (NAN);
 }

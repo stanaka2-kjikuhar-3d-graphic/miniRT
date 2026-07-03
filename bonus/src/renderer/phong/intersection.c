@@ -29,7 +29,7 @@ t_hit	intersection(t_ray const *ray)
 	object = NULL;
 	while (get_next_object(&object))
 	{
-		t = intersect(object, ray);
+		t = calc_object_intersection(object, ray);
 		if (EPSILON < t && t < hit.t)
 		{
 			hit.object = object;
