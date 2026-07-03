@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_normal.c                                      :+:      :+:    :+:   */
+/*   calc_object_normal.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 00:51:51 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/20 01:46:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 19:53:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 #include "./object_private.h"
 
-t_vec3	calc_normal(t_object const *object, t_ray const *ray, t_vec3 point)
+t_vec3	calc_object_normal(\
+	t_object const *object, t_ray const *ray, t_vec3 point)
 {
 	if (object->type == OBJ_SPHERE)
 		return (calc_sphere_normal(&(object->sphere), ray, point));

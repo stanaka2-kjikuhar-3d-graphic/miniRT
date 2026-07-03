@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:35:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 04:22:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 19:47:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_hit
 	t_object const	*object;
 	float			t;
 	t_vec3			point;
+	t_vec2			uv;
 	t_vec3			normal;
 	t_color			color;
 }	t_hit;

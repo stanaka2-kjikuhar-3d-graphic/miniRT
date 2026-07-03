@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 04:26:58 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 19:50:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,21 @@ enum e_pattern_type
 {
 	PATTERN_SOLID,
 	PATTERN_TEXTURE,
-	PATTERN_CHECKERBOARD	
+	PATTERN_CHECKER	
 };
 
-typedef struct s_checkerboard
+typedef struct s_checker
 {
 	t_color	color1;
 	t_color	color2;
-}	t_checkerboard;
+}	t_checker;
 
 typedef struct s_material
 {
 	enum e_pattern_type	pattern_type;
 	t_color				albedo;
 	t_image				*texture;
-	t_checkerboard		checkerboard;
+	t_checker			checker;
 	bool				metalness;
 	float				shininess;
 }	t_material;
@@ -146,8 +146,9 @@ bool	create_circle(t_input_circle const *input);
 bool	get_next_object(t_object const **object);
 void	cleanup_objects(void);
 float	intersect(t_object const *object, t_ray const *ray);
-t_vec3	calc_normal(\
-					t_object const *object, t_ray const *ray, t_vec3 point);
-t_color	get_object_color(t_object const *object);
+t_vec2	calc_object_uv(t_object const *object, t_vec3 point);
+t_color	calc_object_color(t_object const *object, t_vec2 uv);
+t_vec3	calc_object_normal(\
+			t_object const *object, t_ray const *ray, t_vec3 point);
 
 #endif

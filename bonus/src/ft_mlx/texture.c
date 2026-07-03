@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 19:06:13 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 05:54:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 20:04:28 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ bool	create_texture(char *filepath)
 		print_errno();
 		return (false);
 	}
-	if (create_image_from_xpm(&(g_texture_dict[g_count].texture), filepath))
+	if (!create_image_from_xpm(&(g_texture_dict[g_count].texture), filepath))
 	{
 		free(g_texture_dict[g_count].filepath);
 		return (false);

@@ -56,9 +56,9 @@ static enum e_option_id	get_material_option_id(\
 	if (is_option_id("texture", optional_element))
 		return (OPTION_TEXTURE);
 	if (is_option_id("checker_color1", optional_element))
-		return (OPTION_CHECKERBOARD_COLOR1);
+		return (OPTION_CHECKER_COLOR1);
 	if (is_option_id("checker_color2", optional_element))
-		return (OPTION_CHECKERBOARD_COLOR2);
+		return (OPTION_CHECKER_COLOR2);
 	if (is_option_id("metalness", optional_element))
 		return (OPTION_METALNESS);
 	if (is_option_id("shininess", optional_element))
@@ -95,10 +95,10 @@ static void	set_material_pattern(\
 {
 	if (option_id == OPTION_TEXTURE)
 		material->pattern_type = PATTERN_TEXTURE;
-	else if (option_id == OPTION_CHECKERBOARD_COLOR1 \
-		|| option_id == OPTION_CHECKERBOARD_COLOR2)
+	else if (option_id == OPTION_CHECKER_COLOR1 \
+		|| option_id == OPTION_CHECKER_COLOR2)
 	{
-		material->pattern_type = PATTERN_CHECKERBOARD;
+		material->pattern_type = PATTERN_CHECKER;
 	}
 }
 
@@ -107,10 +107,10 @@ static bool	parse_material_option(t_material *material, \
 {
 	if (option_id == OPTION_TEXTURE)
 		return (parse_texture(option_value, &(material->texture)));
-	else if (option_id == OPTION_CHECKERBOARD_COLOR1)
-		return (parse_color(option_value, &(material->checkerboard.color1)));
-	else if (option_id == OPTION_CHECKERBOARD_COLOR2)
-		return (parse_color(option_value, &(material->checkerboard.color2)));
+	else if (option_id == OPTION_CHECKER_COLOR1)
+		return (parse_color(option_value, &(material->checker.color1)));
+	else if (option_id == OPTION_CHECKER_COLOR2)
+		return (parse_color(option_value, &(material->checker.color2)));
 	else if (option_id == OPTION_METALNESS)
 		return (parse_metalness(option_value, &(material->metalness)));
 	else if (option_id == OPTION_SHININESS)

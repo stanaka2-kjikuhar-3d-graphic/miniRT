@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 22:46:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 04:11:45 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 19:50:55 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ t_hit	intersection(t_ray const *ray)
 	if (hit.object == NULL)
 		return (hit);
 	hit.point = vec3_add(ray->origin, vec3_scale(hit.t, ray->dir));
-	hit.normal = calc_normal(hit.object, ray, hit.point);
-	hit.color = get_object_color(hit.object);
+	hit.uv = calc_object_uv(hit.object, hit.point);
+	hit.color = calc_object_color(hit.object, hit.uv);
+	hit.normal = calc_object_normal(hit.object, ray, hit.point);
 	return (hit);
 }

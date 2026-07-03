@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 20:27:48 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 05:56:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 19:54:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 #include "./light_private.h"
 
-bool	create_uniform_infinite_light(t_input_uniform_infinite_light const *input)
+bool	create_uniform_infinite_light(\
+	t_input_uniform_infinite_light const *input)
 {
 	t_light	light;
 

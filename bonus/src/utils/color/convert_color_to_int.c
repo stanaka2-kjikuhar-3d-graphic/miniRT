@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_rgb.c                                         :+:      :+:    :+:   */
+/*   convert_color_to_int.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 01:27:25 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 13:52:38 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 18:23:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "ft_mlx.h"
 #include "color.h"
 
-int	calc_rgb(t_color color)
+int	convert_color_to_int(t_color color)
 {
 	int						rgb;
 	float const				channel[] = {color.r, color.g, color.b};

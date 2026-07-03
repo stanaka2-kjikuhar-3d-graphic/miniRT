@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:51:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 05:56:51 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 19:53:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,14 +121,13 @@ typedef struct s_input_directional_light
 	t_vec3	dir;
 }	t_input_directional_light;
 
-bool					get_next_light(t_light const **light);
-void					cleanup_lights(void);
-bool					create_ambient_light(t_input_ambient_light const *input);
-bool					create_uniform_infinite_light(\
-							t_input_uniform_infinite_light const *input);
-bool					create_point_light(t_input_point_light const *input);
-bool					create_spot_light(t_input_spot_light const *input);
-bool					create_directional_light(\
-							t_input_directional_light const *input);
+bool	get_next_light(t_light const **light);
+void	cleanup_lights(void);
+bool	create_ambient_light(t_input_ambient_light const *input);
+bool	create_uniform_infinite_light(\
+			t_input_uniform_infinite_light const *input);
+bool	create_point_light(t_input_point_light const *input);
+bool	create_spot_light(t_input_spot_light const *input);
+bool	create_directional_light(t_input_directional_light const *input);
 
 #endif

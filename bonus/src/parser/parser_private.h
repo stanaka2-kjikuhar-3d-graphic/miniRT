@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 04:28:21 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 17:04:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ enum e_option_id
 {
 	INVALID_OPTION_ID = -1,
 	OPTION_TEXTURE,
-	OPTION_CHECKERBOARD_COLOR1,
-	OPTION_CHECKERBOARD_COLOR2,
+	OPTION_CHECKER_COLOR1,
+	OPTION_CHECKER_COLOR2,
 	OPTION_METALNESS,
 	OPTION_SHININESS
 };

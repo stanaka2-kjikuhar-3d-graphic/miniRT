@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:15:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 02:56:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 19:54:28 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ static t_ray	calc_ray(t_ivec2 pixel)
 
 static void	put_color(t_color color, t_ivec2 pixel)
 {
-	*get_pixel_addr(get_image(IMG_WINDOW), pixel.x, pixel.y) = calc_rgb(color);
+	*get_pixel_addr(get_image(IMG_WINDOW), pixel.x, pixel.y) \
+		= convert_color_to_int(color);
 }
