@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 02:28:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 19:41:12 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/04 17:53:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 t_color	calc_object_color(t_object const *object, t_vec2 uv)
 {
 	if (object->type == OBJ_SPHERE)
-		return (object->sphere.material.albedo);
+		return (calc_sphere_color(&(object->sphere), uv));
 	else if (object->type == OBJ_PLANE)
 		return (calc_plane_color(&(object->plane), uv));
 	else if (object->type == OBJ_CYLINDER)

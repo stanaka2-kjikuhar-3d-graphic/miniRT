@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/03 19:52:05 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/04 17:54:43 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -243,7 +243,9 @@ SRCS	+=	object.c \
 # scene/object/sphere
 SRCS	+=	create_sphere.c \
 			calc_sphere_intersection.c \
-			calc_sphere_normal.c
+			calc_sphere_normal.c \
+			calc_sphere_uv.c \
+			calc_sphere_color.c
 # scene/object/plane
 SRCS	+=	create_plane.c \
 			calc_plane_intersection.c \
