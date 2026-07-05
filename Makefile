@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/05 22:51:28 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/06 01:59:37 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -259,7 +259,8 @@ SRCS	+=	create_cylinder.c \
 # scene/object/circle
 SRCS	+=	create_circle.c \
 			calc_circle_intersection.c \
-			calc_circle_normal.c
+			calc_circle_normal.c \
+			calc_circle_uv.c
 # scene/object/internal
 SRCS	+=	compute_onb.c \
 			adjust_uv_range.c
