@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 19:50:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/05 13:17:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ enum e_pattern_type
 {
 	PATTERN_SOLID,
 	PATTERN_TEXTURE,
-	PATTERN_CHECKER	
+	PATTERN_CHECKER
 };
 
 typedef struct s_checker
@@ -34,10 +34,28 @@ typedef struct s_checker
 	t_color	color2;
 }	t_checker;
 
+enum e_uv_type
+{
+	UV_PLANE,
+	UV_UPPER_POLAR,
+	UV_LOWER_POLAR,
+	UV_CYLINDER,
+	UV_SPHERE,
+};
+
+typedef	struct s_range
+{
+	float	max;
+	float	min;
+}	t_range;
+
 typedef struct s_material
 {
 	enum e_pattern_type	pattern_type;
 	t_color				albedo;
+	enum e_uv_type		uv_type;
+	t_range				u_range;
+	t_range				v_range;
 	t_image				*texture;
 	t_checker			checker;
 	bool				metalness;

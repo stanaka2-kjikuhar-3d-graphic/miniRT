@@ -6,9 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:22:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 04:38:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/05 16:00:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <math.h>
 
 #include <stddef.h>
 #include <stdbool.h>
@@ -38,6 +40,7 @@ static bool	parse_plane(char const **elements)
 	t_input_plane	input;
 
 	init_material(&(input.material));
+	input.material.uv_type = UV_PLANE;
 	if (!parse_coordinate(elements[1], &(input.center)) \
 		|| !parse_dir(elements[2], &(input.normal)) \
 		|| !parse_color(elements[3], &(input.material.albedo)) \

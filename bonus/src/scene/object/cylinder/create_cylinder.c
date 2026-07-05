@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 05:59:11 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/05 13:21:43 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,13 @@ static bool	add_cap_circles(t_input_cylinder const *input, t_vec3 dir)
 	t_input_circle	bottom;
 
 	top.material = input->material;
+	bottom.material.uv_type = UV_UPPER_POLAR;
 	top.center = vec3_add(input->center, \
 			vec3_scale(input->half_height, dir));
 	top.normal = dir;
 	top.radius = input->radius;
 	bottom.material = input->material;
+	bottom.material.uv_type = UV_LOWER_POLAR;
 	bottom.center = vec3_add(input->center, \
 			vec3_scale(-(input->half_height), dir));
 	bottom.normal = vec3_scale(-1, dir);

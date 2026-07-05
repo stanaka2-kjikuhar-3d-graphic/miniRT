@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/04 17:20:57 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/04 17:58:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/05 13:14:26 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static t_color	calc_sphere_texture_color(t_sphere const *sphere, t_vec2 uv)
 	t_ivec2	cell;
 
 	cell.u = (int)((float)sphere->material.texture->width * uv.u);
-	cell.v = (int)((float)sphere->material.texture->height * (1.0f - uv.v));
+	cell.v = (int)((float)sphere->material.texture->height * uv.v);
 	if (cell.u >= sphere->material.texture->width)
 		cell.u = sphere->material.texture->width - 1;
 	if (cell.v >= sphere->material.texture->height)
