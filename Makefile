@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/04 17:54:43 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/05 22:51:28 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -157,7 +157,8 @@ SRCS	+=	mlx_ptr.c \
 			cleanup_mlx.c \
 			setup_mlx_window.c \
 			setup_mlx_hooks.c \
-			get_pixel_addr.c
+			get_pixel_addr.c \
+			get_uv_pixel_color.c
 
 # ft_mlx/hooks
 SRCS	+=	expose_hook.c \
@@ -244,23 +245,24 @@ SRCS	+=	object.c \
 SRCS	+=	create_sphere.c \
 			calc_sphere_intersection.c \
 			calc_sphere_normal.c \
-			calc_sphere_uv.c \
-			calc_sphere_color.c
+			calc_sphere_uv.c
 # scene/object/plane
 SRCS	+=	create_plane.c \
 			calc_plane_intersection.c \
 			calc_plane_normal.c \
-			calc_plane_uv.c \
-			calc_plane_color.c
+			calc_plane_uv.c
 # scene/object/cylinder
 SRCS	+=	create_cylinder.c \
 			calc_cylinder_intersection.c \
-			calc_cylinder_normal.c
+			calc_cylinder_normal.c \
+			calc_cylinder_uv.c
 # scene/object/circle
 SRCS	+=	create_circle.c \
 			calc_circle_intersection.c \
 			calc_circle_normal.c
-SRCS	+=	compute_onb.c
+# scene/object/internal
+SRCS	+=	compute_onb.c \
+			adjust_uv_range.c
 
 # scene/viewport
 SRCS	+=	viewport.c

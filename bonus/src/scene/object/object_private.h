@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/05 01:01:19 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/05 22:49:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ float	calc_cylinder_intersection(\
 float	calc_circle_intersection(t_circle const *circle, t_ray const *ray);
 t_vec2	calc_sphere_uv(t_sphere const *sphere, t_vec3 point);
 t_vec2	calc_plane_uv(t_plane const *plane, t_vec3 point);
+t_vec2	calc_cylinder_uv(t_cylinder const *cylinder, t_vec3 point);
 t_color	calc_sphere_color(t_sphere const *sphere, t_vec2 uv);
 t_color	calc_plane_color(t_plane const *plane, t_vec2 uv);
 t_vec3	calc_sphere_normal(\
@@ -40,5 +41,6 @@ t_vec3	calc_cylinder_normal(\
 			t_cylinder const *cylinder, t_ray const *ray, t_vec3 point);
 t_vec3	calc_circle_normal(t_circle const *circle, t_ray const *ray);
 void	compute_onb(t_vec3 n, t_vec3 *tangent, t_vec3 *bitangent);
+t_vec2	adjust_uv_range(t_vec2 uv, t_range u_range, t_range v_range);
 
 #endif

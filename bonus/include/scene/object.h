@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/05 13:17:09 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/05 22:50:24 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_material
 	enum e_pattern_type	pattern_type;
 	t_color				albedo;
 	enum e_uv_type		uv_type;
+	float				u_per_v;
 	t_range				u_range;
 	t_range				v_range;
 	t_image				*texture;
@@ -79,7 +80,6 @@ enum e_object_type
 
 typedef struct s_sphere
 {
-	t_material	material;
 	t_vec3		center;
 	float		radius;
 	t_onb		onb;
@@ -87,7 +87,6 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	t_material	material;
 	t_vec3		center;
 	t_vec3		normal;
 	t_onb		onb;
@@ -95,7 +94,6 @@ typedef struct s_plane
 
 typedef struct s_cylinder
 {
-	t_material	material;
 	t_vec3		center;
 	t_vec3		dir;
 	float		radius;
@@ -105,7 +103,6 @@ typedef struct s_cylinder
 
 typedef struct s_circle
 {
-	t_material	material;
 	t_vec3		center;
 	t_vec3		normal;
 	float		radius;
@@ -114,6 +111,8 @@ typedef struct s_circle
 
 typedef struct s_object
 {
+	t_material			material;
+	enum e_object_type	type;
 	union
 	{
 		t_sphere	sphere;
@@ -121,7 +120,6 @@ typedef struct s_object
 		t_circle	circle;
 		t_cylinder	cylinder;
 	};
-	enum e_object_type	type;
 }	t_object;
 
 // input

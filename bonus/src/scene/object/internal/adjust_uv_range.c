@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_sphere.c                                    :+:      :+:    :+:   */
+/*   adjust_uv_range.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/05 19:22:16 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/05 21:55:09 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/05 22:04:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-
 #include "object.h"
+#include "vector.h"
 
-#include "../object_private.h"
-
-bool	create_sphere(t_input_sphere const *input)
+t_vec2	adjust_uv_range(t_vec2 uv, t_range u_range, t_range v_range)
 {
-	t_object	object;
+	float	u_size;
+	float	v_size;
 
-	object.type = OBJ_SPHERE;
-	object.material = input->material;
-	object.sphere.center = input->center;
-	object.sphere.radius = input->radius;
-	object.sphere.onb = (t_onb){\
-		.u = vec3(1.0f, 0.0f, 0.0f), \
-		.v = vec3(0.0f, 1.0f, 0.0f), \
-		.w = vec3(0.0f, 0.0f, 1.0f)};
-	return (create_object(&object));
+	u_size = u_range.max - u_range.min;
+	v_size = v_range.max - v_range.min;
+	return ((t_vec2){\
+		.u = uv.u * u_size + u_range.min, \
+		.v = uv.v * v_size + v_range.min \
+	});
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 05:59:20 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/05 19:23:43 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	create_plane(t_input_plane const *input)
 	t_object	object;
 
 	object.type = OBJ_PLANE;
-	object.plane.material = input->material;
+	object.material = input->material;
 	object.plane.center = input->center;
 	object.plane.normal = vec3_normalize(input->normal);
 	object.plane.onb.w = object.plane.normal;

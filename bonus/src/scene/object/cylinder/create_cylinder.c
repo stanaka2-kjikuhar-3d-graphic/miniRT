@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/05 13:21:43 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/05 23:02:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	create_cylinder(t_input_cylinder const *input)
 
 	dir = vec3_normalize(input->dir);
 	object.type = OBJ_CYLINDER;
-	object.cylinder.material = input->material;
+	object.material = input->material;
 	object.cylinder.center = input->center;
 	object.cylinder.dir = dir;
 	object.cylinder.radius = input->radius;
@@ -45,13 +45,17 @@ static bool	add_cap_circles(t_input_cylinder const *input, t_vec3 dir)
 	t_input_circle	bottom;
 
 	top.material = input->material;
-	bottom.material.uv_type = UV_UPPER_POLAR;
+	top.material.uv_type = UV_UPPER_POLAR;
+	top.material.v_range \
+		= (t_range){.max = 1.0f, .min = input->material.v_range.max};
 	top.center = vec3_add(input->center, \
 			vec3_scale(input->half_height, dir));
 	top.normal = dir;
 	top.radius = input->radius;
 	bottom.material = input->material;
 	bottom.material.uv_type = UV_LOWER_POLAR;
+	bottom.material.v_range \
+		= (t_range){.max = input->material.v_range.min, .min = 0.0f};
 	bottom.center = vec3_add(input->center, \
 			vec3_scale(-(input->half_height), dir));
 	bottom.normal = vec3_scale(-1, dir);

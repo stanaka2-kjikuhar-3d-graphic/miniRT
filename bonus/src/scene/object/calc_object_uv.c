@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 19:39:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/04 17:53:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/05 22:38:56 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,18 @@
 
 t_vec2	calc_object_uv(t_object const *object, t_vec3 point)
 {
+	t_vec2	uv;
+
 	if (object->type == OBJ_SPHERE)
-		return (calc_sphere_uv(&(object->sphere), point));
+		uv = calc_sphere_uv(&(object->sphere), point);
 	else if (object->type == OBJ_PLANE)
-		return (calc_plane_uv(&(object->plane), point));
+		uv = calc_plane_uv(&(object->plane), point);
 	else if (object->type == OBJ_CYLINDER)
-		return ((t_vec2){.u = 0.0f, .v = 0.0f});
+		uv = calc_cylinder_uv(&(object->cylinder), point);
 	else if (object->type == OBJ_CIRCLE)
-		return ((t_vec2){.u = 0.0f, .v = 0.0f});
-	return ((t_vec2){.u = 0.0f, .v = 0.0f});
+		uv = (t_vec2){.u = 0.0f, .v = 0.0f};
+	else
+		uv = (t_vec2){.u = 0.0f, .v = 0.0f};
+	return (adjust_uv_range(\
+		uv, object->material.u_range, object->material.v_range));
 }
