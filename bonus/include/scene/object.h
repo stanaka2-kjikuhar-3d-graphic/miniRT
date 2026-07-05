@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/05 22:50:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/06 03:20:32 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct s_checker
 enum e_uv_type
 {
 	UV_PLANE,
-	UV_UPPER_POLAR,
-	UV_LOWER_POLAR,
+	UV_UPPER_CAP,
+	UV_LOWER_CAP,
 	UV_CYLINDER,
 	UV_SPHERE,
 };

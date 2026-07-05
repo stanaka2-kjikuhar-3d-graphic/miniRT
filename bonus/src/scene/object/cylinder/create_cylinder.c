@@ -6,10 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/05 23:02:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/06 03:38:07 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include <stdbool.h>
 
 #include "vector.h"
@@ -17,17 +18,24 @@
 
 #include "../object_private.h"
 
-static bool	add_cap_circles(t_input_cylinder const *input, t_vec3 dir);
+static bool	add_cap_circles(t_object const *object, t_vec3 dir);
 
 bool	create_cylinder(t_input_cylinder const *input)
 {
 	t_object	object;
+	float		cap_ratio;
 	t_vec3		dir;
 
-	dir = vec3_normalize(input->dir);
 	object.type = OBJ_CYLINDER;
 	object.material = input->material;
+	object.material.u_per_v = (float)(2.0f * M_PI * input->radius) \
+								/ (2.0f * (input->radius + input->half_height));
+	object.material.u_range = (t_range){.min = 0.0f, .max = 1.0f};
+	cap_ratio = input->radius / (2.0f * (input->radius + input->half_height));
+	object.material.v_range = (t_range){\
+								.min = cap_ratio, .max = 1.0f - cap_ratio};
 	object.cylinder.center = input->center;
+	dir = vec3_normalize(input->dir);
 	object.cylinder.dir = dir;
 	object.cylinder.radius = input->radius;
 	object.cylinder.half_height = input->half_height;
@@ -36,29 +44,25 @@ bool	create_cylinder(t_input_cylinder const *input)
 		&(object.cylinder.onb.u), &(object.cylinder.onb.v));
 	if (!create_object(&object))
 		return (false);
-	return (add_cap_circles(input, dir));
+	return (add_cap_circles(&object, dir));
 }
 
-static bool	add_cap_circles(t_input_cylinder const *input, t_vec3 dir)
+static bool	add_cap_circles(t_object const *object, t_vec3 dir)
 {
 	t_input_circle	top;
 	t_input_circle	bottom;
 
-	top.material = input->material;
-	top.material.uv_type = UV_UPPER_POLAR;
-	top.material.v_range \
-		= (t_range){.max = 1.0f, .min = input->material.v_range.max};
-	top.center = vec3_add(input->center, \
-			vec3_scale(input->half_height, dir));
+	top.material = object->material;
+	top.material.uv_type = UV_UPPER_CAP;
+	top.center = vec3_add(object->cylinder.center, \
+					vec3_scale(object->cylinder.half_height, dir));
 	top.normal = dir;
-	top.radius = input->radius;
-	bottom.material = input->material;
-	bottom.material.uv_type = UV_LOWER_POLAR;
-	bottom.material.v_range \
-		= (t_range){.max = input->material.v_range.min, .min = 0.0f};
-	bottom.center = vec3_add(input->center, \
-			vec3_scale(-(input->half_height), dir));
+	top.radius = object->cylinder.radius;
+	bottom.material = object->material;
+	bottom.material.uv_type = UV_LOWER_CAP;
+	bottom.center = vec3_add(object->cylinder.center, \
+						vec3_scale(-(object->cylinder.half_height), dir));
 	bottom.normal = vec3_scale(-1, dir);
-	bottom.radius = input->radius;
+	bottom.radius = object->cylinder.radius;
 	return (create_circle(&top) && create_circle(&bottom));
 }

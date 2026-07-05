@@ -6,11 +6,9 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:22:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/05 16:00:33 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/06 03:28:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <math.h>
 
 #include <stddef.h>
 #include <stdbool.h>

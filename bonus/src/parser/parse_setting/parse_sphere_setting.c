@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:17:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/05 20:44:37 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/06 03:21:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static bool	parse_sphere(char const **elements)
 
 	init_material(&(input.material));
 	input.material.uv_type = UV_SPHERE;
-	input.material.u_per_v = 2.0f;
 	if (!parse_coordinate(elements[1], &(input.center)) \
 		|| !parse_radius(elements[2], &(input.radius)) \
 		|| !parse_color(elements[3], &(input.material.albedo)) \

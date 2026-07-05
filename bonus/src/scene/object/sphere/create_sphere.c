@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/05 19:22:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/06 03:21:26 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ bool	create_sphere(t_input_sphere const *input)
 
 	object.type = OBJ_SPHERE;
 	object.material = input->material;
+	object.material.u_per_v = 2.0f;
 	object.sphere.center = input->center;
 	object.sphere.radius = input->radius;
 	object.sphere.onb = (t_onb){\
