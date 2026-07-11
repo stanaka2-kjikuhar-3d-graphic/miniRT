@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:25:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/06 03:28:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/11 20:59:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@
 
 #include "../parser_private.h"
 
-static bool	parse_cylinder(char const **elements);
+static bool	parse_cylinder_required(\
+				char const **elements, t_input_cylinder *input);
+static bool	parse_cylinder_optional(\
+				char const **optional_elements, t_input_cylinder *input);
 
 bool	parse_cylinder_setting(char const **elements)
 {
-	size_t	count;
+	size_t				count;
+	t_input_cylinder	input;
 
 	count = count_split(elements);
 	if (count < 6)
@@ -30,23 +34,51 @@ bool	parse_cylinder_setting(char const **elements)
 		print_error_hint(ERROR_CY_COUNT, HINT_CY);
 		return (false);
 	}
-	return (parse_cylinder(elements));
-}
-
-static bool	parse_cylinder(char const **elements)
-{
-	t_input_cylinder	input;
-
 	init_material(&(input.material));
 	input.material.uv_type = UV_CYLINDER;
-	if (!parse_coordinate(elements[1], &(input.center)) \
-		|| !parse_dir(elements[2], &(input.dir)) \
-		|| !parse_radius(elements[3], &(input.radius)) \
-		|| !parse_half_height(elements[4], &(input.half_height)) \
-		|| !parse_color(elements[5], &(input.material.albedo)) \
-		|| !parse_material_options(elements + 6, &(input.material)))
+	if (!parse_cylinder_required(elements, &input) \
+		|| !parse_cylinder_optional(elements + 6, &input))
 	{
 		return (false);
 	}
 	return (create_cylinder(&input));
+}
+
+static bool	parse_cylinder_required(\
+	char const **elements, t_input_cylinder *input)
+{
+	t_required_field const	required_fields[] = {\
+		{elements[1], &(input->center), parse_coordinate}, \
+		{elements[2], &(input->dir), parse_dir}, \
+		{elements[3], &(input->radius), parse_radius}, \
+		{elements[4], &(input->half_height), parse_half_height}, \
+		{elements[5], &(input->material.albedo), parse_color}};
+	size_t const			required_count = sizeof(required_fields) \
+												/ sizeof(t_required_field);
+
+	if (!parse_required_fields(required_fields, required_count))
+		return (false);
+	return (true);
+}
+
+static bool	parse_cylinder_optional(\
+	char const **optional_elements, t_input_cylinder *input)
+{
+	t_optional_field const	optional_fields[] = {\
+		{"texture", &(input->material.texture), parse_texture}, \
+		{"checker_color1", &(input->material.checker.color1), parse_color}, \
+		{"checker_color2", &(input->material.checker.color2), parse_color}, \
+		{"metalness", &(input->material.metalness), parse_metalness}, \
+		{"shininess", &(input->material.shininess), parse_shininess}};
+	size_t const			optional_count = sizeof(optional_fields) \
+												/ sizeof(t_optional_field);
+
+	if (!parse_optional_fields(\
+			optional_elements, optional_fields, optional_count))
+	{
+		return (false);
+	}
+	input->material.pattern_type \
+		= get_pattern_type(optional_elements);
+	return (true);
 }

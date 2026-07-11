@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 03:08:26 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 03:18:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/11 14:28:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 #include "ft_mlx.h"
 
-bool	parse_texture(char const *element, t_image **texture)
+bool	parse_texture(char const *element, void *value)
 {
+	t_image **const	texture = (t_image **)value;
+
 	if (!create_texture((char *)element))
 		return (false);
 	*texture = get_texture((char *)element);

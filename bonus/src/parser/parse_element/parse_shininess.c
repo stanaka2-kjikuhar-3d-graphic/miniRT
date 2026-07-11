@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 03:12:52 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 03:45:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/11 14:28:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 
 #include "../parser_private.h"
 
-bool	parse_shininess(char const *element, float *shininess)
+bool	parse_shininess(char const *element, void *value)
 {
+	float *const	shininess = (float *)value;
+
 	if (!parse_float(element, shininess))
 		return (false);
 	if (*shininess < 0.0f)

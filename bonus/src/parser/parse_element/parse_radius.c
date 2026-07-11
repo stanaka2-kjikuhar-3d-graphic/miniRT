@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 23:40:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 03:26:56 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/11 14:28:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 
 #include "../parser_private.h"
 
-bool	parse_radius(char const *element, float *radius)
+bool	parse_radius(char const *element, void *value)
 {
-	float	diameter;
+	float *const	radius = (float *)value;
+	float			diameter;
 
 	if (!parse_float(element, &diameter))
 		return (false);

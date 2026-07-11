@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/06 03:20:32 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/11 21:03:43 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ enum e_uv_type
 	UV_SPHERE,
 };
 
-typedef	struct s_range
+typedef struct s_range
 {
 	float	max;
 	float	min;

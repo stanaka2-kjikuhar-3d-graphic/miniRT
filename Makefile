@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/06 01:59:37 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/11 21:01:23 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -182,7 +182,9 @@ SRCS	+=	parse_settings.c \
 			parse_plane_setting.c \
 			parse_sphere_setting.c \
 			parse_cylinder_setting.c \
-			parse_material_options.c
+			parse_required_fields.c \
+			parse_optional_fields.c \
+			get_pattern_type.c
 # parser/parse_element
 SRCS	+=	parse_vec3.c \
 			parse_float.c \

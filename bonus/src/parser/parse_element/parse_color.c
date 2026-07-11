@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:11:18 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/06/24 00:20:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/11 21:02:31 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,41 @@
 
 #include "../parser_private.h"
 
+static bool	check_separator(const char *element, enum e_color_channel i);
 static bool	parse_color_channel(char const **element, float *channel);
 
-bool	parse_color(char const *element, t_color *color)
+bool	parse_color(char const *element, void *value)
 {
-	float *const			channel[] = {&(color->r), &(color->g), &(color->b)};
+	t_color *const			color = (t_color *)value;
+	float *const			channels[] = {&(color->r), &(color->g), &(color->b)};
 	enum e_color_channel	i;
 
 	i = RED;
 	while (i <= BLUE)
 	{
-		if (!parse_color_channel(&element, channel[i]))
+		if (!parse_color_channel(&element, channels[i]))
 			return (false);
-		if (((i == RED || i == GREEN) && *element == '\0') \
-			|| (i == BLUE && *element == ','))
-		{
-			print_error_hint(ERROR_COLOR_FORMAT, HINT_COLOR);
+		if (!check_separator(element, i))
 			return (false);
-		}
-		if (((i == RED || i == GREEN) && *element != ',') \
-			|| (i == BLUE && *element != '\0'))
-		{
-			print_error(ERROR_COLOR_NON_DIGIT);
-			return (false);
-		}
 		++element;
 		++i;
+	}
+	return (true);
+}
+
+static bool	check_separator(const char *element, enum e_color_channel i)
+{
+	if (((i == RED || i == GREEN) && *element == '\0') \
+		|| (i == BLUE && *element == ','))
+	{
+		print_error_hint(ERROR_COLOR_FORMAT, HINT_COLOR);
+		return (false);
+	}
+	if (((i == RED || i == GREEN) && *element != ',') \
+		|| (i == BLUE && *element != '\0'))
+	{
+		print_error(ERROR_COLOR_NON_DIGIT);
+		return (false);
 	}
 	return (true);
 }

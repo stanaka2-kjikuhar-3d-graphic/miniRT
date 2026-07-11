@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 03:12:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 03:22:51 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/11 14:28:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 
 #include "ft_error.h"
 
-bool	parse_metalness(char const *element, bool *metalness)
+bool	parse_metalness(char const *element, void *value)
 {
+	bool *const	metalness = (bool *)value;
+
 	if (ft_strcmp("true", element) == 0)
 		*metalness = true;
 	else if (ft_strcmp("false", element) == 0)
