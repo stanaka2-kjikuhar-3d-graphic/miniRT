@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/11 20:57:01 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/11 21:23:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_setting_count
 	size_t	point_light;
 }	t_setting_count;
 
-typedef struct s_reauired_field
+typedef struct s_required_field
 {
 	char const	*element;
 	void		*value;
