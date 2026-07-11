@@ -1,3 +1,0 @@
-Error
-AMBIENT phong_lighting: invalid fields count
-USAGE: A ratio R,G,B

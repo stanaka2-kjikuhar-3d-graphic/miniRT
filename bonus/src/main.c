@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 00:20:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/06/29 06:02:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 #include "renderer.h"
 
 static bool	is_valid_argument(int argc, char const *argv[]);
-static bool	set_mlx(void);
+static void	cleanup(void);
 
 int	main(int argc, char const *argv[])
 {
@@ -36,19 +36,16 @@ int	main(int argc, char const *argv[])
 		ft_dprintf(STDERR_FILENO, "Usage: %s *.rt\n", argv[0]);
 		return (EXIT_FAILURE);
 	}
-	if (!parser(argv[1]))
+	if (!create_mlx_connection())
 		return (EXIT_FAILURE);
-	if (!set_mlx())
+	if (!parser(argv[1]) || !setup_mlx_window())
 	{
-		cleanup_objects();
-		cleanup_lights();
+		cleanup();
 		return (EXIT_FAILURE);
 	}
-	set_render_flag(true);
+	setup_mlx_hooks();
 	mlx_loop(get_mlx_ptr());
-	ft_mlx_destroy();
-	cleanup_objects();
-	cleanup_lights();
+	cleanup();
 	return (EXIT_SUCCESS);
 }
 
@@ -70,17 +67,9 @@ static bool	is_valid_argument(int argc, char const *argv[])
 	return (true);
 }
 
-static bool	set_mlx(void)
+static void	cleanup(void)
 {
-	if (!create_mlx_connection())
-		return (false);
-	if (!create_image(IMG_WINDOW, WINDOW_WIDTH, WINDOW_HEIGHT) \
-		|| !create_window(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE))
-	{
-		ft_mlx_destroy();
-		return (false);
-	}
-	mlx_clear_window(get_mlx_ptr(), get_win_ptr());
-	ft_mlx_hooks();
-	return (true);
+	cleanup_objects();
+	cleanup_lights();
+	cleanup_mlx();
 }

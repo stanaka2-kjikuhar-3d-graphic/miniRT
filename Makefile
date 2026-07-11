@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/24 04:50:51 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/11 21:01:23 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,7 @@ SRC_DIRS	:= bonus/src
 SRC_DIRS	+= $(addprefix bonus/src/, \
 					parser \
 					$(addprefix parser/, \
-						read_file \
+						read_next_line \
 						parse_setting \
 						parse_element \
 						internal \
@@ -122,6 +122,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 							cylinder \
 							plane \
 							sphere \
+							internal \
 						) \
 						viewport \
 					) \
@@ -134,7 +135,10 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 							ivec2 \
 						) \
 					) \
-					ft_mlx ft_mlx/internal \
+					ft_mlx \
+					$(addprefix ft_mlx/, \
+						hooks \
+					) \
 				)
 
 $(foreach dir, $(SRC_DIRS), $(eval vpath %.c $(dir)))
@@ -148,11 +152,15 @@ SRCS	:=	main.c
 # ft_mlx
 SRCS	+=	mlx_ptr.c \
 			win_ptr.c \
-			images.c \
+			image.c \
+			texture.c \
+			cleanup_mlx.c \
+			setup_mlx_window.c \
+			setup_mlx_hooks.c \
 			get_pixel_addr.c \
-			ft_mlx_hooks.c \
-			ft_mlx_destroy.c
-# ft_mlx/internal
+			get_uv_pixel_color.c
+
+# ft_mlx/hooks
 SRCS	+=	expose_hook.c \
 			loop_hook.c \
 			key_press_hook.c \
@@ -161,31 +169,39 @@ SRCS	+=	expose_hook.c \
 
 # parser
 SRCS	+=	parser.c \
+			read_file_as_line_list.c \
 			validate_setting_ids.c
-# parser/read_file
-SRCS	+=	read_file_as_line_list.c \
-			read_next_line.c
+# parser/read_next_line
+SRCS	+=	read_next_line.c
 # parser/parse_setting
 SRCS	+=	parse_settings.c \
 			parse_ambient_light_setting.c \
-			parse_light_setting.c \
+			parse_point_light_setting.c \
+			parse_spot_light_setting.c \
 			parse_camera_setting.c \
 			parse_plane_setting.c \
 			parse_sphere_setting.c \
-			parse_cylinder_setting.c
+			parse_cylinder_setting.c \
+			parse_required_fields.c \
+			parse_optional_fields.c \
+			get_pattern_type.c
 # parser/parse_element
 SRCS	+=	parse_vec3.c \
 			parse_float.c \
 			parse_color.c \
 			parse_dir.c \
-			parse_pos.c \
+			parse_coordinate.c \
 			parse_brightness.c \
 			parse_fov.c \
 			parse_radius.c \
 			parse_half_height.c \
-			parse_angle.c
+			parse_angle.c \
+			parse_texture.c \
+			parse_metalness.c \
+			parse_shininess.c
 # parser/internal
-SRCS	+=	is_identifier.c \
+SRCS	+=	is_setting_id.c \
+			is_option_id.c \
 			count_split.c \
 			free_split.c
 
@@ -222,21 +238,34 @@ SRCS	+=	light.c \
 
 # scene/object
 SRCS	+=	object.c \
-			intersect.c \
-			calc_normal.c \
-			get_object_color.c
+			calc_object_intersection.c \
+			calc_object_uv.c \
+			calc_object_color.c \
+			calc_object_normal.c \
+			init_material.c
 # scene/object/sphere
-SRCS	+=	intersect_sphere.c \
-			calc_sphere_normal.c
+SRCS	+=	create_sphere.c \
+			calc_sphere_intersection.c \
+			calc_sphere_normal.c \
+			calc_sphere_uv.c
 # scene/object/plane
-SRCS	+=	intersect_plane.c \
-			calc_plane_normal.c
+SRCS	+=	create_plane.c \
+			calc_plane_intersection.c \
+			calc_plane_normal.c \
+			calc_plane_uv.c
 # scene/object/cylinder
-SRCS	+=	intersect_cylinder.c \
-			calc_cylinder_normal.c
+SRCS	+=	create_cylinder.c \
+			calc_cylinder_intersection.c \
+			calc_cylinder_normal.c \
+			calc_cylinder_uv.c
 # scene/object/circle
-SRCS	+=	intersect_circle.c \
-			calc_circle_normal.c
+SRCS	+=	create_circle.c \
+			calc_circle_intersection.c \
+			calc_circle_normal.c \
+			calc_circle_uv.c
+# scene/object/internal
+SRCS	+=	compute_onb.c \
+			adjust_uv_range.c
 
 # scene/viewport
 SRCS	+=	viewport.c
@@ -245,7 +274,8 @@ SRCS	+=	viewport.c
 SRCS	+=	add_color.c \
 			mul_color.c \
 			scale_color.c \
-			calc_rgb.c
+			convert_color_to_int.c \
+			convert_uint_to_color.c
 
 # utils/ft_error
 SRCS	+=	print_error.c \

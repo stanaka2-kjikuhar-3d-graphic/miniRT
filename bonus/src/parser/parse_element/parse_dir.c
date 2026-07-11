@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 23:37:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 00:20:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/11 14:28:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,19 @@
 
 #include "../parser_private.h"
 
-bool	parse_dir(char const *element, t_vec3 *dir)
+bool	parse_dir(char const *element, void *value)
 {
-	float	length;
+	t_vec3 *const	dir = (t_vec3 *)value;
+	float			length;
 
 	if (!parse_vec3(element, dir))
 		return (false);
 	length = vec3_length(*dir);
-	if (length < 1.0 - 1e-3 || 1.0 + 1e-3 < length)
+	if (length < 1.0f - NORMALIZED_EPSILON \
+		|| 1.0f + NORMALIZED_EPSILON < length)
 	{
 		print_error(ERROR_DIR_NOT_NORMALIZED);
 		return (false);
 	}
-	*dir = vec3_normalize(*dir);
 	return (true);
 }

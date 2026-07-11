@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:25:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 01:17:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/11 20:59:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,63 +18,67 @@
 
 #include "../parser_private.h"
 
-static bool	parse_cylinder(char const **elements);
-static bool	add_cap_circles(t_cylinder *cylinder);
+static bool	parse_cylinder_required(\
+				char const **elements, t_input_cylinder *input);
+static bool	parse_cylinder_optional(\
+				char const **optional_elements, t_input_cylinder *input);
 
 bool	parse_cylinder_setting(char const **elements)
 {
-	size_t	count;
+	size_t				count;
+	t_input_cylinder	input;
 
 	count = count_split(elements);
-	if (count == 6)
-		return (parse_cylinder(elements));
-	else
+	if (count < 6)
 	{
-		print_error_hint(ERROR_CYLINDER_COUNT, HINT_CYLINDER);
+		print_error_hint(ERROR_CY_COUNT, HINT_CY);
 		return (false);
 	}
+	init_material(&(input.material));
+	input.material.uv_type = UV_CYLINDER;
+	if (!parse_cylinder_required(elements, &input) \
+		|| !parse_cylinder_optional(elements + 6, &input))
+	{
+		return (false);
+	}
+	return (create_cylinder(&input));
 }
 
-static bool	parse_cylinder(char const **elements)
+static bool	parse_cylinder_required(\
+	char const **elements, t_input_cylinder *input)
 {
-	t_object	object;
+	t_required_field const	required_fields[] = {\
+		{elements[1], &(input->center), parse_coordinate}, \
+		{elements[2], &(input->dir), parse_dir}, \
+		{elements[3], &(input->radius), parse_radius}, \
+		{elements[4], &(input->half_height), parse_half_height}, \
+		{elements[5], &(input->material.albedo), parse_color}};
+	size_t const			required_count = sizeof(required_fields) \
+												/ sizeof(t_required_field);
 
-	object.type = OBJ_CYLINDER;
-	if (!parse_pos(elements[1], &(object.cylinder.center)) \
-		|| !parse_dir(elements[2], &(object.cylinder.dir)) \
-		|| !parse_radius(elements[3], &(object.cylinder.radius)) \
-		|| !parse_half_height(elements[4], &(object.cylinder.half_height)) \
-		|| !parse_color(elements[5], &(object.cylinder.color)))
-	{
-		return (false);
-	}
-	if (!add_object(&object) || !add_cap_circles(&(object.cylinder)))
+	if (!parse_required_fields(required_fields, required_count))
 		return (false);
 	return (true);
 }
 
-static bool	add_cap_circles(t_cylinder *cylinder)
+static bool	parse_cylinder_optional(\
+	char const **optional_elements, t_input_cylinder *input)
 {
-	t_object	top;
-	t_object	bottom;
+	t_optional_field const	optional_fields[] = {\
+		{"texture", &(input->material.texture), parse_texture}, \
+		{"checker_color1", &(input->material.checker.color1), parse_color}, \
+		{"checker_color2", &(input->material.checker.color2), parse_color}, \
+		{"metalness", &(input->material.metalness), parse_metalness}, \
+		{"shininess", &(input->material.shininess), parse_shininess}};
+	size_t const			optional_count = sizeof(optional_fields) \
+												/ sizeof(t_optional_field);
 
-	top.type = OBJ_CIRCLE;
-	top.circle = (t_circle){\
-		.color = cylinder->color, \
-		.center = vec3_add(cylinder->center, \
-			vec3_scale(cylinder->half_height, cylinder->dir)), \
-		.normal = cylinder->dir, \
-		.radius = cylinder->radius};
-	if (!add_object(&top))
+	if (!parse_optional_fields(\
+			optional_elements, optional_fields, optional_count))
+	{
 		return (false);
-	bottom.type = OBJ_CIRCLE;
-	bottom.circle = (t_circle){\
-		.color = cylinder->color,
-		.center = vec3_add(cylinder->center, \
-			vec3_scale(-(cylinder->half_height), cylinder->dir)), \
-		.normal = vec3_scale(-1, cylinder->dir), \
-		.radius = cylinder->radius};
-	if (!add_object(&bottom))
-		return (false);
+	}
+	input->material.pattern_type \
+		= get_pattern_type(optional_elements);
 	return (true);
 }

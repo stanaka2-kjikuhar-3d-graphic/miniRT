@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 02:56:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/03 04:28:38 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,27 @@
 
 /* Identifier / Scene */
 # define ERROR_ID_UNKNOWN "SCENE: unknown identifier"
-# define ERROR_ID_DUP_AMBIENT "SCENE: duplicate ambient phong_lighting (A)"
-# define ERROR_ID_DUP_CAMERA "SCENE: duplicate camera (C)"
-# define ERROR_ID_NO_AMBIENT "SCENE: missing ambient phong_lighting (A)"
-# define ERROR_ID_NO_LIGHT "SCENE: missing light (L)"
-# define ERROR_ID_NO_CAMERA "SCENE: missing camera (C)"
+# define ERROR_ID_DUP_A "SCENE: duplicate ambient lighting (A)"
+# define ERROR_ID_DUP_C "SCENE: duplicate camera (C)"
+# define ERROR_ID_NO_A "SCENE: missing ambient lighting (A)"
+# define ERROR_ID_NO_L "SCENE: missing light (L)"
+# define ERROR_ID_NO_C "SCENE: missing camera (C)"
 
 /* Element count */
-# define ERROR_AMBIENT_COUNT "AMBIENT phong_lighting: invalid fields count"
-# define ERROR_LIGHT_COUNT "LIGHT: invalid fields count"
-# define ERROR_CAMERA_COUNT "CAMERA: invalid fields count"
-# define ERROR_SPHERE_COUNT "SPHERE: invalid fields count"
-# define ERROR_PLANE_COUNT "PLANE: invalid fields count"
-# define ERROR_CYLINDER_COUNT "CYLINDER: invalid fields count"
-# define HINT_AMBIENT "USAGE: A ratio R,G,B"
-# define HINT_LIGHT "USAGE: L x,y,z brightness R,G,B"
-# define HINT_CAMERA "USAGE: C x,y,z nx,ny,nz fov"
-# define HINT_SPHERE "USAGE: sp x,y,z diameter R,G,B"
-# define HINT_PLANE "USAGE: pl x,y,z nx,ny,nz R,G,B"
-# define HINT_CYLINDER "USAGE: cy x,y,z nx,ny,nz diameter height R,G,B"
+# define ERROR_A_COUNT "A: invalid fields count"
+# define ERROR_L_COUNT "L: invalid fields count"
+# define ERROR_C_COUNT "C: invalid fields count"
+# define ERROR_SP_COUNT "sp: invalid fields count"
+# define ERROR_PL_COUNT "pl: invalid fields count"
+# define ERROR_CY_COUNT "cy: invalid fields count"
+# define ERROR_SL_COUNT "sl: invalid fields count"
+# define HINT_A "USAGE: A ratio R,G,B"
+# define HINT_L "USAGE: L x,y,z brightness R,G,B"
+# define HINT_C "USAGE: C x,y,z nx,ny,nz fov"
+# define HINT_SP "USAGE: sp x,y,z diameter R,G,B"
+# define HINT_PL "USAGE: pl x,y,z nx,ny,nz R,G,B"
+# define HINT_CY "USAGE: cy x,y,z nx,ny,nz diameter height R,G,B"
+# define HINT_SL "USAGE: sl x,y,z brightness R,G,B, nx,ny,nz angle"
 
 /* Element */
 # define ERROR_BRIGHTNESS_RANGE "BRIGHTNESS: out of range (0.0-1.0)"
@@ -47,6 +49,8 @@
 # define ERROR_HEIGHT_RANGE "HEIGHT: must be positive"
 # define ERROR_HEIGHT_SMALL "HEIGHT: too small, height/2 underflows to 0"
 # define ERROR_ANGLE_RANGE "ANGLE: out of range (0-180)"
+# define ERROR_SHININESS_RANGE "SHININESS: must be non-negative"
+# define ERROR_METALNESS_VALUE "METALNESS: must be true or false"
 
 /* Floating Number */
 # define ERROR_FLOAT_CHARACTER "FLOATING NUMBER: invalid character"
@@ -67,10 +71,19 @@
 # define ERROR_COLOR_RANGE "COLOR: value out of range (0-255)"
 # define HINT_COLOR "USAGE: R,G,B (0-255)"
 
+/* Material option */
+# define ERROR_OPTION_FORMAT "OPTION: missing '=' separator"
+# define ERROR_OPTION_UNKNOWN "OPTION: unknown option id"
+# define ERROR_OPTION_DUP "OPTION: duplicate option"
+# define HINT_MATERIAL_OPTION1 "USAGE: texture=file.xpm "
+# define HINT_MATERIAL_OPTION2 "checker_color1=R,G,B checker_color2=R,G,B "
+# define HINT_MATERIAL_OPTION3 "metalness=false/true shininess=N (0.0 <= N)"
+
 /* MLX */
 # define ERROR_MLX_CONNECTION "MLX: failed to create X-Window connection"
 # define ERROR_MLX_WINDOW "MLX: failed to create window"
 # define ERROR_MLX_IMAGE "MLX: failed to create image"
+# define ERROR_MLX_XPM_IMAGE "MLX: failed to create xpm image"
 # define ERROR_MLX_IMAGE_DATA "MLX: failed to get image data"
 
 void	print_error(char const *msg);

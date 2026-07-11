@@ -21,9 +21,11 @@
 #include "../parser_private.h"
 
 static bool	parse_axis(const char *element);
+static bool	check_separator(const char *element, enum e_axis axis);
 
-bool	parse_vec3(char const *element, t_vec3 *vector)
+bool	parse_vec3(char const *element, void *value)
 {
+	t_vec3 *const	vector = (t_vec3 *)value;
 	float *const	v[3] = {&vector->x, &vector->y, &vector->z};
 	enum e_axis		axis;
 
@@ -33,20 +35,27 @@ bool	parse_vec3(char const *element, t_vec3 *vector)
 		if (!parse_axis(element))
 			return (false);
 		*(v[axis]) = (float)ft_strtod(element, (char **)&element);
-		if (((axis == X_AXIS || axis == Y_AXIS) && *element == '\0') \
-			|| (axis == Z_AXIS && *element == ','))
-		{
-			print_error_hint(ERROR_VECTOR_FORMAT, HINT_VECTOR);
+		if (!check_separator(element, axis))
 			return (false);
-		}
-		if (((axis == X_AXIS || axis == Y_AXIS) && *element != ',') \
-			|| (axis == Z_AXIS && *element != '\0'))
-		{
-			print_error(ERROR_VECTOR_CHARACTER);
-			return (false);
-		}
 		++element;
 		++axis;
+	}
+	return (true);
+}
+
+static bool	check_separator(const char *element, enum e_axis axis)
+{
+	if (((axis == X_AXIS || axis == Y_AXIS) && *element == '\0') \
+		|| (axis == Z_AXIS && *element == ','))
+	{
+		print_error_hint(ERROR_VECTOR_FORMAT, HINT_VECTOR);
+		return (false);
+	}
+	if (((axis == X_AXIS || axis == Y_AXIS) && *element != ',') \
+		|| (axis == Z_AXIS && *element != '\0'))
+	{
+		print_error(ERROR_VECTOR_CHARACTER);
+		return (false);
 	}
 	return (true);
 }

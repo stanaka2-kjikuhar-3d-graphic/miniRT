@@ -1,3 +1,0 @@
-Error
-LIGHT: invalid fields count
-USAGE: L x,y,z brightness R,G,B
