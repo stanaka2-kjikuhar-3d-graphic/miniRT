@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 15:53:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/11 21:00:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/11 21:26:32 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ static t_optional_field const	*find_field_index(\
 	return (NULL);
 }
 
+/* ヒントがマテリアルだけになってしまっているので修正要 */
 static bool	validate_option(\
 	bool format, t_optional_field const *option, bool is_duplicate)
 {
