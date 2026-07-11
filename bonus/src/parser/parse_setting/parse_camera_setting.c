@@ -51,7 +51,5 @@ static bool	parse_camera_required(char const **elements, \
 	size_t const			required_count = sizeof(required_fields) \
 												/ sizeof(t_required_field);
 
-	if (!parse_required_fields(required_fields, required_count))
-		return (false);
-	return (true);
+	return (parse_required_fields(required_fields, required_count));
 }
