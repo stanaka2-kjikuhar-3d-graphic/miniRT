@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:11:18 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/11 21:02:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/11 21:15:07 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static bool	parse_color_channel(char const **element, float *channel);
 bool	parse_color(char const *element, void *value)
 {
 	t_color *const			color = (t_color *)value;
-	float *const			channels[] = {&(color->r), &(color->g), &(color->b)};
+	float *const			channels[] = {\
+								&(color->r), &(color->g), &(color->b)};
 	enum e_color_channel	i;
 
 	i = RED;
