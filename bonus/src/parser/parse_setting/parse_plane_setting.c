@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:22:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/11 21:30:00 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/12 00:45:35 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	parse_plane_setting(char const **elements)
 		return (false);
 	}
 	init_material(&(input.material));
-	input.material.uv_type = UV_PLANE;
+	input.uv.type = UV_PLANE;
 	if (!parse_plane_required(elements, &input) \
 		|| !parse_plane_optional(elements + 4, &input))
 	{

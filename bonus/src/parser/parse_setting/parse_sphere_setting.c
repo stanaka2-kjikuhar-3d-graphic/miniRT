@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:17:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/11 21:30:00 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/12 00:46:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	parse_sphere_setting(char const **elements)
 		return (false);
 	}
 	init_material(&(input.material));
-	input.material.uv_type = UV_SPHERE;
+	input.uv.type = UV_SPHERE;
 	if (!parse_sphere_required(elements, &input) \
 		|| !parse_sphere_optional(elements + 4, &input))
 	{

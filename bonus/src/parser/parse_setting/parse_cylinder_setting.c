@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:25:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/11 20:59:20 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/12 00:46:26 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	parse_cylinder_setting(char const **elements)
 		return (false);
 	}
 	init_material(&(input.material));
-	input.material.uv_type = UV_CYLINDER;
+	input.uv.type = UV_CYLINDER;
 	if (!parse_cylinder_required(elements, &input) \
 		|| !parse_cylinder_optional(elements + 6, &input))
 	{

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/11 23:53:09 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/12 01:11:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,16 +130,10 @@ typedef struct s_object
 }	t_object;
 
 // input
-typedef struct s_input_uv
-{
-	enum e_uv_type	type;
-	float			pattern_size;
-}	t_input_uv;
-
 typedef struct s_input_sphere
 {
 	t_material	material;
-	t_input_uv	uv;
+	t_uv		uv;
 	t_vec3		center;
 	float		radius;
 }	t_input_sphere;
@@ -147,7 +141,7 @@ typedef struct s_input_sphere
 typedef struct s_input_plane
 {
 	t_material	material;
-	t_input_uv	uv;
+	t_uv		uv;
 	t_vec3		center;
 	t_vec3		normal;
 }	t_input_plane;
@@ -155,7 +149,7 @@ typedef struct s_input_plane
 typedef struct s_input_cylinder
 {
 	t_material	material;
-	t_input_uv	uv;
+	t_uv		uv;
 	t_vec3		center;
 	t_vec3		dir;
 	float		radius;
@@ -165,7 +159,7 @@ typedef struct s_input_cylinder
 typedef struct s_input_circle
 {
 	t_material	material;
-	t_input_uv	uv;
+	t_uv		uv;
 	t_vec3		center;
 	t_vec3		normal;
 	float		radius;
