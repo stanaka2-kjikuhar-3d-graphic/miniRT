@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:41:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 22:45:26 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/12 23:21:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ float	calc_cylinder_intersection(t_cylinder const *cylinder, t_ray const *ray)
 static float	select_cylinder_t(\
 	t_cylinder const *cylinder, t_ray const *ray, float t0, float t1)
 {
-	if (0 < t0 && check_cylinder_height(cylinder, ray, t0))
+	if (0.0f < t0 && check_cylinder_height(cylinder, ray, t0))
 		return (t0);
-	if (0 < t1 && check_cylinder_height(cylinder, ray, t1))
+	if (0.0f < t1 && check_cylinder_height(cylinder, ray, t1))
 		return (t1);
 	return (NAN);
 }
