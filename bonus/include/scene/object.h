@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 01:11:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/12 19:56:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,37 +132,75 @@ typedef struct s_object
 // input
 typedef struct s_input_sphere
 {
-	t_material	material;
-	t_uv		uv;
-	t_vec3		center;
-	float		radius;
+	t_vec3	center;
+	float	radius;
+	t_color	albedo;
+	struct	s_sphere_option
+	{
+		enum e_pattern_type	pattern_type;
+		t_image				*texture;
+		t_color				checker_color1;
+		t_color				checker_color2;
+		bool				metalness;
+		float				shininess;
+	}	option;
 }	t_input_sphere;
 
 typedef struct s_input_plane
 {
-	t_material	material;
-	t_uv		uv;
-	t_vec3		center;
-	t_vec3		normal;
+	t_vec3	center;
+	t_vec3	normal;
+	t_color	albedo;
+	struct	s_plane_option
+	{
+		enum e_pattern_type	pattern_type;
+		t_image				*texture;
+		t_color				checker_color1;
+		t_color				checker_color2;
+		bool				metalness;
+		float				shininess;
+		float				pattern_size;
+	}	option;
 }	t_input_plane;
 
 typedef struct s_input_cylinder
 {
-	t_material	material;
-	t_uv		uv;
-	t_vec3		center;
-	t_vec3		dir;
-	float		radius;
-	float		half_height;
+	t_vec3	center;
+	t_vec3	dir;
+	float	radius;
+	float	half_height;
+	t_color	albedo;
+	struct	s_cylinder_option
+	{
+		enum e_pattern_type	pattern_type;
+		t_image				*texture;
+		t_color				checker_color1;
+		t_color				checker_color2;
+		bool				metalness;
+		float				shininess;
+	}	option;
 }	t_input_cylinder;
 
 typedef struct s_input_circle
 {
-	t_material	material;
-	t_uv		uv;
-	t_vec3		center;
-	t_vec3		normal;
-	float		radius;
+	t_vec3	center;
+	t_vec3	normal;
+	float	radius;
+	t_color	albedo;
+	struct	s_circle_option
+	{
+		enum e_pattern_type	pattern_type;
+		t_image				*texture;
+		t_color				checker_color1;
+		t_color				checker_color2;
+		bool				metalness;
+		float				shininess;
+		enum e_uv_type		uv_type;
+		float				pattern_size;
+		float				u_per_v;
+		t_range				u_range;
+		t_range				v_range;
+	}	option;
 }	t_input_circle;
 
 void	init_material(t_material *material);

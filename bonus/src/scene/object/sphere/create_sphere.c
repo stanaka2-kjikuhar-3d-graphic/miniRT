@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 00:54:23 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/12 18:00:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,19 @@ bool	create_sphere(t_input_sphere const *input)
 	t_object	object;
 
 	object.type = OBJ_SPHERE;
-	object.material = input->material;
-	object.uv.u_per_v = 2.0f;
 	object.sphere.center = input->center;
 	object.sphere.radius = input->radius;
+	object.material.albedo = input->albedo;
+	object.material.pattern_type = input->option.pattern_type;
+	object.material.texture = input->option.texture;
+	object.material.checker.color1 = input->option.checker_color1;
+	object.material.checker.color2 = input->option.checker_color2;
+	object.material.metalness = input->option.metalness;
+	object.material.shininess = input->option.shininess;
+	object.uv.type = UV_SPHERE;
+	object.uv.u_per_v = 2.0f;
+	object.uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};
+	object.uv.v_range = (t_range){.max = 1.0f, .min = 0.0f};
 	object.sphere.onb = (t_onb){\
 		.u = vec3(1.0f, 0.0f, 0.0f), \
 		.v = vec3(0.0f, 1.0f, 0.0f), \

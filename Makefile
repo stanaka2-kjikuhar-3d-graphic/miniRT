@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/11 21:01:23 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/12 16:07:16 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -198,7 +198,8 @@ SRCS	+=	parse_vec3.c \
 			parse_angle.c \
 			parse_texture.c \
 			parse_metalness.c \
-			parse_shininess.c
+			parse_shininess.c \
+			parse_size.c
 # parser/internal
 SRCS	+=	is_setting_id.c \
 			is_option_id.c \

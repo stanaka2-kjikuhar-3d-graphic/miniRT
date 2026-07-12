@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 05:59:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 00:56:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/12 19:56:42 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,21 @@ bool	create_circle(t_input_circle const *input)
 	t_object	object;
 
 	object.type = OBJ_CIRCLE;
-	object.material = input->material;
-	if (object.uv.type == UV_UPPER_CAP)
-	{
-		object.uv.v_range \
-			= (t_range){.max = 1.0f, .min = input->uv.v_range.max};
-	}
-	else if (object.uv.uv_type == UV_LOWER_CAP)
-	{
-		object.uv.v_range \
-			= (t_range){.max = input->uv.v_range.min, .min = 0.0f};
-	}
 	object.circle.center = input->center;
 	object.circle.normal = vec3_normalize(input->normal);
 	object.circle.radius = input->radius;
+	object.material.albedo = input->albedo;
+	object.material.pattern_type = input->option.pattern_type;
+	object.material.texture = input->option.texture;
+	object.material.checker.color1 = input->option.checker_color1;
+	object.material.checker.color2 = input->option.checker_color2;
+	object.material.metalness = input->option.metalness;
+	object.material.shininess = input->option.shininess;
+	object.uv.type = input->option.uv_type;
+	object.uv.pattern_size = input->option.pattern_size;
+	object.uv.u_per_v = input->option.u_per_v;
+	object.uv.u_range = input->option.u_range;
+	object.uv.v_range = input->option.v_range;
 	object.circle.onb.w = object.circle.normal;
 	compute_onb(object.circle.onb.w, \
 		&(object.circle.onb.u), &(object.circle.onb.v));
