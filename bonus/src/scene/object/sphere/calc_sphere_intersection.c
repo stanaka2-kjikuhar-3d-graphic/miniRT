@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 19:51:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 22:53:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/12 23:47:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ float	calc_sphere_intersection(t_sphere const *sphere, t_ray const *ray)
 	if (squared_dist > squared_r)
 		return (NAN);
 	t = perp_t - sqrtf(squared_r - squared_dist);
-	if (t >= 0,0f)
+	if (t >= 0.0f)
 		return (t);
 	t = perp_t + sqrtf(squared_r - squared_dist);
 	if (t >= 0.0f)
