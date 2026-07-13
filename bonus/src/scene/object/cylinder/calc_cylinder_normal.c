@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 19:25:57 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/12 23:21:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_vec3	calc_cylinder_normal(\
 	h = vec3_dot(to_point, cylinder->dir);
 	normal = vec3_normalize(\
 				vec3_sub(to_point, vec3_scale(h, cylinder->dir)));
-	if (vec3_dot(normal, ray->dir) > 0)
-		return (vec3_scale(-1, normal));
+	if (vec3_dot(normal, ray->dir) > 0.0f)
+		return (vec3_scale(-1.0f, normal));
 	return (normal);
 }

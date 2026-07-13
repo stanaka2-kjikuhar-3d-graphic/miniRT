@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/11 21:23:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/12 16:05:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ bool				parse_angle(char const *element, void *value);
 bool				parse_float(char const *s, void *value);
 bool				parse_vec3(char const *s, void *value);
 bool				parse_texture(char const *element, void *value);
+bool				parse_size(char const *element, void *value);
 bool				parse_metalness(char const *element, void *value);
 bool				parse_shininess(char const *element, void *value);
 
