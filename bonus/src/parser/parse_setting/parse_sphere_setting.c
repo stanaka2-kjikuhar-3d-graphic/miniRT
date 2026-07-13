@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:17:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 19:50:11 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/13 13:46:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static bool	parse_sphere_optional(\
 		{"texture", &(input->option.texture), parse_texture}, \
 		{"checker_color1", &(input->option.checker_color1), parse_color}, \
 		{"checker_color2", &(input->option.checker_color2), parse_color}, \
+		{"bump_map", &(input->option.bump_map), parse_texture}, \
+		{"normal_map", &(input->option.normal_map), parse_texture}, \
 		{"metalness", &(input->option.metalness), parse_metalness}, \
 		{"shininess", &(input->option.shininess), parse_shininess}};
 	size_t const			optional_count = sizeof(optional_fields) \
@@ -86,6 +88,8 @@ static void	set_default_sphere_option(t_input_sphere *input)
 	input->option.texture = NULL;
 	input->option.checker_color1 = (t_color){0.0f, 0.0f, 0.0f};
 	input->option.checker_color2 = (t_color){1.0f, 1.0f, 1.0f};
+	input->option.bump_map = NULL;
+	input->option.normal_map = NULL;
 	input->option.metalness = false;
 	input->option.shininess = SHININESS;
 }

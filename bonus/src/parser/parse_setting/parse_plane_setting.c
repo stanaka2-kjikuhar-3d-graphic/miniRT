@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:22:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 19:58:15 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/13 13:47:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static bool	parse_plane_optional(\
 		{"texture", &(input->option.texture), parse_texture}, \
 		{"checker_color1", &(input->option.checker_color1), parse_color}, \
 		{"checker_color2", &(input->option.checker_color2), parse_color}, \
+		{"bump_map", &(input->option.bump_map), parse_texture}, \
+		{"normal_map", &(input->option.normal_map), parse_texture}, \
 		{"metalness", &(input->option.metalness), parse_metalness}, \
 		{"shininess", &(input->option.shininess), parse_shininess}, \
 		{"pattern_size", &(input->option.pattern_size), parse_size}};
@@ -87,6 +89,8 @@ static void	set_default_plane_option(t_input_plane *input)
 	input->option.texture = NULL;
 	input->option.checker_color1 = (t_color){0.0f, 0.0f, 0.0f};
 	input->option.checker_color2 = (t_color){1.0f, 1.0f, 1.0f};
+	input->option.bump_map = NULL;
+	input->option.normal_map = NULL;
 	input->option.metalness = false;
 	input->option.shininess = SHININESS;
 	input->option.pattern_size = 10.0f;

@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/12 16:07:16 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/13 13:31:52 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -170,12 +170,12 @@ SRCS	+=	expose_hook.c \
 # parser
 SRCS	+=	parser.c \
 			read_file_as_line_list.c \
-			validate_setting_ids.c
+			validate_setting_ids.c \
+			parse_settings.c
 # parser/read_next_line
 SRCS	+=	read_next_line.c
 # parser/parse_setting
-SRCS	+=	parse_settings.c \
-			parse_ambient_light_setting.c \
+SRCS	+=	parse_ambient_light_setting.c \
 			parse_point_light_setting.c \
 			parse_spot_light_setting.c \
 			parse_camera_setting.c \
