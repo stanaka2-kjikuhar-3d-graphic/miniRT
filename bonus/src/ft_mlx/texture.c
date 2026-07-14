@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 19:06:13 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 20:04:28 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/14 16:21:48 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@
 
 #include "./ft_mlx_private.h"
 
-static t_texture_dict	*g_texture_dict;
+static t_texture_dict	*g_texture_dicts;
 static size_t			g_capacity;
 static size_t			g_count;
 
 static bool	allocate_texture_dict(void);
 static bool	create_image_from_xpm(t_image *image, char *xpm);
 
-t_image	*get_texture(char *filepath)
+t_texture	*get_texture(char *filepath)
 {
 	size_t	i;
 
 	i = 0;
 	while (i < g_count)
 	{
-		if (ft_strcmp(filepath, g_texture_dict[i].filepath) == 0)
-			return (&(g_texture_dict[i].texture));
+		if (ft_strcmp(filepath, g_texture_dicts[i].filepath) == 0)
+			return (g_texture_dicts[i].texture);
 		++i;
 	}
 	return (NULL);
@@ -48,19 +48,22 @@ bool	create_texture(char *filepath)
 	if (get_texture(filepath) != NULL)
 		return (true);
 	if (g_count == g_capacity && !allocate_texture_dict())
-	{
-		g_count = 0;
 		return (false);
-	}
-	g_texture_dict[g_count].filepath = ft_strdup(filepath);
-	if (g_texture_dict[g_count].filepath == NULL)
+	g_texture_dicts[g_count].texture = malloc(sizeof(t_texture));
+	g_texture_dicts[g_count].filepath = ft_strdup(filepath);
+	if (g_texture_dicts[g_count].texture == NULL \
+		|| g_texture_dicts[g_count].filepath == NULL)
 	{
 		print_errno();
+		free(g_texture_dicts[g_count].texture);
+		free(g_texture_dicts[g_count].filepath);
 		return (false);
 	}
-	if (!create_image_from_xpm(&(g_texture_dict[g_count].texture), filepath))
+	if (!create_image_from_xpm(\
+			&(g_texture_dicts[g_count].texture->image), filepath))
 	{
-		free(g_texture_dict[g_count].filepath);
+		free(g_texture_dicts[g_count].texture);
+		free(g_texture_dicts[g_count].filepath);
 		return (false);
 	}
 	++g_count;
@@ -69,20 +72,22 @@ bool	create_texture(char *filepath)
 
 static bool	allocate_texture_dict(void)
 {
-	if (g_texture_dict == NULL)
-		g_texture_dict = malloc(sizeof(t_texture_dict));
+	t_texture_dict	*tmp;
+
+	if (g_texture_dicts == NULL)
+		tmp = malloc(sizeof(t_texture_dict));
 	else
 	{
-		g_texture_dict = ft_reallocf(g_texture_dict, \
-						sizeof(t_texture_dict) * g_capacity, \
-						sizeof(t_texture_dict) * (g_capacity * 2));
+		tmp = ft_realloc(g_texture_dicts, \
+				sizeof(t_texture_dict) * g_capacity, \
+				sizeof(t_texture_dict) * (g_capacity * 2));
 	}
-	if (g_texture_dict == NULL)
+	if (tmp == NULL)
 	{
 		print_errno();
-		g_capacity = 0;
 		return (false);
 	}
+	g_texture_dicts = tmp;
 	if (g_capacity == 0)
 		g_capacity = 1;
 	else
@@ -114,17 +119,18 @@ void	cleanup_texture_dict(void)
 {
 	size_t	i;
 
-	if (g_texture_dict == NULL)
+	if (g_texture_dicts == NULL)
 		return ;
 	i = 0;
 	while (i < g_count)
 	{
-		free(g_texture_dict[i].filepath);
-		mlx_destroy_image(get_mlx_ptr(), g_texture_dict[i].texture.ptr);
+		free(g_texture_dicts[i].filepath);
+		mlx_destroy_image(get_mlx_ptr(), g_texture_dicts[i].texture->image.ptr);
+		free(g_texture_dicts[i].texture);
 		++i;
 	}
-	free(g_texture_dict);
-	g_texture_dict = NULL;
+	free(g_texture_dicts);
+	g_texture_dicts = NULL;
 	g_capacity = 0;
 	g_count = 0;
 }

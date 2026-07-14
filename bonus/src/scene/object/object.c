@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 21:05:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 05:57:32 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/14 15:54:15 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ bool	get_next_object(t_object const **object)
 bool	create_object(t_object const *object)
 {
 	if (g_count == g_capacity && !allocate_objects())
-	{
-		g_count = 0;
 		return (false);
-	}
 	g_objects[g_count] = *object;
 	++g_count;
 	return (true);
@@ -49,20 +46,22 @@ bool	create_object(t_object const *object)
 
 static bool	allocate_objects(void)
 {
+	t_object	*tmp;
+
 	if (g_objects == NULL)
-		g_objects = malloc(sizeof(t_object));
+		tmp = malloc(sizeof(t_object));
 	else
 	{
-		g_objects = ft_reallocf(g_objects, \
+		tmp = ft_realloc(g_objects, \
 						sizeof(t_object) * g_capacity, \
 						sizeof(t_object) * (g_capacity * 2));
 	}
-	if (g_objects == NULL)
+	if (tmp == NULL)
 	{
 		print_errno();
-		g_capacity = 0;
 		return (false);
 	}
+	g_objects = tmp;
 	if (g_capacity == 0)
 		g_capacity = 1;
 	else

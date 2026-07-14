@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:40 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/05 19:06:43 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/14 13:56:39 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,19 @@ typedef struct s_image
 	int		endian;
 }	t_image;
 
+enum e_texture_type
+{
+	TEXTURE_COLOR,
+	TEXTURE_GRAY,
+	TEXTURE_NORMAL
+};
+
+typedef struct s_texture
+{
+	enum e_texture_type	type;
+	t_image				image;
+}	t_texture;
+
 bool			create_mlx_connection(void);
 bool			setup_mlx_window(void);
 bool			create_window(int width, int height, char *title);
@@ -44,7 +57,7 @@ void			setup_mlx_hooks(void);
 void			*get_mlx_ptr(void);
 void			*get_win_ptr(void);
 t_image			*get_image(enum e_image_id id);
-t_image			*get_texture(char *filepath);
+t_texture		*get_texture(char *filepath);
 unsigned int	*get_pixel_addr(t_image *image, int x, int y);
 t_color			get_uv_pixel_color(t_image *image, float u, float v);
 
