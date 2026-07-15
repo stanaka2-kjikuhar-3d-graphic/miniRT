@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 03:08:26 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/14 14:11:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/15 13:00:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 bool	parse_texture(char const *element, void *value)
 {
-	t_texture **const	texture = (t_texture **)value;
+	t_image **const	texture = (t_image **)value;
 
 	if (!create_texture((char *)element))
 		return (false);

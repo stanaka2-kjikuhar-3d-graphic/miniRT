@@ -6,57 +6,36 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 15:05:20 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/15 00:16:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/15 13:58:29 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include <stdbool.h>
 #include <stdint.h>
-#include <stdlib.h>
 
-#include "ft_error.h"
 #include "color.h"
 
+#define TABLE_SIZE 4096
+
 static double	g_boundary[256];
-static uint8_t	*g_srgb_encoded;
-static int		g_table_size;
+static uint8_t	g_srgb_encoded[TABLE_SIZE];
 
 static void	init_boundary_lut(void);
 
-bool	init_srgb_encoded_lut(void)
+void	init_srgb_encoded_lut(void)
 {
 	int	color;
 	int	i;
 
 	init_boundary_lut();
-	g_table_size = 512;
-	while (g_table_size < 32768)
+	color = 0;
+	i = 0;
+	while (i < TABLE_SIZE)
 	{
-		free(g_srgb_encoded);
-		g_table_size *= 2;
-		g_srgb_encoded = malloc(sizeof(uint8_t) * g_table_size);
-		if (g_srgb_encoded == NULL)
-		{
-			print_errno();
-			return (false);
-		}
-		color = 0;
-		i = 0;
-		while (i < g_table_size)
-		{
-			while (color <= 254 && g_boundary[color] <= (double)i / g_table_size)
-				++color;
-			if (i != 0 && color - g_srgb_encoded[i - 1] >= 2)
-				break ;
-			g_srgb_encoded[i++] = (uint8_t)color;
-		}
-		if (i == g_table_size)
-			return (true);
+		while (color <= 254 && g_boundary[color] <= (double)i / TABLE_SIZE)
+			++color;
+		g_srgb_encoded[i++] = (uint8_t)color;
 	}
-	cleanup_srgb_encoded_lut();
-	print_error("");
-	return (false);
 }
 
 static void	init_boundary_lut(void)
@@ -77,12 +56,6 @@ static void	init_boundary_lut(void)
 	g_boundary[255] = INFINITY;
 }
 
-void	cleanup_srgb_encoded_lut(void)
-{
-	free(g_srgb_encoded);
-	g_srgb_encoded = NULL;
-}
-
 uint8_t	encode_srgb(float linear)
 {
 	uint8_t	color;
@@ -91,8 +64,46 @@ uint8_t	encode_srgb(float linear)
 		return (0);
 	if (1.0f <= linear)
 		return (0xFF);
-	color = g_srgb_encoded[(int)(linear * (float)g_table_size)];
+	color = g_srgb_encoded[(int)(linear * (float)TABLE_SIZE)];
 	if ((double)linear >= g_boundary[color])
 		++color;
 	return (color);
 }
+
+// #include <stdlib.h>
+
+// int	test_table_size(void)
+// {
+// 	int		table_size;
+// 	uint8_t	*srgb_encoded;
+// 	int		color;
+// 	int		i;
+
+// 	init_boundary_lut();
+// 	table_size = 512;
+// 	while (table_size < 32768)
+// 	{
+// 		free(srgb_encoded);
+// 		table_size *= 2;
+// 		srgb_encoded = malloc(sizeof(uint8_t) * table_size);
+// 		if (srgb_encoded == NULL)
+// 			return (-1);
+// 		color = 0;
+// 		i = 0;
+// 		while (i < table_size)
+// 		{
+// 			while (color <= 254 && g_boundary[color] <= (double)i / table_size)
+// 				++color;
+// 			if (i != 0 && color - srgb_encoded[i - 1] >= 2)
+// 				break ;
+// 			srgb_encoded[i++] = (uint8_t)color;
+// 		}
+// 		if (i == table_size)
+// 		{
+// 			free(srgb_encoded);
+// 			return (table_size);
+// 		}
+// 	}
+// 	free(srgb_encoded);
+// 	return (-1);
+// }

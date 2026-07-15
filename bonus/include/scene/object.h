@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/14 14:11:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/15 12:28:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ typedef struct s_material
 {
 	enum e_pattern_type	pattern_type;
 	t_color				albedo;
-	t_texture			*texture;
+	t_image				*texture;
 	t_checker			checker;
-	t_texture			*bump_map;
-	t_texture			*normal_map;
+	t_image				*bump_map;
+	t_image				*normal_map;
 	bool				metalness;
 	float				shininess;
 }	t_material;
@@ -140,11 +140,11 @@ typedef struct s_input_sphere
 	struct	s_sphere_option
 	{
 		enum e_pattern_type	pattern_type;
-		t_texture			*texture;
+		t_image				*texture;
 		t_color				checker_color1;
 		t_color				checker_color2;
-		t_texture			*bump_map;
-		t_texture			*normal_map;
+		t_image				*bump_map;
+		t_image				*normal_map;
 		bool				metalness;
 		float				shininess;
 	}	option;
@@ -158,11 +158,11 @@ typedef struct s_input_plane
 	struct	s_plane_option
 	{
 		enum e_pattern_type	pattern_type;
-		t_texture			*texture;
+		t_image				*texture;
 		t_color				checker_color1;
 		t_color				checker_color2;
-		t_texture			*bump_map;
-		t_texture			*normal_map;
+		t_image				*bump_map;
+		t_image				*normal_map;
 		bool				metalness;
 		float				shininess;
 		float				pattern_size;
@@ -179,11 +179,11 @@ typedef struct s_input_cylinder
 	struct	s_cylinder_option
 	{
 		enum e_pattern_type	pattern_type;
-		t_texture			*texture;
+		t_image				*texture;
 		t_color				checker_color1;
 		t_color				checker_color2;
-		t_texture			*bump_map;
-		t_texture			*normal_map;
+		t_image				*bump_map;
+		t_image				*normal_map;
 		bool				metalness;
 		float				shininess;
 	}	option;
@@ -198,11 +198,11 @@ typedef struct s_input_circle
 	struct	s_circle_option
 	{
 		enum e_pattern_type	pattern_type;
-		t_texture			*texture;
+		t_image				*texture;
 		t_color				checker_color1;
 		t_color				checker_color2;
-		t_texture			*bump_map;
-		t_texture			*normal_map;
+		t_image				*bump_map;
+		t_image				*normal_map;
 		bool				metalness;
 		float				shininess;
 		enum e_uv_type		uv_type;

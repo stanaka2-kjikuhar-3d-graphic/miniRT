@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 00:57:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/14 15:33:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/15 20:03:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 
 # define WINDOW_TITLE "miniRT"
 
-# define GAMMA 1.0f
-
 # define FRAME_RATE 24
 # define SEC_TO_USEC 1000000
 
@@ -35,3 +33,4 @@
 # define SHININESS 32.0f
 
 #endif
+ 

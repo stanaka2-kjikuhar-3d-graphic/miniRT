@@ -6,10 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:11:18 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/11 21:15:07 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/15 13:44:56 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdint.h>
 #include <stdbool.h>
 
 #include "ft_ctype.h"
@@ -85,6 +86,6 @@ static bool	parse_color_channel(char const **element, float *channel)
 		print_error(ERROR_COLOR_RANGE);
 		return (false);
 	}
-	*channel = (float)value / 0xFF;
+	*channel = decode_srgb((uint8_t)value);
 	return (true);
 }

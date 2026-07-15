@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 19:06:13 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/14 16:21:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/15 13:00:37 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static size_t			g_count;
 static bool	allocate_texture_dict(void);
 static bool	create_image_from_xpm(t_image *image, char *xpm);
 
-t_texture	*get_texture(char *filepath)
+t_image	*get_texture(char *filepath)
 {
 	size_t	i;
 
@@ -49,7 +49,7 @@ bool	create_texture(char *filepath)
 		return (true);
 	if (g_count == g_capacity && !allocate_texture_dict())
 		return (false);
-	g_texture_dicts[g_count].texture = malloc(sizeof(t_texture));
+	g_texture_dicts[g_count].texture = malloc(sizeof(t_image));
 	g_texture_dicts[g_count].filepath = ft_strdup(filepath);
 	if (g_texture_dicts[g_count].texture == NULL \
 		|| g_texture_dicts[g_count].filepath == NULL)
@@ -59,8 +59,7 @@ bool	create_texture(char *filepath)
 		free(g_texture_dicts[g_count].filepath);
 		return (false);
 	}
-	if (!create_image_from_xpm(\
-			&(g_texture_dicts[g_count].texture->image), filepath))
+	if (!create_image_from_xpm(g_texture_dicts[g_count].texture, filepath))
 	{
 		free(g_texture_dicts[g_count].texture);
 		free(g_texture_dicts[g_count].filepath);
@@ -125,7 +124,7 @@ void	cleanup_texture_dict(void)
 	while (i < g_count)
 	{
 		free(g_texture_dicts[i].filepath);
-		mlx_destroy_image(get_mlx_ptr(), g_texture_dicts[i].texture->image.ptr);
+		mlx_destroy_image(get_mlx_ptr(), g_texture_dicts[i].texture->ptr);
 		free(g_texture_dicts[i].texture);
 		++i;
 	}
