@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/14 15:20:09 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/16 15:10:00 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -277,8 +277,11 @@ SRCS	+=	add_color.c \
 			scale_color.c \
 			convert_color_to_int.c \
 			convert_uint_to_color.c \
-			decode_srgb.c \
-			encode_srgb.c
+			init_color_lut.c \
+			decode_color.c \
+			encode_color.c \
+			srgb.c \
+			gamma.c
 
 # utils/ft_error
 SRCS	+=	print_error.c \

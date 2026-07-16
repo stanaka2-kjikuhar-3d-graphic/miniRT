@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:11:18 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/15 13:44:56 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/16 15:07:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ static bool	parse_color_channel(char const **element, float *channel)
 		print_error(ERROR_COLOR_RANGE);
 		return (false);
 	}
-	*channel = decode_srgb((uint8_t)value);
+	*channel = decode_color((uint8_t)value);
 	return (true);
 }

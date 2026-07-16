@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   decode_srgb.c                                      :+:      :+:    :+:   */
+/*   encode_color.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/14 14:35:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/15 00:06:48 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/16 14:17:11 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/16 15:08:29 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include <stdint.h>
 
-static float	g_srgb_decoded[256];
+#include "config.h"
+#include "color.h"
 
-void	init_srgb_decode_lut(void)
+uint8_t	encode_color(float color)
 {
-	int		color;
-	double	srgb;
-
-	color = 0;
-	while (color < 256)
-	{
-		srgb = (double)color / 255.0;
-		if (srgb <= 0.04045)
-			g_srgb_decoded[color] = (float)(srgb / 12.92);
-		else
-			g_srgb_decoded[color] = (float)(pow((srgb + 0.055) / 1.055, 2.4));
-		++color;
-	}
-}
-
-float	decode_srgb(uint8_t srgb)
-{
-	return (g_srgb_decoded[srgb]);
+	if (GAMMA_MODE)
+		return (encode_gamma(color));
+	else
+		return (encode_srgb(color));
 }

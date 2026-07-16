@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_uint_to_color.c                            :+:      :+:    :+:   */
+/*   decode_color.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/03 18:23:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/16 15:07:32 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/16 14:12:45 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/16 15:08:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdint.h>
 
+#include "config.h"
 #include "color.h"
 
-t_color	convert_uint_to_color(unsigned int rgb)
+float	decode_color(uint8_t color)
 {
-	return ((t_color){\
-		.r = decode_color((uint8_t)((rgb >> 16) & 0xff)), \
-		.g = decode_color((uint8_t)((rgb >> 8) & 0xff)), \
-		.b = decode_color((uint8_t)(rgb & 0xff)), \
-	});
+	if (GAMMA_MODE)
+		return (decode_gamma(color));
+	else
+		return (decode_srgb(color));
 }

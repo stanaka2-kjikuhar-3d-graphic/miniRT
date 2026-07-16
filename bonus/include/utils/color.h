@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 01:09:47 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/15 13:36:58 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/16 15:08:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,14 @@ t_color	convert_uint_to_color(unsigned int rgb);
 t_color	add_color(t_color a, t_color b);
 t_color	mul_color(t_color a, t_color b);
 t_color	scale_color(float t, t_color color);
-void	init_srgb_decode_lut(void);
+void	init_color_lut(void);
+float	decode_color(uint8_t color);
+uint8_t	encode_color(float color);
+void	init_srgb_lut(void);
 float	decode_srgb(uint8_t srgb);
-void	init_srgb_encoded_lut(void);
 uint8_t	encode_srgb(float linear);
+void	init_gamma_lut(void);
+float	decode_gamma(uint8_t gamma_encoded);
+uint8_t	encode_gamma(float linear);
 
 #endif

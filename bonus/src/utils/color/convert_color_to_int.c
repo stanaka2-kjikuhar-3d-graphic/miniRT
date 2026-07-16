@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 01:27:25 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/15 14:07:01 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/16 15:07:23 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	convert_color_to_int(t_color color)
 	i = RED;
 	while (i <= BLUE)
 	{
-		srgb = encode_srgb(channel[i]);
+		srgb = encode_color(channel[i]);
 		rgb = (rgb << 8) | (int)(srgb);
 		++i;
 	}

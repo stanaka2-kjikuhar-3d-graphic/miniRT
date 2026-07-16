@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/15 13:37:42 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/16 15:06:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ static void	cleanup(void);
 
 int	main(int argc, char const *argv[])
 {
-	init_srgb_decode_lut();
-	init_srgb_encoded_lut();
+	init_color_lut();
 	if (!is_valid_argument(argc, argv))
 	{
 		ft_dprintf(STDERR_FILENO, "Error\n");
