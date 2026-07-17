@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:51:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 19:53:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/17 19:35:40 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ typedef struct s_spot_light
 	struct s_spot_angle
 	{
 		float	outer;
+		float	cos_half_outer;
 		float	inner;
+		float	cos_half_inner;
 	}	angle;
 }	t_spot_light;
 

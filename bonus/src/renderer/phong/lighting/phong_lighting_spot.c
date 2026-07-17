@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 03:39:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 21:19:42 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/17 20:16:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@
 
 #include "../phong_private.h"
 
-static t_color	calc_diffuse_color(\
-	t_hit const *hit, t_spot_light const *light);
-static t_color	calc_specular_color(\
-	t_ray const *ray, t_hit const *hit, t_spot_light const *light);
+static float	calc_spot_light_attenuation(\
+					t_spot_light const *light, float dot);
+static t_color	calc_diffuse_color(t_hit const *hit, \
+					t_spot_light const *light, float attenuation);
+static t_color	calc_specular_color(t_ray const *ray, t_hit const *hit, \
+					t_spot_light const *light, float attenuation);
 
 void	phong_lighting_spot(t_color *color, \
 	t_ray const *ray, t_hit const *hit, t_spot_light const *light)
@@ -33,6 +35,7 @@ void	phong_lighting_spot(t_color *color, \
 	float	light_dist;
 	t_vec3	light_dir;
 	float	dot;
+	float	attenuation;
 
 	to_light = vec3_sub(light->pos, hit->point);
 	light_dist = vec3_length(to_light);
@@ -40,19 +43,38 @@ void	phong_lighting_spot(t_color *color, \
 	if (!phong_shading(hit, light_dir, light_dist))
 	{
 		dot = vec3_dot(light_dir, vec3_scale(-1, light->dir));
-		if (acosf(dot) * RAD_TO_DEG < light->angle.outer / 2.0f)
+		if (dot > light->angle.cos_half_outer)
 		{
+			attenuation = calc_spot_light_attenuation(light, dot);
 			*color = add_color(add_color(\
 						*color, \
-						calc_diffuse_color(hit, light)), \
-						calc_specular_color(ray, hit, light) \
+						calc_diffuse_color(hit, light, attenuation)), \
+						calc_specular_color(ray, hit, light, attenuation) \
 					);
 		}
 	}
 }
 
+static float	calc_spot_light_attenuation(\
+	t_spot_light const *light, float dot)
+{
+	float	attenuation;
+
+	if (dot > light->angle.cos_half_inner)
+		attenuation = 1.0f;
+	else
+	{
+		attenuation = ((dot - light->angle.cos_half_outer) \
+				/ (light->angle.cos_half_inner - light->angle.cos_half_outer));
+	}
+	if (SPOT_LIGHT_FALLOFF == 1.0)
+		return (attenuation);
+	else
+		return (powf(attenuation, (float)SPOT_LIGHT_FALLOFF));
+}
+
 static t_color	calc_diffuse_color(\
-	t_hit const *hit, t_spot_light const *light)
+	t_hit const *hit, t_spot_light const *light, float attenuation)
 {
 	float	dot;
 	t_color	diffuse;
@@ -61,12 +83,12 @@ static t_color	calc_diffuse_color(\
 						vec3_normalize(vec3_sub(light->pos, hit->point)));
 	if (dot <= 0.0f)
 		return ((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
-	diffuse = scale_color(dot, light->radiance);
+	diffuse = scale_color(dot * attenuation, light->radiance);
 	return (mul_color(hit->color, diffuse));
 }
 
-static t_color	calc_specular_color(\
-	t_ray const *ray, t_hit const *hit, t_spot_light const *light)
+static t_color	calc_specular_color(t_ray const *ray, \
+	t_hit const *hit, t_spot_light const *light, float attenuation)
 {
 	t_vec3	to_light;
 	t_vec3	reflection;
@@ -82,6 +104,6 @@ static t_color	calc_specular_color(\
 	dot = vec3_dot(vec3_scale(-1, ray->dir), reflection);
 	if (dot <= 0.0f)
 		return ((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
-	specular = scale_color(powf(dot, SHININESS), light->radiance);
+	specular = scale_color(powf(dot, SHININESS) * attenuation, light->radiance);
 	return (specular);
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 17:32:52 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 04:18:51 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/15 12:58:00 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_key
 
 typedef struct s_texture_dict
 {
-	t_image	texture;
+	t_image	*texture;
 	char	*filepath;
 }	t_texture_dict;
 

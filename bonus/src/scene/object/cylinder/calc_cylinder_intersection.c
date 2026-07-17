@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:41:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 23:21:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/15 22:00:37 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static bool	check_cylinder_height(\
 
 	point = vec3_add(ray->origin, vec3_scale(t, ray->dir));
 	h = vec3_dot(vec3_sub(point, cylinder->center), cylinder->dir);
-	if (h < -(cylinder->half_height) || cylinder->half_height < h)
+	if (fabs(h) > cylinder->half_height)
 		return (false);
 	return (true);
 }

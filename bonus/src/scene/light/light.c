@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 22:13:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 05:56:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/14 13:46:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@ bool	get_next_light(t_light const **light)
 bool	create_light(t_light *light)
 {
 	if (g_count == g_capacity && !allocate_lights())
-	{
-		g_count = 0;
 		return (false);
-	}
 	g_lights[g_count] = *light;
 	++g_count;
 	return (true);
@@ -58,20 +55,22 @@ bool	create_light(t_light *light)
 
 static bool	allocate_lights(void)
 {
+	t_light	*tmp;
+
 	if (g_lights == NULL)
-		g_lights = malloc(sizeof(t_light));
+		tmp = malloc(sizeof(t_light));
 	else
 	{
-		g_lights = ft_reallocf(g_lights, \
-						sizeof(t_light) * g_capacity, \
-						sizeof(t_light) * (g_capacity * 2));
+		tmp = ft_realloc(g_lights, \
+				sizeof(t_light) * g_capacity, \
+				sizeof(t_light) * (g_capacity * 2));
 	}
-	if (g_lights == NULL)
+	if (tmp == NULL)
 	{
 		print_errno();
-		g_capacity = 0;
 		return (false);
 	}
+	g_lights = tmp;
 	if (g_capacity == 0)
 		g_capacity = 1;
 	else

@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_texture.c                                    :+:      :+:    :+:   */
+/*   init_color_lut.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/03 03:08:26 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/15 13:00:53 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/16 14:11:39 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/16 15:06:15 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include "config.h"
+#include "color.h"
 
-#include "ft_mlx.h"
-
-bool	parse_texture(char const *element, void *value)
+void	init_color_lut(void)
 {
-	t_image **const	texture = (t_image **)value;
-
-	if (!create_texture((char *)element))
-		return (false);
-	*texture = get_texture((char *)element);
-	return (true);
+	if (GAMMA_MODE)
+		init_gamma_lut();
+	else
+		init_srgb_lut();
 }

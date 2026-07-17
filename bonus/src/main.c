@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 06:02:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/16 15:06:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "ft_string.h"
 
 #include "config.h"
+#include "color.h"
 #include "parser.h"
 #include "light.h"
 #include "object.h"
@@ -30,6 +31,7 @@ static void	cleanup(void);
 
 int	main(int argc, char const *argv[])
 {
+	init_color_lut();
 	if (!is_valid_argument(argc, argv))
 	{
 		ft_dprintf(STDERR_FILENO, "Error\n");

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 04:38:36 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/14 14:12:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 #include "ft_error.h"
 
-#include "../parser_private.h"
+#include "./parser_private.h"
 
 static bool	parse_setting(char const **elements);
 

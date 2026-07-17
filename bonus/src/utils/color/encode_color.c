@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_texture.c                                    :+:      :+:    :+:   */
+/*   encode_color.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/03 03:08:26 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/15 13:00:53 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/16 14:17:11 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/16 15:08:29 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include <stdint.h>
 
-#include "ft_mlx.h"
+#include "config.h"
+#include "color.h"
 
-bool	parse_texture(char const *element, void *value)
+uint8_t	encode_color(float color)
 {
-	t_image **const	texture = (t_image **)value;
-
-	if (!create_texture((char *)element))
-		return (false);
-	*texture = get_texture((char *)element);
-	return (true);
+	if (GAMMA_MODE)
+		return (encode_gamma(color));
+	else
+		return (encode_srgb(color));
 }

@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/12 16:07:16 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/16 15:10:00 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -170,12 +170,12 @@ SRCS	+=	expose_hook.c \
 # parser
 SRCS	+=	parser.c \
 			read_file_as_line_list.c \
-			validate_setting_ids.c
+			validate_setting_ids.c \
+			parse_settings.c
 # parser/read_next_line
 SRCS	+=	read_next_line.c
 # parser/parse_setting
-SRCS	+=	parse_settings.c \
-			parse_ambient_light_setting.c \
+SRCS	+=	parse_ambient_light_setting.c \
 			parse_point_light_setting.c \
 			parse_spot_light_setting.c \
 			parse_camera_setting.c \
@@ -276,7 +276,12 @@ SRCS	+=	add_color.c \
 			mul_color.c \
 			scale_color.c \
 			convert_color_to_int.c \
-			convert_uint_to_color.c
+			convert_uint_to_color.c \
+			init_color_lut.c \
+			decode_color.c \
+			encode_color.c \
+			srgb.c \
+			gamma.c
 
 # utils/ft_error
 SRCS	+=	print_error.c \

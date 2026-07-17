@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 19:56:21 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/15 12:28:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_material
 	t_color				albedo;
 	t_image				*texture;
 	t_checker			checker;
+	t_image				*bump_map;
+	t_image				*normal_map;
 	bool				metalness;
 	float				shininess;
 }	t_material;
@@ -141,6 +143,8 @@ typedef struct s_input_sphere
 		t_image				*texture;
 		t_color				checker_color1;
 		t_color				checker_color2;
+		t_image				*bump_map;
+		t_image				*normal_map;
 		bool				metalness;
 		float				shininess;
 	}	option;
@@ -157,6 +161,8 @@ typedef struct s_input_plane
 		t_image				*texture;
 		t_color				checker_color1;
 		t_color				checker_color2;
+		t_image				*bump_map;
+		t_image				*normal_map;
 		bool				metalness;
 		float				shininess;
 		float				pattern_size;
@@ -176,6 +182,8 @@ typedef struct s_input_cylinder
 		t_image				*texture;
 		t_color				checker_color1;
 		t_color				checker_color2;
+		t_image				*bump_map;
+		t_image				*normal_map;
 		bool				metalness;
 		float				shininess;
 	}	option;
@@ -193,6 +201,8 @@ typedef struct s_input_circle
 		t_image				*texture;
 		t_color				checker_color1;
 		t_color				checker_color2;
+		t_image				*bump_map;
+		t_image				*normal_map;
 		bool				metalness;
 		float				shininess;
 		enum e_uv_type		uv_type;

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 18:23:25 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 04:23:45 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/15 19:53:34 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "vector.h"
 
 /*
-branchness onb
+branchless onb
 https://jcgt.org/published/0006/01/01/paper-lowres.pdf
 */
 void	compute_onb(t_vec3 n, t_vec3 *tangent, t_vec3 *bitangent)
