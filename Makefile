@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/06/19 03:18:11 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/16 15:10:00 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,11 @@ override CFLAGS	+= -Wconversion -Wno-sign-conversion -Wshadow
 #          Include           #
 # -------------------------- #
 
-INCLUDE_DIRS		:= include
+INCLUDE_DIRS		:=	bonus/include \
+						$(addprefix bonus/include/, \
+							scene \
+							utils \
+						)
 
 override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 
@@ -91,16 +95,50 @@ override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 #     Source Directories     #
 # -------------------------- #
 
-SRC_DIRS	:= src
-SRC_DIRS	+= $(addprefix src/, \
-					color \
-					ft_error \
-					ft_mlx ft_mlx/utils \
-					object \
-					parse_file parse_file/utils \
-					phong_reflection_model \
-					scene scene/utils\
-					vector \
+SRC_DIRS	:= bonus/src
+SRC_DIRS	+= $(addprefix bonus/src/, \
+					parser \
+					$(addprefix parser/, \
+						read_next_line \
+						parse_setting \
+						parse_element \
+						internal \
+					) \
+					renderer \
+					$(addprefix renderer/, \
+						path_tracing \
+						phong \
+						$(addprefix phong/, \
+							lighting \
+							shading \
+						) \
+					) \
+					$(addprefix scene/, \
+						camera camera/internal \
+						light \
+						object \
+						$(addprefix object/, \
+							circle \
+							cylinder \
+							plane \
+							sphere \
+							internal \
+						) \
+						viewport \
+					) \
+					$(addprefix utils/, \
+						color \
+						ft_error \
+						$(addprefix vector/, \
+							vec3 \
+							vec2 \
+							ivec2 \
+						) \
+					) \
+					ft_mlx \
+					$(addprefix ft_mlx/, \
+						hooks \
+					) \
 				)
 
 $(foreach dir, $(SRC_DIRS), $(eval vpath %.c $(dir)))
@@ -109,87 +147,162 @@ $(foreach dir, $(SRC_DIRS), $(eval vpath %.c $(dir)))
 #        Source Files        #
 # -------------------------- #
 
-SRCS	:= 	main.c
-
-# color
-SRCS	+=	add_color.c \
-			mul_color.c \
-			scale_color.c \
-			calc_rgb.c
-
-# ft_error
-SRCS	+=	print_error.c \
-			print_errno.c
+SRCS	:=	main.c
 
 # ft_mlx
 SRCS	+=	mlx_ptr.c \
 			win_ptr.c \
-			images.c \
-			ft_mlx_destroy.c \
-			ft_mlx_hooks.c \
-			get_pixel_addr.c
+			image.c \
+			texture.c \
+			cleanup_mlx.c \
+			setup_mlx_window.c \
+			setup_mlx_hooks.c \
+			get_pixel_addr.c \
+			get_uv_pixel_color.c
+
+# ft_mlx/hooks
 SRCS	+=	expose_hook.c \
-			key_press_hook.c
+			loop_hook.c \
+			key_press_hook.c \
+			key_release_hook.c \
+			button_hooks.c
 
-# object
-SRCS	+=	object.c \
-			sphere.c \
-			plane.c \
-			cylinder.c \
-			circle.c \
-			intersect.c \
-			calc_normal.c \
-			get_object_color.c
-
-# phong_reflection_model
-SRCS	+=	phong_reflection_model.c \
-			intersection.c \
-			lighting.c \
-			shadowing.c
-
-# parse_file
-SRCS	+=	parse_file.c \
+# parser
+SRCS	+=	parser.c \
 			read_file_as_line_list.c \
 			validate_setting_ids.c \
-			parse_settings.c \
-			parse_ambient_lighting_setting.c \
-			parse_light_setting.c \
+			parse_settings.c
+# parser/read_next_line
+SRCS	+=	read_next_line.c
+# parser/parse_setting
+SRCS	+=	parse_ambient_light_setting.c \
+			parse_point_light_setting.c \
+			parse_spot_light_setting.c \
 			parse_camera_setting.c \
 			parse_plane_setting.c \
 			parse_sphere_setting.c \
-			parse_cylinder_setting.c
-SRCS	+=	read_next_line.c \
-			is_identifier.c \
-			count_split.c \
-			free_split.c \
+			parse_cylinder_setting.c \
+			parse_required_fields.c \
+			parse_optional_fields.c \
+			get_pattern_type.c
+# parser/parse_element
+SRCS	+=	parse_vec3.c \
+			parse_float.c \
 			parse_color.c \
 			parse_dir.c \
-			parse_pos.c \
+			parse_coordinate.c \
 			parse_brightness.c \
 			parse_fov.c \
 			parse_radius.c \
 			parse_half_height.c \
-			parse_dvec3.c \
-			parse_double.c
+			parse_angle.c \
+			parse_texture.c \
+			parse_metalness.c \
+			parse_shininess.c \
+			parse_size.c
+# parser/internal
+SRCS	+=	is_setting_id.c \
+			is_option_id.c \
+			count_split.c \
+			free_split.c
 
-# scene
-SRCS	+=	ambient_lighting.c \
-			camera.c \
-			light.c \
-			viewport.c
-SRCS	+=	calc_camera_right.c \
+# renderer
+SRCS	+=	renderer.c \
+			render_flag.c
+
+# renderer/phong
+SRCS	+=	phong.c \
+			intersection.c
+# renderer/phong/lighting
+SRCS	+=	phong_lighting.c \
+			phong_lighting_ambient.c \
+			phong_lighting_point.c \
+			phong_lighting_spot.c
+# renderer/phong/shading
+SRCS	+=	phong_shading.c
+
+# scene/camera
+SRCS	+=	camera.c \
+			change_camera_pos.c \
+			change_camera_dir.c \
+			rotate_camera.c
+# scene/camera/internal
+SRCS	+=	calc_camera_dir.c \
+			calc_camera_right.c \
 			calc_camera_up.c
 
-# vector
-SRCS	+=	dvec3.c \
-			dvec3_add.c \
-			dvec3_sub.c \
-			dvec3_length.c \
-			dvec3_normalize.c \
-			dvec3_scale.c \
-			dvec3_dot.c \
-			dvec3_cross.c \
-			dvec3_rotate.c
+# scene/light
+SRCS	+=	light.c \
+			ambient_light.c \
+			point_light.c \
+			spot_light.c
+
+# scene/object
+SRCS	+=	object.c \
+			calc_object_intersection.c \
+			calc_object_uv.c \
+			calc_object_color.c \
+			calc_object_normal.c \
+			init_material.c
+# scene/object/sphere
+SRCS	+=	create_sphere.c \
+			calc_sphere_intersection.c \
+			calc_sphere_normal.c \
+			calc_sphere_uv.c
+# scene/object/plane
+SRCS	+=	create_plane.c \
+			calc_plane_intersection.c \
+			calc_plane_normal.c \
+			calc_plane_uv.c
+# scene/object/cylinder
+SRCS	+=	create_cylinder.c \
+			calc_cylinder_intersection.c \
+			calc_cylinder_normal.c \
+			calc_cylinder_uv.c
+# scene/object/circle
+SRCS	+=	create_circle.c \
+			calc_circle_intersection.c \
+			calc_circle_normal.c \
+			calc_circle_uv.c
+# scene/object/internal
+SRCS	+=	compute_onb.c \
+			adjust_uv_range.c
+
+# scene/viewport
+SRCS	+=	viewport.c
+
+# utils/color
+SRCS	+=	add_color.c \
+			mul_color.c \
+			scale_color.c \
+			convert_color_to_int.c \
+			convert_uint_to_color.c \
+			init_color_lut.c \
+			decode_color.c \
+			encode_color.c \
+			srgb.c \
+			gamma.c
+
+# utils/ft_error
+SRCS	+=	print_error.c \
+			print_errno.c
+
+# utils/vector/vec3
+SRCS	+=	vec3.c \
+			vec3_add.c \
+			vec3_sub.c \
+			vec3_scale.c \
+			vec3_dot.c \
+			vec3_cross.c \
+			vec3_length.c \
+			vec3_normalize.c \
+			vec3_rotate.c
+
+# utils/vector/vec2
+SRCS	+=	vec2.c
+
+# utils/vector/ivec2
+SRCS	+=	ivec2.c
 
 # -------------------------- #
 #        Object Files        #
@@ -277,6 +390,8 @@ override LDLIBS	+= -lm
 
 all: $(NAME)
 
+bonus: $(NAME)
+
 $(NAME): $(OBJS) | $(LIBFT) $(LIBMLX)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
 	@printf "[$(NAME)] $(GREEN)Build Complete:$(DEF_COLOR) $@\n"
@@ -321,10 +436,10 @@ debug:
 	@$(MAKE) re $(EXTRA_FLAGS)
 
 test:
-	@bash TEST/test.sh
+	@bash test/test.sh
 
 norm:
-	@norminette -o src include $(LIBFT_DIR) | grep Error || true
+	@norminette -o bonus/src bonus/include $(LIBFT_DIR) | grep Error || true
 
 # -------------------------- #
 #    ANSI Escape Sequence    #

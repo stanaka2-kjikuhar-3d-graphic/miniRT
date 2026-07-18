@@ -1,3 +1,0 @@
-Error
-LIGHT: missing fields
-USAGE: L x,y,z brightness R,G,B

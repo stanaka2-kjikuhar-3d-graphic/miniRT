@@ -77,6 +77,8 @@ CC := cc
 
 override CFLAGS += -Wall -Wextra -Werror
 override CFLAGS += -Wconversion -Wno-sign-conversion -Wshadow
+# position independent so the archive links into a PIE executable (gcc default)
+override CFLAGS += -fPIE
 
 override ARFLAGS := -rcs
 
