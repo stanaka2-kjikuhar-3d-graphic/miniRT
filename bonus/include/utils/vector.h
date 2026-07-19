@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:33:20 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/19 17:45:13 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/07/19 17:57:01 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,10 @@ t_vec3	vec3_scale(float t, t_vec3 v);
 t_vec3	vec3_sub(t_vec3 a, t_vec3 b);
 t_vec3	vec3(float x, float y, float z);
 
-t_vec4	vec4(float x, float y, float z, float w);
+float	vec4_dot(t_vec4 a, t_vec4 b);
 t_vec4	vec4_from_point(t_vec3 v);
 t_vec4	vec4_from_dir(t_vec3 v);
 t_vec3	vec4_to_vec3(t_vec4 v);
-float	vec4_dot(t_vec4 a, t_vec4 b);
+t_vec4	vec4(float x, float y, float z, float w);
 
 #endif
