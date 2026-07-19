@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/16 15:10:00 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/19 17:48:51 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -158,7 +158,7 @@ SRCS	+=	mlx_ptr.c \
 			setup_mlx_window.c \
 			setup_mlx_hooks.c \
 			get_pixel_addr.c \
-			get_uv_pixel_color.c
+			get_uv_pixel_addr.c
 
 # ft_mlx/hooks
 SRCS	+=	expose_hook.c \

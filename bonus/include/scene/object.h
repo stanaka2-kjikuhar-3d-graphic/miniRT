@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/15 12:28:09 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/19 17:34:57 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,20 @@ typedef struct s_checker
 	t_vec2	size;
 }	t_checker;
 
+enum e_normal_type
+{
+	NORMAL_OBJECT,
+	BUMP_MAP,
+	NORMAL_MAP
+};
+
 typedef struct s_material
 {
 	enum e_pattern_type	pattern_type;
 	t_color				albedo;
 	t_image				*texture;
 	t_checker			checker;
+	
 	t_image				*bump_map;
 	t_image				*normal_map;
 	bool				metalness;
