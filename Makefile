@@ -131,6 +131,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 						ft_error \
 						$(addprefix vector/, \
 							vec3 \
+							vec4 \
 							vec2 \
 							ivec2 \
 						) \
@@ -297,6 +298,13 @@ SRCS	+=	vec3.c \
 			vec3_length.c \
 			vec3_normalize.c \
 			vec3_rotate.c
+
+# utils/vector/vec4
+SRCS	+=	vec4.c \
+			vec4_from_point.c \
+			vec4_from_dir.c \
+			vec4_to_vec3.c \
+			vec4_dot.c
 
 # utils/vector/vec2
 SRCS	+=	vec2.c
