@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/16 15:10:00 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/19 18:20:25 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -131,6 +131,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 						ft_error \
 						$(addprefix vector/, \
 							vec3 \
+							vec4 \
 							vec2 \
 							ivec2 \
 						) \
@@ -297,6 +298,13 @@ SRCS	+=	vec3.c \
 			vec3_length.c \
 			vec3_normalize.c \
 			vec3_rotate.c
+
+# utils/vector/vec4
+SRCS	+=	vec4.c \
+			vec4_from_point.c \
+			vec4_from_dir.c \
+			vec4_to_vec3.c \
+			vec4_dot.c
 
 # utils/vector/vec2
 SRCS	+=	vec2.c
