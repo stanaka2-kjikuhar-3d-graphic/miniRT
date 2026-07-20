@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/19 17:48:51 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/20 19:00:28 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -265,7 +265,7 @@ SRCS	+=	create_circle.c \
 			calc_circle_normal.c \
 			calc_circle_uv.c
 # scene/object/internal
-SRCS	+=	compute_onb.c \
+SRCS	+=	calc_onb.c \
 			adjust_uv_range.c
 
 # scene/viewport

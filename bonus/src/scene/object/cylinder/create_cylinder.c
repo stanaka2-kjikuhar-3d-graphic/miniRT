@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/13 13:50:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/20 19:00:29 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	create_cylinder(t_input_cylinder const *input)
 	cap_ratio = input->radius / (2.0f * (input->radius + input->half_height));
 	object.uv.v_range = (t_range){.max = 1.0f - cap_ratio, .min = cap_ratio};
 	object.cylinder.onb.w = object.cylinder.dir;
-	compute_onb(object.cylinder.onb.w, \
+	calc_onb(object.cylinder.onb.w, \
 		&(object.cylinder.onb.u), &(object.cylinder.onb.v));
 	if (!create_object(&object))
 		return (false);

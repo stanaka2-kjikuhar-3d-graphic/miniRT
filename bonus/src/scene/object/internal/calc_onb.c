@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compute_onb.c                                      :+:      :+:    :+:   */
+/*   calc_onb.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 18:23:25 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/15 19:53:34 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/20 19:00:28 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 branchless onb
 https://jcgt.org/published/0006/01/01/paper-lowres.pdf
 */
-void	compute_onb(t_vec3 n, t_vec3 *tangent, t_vec3 *bitangent)
+void	calc_onb(t_vec3 n, t_vec3 *tangent, t_vec3 *bitangent)
 {
 	float const	sign = copysignf(1.0f, n.z);
 	float const	inv_denom = 1.0f / (sign + n.z);
