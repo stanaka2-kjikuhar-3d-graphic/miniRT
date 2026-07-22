@@ -1,7 +1,62 @@
 # 行列と同次座標
 
-行列演算（積・逆行列・変換）は #7 で追記予定。ここでは同次座標 `t_vec4` の
-「点」と「方向」の区別を扱う。
+回転・平行移動・スケールを 4x4 行列 `t_mat4`（float, 行優先 `m[row][col]`）に集約し、
+点・方向を同次座標 `t_vec4` で一括変換する。前半で行列演算とビルダを、後半で `t_vec4`
+の「点」と「方向」の区別を扱う。
+
+## 行列型
+
+```c
+typedef struct s_mat3 { float m[3][3]; }	t_mat3;  // 法線用の上位3x3
+typedef struct s_mat4 { float m[4][4]; }	t_mat4;  // アフィン変換
+```
+`M · v` は列ベクトル規約で計算する（`mat4_mul_vec4`）。
+
+## 基本演算
+
+| 関数 | 内容 |
+|------|------|
+| `mat4_identity()` | 単位行列 |
+| `mat4_mul(a, b)` | 積 `a · b`（`result[row][col] = Σ_k a[row][k]·b[k][col]`） |
+| `mat4_transpose(m)` | 転置 |
+| `mat4_inverse(m)` | 一般の逆行列（余因子＝随伴行列法）。非一様スケールにも対応 |
+| `mat3_from_mat4(m)` | 上位3x3（線形部）を取り出す |
+
+`mat4_inverse` は `inv[col][row] = cofactor(row, col) / det(m)`（随伴行列 ÷ 行列式）で求める。
+回転のみなら転置が逆になるが、非一様スケールが混ざると転置は逆行列にならないため、一般の
+逆行列を計算する。
+
+**API 規約**: `mat4_inverse` には可逆な行列（`det != 0`）のみを渡すこと。特異行列
+（例: いずれかの軸のスケールが 0、退化した基底）を渡した場合の結果は未定義（0 除算）。
+呼び出し側が可逆性を保証する（scale が 0 でない・基底が一次独立、といった検証は行列を組む前段で行う）。
+
+## ビルダ（local→world の M を組む）
+
+| 関数 | 内容 |
+|------|------|
+| `mat4_translate(t)` | 平行移動（右列に `t`） |
+| `mat4_scale(s)` | 各軸スケール（対角に `s`） |
+| `mat4_rotate(axis, degree)` | `axis` まわりに `degree` 度回転（Rodrigues。列＝回転後の基底ベクトル） |
+| `mat4_basis(basis, origin)` | 上位3x3 に基底 `t_mat3`、右列に `origin` を置く |
+
+`mat4_basis` は正規直交基底（ONB）と中心から local→world の M を組む。基底を `t_mat3`
+で受け取るため、`matrix` は上位レイヤ（scene）の型に依存しない。
+
+```
+      | bx by bz Ox |   b* = 基底ベクトル（列）
+M  =  | ...         |   O* = origin（中心）
+      | 0  0  0  1  |
+```
+合成は `M = translate · rotate · scale`（右から順に local に適用）の順で掛ける。
+
+## 変換関数
+
+| 関数 | w | 用途 |
+|------|---|------|
+| `mat4_transform_point(m, p)` | 1 | 点。`w` 除算で射影して `t_vec3` に戻す |
+| `mat4_transform_dir(m, v)` | 0 | 方向。平行移動を受けず、正規化もしない |
+
+以降の同次座標の節が、この点/方向の区別（w=1 / w=0）の根拠を説明する。
 
 ## 同次座標 t_vec4
 
