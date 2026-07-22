@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 22:18:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/22 23:33:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ typedef struct s_checker
 	t_vec2	size;
 }	t_checker;
 
+enum e_normal_type
+{
+	NORMAL_OBJECT,
+	BUMP_MAP,
+	NORMAL_MAP
+};
+
 typedef struct s_material
 {
 	enum e_pattern_type	pattern_type;
@@ -42,6 +49,7 @@ typedef struct s_material
 	t_image				*texture;
 	t_checker			checker;
 	t_image				*bump_map;
+	float				bump_strength;
 	t_image				*normal_map;
 	bool				metalness;
 	float				shininess;
@@ -322,5 +330,8 @@ t_vec2	calc_object_uv(t_object const *object, t_vec3 point);
 t_color	calc_object_color(t_object const *object, t_vec2 uv);
 t_vec3	calc_object_normal(\
 			t_object const *object, t_ray const *ray, t_vec3 point);
+t_onb	calc_object_tbn(t_object const *object, t_vec3 point, t_vec3 normal);
+t_vec3	calc_bump_mapping(\
+			t_object const *object, t_vec2 uv, t_onb const *tbn);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 22:36:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/22 23:35:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ bool	create_cylinder(t_input_cylinder const *input)
 	object.material.checker.color1 = input->option.checker_color1;
 	object.material.checker.color2 = input->option.checker_color2;
 	object.material.bump_map = input->option.bump_map;
+	object.material.bump_strength = 1.0f;
 	object.material.normal_map = input->option.normal_map;
 	object.material.metalness = input->option.metalness;
 	object.material.shininess = input->option.shininess;
@@ -46,7 +47,7 @@ bool	create_cylinder(t_input_cylinder const *input)
 	cap_ratio = input->radius / (2.0f * (input->radius + input->half_height));
 	object.uv.v_range = (t_range){.max = 1.0f - cap_ratio, .min = cap_ratio};
 	object.cylinder.onb.w = object.cylinder.dir;
-	compute_onb(object.cylinder.onb.w, \
+	calc_onb(object.cylinder.onb.w, \
 		&(object.cylinder.onb.u), &(object.cylinder.onb.v));
 	if (!create_object(&object))
 		return (false);
@@ -79,8 +80,8 @@ static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type)
 	input.option.u_per_v = object->uv.u_per_v;
 	input.option.u_range = (t_range){.max = 1.0f, .min = 0.0f};
 	if (uv_type == UV_UPPER_CAP)
-		input.option.v_range = (t_range){.max = 1.0f, .min = object->uv.v_range.max};
-	else
 		input.option.v_range = (t_range){.max = object->uv.v_range.min, .min = 0.0f};
+	else
+		input.option.v_range = (t_range){.max = 1.0f, .min = object->uv.v_range.max};		
 	return (create_circle(&input));
 }

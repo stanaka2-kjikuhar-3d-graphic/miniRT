@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 22:36:15 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/22 23:38:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ bool	create_hyperboloid(t_input_hyperboloid const *input)
 	object.uv.u_range = (t_range){.max = 1.0f, .min = 0.0f}; // TODO
 	object.uv.v_range = (t_range){.max = 1.0f, .min = 0.0f}; // TODO
 	object.hyperboloid.onb.w = object.hyperboloid.dir;
-	compute_onb(object.hyperboloid.onb.w, \
+	calc_onb(object.hyperboloid.onb.w, \
 		&(object.hyperboloid.onb.u), &(object.hyperboloid.onb.v));
 	if (!create_object(&object))
 		return (false);

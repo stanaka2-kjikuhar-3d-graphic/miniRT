@@ -1,21 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_pixel_addr.c                                   :+:      :+:    :+:   */
+/*   average_rgb.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/23 17:55:08 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/22 00:43:19 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/19 14:16:21 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/19 14:35:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_mlx.h"
-#include "vector.h"
-
-unsigned int	*get_pixel_addr(t_image *image, t_ivec2 pixel)
+float	average_rgb(unsigned int rgb)
 {
-	return ((unsigned int *)(image->pixel \
-				+ pixel.y * image->line_size \
-				+ pixel.x * image->bits_per_pixel / 8));
-}
+	return ((float)(((rgb & 0xff) / 255.0) + (((rgb >> 8) & 0xff) / 255.0) \
+				+ (((rgb >> 16) & 0xff) / 255.0)) / 3);
+};

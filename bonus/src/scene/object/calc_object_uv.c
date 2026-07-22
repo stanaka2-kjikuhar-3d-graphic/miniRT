@@ -6,15 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 19:39:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 19:57:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/22 23:37:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "object.h"
 
 #include "./object_private.h"
-
-static t_vec2	calc_capped_circle_uv(t_object const *object, t_vec3 point);
 
 t_vec2	calc_object_uv(t_object const *object, t_vec3 point)
 {
@@ -27,7 +25,7 @@ t_vec2	calc_object_uv(t_object const *object, t_vec3 point)
 	else if (object->type == OBJ_CYLINDER)
 		uv = calc_cylinder_uv(&(object->cylinder), point);
 	else if (object->type == OBJ_CIRCLE)
-		uv = calc_capped_circle_uv(object, point);
+		uv = calc_circle_uv(&(object->circle), point, object->uv.type);
 	else if (object->type == OBJ_CONE)
 		uv = calc_cone_uv(&(object->cone), point);
 	else if (object->type == OBJ_HYPERBOLOID)
@@ -37,16 +35,4 @@ t_vec2	calc_object_uv(t_object const *object, t_vec3 point)
 	else
 		uv = (t_vec2){.u = 0.0f, .v = 0.0f};
 	return (adjust_uv_range(uv, object->uv.u_range, object->uv.v_range));
-}
-
-static t_vec2	calc_capped_circle_uv(t_object const *object, t_vec3 point)
-{
-	t_vec2	uv;
-
-	uv = calc_circle_uv(&(object->circle), point);
-	if (object->uv.type == UV_UPPER_CAP)
-		uv.v = 1.0f - uv.v;
-	else if (object->uv.type == UV_LOWER_CAP)
-		uv.u = 1.0f - uv.u;
-	return (uv);
 }

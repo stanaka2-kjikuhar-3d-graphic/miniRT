@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 23:09:42 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/22 23:38:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool	create_cone(t_input_cone const *input)
 	cap_ratio = input->radius / (2.0f * (input->radius + object.cone.generatrix));
 	object.uv.v_range = (t_range){.max = 1.0f - cap_ratio, .min = 0.0f};
 	object.cone.onb.w = object.cone.dir;
-	compute_onb(object.cone.onb.w, \
+	calc_onb(object.cone.onb.w, \
 		&(object.cone.onb.u), &(object.cone.onb.v));
 	if (!create_object(&object))
 		return (false);

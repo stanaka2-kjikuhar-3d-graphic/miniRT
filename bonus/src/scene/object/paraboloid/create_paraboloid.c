@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 22:35:45 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/22 23:38:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	create_paraboloid(t_input_paraboloid const *input)
 	object.uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};
 	object.uv.v_range = (t_range){.max = 1.0f, .min = 0.0f};
 	object.paraboloid.onb.w = object.paraboloid.dir;
-	compute_onb(object.paraboloid.onb.w, \
+	calc_onb(object.paraboloid.onb.w, \
 		&(object.paraboloid.onb.u), &(object.paraboloid.onb.v));
 	return (create_object(&object));
 }
