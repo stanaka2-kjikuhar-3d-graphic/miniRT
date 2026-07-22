@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_plane.c                                     :+:      :+:    :+:   */
+/*   create_paraboloid.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/24 15:48:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 22:07:01 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/22 22:35:45 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
+#include "vector.h"
 #include "object.h"
 
 #include "../object_private.h"
 
-bool	create_plane(t_input_plane const *input)
+bool	create_paraboloid(t_input_paraboloid const *input)
 {
 	t_object	object;
 
-	object.type = OBJ_PLANE;
-	object.plane.center = input->center;
-	object.plane.normal = vec3_normalize(input->normal);
+	object.type = OBJ_PARABOLOID;
+	object.paraboloid.center = input->center;
+	object.paraboloid.dir = vec3_normalize(input->dir);
+	object.paraboloid.quadratic_coefficient = input->quadratic_coefficient;
+	object.paraboloid.height = input->height;
 	object.material.albedo = input->albedo;
 	object.material.pattern_type = input->option.pattern_type;
 	object.material.texture = input->option.texture;
@@ -33,12 +36,11 @@ bool	create_plane(t_input_plane const *input)
 	object.material.metalness = input->option.metalness;
 	object.material.shininess = input->option.shininess;
 	object.uv.type = UV_DEFAULT;
-	object.uv.pattern_size = input->option.pattern_size;
-	object.uv.u_per_v = 1.0f;
+	object.uv.u_per_v = 1.0f; // TODO
 	object.uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};
 	object.uv.v_range = (t_range){.max = 1.0f, .min = 0.0f};
-	object.plane.onb.w = object.plane.normal;
-	compute_onb(object.plane.onb.w, \
-		&(object.plane.onb.u), &(object.plane.onb.v));
+	object.paraboloid.onb.w = object.paraboloid.dir;
+	compute_onb(object.paraboloid.onb.w, \
+		&(object.paraboloid.onb.u), &(object.paraboloid.onb.v));
 	return (create_object(&object));
 }

@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/16 15:10:00 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/22 23:04:52 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,6 +120,9 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 						$(addprefix object/, \
 							circle \
 							cylinder \
+							cone \
+							hyperboloid \
+							paraboloid \
 							plane \
 							sphere \
 							internal \
@@ -175,13 +178,16 @@ SRCS	+=	parser.c \
 # parser/read_next_line
 SRCS	+=	read_next_line.c
 # parser/parse_setting
-SRCS	+=	parse_ambient_light_setting.c \
-			parse_point_light_setting.c \
-			parse_spot_light_setting.c \
-			parse_camera_setting.c \
-			parse_plane_setting.c \
-			parse_sphere_setting.c \
-			parse_cylinder_setting.c \
+SRCS	+=	parse_ambient_light.c \
+			parse_point_light.c \
+			parse_spot_light.c \
+			parse_camera.c \
+			parse_plane.c \
+			parse_sphere.c \
+			parse_cylinder.c \
+			parse_cone.c \
+			parse_hyperboloid.c \
+			parse_paraboloid.c \
 			parse_required_fields.c \
 			parse_optional_fields.c \
 			get_pattern_type.c
@@ -264,6 +270,21 @@ SRCS	+=	create_circle.c \
 			calc_circle_intersection.c \
 			calc_circle_normal.c \
 			calc_circle_uv.c
+# scene/object/cone
+SRCS	+=	create_cone.c \
+			calc_cone_intersection.c \
+			calc_cone_normal.c \
+			calc_cone_uv.c
+# scene/object/hyperboloid
+SRCS	+=	create_hyperboloid.c \
+			calc_hyperboloid_intersection.c \
+			calc_hyperboloid_normal.c \
+			calc_hyperboloid_uv.c
+# scene/object/paraboloid
+SRCS	+=	create_paraboloid.c \
+			calc_paraboloid_intersection.c \
+			calc_paraboloid_normal.c \
+			calc_paraboloid_uv.c
 # scene/object/internal
 SRCS	+=	compute_onb.c \
 			adjust_uv_range.c

@@ -29,10 +29,18 @@ float	calc_plane_intersection(t_plane const *plane, t_ray const *ray);
 float	calc_cylinder_intersection(\
 			t_cylinder const *cylinder, t_ray const *ray);
 float	calc_circle_intersection(t_circle const *circle, t_ray const *ray);
+float	calc_cone_intersection(t_cone const *cone, t_ray const *ray);
+float	calc_hyperboloid_intersection(\
+			t_hyperboloid const *hyperboloid, t_ray const *ray);
+float	calc_paraboloid_intersection(\
+			t_paraboloid const *paraboloid, t_ray const *ray);
 t_vec2	calc_sphere_uv(t_sphere const *sphere, t_vec3 point);
 t_vec2	calc_plane_uv(t_plane const *plane, t_vec3 point, float pattern_size);
 t_vec2	calc_cylinder_uv(t_cylinder const *cylinder, t_vec3 point);
 t_vec2	calc_circle_uv(t_circle const *circle, t_vec3 point);
+t_vec2	calc_cone_uv(t_cone const *cone, t_vec3 point);
+t_vec2	calc_hyperboloid_uv(t_hyperboloid const *hyperboloid, t_vec3 point);
+t_vec2	calc_paraboloid_uv(t_paraboloid const *paraboloid, t_vec3 point);
 t_color	calc_sphere_color(t_sphere const *sphere, t_vec2 uv);
 t_color	calc_plane_color(t_plane const *plane, t_vec2 uv);
 t_vec3	calc_sphere_normal(\
@@ -41,6 +49,12 @@ t_vec3	calc_plane_normal(t_plane const *plane, t_ray const *ray);
 t_vec3	calc_cylinder_normal(\
 			t_cylinder const *cylinder, t_ray const *ray, t_vec3 point);
 t_vec3	calc_circle_normal(t_circle const *circle, t_ray const *ray);
+t_vec3	calc_cone_normal(\
+			t_cone const *cone, t_ray const *ray, t_vec3 point);
+t_vec3	calc_hyperboloid_normal(\
+			t_hyperboloid const *hyperboloid, t_ray const *ray, t_vec3 point);
+t_vec3	calc_paraboloid_normal(\
+			t_paraboloid const *paraboloid, t_ray const *ray, t_vec3 point);
 void	compute_onb(t_vec3 n, t_vec3 *tangent, t_vec3 *bitangent);
 t_vec2	adjust_uv_range(t_vec2 uv, t_range u_range, t_range v_range);
 

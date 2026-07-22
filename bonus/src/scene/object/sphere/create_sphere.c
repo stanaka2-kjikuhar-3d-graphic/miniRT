@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/13 13:49:09 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/22 22:06:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	create_sphere(t_input_sphere const *input)
 	object.material.normal_map = input->option.normal_map;
 	object.material.metalness = input->option.metalness;
 	object.material.shininess = input->option.shininess;
-	object.uv.type = UV_SPHERE;
+	object.uv.type = UV_DEFAULT;
 	object.uv.u_per_v = 2.0f;
 	object.uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};
 	object.uv.v_range = (t_range){.max = 1.0f, .min = 0.0f};

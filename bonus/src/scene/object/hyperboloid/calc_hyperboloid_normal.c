@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_size.c                                       :+:      :+:    :+:   */
+/*   calc_hyperboloid_normal.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/12 16:02:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 16:02:58 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/19 19:25:57 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/22 21:53:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include "vector.h"
+#include "object.h"
+#include "ray.h"
 
-#include "ft_error.h"
+#include "../object_private.h"
 
-#include "../parser_private.h"
-
-bool	parse_size(char const *element, void *value)
+// TODO: implement hyperboloid normal
+t_vec3	calc_hyperboloid_normal(\
+	t_hyperboloid const *hyperboloid, t_ray const *ray, t_vec3 point)
 {
-	float *const	size = (float *)value;
-
-	if (!parse_float(element, size))
-		return (false);
-	if (*size <= 0.0f)
-	{
-		print_error(ERROR_SIZE_RANGE);
-		return (false);
-	}
-	return (true);
+	(void)hyperboloid;
+	(void)ray;
+	(void)point;
+	return ((t_vec3){.x = 0.0f, .y = 0.0f, .z = 0.0f});
 }
