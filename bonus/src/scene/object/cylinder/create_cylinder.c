@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 23:35:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/23 00:47:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type)
 	if (uv_type == UV_UPPER_CAP)
 		input.option.v_range = (t_range){.max = object->uv.v_range.min, .min = 0.0f};
 	else
-		input.option.v_range = (t_range){.max = 1.0f, .min = object->uv.v_range.max};		
+		input.option.v_range = (t_range){.max = 1.0f, .min = object->uv.v_range.max};
 	return (create_circle(&input));
 }
