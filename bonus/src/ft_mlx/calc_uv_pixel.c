@@ -17,17 +17,17 @@ t_ivec2	calc_uv_pixel(t_image *image, t_vec2 uv)
 {
 	t_ivec2	pixel;
 
-	if (u < 0.0f)
+	if (uv.u < 0.0f)
 		pixel.x = 0;
-	else if (1.0f <= u)
+	else if (1.0f <= uv.u)
 		pixel.x = image->width - 1;
 	else
-		pixel.x = (int)((float)image->width * u);
-	if (v < 0.0f)
+		pixel.x = (int)((float)image->width * uv.u);
+	if (uv.v < 0.0f)
 		pixel.y = 0;
-	else if (1.0f <= v)
+	else if (1.0f <= uv.v)
 		pixel.y = image->height - 1;
 	else
-		pixel.y = (int)((float)image->height * v);
+		pixel.y = (int)((float)image->height * uv.v);
 	return (pixel);
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/20 19:00:28 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/22 17:01:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ bool	create_plane(t_input_plane const *input)
 	object.material.checker.color1 = input->option.checker_color1;
 	object.material.checker.color2 = input->option.checker_color2;
 	object.material.bump_map = input->option.bump_map;
+	object.material.bump_strength = 1.0f;
 	object.material.normal_map = input->option.normal_map;
 	object.material.metalness = input->option.metalness;
 	object.material.shininess = input->option.shininess;

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 22:46:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/05 22:38:42 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/22 00:49:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_hit	intersection(t_ray const *ray)
 	t_object const	*object;
 	t_hit			hit;
 	float			t;
+	t_onb			tbn;
 
 	hit.object = NULL;
 	hit.t = INFINITY;
@@ -42,5 +43,10 @@ t_hit	intersection(t_ray const *ray)
 	hit.uv = calc_object_uv(hit.object, hit.point);
 	hit.color = calc_object_color(hit.object, hit.uv);
 	hit.normal = calc_object_normal(hit.object, ray, hit.point);
+	if (hit.object->material.bump_map != NULL)
+	{
+		tbn = calc_object_tbn(hit.object, hit.point, hit.normal);
+		hit.normal = calc_bump_mapping(hit.object, hit.uv, &tbn);
+	}
 	return (hit);
 }
