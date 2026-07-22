@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_pixel_addr.c                                   :+:      :+:    :+:   */
+/*   calc_cylinder_tbn.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/23 17:55:08 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/22 00:43:19 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/21 19:51:26 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/21 21:40:42 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_mlx.h"
+#include "object.h"
 #include "vector.h"
 
-unsigned int	*get_pixel_addr(t_image *image, t_ivec2 pixel)
+t_onb	calc_cylinder_tbn(t_cylinder const *cylinder, t_vec3 normal)
 {
-	return ((unsigned int *)(image->pixel \
-				+ pixel.y * image->line_size \
-				+ pixel.x * image->bits_per_pixel / 8));
+	t_onb	tbn;
+
+	tbn.w = normal;
+	tbn.v = vec3_scale(-1.0f, cylinder->dir);
+	tbn.u = vec3_cross(tbn.w, tbn.v);
+	return (tbn);
 }

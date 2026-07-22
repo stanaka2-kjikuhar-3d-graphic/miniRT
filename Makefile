@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/16 15:10:00 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/21 23:27:25 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -158,7 +158,8 @@ SRCS	+=	mlx_ptr.c \
 			setup_mlx_window.c \
 			setup_mlx_hooks.c \
 			get_pixel_addr.c \
-			get_uv_pixel_color.c
+			get_uv_pixel_addr.c \
+			calc_uv_pixel.c
 
 # ft_mlx/hooks
 SRCS	+=	expose_hook.c \
@@ -243,29 +244,35 @@ SRCS	+=	object.c \
 			calc_object_uv.c \
 			calc_object_color.c \
 			calc_object_normal.c \
+			calc_object_tbn.c \
+			calc_bump_mapping.c \
 			init_material.c
 # scene/object/sphere
 SRCS	+=	create_sphere.c \
 			calc_sphere_intersection.c \
 			calc_sphere_normal.c \
-			calc_sphere_uv.c
+			calc_sphere_uv.c \
+			calc_sphere_tbn.c
 # scene/object/plane
 SRCS	+=	create_plane.c \
 			calc_plane_intersection.c \
 			calc_plane_normal.c \
-			calc_plane_uv.c
+			calc_plane_uv.c \
+			calc_plane_tbn.c
 # scene/object/cylinder
 SRCS	+=	create_cylinder.c \
 			calc_cylinder_intersection.c \
 			calc_cylinder_normal.c \
-			calc_cylinder_uv.c
+			calc_cylinder_uv.c \
+			calc_cylinder_tbn.c
 # scene/object/circle
 SRCS	+=	create_circle.c \
 			calc_circle_intersection.c \
 			calc_circle_normal.c \
-			calc_circle_uv.c
+			calc_circle_uv.c \
+			calc_circle_tbn.c
 # scene/object/internal
-SRCS	+=	compute_onb.c \
+SRCS	+=	calc_onb.c \
 			adjust_uv_range.c
 
 # scene/viewport
@@ -281,7 +288,8 @@ SRCS	+=	add_color.c \
 			decode_color.c \
 			encode_color.c \
 			srgb.c \
-			gamma.c
+			gamma.c \
+			average_rgb.c
 
 # utils/ft_error
 SRCS	+=	print_error.c \
