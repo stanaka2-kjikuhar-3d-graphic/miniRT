@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 17:00:35 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/23 00:47:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,9 @@ typedef struct s_material
 
 enum e_uv_type
 {
-	UV_PLANE,
+	UV_DEFAULT,
 	UV_UPPER_CAP,
 	UV_LOWER_CAP,
-	UV_CYLINDER,
-	UV_SPHERE,
 };
 
 typedef struct s_range
@@ -91,39 +89,71 @@ enum e_object_type
 	OBJ_SPHERE,
 	OBJ_PLANE,
 	OBJ_CYLINDER,
-	OBJ_CIRCLE
+	OBJ_CIRCLE,
+	OBJ_CONE,
+	OBJ_HYPERBOLOID,
+	OBJ_PARABOLOID
 };
 
 typedef struct s_sphere
 {
-	t_vec3		center;
-	float		radius;
-	t_onb		onb;
+	t_vec3	center;
+	float	radius;
+	t_onb	onb;
 }	t_sphere;
 
 typedef struct s_plane
 {
-	t_vec3		center;
-	t_vec3		normal;
-	t_onb		onb;
+	t_vec3	center;
+	t_vec3	normal;
+	t_onb	onb;
 }	t_plane;
 
 typedef struct s_cylinder
 {
-	t_vec3		center;
-	t_vec3		dir;
-	float		radius;
-	float		half_height;
-	t_onb		onb;
+	t_vec3	center;
+	t_vec3	dir;
+	float	radius;
+	float	half_height;
+	t_onb	onb;
 }	t_cylinder;
 
 typedef struct s_circle
 {
-	t_vec3		center;
-	t_vec3		normal;
-	float		radius;
-	t_onb		onb;
+	t_vec3	center;
+	t_vec3	normal;
+	float	radius;
+	t_onb	onb;
 }	t_circle;
+
+typedef struct s_cone
+{
+	t_vec3	center;
+	t_vec3	dir;
+	float	radius;
+	float	height;
+	float	generatrix;
+	t_onb	onb;
+}	t_cone;
+
+typedef struct s_hyperboloid
+{
+	t_vec3	center;
+	t_vec3	dir;
+	float	center_radius;
+	float	cap_radius;
+	float	half_height;
+	t_onb	onb;
+}	t_hyperboloid;
+
+typedef struct s_paraboloid
+{
+	t_vec3	center;
+	t_vec3	dir;
+	float	quadratic_coefficient;
+	float	height;
+	t_onb	onb;
+}	t_paraboloid;
 
 typedef struct s_object
 {
@@ -132,10 +162,13 @@ typedef struct s_object
 	enum e_object_type	type;
 	union
 	{
-		t_sphere	sphere;
-		t_plane		plane;
-		t_circle	circle;
-		t_cylinder	cylinder;
+		t_sphere		sphere;
+		t_plane			plane;
+		t_circle		circle;
+		t_cylinder		cylinder;
+		t_cone			cone;
+		t_hyperboloid	hyperboloid;
+		t_paraboloid	paraboloid;
 	};
 }	t_object;
 
@@ -221,11 +254,75 @@ typedef struct s_input_circle
 	}	option;
 }	t_input_circle;
 
+typedef struct s_input_cone
+{
+	t_vec3	center;
+	t_vec3	dir;
+	float	radius;
+	float	height;
+	t_color	albedo;
+	struct	s_cone_option
+	{
+		enum e_pattern_type	pattern_type;
+		t_image				*texture;
+		t_color				checker_color1;
+		t_color				checker_color2;
+		t_image				*bump_map;
+		t_image				*normal_map;
+		bool				metalness;
+		float				shininess;
+	}	option;
+}	t_input_cone;
+
+typedef struct s_input_hyperboloid
+{
+	t_vec3	center;
+	t_vec3	dir;
+	float	center_radius;
+	float	cap_radius;
+	float	half_height;
+	t_color	albedo;
+	struct	s_hyperboloid_option
+	{
+		enum e_pattern_type	pattern_type;
+		t_image				*texture;
+		t_color				checker_color1;
+		t_color				checker_color2;
+		t_image				*bump_map;
+		t_image				*normal_map;
+		bool				metalness;
+		float				shininess;
+	}	option;
+}	t_input_hyperboloid;
+
+typedef struct s_input_paraboloid
+{
+	t_vec3	center;
+	t_vec3	dir;
+	float	quadratic_coefficient;
+	float	height;
+	t_color	albedo;
+	struct	s_paraboloid_option
+	{
+		enum e_pattern_type	pattern_type;
+		t_image				*texture;
+		t_color				checker_color1;
+		t_color				checker_color2;
+		t_image				*bump_map;
+		t_image				*normal_map;
+		bool				metalness;
+		float				shininess;
+	}	option;
+}	t_input_paraboloid;
+
 void	init_material(t_material *material);
 bool	create_sphere(t_input_sphere const *input);
 bool	create_plane(t_input_plane const *input);
 bool	create_cylinder(t_input_cylinder const *input);
 bool	create_circle(t_input_circle const *input);
+bool	create_cone(t_input_cone const *input);
+bool	create_hyperboloid(t_input_hyperboloid const *input);
+bool	create_paraboloid(t_input_paraboloid const *input);
 bool	get_next_object(t_object const **object);
 void	cleanup_objects(void);
 float	calc_object_intersection(t_object const *object, t_ray const *ray);

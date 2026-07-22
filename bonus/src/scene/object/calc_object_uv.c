@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 19:39:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/21 22:17:57 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/23 00:48:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ t_vec2	calc_object_uv(t_object const *object, t_vec3 point)
 		uv = calc_cylinder_uv(&(object->cylinder), point);
 	else if (object->type == OBJ_CIRCLE)
 		uv = calc_circle_uv(&(object->circle), point, object->uv.type);
+	else if (object->type == OBJ_CONE)
+		uv = calc_cone_uv(&(object->cone), point);
+	else if (object->type == OBJ_HYPERBOLOID)
+		uv = calc_hyperboloid_uv(&(object->hyperboloid), point);
+	else if (object->type == OBJ_PARABOLOID)
+		uv = calc_paraboloid_uv(&(object->paraboloid), point);
 	else
 		uv = (t_vec2){.u = 0.0f, .v = 0.0f};
 	return (adjust_uv_range(uv, object->uv.u_range, object->uv.v_range));

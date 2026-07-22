@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:52:34 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 02:32:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/22 20:42:31 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ static bool	validate_invalid_id(char const *line)
 		|| is_setting_id("sl", line) \
 		|| is_setting_id("sp", line) \
 		|| is_setting_id("pl", line) \
-		|| is_setting_id("cy", line))
+		|| is_setting_id("cy", line) \
+		|| is_setting_id("co", line) \
+		|| is_setting_id("hb", line) \
+		|| is_setting_id("pb", line))
 	{
 		return (true);
 	}

@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_size.c                                       :+:      :+:    :+:   */
+/*   calc_cone_intersection.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/12 16:02:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 16:02:58 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/17 02:41:38 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/22 22:03:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include <stdbool.h>
 
-#include "ft_error.h"
+#include "config.h"
+#include "vector.h"
+#include "object.h"
+#include "ray.h"
 
-#include "../parser_private.h"
+#include "../object_private.h"
 
-bool	parse_size(char const *element, void *value)
+// TODO: implement cone intersection
+float	calc_cone_intersection(t_cone const *cone, t_ray const *ray)
 {
-	float *const	size = (float *)value;
-
-	if (!parse_float(element, size))
-		return (false);
-	if (*size <= 0.0f)
-	{
-		print_error(ERROR_SIZE_RANGE);
-		return (false);
-	}
-	return (true);
+	(void)cone;
+	(void)ray;
+	return (NAN);
 }
