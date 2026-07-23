@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 23:03:30 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/23 21:44:35 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,48 +30,47 @@ bool	parse_settings(t_list **line_list)
 	while (*line_list != NULL)
 	{
 		line = ft_lst_pop_front(line_list);
-		elements = ft_split_set(line, " \f\r\t\v");
-		free(line);
-		if (elements == NULL)
+		if (!is_blank_line(line))
 		{
-			print_errno();
-			return (false);
+			elements = ft_split_set(line, " \f\r\t\v");
+			free(line);
+			if (elements == NULL)
+			{
+				print_errno();
+				return (false);
+			}
+			if (!parse_setting((char const **)elements))
+			{
+				free_split(elements);
+				return (false);
+			}
+			free_split(elements);	
 		}
-		if (!parse_setting((char const **)elements))
-		{
-			free_split(elements);
-			return (false);
-		}
-		free_split(elements);
+		else
+			free(line);
 	}
 	return (true);
 }
 
 static bool	parse_setting(char const **elements)
 {
-	if (is_setting_id("A", elements[0]))
-		return (parse_ambient_light(elements));
-	else if (is_setting_id("L", elements[0]))
-		return (parse_point_light(elements));
-	else if (is_setting_id("C", elements[0]))
-		return (parse_camera(elements));
-	else if (is_setting_id("sl", elements[0]))
-		return (parse_spot_light(elements));
-	else if (is_setting_id("sp", elements[0]))
-		return (parse_sphere(elements));
-	else if (is_setting_id("pl", elements[0]))
-		return (parse_plane(elements));
-	else if (is_setting_id("cy", elements[0]))
-		return (parse_cylinder(elements));
-	else if (is_setting_id("co", elements[0]))
-		return (parse_cone(elements));
-	else if (is_setting_id("hb", elements[0]))
-		return (parse_hyperboloid(elements));
-	else if (is_setting_id("pb", elements[0]))
-		return (parse_paraboloid(elements));
-	else
+	static t_setting_parser	const	parser[] = {\
+		{"A", parse_ambient_light}, {"L", parse_point_light}, \
+		{"C", parse_ambient_light}, {"sl", parse_ambient_light}, \
+		{"sp", parse_ambient_light}, {"pl", parse_ambient_light}, \
+		{"cy", parse_ambient_light}, {"co", parse_ambient_light}, \
+		{"hb", parse_ambient_light}, {"pb", parse_ambient_light}, \
+		{NULL, NULL} \
+	};
+	size_t							i;
+
+	i = 0;
+	while (parser[i].id != NULL)
 	{
-		print_error(ERROR_ID_UNKNOWN);
-		return (false);
+		if (is_setting_id(parser[i].id, elements[0]))
+			return (parser[i].parse(elements));
+		++i;
 	}
+	print_error(ERROR_ID_UNKNOWN);
+	return (false);
 }

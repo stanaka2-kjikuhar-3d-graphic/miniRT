@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/23 00:48:47 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/23 21:20:48 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -208,7 +208,8 @@ SRCS	+=	parse_vec3.c \
 			parse_shininess.c \
 			parse_size.c
 # parser/internal
-SRCS	+=	is_setting_id.c \
+SRCS	+=	is_blank_line.c \
+			is_setting_id.c \
 			is_option_id.c \
 			count_split.c \
 			free_split.c

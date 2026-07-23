@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 23:05:25 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/23 21:20:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ typedef struct s_setting_count
 	size_t	point_light;
 }	t_setting_count;
 
+typedef struct s_setting_parser
+{
+	char const	*id;
+	bool		(*parse)(char const **);
+}	t_setting_parser;
+
 typedef struct s_required_field
 {
 	char const	*element;
@@ -47,6 +53,7 @@ typedef struct s_optional_field
 bool				read_file_as_line_list(int fd, t_list **line_list);
 bool				read_next_line(int fd, char **next_line);
 bool				validate_setting_ids(t_list *line_list);
+bool				is_blank_line(char const *line);
 bool				is_setting_id(char const *id, char const *line);
 bool				parse_settings(t_list **line_list);
 size_t				count_split(char const **split);

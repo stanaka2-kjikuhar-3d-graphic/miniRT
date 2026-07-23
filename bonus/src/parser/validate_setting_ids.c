@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:52:34 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 20:42:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/23 21:22:24 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,17 @@ bool	validate_setting_ids(t_list *line_list)
 	while (line_list != NULL)
 	{
 		line = (char const *)(line_list->content);
-		if (!validate_invalid_id(line))
-			return (false);
-		if (is_setting_id("A", line))
-			++(count.ambient_light);
-		else if (is_setting_id("L", line))
-			++(count.point_light);
-		else if (is_setting_id("C", line))
-			++(count.camera);
+		if (!is_blank_line(line))
+		{
+			if (!validate_invalid_id(line))
+				return (false);
+			if (is_setting_id("A", line))
+				++(count.ambient_light);
+			else if (is_setting_id("L", line))
+				++(count.point_light);
+			else if (is_setting_id("C", line))
+				++(count.camera);
+		}
 		line_list = line_list->next;
 	}
 	if (!validate_setting_count(count))
@@ -49,16 +52,11 @@ bool	validate_setting_ids(t_list *line_list)
 
 static bool	validate_invalid_id(char const *line)
 {
-	if (is_setting_id("A", line) \
-		|| is_setting_id("L", line) \
-		|| is_setting_id("C", line) \
-		|| is_setting_id("sl", line) \
-		|| is_setting_id("sp", line) \
-		|| is_setting_id("pl", line) \
-		|| is_setting_id("cy", line) \
-		|| is_setting_id("co", line) \
-		|| is_setting_id("hb", line) \
-		|| is_setting_id("pb", line))
+	if (is_setting_id("A", line) || is_setting_id("L", line) \
+		|| is_setting_id("C", line) || is_setting_id("sl", line) \
+		|| is_setting_id("sp", line) || is_setting_id("pl", line) \
+		|| is_setting_id("cy", line) || is_setting_id("co", line) \
+		|| is_setting_id("hb", line) || is_setting_id("pb", line))
 	{
 		return (true);
 	}
