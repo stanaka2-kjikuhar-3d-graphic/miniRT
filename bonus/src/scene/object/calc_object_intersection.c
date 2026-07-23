@@ -27,5 +27,11 @@ float	calc_object_intersection(t_object const *object, t_ray const *ray)
 		return (calc_cylinder_intersection(&(object->cylinder), ray));
 	else if (object->type == OBJ_CIRCLE)
 		return (calc_circle_intersection(&(object->circle), ray));
+	else if (object->type == OBJ_CONE)
+		return (calc_cone_intersection(&(object->cone), ray));
+	else if (object->type == OBJ_HYPERBOLOID)
+		return (calc_hyperboloid_intersection(&(object->hyperboloid), ray));
+	else if (object->type == OBJ_PARABOLOID)
+		return (calc_paraboloid_intersection(&(object->paraboloid), ray));
 	return (NAN);
 }

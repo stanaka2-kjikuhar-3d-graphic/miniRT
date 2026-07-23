@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_size.c                                       :+:      :+:    :+:   */
+/*   get_uv_pixel_addr.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/12 16:02:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 16:02:58 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/19 17:50:36 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/19 18:57:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include "ft_mlx.h"
+#include "vector.h"
 
-#include "ft_error.h"
-
-#include "../parser_private.h"
-
-bool	parse_size(char const *element, void *value)
+unsigned int	*get_uv_pixel_addr(t_image *image, t_vec2 uv)
 {
-	float *const	size = (float *)value;
-
-	if (!parse_float(element, size))
-		return (false);
-	if (*size <= 0.0f)
-	{
-		print_error(ERROR_SIZE_RANGE);
-		return (false);
-	}
-	return (true);
+	return (get_pixel_addr(image, calc_uv_pixel(image, uv)));
 }

@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/16 15:10:00 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/23 00:48:47 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,6 +120,9 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 						$(addprefix object/, \
 							circle \
 							cylinder \
+							cone \
+							hyperboloid \
+							paraboloid \
 							plane \
 							sphere \
 							internal \
@@ -158,7 +161,8 @@ SRCS	+=	mlx_ptr.c \
 			setup_mlx_window.c \
 			setup_mlx_hooks.c \
 			get_pixel_addr.c \
-			get_uv_pixel_color.c
+			get_uv_pixel_addr.c \
+			calc_uv_pixel.c
 
 # ft_mlx/hooks
 SRCS	+=	expose_hook.c \
@@ -175,13 +179,16 @@ SRCS	+=	parser.c \
 # parser/read_next_line
 SRCS	+=	read_next_line.c
 # parser/parse_setting
-SRCS	+=	parse_ambient_light_setting.c \
-			parse_point_light_setting.c \
-			parse_spot_light_setting.c \
-			parse_camera_setting.c \
-			parse_plane_setting.c \
-			parse_sphere_setting.c \
-			parse_cylinder_setting.c \
+SRCS	+=	parse_ambient_light.c \
+			parse_point_light.c \
+			parse_spot_light.c \
+			parse_camera.c \
+			parse_plane.c \
+			parse_sphere.c \
+			parse_cylinder.c \
+			parse_cone.c \
+			parse_hyperboloid.c \
+			parse_paraboloid.c \
 			parse_required_fields.c \
 			parse_optional_fields.c \
 			get_pattern_type.c
@@ -243,30 +250,51 @@ SRCS	+=	object.c \
 			calc_object_uv.c \
 			calc_object_color.c \
 			calc_object_normal.c \
+			calc_object_tbn.c \
+			calc_bump_mapping.c \
 			init_material.c
 # scene/object/sphere
 SRCS	+=	create_sphere.c \
 			calc_sphere_intersection.c \
 			calc_sphere_normal.c \
-			calc_sphere_uv.c
+			calc_sphere_uv.c \
+			calc_sphere_tbn.c
 # scene/object/plane
 SRCS	+=	create_plane.c \
 			calc_plane_intersection.c \
 			calc_plane_normal.c \
-			calc_plane_uv.c
+			calc_plane_uv.c \
+			calc_plane_tbn.c
 # scene/object/cylinder
 SRCS	+=	create_cylinder.c \
 			calc_cylinder_intersection.c \
 			calc_cylinder_normal.c \
-			calc_cylinder_uv.c
+			calc_cylinder_uv.c \
+			calc_cylinder_tbn.c
 # scene/object/circle
 SRCS	+=	create_circle.c \
 			calc_circle_intersection.c \
 			calc_circle_normal.c \
-			calc_circle_uv.c
+			calc_circle_uv.c \
+			calc_circle_tbn.c
+# scene/object/cone
+SRCS	+=	create_cone.c \
+			calc_cone_intersection.c \
+			calc_cone_normal.c \
+			calc_cone_uv.c
+# scene/object/hyperboloid
+SRCS	+=	create_hyperboloid.c \
+			calc_hyperboloid_intersection.c \
+			calc_hyperboloid_normal.c \
+			calc_hyperboloid_uv.c
+# scene/object/paraboloid
+SRCS	+=	create_paraboloid.c \
+			calc_paraboloid_intersection.c \
+			calc_paraboloid_normal.c \
+			calc_paraboloid_uv.c
 # scene/object/internal
-SRCS	+=	compute_onb.c \
-			adjust_uv_range.c
+SRCS	+=	calc_onb.c \
+			adjust_uv_range.c \
 
 # scene/viewport
 SRCS	+=	viewport.c
@@ -281,7 +309,8 @@ SRCS	+=	add_color.c \
 			decode_color.c \
 			encode_color.c \
 			srgb.c \
-			gamma.c
+			gamma.c \
+			average_rgb.c
 
 # utils/ft_error
 SRCS	+=	print_error.c \

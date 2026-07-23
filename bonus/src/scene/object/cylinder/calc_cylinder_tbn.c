@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_size.c                                       :+:      :+:    :+:   */
+/*   calc_cylinder_tbn.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/12 16:02:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 16:02:58 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/21 19:51:26 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/21 21:40:42 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include "object.h"
+#include "vector.h"
 
-#include "ft_error.h"
-
-#include "../parser_private.h"
-
-bool	parse_size(char const *element, void *value)
+t_onb	calc_cylinder_tbn(t_cylinder const *cylinder, t_vec3 normal)
 {
-	float *const	size = (float *)value;
+	t_onb	tbn;
 
-	if (!parse_float(element, size))
-		return (false);
-	if (*size <= 0.0f)
-	{
-		print_error(ERROR_SIZE_RANGE);
-		return (false);
-	}
-	return (true);
+	tbn.w = normal;
+	tbn.v = vec3_scale(-1.0f, cylinder->dir);
+	tbn.u = vec3_cross(tbn.w, tbn.v);
+	return (tbn);
 }

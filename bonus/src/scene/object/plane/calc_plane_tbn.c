@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_size.c                                       :+:      :+:    :+:   */
+/*   calc_plane_tbn.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/12 16:02:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 16:02:58 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/21 19:26:01 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/21 20:28:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include "object.h"
+#include "vector.h"
 
-#include "ft_error.h"
-
-#include "../parser_private.h"
-
-bool	parse_size(char const *element, void *value)
+t_onb	calc_plane_tbn(t_plane const *plane, t_vec3 normal)
 {
-	float *const	size = (float *)value;
+	t_onb	tbn;
 
-	if (!parse_float(element, size))
-		return (false);
-	if (*size <= 0.0f)
-	{
-		print_error(ERROR_SIZE_RANGE);
-		return (false);
-	}
-	return (true);
+	tbn.w = normal;
+	tbn.u = plane->onb.u;
+	tbn.v = vec3_cross(tbn.w, tbn.u);
+	return (tbn);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_sphere_setting.c                             :+:      :+:    :+:   */
+/*   parse_plane.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 20:17:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/13 13:46:51 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/10 20:22:24 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/23 00:47:38 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,37 +19,37 @@
 
 #include "../parser_private.h"
 
-static bool	parse_sphere_required(\
-				char const **elements, t_input_sphere *input);
-static bool	parse_sphere_optional(\
-				char const **optional_elements, t_input_sphere *input);
-static void	set_default_sphere_option(t_input_sphere *input);
+static bool	parse_plane_required(\
+				char const **elements, t_input_plane *input);
+static bool	parse_plane_optional(\
+				char const **optional_elements, t_input_plane *input);
+static void	set_default_plane_option(t_input_plane *input);
 
-bool	parse_sphere_setting(char const **elements)
+bool	parse_plane(char const **elements)
 {
 	size_t			count;
-	t_input_sphere	input;
+	t_input_plane	input;
 
 	count = count_split(elements);
 	if (count < 4)
 	{
-		print_error_hint(ERROR_SP_COUNT, HINT_SP);
+		print_error_hint(ERROR_PL_COUNT, HINT_PL);
 		return (false);
 	}
-	if (!parse_sphere_required(elements, &input) \
-		|| !parse_sphere_optional(elements + 4, &input))
+	if (!parse_plane_required(elements, &input) \
+		|| !parse_plane_optional(elements + 4, &input))
 	{
 		return (false);
 	}
-	return (create_sphere(&input));
+	return (create_plane(&input));
 }
 
-static bool	parse_sphere_required(\
-	char const **elements, t_input_sphere *input)
+static bool	parse_plane_required(\
+	char const **elements, t_input_plane *input)
 {
 	t_required_field const	required_fields[] = {\
 		{elements[1], &(input->center), parse_coordinate}, \
-		{elements[2], &(input->radius), parse_radius}, \
+		{elements[2], &(input->normal), parse_dir}, \
 		{elements[3], &(input->albedo), parse_color}};
 	size_t const			required_count = sizeof(required_fields) \
 												/ sizeof(t_required_field);
@@ -57,8 +57,8 @@ static bool	parse_sphere_required(\
 	return (parse_required_fields(required_fields, required_count));
 }
 
-static bool	parse_sphere_optional(\
-	char const **optional_elements, t_input_sphere *input)
+static bool	parse_plane_optional(\
+	char const **optional_elements, t_input_plane *input)
 {
 	t_optional_field const	optional_fields[] = {\
 		{"texture", &(input->option.texture), parse_texture}, \
@@ -67,11 +67,12 @@ static bool	parse_sphere_optional(\
 		{"bump_map", &(input->option.bump_map), parse_texture}, \
 		{"normal_map", &(input->option.normal_map), parse_texture}, \
 		{"metalness", &(input->option.metalness), parse_metalness}, \
-		{"shininess", &(input->option.shininess), parse_shininess}};
+		{"shininess", &(input->option.shininess), parse_shininess}, \
+		{"pattern_size", &(input->option.pattern_size), parse_size}};
 	size_t const			optional_count = sizeof(optional_fields) \
 												/ sizeof(t_optional_field);
 
-	set_default_sphere_option(input);
+	set_default_plane_option(input);
 	if (!parse_optional_fields(\
 			optional_elements, optional_fields, optional_count))
 	{
@@ -82,14 +83,16 @@ static bool	parse_sphere_optional(\
 	return (true);
 }
 
-static void	set_default_sphere_option(t_input_sphere *input)
+static void	set_default_plane_option(t_input_plane *input)
 {
 	input->option.pattern_type = PATTERN_SOLID;
 	input->option.texture = NULL;
 	input->option.checker_color1 = (t_color){0.0f, 0.0f, 0.0f};
 	input->option.checker_color2 = (t_color){1.0f, 1.0f, 1.0f};
 	input->option.bump_map = NULL;
+
 	input->option.normal_map = NULL;
 	input->option.metalness = false;
 	input->option.shininess = SHININESS;
+	input->option.pattern_size = 10.0f;
 }

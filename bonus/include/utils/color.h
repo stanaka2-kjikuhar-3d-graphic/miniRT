@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 01:09:47 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/16 15:08:53 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/19 14:36:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ uint8_t	encode_srgb(float linear);
 void	init_gamma_lut(void);
 float	decode_gamma(uint8_t gamma_encoded);
 uint8_t	encode_gamma(float linear);
+float	average_rgb(unsigned int rgb);
 
 #endif

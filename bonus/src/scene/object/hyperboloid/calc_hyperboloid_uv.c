@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_size.c                                       :+:      :+:    :+:   */
+/*   calc_hyperboloid_uv.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/12 16:02:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 16:02:58 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/05 21:37:42 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/22 21:53:40 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include <math.h>
 
-#include "ft_error.h"
+#include "vector.h"
+#include "object.h"
 
-#include "../parser_private.h"
-
-bool	parse_size(char const *element, void *value)
+// TODO: implement hyperboloid uv
+t_vec2	calc_hyperboloid_uv(t_hyperboloid const *hyperboloid, t_vec3 point)
 {
-	float *const	size = (float *)value;
-
-	if (!parse_float(element, size))
-		return (false);
-	if (*size <= 0.0f)
-	{
-		print_error(ERROR_SIZE_RANGE);
-		return (false);
-	}
-	return (true);
+	(void)hyperboloid;
+	(void)point;
+	return ((t_vec2){.u = 0.0f, .v = 0.0f});
 }
