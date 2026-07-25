@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/23 21:20:10 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/25 23:44:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,26 @@
 
 # define NORMALIZED_EPSILON 0.001f // 1e-3
 
-typedef struct s_setting_count
+enum e_setting_index
 {
-	size_t	camera;
-	size_t	ambient_light;
-	size_t	point_light;
-}	t_setting_count;
+	ID_AMBIENT_LIGHT,
+	ID_CAMERA,
+	ID_POINT_LIGHT,
+	ID_SPHERE,
+	ID_PLANE,
+	ID_CYLINDER,
+	ID_CONE,
+	ID_HYPERBOLOID,
+	ID_PARABOLOID,
+	ID_SPOT_LIGHT,
+	SETTING_ID_COUNT,
+};
 
 typedef struct s_setting_parser
 {
 	char const	*id;
+	char const	*missing_err;
+	char const	*dup_err;
 	bool		(*parse)(char const **);
 }	t_setting_parser;
 
@@ -52,7 +62,6 @@ typedef struct s_optional_field
 
 bool				read_file_as_line_list(int fd, t_list **line_list);
 bool				read_next_line(int fd, char **next_line);
-bool				validate_setting_ids(t_list *line_list);
 bool				is_blank_line(char const *line);
 bool				is_setting_id(char const *id, char const *line);
 bool				parse_settings(t_list **line_list);

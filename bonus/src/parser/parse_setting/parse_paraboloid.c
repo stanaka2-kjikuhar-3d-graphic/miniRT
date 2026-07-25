@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 20:37:29 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 23:01:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:42:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	parse_paraboloid(char const **elements)
 	count = count_split(elements);
 	if (count < 6)
 	{
-		print_error_hint(ERROR_PB_COUNT, HINT_PB);
+		print_line_error_hint(ERROR_PB_COUNT, HINT_PB);
 		return (false);
 	}
 	if (!parse_paraboloid_required(elements, &input) \

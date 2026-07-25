@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 20:37:31 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 23:14:42 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:38:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	parse_hyperboloid(char const **elements)
 	count = count_split(elements);
 	if (count < 7)
 	{
-		print_error_hint(ERROR_HB_COUNT, HINT_HB1 HINT_HB2);
+		print_line_error_hint(ERROR_HB_COUNT, HINT_HB1 HINT_HB2);
 		return (false);
 	}
 	if (!parse_hyperboloid_required(elements, &input) \
@@ -59,9 +59,10 @@ static bool	parse_hyperboloid_required(\
 
 	if (!parse_required_fields(required_fields, required_count))
 		return (false);
+	set_error_line_multi_str((char const *[]){elements[3], elements[4], NULL});
 	if (input->center_radius >= input->cap_radius)
 	{
-		print_error(ERROR_HB_RADIUS);
+		print_line_error(ERROR_HB_RADIUS);
 		return (false);
 	}
 	return (true);

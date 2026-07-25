@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 14:38:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/11 14:28:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:44:58 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	parse_angle(char const *element, void *value)
 		return (false);
 	if (*angle < 0.0f || 180.0f < *angle)
 	{
-		print_error(ERROR_ANGLE_RANGE);
+		print_line_error(ERROR_ANGLE_RANGE);
 		return (false);
 	}
 	return (true);

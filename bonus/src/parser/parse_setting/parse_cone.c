@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 20:37:35 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 23:00:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:28:43 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	parse_cone(char const **elements)
 	count = count_split(elements);
 	if (count < 6)
 	{
-		print_error_hint(ERROR_CO_COUNT, HINT_CO);
+		print_line_error_hint(ERROR_CO_COUNT, HINT_CO);
 		return (false);
 	}
 	if (!parse_cone_required(elements, &input) \

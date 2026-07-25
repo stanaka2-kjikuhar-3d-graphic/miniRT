@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 03:12:52 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/11 14:28:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:46:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	parse_shininess(char const *element, void *value)
 		return (false);
 	if (*shininess < 0.0f)
 	{
-		print_error(ERROR_SHININESS_RANGE);
+		print_line_error(ERROR_SHININESS_RANGE);
 		return (false);
 	}
 	return (true);

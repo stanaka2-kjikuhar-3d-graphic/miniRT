@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:22:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/23 00:47:38 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:58:19 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	parse_plane(char const **elements)
 	count = count_split(elements);
 	if (count < 4)
 	{
-		print_error_hint(ERROR_PL_COUNT, HINT_PL);
+		print_line_error_hint(ERROR_PL_COUNT, HINT_PL);
 		return (false);
 	}
 	if (!parse_plane_required(elements, &input) \
@@ -90,7 +90,6 @@ static void	set_default_plane_option(t_input_plane *input)
 	input->option.checker_color1 = (t_color){0.0f, 0.0f, 0.0f};
 	input->option.checker_color2 = (t_color){1.0f, 1.0f, 1.0f};
 	input->option.bump_map = NULL;
-
 	input->option.normal_map = NULL;
 	input->option.metalness = false;
 	input->option.shininess = SHININESS;

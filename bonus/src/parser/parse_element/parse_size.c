@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/12 16:02:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 16:02:58 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:46:32 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	parse_size(char const *element, void *value)
 		return (false);
 	if (*size <= 0.0f)
 	{
-		print_error(ERROR_SIZE_RANGE);
+		print_line_error(ERROR_SIZE_RANGE);
 		return (false);
 	}
 	return (true);

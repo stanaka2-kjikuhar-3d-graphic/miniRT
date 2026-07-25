@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:11:18 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/16 15:07:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:45:19 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ static bool	check_separator(const char *element, enum e_color_channel i)
 	if (((i == RED || i == GREEN) && *element == '\0') \
 		|| (i == BLUE && *element == ','))
 	{
-		print_error_hint(ERROR_COLOR_FORMAT, HINT_COLOR);
+		print_line_error_hint(ERROR_COLOR_FORMAT, HINT_COLOR);
 		return (false);
 	}
 	if (((i == RED || i == GREEN) && *element != ',') \
 		|| (i == BLUE && *element != '\0'))
 	{
-		print_error(ERROR_COLOR_NON_DIGIT);
+		print_line_error(ERROR_COLOR_NON_DIGIT);
 		return (false);
 	}
 	return (true);
@@ -67,23 +67,23 @@ static bool	parse_color_channel(char const **element, float *channel)
 
 	if (**element == ',' || **element == '\0')
 	{
-		print_error(ERROR_COLOR_EMPTY);
+		print_line_error(ERROR_COLOR_EMPTY);
 		return (false);
 	}
 	if (!ft_isdigit(**element))
 	{
-		print_error(ERROR_COLOR_NON_DIGIT);
+		print_line_error(ERROR_COLOR_NON_DIGIT);
 		return (false);
 	}
 	if (**element == '0' && ft_isdigit(*(*element + 1)))
 	{
-		print_error(ERROR_COLOR_LEADING_ZERO);
+		print_line_error(ERROR_COLOR_LEADING_ZERO);
 		return (false);
 	}
 	value = ft_strtol(*element, (char **)element, 10);
 	if (0xFF < value)
 	{
-		print_error(ERROR_COLOR_RANGE);
+		print_line_error(ERROR_COLOR_RANGE);
 		return (false);
 	}
 	*channel = decode_color((uint8_t)value);

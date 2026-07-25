@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 23:40:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/11 14:28:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:46:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ bool	parse_radius(char const *element, void *value)
 		return (false);
 	if (diameter <= 0.0f)
 	{
-		print_error(ERROR_DIAMETER_RANGE);
+		print_line_error(ERROR_DIAMETER_RANGE);
 		return (false);
 	}
 	*radius = diameter / 2.0f;
 	if (*radius == 0.0f)
 	{
-		print_error(ERROR_DIAMETER_SMALL);
+		print_line_error(ERROR_DIAMETER_SMALL);
 		return (false);
 	}
 	return (true);

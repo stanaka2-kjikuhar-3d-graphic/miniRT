@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 23:37:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/11 14:28:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:45:34 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	parse_dir(char const *element, void *value)
 	if (length < 1.0f - NORMALIZED_EPSILON \
 		|| 1.0f + NORMALIZED_EPSILON < length)
 	{
-		print_error(ERROR_DIR_NOT_NORMALIZED);
+		print_line_error(ERROR_DIR_NOT_NORMALIZED);
 		return (false);
 	}
 	return (true);

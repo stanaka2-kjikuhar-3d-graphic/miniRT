@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/23 21:20:48 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/25 23:25:59 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -137,6 +137,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 							vec2 \
 							ivec2 \
 						) \
+						dynamic_array \
 					) \
 					ft_mlx \
 					$(addprefix ft_mlx/, \
@@ -174,7 +175,6 @@ SRCS	+=	expose_hook.c \
 # parser
 SRCS	+=	parser.c \
 			read_file_as_line_list.c \
-			validate_setting_ids.c \
 			parse_settings.c
 # parser/read_next_line
 SRCS	+=	read_next_line.c
@@ -315,7 +315,8 @@ SRCS	+=	add_color.c \
 
 # utils/ft_error
 SRCS	+=	print_error.c \
-			print_errno.c
+			print_errno.c \
+			print_line_error.c
 
 # utils/vector/vec3
 SRCS	+=	vec3.c \
@@ -333,6 +334,9 @@ SRCS	+=	vec2.c
 
 # utils/vector/ivec2
 SRCS	+=	ivec2.c
+
+# utils/dynamic_array
+SRCS	+=	grow_dynamic_array.c
 
 # -------------------------- #
 #        Object Files        #

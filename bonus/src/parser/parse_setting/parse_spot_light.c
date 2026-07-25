@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_spot_light_setting.c                         :+:      :+:    :+:   */
+/*   parse_spot_light.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 04:26:53 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 23:02:20 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:43:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	parse_spot_light(char const **elements)
 	count = count_split(elements);
 	if (count != 6)
 	{
-		print_error_hint(ERROR_SL_COUNT, HINT_SL);
+		print_line_error_hint(ERROR_SL_COUNT, HINT_SL);
 		return (false);
 	}
 	if (!parse_spot_light_required(elements, &input))

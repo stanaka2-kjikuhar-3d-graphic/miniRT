@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 14:06:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 23:00:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:27:24 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	parse_ambient_light(char const **elements)
 	count = count_split(elements);
 	if (count != 3)
 	{
-		print_error_hint(ERROR_A_COUNT, HINT_A);
+		print_line_error_hint(ERROR_A_COUNT, HINT_A);
 		return (false);
 	}
 	if (!parse_ambient_light_required(elements, &input))

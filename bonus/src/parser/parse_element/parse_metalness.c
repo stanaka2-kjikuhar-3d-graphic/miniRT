@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 03:12:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/11 14:28:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:46:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	parse_metalness(char const *element, void *value)
 		*metalness = false;
 	else
 	{
-		print_error(ERROR_METALNESS_VALUE);
+		print_line_error(ERROR_METALNESS_VALUE);
 		return (false);
 	}
 	return (true);

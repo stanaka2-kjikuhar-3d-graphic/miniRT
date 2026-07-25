@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:09:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 23:00:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:28:31 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	parse_camera(char const **elements)
 	count = count_split(elements);
 	if (count != 4)
 	{
-		print_error_hint(ERROR_C_COUNT, HINT_C);
+		print_line_error_hint(ERROR_C_COUNT, HINT_C);
 		return (false);
 	}
 	if (!parse_camera_required(elements, &camera, &viewport))

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:17:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 23:02:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:43:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	parse_sphere(char const **elements)
 	count = count_split(elements);
 	if (count < 4)
 	{
-		print_error_hint(ERROR_SP_COUNT, HINT_SP);
+		print_line_error_hint(ERROR_SP_COUNT, HINT_SP);
 		return (false);
 	}
 	if (!parse_sphere_required(elements, &input) \

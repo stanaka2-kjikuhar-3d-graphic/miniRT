@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 23:42:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/11 14:28:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:45:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	parse_fov(char const *element, void *value)
 		return (false);
 	if (*fov <= 0.0f || 180.0f <= *fov)
 	{
-		print_error(ERROR_FOV_RANGE);
+		print_line_error(ERROR_FOV_RANGE);
 		return (false);
 	}
 	return (true);

@@ -13,6 +13,8 @@
 #ifndef FT_ERROR_H
 # define FT_ERROR_H
 
+# include <stddef.h>
+
 /* File */
 # define ERROR_FILE_BINARY "FILE: not a text file"
 
@@ -98,5 +100,10 @@
 void	print_error(char const *msg);
 void	print_error_hint(char const *msg, char const *hint);
 void	print_errno(void);
+void	set_error_line_no(size_t line_no);
+void	set_error_line_str(char const *line_str);
+void	set_error_line_multi_str(char const **line_strs);
+void	print_line_error(char const *msg);
+void	print_line_error_hint(char const *msg, char const *hint);
 
 #endif

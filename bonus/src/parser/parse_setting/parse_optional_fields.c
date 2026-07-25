@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 15:53:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/11 21:26:32 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:29:59 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ bool	parse_optional_fields(char const **optional_elements, \
 	i = 0;
 	while (optional_elements[i] != NULL)
 	{
+		set_error_line_str(optional_elements[i]);
 		equal = ft_strchr(optional_elements[i], '=');
 		option = find_field_index(optional_elements[i], fields, count);
 		if (option != NULL)
@@ -75,19 +76,19 @@ static bool	validate_option(\
 {
 	if (!format)
 	{
-		print_error_hint(ERROR_OPTION_FORMAT, \
+		print_line_error_hint(ERROR_OPTION_FORMAT, \
 			HINT_MATERIAL_OPTION1 HINT_MATERIAL_OPTION2 HINT_MATERIAL_OPTION3);
 		return (false);
 	}
 	if (option == NULL)
 	{
-		print_error_hint(ERROR_OPTION_UNKNOWN, \
+		print_line_error_hint(ERROR_OPTION_UNKNOWN, \
 			HINT_MATERIAL_OPTION1 HINT_MATERIAL_OPTION2 HINT_MATERIAL_OPTION3);
 		return (false);
 	}
 	if (is_duplicate)
 	{
-		print_error(ERROR_OPTION_DUP);
+		print_line_error(ERROR_OPTION_DUP);
 		return (false);
 	}
 	return (true);
