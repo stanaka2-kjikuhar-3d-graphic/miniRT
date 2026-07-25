@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 22:45:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/21 22:36:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:56:32 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_vec2	calc_circle_uv(\
 	to_point = vec3_sub(point, circle->center);
 	phi = atan2f(vec3_dot(to_point, circle->onb.v), \
 					vec3_dot(to_point, circle->onb.u));
-	uv = (t_vec2){ \
+	uv = (t_vec2){\
 			.u = (float)((phi + M_PI) / (2.0f * M_PI)), \
 			.v = vec3_length(to_point) / circle->radius \
 		};

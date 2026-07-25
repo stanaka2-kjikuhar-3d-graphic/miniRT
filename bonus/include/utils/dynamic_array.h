@@ -1,17 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   average_rgb.c                                      :+:      :+:    :+:   */
+/*   dynamic_array.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 14:16:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:59:07 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/25 23:07:15 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/26 00:55:57 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-float	average_rgb(unsigned int rgb)
-{
-	return ((float)(((rgb & 0xff) / 255.0) + (((rgb >> 8) & 0xff) / 255.0) \
-				+ (((rgb >> 16) & 0xff) / 255.0)) / 3);
-}
+#ifndef DYNAMIC_ARRAY_H
+# define DYNAMIC_ARRAY_H
+
+# include <stddef.h>
+# include <stdbool.h>
+
+bool	grow_dynamic_array(void **array, size_t *capacity, size_t type_size);
+
+#endif
