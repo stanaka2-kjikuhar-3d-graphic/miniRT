@@ -1,0 +1,3 @@
+Error
+line 4: shininess=-1
+SHININESS: must be non-negative

@@ -1,0 +1,4 @@
+Error
+line 4: 1
+OPTION: missing '=' separator
+USAGE: texture=file.xpm checker_color1=R,G,B checker_color2=R,G,B metalness=false/true shininess=N (0.0 <= N)

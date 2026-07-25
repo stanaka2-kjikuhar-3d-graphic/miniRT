@@ -1,0 +1,4 @@
+Error
+line 4: co 0,0,20 0,0,1 20
+co: invalid fields count
+USAGE: co x,y,z nx,ny,nz diameter height R,G,B

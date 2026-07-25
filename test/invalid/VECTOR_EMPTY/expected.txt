@@ -1,2 +1,0 @@
-Error
-VECTOR: empty component

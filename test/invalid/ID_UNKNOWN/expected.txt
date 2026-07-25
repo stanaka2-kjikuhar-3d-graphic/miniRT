@@ -1,2 +1,0 @@
-Error
-SCENE: unknown identifier

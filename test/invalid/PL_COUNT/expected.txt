@@ -1,3 +1,0 @@
-Error
-pl: invalid fields count
-USAGE: pl x,y,z nx,ny,nz R,G,B

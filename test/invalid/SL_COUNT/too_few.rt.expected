@@ -1,0 +1,4 @@
+Error
+line 4: sl 0,0,20 0.5 255,255,255 0,0,1
+sl: invalid fields count
+USAGE: sl x,y,z brightness R,G,B, nx,ny,nz angle

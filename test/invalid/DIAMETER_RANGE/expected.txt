@@ -1,2 +1,0 @@
-Error
-DIAMETER: must be positive

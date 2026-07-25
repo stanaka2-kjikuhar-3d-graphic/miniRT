@@ -1,2 +1,0 @@
-Error
-FOV: out of range (0-180)

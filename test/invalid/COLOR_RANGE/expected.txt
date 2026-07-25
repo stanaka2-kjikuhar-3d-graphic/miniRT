@@ -1,2 +1,0 @@
-Error
-COLOR: value out of range (0-255)
