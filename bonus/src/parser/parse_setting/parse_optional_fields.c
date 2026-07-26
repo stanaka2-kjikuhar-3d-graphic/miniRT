@@ -15,6 +15,9 @@
 
 #include "ft_string.h"
 
+#include "color.h"
+#include "object.h"
+
 #include "ft_error.h"
 
 #include "../parser_private.h"

@@ -13,7 +13,6 @@
 #include <math.h>
 #include <stddef.h>
 
-#include "config.h"
 #include "color.h"
 #include "ray.h"
 #include "light.h"

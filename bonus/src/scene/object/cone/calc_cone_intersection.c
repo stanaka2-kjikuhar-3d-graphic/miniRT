@@ -13,7 +13,6 @@
 #include <math.h>
 #include <stdbool.h>
 
-#include "config.h"
 #include "vector.h"
 #include "object.h"
 #include "ray.h"

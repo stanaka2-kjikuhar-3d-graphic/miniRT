@@ -13,7 +13,6 @@
 #include <stddef.h>
 #include <stdbool.h>
 
-#include "config.h"
 #include "object.h"
 #include "ft_error.h"
 
