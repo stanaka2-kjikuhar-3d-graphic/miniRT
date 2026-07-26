@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/27 01:20:51 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/27 02:07:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct s_optional_field
 bool				read_file_as_line_list(int fd, t_list **line_list);
 bool				read_next_line(int fd, char **next_line);
 bool				is_blank_line(char const *line);
+bool				is_comment_line(char const *line);
 bool				is_setting_id(char const *id, char const *line);
 bool				parse_settings(t_list **line_list);
 size_t				count_split(char const **split);
