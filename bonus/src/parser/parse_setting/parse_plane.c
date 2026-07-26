@@ -23,7 +23,6 @@ static bool	parse_plane_required(\
 				char const **elements, t_input_plane *input);
 static bool	parse_plane_optional(\
 				char const **optional_elements, t_input_plane *input);
-static void	set_default_plane_option(t_input_plane *input);
 
 bool	parse_plane(char const **elements)
 {
@@ -33,7 +32,7 @@ bool	parse_plane(char const **elements)
 	count = count_split(elements);
 	if (count < 4)
 	{
-		print_line_error_hint(ERROR_PL_COUNT, HINT_PL);
+		print_line_error(ERROR_PL_COUNT, HINT_PL);
 		return (false);
 	}
 	if (!parse_plane_required(elements, &input) \
@@ -47,51 +46,29 @@ bool	parse_plane(char const **elements)
 static bool	parse_plane_required(\
 	char const **elements, t_input_plane *input)
 {
-	t_required_field const	required_fields[] = {\
+	t_required_field const	fields[] = {\
 		{elements[1], &(input->center), parse_coordinate}, \
 		{elements[2], &(input->normal), parse_dir}, \
 		{elements[3], &(input->albedo), parse_color}};
-	size_t const			required_count = sizeof(required_fields) \
+	size_t const			count = sizeof(fields) \
 												/ sizeof(t_required_field);
 
-	return (parse_required_fields(required_fields, required_count));
+	return (parse_required_fields(fields, count));
 }
 
 static bool	parse_plane_optional(\
 	char const **optional_elements, t_input_plane *input)
 {
-	t_optional_field const	optional_fields[] = {\
-		{"texture", &(input->option.texture), parse_texture}, \
-		{"checker_color1", &(input->option.checker_color1), parse_color}, \
-		{"checker_color2", &(input->option.checker_color2), parse_color}, \
-		{"bump_map", &(input->option.bump_map), parse_texture}, \
-		{"normal_map", &(input->option.normal_map), parse_texture}, \
-		{"metalness", &(input->option.metalness), parse_metalness}, \
-		{"shininess", &(input->option.shininess), parse_shininess}, \
-		{"pattern_size", &(input->option.pattern_size), parse_size}};
-	size_t const			optional_count = sizeof(optional_fields) \
-												/ sizeof(t_optional_field);
+	t_optional_field	fields[OPTIONAL_FIELD_COUNT];
 
-	set_default_plane_option(input);
-	if (!parse_optional_fields(\
-			optional_elements, optional_fields, optional_count))
+	init_optional_fields(fields);
+	bind_material_option(fields, &(input->option.material));
+	fields[OPTIONAL_PATTERN_SIZE].value = &(input->option.pattern_size);
+	if (!parse_optional_fields(optional_elements, fields))
 	{
 		return (false);
 	}
-	input->option.pattern_type \
+	input->option.material.pattern_type \
 		= get_pattern_type(optional_elements);
 	return (true);
-}
-
-static void	set_default_plane_option(t_input_plane *input)
-{
-	input->option.pattern_type = PATTERN_SOLID;
-	input->option.texture = NULL;
-	input->option.checker_color1 = (t_color){0.0f, 0.0f, 0.0f};
-	input->option.checker_color2 = (t_color){1.0f, 1.0f, 1.0f};
-	input->option.bump_map = NULL;
-	input->option.normal_map = NULL;
-	input->option.metalness = false;
-	input->option.shininess = SHININESS;
-	input->option.pattern_size = 10.0f;
 }

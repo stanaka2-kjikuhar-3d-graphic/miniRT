@@ -36,5 +36,7 @@
 # define EPSILON 0.000001f // 1e-6
 
 # define SHININESS 32.0f
+# define PATTERN_SIZE 10.0f
+# define BUMP_STRENGTH 1.0f
 
 #endif

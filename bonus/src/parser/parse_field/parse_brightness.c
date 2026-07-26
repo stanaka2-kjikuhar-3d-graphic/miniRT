@@ -24,7 +24,7 @@ bool	parse_brightness(char const *element, void *value)
 		return (false);
 	if (*brightness < 0.0f || 1.0f < *brightness)
 	{
-		print_line_error(ERROR_BRIGHTNESS_RANGE);
+		print_line_error(ERROR_BRIGHTNESS_RANGE, NULL);
 		return (false);
 	}
 	return (true);

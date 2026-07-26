@@ -48,13 +48,13 @@ static bool	check_separator(const char *element, enum e_axis axis)
 	if (((axis == X_AXIS || axis == Y_AXIS) && *element == '\0') \
 		|| (axis == Z_AXIS && *element == ','))
 	{
-		print_line_error_hint(ERROR_VECTOR_FORMAT, HINT_VECTOR);
+		print_line_error(ERROR_VECTOR_FORMAT, HINT_VECTOR);
 		return (false);
 	}
 	if (((axis == X_AXIS || axis == Y_AXIS) && *element != ',') \
 		|| (axis == Z_AXIS && *element != '\0'))
 	{
-		print_line_error(ERROR_VECTOR_CHARACTER);
+		print_line_error(ERROR_VECTOR_CHARACTER, NULL);
 		return (false);
 	}
 	return (true);
@@ -64,26 +64,26 @@ static bool	parse_axis(const char *element)
 {
 	if (*element == ',' || *element == '\0')
 	{
-		print_line_error(ERROR_VECTOR_EMPTY);
+		print_line_error(ERROR_VECTOR_EMPTY, NULL);
 		return (false);
 	}
 	if (*element == '-')
 		++element;
 	if (*element == '0' && (ft_tolower(*(element + 1)) == 'x'))
 	{
-		print_line_error(ERROR_VECTOR_CHARACTER);
+		print_line_error(ERROR_VECTOR_CHARACTER, NULL);
 		return (false);
 	}
 	if (*element == '0' && ft_isdigit(*(element + 1)))
 	{
-		print_line_error(ERROR_VECTOR_LEADING_ZERO);
+		print_line_error(ERROR_VECTOR_LEADING_ZERO, NULL);
 		return (false);
 	}
 	if (*element == '.')
 		++element;
 	if (!ft_isdigit(*element))
 	{
-		print_line_error(ERROR_VECTOR_CHARACTER);
+		print_line_error(ERROR_VECTOR_CHARACTER, NULL);
 		return (false);
 	}
 	return (true);

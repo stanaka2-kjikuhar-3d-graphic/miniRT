@@ -26,15 +26,8 @@ bool	create_paraboloid(t_input_paraboloid const *input)
 	object.paraboloid.dir = vec3_normalize(input->dir);
 	object.paraboloid.quadratic_coefficient = input->quadratic_coefficient;
 	object.paraboloid.height = input->height;
-	object.material.albedo = input->albedo;
-	object.material.pattern_type = input->option.pattern_type;
-	object.material.texture = input->option.texture;
-	object.material.checker.color1 = input->option.checker_color1;
-	object.material.checker.color2 = input->option.checker_color2;
-	object.material.bump_map = input->option.bump_map;
-	object.material.normal_map = input->option.normal_map;
-	object.material.metalness = input->option.metalness;
-	object.material.shininess = input->option.shininess;
+	set_material_from_option(&(object.material), input->albedo, \
+		&(input->option.material));
 	object.uv.type = UV_DEFAULT;
 	object.uv.u_per_v = 1.0f; // TODO
 	object.uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};

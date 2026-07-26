@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_uv.c                                          :+:      :+:    :+:   */
+/*   parse_metalness.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/12 01:11:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 18:00:04 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/03 03:12:49 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/26 00:46:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
+#include <stdbool.h>
 
-#include "object.h"
+#include "ft_string.h"
 
-void	init_uv(t_uv *uv, enum e_object_type object_type)
+#include "ft_error.h"
+
+bool	parse_metalness(char const *element, void *value)
 {
-	uv->type = UV_PLANE;
-	uv->pattern_size = 10.0f;
-	uv->u_per_v = 1.0f;
-	uv->u_range = (t_range){.max = 1.0f, .min = 0.0f};
-	uv->v_range = (t_range){.max = 1.0f, .min = 0.0f};
+	bool *const	metalness = (bool *)value;
+
+	if (ft_strcmp("true", element) == 0)
+		*metalness = true;
+	else if (ft_strcmp("false", element) == 0)
+		*metalness = false;
+	else
+	{
+		print_line_error(ERROR_METALNESS_VALUE, NULL);
+		return (false);
+	}
+	return (true);
 }

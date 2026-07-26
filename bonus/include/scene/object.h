@@ -172,150 +172,113 @@ typedef struct s_object
 	};
 }	t_object;
 
+typedef struct s_material_option
+{
+	enum e_pattern_type	pattern_type;
+	t_image				*texture;
+	t_color				checker_color1;
+	t_color				checker_color2;
+	t_image				*bump_map;
+	t_image				*normal_map;
+	float				bump_strength;
+	bool				metalness;
+	float				shininess;
+}	t_material_option;
+
 // input
 typedef struct s_input_sphere
 {
-	t_vec3	center;
-	float	radius;
-	t_color	albedo;
+	t_vec3				center;
+	float				radius;
+	t_color				albedo;
 	struct	s_sphere_option
 	{
-		enum e_pattern_type	pattern_type;
-		t_image				*texture;
-		t_color				checker_color1;
-		t_color				checker_color2;
-		t_image				*bump_map;
-		t_image				*normal_map;
-		bool				metalness;
-		float				shininess;
-	}	option;
+		t_material_option	material;
+	}					option;
 }	t_input_sphere;
 
 typedef struct s_input_plane
 {
-	t_vec3	center;
-	t_vec3	normal;
-	t_color	albedo;
+	t_vec3				center;
+	t_vec3				normal;
+	t_color				albedo;
 	struct	s_plane_option
 	{
-		enum e_pattern_type	pattern_type;
-		t_image				*texture;
-		t_color				checker_color1;
-		t_color				checker_color2;
-		t_image				*bump_map;
-		t_image				*normal_map;
-		bool				metalness;
-		float				shininess;
+		t_material_option	material;
 		float				pattern_size;
-	}	option;
+	}					option;
 }	t_input_plane;
 
 typedef struct s_input_cylinder
 {
-	t_vec3	center;
-	t_vec3	dir;
-	float	radius;
-	float	half_height;
-	t_color	albedo;
+	t_vec3				center;
+	t_vec3				dir;
+	float				radius;
+	float				half_height;
+	t_color				albedo;
 	struct	s_cylinder_option
 	{
-		enum e_pattern_type	pattern_type;
-		t_image				*texture;
-		t_color				checker_color1;
-		t_color				checker_color2;
-		t_image				*bump_map;
-		t_image				*normal_map;
-		bool				metalness;
-		float				shininess;
-	}	option;
+		t_material_option	material;
+	}					option;
 }	t_input_cylinder;
 
 typedef struct s_input_circle
 {
-	t_vec3	center;
-	t_vec3	normal;
-	float	radius;
-	t_color	albedo;
+	t_vec3				center;
+	t_vec3				normal;
+	float				radius;
+	t_color				albedo;
 	struct	s_circle_option
 	{
-		enum e_pattern_type	pattern_type;
-		t_image				*texture;
-		t_color				checker_color1;
-		t_color				checker_color2;
-		t_image				*bump_map;
-		t_image				*normal_map;
-		bool				metalness;
-		float				shininess;
+		t_material_option	material;
 		enum e_uv_type		uv_type;
 		float				pattern_size;
 		float				u_per_v;
 		t_range				u_range;
 		t_range				v_range;
-	}	option;
+	}					option;
 }	t_input_circle;
 
 typedef struct s_input_cone
 {
-	t_vec3	center;
-	t_vec3	dir;
-	float	radius;
-	float	height;
-	t_color	albedo;
+	t_vec3				center;
+	t_vec3				dir;
+	float				radius;
+	float				height;
+	t_color				albedo;
 	struct	s_cone_option
 	{
-		enum e_pattern_type	pattern_type;
-		t_image				*texture;
-		t_color				checker_color1;
-		t_color				checker_color2;
-		t_image				*bump_map;
-		t_image				*normal_map;
-		bool				metalness;
-		float				shininess;
-	}	option;
+		t_material_option	material;
+	}					option;
 }	t_input_cone;
 
 typedef struct s_input_hyperboloid
 {
-	t_vec3	center;
-	t_vec3	dir;
-	float	center_radius;
-	float	cap_radius;
-	float	half_height;
-	t_color	albedo;
+	t_vec3				center;
+	t_vec3				dir;
+	float				center_radius;
+	float				cap_radius;
+	float				half_height;
+	t_color				albedo;
 	struct	s_hyperboloid_option
 	{
-		enum e_pattern_type	pattern_type;
-		t_image				*texture;
-		t_color				checker_color1;
-		t_color				checker_color2;
-		t_image				*bump_map;
-		t_image				*normal_map;
-		bool				metalness;
-		float				shininess;
-	}	option;
+		t_material_option	material;
+	}					option;
 }	t_input_hyperboloid;
 
 typedef struct s_input_paraboloid
 {
-	t_vec3	center;
-	t_vec3	dir;
-	float	quadratic_coefficient;
-	float	height;
-	t_color	albedo;
+	t_vec3				center;
+	t_vec3				dir;
+	float				quadratic_coefficient;
+	float				height;
+	t_color				albedo;
 	struct	s_paraboloid_option
 	{
-		enum e_pattern_type	pattern_type;
-		t_image				*texture;
-		t_color				checker_color1;
-		t_color				checker_color2;
-		t_image				*bump_map;
-		t_image				*normal_map;
-		bool				metalness;
-		float				shininess;
-	}	option;
+		t_material_option	material;
+	}					option;
 }	t_input_paraboloid;
 
-void	init_material(t_material *material);
 bool	create_sphere(t_input_sphere const *input);
 bool	create_plane(t_input_plane const *input);
 bool	create_cylinder(t_input_cylinder const *input);

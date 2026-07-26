@@ -30,16 +30,8 @@ bool	create_cylinder(t_input_cylinder const *input)
 	object.cylinder.dir = vec3_normalize(input->dir);
 	object.cylinder.radius = input->radius;
 	object.cylinder.half_height = input->half_height;
-	object.material.albedo = input->albedo;
-	object.material.pattern_type = input->option.pattern_type;
-	object.material.texture = input->option.texture;
-	object.material.checker.color1 = input->option.checker_color1;
-	object.material.checker.color2 = input->option.checker_color2;
-	object.material.bump_map = input->option.bump_map;
-	object.material.bump_strength = 1.0f;
-	object.material.normal_map = input->option.normal_map;
-	object.material.metalness = input->option.metalness;
-	object.material.shininess = input->option.shininess;
+	set_material_from_option(&(object.material), input->albedo, \
+		&(input->option.material));
 	object.uv.type = UV_DEFAULT;
 	object.uv.u_per_v = (float)(2.0f * M_PI * input->radius) \
 								/ (2.0f * (input->radius + input->half_height));
@@ -67,21 +59,16 @@ static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type)
 	input.center = vec3_add(object->cylinder.center, \
 						vec3_scale(object->cylinder.half_height, input.normal));
 	input.radius = object->cylinder.radius;
-	input.option.pattern_type = object->material.pattern_type;
-	input.option.texture = object->material.texture;
-	input.option.checker_color1 = object->material.checker.color1;
-	input.option.checker_color2 = object->material.checker.color2;
-	input.option.bump_map = object->material.bump_map;
-	input.option.normal_map = object->material.normal_map;
-	input.option.metalness = object->material.metalness;
-	input.option.shininess = object->material.shininess;
+	set_option_from_material(&(input.option.material), &(object->material));
 	input.option.uv_type = uv_type;
 	input.option.pattern_size = input.radius * 2.0f;
 	input.option.u_per_v = object->uv.u_per_v;
 	input.option.u_range = (t_range){.max = 1.0f, .min = 0.0f};
 	if (uv_type == UV_UPPER_CAP)
-		input.option.v_range = (t_range){.max = object->uv.v_range.min, .min = 0.0f};
+		input.option.v_range = (t_range){\
+			.max = object->uv.v_range.min, .min = 0.0f};
 	else
-		input.option.v_range = (t_range){.max = 1.0f, .min = object->uv.v_range.max};
+		input.option.v_range = (t_range){\
+			.max = 1.0f, .min = object->uv.v_range.max};
 	return (create_circle(&input));
 }

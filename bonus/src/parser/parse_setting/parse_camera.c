@@ -31,7 +31,7 @@ bool	parse_camera(char const **elements)
 	count = count_split(elements);
 	if (count != 4)
 	{
-		print_line_error_hint(ERROR_C_COUNT, HINT_C);
+		print_line_error(ERROR_C_COUNT, HINT_C);
 		return (false);
 	}
 	if (!parse_camera_required(elements, &camera, &viewport))
@@ -44,12 +44,12 @@ bool	parse_camera(char const **elements)
 static bool	parse_camera_required(char const **elements, \
 	t_input_camera *camera, t_input_viewport *viewport)
 {
-	t_required_field const	required_fields[] = {\
+	t_required_field const	fields[] = {\
 		{elements[1], &(camera->pos), parse_coordinate}, \
 		{elements[2], &(camera->dir), parse_dir}, \
 		{elements[3], &(viewport->fov), parse_fov}};
-	size_t const			required_count = sizeof(required_fields) \
+	size_t const			count = sizeof(fields) \
 												/ sizeof(t_required_field);
 
-	return (parse_required_fields(required_fields, required_count));
+	return (parse_required_fields(fields, count));
 }

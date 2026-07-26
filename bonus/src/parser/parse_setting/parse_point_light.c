@@ -29,7 +29,7 @@ bool	parse_point_light(char const **elements)
 	count = count_split(elements);
 	if (count != 4)
 	{
-		print_line_error_hint(ERROR_L_COUNT, HINT_L);
+		print_line_error(ERROR_L_COUNT, HINT_L);
 		return (false);
 	}
 	if (!parse_point_light_required(elements, &input))
@@ -40,12 +40,12 @@ bool	parse_point_light(char const **elements)
 static bool	parse_point_light_required(\
 	char const **elements, t_input_point_light *input)
 {
-	t_required_field const	required_fields[] = {\
+	t_required_field const	fields[] = {\
 		{elements[1], &(input->pos), parse_coordinate}, \
 		{elements[2], &(input->brightness), parse_brightness}, \
 		{elements[3], &(input->color), parse_color}};
-	size_t const			required_count = sizeof(required_fields) \
+	size_t const			count = sizeof(fields) \
 												/ sizeof(t_required_field);
 
-	return (parse_required_fields(required_fields, required_count));
+	return (parse_required_fields(fields, count));
 }

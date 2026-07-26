@@ -24,7 +24,7 @@ bool	parse_shininess(char const *element, void *value)
 		return (false);
 	if (*shininess < 0.0f)
 	{
-		print_line_error(ERROR_SHININESS_RANGE);
+		print_line_error(ERROR_SHININESS_RANGE, NULL);
 		return (false);
 	}
 	return (true);

@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_material.c                                    :+:      :+:    :+:   */
+/*   parse_size.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/03 02:04:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 16:26:51 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/12 16:02:01 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/26 00:46:32 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
-#include <stddef.h>
 
-#include "object.h"
-#include "config.h"
+#include "ft_error.h"
 
-void	init_material(t_material *material)
+#include "../parser_private.h"
+
+bool	parse_size(char const *element, void *value)
 {
-	material->pattern_type = PATTERN_SOLID;
-	material->texture = NULL;
-	material->checker.color1 = (t_color){0.0f, 0.0f, 0.0f};
-	material->checker.color2 = (t_color){1.0f, 1.0f, 1.0f};
-	material->checker.size = (t_vec2){.u = 0.5f, .v = 0.5f};
-	material->metalness = false;
-	material->shininess = SHININESS;
+	float *const	size = (float *)value;
+
+	if (!parse_float(element, size))
+		return (false);
+	if (*size <= 0.0f)
+	{
+		print_line_error(ERROR_SIZE_RANGE, NULL);
+		return (false);
+	}
+	return (true);
 }

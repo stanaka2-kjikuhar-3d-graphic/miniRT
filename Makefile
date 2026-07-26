@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/25 23:25:59 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/27 01:28:51 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 					$(addprefix parser/, \
 						read_next_line \
 						parse_setting \
-						parse_element \
+						parse_field \
 						internal \
 					) \
 					renderer \
@@ -190,9 +190,11 @@ SRCS	+=	parse_ambient_light.c \
 			parse_hyperboloid.c \
 			parse_paraboloid.c \
 			parse_required_fields.c \
+			init_optional_fields.c \
+			bind_material_option.c \
 			parse_optional_fields.c \
 			get_pattern_type.c
-# parser/parse_element
+# parser/parse_field
 SRCS	+=	parse_vec3.c \
 			parse_float.c \
 			parse_color.c \
@@ -252,8 +254,7 @@ SRCS	+=	object.c \
 			calc_object_color.c \
 			calc_object_normal.c \
 			calc_object_tbn.c \
-			calc_bump_mapping.c \
-			init_material.c
+			calc_bump_mapping.c
 # scene/object/sphere
 SRCS	+=	create_sphere.c \
 			calc_sphere_intersection.c \
@@ -296,6 +297,7 @@ SRCS	+=	create_paraboloid.c \
 # scene/object/internal
 SRCS	+=	calc_onb.c \
 			adjust_uv_range.c \
+			set_material.c
 
 # scene/viewport
 SRCS	+=	viewport.c

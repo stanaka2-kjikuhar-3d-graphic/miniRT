@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/25 23:44:30 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/27 01:20:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@
 
 # define NORMALIZED_EPSILON 0.001f // 1e-3
 
-enum e_setting_index
+enum e_setting
 {
-	ID_AMBIENT_LIGHT,
-	ID_CAMERA,
-	ID_POINT_LIGHT,
-	ID_SPHERE,
-	ID_PLANE,
-	ID_CYLINDER,
-	ID_CONE,
-	ID_HYPERBOLOID,
-	ID_PARABOLOID,
-	ID_SPOT_LIGHT,
+	SETTING_AMBIENT_LIGHT,
+	SETTING_CAMERA,
+	SETTING_POINT_LIGHT,
+	SETTING_SPHERE,
+	SETTING_PLANE,
+	SETTING_CYLINDER,
+	SETTING_CONE,
+	SETTING_HYPERBOLOID,
+	SETTING_PARABOLOID,
+	SETTING_SPOT_LIGHT,
 	SETTING_ID_COUNT,
 };
 
@@ -53,11 +53,44 @@ typedef struct s_required_field
 	bool		(*parse)(char const *, void *);
 }	t_required_field;
 
+enum e_optional_field
+{
+	OPTIONAL_TEXTURE,
+	OPTIONAL_CHECKER_COLOR1,
+	OPTIONAL_CHECKER_COLOR2,
+	OPTIONAL_BUMP_MAP,
+	OPTIONAL_NORMAL_MAP,
+	OPTIONAL_BUMP_STRENGTH,
+	OPTIONAL_METALNESS,
+	OPTIONAL_SHININESS,
+	OPTIONAL_PATTERN_SIZE,
+	OPTIONAL_FIELD_COUNT,
+};
+
+enum e_field_type
+{
+	FIELD_IMAGE,
+	FIELD_COLOR,
+	FIELD_BOOL,
+	FIELD_FLOAT,
+};
+
+typedef union u_field_value
+{
+	t_image	*image;
+	t_color	color;
+	bool	boolean;
+	float	number;
+}	t_field_value;
+
 typedef struct s_optional_field
 {
-	char const	*key;
-	void		*value;
-	bool		(*parse)(char const *, void *);
+	void				*value;
+	char const			*key;
+	bool				(*parse)(char const *, void *);
+	char const			*format_msg;
+	enum e_field_type	field_type;
+	t_field_value		default_value;
 }	t_optional_field;
 
 bool				read_file_as_line_list(int fd, t_list **line_list);
@@ -79,8 +112,11 @@ bool				parse_hyperboloid(char const **elements);
 bool				parse_paraboloid(char const **elements);
 bool				parse_required_fields(\
 						t_required_field const *fields, size_t count);
+void				init_optional_fields(t_optional_field *fields);
+void				bind_material_option(\
+					t_optional_field *fields, t_material_option *option);
 bool				parse_optional_fields(char const **optional_elements, \
-						t_optional_field const *fields, size_t count);
+						t_optional_field const *fields);
 enum e_pattern_type	get_pattern_type(char const **optional_elements);
 bool				is_option_id(char const *id, char const *optional_element);
 bool				parse_color(char const *element, void *value);

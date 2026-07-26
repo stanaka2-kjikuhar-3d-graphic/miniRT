@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:57:33 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/27 00:55:37 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,18 @@ static bool		parse_setting(char const **elements, size_t *count);
 static bool		validate_required_setting(size_t const *count);
 
 static const t_setting_parser	g_setting_parsers[SETTING_ID_COUNT] = {\
-	[ID_AMBIENT_LIGHT] \
+	[SETTING_AMBIENT_LIGHT] \
 		= {"A", ERROR_ID_NO_A, ERROR_ID_DUP_A, parse_ambient_light}, \
-	[ID_CAMERA] = {"C", ERROR_ID_NO_C, ERROR_ID_DUP_C, parse_camera}, \
-	[ID_POINT_LIGHT] = {"L", ERROR_ID_NO_L, NULL, parse_point_light}, \
-	[ID_SPHERE] = {"sp", NULL, NULL, parse_sphere}, \
-	[ID_PLANE] = {"pl", NULL, NULL, parse_plane}, \
-	[ID_CYLINDER] = {"cy", NULL, NULL, parse_cylinder}, \
-	[ID_CONE] = {"co", NULL, NULL, parse_cone}, \
-	[ID_HYPERBOLOID] = {"hb", NULL, NULL, parse_hyperboloid}, \
-	[ID_PARABOLOID] = {"pb", NULL, NULL, parse_paraboloid}, \
-	[ID_SPOT_LIGHT] = {"sl", NULL, NULL, parse_spot_light} \
+	[SETTING_CAMERA] \
+		= {"C", ERROR_ID_NO_C, ERROR_ID_DUP_C, parse_camera}, \
+	[SETTING_POINT_LIGHT] = {"L", ERROR_ID_NO_L, NULL, parse_point_light}, \
+	[SETTING_SPHERE] = {"sp", NULL, NULL, parse_sphere}, \
+	[SETTING_PLANE] = {"pl", NULL, NULL, parse_plane}, \
+	[SETTING_CYLINDER] = {"cy", NULL, NULL, parse_cylinder}, \
+	[SETTING_CONE] = {"co", NULL, NULL, parse_cone}, \
+	[SETTING_HYPERBOLOID] = {"hb", NULL, NULL, parse_hyperboloid}, \
+	[SETTING_PARABOLOID] = {"pb", NULL, NULL, parse_paraboloid}, \
+	[SETTING_SPOT_LIGHT] = {"sl", NULL, NULL, parse_spot_light} \
 };
 
 bool	parse_settings(t_list **line_list)
@@ -83,7 +84,7 @@ static bool	parse_line(char *line, size_t *count)
 
 static bool	parse_setting(char const **elements, size_t *count)
 {
-	enum e_setting_index	idx;
+	enum e_setting	idx;
 
 	idx = 0;
 	while (idx < SETTING_ID_COUNT)
@@ -94,13 +95,13 @@ static bool	parse_setting(char const **elements, size_t *count)
 	}
 	if (idx == SETTING_ID_COUNT)
 	{
-		print_line_error(ERROR_ID_UNKNOWN);
+		print_line_error(ERROR_ID_UNKNOWN, NULL);
 		return (false);
 	}
 	++count[idx];
 	if (count[idx] > 1 && g_setting_parsers[idx].dup_err != NULL)
 	{
-		print_line_error(g_setting_parsers[idx].dup_err);
+		print_line_error(g_setting_parsers[idx].dup_err, NULL);
 		return (false);
 	}
 	return (g_setting_parsers[idx].parse(elements));
@@ -108,7 +109,7 @@ static bool	parse_setting(char const **elements, size_t *count)
 
 static bool	validate_required_setting(size_t const *count)
 {
-	enum e_setting_index	idx;
+	enum e_setting	idx;
 
 	idx = 0;
 	while (idx < SETTING_ID_COUNT)

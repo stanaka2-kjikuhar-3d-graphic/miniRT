@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_half_height.c                                :+:      :+:    :+:   */
+/*   parse_fov.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/11 23:46:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:46:03 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/11 23:42:55 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/26 00:45:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,15 @@
 
 #include "../parser_private.h"
 
-bool	parse_half_height(char const *element, void *value)
+bool	parse_fov(char const *element, void *value)
 {
-	float *const	half_height = (float *)value;
-	float			height;
+	float *const	fov = (float *)value;
 
-	if (!parse_float(element, &height))
+	if (!parse_float(element, fov))
 		return (false);
-	if (height <= 0.0f)
+	if (*fov <= 0.0f || 180.0f <= *fov)
 	{
-		print_line_error(ERROR_HEIGHT_RANGE);
-		return (false);
-	}
-	*half_height = height / 2.0f;
-	if (*half_height == 0.0f)
-	{
-		print_line_error(ERROR_HEIGHT_SMALL);
+		print_line_error(ERROR_FOV_RANGE, NULL);
 		return (false);
 	}
 	return (true);
