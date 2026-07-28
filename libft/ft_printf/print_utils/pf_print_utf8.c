@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 00:45:15 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/03 21:03:38 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/28 18:45:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ static void	pf_print_utf8_to_str(
 		while (!is_utf8_leading_byte(utf8_str[ctx->dst_size - ctx->count - 1]))
 			ctx->dst_size--;
 	}
+	append_size = len;
 	if (ctx->dst_size - ctx->count < len + 1)
-		append_size = ctx->dst_size - ctx->count;
-	else
-		append_size = len + 1;
-	ft_strlcat(ctx->dst.str + ctx->count, (const char *)utf8_str, append_size);
+		append_size = ctx->dst_size - ctx->count - 1;
+	ft_memcpy(ctx->dst.str + ctx->count, (const char *)utf8_str, append_size);
+	ctx->dst.str[ctx->count + append_size] = '\0';
 }
 
 static bool	is_utf8_leading_byte(unsigned char byte)
