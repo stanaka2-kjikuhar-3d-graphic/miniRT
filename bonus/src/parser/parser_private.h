@@ -60,6 +60,7 @@ enum e_optional_field
 	OPTIONAL_CHECKER_COLOR2,
 	OPTIONAL_BUMP_MAP,
 	OPTIONAL_NORMAL_MAP,
+	OPTIONAL_DIRECTX_NORMAL_MAP,
 	OPTIONAL_BUMP_STRENGTH,
 	OPTIONAL_METALNESS,
 	OPTIONAL_SHININESS,
@@ -133,7 +134,7 @@ bool				parse_float(char const *s, void *value);
 bool				parse_vec3(char const *s, void *value);
 bool				parse_texture(char const *element, void *value);
 bool				parse_size(char const *element, void *value);
-bool				parse_metalness(char const *element, void *value);
+bool				parse_bool(char const *element, void *value);
 bool				parse_shininess(char const *element, void *value);
 
 #endif

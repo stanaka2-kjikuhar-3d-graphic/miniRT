@@ -29,9 +29,11 @@ static const t_optional_field	g_optional_fields[OPTIONAL_FIELD_COUNT] = {\
 		"bump_map=file.xpm", FIELD_IMAGE, {.image = NULL}}, \
 	[OPTIONAL_NORMAL_MAP] = {NULL, "normal_map", parse_texture, \
 		"normal_map=file.xpm", FIELD_IMAGE, {.image = NULL}}, \
+	[OPTIONAL_DIRECTX_NORMAL_MAP] = {NULL, "directx_normal_map", parse_bool, \
+		"directx_normal_map=true/false", FIELD_BOOL, {.boolean = false}}, \
 	[OPTIONAL_BUMP_STRENGTH] = {NULL, "bump_strength", parse_size, \
 		"bump_strength=x [0.0 < x]", FIELD_FLOAT, {.number = BUMP_STRENGTH}}, \
-	[OPTIONAL_METALNESS] = {NULL, "metalness", parse_metalness, \
+	[OPTIONAL_METALNESS] = {NULL, "metalness", parse_bool, \
 		"metalness=true/false", FIELD_BOOL, {.boolean = false}}, \
 	[OPTIONAL_SHININESS] = {NULL, "shininess", parse_shininess, \
 		"shininess=x [0.0 <= x]", FIELD_FLOAT, {.number = SHININESS}}, \

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 17:37:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 00:44:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 01:30:52 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ t_vec3	calc_normal_mapping(t_object const *object, t_vec2 uv, t_onb const *tbn)
 				*get_uv_pixel_addr(object->material.normal_map, uv));
 	normal = (t_vec3){\
 		.x = color.r * 2.0f - 1.0f, \
-		.y = color.g * 2.0f - 1.0f, \
-		.z = color.b * 2.0f - 1.0f
+		.y = 1.0f - color.g * 2.0f, \
+		.z = color.b * 2.0f - 1.0f \
 	};
+	if (object->material.directx_normal_map)
+		normal.y = -normal.y;
 	return (vec3_normalize(vec3_add(vec3_add(\
 			vec3_scale(normal.x, tbn->u), \
 			vec3_scale(normal.y, tbn->v)), \

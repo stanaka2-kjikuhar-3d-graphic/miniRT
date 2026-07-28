@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 12:00:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 01:01:00 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 01:33:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	set_material_from_option(t_material *material, t_color albedo, \
 	material->normal_type = option->normal_type;
 	material->bump_map = option->bump_map;
 	material->normal_map = option->normal_map;
+	material->directx_normal_map = option->directx_normal_map;
 	material->bump_strength = option->bump_strength;
 	material->metalness = option->metalness;
 	material->shininess = option->shininess;
@@ -37,8 +38,10 @@ void	set_option_from_material(t_material_option *option, \
 	option->texture = material->texture;
 	option->checker_color1 = material->checker.color1;
 	option->checker_color2 = material->checker.color2;
+	option->normal_type = material->normal_type;
 	option->bump_map = material->bump_map;
 	option->normal_map = material->normal_map;
+	option->directx_normal_map = material->directx_normal_map;
 	option->bump_strength = material->bump_strength;
 	option->metalness = material->metalness;
 	option->shininess = material->shininess;

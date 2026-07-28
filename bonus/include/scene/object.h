@@ -52,6 +52,7 @@ typedef struct s_material
 	t_image				*bump_map;
 	float				bump_strength;
 	t_image				*normal_map;
+	bool				directx_normal_map;
 	bool				metalness;
 	float				shininess;
 }	t_material;
@@ -182,6 +183,7 @@ typedef struct s_material_option
 	enum e_normal_type	normal_type;
 	t_image				*bump_map;
 	t_image				*normal_map;
+	bool				directx_normal_map;
 	float				bump_strength;
 	bool				metalness;
 	float				shininess;

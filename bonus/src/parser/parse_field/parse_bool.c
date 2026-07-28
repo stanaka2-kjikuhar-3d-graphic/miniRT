@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_metalness.c                                  :+:      :+:    :+:   */
+/*   parse_bool.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/03 03:12:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:46:10 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/29 01:20:00 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/29 01:20:00 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 
 #include "ft_error.h"
 
-bool	parse_metalness(char const *element, void *value)
+bool	parse_bool(char const *element, void *value)
 {
-	bool *const	metalness = (bool *)value;
+	bool *const	boolean = (bool *)value;
 
 	if (ft_strcmp("true", element) == 0)
-		*metalness = true;
+		*boolean = true;
 	else if (ft_strcmp("false", element) == 0)
-		*metalness = false;
+		*boolean = false;
 	else
 	{
-		print_line_error(ERROR_METALNESS_VALUE, NULL);
+		print_line_error(ERROR_BOOL_VALUE, NULL);
 		return (false);
 	}
 	return (true);

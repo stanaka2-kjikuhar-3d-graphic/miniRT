@@ -61,7 +61,7 @@
 # define ERROR_HEIGHT_SMALL "HEIGHT: too small, height/2 underflows to 0"
 # define ERROR_ANGLE_RANGE "ANGLE: out of range (0-180)"
 # define ERROR_SHININESS_RANGE "SHININESS: must be non-negative"
-# define ERROR_METALNESS_VALUE "METALNESS: must be true or false"
+# define ERROR_BOOL_VALUE "BOOLEAN: must be true or false"
 
 /* Floating Number */
 # define ERROR_FLOAT_CHARACTER "FLOATING NUMBER: invalid character"

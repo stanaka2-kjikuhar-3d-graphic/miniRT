@@ -208,7 +208,7 @@ SRCS	+=	parse_vec3.c \
 			parse_half_height.c \
 			parse_angle.c \
 			parse_texture.c \
-			parse_metalness.c \
+			parse_bool.c \
 			parse_shininess.c \
 			parse_size.c
 # parser/internal
