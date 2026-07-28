@@ -64,9 +64,11 @@
 - [Shade3D Knowledge Base ガンマとは？](https://knowledge.shade3d.jp/knowledgebase/%E3%82%AC%E3%83%B3%E3%83%9E%E3%81%A8%E3%81%AF)
 - [fieldjamのDesignVizエッセンス 第1回：リニアワークフローについて＜その1＞](https://area.autodesk.jp/column/tutorial/designviz_essence/1_about_linearworkflow_1/)
 - [Discrete Differential Geometry: An Applied Introduction (Keenan Crane)](https://www.cs.cmu.edu/~kmcrane/Projects/DDG/)
-- [床井研究室 第１１回 拡散反射光による陰影](https://marina.sys.wakayama-u.ac.jp/~tokoi/?date=20090914)
+- [床井研究室](https://marina.sys.wakayama-u.ac.jp/~tokoi/)
 - [Physically Based Rendering (Matt Pharr, Wenzel Jakob, and Greg Humphreys)](https://pbr-book.org/4ed/contents)
 - [Spectral Ray Tracing](https://larswander.com/writing/spectral-ray-tracing/)
+- [The Book of Shaders (Patricio Gonzalez Vivo & Jen Lowe)](https://thebookofshaders.com/03/?lan=jp)
+- [第三回 WebGLスクール 「シェーダの基礎」 (@konweb)](https://qiita.com/konweb/items/ec8fa8cd3bc33df14933)
 
 #### Movie
 - [CGで質感をどうモデル化する？材質の光反射モデル(BSDF)を解説【ゆっくり解説】 (かつおの電波と光ゆっくり解説)](https://youtu.be/02sjdcmNbWM?si=EHYQ_iozuRpMOvNu)
