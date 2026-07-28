@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 19:06:13 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 01:01:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/28 15:08:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,14 @@ static bool	create_image_from_xpm(t_image *image, char *xpm)
 					get_mlx_ptr(), xpm, &(image->width), &(image->height));
 	if (image->ptr == NULL)
 	{
-		print_error(ERROR_MLX_XPM_IMAGE);
+		print_texture_error(xpm, ERROR_MLX_XPM_IMAGE);
 		return (false);
 	}
 	image->pixel = mlx_get_data_addr(image->ptr, &(image->bits_per_pixel), \
 										&(image->line_size), &(image->endian));
 	if (image->pixel == NULL)
 	{
-		print_error(ERROR_MLX_IMAGE_DATA);
+		print_texture_error(xpm, ERROR_MLX_IMAGE_DATA);
 		mlx_destroy_image(get_mlx_ptr(), image->ptr);
 		return (false);
 	}

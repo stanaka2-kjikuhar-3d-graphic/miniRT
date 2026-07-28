@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/27 00:26:11 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/28 14:51:31 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@
 # define ERROR_MLX_IMAGE_DATA "MLX: failed to get image data"
 
 void	print_error(char const *msg);
-void	print_error_hint(char const *msg, char const *hint);
+void	print_texture_error(char const *path, char const *msg);
 void	print_errno(void);
 void	set_error_line_no(size_t line_no);
 void	set_error_line_str(char const *line_str);
