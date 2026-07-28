@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:40 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/19 18:52:51 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/28 23:27:43 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ t_image			*get_texture(char *filepath);
 unsigned int	*get_pixel_addr(t_image *image, t_ivec2 pixel);
 t_ivec2			calc_uv_pixel(t_image *image, t_vec2 uv);
 unsigned int	*get_uv_pixel_addr(t_image *image, t_vec2 uv);
+void			put_color(t_image *image, t_ivec2 pixel, int color);
 
 #endif

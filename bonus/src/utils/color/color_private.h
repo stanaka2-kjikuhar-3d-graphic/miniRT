@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderer_private.h                                 :+:      :+:    :+:   */
+/*   color_private.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/23 23:56:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 00:15:52 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/28 23:12:24 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/29 00:48:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERER_PRIVATE_H
-# define RENDERER_PRIVATE_H
+#ifndef COLOR_PRIVATE_H
+# define COLOR_PRIVATE_H
 
-# include <stdbool.h>
+# include <stdint.h>
 
-# include "vector.h"
-# include "color.h"
-
-bool	check_render_flag(void);
-void	phong(void);
-void	put_color_to_window_image(t_ivec2 pixel, t_color color);
+void	init_srgb_lut(void);
+float	decode_srgb(uint8_t srgb);
+uint8_t	encode_srgb(float linear);
+void	init_gamma_lut(void);
+float	decode_gamma(uint8_t gamma_encoded);
+uint8_t	encode_gamma(float linear);
 
 #endif

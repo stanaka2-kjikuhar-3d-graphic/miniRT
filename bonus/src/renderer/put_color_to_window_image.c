@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderer_private.h                                 :+:      :+:    :+:   */
+/*   put_color_to_window_image.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/23 23:56:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 00:15:52 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/28 23:41:38 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/29 00:15:01 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERER_PRIVATE_H
-# define RENDERER_PRIVATE_H
+#include "ft_mlx.h"
+#include "vector.h"
+#include "color.h"
 
-# include <stdbool.h>
-
-# include "vector.h"
-# include "color.h"
-
-bool	check_render_flag(void);
-void	phong(void);
-void	put_color_to_window_image(t_ivec2 pixel, t_color color);
-
-#endif
+void	put_color_to_window_image(t_ivec2 pixel, t_color color)
+{
+	put_color(get_image(IMG_WINDOW), pixel, encode_color(color));
+}

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 17:37:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:57:11 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 00:42:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "object.h"
 #include "color.h"
 #include "ft_mlx.h"
-
-#include "./object_private.h"
 
 t_vec3	calc_bump_mapping(t_object const *object, t_vec2 uv, t_onb const *tbn)
 {

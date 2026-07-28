@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/27 02:07:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 00:55:40 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ void				bind_material_option(\
 bool				parse_optional_fields(char const **optional_elements, \
 						t_optional_field const *fields);
 enum e_pattern_type	get_pattern_type(char const **optional_elements);
+enum e_normal_type	get_normal_type(char const **optional_elements);
 bool				is_option_id(char const *id, char const *optional_element);
 bool				parse_color(char const *element, void *value);
 bool				parse_coordinate(char const *element, void *value);

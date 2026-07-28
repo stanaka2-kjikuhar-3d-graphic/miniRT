@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:11:18 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/26 00:45:19 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 00:21:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,55 @@
 #include "../parser_private.h"
 
 static bool	check_separator(const char *element, enum e_color_channel i);
-static bool	parse_color_channel(char const **element, float *channel);
+static bool	parse_color_channel(char const **element, unsigned int *rgb);
 
 bool	parse_color(char const *element, void *value)
 {
 	t_color *const			color = (t_color *)value;
-	float *const			channels[] = {\
-								&(color->r), &(color->g), &(color->b)};
+	unsigned int			rgb;
 	enum e_color_channel	i;
 
+	rgb = 0;
 	i = RED;
 	while (i <= BLUE)
 	{
-		if (!parse_color_channel(&element, channels[i]))
+		if (!parse_color_channel(&element, &rgb))
 			return (false);
 		if (!check_separator(element, i))
 			return (false);
 		++element;
 		++i;
 	}
+	*color = decode_color(rgb);
+	return (true);
+}
+
+static bool	parse_color_channel(char const **element, unsigned int *rgb)
+{
+	long	channel;
+
+	if (**element == ',' || **element == '\0')
+	{
+		print_line_error(ERROR_COLOR_EMPTY, NULL);
+		return (false);
+	}
+	if (!ft_isdigit(**element))
+	{
+		print_line_error(ERROR_COLOR_NON_DIGIT, NULL);
+		return (false);
+	}
+	if (**element == '0' && ft_isdigit(*(*element + 1)))
+	{
+		print_line_error(ERROR_COLOR_LEADING_ZERO, NULL);
+		return (false);
+	}
+	channel = ft_strtol(*element, (char **)element, 10);
+	if (0xFF < channel)
+	{
+		print_line_error(ERROR_COLOR_RANGE, NULL);
+		return (false);
+	}
+	*rgb = (*rgb << 8) | (unsigned int)channel;
 	return (true);
 }
 
@@ -58,34 +88,5 @@ static bool	check_separator(const char *element, enum e_color_channel i)
 		print_line_error(ERROR_COLOR_NON_DIGIT, NULL);
 		return (false);
 	}
-	return (true);
-}
-
-static bool	parse_color_channel(char const **element, float *channel)
-{
-	long	value;
-
-	if (**element == ',' || **element == '\0')
-	{
-		print_line_error(ERROR_COLOR_EMPTY, NULL);
-		return (false);
-	}
-	if (!ft_isdigit(**element))
-	{
-		print_line_error(ERROR_COLOR_NON_DIGIT, NULL);
-		return (false);
-	}
-	if (**element == '0' && ft_isdigit(*(*element + 1)))
-	{
-		print_line_error(ERROR_COLOR_LEADING_ZERO, NULL);
-		return (false);
-	}
-	value = ft_strtol(*element, (char **)element, 10);
-	if (0xFF < value)
-	{
-		print_line_error(ERROR_COLOR_RANGE, NULL);
-		return (false);
-	}
-	*channel = decode_color((uint8_t)value);
 	return (true);
 }

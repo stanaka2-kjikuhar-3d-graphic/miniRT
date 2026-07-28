@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:25:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:30:11 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 01:08:00 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,7 @@ static bool	parse_cylinder_optional(\
 	}
 	input->option.material.pattern_type \
 		= get_pattern_type(optional_elements);
+	input->option.material.normal_type \
+		= get_normal_type(optional_elements);
 	return (true);
 }

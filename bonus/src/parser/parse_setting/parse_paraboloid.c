@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 20:37:29 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:42:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 01:07:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,7 @@ static bool	parse_paraboloid_optional(\
 	}
 	input->option.material.pattern_type \
 		= get_pattern_type(optional_elements);
+	input->option.material.normal_type \
+		= get_normal_type(optional_elements);
 	return (true);
 }
