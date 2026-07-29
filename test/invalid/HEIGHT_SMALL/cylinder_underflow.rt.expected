@@ -1,3 +1,3 @@
 Error
 line 4: 1e-45
-height: too small, height/2 underflows to 0
+height: too small, half of it underflows to 0

@@ -26,7 +26,7 @@ bool	parse_bool(char const *element, void *value)
 		*boolean = false;
 	else
 	{
-		print_line_error(ERROR_BOOL_VALUE, NULL);
+		print_field_error(ERROR_MUST_BE_BOOL, NULL);
 		return (false);
 	}
 	return (true);

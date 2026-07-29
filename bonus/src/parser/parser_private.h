@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 00:55:40 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 18:45:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_setting_parser
 
 typedef struct s_required_field
 {
+	char const	*field;
 	char const	*element;
 	void		*value;
 	bool		(*parse)(char const *, void *);

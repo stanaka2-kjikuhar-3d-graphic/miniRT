@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 20:37:29 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 11:42:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 18:51:00 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,12 @@ static bool	parse_paraboloid_required(\
 	char const **elements, t_input_paraboloid *input)
 {
 	t_required_field const	fields[] = {\
-		{elements[1], &(input->center), parse_coordinate}, \
-		{elements[2], &(input->dir), parse_dir}, \
-		{elements[3], &(input->quadratic_coefficient), parse_size}, \
-		{elements[4], &(input->height), parse_size}, \
-		{elements[5], &(input->albedo), parse_color}};
+		{"coordinate", elements[1], &(input->center), parse_coordinate}, \
+		{"dir", elements[2], &(input->dir), parse_dir}, \
+		{"coefficient", elements[3], \
+			&(input->quadratic_coefficient), parse_size}, \
+		{"height", elements[4], &(input->height), parse_size}, \
+		{"color", elements[5], &(input->albedo), parse_color}};
 	size_t const			count = sizeof(fields) \
 												/ sizeof(t_required_field);
 

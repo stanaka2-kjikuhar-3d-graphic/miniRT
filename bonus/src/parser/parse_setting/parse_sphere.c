@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:17:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 11:42:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 18:50:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ static bool	parse_sphere_required(\
 	char const **elements, t_input_sphere *input)
 {
 	t_required_field const	fields[] = {\
-		{elements[1], &(input->center), parse_coordinate}, \
-		{elements[2], &(input->radius), parse_radius}, \
-		{elements[3], &(input->albedo), parse_color}};
+		{"coordinate", elements[1], &(input->center), parse_coordinate}, \
+		{"diameter", elements[2], &(input->radius), parse_radius}, \
+		{"color", elements[3], &(input->albedo), parse_color}};
 	size_t const			count = sizeof(fields) \
 												/ sizeof(t_required_field);
 

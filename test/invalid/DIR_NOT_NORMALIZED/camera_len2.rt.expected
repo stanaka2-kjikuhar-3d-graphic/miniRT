@@ -1,4 +1,4 @@
 Error
 line 3: 0,0,2
-direction: must be a unit vector
+dir: must be a unit vector
 USAGE: 0.000000,0.000000,1.000000

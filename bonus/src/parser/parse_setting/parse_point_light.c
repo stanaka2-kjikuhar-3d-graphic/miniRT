@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:02:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:43:01 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 18:50:38 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static bool	parse_point_light_required(\
 	char const **elements, t_input_point_light *input)
 {
 	t_required_field const	fields[] = {\
-		{elements[1], &(input->pos), parse_coordinate}, \
-		{elements[2], &(input->brightness), parse_brightness}, \
-		{elements[3], &(input->color), parse_color}};
+		{"coordinate", elements[1], &(input->pos), parse_coordinate}, \
+		{"brightness", elements[2], &(input->brightness), parse_brightness}, \
+		{"color", elements[3], &(input->color), parse_color}};
 	size_t const			count = sizeof(fields) \
 												/ sizeof(t_required_field);
 

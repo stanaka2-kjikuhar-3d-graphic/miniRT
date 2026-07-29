@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:25:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 11:42:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 18:52:24 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ static bool	parse_cylinder_required(\
 	char const **elements, t_input_cylinder *input)
 {
 	t_required_field const	fields[] = {\
-		{elements[1], &(input->center), parse_coordinate}, \
-		{elements[2], &(input->dir), parse_dir}, \
-		{elements[3], &(input->radius), parse_radius}, \
-		{elements[4], &(input->half_height), parse_half_height}, \
-		{elements[5], &(input->albedo), parse_color}};
+		{"coordinate", elements[1], &(input->center), parse_coordinate}, \
+		{"dir", elements[2], &(input->dir), parse_dir}, \
+		{"diameter", elements[3], &(input->radius), parse_radius}, \
+		{"height", elements[4], &(input->half_height), parse_half_height}, \
+		{"color", elements[5], &(input->albedo), parse_color}};
 	size_t const			count = sizeof(fields) \
 												/ sizeof(t_required_field);
 

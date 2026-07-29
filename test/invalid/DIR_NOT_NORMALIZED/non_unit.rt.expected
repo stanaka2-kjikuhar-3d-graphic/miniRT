@@ -1,4 +1,4 @@
 Error
 line 2: 1,1,1
-direction: must be a unit vector
+dir: must be a unit vector
 USAGE: 0.577350,0.577350,0.577350

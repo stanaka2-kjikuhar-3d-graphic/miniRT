@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:09:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:28:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 18:53:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ static bool	parse_camera_required(char const **elements, \
 	t_input_camera *camera, t_input_viewport *viewport)
 {
 	t_required_field const	fields[] = {\
-		{elements[1], &(camera->pos), parse_coordinate}, \
-		{elements[2], &(camera->dir), parse_dir}, \
-		{elements[3], &(viewport->fov), parse_fov}};
+		{"coordinate", elements[1], &(camera->pos), parse_coordinate}, \
+		{"dir", elements[2], &(camera->dir), parse_dir}, \
+		{"fov", elements[3], &(viewport->fov), parse_fov}};
 	size_t const			count = sizeof(fields) \
 												/ sizeof(t_required_field);
 

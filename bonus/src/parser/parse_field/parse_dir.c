@@ -41,9 +41,9 @@ bool	parse_dir(char const *element, void *value)
 		|| 1.0f + NORMALIZED_EPSILON < length)
 	{
 		if (build_normalized_hint(*dir, hint))
-			print_line_error(ERROR_DIR_NOT_NORMALIZED, hint);
+			print_field_error(ERROR_MUST_BE_NORMALIZED, hint);
 		else
-			print_line_error(ERROR_DIR_NOT_NORMALIZED, NULL);
+			print_field_error(ERROR_MUST_BE_NORMALIZED, NULL);
 		return (false);
 	}
 	return (true);

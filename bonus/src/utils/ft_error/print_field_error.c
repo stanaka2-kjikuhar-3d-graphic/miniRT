@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_required_fields.c                            :+:      :+:    :+:   */
+/*   print_field_error.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/11 14:59:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 18:03:20 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/29 18:30:45 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/29 18:32:00 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include <unistd.h>
 #include <stddef.h>
 
-#include "ft_error.h"
+#include "ft_stdio.h"
+#include "ft_error_private.h"
 
-#include "../parser_private.h"
-
-bool	parse_required_fields(t_required_field const *fields, size_t count)
+void	print_field_error(char const *msg, char const *hint)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < count)
-	{
-		set_error_string(fields[i].element);
-		set_error_field(fields[i].field);
-		if (!fields[i].parse(fields[i].element, fields[i].value))
-			return (false);
-		++i;
-	}
-	return (true);
+	ft_dprintf(STDERR_FILENO, "Error\n");
+	ft_dprintf(STDERR_FILENO, "line %zu: %s\n", \
+				get_error_line_number(), get_error_string());
+	ft_dprintf(STDERR_FILENO, "%s: %s\n", get_error_field(), msg);
+	if (hint != NULL)
+		ft_dprintf(STDERR_FILENO, "USAGE: %s\n", hint);
 }

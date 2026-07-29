@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 15:53:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 11:35:18 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 19:03:28 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ bool	parse_optional_fields(\
 	i = 0;
 	while (optional_elements[i] != NULL)
 	{
-		set_error_line_str(optional_elements[i]);
+		set_error_string(optional_elements[i]);
+		// TODO set_field
 		if (!parse_optional_field(optional_elements[i], fields, used))
 			return (false);
 		++i;
@@ -101,6 +102,7 @@ static bool	parse_optional_field(\
 		return (false);
 	}
 	used[idx] = true;
+	set_error_field(fields[idx].key);
 	return (fields[idx].parse(equal + 1, fields[idx].value));
 }
 

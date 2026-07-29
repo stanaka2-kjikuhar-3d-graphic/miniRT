@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_angle.c                                      :+:      :+:    :+:   */
+/*   error_field.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/21 14:38:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:44:58 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/29 18:05:30 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/29 18:21:45 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include <stddef.h>
 
-#include "ft_error.h"
+#include "ft_error_private.h"
 
-#include "../parser_private.h"
+static char const	*g_error_field;
 
-bool	parse_angle(char const *element, void *value)
+void	set_error_field(char const *field)
 {
-	float *const	angle = (float *)value;
+	g_error_field = field;
+}
 
-	if (!parse_float(element, angle))
-		return (false);
-	if (*angle < 0.0f || 180.0f < *angle)
-	{
-		print_field_error(ERROR_ANGLE_RANGE, NULL);
-		return (false);
-	}
-	return (true);
+char const	*get_error_field(void)
+{
+	if (g_error_field == NULL)
+		return ("");
+	return (g_error_field);
 }

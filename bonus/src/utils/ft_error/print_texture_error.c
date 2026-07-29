@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_angle.c                                      :+:      :+:    :+:   */
+/*   print_texture_error.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/21 14:38:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:44:58 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/29 18:33:12 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/29 18:33:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include <unistd.h>
+#include <stddef.h>
 
-#include "ft_error.h"
+#include "ft_stdio.h"
 
-#include "../parser_private.h"
-
-bool	parse_angle(char const *element, void *value)
+void	print_texture_error(char const *path, char const *msg)
 {
-	float *const	angle = (float *)value;
-
-	if (!parse_float(element, angle))
-		return (false);
-	if (*angle < 0.0f || 180.0f < *angle)
-	{
-		print_field_error(ERROR_ANGLE_RANGE, NULL);
-		return (false);
-	}
-	return (true);
+	ft_dprintf(STDERR_FILENO, "Error\n");
+	if (path != NULL && *path != '\0')
+		ft_dprintf(STDERR_FILENO, "%s\n", path);
+	ft_dprintf(STDERR_FILENO, "%s\n", msg);
 }

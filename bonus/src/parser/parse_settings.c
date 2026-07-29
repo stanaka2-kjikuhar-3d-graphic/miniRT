@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/27 02:07:35 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 18:03:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,16 @@ static const t_setting_parser	g_setting_parsers[SETTING_ID_COUNT] = {\
 bool	parse_settings(t_list **line_list)
 {
 	char	*line;
-	size_t	line_no;
+	size_t	line_number;
 	size_t	count[SETTING_ID_COUNT];
 
-	line_no = 0;
+	line_number = 0;
 	ft_bzero(count, sizeof(count));
 	while (*line_list != NULL)
 	{
 		line = ft_lst_pop_front(line_list);
-		set_error_line_no(++line_no);
-		set_error_line_str(line);
+		set_error_line_number(++line_number);
+		set_error_string(line);
 		if (!is_blank_line(line) && !is_comment_line(line) \
 			&& !parse_line(line, count))
 		{

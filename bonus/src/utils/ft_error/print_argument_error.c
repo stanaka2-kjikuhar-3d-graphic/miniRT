@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_angle.c                                      :+:      :+:    :+:   */
+/*   print_argument_error.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/21 14:38:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:44:58 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/29 18:33:19 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/29 18:34:00 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include <unistd.h>
 
-#include "ft_error.h"
+#include "ft_stdio.h"
 
-#include "../parser_private.h"
-
-bool	parse_angle(char const *element, void *value)
+void	print_argument_error(char const *program_name)
 {
-	float *const	angle = (float *)value;
-
-	if (!parse_float(element, angle))
-		return (false);
-	if (*angle < 0.0f || 180.0f < *angle)
-	{
-		print_field_error(ERROR_ANGLE_RANGE, NULL);
-		return (false);
-	}
-	return (true);
+	ft_dprintf(STDERR_FILENO, "Error\n");
+	ft_dprintf(STDERR_FILENO, "USAGE: %s *.rt\n", program_name);
 }

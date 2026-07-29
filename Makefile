@@ -320,9 +320,15 @@ SRCS	+=	add_color.c \
 			convert_uint_to_color.c
 
 # utils/ft_error
-SRCS	+=	print_error.c \
+SRCS	+=	error_line_number.c \
+			error_string.c \
+			error_field.c \
+			print_error.c \
+			print_argument_error.c \
+			print_texture_error.c \
 			print_errno.c \
-			print_line_error.c
+			print_line_error.c \
+			print_field_error.c
 
 # utils/vector/vec3
 SRCS	+=	vec3.c \

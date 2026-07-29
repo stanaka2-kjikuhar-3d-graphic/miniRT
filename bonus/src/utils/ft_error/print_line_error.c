@@ -6,59 +6,21 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/25 23:55:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 23:52:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 18:32:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stddef.h>
 
-#include "ft_string.h"
 #include "ft_stdio.h"
-
-#define ERROR_LINE_CAPACITY 1024
-
-static size_t	g_error_line_no;
-static char		g_error_line_str[ERROR_LINE_CAPACITY];
-
-void	set_error_line_no(size_t line_no)
-{
-	g_error_line_no = line_no;
-}
-
-void	set_error_line_str(char const *line_str)
-{
-	size_t	len;
-
-	len = ft_strlcpy(g_error_line_str, line_str, ERROR_LINE_CAPACITY);
-	if (len >= ERROR_LINE_CAPACITY)
-		ft_strlcpy(g_error_line_str + ERROR_LINE_CAPACITY - 4, "...", 4);
-}
-
-void	set_error_line_multi_strs(char const **line_strs)
-{
-	size_t	i;
-	size_t	len;
-
-	len = 0;
-	i = 0;
-	g_error_line_str[0] = '\0';
-	while (line_strs[i] != NULL)
-	{
-		if (i != 0)
-			ft_strlcat(g_error_line_str, " ", ERROR_LINE_CAPACITY);
-		len = ft_strlcat(g_error_line_str, line_strs[i], ERROR_LINE_CAPACITY);
-		++i;
-	}
-	if (len >= ERROR_LINE_CAPACITY)
-		ft_strlcpy(g_error_line_str + ERROR_LINE_CAPACITY - 4, "...", 4);
-}
+#include "ft_error_private.h"
 
 void	print_line_error(char const *msg, char const *hint)
 {
 	ft_dprintf(STDERR_FILENO, "Error\n");
 	ft_dprintf(STDERR_FILENO, "line %zu: %s\n", \
-				g_error_line_no, g_error_line_str);
+				get_error_line_number(), get_error_string());
 	ft_dprintf(STDERR_FILENO, "%s\n", msg);
 	if (hint != NULL)
 		ft_dprintf(STDERR_FILENO, "USAGE: %s\n", hint);
@@ -70,7 +32,7 @@ void	print_line_error_multi_hints(char const *msg, char const **hints)
 
 	ft_dprintf(STDERR_FILENO, "Error\n");
 	ft_dprintf(STDERR_FILENO, "line %zu: %s\n", \
-				g_error_line_no, g_error_line_str);
+				get_error_line_number(), get_error_string());
 	ft_dprintf(STDERR_FILENO, "%s\n", msg);
 	ft_dprintf(STDERR_FILENO, "USAGE:");
 	i = 0;

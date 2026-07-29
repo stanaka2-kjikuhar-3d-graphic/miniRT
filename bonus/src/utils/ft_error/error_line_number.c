@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_angle.c                                      :+:      :+:    :+:   */
+/*   error_line_number.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/21 14:38:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:44:58 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/29 17:58:11 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/29 17:59:36 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include <stddef.h>
 
-#include "ft_error.h"
+#include "ft_error_private.h"
 
-#include "../parser_private.h"
+static size_t	g_line_number;
 
-bool	parse_angle(char const *element, void *value)
+void	set_error_line_number(size_t line_number)
 {
-	float *const	angle = (float *)value;
+	g_line_number = line_number;
+}
 
-	if (!parse_float(element, angle))
-		return (false);
-	if (*angle < 0.0f || 180.0f < *angle)
-	{
-		print_field_error(ERROR_ANGLE_RANGE, NULL);
-		return (false);
-	}
-	return (true);
+size_t	get_error_line_number(void)
+{
+	return (g_line_number);
 }

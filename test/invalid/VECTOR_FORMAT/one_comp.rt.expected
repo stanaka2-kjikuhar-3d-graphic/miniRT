@@ -1,4 +1,4 @@
 Error
 line 3: 5
-vector: invalid format
+coordinate: invalid format
 USAGE: x,y,z

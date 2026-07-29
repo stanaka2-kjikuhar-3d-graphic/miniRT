@@ -25,13 +25,13 @@ bool	parse_radius(char const *element, void *value)
 		return (false);
 	if (diameter <= 0.0f)
 	{
-		print_line_error(ERROR_DIAMETER_RANGE, NULL);
+		print_field_error(ERROR_MUST_BE_POSITIVE, NULL);
 		return (false);
 	}
 	*radius = diameter / 2.0f;
 	if (*radius == 0.0f)
 	{
-		print_line_error(ERROR_DIAMETER_SMALL, NULL);
+		print_field_error(ERROR_TOO_SMALL, NULL);
 		return (false);
 	}
 	return (true);

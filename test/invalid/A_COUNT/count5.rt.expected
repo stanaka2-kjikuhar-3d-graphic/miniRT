@@ -1,4 +1,4 @@
 Error
 line 1: A 0.2 255,255,255 1 2
 invalid fields count
-USAGE: A ratio R,G,B
+USAGE: A brightness R,G,B
