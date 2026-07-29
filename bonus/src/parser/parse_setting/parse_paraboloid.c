@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 20:37:29 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 01:07:51 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 11:42:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,7 @@ static bool	parse_paraboloid_optional(\
 	init_optional_fields(fields);
 	bind_material_option(fields, &(input->option.material));
 	if (!parse_optional_fields(optional_elements, fields))
-	{
 		return (false);
-	}
 	input->option.material.pattern_type \
 		= get_pattern_type(optional_elements);
 	input->option.material.normal_type \
