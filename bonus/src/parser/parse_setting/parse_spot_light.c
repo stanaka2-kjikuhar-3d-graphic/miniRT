@@ -29,7 +29,7 @@ bool	parse_spot_light(char const **elements)
 	count = count_split(elements);
 	if (count != 6)
 	{
-		print_line_error(ERROR_SL_COUNT, HINT_SL);
+		print_line_error(ERROR_FIELDS_COUNT, HINT_SL);
 		return (false);
 	}
 	if (!parse_spot_light_required(elements, &input))

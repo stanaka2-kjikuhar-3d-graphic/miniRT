@@ -29,7 +29,7 @@ bool	parse_point_light(char const **elements)
 	count = count_split(elements);
 	if (count != 4)
 	{
-		print_line_error(ERROR_L_COUNT, HINT_L);
+		print_line_error(ERROR_FIELDS_COUNT, HINT_L);
 		return (false);
 	}
 	if (!parse_point_light_required(elements, &input))

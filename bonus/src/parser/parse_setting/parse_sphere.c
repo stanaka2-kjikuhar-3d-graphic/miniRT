@@ -31,7 +31,7 @@ bool	parse_sphere(char const **elements)
 	count = count_split(elements);
 	if (count < 4)
 	{
-		print_line_error(ERROR_SP_COUNT, HINT_SP);
+		print_line_error(ERROR_FIELDS_COUNT, HINT_SP);
 		return (false);
 	}
 	if (!parse_sphere_required(elements, &input) \

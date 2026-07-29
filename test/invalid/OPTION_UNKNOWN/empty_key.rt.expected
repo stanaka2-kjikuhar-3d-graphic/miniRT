@@ -1,4 +1,4 @@
 Error
 line 4: =true
-OPTION: unknown option id
+option: unknown id
 USAGE: texture=file.xpm checker_color1=R,G,B [0 <= R,G,B <= 255] checker_color2=R,G,B [0 <= R,G,B <= 255] bump_map=file.xpm normal_map=file.xpm directx_normal_map=true/false bump_strength=x [0.0 < x] metalness=true/false shininess=x [0.0 <= x]

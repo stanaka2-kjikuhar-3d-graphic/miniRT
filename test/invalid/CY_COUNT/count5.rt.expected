@@ -1,4 +1,4 @@
 Error
 line 4: cy 0,0,20 0,0,1 14 21
-cy: invalid fields count
+invalid fields count
 USAGE: cy x,y,z nx,ny,nz diameter height R,G,B

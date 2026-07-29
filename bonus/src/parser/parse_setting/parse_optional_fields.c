@@ -80,7 +80,7 @@ static bool	parse_optional_field(\
 {
 	char const				*equal;
 	enum e_optional_field	idx;
-	char const				*hints[OPTIONAL_FIELD_COUNT + 2];
+	char const				*hints[OPTIONAL_FIELD_COUNT + 1];
 
 	equal = ft_strchr(element, '=');
 	if (equal == NULL)
@@ -126,9 +126,8 @@ static void	build_option_multi_hints(\
 	size_t	i;
 	size_t	j;
 
-	hints[0] = HINT_OPTION_USAGE;
 	i = 0;
-	j = 1;
+	j = 0;
 	while (i < OPTIONAL_FIELD_COUNT)
 	{
 		if (fields[i].value != NULL)

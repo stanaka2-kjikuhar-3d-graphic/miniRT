@@ -1,4 +1,4 @@
 Error
 line 1: A 0.2 255,255,255 1
-A: invalid fields count
+invalid fields count
 USAGE: A ratio R,G,B

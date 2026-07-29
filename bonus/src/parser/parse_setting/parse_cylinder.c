@@ -31,7 +31,7 @@ bool	parse_cylinder(char const **elements)
 	count = count_split(elements);
 	if (count < 6)
 	{
-		print_line_error(ERROR_CY_COUNT, HINT_CY);
+		print_line_error(ERROR_FIELDS_COUNT, HINT_CY);
 		return (false);
 	}
 	if (!parse_cylinder_required(elements, &input) \

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/28 14:51:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 17:54:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,87 +16,77 @@
 # include <stddef.h>
 
 /* File */
-# define ERROR_FILE_BINARY "FILE: not a text file"
+# define ERROR_FILE_BINARY "not a text file"
 
 /* Identifier / Scene */
-# define ERROR_ID_UNKNOWN "SCENE: unknown identifier"
-# define ERROR_ID_DUP_A "SCENE: duplicate ambient lighting (A)"
-# define ERROR_ID_DUP_C "SCENE: duplicate camera (C)"
-# define ERROR_ID_NO_A "SCENE: missing ambient lighting (A)"
-# define ERROR_ID_NO_L "SCENE: missing light (L)"
-# define ERROR_ID_NO_C "SCENE: missing camera (C)"
+# define ERROR_ID_UNKNOWN "unknown identifier"
+# define ERROR_ID_DUP_A "duplicate ambient lighting (A)"
+# define ERROR_ID_DUP_C "duplicate camera (C)"
+# define ERROR_ID_NO_A "missing ambient lighting (A)"
+# define ERROR_ID_NO_L "missing light (L)"
+# define ERROR_ID_NO_C "missing camera (C)"
 
 /* Element count */
-# define ERROR_A_COUNT "A: invalid fields count"
-# define ERROR_L_COUNT "L: invalid fields count"
-# define ERROR_C_COUNT "C: invalid fields count"
-# define ERROR_SP_COUNT "sp: invalid fields count"
-# define ERROR_PL_COUNT "pl: invalid fields count"
-# define ERROR_CY_COUNT "cy: invalid fields count"
-# define ERROR_CO_COUNT "co: invalid fields count"
-# define ERROR_HB_COUNT "hb: invalid fields count"
-# define ERROR_PB_COUNT "pb: invalid fields count"
-# define ERROR_SL_COUNT "sl: invalid fields count"
-# define HINT_A "USAGE: A ratio R,G,B"
-# define HINT_L "USAGE: L x,y,z brightness R,G,B"
-# define HINT_C "USAGE: C x,y,z nx,ny,nz fov"
-# define HINT_SP "USAGE: sp x,y,z diameter R,G,B"
-# define HINT_PL "USAGE: pl x,y,z nx,ny,nz R,G,B"
-# define HINT_CY "USAGE: cy x,y,z nx,ny,nz diameter height R,G,B"
-# define HINT_CO "USAGE: co x,y,z nx,ny,nz diameter height R,G,B"
-# define HINT_HB1 "USAGE: hb x,y,z nx,ny,nz "
-# define HINT_HB2 "waist_diameter cap_diameter height R,G,B"
-# define HINT_PB "USAGE: pb x,y,z nx,ny,nz coefficient height R,G,B"
-# define HINT_SL "USAGE: sl x,y,z brightness R,G,B, nx,ny,nz angle"
+# define ERROR_FIELDS_COUNT "invalid fields count"
+# define HINT_A "A ratio R,G,B"
+# define HINT_L "L x,y,z brightness R,G,B"
+# define HINT_C "C x,y,z nx,ny,nz fov"
+# define HINT_SP "sp x,y,z diameter R,G,B"
+# define HINT_PL "pl x,y,z nx,ny,nz R,G,B"
+# define HINT_CY "cy x,y,z nx,ny,nz diameter height R,G,B"
+# define HINT_CO "co x,y,z nx,ny,nz diameter height R,G,B"
+# define HINT_HB "hb x,y,z nx,ny,nz center_diameter cap_diameter height R,G,B"
+# define HINT_PB "pb x,y,z nx,ny,nz coefficient height R,G,B"
+# define HINT_SL "sl x,y,z brightness R,G,B, nx,ny,nz angle"
 
 /* Element */
-# define ERROR_BRIGHTNESS_RANGE "BRIGHTNESS: out of range (0.0-1.0)"
-# define ERROR_FOV_RANGE "FOV: out of range (0-180)"
-# define ERROR_DIR_NOT_NORMALIZED "DIRECTION: must be a unit vector"
-# define ERROR_DIAMETER_RANGE "DIAMETER: must be positive"
-# define ERROR_DIAMETER_SMALL "DIAMETER: too small, diameter/2 underflows to 0"
-# define ERROR_HB_RADIUS "DIAMETER: hb cap diameter must exceed waist diameter"
-# define ERROR_SIZE_RANGE "SIZE: must be positive"
-# define ERROR_HEIGHT_RANGE "HEIGHT: must be positive"
-# define ERROR_HEIGHT_SMALL "HEIGHT: too small, height/2 underflows to 0"
-# define ERROR_ANGLE_RANGE "ANGLE: out of range (0-180)"
-# define ERROR_SHININESS_RANGE "SHININESS: must be non-negative"
-# define ERROR_BOOL_VALUE "BOOLEAN: must be true or false"
+# define ERROR_BRIGHTNESS_RANGE "brightness: out of range (0.0 <= x <= 1.0)"
+# define ERROR_FOV_RANGE "fov: out of range (0 < x < 180)"
+# define ERROR_DIR_NOT_NORMALIZED "direction: must be a unit vector"
+# define ERROR_DIAMETER_RANGE "diameter: must be positive"
+# define ERROR_DIAMETER_SMALL "diameter: too small, diameter/2 underflows to 0"
+# define ERROR_HB_RADIUS "hb: cap_diameter must exceed center_diameter"
+# define ERROR_SIZE_RANGE "number: must be positive"
+# define ERROR_HEIGHT_RANGE "height: must be positive"
+# define ERROR_HEIGHT_SMALL "height: too small, height/2 underflows to 0"
+# define ERROR_ANGLE_RANGE "angle: out of range (0 <= x <= 180)"
+# define ERROR_SHININESS_RANGE "shininess: must be non-negative"
+# define ERROR_BOOL_VALUE "boolean: must be true or false"
 
 /* Floating Number */
-# define ERROR_FLOAT_CHARACTER "FLOATING NUMBER: invalid character"
-# define ERROR_FLOAT_LEADING_ZERO "FLOATING NUMBER: leading zero not allowed"
+# define ERROR_FLOAT_CHARACTER "number: invalid character"
+# define ERROR_FLOAT_LEADING_ZERO "number: leading zero not allowed"
 
 /* Vector */
-# define ERROR_VECTOR_EMPTY "VECTOR: empty component"
-# define ERROR_VECTOR_FORMAT "VECTOR: invalid format"
-# define ERROR_VECTOR_CHARACTER "VECTOR: invalid character"
-# define ERROR_VECTOR_LEADING_ZERO "VECTOR: leading zero not allowed"
-# define HINT_VECTOR "USAGE: x,y,z"
+# define ERROR_VECTOR_EMPTY "vector: empty component"
+# define ERROR_VECTOR_FORMAT "vector: invalid format"
+# define ERROR_VECTOR_CHARACTER "vector: invalid character"
+# define ERROR_VECTOR_LEADING_ZERO "vector: leading zero not allowed"
+# define HINT_VECTOR "x,y,z"
 
 /* Color */
-# define ERROR_COLOR_EMPTY "COLOR: empty color channel"
-# define ERROR_COLOR_FORMAT "COLOR: invalid format"
-# define ERROR_COLOR_NON_DIGIT "COLOR: only digit allowed"
-# define ERROR_COLOR_LEADING_ZERO "COLOR: leading zero not allowed"
-# define ERROR_COLOR_RANGE "COLOR: value out of range (0-255)"
-# define HINT_COLOR "USAGE: R,G,B (0-255)"
+# define ERROR_COLOR_EMPTY "color: empty channel"
+# define ERROR_COLOR_FORMAT "color: invalid format"
+# define ERROR_COLOR_NON_DIGIT "color: only digits allowed"
+# define ERROR_COLOR_LEADING_ZERO "color: leading zero not allowed"
+# define ERROR_COLOR_RANGE "color: out of range (0 <= x <= 255)"
+# define HINT_COLOR "R,G,B (0-255)"
 
 /* Material option */
-# define ERROR_OPTION_FORMAT "OPTION: missing '=' separator"
-# define ERROR_OPTION_UNKNOWN "OPTION: unknown option id"
-# define ERROR_OPTION_DUP "OPTION: duplicate option"
-# define HINT_OPTION_FORMAT "USAGE: key=value"
-# define HINT_OPTION_USAGE "USAGE:"
+# define ERROR_OPTION_FORMAT "option: missing '=' separator"
+# define ERROR_OPTION_UNKNOWN "option: unknown option"
+# define ERROR_OPTION_DUP "option: duplicate option"
+# define HINT_OPTION_FORMAT "key=value"
 
 /* MLX */
-# define ERROR_MLX_CONNECTION "MLX: failed to create X-Window connection"
-# define ERROR_MLX_WINDOW "MLX: failed to create window"
-# define ERROR_MLX_IMAGE "MLX: failed to create image"
-# define ERROR_MLX_XPM_IMAGE "MLX: failed to create xpm image"
-# define ERROR_MLX_IMAGE_DATA "MLX: failed to get image data"
+# define ERROR_MLX_CONNECTION "failed to create X-Window connection"
+# define ERROR_MLX_WINDOW "failed to create window"
+# define ERROR_MLX_IMAGE "failed to create image"
+# define ERROR_MLX_XPM_IMAGE "failed to create xpm image"
+# define ERROR_MLX_IMAGE_DATA "failed to get image data"
 
 void	print_error(char const *msg);
+void	print_argument_error(char const *program_name);
 void	print_texture_error(char const *path, char const *msg);
 void	print_errno(void);
 void	set_error_line_no(size_t line_no);

@@ -1,4 +1,4 @@
 Error
 line 4: hb 0,0,20 0,0,1 20 40
-hb: invalid fields count
-USAGE: hb x,y,z nx,ny,nz waist_diameter cap_diameter height R,G,B
+invalid fields count
+USAGE: hb x,y,z nx,ny,nz center_diameter cap_diameter height R,G,B

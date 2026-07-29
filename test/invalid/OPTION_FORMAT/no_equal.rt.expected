@@ -1,4 +1,4 @@
 Error
 line 4: foo
-OPTION: missing '=' separator
+option: missing '=' separator
 USAGE: key=value

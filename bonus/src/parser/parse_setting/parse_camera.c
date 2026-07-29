@@ -31,7 +31,7 @@ bool	parse_camera(char const **elements)
 	count = count_split(elements);
 	if (count != 4)
 	{
-		print_line_error(ERROR_C_COUNT, HINT_C);
+		print_line_error(ERROR_FIELDS_COUNT, HINT_C);
 		return (false);
 	}
 	if (!parse_camera_required(elements, &camera, &viewport))

@@ -31,7 +31,7 @@ bool	parse_paraboloid(char const **elements)
 	count = count_split(elements);
 	if (count < 6)
 	{
-		print_line_error(ERROR_PB_COUNT, HINT_PB);
+		print_line_error(ERROR_FIELDS_COUNT, HINT_PB);
 		return (false);
 	}
 	if (!parse_paraboloid_required(elements, &input) \

@@ -31,7 +31,7 @@ bool	parse_plane(char const **elements)
 	count = count_split(elements);
 	if (count < 4)
 	{
-		print_line_error(ERROR_PL_COUNT, HINT_PL);
+		print_line_error(ERROR_FIELDS_COUNT, HINT_PL);
 		return (false);
 	}
 	if (!parse_plane_required(elements, &input) \

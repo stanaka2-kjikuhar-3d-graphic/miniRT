@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 23:37:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/28 18:03:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 16:22:24 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,12 @@ static bool	build_normalized_hint(t_vec3 dir, char *hint)
 	max_abs = fmaxf(fabsf(dir.x), fmaxf(fabsf(dir.y), fabsf(dir.z)));
 	if (max_abs == 0.0f)
 	{
-		ft_strcpy(hint, "unit vector: 0.577350,0.577350,0.577350");
+		ft_strcpy(hint, "0.577350,0.577350,0.577350");
 		return (true);
 	}
 	dir.x /= max_abs;
 	dir.y /= max_abs;
 	dir.z /= max_abs;
 	dir = vec3_normalize(dir);
-	return (ft_sprintf(hint, "unit vector: %.6f,%.6f,%.6f", \
-									dir.x, dir.y, dir.z) >= 0);
+	return (ft_sprintf(hint, "%.6f,%.6f,%.6f", dir.x, dir.y, dir.z) >= 0);
 }

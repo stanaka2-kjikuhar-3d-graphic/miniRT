@@ -1,4 +1,4 @@
 Error
 line 1: 255,255
-COLOR: invalid format
+color: invalid format
 USAGE: R,G,B (0-255)

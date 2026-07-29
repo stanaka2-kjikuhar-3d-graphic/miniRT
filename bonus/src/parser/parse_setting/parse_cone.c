@@ -31,7 +31,7 @@ bool	parse_cone(char const **elements)
 	count = count_split(elements);
 	if (count < 6)
 	{
-		print_line_error(ERROR_CO_COUNT, HINT_CO);
+		print_line_error(ERROR_FIELDS_COUNT, HINT_CO);
 		return (false);
 	}
 	if (!parse_cone_required(elements, &input) \

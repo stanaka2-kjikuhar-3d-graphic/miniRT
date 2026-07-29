@@ -1,4 +1,4 @@
 Error
 line 4: pb 0,0,20 0,0,1 1
-pb: invalid fields count
+invalid fields count
 USAGE: pb x,y,z nx,ny,nz coefficient height R,G,B

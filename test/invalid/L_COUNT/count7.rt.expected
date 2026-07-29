@@ -1,4 +1,4 @@
 Error
 line 3: L -40,0,30 0.7 255,255,255 0,0,1 30 99
-L: invalid fields count
+invalid fields count
 USAGE: L x,y,z brightness R,G,B

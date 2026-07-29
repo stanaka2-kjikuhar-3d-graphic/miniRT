@@ -29,7 +29,7 @@ bool	parse_ambient_light(char const **elements)
 	count = count_split(elements);
 	if (count != 3)
 	{
-		print_line_error(ERROR_A_COUNT, HINT_A);
+		print_line_error(ERROR_FIELDS_COUNT, HINT_A);
 		return (false);
 	}
 	if (!parse_ambient_light_required(elements, &input))

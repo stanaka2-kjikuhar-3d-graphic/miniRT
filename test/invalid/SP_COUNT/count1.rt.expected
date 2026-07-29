@@ -1,4 +1,4 @@
 Error
 line 4: sp
-sp: invalid fields count
+invalid fields count
 USAGE: sp x,y,z diameter R,G,B

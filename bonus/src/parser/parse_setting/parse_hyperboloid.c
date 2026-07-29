@@ -31,7 +31,7 @@ bool	parse_hyperboloid(char const **elements)
 	count = count_split(elements);
 	if (count < 7)
 	{
-		print_line_error(ERROR_HB_COUNT, HINT_HB1 HINT_HB2);
+		print_line_error(ERROR_FIELDS_COUNT, HINT_HB);
 		return (false);
 	}
 	if (!parse_hyperboloid_required(elements, &input) \

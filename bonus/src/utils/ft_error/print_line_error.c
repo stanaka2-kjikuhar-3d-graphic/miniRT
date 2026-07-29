@@ -61,7 +61,7 @@ void	print_line_error(char const *msg, char const *hint)
 				g_error_line_no, g_error_line_str);
 	ft_dprintf(STDERR_FILENO, "%s\n", msg);
 	if (hint != NULL)
-		ft_dprintf(STDERR_FILENO, "%s\n", hint);
+		ft_dprintf(STDERR_FILENO, "USAGE: %s\n", hint);
 }
 
 void	print_line_error_multi_hints(char const *msg, char const **hints)
@@ -72,14 +72,12 @@ void	print_line_error_multi_hints(char const *msg, char const **hints)
 	ft_dprintf(STDERR_FILENO, "line %zu: %s\n", \
 				g_error_line_no, g_error_line_str);
 	ft_dprintf(STDERR_FILENO, "%s\n", msg);
+	ft_dprintf(STDERR_FILENO, "USAGE:");
 	i = 0;
 	while (hints[i] != NULL)
 	{
-		if (i != 0)
-			ft_dprintf(STDERR_FILENO, " ");
-		ft_dprintf(STDERR_FILENO, "%s", hints[i]);
+		ft_dprintf(STDERR_FILENO, " %s", hints[i]);
 		++i;
 	}
-	if (i != 0)
-		ft_dprintf(STDERR_FILENO, "\n");
+	ft_dprintf(STDERR_FILENO, "\n");
 }
