@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
 #    Updated: 2026/07/23 00:48:47 by stanaka2         ###   ########.fr        #
@@ -132,8 +132,11 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 					$(addprefix utils/, \
 						color \
 						ft_error \
+						matrix \
+						matrix/internal \
 						$(addprefix vector/, \
 							vec3 \
+							vec4 \
 							vec2 \
 							ivec2 \
 						) \
@@ -327,11 +330,37 @@ SRCS	+=	vec3.c \
 			vec3_normalize.c \
 			vec3_rotate.c
 
+# utils/vector/vec4
+SRCS	+=	vec4.c \
+			vec4_from_point.c \
+			vec4_from_dir.c \
+			vec4_to_vec3.c \
+			vec4_dot.c
+
 # utils/vector/vec2
 SRCS	+=	vec2.c
 
 # utils/vector/ivec2
 SRCS	+=	ivec2.c
+
+# utils/matrix
+SRCS	+=	mat4_identity.c \
+			mat4_mul.c \
+			mat4_transpose.c \
+			mat4_mul_vec4.c \
+			mat4_transform_point.c \
+			mat4_transform_dir.c \
+			mat3_from_mat4.c \
+			mat4_translate.c \
+			mat4_scale.c \
+			mat4_rotate.c \
+			mat4_basis.c \
+			mat4_inverse.c
+
+# utils/matrix/internal
+SRCS	+=	mat4_minor.c \
+			mat4_cofactor.c \
+			mat4_det.c
 
 # -------------------------- #
 #        Object Files        #
