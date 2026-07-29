@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 22:56:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/03 21:04:12 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/28 18:43:52 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ static void	pf_print_to_str(t_ctx *ctx, const char *s, size_t len)
 
 	if (ctx->dst_size <= ctx->count)
 		return ;
-	if (ctx->dst_size - ctx->count < len + 1)
-		append_size = ctx->dst_size - ctx->count;
-	else
-		append_size = len + 1;
-	ft_strlcat(ctx->dst.str + ctx->count, s, append_size);
+	append_size = len;
+	if (ctx->dst_size - ctx->count - 1 < len)
+		append_size = ctx->dst_size - ctx->count - 1;
+	ft_memcpy(ctx->dst.str + ctx->count, s, append_size);
+	ctx->dst.str[ctx->count + append_size] = '\0';
 }

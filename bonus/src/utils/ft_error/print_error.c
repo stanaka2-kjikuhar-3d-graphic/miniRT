@@ -6,11 +6,12 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:20:43 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/15 20:32:36 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/28 19:51:19 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stddef.h>
 
 #include "ft_stdio.h"
 
@@ -20,9 +21,10 @@ void	print_error(char const *msg)
 	ft_dprintf(STDERR_FILENO, "%s\n", msg);
 }
 
-void	print_error_hint(char const *msg, char const *hint)
+void	print_texture_error(char const *path, char const *msg)
 {
 	ft_dprintf(STDERR_FILENO, "Error\n");
+	if (path != NULL && *path != '\0')
+		ft_dprintf(STDERR_FILENO, "%s\n", path);
 	ft_dprintf(STDERR_FILENO, "%s\n", msg);
-	ft_dprintf(STDERR_FILENO, "%s\n", hint);
 }

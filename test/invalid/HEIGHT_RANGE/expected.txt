@@ -1,2 +1,0 @@
-Error
-HEIGHT: must be positive

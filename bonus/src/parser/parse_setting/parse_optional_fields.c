@@ -6,89 +6,135 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 15:53:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/11 21:26:32 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/27 01:20:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
 
 #include "ft_string.h"
 
+#include "color.h"
+#include "object.h"
+
 #include "ft_error.h"
 
 #include "../parser_private.h"
 
-static t_optional_field const	*find_field_index(char const *optional_element, \
-							t_optional_field const *fields, size_t count);
-static bool						validate_option(bool format, \
-							t_optional_field const *option, bool is_duplicate);
+static void						set_default_optional_fields(\
+	t_optional_field const *fields);
+static bool						parse_optional_field(\
+	char const *element, t_optional_field const *fields, bool *used);
+static enum e_optional_field	find_field_index(\
+	char const *element, t_optional_field const *fields);
+static void						build_option_multi_hints(\
+	t_optional_field const *fields, char const **hints);
 
-bool	parse_optional_fields(char const **optional_elements, \
-			t_optional_field const *fields, size_t count)
+bool	parse_optional_fields(\
+	char const **optional_elements, t_optional_field const *fields)
 {
-	t_optional_field const	*option;
-	char const				*equal;
-	uint32_t				used;
-	uint32_t				mask;
-	size_t					i;
+	bool	used[OPTIONAL_FIELD_COUNT];
+	size_t	i;
 
-	used = 0;
+	set_default_optional_fields(fields);
+	ft_bzero(used, sizeof(used));
 	i = 0;
 	while (optional_elements[i] != NULL)
 	{
-		equal = ft_strchr(optional_elements[i], '=');
-		option = find_field_index(optional_elements[i], fields, count);
-		if (option != NULL)
-			mask = (uint32_t)1 << (option - fields);
-		else
-			mask = 0;
-		if (!validate_option(equal != NULL, option, used & mask))
-			return (false);
-		used |= mask;
-		if (!(option->parse(equal + 1, option->value)))
+		set_error_line_str(optional_elements[i]);
+		if (!parse_optional_field(optional_elements[i], fields, used))
 			return (false);
 		++i;
 	}
 	return (true);
 }
 
-static t_optional_field const	*find_field_index(\
-	char const *optional_element, t_optional_field const *fields, size_t count)
+static void	set_default_optional_fields(t_optional_field const *fields)
+{
+	enum e_optional_field	idx;
+
+	idx = 0;
+	while (idx < OPTIONAL_FIELD_COUNT)
+	{
+		if (fields[idx].value != NULL)
+		{
+			if (fields[idx].field_type == FIELD_IMAGE)
+				*(t_image **)fields[idx].value \
+					= fields[idx].default_value.image;
+			else if (fields[idx].field_type == FIELD_COLOR)
+				*(t_color *)fields[idx].value = fields[idx].default_value.color;
+			else if (fields[idx].field_type == FIELD_BOOL)
+				*(bool *)fields[idx].value = fields[idx].default_value.boolean;
+			else if (fields[idx].field_type == FIELD_FLOAT)
+				*(float *)fields[idx].value = fields[idx].default_value.number;
+		}
+		++idx;
+	}
+}
+
+static bool	parse_optional_field(\
+	char const *element, t_optional_field const *fields, bool *used)
+{
+	char const				*equal;
+	enum e_optional_field	idx;
+	char const				*hints[OPTIONAL_FIELD_COUNT + 2];
+
+	equal = ft_strchr(element, '=');
+	if (equal == NULL)
+	{
+		print_line_error(ERROR_OPTION_FORMAT, HINT_OPTION_FORMAT);
+		return (false);
+	}
+	idx = find_field_index(element, fields);
+	if (idx == OPTIONAL_FIELD_COUNT)
+	{
+		build_option_multi_hints(fields, hints);
+		print_line_error_multi_hints(ERROR_OPTION_UNKNOWN, hints);
+		return (false);
+	}
+	if (used[idx])
+	{
+		print_line_error(ERROR_OPTION_DUP, NULL);
+		return (false);
+	}
+	used[idx] = true;
+	return (fields[idx].parse(equal + 1, fields[idx].value));
+}
+
+static enum e_optional_field	find_field_index(\
+	char const *element, t_optional_field const *fields)
+{
+	enum e_optional_field	idx;
+
+	idx = 0;
+	while (idx < OPTIONAL_FIELD_COUNT)
+	{
+		if (fields[idx].value != NULL \
+			&& is_option_id(fields[idx].key, element))
+			return (idx);
+		++idx;
+	}
+	return (OPTIONAL_FIELD_COUNT);
+}
+
+static void	build_option_multi_hints(\
+	t_optional_field const *fields, char const **hints)
 {
 	size_t	i;
+	size_t	j;
 
+	hints[0] = HINT_OPTION_USAGE;
 	i = 0;
-	while (i < count)
+	j = 1;
+	while (i < OPTIONAL_FIELD_COUNT)
 	{
-		if (is_option_id(fields[i].key, optional_element))
-			return (&(fields[i]));
+		if (fields[i].value != NULL)
+		{
+			hints[j] = fields[i].format_msg;
+			++j;
+		}
 		++i;
 	}
-	return (NULL);
-}
-
-/* ヒントがマテリアルだけになってしまっているので修正要 */
-static bool	validate_option(\
-	bool format, t_optional_field const *option, bool is_duplicate)
-{
-	if (!format)
-	{
-		print_error_hint(ERROR_OPTION_FORMAT, \
-			HINT_MATERIAL_OPTION1 HINT_MATERIAL_OPTION2 HINT_MATERIAL_OPTION3);
-		return (false);
-	}
-	if (option == NULL)
-	{
-		print_error_hint(ERROR_OPTION_UNKNOWN, \
-			HINT_MATERIAL_OPTION1 HINT_MATERIAL_OPTION2 HINT_MATERIAL_OPTION3);
-		return (false);
-	}
-	if (is_duplicate)
-	{
-		print_error(ERROR_OPTION_DUP);
-		return (false);
-	}
-	return (true);
+	hints[j] = NULL;
 }

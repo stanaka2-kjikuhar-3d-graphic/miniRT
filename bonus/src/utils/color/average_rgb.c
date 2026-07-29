@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:16:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/19 14:35:49 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:59:07 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,4 @@ float	average_rgb(unsigned int rgb)
 {
 	return ((float)(((rgb & 0xff) / 255.0) + (((rgb >> 8) & 0xff) / 255.0) \
 				+ (((rgb >> 16) & 0xff) / 255.0)) / 3);
-};
+}

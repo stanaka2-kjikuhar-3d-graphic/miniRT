@@ -1,2 +1,0 @@
-Error
-VECTOR: invalid character

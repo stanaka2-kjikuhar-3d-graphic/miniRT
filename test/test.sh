@@ -131,12 +131,9 @@ rm -f test/invalid/read.rt
 
 for case_dir in test/invalid/*/; do
 	[ -d "$case_dir" ] || continue
-	expected_txt=""
-	[ -f "${case_dir}expected.txt" ] && expected_txt="${case_dir}expected.txt"
-	for file in "$case_dir"*; do
+	for file in "$case_dir"*.rt; do
 		[ -f "$file" ] || continue
-		[ "$(basename $file)" = "expected.txt" ] && continue
-		run_test "$file" 1 "$expected_txt"
+		run_test "$file" 1 "${file}.expected"
 	done
 done
 

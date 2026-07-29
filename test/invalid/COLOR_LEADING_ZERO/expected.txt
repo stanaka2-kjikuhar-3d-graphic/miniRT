@@ -1,2 +1,0 @@
-Error
-COLOR: leading zero not allowed

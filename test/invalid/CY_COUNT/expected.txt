@@ -1,3 +1,0 @@
-Error
-cy: invalid fields count
-USAGE: cy x,y,z nx,ny,nz diameter height R,G,B

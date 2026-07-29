@@ -12,7 +12,6 @@
 
 #include <math.h>
 
-#include "config.h"
 #include "ft_math.h"
 #include "vector.h"
 #include "camera.h"

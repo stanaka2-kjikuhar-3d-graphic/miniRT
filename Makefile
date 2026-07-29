@@ -6,7 +6,7 @@
 #    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/23 00:48:47 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/27 02:08:10 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 					$(addprefix parser/, \
 						read_next_line \
 						parse_setting \
-						parse_element \
+						parse_field \
 						internal \
 					) \
 					renderer \
@@ -140,6 +140,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 							vec2 \
 							ivec2 \
 						) \
+						dynamic_array \
 					) \
 					ft_mlx \
 					$(addprefix ft_mlx/, \
@@ -177,7 +178,6 @@ SRCS	+=	expose_hook.c \
 # parser
 SRCS	+=	parser.c \
 			read_file_as_line_list.c \
-			validate_setting_ids.c \
 			parse_settings.c
 # parser/read_next_line
 SRCS	+=	read_next_line.c
@@ -193,9 +193,11 @@ SRCS	+=	parse_ambient_light.c \
 			parse_hyperboloid.c \
 			parse_paraboloid.c \
 			parse_required_fields.c \
+			init_optional_fields.c \
+			bind_material_option.c \
 			parse_optional_fields.c \
 			get_pattern_type.c
-# parser/parse_element
+# parser/parse_field
 SRCS	+=	parse_vec3.c \
 			parse_float.c \
 			parse_color.c \
@@ -211,7 +213,9 @@ SRCS	+=	parse_vec3.c \
 			parse_shininess.c \
 			parse_size.c
 # parser/internal
-SRCS	+=	is_setting_id.c \
+SRCS	+=	is_blank_line.c \
+			is_comment_line.c \
+			is_setting_id.c \
 			is_option_id.c \
 			count_split.c \
 			free_split.c
@@ -254,8 +258,7 @@ SRCS	+=	object.c \
 			calc_object_color.c \
 			calc_object_normal.c \
 			calc_object_tbn.c \
-			calc_bump_mapping.c \
-			init_material.c
+			calc_bump_mapping.c
 # scene/object/sphere
 SRCS	+=	create_sphere.c \
 			calc_sphere_intersection.c \
@@ -298,6 +301,7 @@ SRCS	+=	create_paraboloid.c \
 # scene/object/internal
 SRCS	+=	calc_onb.c \
 			adjust_uv_range.c \
+			set_material.c
 
 # scene/viewport
 SRCS	+=	viewport.c
@@ -317,7 +321,8 @@ SRCS	+=	add_color.c \
 
 # utils/ft_error
 SRCS	+=	print_error.c \
-			print_errno.c
+			print_errno.c \
+			print_line_error.c
 
 # utils/vector/vec3
 SRCS	+=	vec3.c \
@@ -343,6 +348,8 @@ SRCS	+=	vec2.c
 # utils/vector/ivec2
 SRCS	+=	ivec2.c
 
+# utils/dynamic_array
+SRCS	+=	grow_dynamic_array.c
 # utils/matrix
 SRCS	+=	mat4_identity.c \
 			mat4_mul.c \

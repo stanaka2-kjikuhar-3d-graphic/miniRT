@@ -1,0 +1,4 @@
+Error
+line 4: foo
+OPTION: missing '=' separator
+USAGE: key=value

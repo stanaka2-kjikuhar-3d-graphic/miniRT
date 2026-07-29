@@ -18,7 +18,6 @@
 #include "ft_stdio.h"
 #include "ft_string.h"
 
-#include "config.h"
 #include "color.h"
 #include "parser.h"
 #include "light.h"

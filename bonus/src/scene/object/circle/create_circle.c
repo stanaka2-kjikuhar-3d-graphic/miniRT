@@ -24,16 +24,8 @@ bool	create_circle(t_input_circle const *input)
 	object.circle.center = input->center;
 	object.circle.normal = vec3_normalize(input->normal);
 	object.circle.radius = input->radius;
-	object.material.albedo = input->albedo;
-	object.material.pattern_type = input->option.pattern_type;
-	object.material.texture = input->option.texture;
-	object.material.checker.color1 = input->option.checker_color1;
-	object.material.checker.color2 = input->option.checker_color2;
-	object.material.bump_map = input->option.bump_map;
-	object.material.bump_strength = 1.0f;
-	object.material.normal_map = input->option.normal_map;
-	object.material.metalness = input->option.metalness;
-	object.material.shininess = input->option.shininess;
+	set_material_from_option(&(object.material), input->albedo, \
+		&(input->option.material));
 	object.uv.type = input->option.uv_type;
 	object.uv.pattern_size = input->option.pattern_size;
 	object.uv.u_per_v = input->option.u_per_v;

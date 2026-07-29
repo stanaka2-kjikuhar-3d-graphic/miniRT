@@ -1,3 +1,0 @@
-Error
-A: invalid fields count
-USAGE: A ratio R,G,B

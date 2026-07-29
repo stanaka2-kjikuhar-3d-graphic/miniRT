@@ -1,3 +1,0 @@
-Error
-COLOR: invalid format
-USAGE: R,G,B (0-255)

@@ -24,6 +24,10 @@ typedef struct s_perp_cylinder
 }	t_perp_cylinder;
 
 bool	create_object(t_object const *object);
+void	set_material_from_option(t_material *material, t_color albedo, \
+			t_material_option const *option);
+void	set_option_from_material(t_material_option *option, \
+			t_material const *material);
 float	calc_sphere_intersection(t_sphere const *sphere, t_ray const *ray);
 float	calc_plane_intersection(t_plane const *plane, t_ray const *ray);
 float	calc_cylinder_intersection(\

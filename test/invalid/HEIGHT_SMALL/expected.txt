@@ -1,2 +1,0 @@
-Error
-HEIGHT: too small, height/2 underflows to 0

@@ -6,12 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 04:28:38 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/28 14:51:31 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_ERROR_H
 # define FT_ERROR_H
+
+# include <stddef.h>
 
 /* File */
 # define ERROR_FILE_BINARY "FILE: not a text file"
@@ -84,9 +86,8 @@
 # define ERROR_OPTION_FORMAT "OPTION: missing '=' separator"
 # define ERROR_OPTION_UNKNOWN "OPTION: unknown option id"
 # define ERROR_OPTION_DUP "OPTION: duplicate option"
-# define HINT_MATERIAL_OPTION1 "USAGE: texture=file.xpm "
-# define HINT_MATERIAL_OPTION2 "checker_color1=R,G,B checker_color2=R,G,B "
-# define HINT_MATERIAL_OPTION3 "metalness=false/true shininess=N (0.0 <= N)"
+# define HINT_OPTION_FORMAT "USAGE: key=value"
+# define HINT_OPTION_USAGE "USAGE:"
 
 /* MLX */
 # define ERROR_MLX_CONNECTION "MLX: failed to create X-Window connection"
@@ -96,7 +97,12 @@
 # define ERROR_MLX_IMAGE_DATA "MLX: failed to get image data"
 
 void	print_error(char const *msg);
-void	print_error_hint(char const *msg, char const *hint);
+void	print_texture_error(char const *path, char const *msg);
 void	print_errno(void);
+void	set_error_line_no(size_t line_no);
+void	set_error_line_str(char const *line_str);
+void	set_error_line_multi_strs(char const **line_strs);
+void	print_line_error(char const *msg, char const *hint);
+void	print_line_error_multi_hints(char const *msg, char const **hints);
 
 #endif

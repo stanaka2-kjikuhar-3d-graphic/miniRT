@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 19:06:13 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/15 13:00:37 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/28 15:08:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include <stdbool.h>
 
 #include "mlx.h"
-#include "ft_stdlib.h"
 #include "ft_string.h"
 
 #include "ft_mlx.h"
 #include "ft_error.h"
+#include "dynamic_array.h"
 
 #include "./ft_mlx_private.h"
 
@@ -26,7 +26,6 @@ static t_texture_dict	*g_texture_dicts;
 static size_t			g_capacity;
 static size_t			g_count;
 
-static bool	allocate_texture_dict(void);
 static bool	create_image_from_xpm(t_image *image, char *xpm);
 
 t_image	*get_texture(char *filepath)
@@ -47,8 +46,11 @@ bool	create_texture(char *filepath)
 {
 	if (get_texture(filepath) != NULL)
 		return (true);
-	if (g_count == g_capacity && !allocate_texture_dict())
+	if (g_count == g_capacity && !grow_dynamic_array(\
+			(void **)(&g_texture_dicts), &g_capacity, sizeof(t_texture_dict)))
+	{
 		return (false);
+	}
 	g_texture_dicts[g_count].texture = malloc(sizeof(t_image));
 	g_texture_dicts[g_count].filepath = ft_strdup(filepath);
 	if (g_texture_dicts[g_count].texture == NULL \
@@ -69,45 +71,20 @@ bool	create_texture(char *filepath)
 	return (true);
 }
 
-static bool	allocate_texture_dict(void)
-{
-	t_texture_dict	*tmp;
-
-	if (g_texture_dicts == NULL)
-		tmp = malloc(sizeof(t_texture_dict));
-	else
-	{
-		tmp = ft_realloc(g_texture_dicts, \
-				sizeof(t_texture_dict) * g_capacity, \
-				sizeof(t_texture_dict) * (g_capacity * 2));
-	}
-	if (tmp == NULL)
-	{
-		print_errno();
-		return (false);
-	}
-	g_texture_dicts = tmp;
-	if (g_capacity == 0)
-		g_capacity = 1;
-	else
-		g_capacity *= 2;
-	return (true);
-}
-
 static bool	create_image_from_xpm(t_image *image, char *xpm)
 {
 	image->ptr = mlx_xpm_file_to_image(\
 					get_mlx_ptr(), xpm, &(image->width), &(image->height));
 	if (image->ptr == NULL)
 	{
-		print_error(ERROR_MLX_XPM_IMAGE);
+		print_texture_error(xpm, ERROR_MLX_XPM_IMAGE);
 		return (false);
 	}
 	image->pixel = mlx_get_data_addr(image->ptr, &(image->bits_per_pixel), \
 										&(image->line_size), &(image->endian));
 	if (image->pixel == NULL)
 	{
-		print_error(ERROR_MLX_IMAGE_DATA);
+		print_texture_error(xpm, ERROR_MLX_IMAGE_DATA);
 		mlx_destroy_image(get_mlx_ptr(), image->ptr);
 		return (false);
 	}

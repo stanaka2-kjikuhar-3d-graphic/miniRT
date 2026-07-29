@@ -23,16 +23,8 @@ bool	create_plane(t_input_plane const *input)
 	object.type = OBJ_PLANE;
 	object.plane.center = input->center;
 	object.plane.normal = vec3_normalize(input->normal);
-	object.material.albedo = input->albedo;
-	object.material.pattern_type = input->option.pattern_type;
-	object.material.texture = input->option.texture;
-	object.material.checker.color1 = input->option.checker_color1;
-	object.material.checker.color2 = input->option.checker_color2;
-	object.material.bump_map = input->option.bump_map;
-	object.material.bump_strength = 1.0f;
-	object.material.normal_map = input->option.normal_map;
-	object.material.metalness = input->option.metalness;
-	object.material.shininess = input->option.shininess;
+	set_material_from_option(&(object.material), input->albedo, \
+		&(input->option.material));
 	object.uv.type = UV_DEFAULT;
 	object.uv.pattern_size = input->option.pattern_size;
 	object.uv.u_per_v = 1.0f;

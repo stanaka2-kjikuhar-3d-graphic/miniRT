@@ -1,3 +1,0 @@
-Error
-C: invalid fields count
-USAGE: C x,y,z nx,ny,nz fov

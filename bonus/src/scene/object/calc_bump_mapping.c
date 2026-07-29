@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 17:37:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 17:33:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:57:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ t_vec3	calc_bump_mapping(t_object const *object, t_vec2 uv, t_onb const *tbn)
 	h_v2 = average_rgb(*get_uv_pixel_addr(object->material.bump_map, \
 				(t_vec2){.u = uv.u, .v = uv.v + pixel_size.v}));
 	return (vec3_normalize(vec3_add(vec3_add(\
-		vec3_scale(object->material.bump_strength * (h_u1 - h_u2) * 0.5f / object->uv.u_per_v, \
-					tbn->u), \
+		vec3_scale(object->material.bump_strength \
+						* (h_u1 - h_u2) * 0.5f / object->uv.u_per_v, tbn->u), \
 		vec3_scale(object->material.bump_strength * (h_v1 - h_v2) * 0.5f, \
 					tbn->v)), \
 		tbn->w) \
