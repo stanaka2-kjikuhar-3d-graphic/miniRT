@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/14 14:12:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/22 23:03:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,25 @@ bool	parse_settings(t_list **line_list)
 static bool	parse_setting(char const **elements)
 {
 	if (is_setting_id("A", elements[0]))
-		return (parse_ambient_light_setting(elements));
+		return (parse_ambient_light(elements));
 	else if (is_setting_id("L", elements[0]))
-		return (parse_point_light_setting(elements));
+		return (parse_point_light(elements));
 	else if (is_setting_id("C", elements[0]))
-		return (parse_camera_setting(elements));
+		return (parse_camera(elements));
 	else if (is_setting_id("sl", elements[0]))
-		return (parse_spot_light_setting(elements));
+		return (parse_spot_light(elements));
 	else if (is_setting_id("sp", elements[0]))
-		return (parse_sphere_setting(elements));
+		return (parse_sphere(elements));
 	else if (is_setting_id("pl", elements[0]))
-		return (parse_plane_setting(elements));
+		return (parse_plane(elements));
 	else if (is_setting_id("cy", elements[0]))
-		return (parse_cylinder_setting(elements));
+		return (parse_cylinder(elements));
+	else if (is_setting_id("co", elements[0]))
+		return (parse_cone(elements));
+	else if (is_setting_id("hb", elements[0]))
+		return (parse_hyperboloid(elements));
+	else if (is_setting_id("pb", elements[0]))
+		return (parse_paraboloid(elements));
 	else
 	{
 		print_error(ERROR_ID_UNKNOWN);

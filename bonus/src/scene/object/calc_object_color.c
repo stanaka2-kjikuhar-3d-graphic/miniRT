@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 02:28:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/15 13:01:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/22 00:43:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ t_color	calc_object_color(t_object const *object, t_vec2 uv)
 	}
 	else if (object->material.pattern_type == PATTERN_TEXTURE)
 	{
-		return (get_uv_pixel_color(object->material.texture, uv.u, uv.v));
+		return (convert_uint_to_color(\
+					*get_uv_pixel_addr(object->material.texture, uv)));
 	}
 	return (object->material.albedo);
 }

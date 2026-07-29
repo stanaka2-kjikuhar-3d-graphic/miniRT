@@ -27,5 +27,11 @@ t_vec3	calc_object_normal(\
 		return (calc_cylinder_normal(&(object->cylinder), ray, point));
 	else if (object->type == OBJ_CIRCLE)
 		return (calc_circle_normal(&(object->circle), ray));
+	else if (object->type == OBJ_CONE)
+		return (calc_cone_normal(&(object->cone), ray, point));
+	else if (object->type == OBJ_HYPERBOLOID)
+		return (calc_hyperboloid_normal(&(object->hyperboloid), ray, point));
+	else if (object->type == OBJ_PARABOLOID)
+		return (calc_paraboloid_normal(&(object->paraboloid), ray, point));
 	return ((t_vec3){.x = 0, .y = 0, .z = 0});
 }

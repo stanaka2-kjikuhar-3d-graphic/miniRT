@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_cylinder_setting.c                           :+:      :+:    :+:   */
+/*   parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:25:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/13 13:47:09 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/22 23:01:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static bool	parse_cylinder_optional(\
 				char const **optional_elements, t_input_cylinder *input);
 static void	set_default_cylinder_option(t_input_cylinder *input);
 
-bool	parse_cylinder_setting(char const **elements)
+bool	parse_cylinder(char const **elements)
 {
 	size_t				count;
 	t_input_cylinder	input;

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 16:05:21 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/22 23:05:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,16 @@ bool				is_setting_id(char const *id, char const *line);
 bool				parse_settings(t_list **line_list);
 size_t				count_split(char const **split);
 void				free_split(char **split);
-bool				parse_ambient_light_setting(char const **elements);
-bool				parse_point_light_setting(char const **elements);
-bool				parse_camera_setting(char const **elements);
-bool				parse_spot_light_setting(char const **elements);
-bool				parse_sphere_setting(char const **elements);
-bool				parse_plane_setting(char const **elements);
-bool				parse_cylinder_setting(char const **elements);
+bool				parse_ambient_light(char const **elements);
+bool				parse_point_light(char const **elements);
+bool				parse_camera(char const **elements);
+bool				parse_spot_light(char const **elements);
+bool				parse_sphere(char const **elements);
+bool				parse_plane(char const **elements);
+bool				parse_cylinder(char const **elements);
+bool				parse_cone(char const **elements);
+bool				parse_hyperboloid(char const **elements);
+bool				parse_paraboloid(char const **elements);
 bool				parse_required_fields(\
 						t_required_field const *fields, size_t count);
 bool				parse_optional_fields(char const **optional_elements, \

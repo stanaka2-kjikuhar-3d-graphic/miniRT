@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_size.c                                       :+:      :+:    :+:   */
+/*   calc_circle_tbn.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/12 16:02:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 16:02:58 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/21 20:28:05 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/21 22:33:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include "object.h"
+#include "vector.h"
 
-#include "ft_error.h"
-
-#include "../parser_private.h"
-
-bool	parse_size(char const *element, void *value)
+t_onb	calc_circle_tbn(t_circle const *circle, t_vec3 point, \
+	t_vec3 normal, enum e_uv_type uv_type)
 {
-	float *const	size = (float *)value;
+	t_onb	tbn;
 
-	if (!parse_float(element, size))
-		return (false);
-	if (*size <= 0.0f)
-	{
-		print_error(ERROR_SIZE_RANGE);
-		return (false);
-	}
-	return (true);
+	tbn.w = normal;
+	tbn.v = vec3_normalize(vec3_sub(point, circle->center));
+	if (uv_type == UV_LOWER_CAP)
+		tbn.v = vec3_scale(-1.0f, tbn.v);
+	tbn.u = vec3_cross(tbn.w, tbn.v);
+	return (tbn);
 }

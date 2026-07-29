@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_plane_intersection.c                          :+:      :+:    :+:   */
+/*   calc_sphere_tbn.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/17 00:48:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 22:43:17 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/20 19:54:35 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/22 00:39:45 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
 #include "config.h"
-#include "vector.h"
 #include "object.h"
-#include "ray.h"
+#include "vector.h"
 
-float	calc_plane_intersection(t_plane const *plane, t_ray const *ray)
+t_onb	calc_sphere_tbn(t_sphere const *sphere, t_vec3 normal)
 {
-	float	dot;
-	t_vec3	to_center;
-	float	t;
+	t_onb	tbn;
+	float	tu;
+	float	tv;
+	float	len;
 
-	dot = vec3_dot(plane->normal, ray->dir);
-	if (fabsf(dot) < EPSILON)
-		return (NAN);
-	to_center = vec3_sub(plane->center, ray->origin);
-	t = vec3_dot(plane->normal, to_center) / dot;
-	if (t >= 0.0f)
-		return (t);
-	return (NAN);
+	tbn.w = normal;
+	tu = vec3_dot(normal, sphere->onb.u);
+	tv = vec3_dot(normal, sphere->onb.v);
+	len = sqrtf(tu * tu + tv * tv);
+	if (len < EPSILON)
+		return (sphere->onb);
+	tbn.u = vec3_scale(1.0f / len, vec3_sub(\
+				vec3_scale(tu, sphere->onb.v), vec3_scale(tv, sphere->onb.u)));
+	tbn.v = vec3_cross(tbn.u, tbn.w);
+	return (tbn);
 }

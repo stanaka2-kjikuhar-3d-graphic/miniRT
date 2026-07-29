@@ -1,31 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_size.c                                       :+:      :+:    :+:   */
+/*   average_rgb.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/12 16:02:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/12 16:02:58 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/19 14:16:21 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/19 14:35:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-
-#include "ft_error.h"
-
-#include "../parser_private.h"
-
-bool	parse_size(char const *element, void *value)
+float	average_rgb(unsigned int rgb)
 {
-	float *const	size = (float *)value;
-
-	if (!parse_float(element, size))
-		return (false);
-	if (*size <= 0.0f)
-	{
-		print_error(ERROR_SIZE_RANGE);
-		return (false);
-	}
-	return (true);
-}
+	return ((float)(((rgb & 0xff) / 255.0) + (((rgb >> 8) & 0xff) / 255.0) \
+				+ (((rgb >> 16) & 0xff) / 255.0)) / 3);
+};
