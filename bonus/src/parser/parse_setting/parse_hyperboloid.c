@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 20:37:31 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 19:00:34 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 03:02:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static bool	parse_hyperboloid_required(\
 	fields[5] = build_required_field(REQUIRED_COLOR, &(input->albedo));
 	if (!parse_required_fields(elements, fields, count))
 		return (false);
-	set_error_field_and_token("cap_diameter", elements[4]);
+	set_error_field("cap_diameter", elements[4]);
 	if (input->center_radius >= input->cap_radius)
 	{
 		print_field_error(ERROR_HB_RADIUS, NULL);

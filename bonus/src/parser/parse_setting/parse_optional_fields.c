@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 15:53:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 19:03:28 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 03:02:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static bool	parse_optional_field(\
 	char const				*equal;
 	enum e_optional_field	idx;
 
-	set_error_field_and_token("option", element);
+	set_error_field("option", element);
 	equal = ft_strchr(element, '=');
 	if (equal == NULL)
 	{
@@ -91,7 +91,7 @@ static bool	parse_optional_field(\
 		print_unknown_option_error(fields);
 		return (false);
 	}
-	set_error_field_and_token(fields[idx].key, equal + 1);
+	set_error_field(fields[idx].key, equal + 1);
 	if (used[idx])
 	{
 		print_field_error(ERROR_OPTION_DUP, NULL);

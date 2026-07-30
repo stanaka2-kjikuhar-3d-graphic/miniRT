@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 14:59:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 00:15:57 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 03:02:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	parse_required_fields(char const **elements, \
 	j = 1;
 	while (i < count)
 	{
-		set_error_field_and_token(fields[i].field, elements[j]);
+		set_error_field(fields[i].field, elements[j]);
 		if (!fields[i].parse(elements[j], fields[i].value))
 			return (false);
 		++i;
