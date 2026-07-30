@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 19:01:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 02:54:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@ void	print_error(char const *msg);
 void	print_argument_error(char const *program_name);
 void	print_texture_error(char const *path, char const *msg);
 void	print_errno(void);
-void	set_error_line_number(size_t line_number);
-void	set_error_line(char const *line);
+void	set_error_line_number_and_line(size_t line_number, char const *line);
 void	set_error_field_and_token(char const *field, char const *token);
 void	print_line_error(char const *msg, char const *hint);
 void	print_field_error(char const *msg, char const *hint);

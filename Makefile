@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/31 00:20:56 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/31 02:55:17 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -322,8 +322,7 @@ SRCS	+=	add_color.c \
 			convert_uint_to_color.c
 
 # utils/ft_error
-SRCS	+=	error_line_number.c \
-			error_line.c \
+SRCS	+=	error_line.c \
 			error_field.c \
 			print_error.c \
 			print_argument_error.c \

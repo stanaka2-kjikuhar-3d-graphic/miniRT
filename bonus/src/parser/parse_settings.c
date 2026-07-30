@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 02:20:35 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 03:00:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ bool	parse_settings(t_list **line_list)
 	while (*line_list != NULL)
 	{
 		line = ft_lst_pop_front(line_list);
-		set_error_line_number(++line_number);
-		set_error_line(line);
+		set_error_line_number_and_line(++line_number, line);
 		if (!is_blank_line(line) && !is_comment_line(line) \
 			&& !parse_line(line, used))
 		{
