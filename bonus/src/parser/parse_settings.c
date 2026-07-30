@@ -52,7 +52,7 @@ bool	parse_settings(t_list **line_list)
 	{
 		line = ft_lst_pop_front(line_list);
 		set_error_line_number(++line_number);
-		set_error_string(line);
+		set_error_line(line);
 		if (!is_blank_line(line) && !is_comment_line(line) \
 			&& !parse_line(line, count))
 		{

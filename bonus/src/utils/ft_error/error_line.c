@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_string.c                                     :+:      :+:    :+:   */
+/*   error_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,40 +15,20 @@
 #include "ft_string.h"
 #include "ft_error_private.h"
 
-#define ERROR_STRING_CAPACITY 1024
+#define ERROR_LINE_CAPACITY 1024
 
-static char	g_error_string[ERROR_STRING_CAPACITY];
+static char	g_error_line[ERROR_LINE_CAPACITY];
 
-void	set_error_string(char const *error_string)
+void	set_error_line(char const *line)
 {
 	size_t	len;
 
-	len = ft_strlcpy(g_error_string, error_string, ERROR_STRING_CAPACITY);
-	if (len >= ERROR_STRING_CAPACITY)
-		ft_strlcpy(g_error_string + ERROR_STRING_CAPACITY - 4, "...", 4);
+	len = ft_strlcpy(g_error_line, line, ERROR_LINE_CAPACITY);
+	if (len >= ERROR_LINE_CAPACITY)
+		ft_strlcpy(g_error_line + ERROR_LINE_CAPACITY - 4, "...", 4);
 }
 
-void	set_error_strings(char const **error_strings)
+char const	*get_error_line(void)
 {
-	size_t	i;
-	size_t	len;
-
-	len = 0;
-	i = 0;
-	g_error_string[0] = '\0';
-	while (error_strings[i] != NULL)
-	{
-		if (i != 0)
-			ft_strlcat(g_error_string, " ", ERROR_STRING_CAPACITY);
-		len = ft_strlcat(g_error_string, error_strings[i], \
-							ERROR_STRING_CAPACITY);
-		++i;
-	}
-	if (len >= ERROR_STRING_CAPACITY)
-		ft_strlcpy(g_error_string + ERROR_STRING_CAPACITY - 4, "...", 4);
-}
-
-char const	*get_error_string(void)
-{
-	return (g_error_string);
+	return (g_error_line);
 }

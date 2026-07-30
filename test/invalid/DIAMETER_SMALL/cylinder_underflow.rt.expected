@@ -1,3 +1,3 @@
 Error
-line 4: 1e-45
-diameter: too small, half of it underflows to 0
+line 4: cy 0,0,20 0,0,1 1e-45 21 10,0,255
+diameter '1e-45': too small, half of it underflows to 0

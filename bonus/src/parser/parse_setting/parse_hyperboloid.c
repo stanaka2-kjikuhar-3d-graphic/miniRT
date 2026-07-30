@@ -45,21 +45,21 @@ bool	parse_hyperboloid(char const **elements)
 static bool	parse_hyperboloid_required(\
 	char const **elements, t_input_hyperboloid *input)
 {
-	t_required_field const	fields[] = {\
-		{"coordinate", elements[1], &(input->center), parse_coordinate}, \
-		{"dir", elements[2], &(input->dir), parse_dir}, \
-		{"center_diameter", elements[3], \
-			&(input->center_radius), parse_radius}, \
-		{"cap_diameter", elements[4], &(input->cap_radius), parse_radius}, \
-		{"height", elements[5], &(input->half_height), parse_half_height}, \
-		{"color", elements[6], &(input->albedo), parse_color}};
-	size_t const			count = sizeof(fields) \
-												/ sizeof(t_required_field);
+	t_required_field		fields[6];
+	size_t const			count = sizeof(fields) / sizeof(t_required_field);
 
-	if (!parse_required_fields(fields, count))
+	fields[0] = build_required_field(REQUIRED_COORDINATE, &(input->center));
+	fields[1] = build_required_field(REQUIRED_DIR, &(input->dir));
+	fields[2] = build_required_field(REQUIRED_CENTER_DIAMETER, \
+		&(input->center_radius));
+	fields[3] = build_required_field(REQUIRED_CAP_DIAMETER, \
+		&(input->cap_radius));
+	fields[4] = build_required_field(REQUIRED_HALF_HEIGHT, \
+		&(input->half_height));
+	fields[5] = build_required_field(REQUIRED_COLOR, &(input->albedo));
+	if (!parse_required_fields(elements, fields, count))
 		return (false);
-	set_error_strings((char const *[]){elements[3], elements[4], NULL});
-	set_error_field("hb");
+	set_error_field_and_token("cap_diameter", elements[4]);
 	if (input->center_radius >= input->cap_radius)
 	{
 		print_field_error(ERROR_HB_RADIUS, NULL);

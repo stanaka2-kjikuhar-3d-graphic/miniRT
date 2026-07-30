@@ -16,7 +16,8 @@
 # include <stddef.h>
 
 size_t		get_error_line_number(void);
-char const	*get_error_string(void);
+char const	*get_error_line(void);
 char const	*get_error_field(void);
+char const	*get_error_token(void);
 
 #endif

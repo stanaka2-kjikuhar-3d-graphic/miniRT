@@ -1,4 +1,4 @@
 Error
-line 3: 5
-coordinate: invalid format
+line 3: C 5 0,0,1 70
+coordinate '5': invalid format
 USAGE: x,y,z

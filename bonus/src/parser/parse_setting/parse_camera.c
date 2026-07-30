@@ -44,12 +44,11 @@ bool	parse_camera(char const **elements)
 static bool	parse_camera_required(char const **elements, \
 	t_input_camera *camera, t_input_viewport *viewport)
 {
-	t_required_field const	fields[] = {\
-		{"coordinate", elements[1], &(camera->pos), parse_coordinate}, \
-		{"dir", elements[2], &(camera->dir), parse_dir}, \
-		{"fov", elements[3], &(viewport->fov), parse_fov}};
-	size_t const			count = sizeof(fields) \
-												/ sizeof(t_required_field);
+	t_required_field		fields[3];
+	size_t const			count = sizeof(fields) / sizeof(t_required_field);
 
-	return (parse_required_fields(fields, count));
+	fields[0] = build_required_field(REQUIRED_COORDINATE, &(camera->pos));
+	fields[1] = build_required_field(REQUIRED_DIR, &(camera->dir));
+	fields[2] = build_required_field(REQUIRED_FOV, &(viewport->fov));
+	return (parse_required_fields(elements, fields, count));
 }

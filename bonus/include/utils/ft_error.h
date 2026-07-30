@@ -57,14 +57,14 @@
 # define ERROR_FOV_RANGE "out of range (0 < x < 180)"
 # define ERROR_ANGLE_RANGE "out of range (0 <= x <= 180)"
 # define ERROR_COLOR_RANGE "out of range (0 <= x <= 255)"
-# define ERROR_HB_RADIUS "cap_diameter must exceed center_diameter"
+# define ERROR_HB_RADIUS "must exceed center_diameter"
 # define HINT_VECTOR "x,y,z"
 # define HINT_COLOR "R,G,B (0-255)"
 
 /* Material option */
-# define ERROR_OPTION_FORMAT "option: missing '=' separator"
-# define ERROR_OPTION_UNKNOWN "option: unknown option"
-# define ERROR_OPTION_DUP "option: duplicate option"
+# define ERROR_OPTION_FORMAT "missing '=' separator"
+# define ERROR_OPTION_UNKNOWN "unknown key"
+# define ERROR_OPTION_DUP "duplicate key"
 # define HINT_OPTION_FORMAT "key=value"
 
 /* MLX */
@@ -79,11 +79,10 @@ void	print_argument_error(char const *program_name);
 void	print_texture_error(char const *path, char const *msg);
 void	print_errno(void);
 void	set_error_line_number(size_t line_number);
-void	set_error_string(char const *line_str);
-void	set_error_strings(char const **line_strs);
-void	set_error_field(char const *field);
+void	set_error_line(char const *line);
+void	set_error_field_and_token(char const *field, char const *token);
 void	print_line_error(char const *msg, char const *hint);
-void	print_line_error_multi_hints(char const *msg, char const **hints);
 void	print_field_error(char const *msg, char const *hint);
+void	print_field_error_multi_hints(char const *msg, char const **hints);
 
 #endif

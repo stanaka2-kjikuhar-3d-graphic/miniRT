@@ -41,11 +41,10 @@ bool	parse_ambient_light(char const **elements)
 static bool	parse_ambient_light_required(\
 	char const **elements, t_input_ambient_light *input)
 {
-	t_required_field const	fields[] = {\
-		{"brightness", elements[1], &(input->brightness), parse_brightness}, \
-		{"color", elements[2], &(input->color), parse_color}};
-	size_t const			count = sizeof(fields) \
-												/ sizeof(t_required_field);
+	t_required_field		fields[2];
+	size_t const			count = sizeof(fields) / sizeof(t_required_field);
 
-	return (parse_required_fields(fields, count));
+	fields[0] = build_required_field(REQUIRED_BRIGHTNESS, &(input->brightness));
+	fields[1] = build_required_field(REQUIRED_COLOR, &(input->color));
+	return (parse_required_fields(elements, fields, count));
 }

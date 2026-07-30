@@ -1,3 +1,3 @@
 Error
-line 4: directx_normal_map=yes
-directx_normal_map: must be true or false
+line 4: sp 0,0,20 20 255,0,0 normal_map=texture/redbrick.xpm directx_normal_map=yes
+directx_normal_map 'yes': must be true or false

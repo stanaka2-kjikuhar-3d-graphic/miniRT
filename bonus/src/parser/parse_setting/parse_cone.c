@@ -45,16 +45,15 @@ bool	parse_cone(char const **elements)
 static bool	parse_cone_required(\
 	char const **elements, t_input_cone *input)
 {
-	t_required_field const	fields[] = {\
-		{"coordinate", elements[1], &(input->center), parse_coordinate}, \
-		{"dir", elements[2], &(input->dir), parse_dir}, \
-		{"diameter", elements[3], &(input->radius), parse_radius}, \
-		{"height", elements[4], &(input->height), parse_size}, \
-		{"color", elements[5], &(input->albedo), parse_color}};
-	size_t const			count = sizeof(fields) \
-												/ sizeof(t_required_field);
+	t_required_field		fields[5];
+	size_t const			count = sizeof(fields) / sizeof(t_required_field);
 
-	return (parse_required_fields(fields, count));
+	fields[0] = build_required_field(REQUIRED_COORDINATE, &(input->center));
+	fields[1] = build_required_field(REQUIRED_DIR, &(input->dir));
+	fields[2] = build_required_field(REQUIRED_DIAMETER, &(input->radius));
+	fields[3] = build_required_field(REQUIRED_HEIGHT, &(input->height));
+	fields[4] = build_required_field(REQUIRED_COLOR, &(input->albedo));
+	return (parse_required_fields(elements, fields, count));
 }
 
 static bool	parse_cone_optional(\

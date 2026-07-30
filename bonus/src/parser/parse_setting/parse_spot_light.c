@@ -40,14 +40,13 @@ bool	parse_spot_light(char const **elements)
 static bool	parse_spot_light_required(\
 	char const **elements, t_input_spot_light *input)
 {
-	t_required_field const	fields[] = {\
-		{"coordinate", elements[1], &(input->pos), parse_coordinate}, \
-		{"brightness", elements[2], &(input->brightness), parse_brightness}, \
-		{"color", elements[3], &(input->color), parse_color}, \
-		{"dir", elements[4], &(input->dir), parse_dir}, \
-		{"angle", elements[5], &(input->outer_angle), parse_angle}};
-	size_t const			count = sizeof(fields) \
-												/ sizeof(t_required_field);
+	t_required_field		fields[5];
+	size_t const			count = sizeof(fields) / sizeof(t_required_field);
 
-	return (parse_required_fields(fields, count));
+	fields[0] = build_required_field(REQUIRED_COORDINATE, &(input->pos));
+	fields[1] = build_required_field(REQUIRED_BRIGHTNESS, &(input->brightness));
+	fields[2] = build_required_field(REQUIRED_COLOR, &(input->color));
+	fields[3] = build_required_field(REQUIRED_DIR, &(input->dir));
+	fields[4] = build_required_field(REQUIRED_ANGLE, &(input->outer_angle));
+	return (parse_required_fields(elements, fields, count));
 }

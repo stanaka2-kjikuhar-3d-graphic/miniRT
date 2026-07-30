@@ -20,26 +20,8 @@ void	print_line_error(char const *msg, char const *hint)
 {
 	ft_dprintf(STDERR_FILENO, "Error\n");
 	ft_dprintf(STDERR_FILENO, "line %zu: %s\n", \
-				get_error_line_number(), get_error_string());
+				get_error_line_number(), get_error_line());
 	ft_dprintf(STDERR_FILENO, "%s\n", msg);
 	if (hint != NULL)
 		ft_dprintf(STDERR_FILENO, "USAGE: %s\n", hint);
-}
-
-void	print_line_error_multi_hints(char const *msg, char const **hints)
-{
-	size_t	i;
-
-	ft_dprintf(STDERR_FILENO, "Error\n");
-	ft_dprintf(STDERR_FILENO, "line %zu: %s\n", \
-				get_error_line_number(), get_error_string());
-	ft_dprintf(STDERR_FILENO, "%s\n", msg);
-	ft_dprintf(STDERR_FILENO, "USAGE:");
-	i = 0;
-	while (hints[i] != NULL)
-	{
-		ft_dprintf(STDERR_FILENO, " %s", hints[i]);
-		++i;
-	}
-	ft_dprintf(STDERR_FILENO, "\n");
 }

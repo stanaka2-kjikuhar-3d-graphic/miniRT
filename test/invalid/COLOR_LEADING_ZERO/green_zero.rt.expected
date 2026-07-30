@@ -1,3 +1,3 @@
 Error
-line 1: 0,01,0
-color: leading zero not allowed
+line 1: A 0.2 0,01,0
+color '0,01,0': leading zero not allowed

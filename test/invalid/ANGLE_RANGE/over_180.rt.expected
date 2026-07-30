@@ -1,3 +1,3 @@
 Error
-line 4: 200
-angle: out of range (0 <= x <= 180)
+line 4: sl 0,0,20 0.5 255,255,255 0,0,1 200
+angle '200': out of range (0 <= x <= 180)

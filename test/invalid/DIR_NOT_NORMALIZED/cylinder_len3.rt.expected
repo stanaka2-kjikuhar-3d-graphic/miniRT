@@ -1,4 +1,4 @@
 Error
-line 4: 0,0,3
-dir: must be a unit vector
+line 4: cy 0,0,20 0,0,3 14 21 10,0,255
+dir '0,0,3': must be a unit vector
 USAGE: 0.000000,0.000000,1.000000

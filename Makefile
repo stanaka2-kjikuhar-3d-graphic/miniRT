@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/29 00:56:17 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/31 00:20:56 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -191,9 +191,11 @@ SRCS	+=	parse_ambient_light.c \
 			parse_hyperboloid.c \
 			parse_paraboloid.c \
 			parse_required_fields.c \
+			build_required_field.c \
 			init_optional_fields.c \
 			bind_material_option.c \
 			parse_optional_fields.c \
+			print_unknown_option_error.c \
 			get_pattern_type.c \
 			get_normal_type.c
 # parser/parse_field
@@ -321,7 +323,7 @@ SRCS	+=	add_color.c \
 
 # utils/ft_error
 SRCS	+=	error_line_number.c \
-			error_string.c \
+			error_line.c \
 			error_field.c \
 			print_error.c \
 			print_argument_error.c \
