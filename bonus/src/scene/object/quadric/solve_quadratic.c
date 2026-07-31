@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:23:08 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/31 17:23:47 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/07/31 17:25:29 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,31 @@
 #include "config.h"
 
 static int	solve_linear(float b, float c, float roots[2]);
+static void	sort_roots(float roots[2]);
 
-/* a*x^2 + b*x + c = 0. a=~0 falls back to the linear case. */
+/* a*x^2 + b*x + c = 0. a=~0 falls back to the linear case.
+ * Uses the numerically stable form (avoids b/sqrt(D) cancellation):
+ * q = -0.5*(b + sign(b)*sqrt(D)), x0 = q/a, x1 = c/q. See docs/quadric.md. */
 int	solve_quadratic(float a, float b, float c, float roots[2])
 {
 	float	discriminant;
-	float	sqrt_discriminant;
+	float	q;
 
 	if (fabsf(a) < EPSILON)
 		return (solve_linear(b, c, roots));
 	discriminant = b * b - 4.0f * a * c;
 	if (discriminant < 0.0f)
 		return (0);
-	sqrt_discriminant = sqrtf(discriminant);
-	roots[0] = (-b - sqrt_discriminant) / (2.0f * a);
-	roots[1] = (-b + sqrt_discriminant) / (2.0f * a);
+	q = -0.5f * (b + copysignf(sqrtf(discriminant), b));
+	if (fabsf(q) < EPSILON)
+	{
+		roots[0] = 0.0f;
+		roots[1] = 0.0f;
+		return (2);
+	}
+	roots[0] = q / a;
+	roots[1] = c / q;
+	sort_roots(roots);
 	return (2);
 }
 
@@ -39,4 +49,15 @@ static int	solve_linear(float b, float c, float roots[2])
 		return (0);
 	roots[0] = -c / b;
 	return (1);
+}
+
+static void	sort_roots(float roots[2])
+{
+	float	tmp;
+
+	if (roots[0] <= roots[1])
+		return ;
+	tmp = roots[0];
+	roots[0] = roots[1];
+	roots[1] = tmp;
 }
