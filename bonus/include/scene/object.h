@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 17:22:50 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/07/31 17:26:39 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -318,5 +318,6 @@ t_vec3	calc_normal_mapping(\
 
 float	quadric_eval(t_mat4 q, t_vec4 p);
 int		solve_quadratic(float a, float b, float c, float roots[2]);
+t_mat4	quadric_to_world(t_mat4 q_local, t_mat4 local_to_world);
 
 #endif
