@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 20:58:56 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/07/31 21:28:38 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,8 @@ void	cone_to_quadric(t_cone const *cone, t_quadric *out);
 t_mat4	paraboloid_local_q(float a);
 void	paraboloid_to_quadric(\
 			t_paraboloid const *paraboloid, t_quadric *out);
+t_mat4	hyperboloid_local_q(float a, float b, float c);
+void	hyperboloid_to_quadric(\
+			t_hyperboloid const *hyperboloid, t_quadric *out);
 
 #endif
