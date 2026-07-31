@@ -6,7 +6,7 @@
 #    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/31 16:16:42 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/31 17:22:47 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,6 +125,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 							paraboloid \
 							plane \
 							sphere \
+							quadric \
 							internal \
 						) \
 						viewport \
@@ -303,6 +304,8 @@ SRCS	+=	create_paraboloid.c \
 			calc_paraboloid_intersection.c \
 			calc_paraboloid_normal.c \
 			calc_paraboloid_uv.c
+# scene/object/quadric
+SRCS	+=	quadric_eval.c
 # scene/object/internal
 SRCS	+=	calc_onb.c \
 			adjust_uv_range.c \

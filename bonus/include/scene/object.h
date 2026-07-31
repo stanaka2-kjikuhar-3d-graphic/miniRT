@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 01:03:32 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 17:19:12 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,5 +315,7 @@ t_vec3	calc_bump_mapping(\
 			t_object const *object, t_vec2 uv, t_onb const *tbn);
 t_vec3	calc_normal_mapping(\
 			t_object const *object, t_vec2 uv, t_onb const *tbn);
+
+float	quadric_eval(t_mat4 q, t_vec4 p);
 
 #endif
