@@ -95,7 +95,8 @@ enum e_object_type
 	OBJ_CIRCLE,
 	OBJ_CONE,
 	OBJ_HYPERBOLOID,
-	OBJ_PARABOLOID
+	OBJ_PARABOLOID,
+	OBJ_QUADRIC
 };
 
 typedef struct s_sphere
@@ -182,6 +183,7 @@ typedef struct s_object
 		t_cone			cone;
 		t_hyperboloid	hyperboloid;
 		t_paraboloid	paraboloid;
+		t_quadric		quadric;
 	};
 }	t_object;
 
