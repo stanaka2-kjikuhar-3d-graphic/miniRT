@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 00:55:40 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 16:17:58 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,29 @@ typedef struct s_setting_parser
 	bool		(*parse)(char const **);
 }	t_setting_parser;
 
+enum e_required_field
+{
+	REQUIRED_COORDINATE,
+	REQUIRED_DIR,
+	REQUIRED_NORMAL,
+	REQUIRED_COLOR,
+	REQUIRED_BRIGHTNESS,
+	REQUIRED_FOV,
+	REQUIRED_DIAMETER,
+	REQUIRED_CENTER_DIAMETER,
+	REQUIRED_CAP_DIAMETER,
+	REQUIRED_HALF_HEIGHT,
+	REQUIRED_HEIGHT,
+	REQUIRED_COEFFICIENT,
+	REQUIRED_ANGLE,
+	REQUIRED_FIELD_COUNT,
+};
+
 typedef struct s_required_field
 {
-	char const	*element;
-	void		*value;
-	bool		(*parse)(char const *, void *);
+	void					*value;
+	char const				*field;
+	bool					(*parse)(char const *, void *);
 }	t_required_field;
 
 enum e_optional_field
@@ -112,8 +130,10 @@ bool				parse_cylinder(char const **elements);
 bool				parse_cone(char const **elements);
 bool				parse_hyperboloid(char const **elements);
 bool				parse_paraboloid(char const **elements);
-bool				parse_required_fields(\
+bool				parse_required_fields(char const **elements, \
 						t_required_field const *fields, size_t count);
+t_required_field	build_required_field(\
+						enum e_required_field field, void *value);
 void				init_optional_fields(t_optional_field *fields);
 void				bind_material_option(\
 					t_optional_field *fields, t_material_option *option);

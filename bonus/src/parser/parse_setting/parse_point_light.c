@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:02:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:43:01 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 18:50:38 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	parse_point_light(char const **elements)
 	count = count_split(elements);
 	if (count != 4)
 	{
-		print_line_error(ERROR_L_COUNT, HINT_L);
+		print_line_error(ERROR_FIELDS_COUNT, HINT_L);
 		return (false);
 	}
 	if (!parse_point_light_required(elements, &input))
@@ -40,12 +40,11 @@ bool	parse_point_light(char const **elements)
 static bool	parse_point_light_required(\
 	char const **elements, t_input_point_light *input)
 {
-	t_required_field const	fields[] = {\
-		{elements[1], &(input->pos), parse_coordinate}, \
-		{elements[2], &(input->brightness), parse_brightness}, \
-		{elements[3], &(input->color), parse_color}};
-	size_t const			count = sizeof(fields) \
-												/ sizeof(t_required_field);
+	t_required_field		fields[3];
+	size_t const			count = sizeof(fields) / sizeof(t_required_field);
 
-	return (parse_required_fields(fields, count));
+	fields[0] = build_required_field(REQUIRED_COORDINATE, &(input->pos));
+	fields[1] = build_required_field(REQUIRED_BRIGHTNESS, &(input->brightness));
+	fields[2] = build_required_field(REQUIRED_COLOR, &(input->color));
+	return (parse_required_fields(elements, fields, count));
 }

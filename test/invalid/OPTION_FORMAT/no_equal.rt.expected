@@ -1,4 +1,4 @@
 Error
-line 4: foo
-OPTION: missing '=' separator
+line 4: sp 0,0,20 20 255,0,0 foo
+option 'foo': missing '=' separator
 USAGE: key=value

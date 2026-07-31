@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:22:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 11:42:05 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 18:49:29 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	parse_plane(char const **elements)
 	count = count_split(elements);
 	if (count < 4)
 	{
-		print_line_error(ERROR_PL_COUNT, HINT_PL);
+		print_line_error(ERROR_FIELDS_COUNT, HINT_PL);
 		return (false);
 	}
 	if (!parse_plane_required(elements, &input) \
@@ -45,14 +45,13 @@ bool	parse_plane(char const **elements)
 static bool	parse_plane_required(\
 	char const **elements, t_input_plane *input)
 {
-	t_required_field const	fields[] = {\
-		{elements[1], &(input->center), parse_coordinate}, \
-		{elements[2], &(input->normal), parse_dir}, \
-		{elements[3], &(input->albedo), parse_color}};
-	size_t const			count = sizeof(fields) \
-												/ sizeof(t_required_field);
+	t_required_field		fields[3];
+	size_t const			count = sizeof(fields) / sizeof(t_required_field);
 
-	return (parse_required_fields(fields, count));
+	fields[0] = build_required_field(REQUIRED_COORDINATE, &(input->center));
+	fields[1] = build_required_field(REQUIRED_NORMAL, &(input->normal));
+	fields[2] = build_required_field(REQUIRED_COLOR, &(input->albedo));
+	return (parse_required_fields(elements, fields, count));
 }
 
 static bool	parse_plane_optional(\

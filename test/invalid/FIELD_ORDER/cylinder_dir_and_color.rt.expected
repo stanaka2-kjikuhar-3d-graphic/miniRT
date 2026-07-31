@@ -1,0 +1,4 @@
+Error
+line 4: cy 0,0,20 1,1,1 10 20 999,0,0
+dir '1,1,1': must be a unit vector
+USAGE: 0.577350,0.577350,0.577350

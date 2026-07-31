@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 15:53:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 11:35:18 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 16:15:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static bool						parse_optional_field(\
 	char const *element, t_optional_field const *fields, bool *used);
 static enum e_optional_field	find_field_index(\
 	char const *element, t_optional_field const *fields);
-static void						build_option_multi_hints(\
-	t_optional_field const *fields, char const **hints);
+static void						print_unknown_option_error(\
+	t_optional_field const *fields);
 
 bool	parse_optional_fields(\
 	char const **optional_elements, t_optional_field const *fields)
@@ -42,7 +42,6 @@ bool	parse_optional_fields(\
 	i = 0;
 	while (optional_elements[i] != NULL)
 	{
-		set_error_line_str(optional_elements[i]);
 		if (!parse_optional_field(optional_elements[i], fields, used))
 			return (false);
 		++i;
@@ -80,24 +79,24 @@ static bool	parse_optional_field(\
 {
 	char const				*equal;
 	enum e_optional_field	idx;
-	char const				*hints[OPTIONAL_FIELD_COUNT + 2];
 
+	set_error_field("option", element);
 	equal = ft_strchr(element, '=');
 	if (equal == NULL)
 	{
-		print_line_error(ERROR_OPTION_FORMAT, HINT_OPTION_FORMAT);
+		print_field_error(ERROR_OPTION_FORMAT, HINT_OPTION_FORMAT);
 		return (false);
 	}
 	idx = find_field_index(element, fields);
 	if (idx == OPTIONAL_FIELD_COUNT)
 	{
-		build_option_multi_hints(fields, hints);
-		print_line_error_multi_hints(ERROR_OPTION_UNKNOWN, hints);
+		print_unknown_option_error(fields);
 		return (false);
 	}
+	set_error_field(fields[idx].key, equal + 1);
 	if (used[idx])
 	{
-		print_line_error(ERROR_OPTION_DUP, NULL);
+		print_field_error(ERROR_OPTION_DUP, NULL);
 		return (false);
 	}
 	used[idx] = true;
@@ -120,15 +119,14 @@ static enum e_optional_field	find_field_index(\
 	return (OPTIONAL_FIELD_COUNT);
 }
 
-static void	build_option_multi_hints(\
-	t_optional_field const *fields, char const **hints)
+static void	print_unknown_option_error(t_optional_field const *fields)
 {
-	size_t	i;
-	size_t	j;
+	char const	*hints[OPTIONAL_FIELD_COUNT + 1];
+	size_t		i;
+	size_t		j;
 
-	hints[0] = HINT_OPTION_USAGE;
 	i = 0;
-	j = 1;
+	j = 0;
 	while (i < OPTIONAL_FIELD_COUNT)
 	{
 		if (fields[i].value != NULL)
@@ -139,4 +137,5 @@ static void	build_option_multi_hints(\
 		++i;
 	}
 	hints[j] = NULL;
+	print_field_error_multi_hints(ERROR_OPTION_UNKNOWN, hints);
 }

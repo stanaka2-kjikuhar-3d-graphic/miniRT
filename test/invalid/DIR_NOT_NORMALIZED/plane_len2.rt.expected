@@ -1,4 +1,4 @@
 Error
-line 4: 0,0,2
-DIRECTION: must be a unit vector
-unit vector: 0.000000,0.000000,1.000000
+line 4: pl 0,0,0 0,0,2 255,0,225
+normal '0,0,2': must be a unit vector
+USAGE: 0.000000,0.000000,1.000000

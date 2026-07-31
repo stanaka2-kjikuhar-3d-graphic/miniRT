@@ -1,4 +1,4 @@
 Error
 line 3: C -50,0,20 0,0,1 70 1
-C: invalid fields count
+invalid fields count
 USAGE: C x,y,z nx,ny,nz fov

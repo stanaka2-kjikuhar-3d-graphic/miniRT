@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/27 02:07:35 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 03:03:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 
 #include "./parser_private.h"
 
-static bool		parse_line(char *line, size_t *count);
-static bool		parse_setting(char const **elements, size_t *count);
-static bool		validate_required_setting(size_t const *count);
+static bool		parse_line(char *line, bool *used);
+static bool		parse_setting(char const **elements, bool *used);
+static bool		validate_required_setting(bool const *used);
 
 static const t_setting_parser	g_setting_parsers[SETTING_ID_COUNT] = {\
 	[SETTING_AMBIENT_LIGHT] \
@@ -43,28 +43,27 @@ static const t_setting_parser	g_setting_parsers[SETTING_ID_COUNT] = {\
 bool	parse_settings(t_list **line_list)
 {
 	char	*line;
-	size_t	line_no;
-	size_t	count[SETTING_ID_COUNT];
+	size_t	line_number;
+	bool	used[SETTING_ID_COUNT];
 
-	line_no = 0;
-	ft_bzero(count, sizeof(count));
+	line_number = 0;
+	ft_bzero(used, sizeof(used));
 	while (*line_list != NULL)
 	{
 		line = ft_lst_pop_front(line_list);
-		set_error_line_no(++line_no);
-		set_error_line_str(line);
+		set_error_line(++line_number, line);
 		if (!is_blank_line(line) && !is_comment_line(line) \
-			&& !parse_line(line, count))
+			&& !parse_line(line, used))
 		{
 			free(line);
 			return (false);
 		}
 		free(line);
 	}
-	return (validate_required_setting(count));
+	return (validate_required_setting(used));
 }
 
-static bool	parse_line(char *line, size_t *count)
+static bool	parse_line(char *line, bool *used)
 {
 	char	**elements;
 
@@ -74,7 +73,7 @@ static bool	parse_line(char *line, size_t *count)
 		print_errno();
 		return (false);
 	}
-	if (!parse_setting((char const **)elements, count))
+	if (!parse_setting((char const **)elements, used))
 	{
 		free_split(elements);
 		return (false);
@@ -83,7 +82,7 @@ static bool	parse_line(char *line, size_t *count)
 	return (true);
 }
 
-static bool	parse_setting(char const **elements, size_t *count)
+static bool	parse_setting(char const **elements, bool *used)
 {
 	enum e_setting	idx;
 
@@ -99,23 +98,25 @@ static bool	parse_setting(char const **elements, size_t *count)
 		print_line_error(ERROR_ID_UNKNOWN, NULL);
 		return (false);
 	}
-	++count[idx];
-	if (count[idx] > 1 && g_setting_parsers[idx].dup_err != NULL)
+	if (used[idx] == true \
+		&& g_setting_parsers[idx].dup_err != NULL)
 	{
 		print_line_error(g_setting_parsers[idx].dup_err, NULL);
 		return (false);
 	}
+	used[idx] = true;
 	return (g_setting_parsers[idx].parse(elements));
 }
 
-static bool	validate_required_setting(size_t const *count)
+static bool	validate_required_setting(bool const *used)
 {
 	enum e_setting	idx;
 
 	idx = 0;
 	while (idx < SETTING_ID_COUNT)
 	{
-		if (count[idx] == 0 && g_setting_parsers[idx].missing_err != NULL)
+		if (used[idx] == false \
+			&& g_setting_parsers[idx].missing_err != NULL)
 		{
 			print_error(g_setting_parsers[idx].missing_err);
 			return (false);

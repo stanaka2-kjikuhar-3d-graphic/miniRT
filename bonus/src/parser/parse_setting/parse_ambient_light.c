@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 14:06:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:27:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 18:55:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	parse_ambient_light(char const **elements)
 	count = count_split(elements);
 	if (count != 3)
 	{
-		print_line_error(ERROR_A_COUNT, HINT_A);
+		print_line_error(ERROR_FIELDS_COUNT, HINT_A);
 		return (false);
 	}
 	if (!parse_ambient_light_required(elements, &input))
@@ -41,11 +41,10 @@ bool	parse_ambient_light(char const **elements)
 static bool	parse_ambient_light_required(\
 	char const **elements, t_input_ambient_light *input)
 {
-	t_required_field const	fields[] = {\
-		{elements[1], &(input->brightness), parse_brightness}, \
-		{elements[2], &(input->color), parse_color}};
-	size_t const			count = sizeof(fields) \
-												/ sizeof(t_required_field);
+	t_required_field		fields[2];
+	size_t const			count = sizeof(fields) / sizeof(t_required_field);
 
-	return (parse_required_fields(fields, count));
+	fields[0] = build_required_field(REQUIRED_BRIGHTNESS, &(input->brightness));
+	fields[1] = build_required_field(REQUIRED_COLOR, &(input->color));
+	return (parse_required_fields(elements, fields, count));
 }

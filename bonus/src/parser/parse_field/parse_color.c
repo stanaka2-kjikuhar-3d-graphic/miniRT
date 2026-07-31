@@ -51,23 +51,23 @@ static bool	parse_color_channel(char const **element, unsigned int *rgb)
 
 	if (**element == ',' || **element == '\0')
 	{
-		print_line_error(ERROR_COLOR_EMPTY, NULL);
+		print_field_error(ERROR_EMPTY_CHANNEL, NULL);
 		return (false);
 	}
 	if (!ft_isdigit(**element))
 	{
-		print_line_error(ERROR_COLOR_NON_DIGIT, NULL);
+		print_field_error(ERROR_ONLY_DIGITS, NULL);
 		return (false);
 	}
 	if (**element == '0' && ft_isdigit(*(*element + 1)))
 	{
-		print_line_error(ERROR_COLOR_LEADING_ZERO, NULL);
+		print_field_error(ERROR_LEADING_ZERO, NULL);
 		return (false);
 	}
 	channel = ft_strtol(*element, (char **)element, 10);
 	if (0xFF < channel)
 	{
-		print_line_error(ERROR_COLOR_RANGE, NULL);
+		print_field_error(ERROR_COLOR_RANGE, NULL);
 		return (false);
 	}
 	*rgb = (*rgb << 8) | (unsigned int)channel;
@@ -79,13 +79,13 @@ static bool	check_separator(const char *element, enum e_color_channel i)
 	if (((i == RED || i == GREEN) && *element == '\0') \
 		|| (i == BLUE && *element == ','))
 	{
-		print_line_error(ERROR_COLOR_FORMAT, HINT_COLOR);
+		print_field_error(ERROR_INVALID_FORMAT, HINT_COLOR);
 		return (false);
 	}
 	if (((i == RED || i == GREEN) && *element != ',') \
 		|| (i == BLUE && *element != '\0'))
 	{
-		print_line_error(ERROR_COLOR_NON_DIGIT, NULL);
+		print_field_error(ERROR_ONLY_DIGITS, NULL);
 		return (false);
 	}
 	return (true);

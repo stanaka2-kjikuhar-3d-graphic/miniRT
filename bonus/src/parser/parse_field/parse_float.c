@@ -30,7 +30,7 @@ bool	parse_float(char const *element, void *value)
 	*floating_point = (float)ft_strtod(element, (char **)&element);
 	if (*element != '\0')
 	{
-		print_line_error(ERROR_FLOAT_CHARACTER, NULL);
+		print_field_error(ERROR_INVALID_CHARACTER, NULL);
 		return (false);
 	}
 	return (true);
@@ -42,19 +42,19 @@ static bool	parse_floating_point(const char *element)
 		++element;
 	if (*element == '0' && (ft_tolower(*(element + 1)) == 'x'))
 	{
-		print_line_error(ERROR_FLOAT_CHARACTER, NULL);
+		print_field_error(ERROR_INVALID_CHARACTER, NULL);
 		return (false);
 	}
 	if (*element == '0' && ft_isdigit(*(element + 1)))
 	{
-		print_line_error(ERROR_FLOAT_LEADING_ZERO, NULL);
+		print_field_error(ERROR_LEADING_ZERO, NULL);
 		return (false);
 	}
 	if (*element == '.')
 		++element;
 	if (!ft_isdigit(*element))
 	{
-		print_line_error(ERROR_FLOAT_CHARACTER, NULL);
+		print_field_error(ERROR_INVALID_CHARACTER, NULL);
 		return (false);
 	}
 	return (true);

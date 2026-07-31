@@ -1,3 +1,3 @@
 Error
-line 4: metalness=false
-OPTION: duplicate option
+line 4: sp 0,0,20 20 255,0,0 metalness=true metalness=false
+metalness 'false': duplicate key

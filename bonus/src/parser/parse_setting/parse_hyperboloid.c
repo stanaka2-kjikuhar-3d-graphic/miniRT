@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 20:37:31 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 11:42:10 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 03:02:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	parse_hyperboloid(char const **elements)
 	count = count_split(elements);
 	if (count < 7)
 	{
-		print_line_error(ERROR_HB_COUNT, HINT_HB1 HINT_HB2);
+		print_line_error(ERROR_FIELDS_COUNT, HINT_HB);
 		return (false);
 	}
 	if (!parse_hyperboloid_required(elements, &input) \
@@ -45,22 +45,24 @@ bool	parse_hyperboloid(char const **elements)
 static bool	parse_hyperboloid_required(\
 	char const **elements, t_input_hyperboloid *input)
 {
-	t_required_field const	fields[] = {\
-		{elements[1], &(input->center), parse_coordinate}, \
-		{elements[2], &(input->dir), parse_dir}, \
-		{elements[3], &(input->center_radius), parse_radius}, \
-		{elements[4], &(input->cap_radius), parse_radius}, \
-		{elements[5], &(input->half_height), parse_half_height}, \
-		{elements[6], &(input->albedo), parse_color}};
-	size_t const			count = sizeof(fields) \
-												/ sizeof(t_required_field);
+	t_required_field		fields[6];
+	size_t const			count = sizeof(fields) / sizeof(t_required_field);
 
-	if (!parse_required_fields(fields, count))
+	fields[0] = build_required_field(REQUIRED_COORDINATE, &(input->center));
+	fields[1] = build_required_field(REQUIRED_DIR, &(input->dir));
+	fields[2] = build_required_field(REQUIRED_CENTER_DIAMETER, \
+		&(input->center_radius));
+	fields[3] = build_required_field(REQUIRED_CAP_DIAMETER, \
+		&(input->cap_radius));
+	fields[4] = build_required_field(REQUIRED_HALF_HEIGHT, \
+		&(input->half_height));
+	fields[5] = build_required_field(REQUIRED_COLOR, &(input->albedo));
+	if (!parse_required_fields(elements, fields, count))
 		return (false);
-	set_error_line_multi_strs((char const *[]){elements[3], elements[4], NULL});
+	set_error_field("cap_diameter", elements[4]);
 	if (input->center_radius >= input->cap_radius)
 	{
-		print_line_error(ERROR_HB_RADIUS, NULL);
+		print_field_error(ERROR_HB_RADIUS, NULL);
 		return (false);
 	}
 	return (true);

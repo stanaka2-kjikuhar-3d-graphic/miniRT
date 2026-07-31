@@ -1,4 +1,4 @@
 Error
-line 4: 1
-OPTION: missing '=' separator
+line 4: sp 0,0,20 20 255,0,0 1
+option '1': missing '=' separator
 USAGE: key=value

@@ -24,7 +24,7 @@ bool	parse_angle(char const *element, void *value)
 		return (false);
 	if (*angle < 0.0f || 180.0f < *angle)
 	{
-		print_line_error(ERROR_ANGLE_RANGE, NULL);
+		print_field_error(ERROR_ANGLE_RANGE, NULL);
 		return (false);
 	}
 	return (true);

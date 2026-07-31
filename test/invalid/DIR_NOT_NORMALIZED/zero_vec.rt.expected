@@ -1,4 +1,4 @@
 Error
-line 2: 0,0,0
-DIRECTION: must be a unit vector
-unit vector: 0.577350,0.577350,0.577350
+line 2: C -50,0,20 0,0,0 70
+dir '0,0,0': must be a unit vector
+USAGE: 0.577350,0.577350,0.577350
