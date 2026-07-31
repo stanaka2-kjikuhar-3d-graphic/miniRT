@@ -20,6 +20,7 @@
 # include "color.h"
 # include "ray.h"
 # include "ft_mlx.h"
+# include "matrix.h"
 
 enum e_pattern_type
 {
