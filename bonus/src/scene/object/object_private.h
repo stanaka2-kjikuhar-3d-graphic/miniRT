@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_private.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/23 00:48:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 17:36:24 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ typedef struct s_perp_cylinder
 	float	squared_nearest_dist;
 	float	half_chord;
 }	t_perp_cylinder;
+
+typedef struct s_quadric_coeffs
+{
+	float	a;
+	float	b;
+	float	c;
+}	t_quadric_coeffs;
 
 bool	create_object(t_object const *object);
 void	set_material_from_option(t_material *material, t_color albedo, \

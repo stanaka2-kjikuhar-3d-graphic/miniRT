@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_object_intersection.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 00:50:10 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 22:45:15 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 17:39:29 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ float	calc_object_intersection(t_object const *object, t_ray const *ray)
 		return (calc_hyperboloid_intersection(&(object->hyperboloid), ray));
 	else if (object->type == OBJ_PARABOLOID)
 		return (calc_paraboloid_intersection(&(object->paraboloid), ray));
+	else if (object->type == OBJ_QUADRIC)
+		return (calc_quadric_intersection(&(object->quadric), ray));
 	return (NAN);
 }
