@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 16:17:58 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 17:24:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,15 @@ enum e_setting
 	SETTING_AMBIENT_LIGHT,
 	SETTING_CAMERA,
 	SETTING_POINT_LIGHT,
+	SETTING_SPOT_LIGHT,
+	SETTING_DIRECTIONAL_LIGHT,
 	SETTING_SPHERE,
 	SETTING_PLANE,
 	SETTING_CYLINDER,
 	SETTING_CONE,
 	SETTING_HYPERBOLOID,
 	SETTING_PARABOLOID,
-	SETTING_SPOT_LIGHT,
-	SETTING_ID_COUNT,
+	SETTING_ID_COUNT
 };
 
 typedef struct s_setting_parser
@@ -124,6 +125,7 @@ bool				parse_ambient_light(char const **elements);
 bool				parse_point_light(char const **elements);
 bool				parse_camera(char const **elements);
 bool				parse_spot_light(char const **elements);
+bool				parse_directional_light(char const **elements);
 bool				parse_sphere(char const **elements);
 bool				parse_plane(char const **elements);
 bool				parse_cylinder(char const **elements);

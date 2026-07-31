@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:35:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 19:47:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 17:26:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	phong_lighting_point(t_color *color, \
 			t_ray const *ray, t_hit const *hit, t_point_light const *light);
 void	phong_lighting_spot(t_color *color, \
 			t_ray const *ray, t_hit const *hit, t_spot_light const *light);
+void	phong_lighting_directional(t_color *color, t_ray const *ray, \
+			t_hit const *hit, t_directional_light const *light);
 bool	phong_shading(\
 			t_hit const *hit, t_vec3 light_dir, float light_dist);
 

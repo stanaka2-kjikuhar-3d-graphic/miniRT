@@ -1,0 +1,75 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   phong_lighting_directional.c                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/31 17:05:47 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/31 17:22:48 by stanaka2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
+#include <math.h>
+
+#include "ft_math.h"
+
+#include "config.h"
+#include "color.h"
+#include "ray.h"
+#include "light.h"
+
+#include "../phong_private.h"
+
+static t_color	calc_diffuse_color(t_hit const *hit, \
+					t_directional_light const *light);
+static t_color	calc_specular_color(t_ray const *ray, t_hit const *hit, \
+					t_directional_light const *light);
+
+void	phong_lighting_directional(t_color *color, \
+	t_ray const *ray, t_hit const *hit, t_directional_light const *light)
+{
+	if (!phong_shading(hit, vec3_scale(-1.0f, light->dir), INFINITY))
+	{
+		*color = add_color(add_color(\
+					*color, \
+					calc_diffuse_color(hit, light)), \
+					calc_specular_color(ray, hit, light) \
+				);
+	}
+}
+
+static t_color	calc_diffuse_color(\
+	t_hit const *hit, t_directional_light const *light)
+{
+	float	dot;
+	t_color	diffuse;
+
+	dot = vec3_dot(hit->normal, vec3_scale(-1.0f, light->dir));
+	if (dot <= 0.0f)
+		return ((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
+	diffuse = scale_color(dot, light->radiance);
+	return (mul_color(hit->color, diffuse));
+}
+
+static t_color	calc_specular_color(t_ray const *ray, \
+	t_hit const *hit, t_directional_light const *light)
+{
+	t_vec3	to_light;
+	t_vec3	reflection;
+	float	dot;
+	t_color	specular;
+
+	to_light = vec3_scale(-1.0f, light->dir);
+	if (vec3_dot(hit->normal, to_light) <= 0.0f)
+		return ((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
+	reflection = vec3_normalize(vec3_sub(\
+					vec3_scale(2 * vec3_dot(to_light, hit->normal), \
+						hit->normal), to_light));
+	dot = vec3_dot(vec3_scale(-1, ray->dir), reflection);
+	if (dot <= 0.0f)
+		return ((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
+	specular = scale_color(powf(dot, SHININESS), light->radiance);
+	return (specular);
+}
