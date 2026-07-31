@@ -6,7 +6,7 @@
 #    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/31 17:38:20 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/07/31 18:35:27 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -293,7 +293,9 @@ SRCS	+=	create_circle.c \
 SRCS	+=	create_cone.c \
 			calc_cone_intersection.c \
 			calc_cone_normal.c \
-			calc_cone_uv.c
+			calc_cone_uv.c \
+			cone_local_q.c \
+			cone_quadric.c
 # scene/object/hyperboloid
 SRCS	+=	create_hyperboloid.c \
 			calc_hyperboloid_intersection.c \
