@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:15:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 00:43:38 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 00:21:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 #include "color.h"
 
 #include "./phong_private.h"
+#include "../renderer_private.h"
 
 static t_ray	calc_ray(t_ivec2 pixel);
-static void		put_color(t_color color, t_ivec2 pixel);
 
 void	phong(void)
 {
@@ -44,9 +44,12 @@ void	phong(void)
 			ray = calc_ray(pixel);
 			hit = intersection(&ray);
 			if (hit.object != NULL)
-				put_color(phong_lighting(&ray, &hit), pixel);
+				put_color_to_window_image(pixel, phong_lighting(&ray, &hit));
 			else
-				put_color((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f}, pixel);
+			{
+				put_color_to_window_image(pixel, \
+					(t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
+			}
 			++(pixel.x);
 		}
 		++(pixel.y);
@@ -76,10 +79,4 @@ static t_ray	calc_ray(t_ivec2 pixel)
 			);
 	ray.origin = camera->pos;
 	return (ray);
-}
-
-static void	put_color(t_color color, t_ivec2 pixel)
-{
-	*get_pixel_addr(get_image(IMG_WINDOW), pixel) \
-		= convert_color_to_int(color);
 }

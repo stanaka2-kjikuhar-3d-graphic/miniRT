@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_metalness.c                                  :+:      :+:    :+:   */
+/*   color_private.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/03 03:12:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:46:10 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/28 23:12:24 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/29 00:48:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#ifndef COLOR_PRIVATE_H
+# define COLOR_PRIVATE_H
 
-#include "ft_string.h"
+# include <stdint.h>
 
-#include "ft_error.h"
+void	init_srgb_lut(void);
+float	decode_srgb(uint8_t srgb);
+uint8_t	encode_srgb(float linear);
+void	init_gamma_lut(void);
+float	decode_gamma(uint8_t gamma_encoded);
+uint8_t	encode_gamma(float linear);
 
-bool	parse_metalness(char const *element, void *value)
-{
-	bool *const	metalness = (bool *)value;
-
-	if (ft_strcmp("true", element) == 0)
-		*metalness = true;
-	else if (ft_strcmp("false", element) == 0)
-		*metalness = false;
-	else
-	{
-		print_line_error(ERROR_METALNESS_VALUE, NULL);
-		return (false);
-	}
-	return (true);
-}
+#endif

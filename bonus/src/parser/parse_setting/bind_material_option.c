@@ -22,6 +22,7 @@ void	bind_material_option(\
 	fields[OPTIONAL_CHECKER_COLOR2].value = &(option->checker_color2);
 	fields[OPTIONAL_BUMP_MAP].value = &(option->bump_map);
 	fields[OPTIONAL_NORMAL_MAP].value = &(option->normal_map);
+	fields[OPTIONAL_DIRECTX_NORMAL_MAP].value = &(option->directx_normal_map);
 	fields[OPTIONAL_BUMP_STRENGTH].value = &(option->bump_strength);
 	fields[OPTIONAL_METALNESS].value = &(option->metalness);
 	fields[OPTIONAL_SHININESS].value = &(option->shininess);

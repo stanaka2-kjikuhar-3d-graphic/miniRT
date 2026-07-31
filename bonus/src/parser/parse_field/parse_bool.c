@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderer_private.h                                 :+:      :+:    :+:   */
+/*   parse_bool.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/23 23:56:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 00:15:52 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/29 01:20:00 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/29 01:20:00 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERER_PRIVATE_H
-# define RENDERER_PRIVATE_H
+#include <stdbool.h>
 
-# include <stdbool.h>
+#include "ft_string.h"
 
-# include "vector.h"
-# include "color.h"
+#include "ft_error.h"
 
-bool	check_render_flag(void);
-void	phong(void);
-void	put_color_to_window_image(t_ivec2 pixel, t_color color);
+bool	parse_bool(char const *element, void *value)
+{
+	bool *const	boolean = (bool *)value;
 
-#endif
+	if (ft_strcmp("true", element) == 0)
+		*boolean = true;
+	else if (ft_strcmp("false", element) == 0)
+		*boolean = false;
+	else
+	{
+		print_line_error(ERROR_BOOL_VALUE, NULL);
+		return (false);
+	}
+	return (true);
+}

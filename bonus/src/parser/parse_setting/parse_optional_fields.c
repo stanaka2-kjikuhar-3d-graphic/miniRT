@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 15:53:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/27 01:20:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 11:35:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ static void	set_default_optional_fields(t_optional_field const *fields)
 		if (fields[idx].value != NULL)
 		{
 			if (fields[idx].field_type == FIELD_IMAGE)
+			{
 				*(t_image **)fields[idx].value \
 					= fields[idx].default_value.image;
+			}
 			else if (fields[idx].field_type == FIELD_COLOR)
 				*(t_color *)fields[idx].value = fields[idx].default_value.color;
 			else if (fields[idx].field_type == FIELD_BOOL)

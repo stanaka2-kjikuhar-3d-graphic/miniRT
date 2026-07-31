@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderer_private.h                                 :+:      :+:    :+:   */
+/*   put_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/23 23:56:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 00:15:52 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/28 23:21:40 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/28 23:27:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERER_PRIVATE_H
-# define RENDERER_PRIVATE_H
+#include "mlx.h"
 
-# include <stdbool.h>
+#include "ft_mlx.h"
+#include "vector.h"
 
-# include "vector.h"
-# include "color.h"
-
-bool	check_render_flag(void);
-void	phong(void);
-void	put_color_to_window_image(t_ivec2 pixel, t_color color);
-
-#endif
+void	put_color(t_image *image, t_ivec2 pixel, int color)
+{
+	*get_pixel_addr(image, pixel) \
+		= (unsigned int)mlx_get_color_value(get_mlx_ptr(), color);
+}

@@ -1,4 +1,4 @@
 A 0.2 255,255,255
 C -50,0,20 0,0,1 70
 L -40,0,30 0.7 255,255,255
-sp 0,0,20 20 255,0,0 texture=texture/Earth.xpm bump_map=texture/moon_height.xpm normal_map=texture/redbrick.xpm bump_strength=1.5 metalness=true shininess=64
+sp 0,0,20 20 255,0,0 texture=texture/Earth.xpm bump_map=texture/moon_height.xpm normal_map=texture/redbrick.xpm directx_normal_map=true bump_strength=1.5 metalness=true shininess=64

@@ -6,12 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 14:11:39 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/16 15:06:15 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/29 00:27:55 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "config.h"
-#include "color.h"
+
+#include "./color_private.h"
 
 void	init_color_lut(void)
 {

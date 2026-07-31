@@ -5,20 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/16 14:17:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/16 15:08:29 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/19 01:27:25 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/29 00:27:43 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdint.h>
+#include <math.h>
 
 #include "config.h"
 #include "color.h"
 
-uint8_t	encode_color(float color)
+#include "./color_private.h"
+
+int	encode_color(t_color color)
 {
-	if (GAMMA_MODE)
-		return (encode_gamma(color));
-	else
-		return (encode_srgb(color));
+	int						rgb;
+	float const				channel[] = {color.r, color.g, color.b};
+	uint8_t					encoded;
+	enum e_color_channel	i;
+
+	rgb = 0;
+	i = RED;
+	while (i <= BLUE)
+	{
+		if (GAMMA_MODE)
+			encoded = encode_gamma(channel[i]);
+		else
+			encoded = encode_srgb(channel[i]);
+		rgb = (rgb << 8) | (int)(encoded);
+		++i;
+	}
+	return (rgb);
 }

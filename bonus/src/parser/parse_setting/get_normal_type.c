@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_color_to_int.c                             :+:      :+:    :+:   */
+/*   get_normal_type.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/19 01:27:25 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/16 15:07:23 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/29 00:51:01 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/29 00:55:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
-#include <math.h>
+#include <stddef.h>
 
-#include "mlx.h"
+#include "object.h"
 
-#include "ft_mlx.h"
-#include "color.h"
+#include "../parser_private.h"
 
-int	convert_color_to_int(t_color color)
+enum e_normal_type	get_normal_type(char const **optional_elements)
 {
-	int						rgb;
-	float const				channel[] = {color.r, color.g, color.b};
-	uint8_t					srgb;
-	enum e_color_channel	i;
+	enum e_normal_type	type;
+	size_t				i;
 
-	rgb = 0;
-	i = RED;
-	while (i <= BLUE)
+	type = NORMAL_OBJECT;
+	i = 0;
+	while (optional_elements[i] != NULL)
 	{
-		srgb = encode_color(channel[i]);
-		rgb = (rgb << 8) | (int)(srgb);
+		if (is_option_id("bump_map", optional_elements[i]))
+			type = BUMP_MAP;
+		else if (is_option_id("normal_map", optional_elements[i]))
+			type = NORMAL_MAP;
 		++i;
 	}
-	return (mlx_get_color_value(get_mlx_ptr(), rgb));
+	return (type);
 }

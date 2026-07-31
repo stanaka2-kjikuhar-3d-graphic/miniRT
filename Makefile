@@ -6,7 +6,7 @@
 #    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/27 02:08:10 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/29 00:56:17 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -166,7 +166,8 @@ SRCS	+=	mlx_ptr.c \
 			setup_mlx_hooks.c \
 			get_pixel_addr.c \
 			get_uv_pixel_addr.c \
-			calc_uv_pixel.c
+			calc_uv_pixel.c \
+			put_color.c
 
 # ft_mlx/hooks
 SRCS	+=	expose_hook.c \
@@ -196,7 +197,8 @@ SRCS	+=	parse_ambient_light.c \
 			init_optional_fields.c \
 			bind_material_option.c \
 			parse_optional_fields.c \
-			get_pattern_type.c
+			get_pattern_type.c \
+			get_normal_type.c
 # parser/parse_field
 SRCS	+=	parse_vec3.c \
 			parse_float.c \
@@ -209,7 +211,7 @@ SRCS	+=	parse_vec3.c \
 			parse_half_height.c \
 			parse_angle.c \
 			parse_texture.c \
-			parse_metalness.c \
+			parse_bool.c \
 			parse_shininess.c \
 			parse_size.c
 # parser/internal
@@ -222,7 +224,8 @@ SRCS	+=	is_blank_line.c \
 
 # renderer
 SRCS	+=	renderer.c \
-			render_flag.c
+			render_flag.c \
+			put_color_to_window_image.c
 
 # renderer/phong
 SRCS	+=	phong.c \
@@ -258,7 +261,8 @@ SRCS	+=	object.c \
 			calc_object_color.c \
 			calc_object_normal.c \
 			calc_object_tbn.c \
-			calc_bump_mapping.c
+			calc_bump_mapping.c \
+			calc_normal_mapping.c
 # scene/object/sphere
 SRCS	+=	create_sphere.c \
 			calc_sphere_intersection.c \
@@ -310,14 +314,13 @@ SRCS	+=	viewport.c
 SRCS	+=	add_color.c \
 			mul_color.c \
 			scale_color.c \
-			convert_color_to_int.c \
-			convert_uint_to_color.c \
 			init_color_lut.c \
 			decode_color.c \
 			encode_color.c \
 			srgb.c \
 			gamma.c \
-			average_rgb.c
+			average_rgb.c \
+			convert_uint_to_color.c
 
 # utils/ft_error
 SRCS	+=	print_error.c \
