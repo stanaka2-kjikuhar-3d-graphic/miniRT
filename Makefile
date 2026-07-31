@@ -6,7 +6,7 @@
 #    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/31 17:22:47 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/07/31 17:23:37 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -305,7 +305,8 @@ SRCS	+=	create_paraboloid.c \
 			calc_paraboloid_normal.c \
 			calc_paraboloid_uv.c
 # scene/object/quadric
-SRCS	+=	quadric_eval.c
+SRCS	+=	quadric_eval.c \
+			solve_quadratic.c
 # scene/object/internal
 SRCS	+=	calc_onb.c \
 			adjust_uv_range.c \
