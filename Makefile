@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/31 02:55:17 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/07/31 16:16:42 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -195,7 +195,6 @@ SRCS	+=	parse_ambient_light.c \
 			init_optional_fields.c \
 			bind_material_option.c \
 			parse_optional_fields.c \
-			print_unknown_option_error.c \
 			get_pattern_type.c \
 			get_normal_type.c
 # parser/parse_field

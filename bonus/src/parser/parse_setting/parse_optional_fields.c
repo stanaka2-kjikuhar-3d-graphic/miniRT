@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 15:53:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 03:02:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 16:15:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static bool						parse_optional_field(\
 	char const *element, t_optional_field const *fields, bool *used);
 static enum e_optional_field	find_field_index(\
 	char const *element, t_optional_field const *fields);
+static void						print_unknown_option_error(\
+	t_optional_field const *fields);
 
 bool	parse_optional_fields(\
 	char const **optional_elements, t_optional_field const *fields)
@@ -115,4 +117,25 @@ static enum e_optional_field	find_field_index(\
 		++idx;
 	}
 	return (OPTIONAL_FIELD_COUNT);
+}
+
+static void	print_unknown_option_error(t_optional_field const *fields)
+{
+	char const	*hints[OPTIONAL_FIELD_COUNT + 1];
+	size_t		i;
+	size_t		j;
+
+	i = 0;
+	j = 0;
+	while (i < OPTIONAL_FIELD_COUNT)
+	{
+		if (fields[i].value != NULL)
+		{
+			hints[j] = fields[i].format_msg;
+			++j;
+		}
+		++i;
+	}
+	hints[j] = NULL;
+	print_field_error_multi_hints(ERROR_OPTION_UNKNOWN, hints);
 }
