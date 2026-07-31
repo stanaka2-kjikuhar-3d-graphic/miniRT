@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 18:01:40 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 14:47:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 15:18:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 #include "ft_string.h"
 
-static char		*g_error_line;
-static size_t	g_error_line_number;
+static char	const	*g_error_line;
+static size_t		g_error_line_number;
 
 void	set_error_line(size_t line_number, char const *line)
 {
