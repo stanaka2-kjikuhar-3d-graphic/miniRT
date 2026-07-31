@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 20:27:48 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 19:54:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 17:03:56 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	create_uniform_infinite_light(\
 {
 	t_light	light;
 
-	light.type = AMBIENT_LIGHT;
+	light.type = UNIFORM_INFINITE_LIGHT;
 	light.uniform_infinite.color = input->color;
 	light.uniform_infinite.brightness = input->brightness;
 	light.uniform_infinite.radiance \
