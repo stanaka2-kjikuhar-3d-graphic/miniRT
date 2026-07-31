@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:29:04 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/31 17:29:04 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/07/31 17:31:10 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "vector.h"
 #include "object.h"
 
-/* Axis-height clamp for finite quadrics. See docs/quadric.md. */
 bool	quadric_in_bounds(t_quadric const *q, t_vec3 point)
 {
 	float	h;

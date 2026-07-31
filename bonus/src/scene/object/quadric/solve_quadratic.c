@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:23:08 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/31 17:25:29 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/07/31 17:31:10 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 static int	solve_linear(float b, float c, float roots[2]);
 static void	sort_roots(float roots[2]);
 
-/* a*x^2 + b*x + c = 0. a=~0 falls back to the linear case.
- * Uses the numerically stable form (avoids b/sqrt(D) cancellation):
- * q = -0.5*(b + sign(b)*sqrt(D)), x0 = q/a, x1 = c/q. See docs/quadric.md. */
 int	solve_quadratic(float a, float b, float c, float roots[2])
 {
 	float	discriminant;
