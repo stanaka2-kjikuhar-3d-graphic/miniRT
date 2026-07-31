@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 00:35:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 16:17:58 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,6 @@ t_required_field	build_required_field(\
 void				init_optional_fields(t_optional_field *fields);
 void				bind_material_option(\
 					t_optional_field *fields, t_material_option *option);
-void				print_unknown_option_error(t_optional_field const *fields);
 bool				parse_optional_fields(char const **optional_elements, \
 						t_optional_field const *fields);
 enum e_pattern_type	get_pattern_type(char const **optional_elements);
