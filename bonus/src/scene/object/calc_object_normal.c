@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_object_normal.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 00:51:51 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 19:53:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 17:39:48 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ t_vec3	calc_object_normal(\
 		return (calc_hyperboloid_normal(&(object->hyperboloid), ray, point));
 	else if (object->type == OBJ_PARABOLOID)
 		return (calc_paraboloid_normal(&(object->paraboloid), ray, point));
+	else if (object->type == OBJ_QUADRIC)
+		return (calc_quadric_normal(&(object->quadric), ray, point));
 	return ((t_vec3){.x = 0, .y = 0, .z = 0});
 }

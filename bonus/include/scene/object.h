@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 01:03:32 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 17:37:59 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "color.h"
 # include "ray.h"
 # include "ft_mlx.h"
+# include "matrix.h"
 
 enum e_pattern_type
 {
@@ -94,7 +95,8 @@ enum e_object_type
 	OBJ_CIRCLE,
 	OBJ_CONE,
 	OBJ_HYPERBOLOID,
-	OBJ_PARABOLOID
+	OBJ_PARABOLOID,
+	OBJ_QUADRIC
 };
 
 typedef struct s_sphere
@@ -157,6 +159,16 @@ typedef struct s_paraboloid
 	t_onb	onb;
 }	t_paraboloid;
 
+typedef struct s_quadric
+{
+	t_mat4	q;
+	t_vec3	axis;
+	t_vec3	center;
+	float	h_min;
+	float	h_max;
+	bool	finite;
+}	t_quadric;
+
 typedef struct s_object
 {
 	t_material			material;
@@ -171,6 +183,7 @@ typedef struct s_object
 		t_cone			cone;
 		t_hyperboloid	hyperboloid;
 		t_paraboloid	paraboloid;
+		t_quadric		quadric;
 	};
 }	t_object;
 
@@ -302,5 +315,13 @@ t_vec3	calc_bump_mapping(\
 			t_object const *object, t_vec2 uv, t_onb const *tbn);
 t_vec3	calc_normal_mapping(\
 			t_object const *object, t_vec2 uv, t_onb const *tbn);
+
+float	quadric_eval(t_mat4 q, t_vec4 p);
+int		solve_quadratic(float a, float b, float c, float roots[2]);
+t_mat4	quadric_to_world(t_mat4 q_local, t_mat4 local_to_world);
+bool	quadric_in_bounds(t_quadric const *q, t_vec3 point);
+float	calc_quadric_intersection(t_quadric const *q, t_ray const *ray);
+t_vec3	calc_quadric_normal(\
+			t_quadric const *q, t_ray const *ray, t_vec3 point);
 
 #endif
