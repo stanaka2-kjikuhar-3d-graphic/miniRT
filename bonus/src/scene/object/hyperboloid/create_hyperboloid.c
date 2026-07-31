@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_hyperboloid.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/27 01:48:30 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/23 19:47:07 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/31 21:34:44 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type);
 bool	create_hyperboloid(t_input_hyperboloid const *input)
 {
 	t_object	object;
+	float		cap_ratio;
 
 	object.type = OBJ_HYPERBOLOID;
 	object.hyperboloid.center = input->center;
@@ -33,9 +34,12 @@ bool	create_hyperboloid(t_input_hyperboloid const *input)
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
 	object.uv.type = UV_DEFAULT;
-	object.uv.u_per_v = 1.0f; // TODO
-	object.uv.u_range = (t_range){.max = 1.0f, .min = 0.0f}; // TODO
-	object.uv.v_range = (t_range){.max = 1.0f, .min = 0.0f}; // TODO
+	object.uv.u_per_v = (float)(2.0f * M_PI * input->cap_radius) \
+							/ (2.0f * (input->cap_radius + input->half_height));
+	object.uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};
+	cap_ratio = input->cap_radius \
+					/ (2.0f * (input->cap_radius + input->half_height));
+	object.uv.v_range = (t_range){.max = 1.0f - cap_ratio, .min = cap_ratio};
 	object.hyperboloid.onb.w = object.hyperboloid.dir;
 	calc_onb(object.hyperboloid.onb.w, \
 		&(object.hyperboloid.onb.u), &(object.hyperboloid.onb.v));
