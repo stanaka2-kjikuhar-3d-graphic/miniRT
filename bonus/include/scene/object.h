@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 17:36:29 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/07/31 17:37:59 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -321,5 +321,7 @@ int		solve_quadratic(float a, float b, float c, float roots[2]);
 t_mat4	quadric_to_world(t_mat4 q_local, t_mat4 local_to_world);
 bool	quadric_in_bounds(t_quadric const *q, t_vec3 point);
 float	calc_quadric_intersection(t_quadric const *q, t_ray const *ray);
+t_vec3	calc_quadric_normal(\
+			t_quadric const *q, t_ray const *ray, t_vec3 point);
 
 #endif
