@@ -158,6 +158,16 @@ typedef struct s_paraboloid
 	t_onb	onb;
 }	t_paraboloid;
 
+typedef struct s_quadric
+{
+	t_mat4	q;
+	t_vec3	axis;
+	t_vec3	center;
+	float	h_min;
+	float	h_max;
+	bool	finite;
+}	t_quadric;
+
 typedef struct s_object
 {
 	t_material			material;
