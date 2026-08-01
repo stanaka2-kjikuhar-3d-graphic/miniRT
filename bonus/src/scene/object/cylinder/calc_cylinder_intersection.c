@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:41:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/15 22:00:37 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/01 16:40:35 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ float	calc_cylinder_intersection(t_cylinder const *cylinder, t_ray const *ray)
 	perp.ray_len = vec3_length(perp.ray);
 	if (perp.ray_len < EPSILON)
 		return (NAN);
-	perp.ray = vec3_scale(1 / perp.ray_len, perp.ray);
+	perp.ray = vec3_div(perp.ray_len, perp.ray);
 	to_cylinder = vec3_sub(cylinder->center, ray->origin);
 	perp.to_cylinder = vec3_sub(to_cylinder, \
 			vec3_scale(vec3_dot(to_cylinder, cylinder->dir), cylinder->dir));
