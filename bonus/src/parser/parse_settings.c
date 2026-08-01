@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 03:03:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 17:25:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ static const t_setting_parser	g_setting_parsers[SETTING_ID_COUNT] = {\
 	[SETTING_CAMERA] \
 		= {"C", ERROR_ID_NO_C, ERROR_ID_DUP_C, parse_camera}, \
 	[SETTING_POINT_LIGHT] = {"L", ERROR_ID_NO_L, NULL, parse_point_light}, \
+	[SETTING_SPOT_LIGHT] = {"sl", NULL, NULL, parse_spot_light}, \
+	[SETTING_DIRECTIONAL_LIGHT] = {"dl", NULL, NULL, parse_directional_light}, \
 	[SETTING_SPHERE] = {"sp", NULL, NULL, parse_sphere}, \
 	[SETTING_PLANE] = {"pl", NULL, NULL, parse_plane}, \
 	[SETTING_CYLINDER] = {"cy", NULL, NULL, parse_cylinder}, \
 	[SETTING_CONE] = {"co", NULL, NULL, parse_cone}, \
 	[SETTING_HYPERBOLOID] = {"hb", NULL, NULL, parse_hyperboloid}, \
-	[SETTING_PARABOLOID] = {"pb", NULL, NULL, parse_paraboloid}, \
-	[SETTING_SPOT_LIGHT] = {"sl", NULL, NULL, parse_spot_light} \
+	[SETTING_PARABOLOID] = {"pb", NULL, NULL, parse_paraboloid} \
 };
 
 bool	parse_settings(t_list **line_list)

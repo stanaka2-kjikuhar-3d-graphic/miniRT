@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
 #    Updated: 2026/08/01 19:40:58 by kjikuhar         ###   ########.fr        #
@@ -187,6 +187,7 @@ SRCS	+=	read_next_line.c
 SRCS	+=	parse_ambient_light.c \
 			parse_point_light.c \
 			parse_spot_light.c \
+			parse_directional_light.c \
 			parse_camera.c \
 			parse_plane.c \
 			parse_sphere.c \
@@ -236,7 +237,8 @@ SRCS	+=	phong.c \
 SRCS	+=	phong_lighting.c \
 			phong_lighting_ambient.c \
 			phong_lighting_point.c \
-			phong_lighting_spot.c
+			phong_lighting_spot.c \
+			phong_lighting_directional.c
 # renderer/phong/shading
 SRCS	+=	phong_shading.c
 
@@ -254,7 +256,8 @@ SRCS	+=	calc_camera_dir.c \
 SRCS	+=	light.c \
 			ambient_light.c \
 			point_light.c \
-			spot_light.c
+			spot_light.c \
+			directional_light.c
 
 # scene/object
 SRCS	+=	object.c \
