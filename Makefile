@@ -6,7 +6,7 @@
 #    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/31 21:29:37 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/08/01 19:40:58 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -316,7 +316,8 @@ SRCS	+=	quadric_eval.c \
 			quadric_to_world.c \
 			quadric_in_bounds.c \
 			calc_quadric_intersection.c \
-			calc_quadric_normal.c
+			calc_quadric_normal.c \
+			calc_quadric_uv.c
 # scene/object/internal
 SRCS	+=	calc_onb.c \
 			adjust_uv_range.c \
