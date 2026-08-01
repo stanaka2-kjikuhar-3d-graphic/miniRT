@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   calc_cone_uv.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 21:37:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 22:03:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/01 19:40:58 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-
-#include "vector.h"
 #include "object.h"
 
-// TODO: implement cone uv
+#include "../object_private.h"
+
 t_vec2	calc_cone_uv(t_cone const *cone, t_vec3 point)
 {
-	(void)cone;
-	(void)point;
-	return ((t_vec2){.u = 0.0f, .v = 0.0f});
+	t_quadric	quad;
+
+	cone_to_quadric(cone, &quad);
+	return (calc_quadric_uv(&quad, &cone->onb, point));
 }

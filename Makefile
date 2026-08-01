@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/07/31 18:41:00 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/08/01 20:19:31 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -296,24 +296,32 @@ SRCS	+=	create_circle.c \
 SRCS	+=	create_cone.c \
 			calc_cone_intersection.c \
 			calc_cone_normal.c \
-			calc_cone_uv.c
+			calc_cone_uv.c \
+			calc_cone_local_q.c \
+			cone_quadric.c
 # scene/object/hyperboloid
 SRCS	+=	create_hyperboloid.c \
 			calc_hyperboloid_intersection.c \
 			calc_hyperboloid_normal.c \
-			calc_hyperboloid_uv.c
+			calc_hyperboloid_uv.c \
+			calc_hyperboloid_local_q.c \
+			hyperboloid_quadric.c
 # scene/object/paraboloid
 SRCS	+=	create_paraboloid.c \
 			calc_paraboloid_intersection.c \
 			calc_paraboloid_normal.c \
-			calc_paraboloid_uv.c
+			calc_paraboloid_uv.c \
+			calc_paraboloid_local_q.c \
+			paraboloid_quadric.c
 # scene/object/quadric
 SRCS	+=	quadric_eval.c \
 			solve_quadratic.c \
 			quadric_to_world.c \
 			quadric_in_bounds.c \
 			calc_quadric_intersection.c \
-			calc_quadric_normal.c
+			calc_quadric_normal.c \
+			calc_quadric_uv.c \
+			build_quadric.c
 # scene/object/internal
 SRCS	+=	calc_onb.c \
 			adjust_uv_range.c \

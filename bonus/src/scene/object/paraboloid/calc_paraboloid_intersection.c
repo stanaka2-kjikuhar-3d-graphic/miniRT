@@ -3,27 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   calc_paraboloid_intersection.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/17 02:41:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 22:02:29 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/16 05:59:09 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/31 20:59:39 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include <stdbool.h>
-
-#include "vector.h"
 #include "object.h"
 #include "ray.h"
 
 #include "../object_private.h"
 
-// TODO: implement paraboloid intersection
 float	calc_paraboloid_intersection(\
 	t_paraboloid const *paraboloid, t_ray const *ray)
 {
-	(void)paraboloid;
-	(void)ray;
-	return (NAN);
+	t_quadric	quad;
+
+	paraboloid_to_quadric(paraboloid, &quad);
+	return (calc_quadric_intersection(&quad, ray));
 }

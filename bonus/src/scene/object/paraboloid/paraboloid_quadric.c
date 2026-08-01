@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_hyperboloid_uv.c                              :+:      :+:    :+:   */
+/*   paraboloid_quadric.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/05 01:36:22 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/01 20:45:41 by kjikuhar         ###   ########.fr       */
+/*   Created: 2026/07/31 20:58:56 by kjikuhar          #+#    #+#             */
+/*   Updated: 2026/08/01 20:19:06 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 #include "../object_private.h"
 
-t_vec2	calc_hyperboloid_uv(t_hyperboloid const *hyperboloid, t_vec3 point)
+void	paraboloid_to_quadric(\
+	t_paraboloid const *paraboloid, t_quadric *out)
 {
-	t_quadric	quad;
-	t_vec2		uv;
+	t_quadric_frame	frame;
 
-	hyperboloid_to_quadric(hyperboloid, &quad);
-	uv = calc_quadric_uv(&quad, &hyperboloid->onb, point);
-	uv.v = 1.0f - uv.v;
-	return (uv);
+	frame.onb = paraboloid->onb;
+	frame.center = paraboloid->center;
+	frame.local_q = calc_paraboloid_local_q(paraboloid->quadratic_coefficient);
+	frame.h_min = 0.0f;
+	frame.h_max = paraboloid->height;
+	build_quadric(&frame, out);
 }

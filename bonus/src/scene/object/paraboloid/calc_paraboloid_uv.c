@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   calc_paraboloid_uv.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/05 21:37:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 21:58:18 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/05 00:55:13 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/01 19:40:58 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-
-#include "vector.h"
 #include "object.h"
 
-// TODO: implement paraboloid uv
+#include "../object_private.h"
+
 t_vec2	calc_paraboloid_uv(t_paraboloid const *paraboloid, t_vec3 point)
 {
-	(void)paraboloid;
-	(void)point;
-	return ((t_vec2){.u = 0.0f, .v = 0.0f});
+	t_quadric	quad;
+
+	paraboloid_to_quadric(paraboloid, &quad);
+	return (calc_quadric_uv(&quad, &paraboloid->onb, point));
 }

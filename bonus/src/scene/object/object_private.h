@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 17:36:24 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/01 20:17:58 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ typedef struct s_quadric_coeffs
 	float	b;
 	float	c;
 }	t_quadric_coeffs;
+
+typedef struct s_quadric_frame
+{
+	t_mat4	local_q;
+	t_onb	onb;
+	t_vec3	center;
+	float	h_min;
+	float	h_max;
+}	t_quadric_frame;
 
 bool	create_object(t_object const *object);
 void	set_material_from_option(t_material *material, t_color albedo, \
@@ -74,5 +83,14 @@ t_vec3	calc_paraboloid_normal(\
 			t_paraboloid const *paraboloid, t_ray const *ray, t_vec3 point);
 void	calc_onb(t_vec3 n, t_vec3 *tangent, t_vec3 *bitangent);
 t_vec2	adjust_uv_range(t_vec2 uv, t_range u_range, t_range v_range);
+t_mat4	calc_cone_local_q(float k);
+void	cone_to_quadric(t_cone const *cone, t_quadric *out);
+t_mat4	calc_paraboloid_local_q(float a);
+void	paraboloid_to_quadric(\
+			t_paraboloid const *paraboloid, t_quadric *out);
+t_mat4	calc_hyperboloid_local_q(float a, float b, float c);
+void	hyperboloid_to_quadric(\
+			t_hyperboloid const *hyperboloid, t_quadric *out);
+void	build_quadric(t_quadric_frame const *frame, t_quadric *out);
 
 #endif

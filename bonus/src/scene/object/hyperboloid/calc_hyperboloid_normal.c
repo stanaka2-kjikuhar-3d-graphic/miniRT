@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_hyperboloid_normal.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/19 19:25:57 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 21:53:46 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/18 23:24:37 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/07/31 21:30:00 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@
 
 #include "../object_private.h"
 
-// TODO: implement hyperboloid normal
 t_vec3	calc_hyperboloid_normal(\
 	t_hyperboloid const *hyperboloid, t_ray const *ray, t_vec3 point)
 {
-	(void)hyperboloid;
-	(void)ray;
-	(void)point;
-	return ((t_vec3){.x = 0.0f, .y = 0.0f, .z = 0.0f});
+	t_quadric	quad;
+
+	hyperboloid_to_quadric(hyperboloid, &quad);
+	return (calc_quadric_normal(&quad, ray, point));
 }
