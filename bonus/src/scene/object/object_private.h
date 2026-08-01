@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 21:28:38 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/01 19:56:55 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ typedef struct s_quadric_coeffs
 	float	b;
 	float	c;
 }	t_quadric_coeffs;
+
+typedef struct s_quadric_frame
+{
+	t_mat4	local_q;
+	t_onb	onb;
+	t_vec3	center;
+	float	h_min;
+	float	h_max;
+}	t_quadric_frame;
 
 bool	create_object(t_object const *object);
 void	set_material_from_option(t_material *material, t_color albedo, \
@@ -82,5 +91,6 @@ void	paraboloid_to_quadric(\
 t_mat4	hyperboloid_local_q(float a, float b, float c);
 void	hyperboloid_to_quadric(\
 			t_hyperboloid const *hyperboloid, t_quadric *out);
+void	quadric_build(t_quadric_frame const *frame, t_quadric *out);
 
 #endif

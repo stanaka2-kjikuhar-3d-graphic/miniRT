@@ -317,7 +317,8 @@ SRCS	+=	quadric_eval.c \
 			quadric_in_bounds.c \
 			calc_quadric_intersection.c \
 			calc_quadric_normal.c \
-			calc_quadric_uv.c
+			calc_quadric_uv.c \
+			quadric_build.c
 # scene/object/internal
 SRCS	+=	calc_onb.c \
 			adjust_uv_range.c \
