@@ -1,0 +1,4 @@
+Error
+line 4: pl 0,-10,0 0,1,0 200,200,200 checker_count_v=3
+checker_count_v '3': must be an even number
+USAGE: 2 <= n <= 1024, even number

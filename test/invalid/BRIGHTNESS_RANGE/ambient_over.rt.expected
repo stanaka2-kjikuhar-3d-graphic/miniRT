@@ -1,3 +1,4 @@
 Error
 line 1: A 1.5 255,255,255
-brightness '1.5': out of range (0.0 <= x <= 1.0)
+brightness '1.5': out of range
+USAGE: 0.0 <= x <= 1.0

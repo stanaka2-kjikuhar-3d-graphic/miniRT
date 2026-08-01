@@ -216,7 +216,10 @@ SRCS	+=	parse_vec3.c \
 			parse_texture.c \
 			parse_bool.c \
 			parse_shininess.c \
-			parse_size.c
+			parse_size.c \
+			parse_long.c \
+			parse_checker_count.c \
+			parse_checker_count_even.c
 # parser/internal
 SRCS	+=	is_blank_line.c \
 			is_comment_line.c \
@@ -327,7 +330,8 @@ SRCS	+=	quadric_eval.c \
 # scene/object/internal
 SRCS	+=	calc_onb.c \
 			adjust_uv_range.c \
-			set_material.c
+			set_material.c \
+			set_uv_checker.c
 
 # scene/viewport
 SRCS	+=	viewport.c

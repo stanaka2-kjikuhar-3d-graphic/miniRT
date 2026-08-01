@@ -1,3 +1,4 @@
 Error
 line 4: hb 0,0,20 0,0,1 20 -5 -10 255,0,0
-cap_diameter '-5': must be positive
+cap_diameter '-5': out of range
+USAGE: 0 < x

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 17:34:59 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/02 00:51:01 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,36 @@
 
 /* Element count */
 # define ERROR_FIELDS_COUNT "invalid fields count"
+
+/* Field syntax */
+# define ERROR_INVALID_FORMAT "invalid format"
+# define ERROR_INVALID_CHARACTER "invalid character"
+# define ERROR_LEADING_ZERO "leading zero not allowed"
+# define ERROR_ONLY_DIGITS "only digits allowed"
+# define ERROR_EMPTY_COMPONENT "empty component"
+# define ERROR_EMPTY_CHANNEL "empty channel"
+
+/* Field value */
+# define ERROR_OUT_OF_RANGE "out of range"
+# define ERROR_MUST_BE_BOOL "must be true or false"
+# define ERROR_MUST_BE_NORMALIZED "must be a unit vector"
+# define ERROR_MUST_BE_EVEN "must be an even number"
+# define ERROR_TOO_SMALL "too small, half of it underflows to 0"
+# define ERROR_HB_RADIUS "must exceed center_diameter"
+
+/* Material option */
+# define ERROR_OPTION_FORMAT "missing '=' separator"
+# define ERROR_OPTION_UNKNOWN "unknown key"
+# define ERROR_OPTION_DUP "duplicate key"
+
+/* MLX */
+# define ERROR_MLX_CONNECTION "failed to create X-Window connection"
+# define ERROR_MLX_WINDOW "failed to create window"
+# define ERROR_MLX_IMAGE "failed to create image"
+# define ERROR_MLX_XPM_IMAGE "failed to create xpm image"
+# define ERROR_MLX_IMAGE_DATA "failed to get image data"
+
+/* Hint: scene element syntax */
 # define HINT_A "A brightness R,G,B"
 # define HINT_L "L x,y,z brightness R,G,B"
 # define HINT_C "C x,y,z nx,ny,nz fov"
@@ -40,40 +70,20 @@
 # define HINT_SL "sl x,y,z brightness R,G,B nx,ny,nz angle"
 # define HINT_DL "dl nx,ny,nz brightness R,G,B"
 
-/* Field syntax */
-# define ERROR_INVALID_FORMAT "invalid format"
-# define ERROR_INVALID_CHARACTER "invalid character"
-# define ERROR_LEADING_ZERO "leading zero not allowed"
-# define ERROR_ONLY_DIGITS "only digits allowed"
-# define ERROR_EMPTY_COMPONENT "empty component"
-# define ERROR_EMPTY_CHANNEL "empty channel"
+/* Hint: field value range */
+# define HINT_POSITIVE "0 < x"
+# define HINT_NON_NEGATIVE "0 <= x"
+# define HINT_BRIGHTNESS_RANGE "0.0 <= x <= 1.0"
+# define HINT_FOV_RANGE "0 < x < 180"
+# define HINT_ANGLE_RANGE "0 <= x <= 180"
+# define HINT_COLOR_RANGE "0 <= x <= 255"
+# define HINT_CHECKER_COUNT "2 <= n <= 1024"
+# define HINT_CHECKER_COUNT_EVEN "2 <= n <= 1024, even number"
 
-/* Field value */
-# define ERROR_MUST_BE_POSITIVE "must be positive"
-# define ERROR_MUST_BE_NON_NEGATIVE "must be non-negative"
-# define ERROR_MUST_BE_BOOL "must be true or false"
-# define ERROR_MUST_BE_NORMALIZED "must be a unit vector"
-# define ERROR_TOO_SMALL "too small, half of it underflows to 0"
-# define ERROR_BRIGHTNESS_RANGE "out of range (0.0 <= x <= 1.0)"
-# define ERROR_FOV_RANGE "out of range (0 < x < 180)"
-# define ERROR_ANGLE_RANGE "out of range (0 <= x <= 180)"
-# define ERROR_COLOR_RANGE "out of range (0 <= x <= 255)"
-# define ERROR_HB_RADIUS "must exceed center_diameter"
+/* Hint: field syntax */
 # define HINT_VECTOR "x,y,z"
 # define HINT_COLOR "R,G,B (0-255)"
-
-/* Material option */
-# define ERROR_OPTION_FORMAT "missing '=' separator"
-# define ERROR_OPTION_UNKNOWN "unknown key"
-# define ERROR_OPTION_DUP "duplicate key"
 # define HINT_OPTION_FORMAT "key=value"
-
-/* MLX */
-# define ERROR_MLX_CONNECTION "failed to create X-Window connection"
-# define ERROR_MLX_WINDOW "failed to create window"
-# define ERROR_MLX_IMAGE "failed to create image"
-# define ERROR_MLX_XPM_IMAGE "failed to create xpm image"
-# define ERROR_MLX_IMAGE_DATA "failed to get image data"
 
 void	print_error(char const *msg);
 void	print_argument_error(char const *program_name);

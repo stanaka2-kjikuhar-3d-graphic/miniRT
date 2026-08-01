@@ -1,0 +1,4 @@
+Error
+line 4: sp 0,0,20 20 255,0,0 checker_count_u=1026
+checker_count_u '1026': out of range
+USAGE: 2 <= n <= 1024, even number

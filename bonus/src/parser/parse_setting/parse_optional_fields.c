@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 15:53:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 16:15:30 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/02 02:01:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ static void	set_default_optional_fields(t_optional_field const *fields)
 				*(bool *)fields[idx].value = fields[idx].default_value.boolean;
 			else if (fields[idx].field_type == FIELD_FLOAT)
 				*(float *)fields[idx].value = fields[idx].default_value.number;
+			else if (fields[idx].field_type == FIELD_INT)
+				*(int *)fields[idx].value = fields[idx].default_value.integer;
 		}
 		++idx;
 	}

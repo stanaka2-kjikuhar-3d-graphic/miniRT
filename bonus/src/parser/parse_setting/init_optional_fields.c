@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/26 22:07:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/27 00:03:40 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/02 02:03:52 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,21 @@ static const t_optional_field	g_optional_fields[OPTIONAL_FIELD_COUNT] = {\
 	[OPTIONAL_SHININESS] = {NULL, "shininess", parse_shininess, \
 		"shininess=x [0.0 <= x]", FIELD_FLOAT, {.number = SHININESS}}, \
 	[OPTIONAL_PATTERN_SIZE] = {NULL, "pattern_size", parse_size, \
-		"pattern_size=x [0.0 < x]", FIELD_FLOAT, {.number = PATTERN_SIZE}} \
+		"pattern_size=x [0.0 < x]", FIELD_FLOAT, {.number = PATTERN_SIZE}}, \
+	[OPTIONAL_CHECKER_COUNT_U] = {NULL, "checker_count_u", \
+		parse_checker_count, "checker_count_u=n [2 <= n <= 1024]", \
+		FIELD_INT, {.integer = CHECKER_COUNT}}, \
+	[OPTIONAL_CHECKER_COUNT_V] = {NULL, "checker_count_v", \
+		parse_checker_count, "checker_count_v=n [2 <= n <= 1024]", \
+		FIELD_INT, {.integer = CHECKER_COUNT}}, \
+	[OPTIONAL_CHECKER_COUNT_U_EVEN] = {NULL, "checker_count_u", \
+		parse_checker_count_even, \
+		"checker_count_u=n [2 <= n <= 1024, even number]", \
+		FIELD_INT, {.integer = CHECKER_COUNT}}, \
+	[OPTIONAL_CHECKER_COUNT_V_EVEN] = {NULL, "checker_count_v", \
+		parse_checker_count_even, \
+		"checker_count_v=n [2 <= n <= 1024, even number]", \
+		FIELD_INT, {.integer = CHECKER_COUNT}} \
 };
 
 void	init_optional_fields(t_optional_field *fields)

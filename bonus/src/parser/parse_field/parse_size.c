@@ -24,7 +24,7 @@ bool	parse_size(char const *element, void *value)
 		return (false);
 	if (*size <= 0.0f)
 	{
-		print_field_error(ERROR_MUST_BE_POSITIVE, NULL);
+		print_field_error(ERROR_OUT_OF_RANGE, HINT_POSITIVE);
 		return (false);
 	}
 	return (true);

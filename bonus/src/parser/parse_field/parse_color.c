@@ -67,7 +67,7 @@ static bool	parse_color_channel(char const **element, unsigned int *rgb)
 	channel = ft_strtol(*element, (char **)element, 10);
 	if (0xFF < channel)
 	{
-		print_field_error(ERROR_COLOR_RANGE, NULL);
+		print_field_error(ERROR_OUT_OF_RANGE, HINT_COLOR_RANGE);
 		return (false);
 	}
 	*rgb = (*rgb << 8) | (unsigned int)channel;

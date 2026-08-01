@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/23 00:47:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/02 02:17:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ bool	create_cylinder(t_input_cylinder const *input)
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
 	object.uv.type = UV_DEFAULT;
+	set_uv_checker(&(object.uv), input->option.checker_count);
 	object.uv.u_per_v = (float)(2.0f * M_PI * input->radius) \
 								/ (2.0f * (input->radius + input->half_height));
 	object.uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};
@@ -63,6 +64,7 @@ static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type)
 	input.option.uv_type = uv_type;
 	input.option.pattern_size = input.radius * 2.0f;
 	input.option.u_per_v = object->uv.u_per_v;
+	input.option.checker_count = object->uv.checker_count;
 	input.option.u_range = (t_range){.max = 1.0f, .min = 0.0f};
 	if (uv_type == UV_UPPER_CAP)
 		input.option.v_range = (t_range){\

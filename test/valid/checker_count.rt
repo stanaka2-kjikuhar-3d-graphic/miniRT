@@ -1,0 +1,7 @@
+A 0.2 255,255,255
+C -50,0,20 0,0,1 70
+L -40,0,30 0.7 255,255,255
+sp -30,0,20 20 255,0,0 checker_count_u=8 checker_count_v=5 checker_color1=0,0,0 checker_color2=255,255,255
+pl 0,-10,0 0,1,0 200,200,200 pattern_size=5 checker_count_u=2 checker_count_v=4 checker_color1=0,0,0
+cy 30,0,20 0,1,0 14 21 0,0,255 checker_count_u=12 checker_count_v=7 checker_color1=0,0,0
+co 60,0,20 0,1,0 14 21 0,255,0 checker_count_u=2 checker_count_v=1024 checker_color1=0,0,0
