@@ -69,6 +69,7 @@
 - [Spectral Ray Tracing](https://larswander.com/writing/spectral-ray-tracing/)
 - [The Book of Shaders (Patricio Gonzalez Vivo & Jen Lowe)](https://thebookofshaders.com/03/?lan=jp)
 - [第三回 WebGLスクール 「シェーダの基礎」 (@konweb)](https://qiita.com/konweb/items/ec8fa8cd3bc33df14933)
+- [Light Attenuation Shortcut (OGRE Wiki Legacy community documentation)](https://wiki.ogre3d.org/Light+Attenuation+Shortcut)
 
 #### Movie
 - [CGで質感をどうモデル化する？材質の光反射モデル(BSDF)を解説【ゆっくり解説】 (かつおの電波と光ゆっくり解説)](https://youtu.be/02sjdcmNbWM?si=EHYQ_iozuRpMOvNu)

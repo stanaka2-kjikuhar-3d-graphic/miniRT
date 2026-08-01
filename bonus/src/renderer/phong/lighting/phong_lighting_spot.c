@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 03:39:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/17 20:16:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/01 20:39:12 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 
 #include "../phong_private.h"
 
-static float	calc_spot_light_attenuation(\
-					t_spot_light const *light, float dot);
 static t_color	calc_diffuse_color(t_hit const *hit, \
 					t_spot_light const *light, float attenuation);
 static t_color	calc_specular_color(t_ray const *ray, t_hit const *hit, \
@@ -45,7 +43,7 @@ void	phong_lighting_spot(t_color *color, \
 		dot = vec3_dot(light_dir, vec3_scale(-1, light->dir));
 		if (dot > light->angle.cos_half_outer)
 		{
-			attenuation = calc_spot_light_attenuation(light, dot);
+			attenuation = calc_spot_light_attenuation(light, light_dist, dot);
 			*color = add_color(add_color(\
 						*color, \
 						calc_diffuse_color(hit, light, attenuation)), \
@@ -53,24 +51,6 @@ void	phong_lighting_spot(t_color *color, \
 					);
 		}
 	}
-}
-
-static float	calc_spot_light_attenuation(\
-	t_spot_light const *light, float dot)
-{
-	float	attenuation;
-
-	if (dot > light->angle.cos_half_inner)
-		attenuation = 1.0f;
-	else
-	{
-		attenuation = ((dot - light->angle.cos_half_outer) \
-				/ (light->angle.cos_half_inner - light->angle.cos_half_outer));
-	}
-	if (SPOT_LIGHT_FALLOFF == 1.0)
-		return (attenuation);
-	else
-		return (powf(attenuation, (float)SPOT_LIGHT_FALLOFF));
 }
 
 static t_color	calc_diffuse_color(\
