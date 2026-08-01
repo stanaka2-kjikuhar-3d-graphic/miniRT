@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/01 20:19:31 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/08/01 16:58:20 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -357,6 +357,7 @@ SRCS	+=	vec3.c \
 			vec3_add.c \
 			vec3_sub.c \
 			vec3_scale.c \
+			vec3_div.c \
 			vec3_dot.c \
 			vec3_cross.c \
 			vec3_length.c \
