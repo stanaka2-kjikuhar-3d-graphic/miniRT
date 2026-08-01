@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 03:39:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 17:34:25 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/01 21:03:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 
 #include "../phong_private.h"
 
-static float	calc_spot_light_attenuation(\
-					t_spot_light const *light, float dot);
 static t_color	calc_diffuse_color(t_hit const *hit, \
 					t_spot_light const *light, float attenuation);
 static t_color	calc_specular_color(t_ray const *ray, t_hit const *hit, \
@@ -45,7 +43,7 @@ void	phong_lighting_spot(t_color *color, \
 		dot = vec3_dot(light_dir, vec3_scale(-1, light->dir));
 		if (dot > light->angle.cos_half_outer)
 		{
-			attenuation = calc_spot_light_attenuation(light, dot);
+			attenuation = calc_spot_light_attenuation(light, light_dist, dot);
 			*color = add_color(add_color(\
 						*color, \
 						calc_diffuse_color(hit, light, attenuation)), \
@@ -53,24 +51,6 @@ void	phong_lighting_spot(t_color *color, \
 					);
 		}
 	}
-}
-
-static float	calc_spot_light_attenuation(\
-	t_spot_light const *light, float dot)
-{
-	float	ratio;
-
-	if (dot > light->angle.cos_half_inner)
-		ratio = 1.0f;
-	else
-	{
-		ratio = ((dot - light->angle.cos_half_outer) \
-				/ (light->angle.cos_half_inner - light->angle.cos_half_outer));
-	}
-	if (SPOT_LIGHT_FALLOFF == 1.0)
-		return (1.0f - ratio);
-	else
-		return (1.0f - powf(ratio, (float)SPOT_LIGHT_FALLOFF));
 }
 
 static t_color	calc_diffuse_color(\
@@ -83,7 +63,7 @@ static t_color	calc_diffuse_color(\
 						vec3_normalize(vec3_sub(light->pos, hit->point)));
 	if (dot <= 0.0f)
 		return ((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
-	diffuse = scale_color(dot * (1.0f - attenuation), light->radiance);
+	diffuse = scale_color(dot * attenuation, light->radiance);
 	return (mul_color(hit->color, diffuse));
 }
 
@@ -105,6 +85,6 @@ static t_color	calc_specular_color(t_ray const *ray, \
 	if (dot <= 0.0f)
 		return ((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
 	specular = scale_color(\
-				powf(dot, SHININESS) * (1.0f - attenuation), light->radiance);
+				powf(dot, SHININESS) * attenuation, light->radiance);
 	return (specular);
 }
