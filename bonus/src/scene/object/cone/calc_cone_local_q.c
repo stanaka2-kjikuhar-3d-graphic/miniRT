@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   paraboloid_local_q.c                               :+:      :+:    :+:   */
+/*   calc_cone_local_q.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/31 20:58:56 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/31 20:58:56 by kjikuhar         ###   ########.fr       */
+/*   Created: 2026/07/31 18:34:07 by kjikuhar          #+#    #+#             */
+/*   Updated: 2026/08/01 20:16:56 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
 
-t_mat4	paraboloid_local_q(float a)
+t_mat4	calc_cone_local_q(float k)
 {
 	t_mat4	q;
 
 	q = mat4_identity();
-	q.m[2][2] = 0.0f;
+	q.m[2][2] = -(k * k);
 	q.m[3][3] = 0.0f;
-	q.m[2][3] = -(a / 2.0f);
-	q.m[3][2] = -(a / 2.0f);
 	return (q);
 }

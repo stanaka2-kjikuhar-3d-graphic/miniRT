@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quadric_build.c                                    :+:      :+:    :+:   */
+/*   build_quadric.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/01 19:55:35 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/01 19:57:28 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/01 20:16:56 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 static t_mat3	frame_basis(t_onb const *onb);
 
-void	quadric_build(t_quadric_frame const *frame, t_quadric *out)
+void	build_quadric(t_quadric_frame const *frame, t_quadric *out)
 {
 	t_mat4	local_to_world;
 

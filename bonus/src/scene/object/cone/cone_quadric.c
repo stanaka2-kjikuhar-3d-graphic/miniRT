@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 18:34:07 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/01 19:57:59 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/01 20:18:19 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	cone_to_quadric(t_cone const *cone, t_quadric *out)
 	frame.onb.v = cone->onb.v;
 	frame.onb.w = vec3_scale(-1.0f, cone->dir);
 	frame.center = vec3_add(cone->center, vec3_scale(cone->height, cone->dir));
-	frame.local_q = cone_local_q(cone->radius / cone->height);
+	frame.local_q = calc_cone_local_q(cone->radius / cone->height);
 	frame.h_min = 0.0f;
 	frame.h_max = cone->height;
-	quadric_build(&frame, out);
+	build_quadric(&frame, out);
 }

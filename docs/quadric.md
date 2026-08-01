@@ -90,7 +90,7 @@ p_wᵀ (M⁻ᵀ Q_local M⁻¹) p_w = 0
 そのため、交差（`a=dᵀQd, b=2oᵀQd, c=oᵀQo`）と法線（`∇=Q·p`）は `t_quadric.q`（ワールド空間の `Q`）だけで完結し、`t_quadric` は別途 ONB を持たない。
 
 円錐・双曲面・放物面（[cone.md](cone.md), [hyperboloid.md](hyperboloid.md), [paraboloid.md](paraboloid.md)）は、この節の手順（ONBから基底を組む → `mat4_basis` → `quadric_to_world`）と5節の `t_quadric` の各フィールド（`axis`/`center`/`h_min`/`h_max`）への詰め込みが完全に共通のパターンになる。
-これをまとめたのが `quadric_build` である。
+これをまとめたのが `build_quadric` である。
 
 ```c
 t_quadric_frame	frame;
@@ -100,10 +100,10 @@ frame.center = ...;    // 基準点（world）
 frame.local_q = ...;   // その形状の正準形 Q_local
 frame.h_min = ...;
 frame.h_max = ...;
-quadric_build(&frame, &out);   // out->q, out->axis, out->center, out->h_min/h_max, out->finite=true を一括で埋める
+build_quadric(&frame, &out);   // out->q, out->axis, out->center, out->h_min/h_max, out->finite=true を一括で埋める
 ```
 
-各形状の `X_to_quadric` は、この `t_quadric_frame` を埋めて `quadric_build` を呼ぶだけになる。
+各形状の `X_to_quadric` は、この `t_quadric_frame` を埋めて `build_quadric` を呼ぶだけになる。
 
 ## 5. 有限化（軸方向で有限化）
 

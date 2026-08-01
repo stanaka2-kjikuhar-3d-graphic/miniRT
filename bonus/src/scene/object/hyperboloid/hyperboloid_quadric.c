@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 21:28:38 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/01 19:57:59 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/01 20:18:40 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	hyperboloid_to_quadric(\
 					- hyperboloid->center_radius * hyperboloid->center_radius;
 	c = hyperboloid->half_height * hyperboloid->center_radius \
 			/ sqrtf(radius_diff);
-	frame.local_q = hyperboloid_local_q(\
+	frame.local_q = calc_hyperboloid_local_q(\
 			hyperboloid->center_radius, hyperboloid->center_radius, c);
 	frame.h_min = -hyperboloid->half_height;
 	frame.h_max = hyperboloid->half_height;
-	quadric_build(&frame, out);
+	build_quadric(&frame, out);
 }

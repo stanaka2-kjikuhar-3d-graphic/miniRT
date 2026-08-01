@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 20:58:56 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/01 19:57:59 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/01 20:19:06 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	paraboloid_to_quadric(\
 
 	frame.onb = paraboloid->onb;
 	frame.center = paraboloid->center;
-	frame.local_q = paraboloid_local_q(paraboloid->quadratic_coefficient);
+	frame.local_q = calc_paraboloid_local_q(paraboloid->quadratic_coefficient);
 	frame.h_min = 0.0f;
 	frame.h_max = paraboloid->height;
-	quadric_build(&frame, out);
+	build_quadric(&frame, out);
 }
