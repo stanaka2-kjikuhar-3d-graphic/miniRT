@@ -108,6 +108,26 @@ bool	finite;  // 軸方向クランプの有無
 
 キャップ（円柱の上下の円など）は `Q` の範囲外にある平面なので、`OBJ_CIRCLE` を別オブジェクトとして重ねる既存の方式をそのまま使う。
 
+## 6. UV座標（円筒投影）
+
+有限化に使う `axis`/`center`/`h_min`/`h_max` は、側面のUV座標を求める材料としてもそのまま使い回せる。
+円錐・双曲面・放物面（[cone.md](cone.md), [hyperboloid.md](hyperboloid.md), [paraboloid.md](paraboloid.md)）はいずれも「軸まわりの角度が `u`、軸方向の位置が `v`」という同じ円筒投影の考え方でUVを求めるため、`calc_quadric_uv` に1つにまとめてある。
+
+```c
+t_vec2	calc_quadric_uv(t_quadric const *q, t_onb const *onb, t_vec3 point);
+```
+
+```
+h      = dot(point - center, axis)
+radial = normalize((point - center) - h・axis)   // 軸に垂直な半径方向
+u      = (atan2(radial・onb->v, radial・onb->u) + π) / (2π)
+v      = (h - h_min) / (h_max - h_min)
+```
+
+`t_quadric` 自体は ONB（`onb.u`, `onb.v`）を持たない（4節参照）ため、`onb` は呼び出し側（各形状の `t_cone`/`t_hyperboloid`/`t_paraboloid` が持つ ONB）から別引数で渡す。
+`v` の正規化は `h_min`/`h_max` を使うため、`finite = false`（無限）な `Q` には使えない。
+ただし現状の `.rt` パーサは全形状で高さ・半径系のフィールドを必須にしており、無限のまま二次曲面を定義する構文が存在しないため、実用上この制約は問題にならない。
+
 ## 例: sphere / cylinder の Q
 
 単位形状（ローカル空間）の `Q_local` は次の通りである。

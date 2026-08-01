@@ -69,12 +69,16 @@ h_max  = +half_height
 
 ## 5. UV座標
 
-側面のUVは円柱・円錐と同じ方式を使うが、半径が軸方向で変化するため、`cap_radius`（軸の両端での半径）を代表値として比率計算に使う。
+側面のUVは円錐・放物面（[cone.md](cone.md) 4節）と同じ `calc_quadric_uv` に委譲する。
+`h_min = -half_height`, `h_max = +half_height` なので、`v = (h - h_min) / (h_max - h_min)` は下端（`z=-half_height`）で0、上端（`z=+half_height`）で1になる。
 
 ```
+h = dot(point - center, dir)
 u = (atan2(radial・onb.v, radial・onb.u) + π) / (2π)
-v = 0.5 - h / (2・half_height)   (h = dot(point - center, dir))
+v = (h + half_height) / (2・half_height)
 ```
+
+`u_per_v`（テクスチャのアスペクト比）には、半径が軸方向で変化するため `cap_radius`（軸の両端での半径）を代表値として使う。
 
 上下の端（`z = ±half_height`）の円は、既存の `OBJ_CIRCLE` を2枚重ねる方式（`add_cap_circle`）でそのまま対応する。
 

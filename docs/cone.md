@@ -43,13 +43,17 @@ Q_local = diag(1, 1, -k², 0)
 
 ## 4. UV座標
 
-側面のUVは円柱と同じ方式を使う。
-`u` は軸まわりの角度、`v` は頂点からの軸方向距離を高さで正規化した値である。
+側面のUVは `quadric_to_world` と同様に `t_quadric` の `axis`/`center`/`h_min`/`h_max` を使い回す、`calc_quadric_uv`（`src/scene/object/quadric/`）に委譲する。
+`u` は軸まわりの角度、`v` は `(h - h_min) / (h_max - h_min)` で軸方向位置を0〜1に正規化した値である。
 
 ```
+h = dot(point - center, axis)
 u = (atan2(radial·onb.v, radial·onb.u) + π) / (2π)
-v = h / height   (h = dot(point - center, dir))
+v = (h - h_min) / (h_max - h_min)
 ```
+
+円錐は `h_min = 0`（頂点）なので、この式は `v = h / height` と一致する。
+双曲面・放物面（[hyperboloid.md](hyperboloid.md), [paraboloid.md](paraboloid.md)）も同じ `calc_quadric_uv` を呼ぶだけで、`h_min`/`h_max` の違いだけで各形状に合ったUVが得られる。
 
 底面の円は既存の `OBJ_CIRCLE` を別オブジェクトとして重ねる方式（`add_lower_cap_circle`）をそのまま使う。
 

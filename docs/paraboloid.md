@@ -60,11 +60,13 @@ h_max  = height
 
 ## 5. UV座標
 
-側面のUVは円錐・双曲面と同じ方式を使う。
+側面のUVは円錐・双曲面（[cone.md](cone.md) 4節, [hyperboloid.md](hyperboloid.md) 5節）と同じ `calc_quadric_uv` に委譲する。
+`h_min = 0`（頂点）, `h_max = height` なので、`v = (h - h_min) / (h_max - h_min) = h / height` になる。
 
 ```
+h = dot(point - center, dir)
 u = (atan2(radial・onb.v, radial・onb.u) + π) / (2π)
-v = h / height   (h = dot(point - center, dir))
+v = h / height
 ```
 
 `u_per_v`（テクスチャのアスペクト比）には、頂点から離れた開口部（`z=height`）での半径 `√(a・height)` を代表値として使う。
