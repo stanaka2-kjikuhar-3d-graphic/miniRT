@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 03:03:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 17:34:59 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define HINT_HB "hb x,y,z nx,ny,nz center_diameter cap_diameter height R,G,B"
 # define HINT_PB "pb x,y,z nx,ny,nz coefficient height R,G,B"
 # define HINT_SL "sl x,y,z brightness R,G,B nx,ny,nz angle"
+# define HINT_DL "dl nx,ny,nz brightness R,G,B"
 
 /* Field syntax */
 # define ERROR_INVALID_FORMAT "invalid format"

@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/01 20:33:28 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/08/01 21:02:47 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -187,6 +187,7 @@ SRCS	+=	read_next_line.c
 SRCS	+=	parse_ambient_light.c \
 			parse_point_light.c \
 			parse_spot_light.c \
+			parse_directional_light.c \
 			parse_camera.c \
 			parse_plane.c \
 			parse_sphere.c \
@@ -236,7 +237,8 @@ SRCS	+=	phong.c \
 SRCS	+=	phong_lighting.c \
 			phong_lighting_ambient.c \
 			phong_lighting_point.c \
-			phong_lighting_spot.c
+			phong_lighting_spot.c \
+			phong_lighting_directional.c
 # renderer/phong/shading
 SRCS	+=	phong_shading.c
 
@@ -256,7 +258,8 @@ SRCS	+=	light.c \
 			point_light.c \
 			spot_light.c \
 			set_dist_attenuation.c \
-			calc_dist_attenuation.c
+			calc_dist_attenuation.c \
+			directional_light.c
 
 # scene/object
 SRCS	+=	object.c \
@@ -295,24 +298,32 @@ SRCS	+=	create_circle.c \
 SRCS	+=	create_cone.c \
 			calc_cone_intersection.c \
 			calc_cone_normal.c \
-			calc_cone_uv.c
+			calc_cone_uv.c \
+			calc_cone_local_q.c \
+			cone_quadric.c
 # scene/object/hyperboloid
 SRCS	+=	create_hyperboloid.c \
 			calc_hyperboloid_intersection.c \
 			calc_hyperboloid_normal.c \
-			calc_hyperboloid_uv.c
+			calc_hyperboloid_uv.c \
+			calc_hyperboloid_local_q.c \
+			hyperboloid_quadric.c
 # scene/object/paraboloid
 SRCS	+=	create_paraboloid.c \
 			calc_paraboloid_intersection.c \
 			calc_paraboloid_normal.c \
-			calc_paraboloid_uv.c
+			calc_paraboloid_uv.c \
+			calc_paraboloid_local_q.c \
+			paraboloid_quadric.c
 # scene/object/quadric
 SRCS	+=	quadric_eval.c \
 			solve_quadratic.c \
 			quadric_to_world.c \
 			quadric_in_bounds.c \
 			calc_quadric_intersection.c \
-			calc_quadric_normal.c
+			calc_quadric_normal.c \
+			calc_quadric_uv.c \
+			build_quadric.c
 # scene/object/internal
 SRCS	+=	calc_onb.c \
 			adjust_uv_range.c \

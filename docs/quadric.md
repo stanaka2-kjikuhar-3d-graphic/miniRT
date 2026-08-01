@@ -89,6 +89,22 @@ p_wᵀ (M⁻ᵀ Q_local M⁻¹) p_w = 0
 `Q_world` には向き（ONB）、位置、スケールが全て含まれる。
 そのため、交差（`a=dᵀQd, b=2oᵀQd, c=oᵀQo`）と法線（`∇=Q·p`）は `t_quadric.q`（ワールド空間の `Q`）だけで完結し、`t_quadric` は別途 ONB を持たない。
 
+円錐・双曲面・放物面（[cone.md](cone.md), [hyperboloid.md](hyperboloid.md), [paraboloid.md](paraboloid.md)）は、この節の手順（ONBから基底を組む → `mat4_basis` → `quadric_to_world`）と5節の `t_quadric` の各フィールド（`axis`/`center`/`h_min`/`h_max`）への詰め込みが完全に共通のパターンになる。
+これをまとめたのが `build_quadric` である。
+
+```c
+t_quadric_frame	frame;
+
+frame.onb = ...;       // ローカルu,v,w（wが軸）
+frame.center = ...;    // 基準点（world）
+frame.local_q = ...;   // その形状の正準形 Q_local
+frame.h_min = ...;
+frame.h_max = ...;
+build_quadric(&frame, &out);   // out->q, out->axis, out->center, out->h_min/h_max, out->finite=true を一括で埋める
+```
+
+各形状の `X_to_quadric` は、この `t_quadric_frame` を埋めて `build_quadric` を呼ぶだけになる。
+
 ## 5. 有限化（軸方向で有限化）
 
 `Q` が表すのは無限に伸びる曲面である（円柱、円錐、双曲面、放物面は本来無限に広がる）。
@@ -107,6 +123,26 @@ bool	finite;  // 軸方向クランプの有無
 これは円柱の `check_cylinder_height` と同じ役割を、汎用二次曲面向けに切り出したものである。
 
 キャップ（円柱の上下の円など）は `Q` の範囲外にある平面なので、`OBJ_CIRCLE` を別オブジェクトとして重ねる既存の方式をそのまま使う。
+
+## 6. UV座標（円筒投影）
+
+有限化に使う `axis`/`center`/`h_min`/`h_max` は、側面のUV座標を求める材料としてもそのまま使い回せる。
+円錐・双曲面・放物面（[cone.md](cone.md), [hyperboloid.md](hyperboloid.md), [paraboloid.md](paraboloid.md)）はいずれも「軸まわりの角度が `u`、軸方向の位置が `v`」という同じ円筒投影の考え方でUVを求めるため、`calc_quadric_uv` に1つにまとめてある。
+
+```c
+t_vec2	calc_quadric_uv(t_quadric const *q, t_onb const *onb, t_vec3 point);
+```
+
+```
+h      = dot(point - center, axis)
+radial = normalize((point - center) - h・axis)   // 軸に垂直な半径方向
+u      = (atan2(radial・onb->v, radial・onb->u) + π) / (2π)
+v      = (h - h_min) / (h_max - h_min)
+```
+
+`t_quadric` 自体は ONB（`onb.u`, `onb.v`）を持たない（4節参照）ため、`onb` は呼び出し側（各形状の `t_cone`/`t_hyperboloid`/`t_paraboloid` が持つ ONB）から別引数で渡す。
+`v` の正規化は `h_min`/`h_max` を使うため、`finite = false`（無限）な `Q` には使えない。
+ただし現状の `.rt` パーサは全形状で高さ・半径系のフィールドを必須にしており、無限のまま二次曲面を定義する構文が存在しないため、実用上この制約は問題にならない。
 
 ## 例: sphere / cylinder の Q
 

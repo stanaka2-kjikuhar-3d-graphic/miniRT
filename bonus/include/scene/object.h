@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 17:37:59 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/01 19:40:32 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -323,5 +323,7 @@ bool	quadric_in_bounds(t_quadric const *q, t_vec3 point);
 float	calc_quadric_intersection(t_quadric const *q, t_ray const *ray);
 t_vec3	calc_quadric_normal(\
 			t_quadric const *q, t_ray const *ray, t_vec3 point);
+t_vec2	calc_quadric_uv(\
+			t_quadric const *q, t_onb const *onb, t_vec3 point);
 
 #endif

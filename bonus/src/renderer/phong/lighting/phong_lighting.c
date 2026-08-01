@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 02:56:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 04:10:04 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 17:05:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ t_color	phong_lighting(t_ray const *ray, t_hit const *hit)
 			phong_lighting_point(&color, ray, hit, &(light->point));
 		else if (light->type == SPOT_LIGHT)
 			phong_lighting_spot(&color, ray, hit, &(light->spot));
+		else if (light->type == DIRECTIONAL_LIGHT)
+			phong_lighting_directional(&color, ray, hit, &(light->directional));
 	}
 	return (color);
 }

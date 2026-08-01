@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_hyperboloid_uv.c                              :+:      :+:    :+:   */
+/*   calc_paraboloid_local_q.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/05 01:36:22 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/01 20:45:41 by kjikuhar         ###   ########.fr       */
+/*   Created: 2026/07/31 20:58:56 by kjikuhar          #+#    #+#             */
+/*   Updated: 2026/08/01 20:16:56 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "object.h"
+#include "matrix.h"
 
-#include "../object_private.h"
-
-t_vec2	calc_hyperboloid_uv(t_hyperboloid const *hyperboloid, t_vec3 point)
+t_mat4	calc_paraboloid_local_q(float a)
 {
-	t_quadric	quad;
-	t_vec2		uv;
+	t_mat4	q;
 
-	hyperboloid_to_quadric(hyperboloid, &quad);
-	uv = calc_quadric_uv(&quad, &hyperboloid->onb, point);
-	uv.v = 1.0f - uv.v;
-	return (uv);
+	q = mat4_identity();
+	q.m[2][2] = 0.0f;
+	q.m[3][3] = 0.0f;
+	q.m[2][3] = -(a / 2.0f);
+	q.m[3][2] = -(a / 2.0f);
+	return (q);
 }
