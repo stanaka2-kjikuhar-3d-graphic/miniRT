@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 20:34:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 05:56:51 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/07/31 17:03:45 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	create_directional_light(t_input_directional_light const *input)
 {
 	t_light	light;
 
-	light.type = POINT_LIGHT;
+	light.type = DIRECTIONAL_LIGHT;
 	light.directional.color = input->color;
 	light.directional.brightness = input->brightness;
 	light.directional.radiance = scale_color(input->brightness, input->color);
