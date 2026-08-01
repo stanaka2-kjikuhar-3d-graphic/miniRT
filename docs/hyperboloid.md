@@ -69,18 +69,22 @@ h_max  = +half_height
 
 ## 5. UV座標
 
-側面のUVは円錐・放物面（[cone.md](cone.md) 4節）と同じ `calc_quadric_uv` に委譲する。
-`h_min = -half_height`, `h_max = +half_height` なので、`v = (h - h_min) / (h_max - h_min)` は下端（`z=-half_height`）で0、上端（`z=+half_height`）で1になる。
+側面のUVは円錐・放物面（[cone.md](cone.md) 4節）と同じ `calc_quadric_uv` に委譲するが、`v` の向きだけ `calc_hyperboloid_uv` 側で反転させている。
+
+`calc_quadric_uv` 自体の `v = (h - h_min) / (h_max - h_min)` は `h_min = -half_height` のとき下端（`z=-half_height`）で0、上端（`z=+half_height`）で1になる。
+しかし双曲面は円柱（`calc_cylinder_uv`）と同じく2枚のキャップ（`add_cap_circle`）を持ち、その `v_range` 割り当ては「上端で`v=0`、下端で`v=1`」という向き（円柱の `v = 0.5 - h/(2・half_height)` と同じ向き）を前提に組まれている。
+`calc_quadric_uv` は円錐・放物面と共有しているため向きを変えられず、`calc_hyperboloid_uv` の戻り値だけを反転してこの前提に合わせている。
 
 ```
 h = dot(point - center, dir)
 u = (atan2(radial・onb.v, radial・onb.u) + π) / (2π)
-v = (h + half_height) / (2・half_height)
+v = 1 - (h + half_height) / (2・half_height)   # = 0.5 - h/(2・half_height) と等価
 ```
 
 `u_per_v`（テクスチャのアスペクト比）には、半径が軸方向で変化するため `cap_radius`（軸の両端での半径）を代表値として使う。
 
 上下の端（`z = ±half_height`）の円は、既存の `OBJ_CIRCLE` を2枚重ねる方式（`add_cap_circle`）でそのまま対応する。
+向きを反転せずに `v_range` 側だけを組み替えて継ぎ目を合わせることもできるが、その場合キャップの中心が指す極（北極/南極）が上下で入れ替わってしまうため、`v` そのものを反転する方式にしている。
 
 ---
 参考: [quadric.md](quadric.md)（二次曲面エンジン全体）、[cone.md](cone.md)（同じ手法を使う別形状の例）
