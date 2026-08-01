@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:51:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/17 19:35:40 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/01 20:38:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 
 # include "color.h"
 # include "vector.h"
+
+typedef struct s_dist_attenuation
+{
+	float	range;
+	float	constant;
+	float	linear;
+	float	quadratic;
+}	t_dist_attenuation;
 
 typedef struct s_ambient_light
 {
@@ -35,19 +43,20 @@ typedef struct s_uniform_infinite_light
 
 typedef struct s_point_light
 {
-	t_color	radiance;
-	t_color	color;
-	float	brightness;
-	t_vec3	pos;
+	t_color				radiance;
+	t_color				color;
+	float				brightness;
+	t_vec3				pos;
+	t_dist_attenuation	attenuation;
 }	t_point_light;
 
 typedef struct s_spot_light
 {
-	t_color	radiance;
-	t_color	color;
-	float	brightness;
-	t_vec3	pos;
-	t_vec3	dir;
+	t_color				radiance;
+	t_color				color;
+	float				brightness;
+	t_vec3				pos;
+	t_vec3				dir;
 	struct s_spot_angle
 	{
 		float	outer;
@@ -55,6 +64,7 @@ typedef struct s_spot_light
 		float	inner;
 		float	cos_half_inner;
 	}	angle;
+	t_dist_attenuation	attenuation;
 }	t_spot_light;
 
 typedef struct s_directional_light
@@ -131,5 +141,7 @@ bool	create_uniform_infinite_light(\
 bool	create_point_light(t_input_point_light const *input);
 bool	create_spot_light(t_input_spot_light const *input);
 bool	create_directional_light(t_input_directional_light const *input);
-
+float	calc_point_light_attenuation(t_point_light const *light, float dist);
+float	calc_spot_light_attenuation(\
+			t_spot_light const *light, float dist, float dot);
 #endif

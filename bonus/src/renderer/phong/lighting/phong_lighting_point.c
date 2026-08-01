@@ -20,9 +20,9 @@
 #include "../phong_private.h"
 
 static t_color	calc_diffuse_color(\
-	t_hit const *hit, t_point_light const *light);
-static t_color	calc_specular_color(\
-	t_ray const *ray, t_hit const *hit, t_point_light const *light);
+	t_hit const *hit, t_point_light const *light, float attenuation);
+static t_color	calc_specular_color(t_ray const *ray, t_hit const *hit, \
+	t_point_light const *light, float attenuation);
 
 void	phong_lighting_point(t_color *color, \
 	t_ray const *ray, t_hit const *hit, t_point_light const *light)
@@ -30,22 +30,24 @@ void	phong_lighting_point(t_color *color, \
 	t_vec3	to_light;
 	float	light_dist;
 	t_vec3	light_dir;
+	float	attenuation;
 
 	to_light = vec3_sub(light->pos, hit->point);
 	light_dist = vec3_length(to_light);
 	light_dir = vec3_div(light_dist, to_light);
 	if (!phong_shading(hit, light_dir, light_dist))
 	{
+		attenuation = calc_point_light_attenuation(light, light_dist);
 		*color = add_color(add_color(\
 					*color, \
-					calc_diffuse_color(hit, light)), \
-					calc_specular_color(ray, hit, light) \
+					calc_diffuse_color(hit, light, attenuation)), \
+					calc_specular_color(ray, hit, light, attenuation) \
 				);
 	}
 }
 
 static t_color	calc_diffuse_color(\
-	t_hit const *hit, t_point_light const *light)
+	t_hit const *hit, t_point_light const *light, float attenuation)
 {
 	float	dot;
 	t_color	diffuse;
@@ -54,12 +56,12 @@ static t_color	calc_diffuse_color(\
 						vec3_normalize(vec3_sub(light->pos, hit->point)));
 	if (dot <= 0.0f)
 		return ((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
-	diffuse = scale_color(dot, light->radiance);
+	diffuse = scale_color(dot * attenuation, light->radiance);
 	return (mul_color(hit->color, diffuse));
 }
 
-static t_color	calc_specular_color(\
-	t_ray const *ray, t_hit const *hit, t_point_light const *light)
+static t_color	calc_specular_color(t_ray const *ray, t_hit const *hit, \
+	t_point_light const *light, float attenuation)
 {
 	t_vec3	to_light;
 	t_vec3	reflection;
@@ -75,6 +77,6 @@ static t_color	calc_specular_color(\
 	dot = vec3_dot(vec3_scale(-1.0f, ray->dir), reflection);
 	if (dot <= 0.0)
 		return ((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
-	specular = scale_color(powf(dot, SHININESS), light->radiance);
+	specular = scale_color(powf(dot, SHININESS) * attenuation, light->radiance);
 	return (specular);
 }
