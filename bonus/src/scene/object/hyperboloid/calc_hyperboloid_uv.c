@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 01:36:22 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/01 19:40:58 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/01 20:45:41 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@
 t_vec2	calc_hyperboloid_uv(t_hyperboloid const *hyperboloid, t_vec3 point)
 {
 	t_quadric	quad;
+	t_vec2		uv;
 
 	hyperboloid_to_quadric(hyperboloid, &quad);
-	return (calc_quadric_uv(&quad, &hyperboloid->onb, point));
+	uv = calc_quadric_uv(&quad, &hyperboloid->onb, point);
+	uv.v = 1.0f - uv.v;
+	return (uv);
 }
