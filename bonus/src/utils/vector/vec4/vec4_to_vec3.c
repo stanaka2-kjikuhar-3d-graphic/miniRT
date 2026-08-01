@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 17:48:54 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/19 18:15:36 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/01 16:50:12 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ t_vec3	vec4_to_vec3(t_vec4 v)
 {
 	if (v.w == 0.0f)
 		return (vec3(v.x, v.y, v.z));
-	return (vec3(v.x / v.w, v.y / v.w, v.z / v.w));
+	return (vec3_div(v.w, vec3(v.x, v.y, v.z)));
 }
