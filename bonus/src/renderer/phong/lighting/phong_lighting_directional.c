@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:05:47 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 17:39:19 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/03 21:45:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ static t_color	calc_specular_color(t_ray const *ray, \
 	dot = vec3_dot(vec3_scale(-1, ray->dir), reflection);
 	if (dot <= 0.0f)
 		return ((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
-	specular = scale_color(powf(dot, SHININESS), light->radiance);
+	specular = scale_color(powf(dot, hit->object->material.shininess), \
+							light->radiance);
 	return (specular);
 }
