@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 01:27:25 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 00:27:43 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/03 22:28:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	encode_color(t_color color)
 	i = RED;
 	while (i <= BLUE)
 	{
-		if (GAMMA_MODE)
-			encoded = encode_gamma(channel[i]);
-		else
+		if (COLOR_ENCODING_MODE == ENCODING_SRGB)
 			encoded = encode_srgb(channel[i]);
+		else
+			encoded = encode_gamma(channel[i]);
 		rgb = (rgb << 8) | (int)(encoded);
 		++i;
 	}
