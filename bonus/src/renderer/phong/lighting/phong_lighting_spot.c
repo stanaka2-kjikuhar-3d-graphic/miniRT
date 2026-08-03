@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 03:39:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/01 21:03:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/01 16:16:05 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	phong_lighting_spot(t_color *color, \
 
 	to_light = vec3_sub(light->pos, hit->point);
 	light_dist = vec3_length(to_light);
-	light_dir = vec3_scale(1.0f / light_dist, to_light);
+	light_dir = vec3_div(light_dist, to_light);
 	if (!phong_shading(hit, light_dir, light_dist))
 	{
 		dot = vec3_dot(light_dir, vec3_scale(-1, light->dir));

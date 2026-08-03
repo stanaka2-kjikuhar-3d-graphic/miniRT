@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:33:20 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/19 17:57:01 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/01 15:42:48 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ t_vec2	vec2(float x, float y);
 
 t_vec3	vec3_add(t_vec3 a, t_vec3 b);
 t_vec3	vec3_cross(t_vec3 a, t_vec3 b);
+t_vec3	vec3_div(float t, t_vec3 v);
 float	vec3_dot(t_vec3 a, t_vec3 b);
 float	vec3_length(t_vec3 v);
 t_vec3	vec3_normalize(t_vec3 v);
