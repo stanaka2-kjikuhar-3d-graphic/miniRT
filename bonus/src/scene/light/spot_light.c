@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 15:36:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/01 20:38:09 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/05 23:16:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ float	calc_spot_light_attenuation(\
 	float	attenuation;
 	float	angle_ratio;
 
+	if (dot <= light->angle.cos_half_outer)
+		return (0.0f);
 	attenuation = calc_dist_attenuation(&(light->attenuation), dist);
 	if (dot > light->angle.cos_half_inner)
 		angle_ratio = 1.0f;

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 00:57:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/03 23:53:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/05 23:23:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,17 @@
 
 # define SPOT_LIGHT_FALLOFF 1.0
 # define LIGHT_RANGE 3250.0f
+# define LIGHT_COLOR_CUTOFF 0.000001f // 1e-6
 
-# define DEFAULT_SHININESS 32.0f
+# if RENDERING_MODEL == PHONG_MODEL
+#  define DEFAULT_SHININESS 32.0f
+# elif RENDERING_MODEL == BLINN_PHONG_MODEL
+#  define DEFAULT_SHININESS 128.0f
+# else
+#  error "Error"
+#  error "invalid RENDERING_MODEL"
+# endif
+
 # define DEFAULT_PATTERN_SIZE 10.0f
 # define DEFAULT_BUMP_STRENGTH 1.0f
 # define DEFAULT_CHECKER_COUNT 4
