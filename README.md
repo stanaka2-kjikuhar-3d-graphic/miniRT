@@ -70,6 +70,7 @@
 - [The Book of Shaders (Patricio Gonzalez Vivo & Jen Lowe)](https://thebookofshaders.com/03/?lan=jp)
 - [第三回 WebGLスクール 「シェーダの基礎」 (@konweb)](https://qiita.com/konweb/items/ec8fa8cd3bc33df14933)
 - [Light Attenuation Shortcut (OGRE Wiki Legacy community documentation)](https://wiki.ogre3d.org/Light+Attenuation+Shortcut)
+- [Moving Frostbite to Phisically Based Rendering (Sebastien Lagarde & Charles de Rousiers / Electronic Arts Frostbite)](https://www.yumpu.com/en/document/read/47704399/course-notes-moving-frostbite-to-pbr)
 
 #### Movie
 - [CGで質感をどうモデル化する？材質の光反射モデル(BSDF)を解説【ゆっくり解説】 (かつおの電波と光ゆっくり解説)](https://youtu.be/02sjdcmNbWM?si=EHYQ_iozuRpMOvNu)
