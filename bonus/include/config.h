@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 00:57:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/05 23:23:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/06 21:30:12 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # if RENDERING_MODEL == PHONG_MODEL
 #  define DEFAULT_SHININESS 32.0f
 # elif RENDERING_MODEL == BLINN_PHONG_MODEL
-#  define DEFAULT_SHININESS 128.0f
+#  define DEFAULT_SHININESS 8.0f
 # else
 #  error "Error"
 #  error "invalid RENDERING_MODEL"
