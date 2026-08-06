@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 00:57:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/01 20:58:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/02 02:03:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define SHININESS 32.0f
 # define PATTERN_SIZE 10.0f
 # define BUMP_STRENGTH 1.0f
+# define CHECKER_COUNT 4
 
 # define LIGHT_RANGE 3250.0f
 

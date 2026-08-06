@@ -24,7 +24,7 @@ bool	parse_fov(char const *element, void *value)
 		return (false);
 	if (*fov <= 0.0f || 180.0f <= *fov)
 	{
-		print_field_error(ERROR_FOV_RANGE, NULL);
+		print_field_error(ERROR_OUT_OF_RANGE, HINT_FOV_RANGE);
 		return (false);
 	}
 	return (true);

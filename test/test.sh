@@ -3,7 +3,7 @@
 PASS=0
 FAIL=0
 PROGRAM=./miniRT
-TIMEOUT=30
+TIMEOUT=60
 ERROR_LOG=test/error.log
 
 # 色

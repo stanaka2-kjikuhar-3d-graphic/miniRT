@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_paraboloid.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 19:05:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 21:01:49 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/02 02:42:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ bool	create_paraboloid(t_input_paraboloid const *input)
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
 	object.uv.type = UV_DEFAULT;
+	set_uv_checker(&(object.uv), input->option.checker_count);
 	top_radius = sqrtf(input->quadratic_coefficient * input->height);
 	object.uv.u_per_v = (float)(2.0f * M_PI * top_radius) / input->height;
 	object.uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};

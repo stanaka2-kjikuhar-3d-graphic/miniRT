@@ -25,7 +25,7 @@ bool	parse_half_height(char const *element, void *value)
 		return (false);
 	if (height <= 0.0f)
 	{
-		print_field_error(ERROR_MUST_BE_POSITIVE, NULL);
+		print_field_error(ERROR_OUT_OF_RANGE, HINT_POSITIVE);
 		return (false);
 	}
 	*half_height = height / 2.0f;

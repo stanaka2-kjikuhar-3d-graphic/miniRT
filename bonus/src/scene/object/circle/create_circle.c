@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 05:59:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/22 17:02:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/02 02:17:15 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ bool	create_circle(t_input_circle const *input)
 		&(input->option.material));
 	object.uv.type = input->option.uv_type;
 	object.uv.pattern_size = input->option.pattern_size;
+	set_uv_checker(&(object.uv), input->option.checker_count);
 	object.uv.u_per_v = input->option.u_per_v;
 	object.uv.u_range = input->option.u_range;
 	object.uv.v_range = input->option.v_range;

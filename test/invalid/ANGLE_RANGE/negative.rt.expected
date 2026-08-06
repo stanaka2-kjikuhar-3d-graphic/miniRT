@@ -1,3 +1,4 @@
 Error
 line 4: sl 0,0,20 0.5 255,255,255 0,0,1 -10
-angle '-10': out of range (0 <= x <= 180)
+angle '-10': out of range
+USAGE: 0 <= x <= 180

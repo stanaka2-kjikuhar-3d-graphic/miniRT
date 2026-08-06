@@ -1,3 +1,4 @@
 Error
 line 2: C -50,0,20 0,0,1 180
-fov '180': out of range (0 < x < 180)
+fov '180': out of range
+USAGE: 0 < x < 180

@@ -1,3 +1,4 @@
 Error
 line 4: sp 0,0,20 20 255,0,0 bump_strength=0
-bump_strength '0': must be positive
+bump_strength '0': out of range
+USAGE: 0 < x

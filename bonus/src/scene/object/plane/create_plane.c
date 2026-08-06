@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/23 00:47:51 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/02 02:42:48 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ bool	create_plane(t_input_plane const *input)
 		&(input->option.material));
 	object.uv.type = UV_DEFAULT;
 	object.uv.pattern_size = input->option.pattern_size;
+	set_uv_checker(&(object.uv), input->option.checker_count);
 	object.uv.u_per_v = 1.0f;
 	object.uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};
 	object.uv.v_range = (t_range){.max = 1.0f, .min = 0.0f};

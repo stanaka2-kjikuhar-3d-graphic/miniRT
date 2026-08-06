@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 02:28:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/28 23:59:01 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/02 02:40:36 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 
 #include "./object_private.h"
 
-static bool	is_even_cell(t_vec2 uv, float checker_size, float u_per_v);
+static bool	is_even_cell(t_vec2 uv, t_vec2 size);
 
 t_color	calc_object_color(t_object const *object, t_vec2 uv)
 {
 	if (object->material.pattern_type == PATTERN_CHECKER)
 	{
-		if (is_even_cell(uv, 0.25f, object->uv.u_per_v))
+		if (is_even_cell(uv, object->uv.checker_size))
 			return (object->material.checker.color1);
 		return (object->material.checker.color2);
 	}
@@ -37,11 +37,11 @@ t_color	calc_object_color(t_object const *object, t_vec2 uv)
 	return (object->material.albedo);
 }
 
-static bool	is_even_cell(t_vec2 uv, float checker_size, float u_per_v)
+static bool	is_even_cell(t_vec2 uv, t_vec2 checker_size)
 {
 	t_ivec2	cell;
 
-	cell.u = (int)floorf((uv.u * u_per_v) / checker_size);
-	cell.v = (int)floorf(uv.v / checker_size);
+	cell.u = (int)floorf(uv.u / checker_size.u);
+	cell.v = (int)floorf(uv.v / checker_size.v);
 	return ((cell.u + cell.v) % 2 == 0);
 }

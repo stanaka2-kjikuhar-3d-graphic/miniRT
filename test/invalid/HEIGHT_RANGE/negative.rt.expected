@@ -1,3 +1,4 @@
 Error
 line 4: cy 0,0,20 0,0,1 14 -3 10,0,255
-height '-3': must be positive
+height '-3': out of range
+USAGE: 0 < x

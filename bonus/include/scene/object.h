@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/01 19:40:32 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/02 02:43:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct s_checker
 {
 	t_color	color1;
 	t_color	color2;
-	t_vec2	size;
 }	t_checker;
 
 enum e_normal_type
@@ -75,6 +74,8 @@ typedef struct s_uv
 {
 	enum e_uv_type	type;
 	float			pattern_size;
+	t_ivec2			checker_count;
+	t_vec2			checker_size;
 	float			u_per_v;
 	t_range			u_range;
 	t_range			v_range;
@@ -211,6 +212,7 @@ typedef struct s_input_sphere
 	struct	s_sphere_option
 	{
 		t_material_option	material;
+		t_ivec2				checker_count;
 	}					option;
 }	t_input_sphere;
 
@@ -223,6 +225,7 @@ typedef struct s_input_plane
 	{
 		t_material_option	material;
 		float				pattern_size;
+		t_ivec2				checker_count;
 	}					option;
 }	t_input_plane;
 
@@ -236,6 +239,7 @@ typedef struct s_input_cylinder
 	struct	s_cylinder_option
 	{
 		t_material_option	material;
+		t_ivec2				checker_count;
 	}					option;
 }	t_input_cylinder;
 
@@ -250,6 +254,7 @@ typedef struct s_input_circle
 		t_material_option	material;
 		enum e_uv_type		uv_type;
 		float				pattern_size;
+		t_ivec2				checker_count;
 		float				u_per_v;
 		t_range				u_range;
 		t_range				v_range;
@@ -266,6 +271,7 @@ typedef struct s_input_cone
 	struct	s_cone_option
 	{
 		t_material_option	material;
+		t_ivec2				checker_count;
 	}					option;
 }	t_input_cone;
 
@@ -280,6 +286,7 @@ typedef struct s_input_hyperboloid
 	struct	s_hyperboloid_option
 	{
 		t_material_option	material;
+		t_ivec2				checker_count;
 	}					option;
 }	t_input_hyperboloid;
 
@@ -293,6 +300,7 @@ typedef struct s_input_paraboloid
 	struct	s_paraboloid_option
 	{
 		t_material_option	material;
+		t_ivec2				checker_count;
 	}					option;
 }	t_input_paraboloid;
 

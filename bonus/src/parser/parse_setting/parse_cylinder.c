@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:25:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 18:52:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/02 02:58:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ static bool	parse_cylinder_optional(\
 
 	init_optional_fields(fields);
 	bind_material_option(fields, &(input->option.material));
+	fields[OPTIONAL_CHECKER_COUNT_U_EVEN].value \
+		= &(input->option.checker_count.u);
+	fields[OPTIONAL_CHECKER_COUNT_V].value = &(input->option.checker_count.v);
 	if (!parse_optional_fields(optional_elements, fields))
 		return (false);
 	input->option.material.pattern_type \

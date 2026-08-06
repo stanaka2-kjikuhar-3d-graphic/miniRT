@@ -1,3 +1,4 @@
 Error
 line 4: sp 0,0,20 20 255,0,0 shininess=-1
-shininess '-1': must be non-negative
+shininess '-1': out of range
+USAGE: 0 <= x

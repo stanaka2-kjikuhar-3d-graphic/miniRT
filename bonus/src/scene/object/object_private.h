@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_private.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/01 20:17:58 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/02 03:03:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	set_material_from_option(t_material *material, t_color albedo, \
 			t_material_option const *option);
 void	set_option_from_material(t_material_option *option, \
 			t_material const *material);
+void	set_uv_checker(t_uv *uv, t_ivec2 checker_count);
 float	calc_sphere_intersection(t_sphere const *sphere, t_ray const *ray);
 float	calc_plane_intersection(t_plane const *plane, t_ray const *ray);
 float	calc_cylinder_intersection(\
