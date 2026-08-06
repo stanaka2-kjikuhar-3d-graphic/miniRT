@@ -399,6 +399,7 @@ SRCS	+=	mat4_identity.c \
 			mat4_scale.c \
 			mat4_rotate.c \
 			mat4_basis.c \
+			mat4_local_to_world.c \
 			mat4_inverse.c
 
 # utils/matrix/internal
