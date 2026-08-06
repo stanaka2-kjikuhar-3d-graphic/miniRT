@@ -327,9 +327,10 @@ t_vec3	calc_bump_mapping(\
 t_vec3	calc_normal_mapping(\
 			t_object const *object, t_vec2 uv, t_onb const *tbn);
 
-float	quadric_eval(t_mat4 q, t_vec4 p);
+float	quadric_eval(t_mat4 const *q, t_vec4 p);
 int		solve_quadratic(float a, float b, float c, float roots[2]);
-t_mat4	quadric_to_world(t_mat4 q_local, t_mat4 local_to_world);
+t_mat4	quadric_to_world(\
+			t_mat4 const *q_local, t_mat4 const *local_to_world);
 bool	quadric_in_bounds(t_quadric const *q, t_vec3 point);
 float	calc_quadric_intersection(t_quadric const *q, t_ray const *ray);
 t_vec3	calc_quadric_normal(\

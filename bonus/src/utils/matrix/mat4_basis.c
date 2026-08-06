@@ -6,14 +6,14 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 22:54:50 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/22 23:35:24 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/06 22:15:32 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
 
 /* local->world M: upper 3x3 = basis, 4th column = origin. */
-t_mat4	mat4_basis(t_mat3 basis, t_vec3 origin)
+t_mat4	mat4_basis(t_mat3 const *basis, t_vec3 origin)
 {
 	t_mat4	result;
 	int		row;
@@ -26,7 +26,7 @@ t_mat4	mat4_basis(t_mat3 basis, t_vec3 origin)
 		col = 0;
 		while (col < 3)
 		{
-			result.m[row][col] = basis.m[row][col];
+			result.m[row][col] = basis->m[row][col];
 			++col;
 		}
 		++row;
