@@ -390,7 +390,8 @@ SRCS	+=	ivec2.c
 # utils/dynamic_array
 SRCS	+=	grow_dynamic_array.c
 # scene/object/primitive
-SRCS	+=	build_primitive.c
+SRCS	+=	build_primitive.c \
+			unit_quadric.c
 
 # utils/matrix
 SRCS	+=	mat4_identity.c \

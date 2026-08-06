@@ -94,6 +94,7 @@ t_vec3	calc_paraboloid_normal(\
 void	calc_onb(t_vec3 n, t_vec3 *tangent, t_vec3 *bitangent);
 t_mat3	basis_from_dir(t_vec3 dir);
 bool	build_primitive(t_primitive_frame const *frame, t_primitive *out);
+t_mat4	unit_quadric(enum e_primitive_type type);
 t_vec2	adjust_uv_range(t_vec2 uv, t_range u_range, t_range v_range);
 t_mat4	calc_cone_local_q(float k);
 void	cone_to_quadric(t_cone const *cone, t_quadric *out);
