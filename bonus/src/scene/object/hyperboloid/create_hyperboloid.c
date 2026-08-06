@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_hyperboloid.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 19:47:07 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 02:17:45 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/06 21:33:37 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@
 #include "../object_private.h"
 
 static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type);
+static void	set_hyperboloid_uv(\
+				t_object *object, t_input_hyperboloid const *input);
 
 bool	create_hyperboloid(t_input_hyperboloid const *input)
 {
 	t_object	object;
-	float		cap_ratio;
 
 	object.type = OBJ_HYPERBOLOID;
 	object.hyperboloid.center = input->center;
@@ -33,14 +34,7 @@ bool	create_hyperboloid(t_input_hyperboloid const *input)
 	object.hyperboloid.half_height = input->half_height;
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
-	object.uv.type = UV_DEFAULT;
-	set_uv_checker(&(object.uv), input->option.checker_count);
-	object.uv.u_per_v = (float)(2.0f * M_PI * input->cap_radius) \
-							/ (2.0f * (input->cap_radius + input->half_height));
-	object.uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};
-	cap_ratio = input->cap_radius \
-					/ (2.0f * (input->cap_radius + input->half_height));
-	object.uv.v_range = (t_range){.max = 1.0f - cap_ratio, .min = cap_ratio};
+	set_hyperboloid_uv(&object, input);
 	object.hyperboloid.onb.w = object.hyperboloid.dir;
 	calc_onb(object.hyperboloid.onb.w, \
 		&(object.hyperboloid.onb.u), &(object.hyperboloid.onb.v));
@@ -48,6 +42,21 @@ bool	create_hyperboloid(t_input_hyperboloid const *input)
 		return (false);
 	return (add_cap_circle(&object, UV_UPPER_CAP) \
 				&& add_cap_circle(&object, UV_LOWER_CAP));
+}
+
+static void	set_hyperboloid_uv(\
+	t_object *object, t_input_hyperboloid const *input)
+{
+	float	cap_ratio;
+
+	object->uv.type = UV_DEFAULT;
+	set_uv_checker(&(object->uv), input->option.checker_count);
+	object->uv.u_per_v = (float)(2.0f * M_PI * input->cap_radius) \
+							/ (2.0f * (input->cap_radius + input->half_height));
+	object->uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};
+	cap_ratio = input->cap_radius \
+					/ (2.0f * (input->cap_radius + input->half_height));
+	object->uv.v_range = (t_range){.max = 1.0f - cap_ratio, .min = cap_ratio};
 }
 
 static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type)
