@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   phong_lighting_spot.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 03:39:27 by stanaka2          #+#    #+#             */
 /*   Updated: 2026/08/05 23:12:33 by stanaka2         ###   ########.fr       */

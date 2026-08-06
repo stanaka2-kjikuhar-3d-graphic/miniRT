@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec4_to_vec3.c                                     :+:      :+:    :+:   */
+/*   vec3_div.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 17:48:54 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/01 16:50:12 by kjikuhar         ###   ########.fr       */
+/*   Created: 2026/08/01 15:32:32 by kjikuhar          #+#    #+#             */
+/*   Updated: 2026/08/01 15:42:48 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 
-t_vec3	vec4_to_vec3(t_vec4 v)
+t_vec3	vec3_div(float t, t_vec3 v)
 {
-	if (v.w == 0.0f)
-		return (vec3(v.x, v.y, v.z));
-	return (vec3_div(v.w, vec3(v.x, v.y, v.z)));
+	return ((t_vec3){\
+		.x = v.x / t, \
+		.y = v.y / t, \
+		.z = v.z / t \
+	});
 }

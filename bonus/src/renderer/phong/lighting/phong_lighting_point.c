@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phong_lighting_point.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 03:38:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/05 23:13:58 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/06 19:35:11 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
