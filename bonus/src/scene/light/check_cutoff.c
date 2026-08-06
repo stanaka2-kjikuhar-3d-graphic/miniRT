@@ -18,6 +18,6 @@
 
 bool	check_cutoff(t_color radiance, float attenuation)
 {
-	return ((radiance.r + radiance.g + radiance.b) / (3.0f * attenuation) \
+	return ((radiance.r + radiance.g + radiance.b) * attenuation / 3.0f \
 				< LIGHT_COLOR_CUTOFF);
 }
