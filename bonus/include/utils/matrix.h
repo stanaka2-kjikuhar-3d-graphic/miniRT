@@ -54,6 +54,7 @@ t_mat4	mat4_rotate(t_vec3 axis, float degree);
 t_mat4	mat4_basis(t_mat3 const *basis, t_vec3 origin);
 t_mat4	mat4_local_to_world(\
 			t_mat3 const *basis, t_vec3 origin, t_vec3 scale);
+bool	mat4_is_valid_scale(t_vec3 scale);
 
 t_mat3	mat3_from_mat4(t_mat4 const *m);
 
