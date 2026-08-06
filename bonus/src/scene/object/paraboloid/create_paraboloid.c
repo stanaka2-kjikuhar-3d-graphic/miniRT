@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_paraboloid.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 19:05:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 02:42:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/06 21:33:47 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ bool	create_paraboloid(t_input_paraboloid const *input)
 	object.paraboloid.onb.w = object.paraboloid.dir;
 	calc_onb(object.paraboloid.onb.w, \
 		&(object.paraboloid.onb.u), &(object.paraboloid.onb.v));
+	paraboloid_to_quadric(&(object.paraboloid), &(object.paraboloid.quadric));
 	return (create_object(&object));
 }

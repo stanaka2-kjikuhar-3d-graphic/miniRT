@@ -38,6 +38,7 @@ bool	create_cone(t_input_cone const *input)
 	object.cone.onb.w = object.cone.dir;
 	calc_onb(object.cone.onb.w, \
 		&(object.cone.onb.u), &(object.cone.onb.v));
+	cone_to_quadric(&(object.cone), &(object.cone.quadric));
 	if (!create_object(&object))
 		return (false);
 	return (add_lower_cap_circle(&object));

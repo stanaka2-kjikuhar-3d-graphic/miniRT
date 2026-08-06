@@ -38,6 +38,8 @@ bool	create_hyperboloid(t_input_hyperboloid const *input)
 	object.hyperboloid.onb.w = object.hyperboloid.dir;
 	calc_onb(object.hyperboloid.onb.w, \
 		&(object.hyperboloid.onb.u), &(object.hyperboloid.onb.v));
+	hyperboloid_to_quadric(\
+		&(object.hyperboloid), &(object.hyperboloid.quadric));
 	if (!create_object(&object))
 		return (false);
 	return (add_cap_circle(&object, UV_UPPER_CAP) \
