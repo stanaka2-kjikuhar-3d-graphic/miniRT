@@ -29,7 +29,7 @@ t_onb	calc_sphere_tbn(t_sphere const *sphere, t_vec3 normal)
 	len = sqrtf(tu * tu + tv * tv);
 	if (len < EPSILON)
 		return (sphere->onb);
-	tbn.u = vec3_scale(1.0f / len, vec3_sub(\
+	tbn.u = vec3_div(len, vec3_sub(\
 				vec3_scale(tu, sphere->onb.v), vec3_scale(tv, sphere->onb.u)));
 	tbn.v = vec3_cross(tbn.u, tbn.w);
 	return (tbn);
