@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 02:43:25 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/06 21:34:01 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,16 @@ enum e_object_type
 	OBJ_QUADRIC
 };
 
+typedef struct s_quadric
+{
+	t_mat4	q;
+	t_vec3	axis;
+	t_vec3	center;
+	float	h_min;
+	float	h_max;
+	bool	finite;
+}	t_quadric;
+
 typedef struct s_sphere
 {
 	t_vec3	center;
@@ -133,42 +143,35 @@ typedef struct s_circle
 
 typedef struct s_cone
 {
-	t_vec3	center;
-	t_vec3	dir;
-	float	radius;
-	float	height;
-	float	generatrix;
-	t_onb	onb;
+	t_vec3		center;
+	t_vec3		dir;
+	float		radius;
+	float		height;
+	float		generatrix;
+	t_onb		onb;
+	t_quadric	quadric;
 }	t_cone;
 
 typedef struct s_hyperboloid
 {
-	t_vec3	center;
-	t_vec3	dir;
-	float	center_radius;
-	float	cap_radius;
-	float	half_height;
-	t_onb	onb;
+	t_vec3		center;
+	t_vec3		dir;
+	float		center_radius;
+	float		cap_radius;
+	float		half_height;
+	t_onb		onb;
+	t_quadric	quadric;
 }	t_hyperboloid;
 
 typedef struct s_paraboloid
 {
-	t_vec3	center;
-	t_vec3	dir;
-	float	quadratic_coefficient;
-	float	height;
-	t_onb	onb;
+	t_vec3		center;
+	t_vec3		dir;
+	float		quadratic_coefficient;
+	float		height;
+	t_onb		onb;
+	t_quadric	quadric;
 }	t_paraboloid;
-
-typedef struct s_quadric
-{
-	t_mat4	q;
-	t_vec3	axis;
-	t_vec3	center;
-	float	h_min;
-	float	h_max;
-	bool	finite;
-}	t_quadric;
 
 typedef struct s_object
 {
