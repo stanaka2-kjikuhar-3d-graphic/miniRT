@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 02:17:33 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/07 01:22:19 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdbool.h>
 
 #include "vector.h"
+#include "matrix.h"
 #include "object.h"
 
 #include "../object_private.h"
@@ -21,6 +22,7 @@
 static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type);
 static void	set_cylinder_uv(\
 				t_object *object, t_input_cylinder const *input);
+static bool	set_primitive(t_object *object, t_input_cylinder const *input);
 
 bool	create_cylinder(t_input_cylinder const *input)
 {
@@ -37,6 +39,8 @@ bool	create_cylinder(t_input_cylinder const *input)
 	object.cylinder.onb.w = object.cylinder.dir;
 	calc_onb(object.cylinder.onb.w, \
 		&(object.cylinder.onb.u), &(object.cylinder.onb.v));
+	if (!set_primitive(&object, input))
+		return (false);
 	if (!create_object(&object))
 		return (false);
 	return (add_cap_circle(&object, UV_UPPER_CAP) \
@@ -68,6 +72,18 @@ static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type)
 		input.option.v_range = (t_range){\
 			.max = 1.0f, .min = object->uv.v_range.max};
 	return (create_circle(&input));
+}
+
+static bool	set_primitive(t_object *object, t_input_cylinder const *input)
+{
+	t_primitive_frame	frame;
+
+	frame.type = UNIT_CYLINDER;
+	frame.basis = basis_from_dir(object->cylinder.dir);
+	frame.origin = input->center;
+	frame.scale = vec3(input->radius, input->radius, input->half_height);
+	frame.z_range = (t_range){.max = 1.0f, .min = -1.0f};
+	return (build_primitive(&frame, &(object->primitive)));
 }
 
 static void	set_cylinder_uv(t_object *object, t_input_cylinder const *input)
