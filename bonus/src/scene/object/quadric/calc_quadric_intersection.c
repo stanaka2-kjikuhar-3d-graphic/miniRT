@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:33:18 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/31 17:36:19 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/06 22:21:05 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ static t_quadric_coeffs	quadric_coefficients(\
 
 	origin = vec4_from_point(ray->origin);
 	dir = vec4_from_dir(ray->dir);
-	q_dir = mat4_mul_vec4(q->q, dir);
+	q_dir = mat4_mul_vec4(&(q->q), dir);
 	coef.a = vec4_dot(dir, q_dir);
 	coef.b = 2.0f * vec4_dot(origin, q_dir);
-	coef.c = quadric_eval(q->q, origin);
+	coef.c = quadric_eval(&(q->q), origin);
 	return (coef);
 }
 
