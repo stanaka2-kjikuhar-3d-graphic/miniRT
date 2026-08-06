@@ -6,14 +6,14 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 23:11:36 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/22 23:11:37 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/06 22:20:11 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
 
 /* Signed minor: (-1)^(row+col) * minor. */
-float	mat4_cofactor(t_mat4 m, int row, int col)
+float	mat4_cofactor(t_mat4 const *m, int row, int col)
 {
 	float	sign;
 
