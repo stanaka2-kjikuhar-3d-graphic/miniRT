@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:41:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 18:39:00 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/06 21:33:11 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,5 @@
 
 float	calc_cone_intersection(t_cone const *cone, t_ray const *ray)
 {
-	t_quadric	quad;
-
-	cone_to_quadric(cone, &quad);
-	return (calc_quadric_intersection(&quad, ray));
+	return (calc_quadric_intersection(&(cone->quadric), ray));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cone.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 02:17:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/06 21:33:19 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 #include "../object_private.h"
 
 static bool	add_lower_cap_circle(t_object const *object);
+static void	set_cone_uv(t_object *object, t_input_cone const *input);
 
 bool	create_cone(t_input_cone const *input)
 {
 	t_object	object;
-	float		cap_ratio;
 
 	object.type = OBJ_CONE;
 	object.cone.center = input->center;
@@ -34,20 +34,28 @@ bool	create_cone(t_input_cone const *input)
 		= sqrtf(input->radius * input->radius + input->height * input->height);
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
-	object.uv.type = UV_DEFAULT;
-	set_uv_checker(&(object.uv), input->option.checker_count);
-	object.uv.u_per_v = (float)(2.0f * M_PI * input->radius) \
-							/ (input->radius + object.cone.generatrix);
-	object.uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};
-	cap_ratio = input->radius \
-					/ (2.0f * (input->radius + object.cone.generatrix));
-	object.uv.v_range = (t_range){.max = 1.0f - cap_ratio, .min = 0.0f};
+	set_cone_uv(&object, input);
 	object.cone.onb.w = object.cone.dir;
 	calc_onb(object.cone.onb.w, \
 		&(object.cone.onb.u), &(object.cone.onb.v));
+	cone_to_quadric(&(object.cone), &(object.cone.quadric));
 	if (!create_object(&object))
 		return (false);
 	return (add_lower_cap_circle(&object));
+}
+
+static void	set_cone_uv(t_object *object, t_input_cone const *input)
+{
+	float	cap_ratio;
+
+	object->uv.type = UV_DEFAULT;
+	set_uv_checker(&(object->uv), input->option.checker_count);
+	object->uv.u_per_v = (float)(2.0f * M_PI * input->radius) \
+							/ (input->radius + object->cone.generatrix);
+	object->uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};
+	cap_ratio = input->radius \
+					/ (2.0f * (input->radius + object->cone.generatrix));
+	object->uv.v_range = (t_range){.max = 1.0f - cap_ratio, .min = 0.0f};
 }
 
 static bool	add_lower_cap_circle(t_object const *object)
