@@ -43,10 +43,10 @@ void	phong_lighting_point(t_color *color, \
 	if (!check_cutoff(light->radiance, attenuation) \
 		&& !phong_shading(hit, light_dir, light_dist))
 	{
-		*color = add_color(add_color(*color, \
-					calc_diffuse_color(hit, light, attenuation)), \
-					calc_specular_color(ray, hit, light, attenuation) \
-				);
+		*color = add_color(*color, \
+			calc_diffuse_color(hit, light, attenuation));
+		*color = add_color(*color, \
+			calc_specular_color(ray, hit, light, attenuation));
 	}
 }
 
