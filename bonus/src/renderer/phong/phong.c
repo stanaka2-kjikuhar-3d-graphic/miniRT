@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:15:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 00:21:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/06 22:00:26 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	phong(void)
 		while (pixel.x < viewport->pixel_size.width)
 		{
 			ray = calc_ray(pixel);
-			hit = intersection(&ray);
+			hit = phong_intersection(&ray);
 			if (hit.object != NULL)
 				put_color_to_window_image(pixel, phong_lighting(&ray, &hit));
 			else

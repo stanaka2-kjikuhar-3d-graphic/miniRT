@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersection.c                                     :+:      :+:    :+:   */
+/*   phong_intersection.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 22:46:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 01:08:32 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/06 22:00:57 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 #include "object.h"
 #include "ray.h"
 
-#include "./phong_private.h"
+#include "../phong_private.h"
 
 static void	set_hit_record(t_ray const *ray, t_hit *hit);
 
-t_hit	intersection(t_ray const *ray)
+t_hit	phong_intersection(t_ray const *ray)
 {
 	t_object const	*object;
 	t_hit			hit;

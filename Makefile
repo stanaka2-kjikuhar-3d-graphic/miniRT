@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/05 22:42:23 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/08/06 21:58:57 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,6 +109,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 						path_tracing \
 						phong \
 						$(addprefix phong/, \
+							intersection \
 							lighting \
 							shading \
 						) \
@@ -234,8 +235,9 @@ SRCS	+=	renderer.c \
 			put_color_to_window_image.c
 
 # renderer/phong
-SRCS	+=	phong.c \
-			intersection.c
+SRCS	+=	phong.c
+# renderer/phong/intersection
+SRCS	+=	phong_intersection.c
 # renderer/phong/lighting
 SRCS	+=	phong_lighting.c \
 			phong_lighting_ambient.c \
