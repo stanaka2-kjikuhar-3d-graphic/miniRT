@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:51:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/01 20:38:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/05 22:41:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,4 +144,6 @@ bool	create_directional_light(t_input_directional_light const *input);
 float	calc_point_light_attenuation(t_point_light const *light, float dist);
 float	calc_spot_light_attenuation(\
 			t_spot_light const *light, float dist, float dot);
+bool	check_cutoff(t_color radiance, float attenuation);
+
 #endif

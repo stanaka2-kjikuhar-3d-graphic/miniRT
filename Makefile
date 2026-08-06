@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/01 21:02:47 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/08/05 22:42:23 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -260,9 +260,10 @@ SRCS	+=	light.c \
 			ambient_light.c \
 			point_light.c \
 			spot_light.c \
+			directional_light.c \
 			set_dist_attenuation.c \
 			calc_dist_attenuation.c \
-			directional_light.c
+			check_cutoff.c
 
 # scene/object
 SRCS	+=	object.c \

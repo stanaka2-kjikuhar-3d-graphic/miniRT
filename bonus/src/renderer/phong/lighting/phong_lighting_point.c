@@ -38,13 +38,15 @@ void	phong_lighting_point(t_color *color, \
 
 	to_light = vec3_sub(light->pos, hit->point);
 	light_dist = vec3_length(to_light);
-	light_dir = vec3_div(light_dist, to_light);
-	if (!phong_shading(hit, light_dir, light_dist))
+	light_dir = vec3_scale(1.0f / light_dist, to_light);
+	attenuation = calc_point_light_attenuation(light, light_dist);
+	if (!check_cutoff(light->radiance, attenuation) \
+		&& !phong_shading(hit, light_dir, light_dist))
 	{
-		attenuation = calc_point_light_attenuation(light, light_dist);
-		*color = add_color(*color, calc_diffuse_color(hit, light, attenuation));
-		*color = add_color(*color, \
-			calc_specular_color(ray, hit, light, attenuation));
+		*color = add_color(add_color(*color, \
+					calc_diffuse_color(hit, light, attenuation)), \
+					calc_specular_color(ray, hit, light, attenuation) \
+				);
 	}
 }
 
