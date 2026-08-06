@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phong_lighting_directional.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:05:47 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/03 23:41:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/06 19:50:58 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,8 @@ void	phong_lighting_directional(t_color *color, \
 {
 	if (!phong_shading(hit, vec3_scale(-1.0f, light->dir), INFINITY))
 	{
-		*color = add_color(add_color(*color, \
-					calc_diffuse_color(hit, light)), \
-					calc_specular_color(ray, hit, light) \
-				);
+		*color = add_color(*color, calc_diffuse_color(hit, light));
+		*color = add_color(*color, calc_specular_color(ray, hit, light));
 	}
 }
 

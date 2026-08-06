@@ -363,6 +363,7 @@ SRCS	+=	vec3.c \
 			vec3_add.c \
 			vec3_sub.c \
 			vec3_scale.c \
+			vec3_div.c \
 			vec3_dot.c \
 			vec3_cross.c \
 			vec3_length.c \
