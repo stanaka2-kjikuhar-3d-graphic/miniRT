@@ -44,5 +44,7 @@ void	phong_lighting_directional(t_color *color, t_ray const *ray, \
 			t_hit const *hit, t_directional_light const *light);
 bool	phong_shading(\
 			t_hit const *hit, t_vec3 light_dir, float light_dist);
+float	calc_specular_dot(\
+			t_ray const *ray, t_hit const *hit, t_vec3 to_light);
 
 #endif

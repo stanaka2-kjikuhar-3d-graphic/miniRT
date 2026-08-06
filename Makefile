@@ -241,7 +241,8 @@ SRCS	+=	phong_lighting.c \
 			phong_lighting_ambient.c \
 			phong_lighting_point.c \
 			phong_lighting_spot.c \
-			phong_lighting_directional.c
+			phong_lighting_directional.c \
+			phong_specular_dot.c
 # renderer/phong/shading
 SRCS	+=	phong_shading.c
 
