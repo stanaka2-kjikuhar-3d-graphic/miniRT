@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/06 21:58:57 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/08/08 01:19:16 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -435,7 +435,7 @@ DEPFLAGS	= -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.d
 $(DEP_DIR)/%.d: ;
 
 # -------------------------- #
-#         LIBFT Rule         #
+#           LIBFT            #
 # -------------------------- #
 
 LIBFT_DIR	:= libft
@@ -451,7 +451,7 @@ override LDFLAGS	+= -L$(LIBFT_DIR)
 override LDLIBS		+= -lft
 
 # -------------------------- #
-#       LIBMLX Rule          #
+#           LIBMLX           #
 # -------------------------- #
 
 LIBMLX_DIR	:= minilibx
@@ -483,10 +483,11 @@ endif
 override LDLIBS	+= -lmlx -lXext -lX11
 
 # -------------------------- #
-#       Library Rules        #
+#          Library           #
 # -------------------------- #
 
 override LDLIBS	+= -lm
+override CFLAGS	+= -pthread
 
 # -------------------------- #
 #        Build Rules         #

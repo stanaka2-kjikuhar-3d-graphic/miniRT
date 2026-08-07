@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:10:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 13:54:01 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/07 23:20:15 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	set_viewport(t_input_viewport const *input)
 {
 	g_viewport.pixel_size.width = WINDOW_WIDTH;
 	g_viewport.pixel_size.height = WINDOW_HEIGHT;
+	g_viewport.pixel_count = WINDOW_WIDTH * WINDOW_HEIGHT;
 	g_viewport.pixel_half_size.width = WINDOW_WIDTH / 2.0;
 	g_viewport.pixel_half_size.height = WINDOW_HEIGHT / 2.0;
 	g_viewport.aspect_ratio = (float)WINDOW_WIDTH / WINDOW_HEIGHT;

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 00:57:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/06 21:30:12 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/07 23:46:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # endif
 
 # define WINDOW_TITLE "miniRT"
+
+# define THREAD_COUNT 16
 
 # define EPSILON 0.000001f // 1e-6
 
