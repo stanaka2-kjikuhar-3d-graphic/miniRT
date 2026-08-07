@@ -392,7 +392,8 @@ SRCS	+=	grow_dynamic_array.c
 # scene/object/primitive
 SRCS	+=	build_primitive.c \
 			unit_quadric.c \
-			calc_planar_intersection.c
+			calc_planar_intersection.c \
+			calc_primitive_intersection.c
 
 # utils/matrix
 SRCS	+=	mat4_identity.c \
