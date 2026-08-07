@@ -391,7 +391,8 @@ SRCS	+=	ivec2.c
 SRCS	+=	grow_dynamic_array.c
 # scene/object/primitive
 SRCS	+=	build_primitive.c \
-			unit_quadric.c
+			unit_quadric.c \
+			calc_planar_intersection.c
 
 # utils/matrix
 SRCS	+=	mat4_identity.c \
