@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_hyperboloid.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 19:47:07 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/07 01:22:15 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/09 02:15:26 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ static void	set_hyperboloid_uv(\
 	set_uv_checker(&(object->uv), input->option.checker_count);
 	object->uv.u_per_v = (float)(2.0f * M_PI * input->cap_radius) \
 							/ (2.0f * (input->cap_radius + input->half_height));
-	object->uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};
+	object->uv.u_range = (t_range){.min = 0.0f, .max = 1.0f};
 	cap_ratio = input->cap_radius \
 					/ (2.0f * (input->cap_radius + input->half_height));
-	object->uv.v_range = (t_range){.max = 1.0f - cap_ratio, .min = cap_ratio};
+	object->uv.v_range = (t_range){.min = cap_ratio, .max = 1.0f - cap_ratio};
 }
 
 static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type)
@@ -83,13 +83,13 @@ static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type)
 	input.option.pattern_size = input.radius * 2.0f;
 	input.option.u_per_v = object->uv.u_per_v;
 	input.option.checker_count = object->uv.checker_count;
-	input.option.u_range = (t_range){.max = 1.0f, .min = 0.0f};
+	input.option.u_range = (t_range){.min = 0.0f, .max = 1.0f};
 	if (uv_type == UV_UPPER_CAP)
 		input.option.v_range = (t_range){\
-			.max = object->uv.v_range.min, .min = 0.0f};
+			.min = 0.0f, .max = object->uv.v_range.min};
 	else
 		input.option.v_range = (t_range){\
-			.max = 1.0f, .min = object->uv.v_range.max};
+			.min = object->uv.v_range.max, .max = 1.0f};
 	return (create_circle(&input));
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cone.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/07 01:22:23 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/09 02:12:35 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ static void	set_cone_uv(t_object *object, t_input_cone const *input)
 	set_uv_checker(&(object->uv), input->option.checker_count);
 	object->uv.u_per_v = (float)(2.0f * M_PI * input->radius) \
 							/ (input->radius + object->cone.generatrix);
-	object->uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};
+	object->uv.u_range = (t_range){.min = 0.0f, .max = 1.0f};
 	cap_ratio = input->radius \
 					/ (2.0f * (input->radius + object->cone.generatrix));
-	object->uv.v_range = (t_range){.max = 1.0f - cap_ratio, .min = 0.0f};
+	object->uv.v_range = (t_range){.min = 0.0f, .max = 1.0f - cap_ratio};
 }
 
 static bool	add_lower_cap_circle(t_object const *object)
@@ -75,9 +75,9 @@ static bool	add_lower_cap_circle(t_object const *object)
 	input.option.pattern_size = input.radius * 2.0f;
 	input.option.u_per_v = object->uv.u_per_v;
 	input.option.checker_count = object->uv.checker_count;
-	input.option.u_range = (t_range){.max = 1.0f, .min = 0.0f};
+	input.option.u_range = (t_range){.min = 0.0f, .max = 1.0f};
 	input.option.v_range = (t_range){\
-		.max = 1.0f, .min = object->uv.v_range.max};
+		.min = object->uv.v_range.max, .max = 1.0f};
 	return (create_circle(&input));
 }
 
@@ -94,6 +94,6 @@ static bool	set_primitive(t_object *object, t_input_cone const *input)
 	frame.origin = vec3_add(input->center, \
 			vec3_scale(input->height, object->cone.dir));
 	frame.scale = vec3(input->radius, input->radius, input->height);
-	frame.z_range = (t_range){.max = 1.0f, .min = 0.0f};
+	frame.z_range = (t_range){.min = 0.0f, .max = 1.0f};
 	return (build_primitive(&frame, &(object->primitive)));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_sphere.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/07 01:20:51 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/09 02:17:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ bool	create_sphere(t_input_sphere const *input)
 	object.uv.type = UV_DEFAULT;
 	set_uv_checker(&(object.uv), input->option.checker_count);
 	object.uv.u_per_v = 2.0f;
-	object.uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};
-	object.uv.v_range = (t_range){.max = 1.0f, .min = 0.0f};
+	object.uv.u_range = (t_range){.min = 0.0f, .max = 1.0f};
+	object.uv.v_range = (t_range){.min = 0.0f, .max = 1.0f};
 	object.sphere.onb = (t_onb){\
 		.u = vec3(1.0f, 0.0f, 0.0f), \
 		.v = vec3(0.0f, 1.0f, 0.0f), \
@@ -50,6 +50,6 @@ static bool	set_primitive(t_object *object, t_input_sphere const *input)
 	frame.basis = basis_from_dir(vec3(0.0f, 0.0f, 1.0f));
 	frame.origin = input->center;
 	frame.scale = vec3(input->radius, input->radius, input->radius);
-	frame.z_range = (t_range){.max = 1.0f, .min = -1.0f};
+	frame.z_range = (t_range){.min = -1.0f, .max = 1.0f};
 	return (build_primitive(&frame, &(object->primitive)));
 }

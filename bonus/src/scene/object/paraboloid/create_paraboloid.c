@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_paraboloid.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 19:05:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/07 01:22:06 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/09 02:16:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ bool	create_paraboloid(t_input_paraboloid const *input)
 	set_uv_checker(&(object.uv), input->option.checker_count);
 	top_radius = sqrtf(input->quadratic_coefficient * input->height);
 	object.uv.u_per_v = (float)(2.0f * M_PI * top_radius) / input->height;
-	object.uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};
-	object.uv.v_range = (t_range){.max = 1.0f, .min = 0.0f};
+	object.uv.u_range = (t_range){.min = 0.0f, .max = 1.0f};
+	object.uv.v_range = (t_range){.min = 0.0f, .max = 1.0f};
 	object.paraboloid.onb.w = object.paraboloid.dir;
 	calc_onb(object.paraboloid.onb.w, \
 		&(object.paraboloid.onb.u), &(object.paraboloid.onb.v));
@@ -63,6 +63,6 @@ static bool	set_primitive(t_object *object, t_input_paraboloid const *input)
 	frame.basis = basis_from_dir(object->paraboloid.dir);
 	frame.origin = input->center;
 	frame.scale = vec3(radius, radius, input->height);
-	frame.z_range = (t_range){.max = 1.0f, .min = 0.0f};
+	frame.z_range = (t_range){.min = 0.0f, .max = 1.0f};
 	return (build_primitive(&frame, &(object->primitive)));
 }

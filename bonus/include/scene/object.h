@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/06 21:34:01 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/09 02:10:58 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ enum e_uv_type
 
 typedef struct s_range
 {
-	float	max;
 	float	min;
+	float	max;
 }	t_range;
 
 typedef struct s_uv
@@ -120,6 +120,12 @@ typedef struct s_primitive
 	t_mat4					to_local;
 	t_range					z_range;
 }	t_primitive;
+
+typedef struct s_aabb
+{
+	
+}	t_aabb;
+
 
 enum e_object_type
 {

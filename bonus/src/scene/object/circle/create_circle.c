@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_circle.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 05:59:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/07 01:22:26 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/09 02:11:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ static bool	set_primitive(t_object *object, t_input_circle const *input)
 	frame.basis = basis_from_dir(object->circle.normal);
 	frame.origin = input->center;
 	frame.scale = vec3(input->radius, input->radius, 1.0f);
-	frame.z_range = (t_range){.max = 0.0f, .min = 0.0f};
+	frame.z_range = (t_range){.min = 0.0f, .max = 0.0f};
 	return (build_primitive(&frame, &(object->primitive)));
 }
