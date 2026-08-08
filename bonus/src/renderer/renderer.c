@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:38:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/07 23:39:23 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/08 22:48:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #include "./renderer_private.h"
 
 static bool	multi_threads_rendering(void);
-static void	*redering(void *arg);
+static void	*rendering(void *arg);
 
 bool	renderer(void)
 {
@@ -52,7 +52,7 @@ static bool	multi_threads_rendering(void)
 	while (i < THREAD_COUNT)
 	{
 		ids[i] = (int)i;
-		if (pthread_create(&(threads[i]), NULL, redering, &(ids[i])) != 0)
+		if (pthread_create(&(threads[i]), NULL, rendering, &(ids[i])) != 0)
 		{
 			print_errno();
 			res = false;
@@ -65,7 +65,7 @@ static bool	multi_threads_rendering(void)
 	return (res);
 }
 
-static void	*redering(void *arg)
+static void	*rendering(void *arg)
 {
 	t_viewport const	*viewport;
 	int					pixel_num;
