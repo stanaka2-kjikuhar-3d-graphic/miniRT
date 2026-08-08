@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 17:25:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/08 23:50:48 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static bool	parse_setting(char const **elements, bool *used)
 		return (false);
 	}
 	used[idx] = true;
-	return (g_setting_parsers[idx].parse(elements));
+	return (g_setting_parsers[idx].parse(elements + 1));
 }
 
 static bool	validate_required_setting(bool const *used)

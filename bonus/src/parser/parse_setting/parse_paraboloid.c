@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 20:37:29 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 02:58:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/08 23:52:38 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include "ft_error.h"
 
 #include "../parser_private.h"
+
+#define REQUIRED_COUNT 5
 
 static bool	parse_paraboloid_required(\
 				char const **elements, t_input_paraboloid *input);
@@ -29,13 +31,13 @@ bool	parse_paraboloid(char const **elements)
 	t_input_paraboloid	input;
 
 	count = count_split(elements);
-	if (count < 6)
+	if (count < REQUIRED_COUNT)
 	{
 		print_line_error(ERROR_FIELDS_COUNT, HINT_PB);
 		return (false);
 	}
 	if (!parse_paraboloid_required(elements, &input) \
-		|| !parse_paraboloid_optional(elements + 6, &input))
+		|| !parse_paraboloid_optional(elements + REQUIRED_COUNT, &input))
 	{
 		return (false);
 	}
@@ -45,8 +47,7 @@ bool	parse_paraboloid(char const **elements)
 static bool	parse_paraboloid_required(\
 	char const **elements, t_input_paraboloid *input)
 {
-	t_required_field		fields[5];
-	size_t const			count = sizeof(fields) / sizeof(t_required_field);
+	t_required_field	fields[REQUIRED_COUNT];
 
 	fields[0] = build_required_field(REQUIRED_COORDINATE, &(input->center));
 	fields[1] = build_required_field(REQUIRED_DIR, &(input->dir));
@@ -54,7 +55,7 @@ static bool	parse_paraboloid_required(\
 		&(input->quadratic_coefficient));
 	fields[3] = build_required_field(REQUIRED_HEIGHT, &(input->height));
 	fields[4] = build_required_field(REQUIRED_COLOR, &(input->albedo));
-	return (parse_required_fields(elements, fields, count));
+	return (parse_required_fields(elements, fields, REQUIRED_COUNT));
 }
 
 static bool	parse_paraboloid_optional(\
