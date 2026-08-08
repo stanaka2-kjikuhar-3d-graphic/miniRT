@@ -88,6 +88,39 @@ typedef struct s_onb
 	t_vec3	w;
 }	t_onb;
 
+/*
+each shape is a unit form in local space, placed by to_world.
+
+    UNIT_SPHERE        x^2 + y^2 + z^2 = 1
+    UNIT_CYLINDER      x^2 + y^2       = 1     z in [-1, 1]
+    UNIT_CONE          x^2 + y^2 - z^2 = 0     z in [ 0, 1]
+    UNIT_HYPERBOLOID   x^2 + y^2 - z^2 = 1     z in [-zc, zc]
+    UNIT_PARABOLOID    x^2 + y^2 - z   = 0     z in [ 0, 1]
+    UNIT_PLANE         z = 0
+    UNIT_DISC          z = 0, x^2 + y^2 <= 1
+
+  UNIT_HYPERBOLOID keeps zc per object: the unit form fixes both scales,
+  so the z bound cannot be normalized to 1 as well.
+*/
+enum e_primitive_type
+{
+	UNIT_SPHERE,
+	UNIT_CYLINDER,
+	UNIT_CONE,
+	UNIT_HYPERBOLOID,
+	UNIT_PARABOLOID,
+	UNIT_PLANE,
+	UNIT_DISC
+};
+
+typedef struct s_primitive
+{
+	enum e_primitive_type	type;
+	t_mat4					to_world;
+	t_mat4					to_local;
+	t_range					z_range;
+}	t_primitive;
+
 enum e_object_type
 {
 	OBJ_SPHERE,
@@ -177,6 +210,7 @@ typedef struct s_object
 {
 	t_material			material;
 	t_uv				uv;
+	t_primitive			primitive;
 	enum e_object_type	type;
 	union
 	{

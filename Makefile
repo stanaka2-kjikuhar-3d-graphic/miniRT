@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/05 22:42:23 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/08/07 01:23:35 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,6 +126,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 							plane \
 							sphere \
 							quadric \
+							primitive \
 							internal \
 						) \
 						viewport \
@@ -331,6 +332,7 @@ SRCS	+=	quadric_eval.c \
 			build_quadric.c
 # scene/object/internal
 SRCS	+=	calc_onb.c \
+			basis_from_dir.c \
 			adjust_uv_range.c \
 			set_material.c \
 			set_uv_checker.c
@@ -387,6 +389,10 @@ SRCS	+=	ivec2.c
 
 # utils/dynamic_array
 SRCS	+=	grow_dynamic_array.c
+# scene/object/primitive
+SRCS	+=	build_primitive.c \
+			unit_quadric.c
+
 # utils/matrix
 SRCS	+=	mat4_identity.c \
 			mat4_mul.c \
