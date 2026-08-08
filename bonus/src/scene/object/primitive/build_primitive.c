@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 01:12:33 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/07 01:29:40 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/07 22:27:29 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ bool	build_primitive(t_primitive_frame const *frame, t_primitive *out)
 	out->type = frame->type;
 	out->to_world = mat4_local_to_world(\
 			&(frame->basis), frame->origin, frame->scale);
-	out->to_local = mat4_inverse(&(out->to_world));
+	out->to_local = mat4_world_to_local(\
+			&(frame->basis), frame->origin, frame->scale);
 	out->z_range = frame->z_range;
 	return (true);
 }

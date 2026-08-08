@@ -6,7 +6,7 @@
 #    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/07 01:23:35 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/08/07 22:28:19 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -391,7 +391,9 @@ SRCS	+=	ivec2.c
 SRCS	+=	grow_dynamic_array.c
 # scene/object/primitive
 SRCS	+=	build_primitive.c \
-			unit_quadric.c
+			unit_quadric.c \
+			calc_planar_intersection.c \
+			calc_primitive_intersection.c
 
 # utils/matrix
 SRCS	+=	mat4_identity.c \
@@ -406,6 +408,7 @@ SRCS	+=	mat4_identity.c \
 			mat4_rotate.c \
 			mat4_basis.c \
 			mat4_local_to_world.c \
+			mat4_world_to_local.c \
 			mat4_is_valid_scale.c \
 			mat4_inverse.c
 
