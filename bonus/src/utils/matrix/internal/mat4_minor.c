@@ -6,14 +6,14 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 23:11:09 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/22 23:11:10 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/06 22:20:18 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
 
 /* 3x3 determinant of m with `row` and `col` removed. */
-float	mat4_minor(t_mat4 m, int row, int col)
+float	mat4_minor(t_mat4 const *m, int row, int col)
 {
 	float	sub[3][3];
 	int		i;
@@ -25,7 +25,7 @@ float	mat4_minor(t_mat4 m, int row, int col)
 		j = 0;
 		while (j < 3)
 		{
-			sub[i][j] = m.m[i + (i >= row)][j + (j >= col)];
+			sub[i][j] = m->m[i + (i >= row)][j + (j >= col)];
 			++j;
 		}
 		++i;

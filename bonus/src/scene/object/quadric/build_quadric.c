@@ -21,9 +21,11 @@ static t_mat3	frame_basis(t_onb const *onb);
 void	build_quadric(t_quadric_frame const *frame, t_quadric *out)
 {
 	t_mat4	local_to_world;
+	t_mat3	basis;
 
-	local_to_world = mat4_basis(frame_basis(&frame->onb), frame->center);
-	out->q = quadric_to_world(frame->local_q, local_to_world);
+	basis = frame_basis(&frame->onb);
+	local_to_world = mat4_basis(&basis, frame->center);
+	out->q = quadric_to_world(&(frame->local_q), &local_to_world);
 	out->finite = true;
 	out->axis = frame->onb.w;
 	out->center = frame->center;

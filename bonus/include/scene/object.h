@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 02:43:25 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/06 21:34:01 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,39 @@ typedef struct s_onb
 	t_vec3	w;
 }	t_onb;
 
+/*
+each shape is a unit form in local space, placed by to_world.
+
+    UNIT_SPHERE        x^2 + y^2 + z^2 = 1
+    UNIT_CYLINDER      x^2 + y^2       = 1     z in [-1, 1]
+    UNIT_CONE          x^2 + y^2 - z^2 = 0     z in [ 0, 1]
+    UNIT_HYPERBOLOID   x^2 + y^2 - z^2 = 1     z in [-zc, zc]
+    UNIT_PARABOLOID    x^2 + y^2 - z   = 0     z in [ 0, 1]
+    UNIT_PLANE         z = 0
+    UNIT_DISC          z = 0, x^2 + y^2 <= 1
+
+  UNIT_HYPERBOLOID keeps zc per object: the unit form fixes both scales,
+  so the z bound cannot be normalized to 1 as well.
+*/
+enum e_primitive_type
+{
+	UNIT_SPHERE,
+	UNIT_CYLINDER,
+	UNIT_CONE,
+	UNIT_HYPERBOLOID,
+	UNIT_PARABOLOID,
+	UNIT_PLANE,
+	UNIT_DISC
+};
+
+typedef struct s_primitive
+{
+	enum e_primitive_type	type;
+	t_mat4					to_world;
+	t_mat4					to_local;
+	t_range					z_range;
+}	t_primitive;
+
 enum e_object_type
 {
 	OBJ_SPHERE,
@@ -99,6 +132,16 @@ enum e_object_type
 	OBJ_PARABOLOID,
 	OBJ_QUADRIC
 };
+
+typedef struct s_quadric
+{
+	t_mat4	q;
+	t_vec3	axis;
+	t_vec3	center;
+	float	h_min;
+	float	h_max;
+	bool	finite;
+}	t_quadric;
 
 typedef struct s_sphere
 {
@@ -133,47 +176,41 @@ typedef struct s_circle
 
 typedef struct s_cone
 {
-	t_vec3	center;
-	t_vec3	dir;
-	float	radius;
-	float	height;
-	float	generatrix;
-	t_onb	onb;
+	t_vec3		center;
+	t_vec3		dir;
+	float		radius;
+	float		height;
+	float		generatrix;
+	t_onb		onb;
+	t_quadric	quadric;
 }	t_cone;
 
 typedef struct s_hyperboloid
 {
-	t_vec3	center;
-	t_vec3	dir;
-	float	center_radius;
-	float	cap_radius;
-	float	half_height;
-	t_onb	onb;
+	t_vec3		center;
+	t_vec3		dir;
+	float		center_radius;
+	float		cap_radius;
+	float		half_height;
+	t_onb		onb;
+	t_quadric	quadric;
 }	t_hyperboloid;
 
 typedef struct s_paraboloid
 {
-	t_vec3	center;
-	t_vec3	dir;
-	float	quadratic_coefficient;
-	float	height;
-	t_onb	onb;
+	t_vec3		center;
+	t_vec3		dir;
+	float		quadratic_coefficient;
+	float		height;
+	t_onb		onb;
+	t_quadric	quadric;
 }	t_paraboloid;
-
-typedef struct s_quadric
-{
-	t_mat4	q;
-	t_vec3	axis;
-	t_vec3	center;
-	float	h_min;
-	float	h_max;
-	bool	finite;
-}	t_quadric;
 
 typedef struct s_object
 {
 	t_material			material;
 	t_uv				uv;
+	t_primitive			primitive;
 	enum e_object_type	type;
 	union
 	{
@@ -324,9 +361,10 @@ t_vec3	calc_bump_mapping(\
 t_vec3	calc_normal_mapping(\
 			t_object const *object, t_vec2 uv, t_onb const *tbn);
 
-float	quadric_eval(t_mat4 q, t_vec4 p);
+float	quadric_eval(t_mat4 const *q, t_vec4 p);
 int		solve_quadratic(float a, float b, float c, float roots[2]);
-t_mat4	quadric_to_world(t_mat4 q_local, t_mat4 local_to_world);
+t_mat4	quadric_to_world(\
+			t_mat4 const *q_local, t_mat4 const *local_to_world);
 bool	quadric_in_bounds(t_quadric const *q, t_vec3 point);
 float	calc_quadric_intersection(t_quadric const *q, t_ray const *ray);
 t_vec3	calc_quadric_normal(\

@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/08 01:19:16 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/08/08 21:45:23 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -127,6 +127,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 							plane \
 							sphere \
 							quadric \
+							primitive \
 							internal \
 						) \
 						viewport \
@@ -333,6 +334,7 @@ SRCS	+=	quadric_eval.c \
 			build_quadric.c
 # scene/object/internal
 SRCS	+=	calc_onb.c \
+			basis_from_dir.c \
 			adjust_uv_range.c \
 			set_material.c \
 			set_uv_checker.c
@@ -389,6 +391,12 @@ SRCS	+=	ivec2.c
 
 # utils/dynamic_array
 SRCS	+=	grow_dynamic_array.c
+# scene/object/primitive
+SRCS	+=	build_primitive.c \
+			unit_quadric.c \
+			calc_planar_intersection.c \
+			calc_primitive_intersection.c
+
 # utils/matrix
 SRCS	+=	mat4_identity.c \
 			mat4_mul.c \
@@ -401,6 +409,9 @@ SRCS	+=	mat4_identity.c \
 			mat4_scale.c \
 			mat4_rotate.c \
 			mat4_basis.c \
+			mat4_local_to_world.c \
+			mat4_world_to_local.c \
+			mat4_is_valid_scale.c \
 			mat4_inverse.c
 
 # utils/matrix/internal

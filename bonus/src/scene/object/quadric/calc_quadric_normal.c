@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:33:18 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/31 17:38:11 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/06 22:21:08 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_vec3	calc_quadric_normal(\
 	t_vec4	gradient;
 	t_vec3	normal;
 
-	gradient = mat4_mul_vec4(q->q, vec4_from_point(point));
+	gradient = mat4_mul_vec4(&(q->q), vec4_from_point(point));
 	normal = vec3_normalize(vec3(gradient.x, gradient.y, gradient.z));
 	if (vec3_dot(normal, ray->dir) > 0.0f)
 		normal = vec3_scale(-1.0f, normal);

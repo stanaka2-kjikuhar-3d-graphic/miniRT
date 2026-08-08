@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_private.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 03:03:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/07 22:25:35 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ typedef struct s_quadric_coeffs
 	float	b;
 	float	c;
 }	t_quadric_coeffs;
+
+typedef struct s_primitive_frame
+{
+	enum e_primitive_type	type;
+	t_mat3					basis;
+	t_vec3					origin;
+	t_vec3					scale;
+	t_range					z_range;
+}	t_primitive_frame;
 
 typedef struct s_quadric_frame
 {
@@ -83,6 +92,13 @@ t_vec3	calc_hyperboloid_normal(\
 t_vec3	calc_paraboloid_normal(\
 			t_paraboloid const *paraboloid, t_ray const *ray, t_vec3 point);
 void	calc_onb(t_vec3 n, t_vec3 *tangent, t_vec3 *bitangent);
+t_mat3	basis_from_dir(t_vec3 dir);
+bool	build_primitive(t_primitive_frame const *frame, t_primitive *out);
+t_mat4	unit_quadric(enum e_primitive_type type);
+float	calc_primitive_intersection(\
+			t_primitive const *prim, t_ray const *ray);
+float	calc_planar_intersection(\
+			t_primitive const *prim, t_ray const *local);
 t_vec2	adjust_uv_range(t_vec2 uv, t_range u_range, t_range v_range);
 t_mat4	calc_cone_local_q(float k);
 void	cone_to_quadric(t_cone const *cone, t_quadric *out);

@@ -3,18 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   create_circle.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 05:59:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 02:17:15 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/07 01:22:26 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
+#include "matrix.h"
 #include "object.h"
+#include "vector.h"
 
 #include "../object_private.h"
+
+static bool	set_primitive(t_object *object, t_input_circle const *input);
 
 bool	create_circle(t_input_circle const *input)
 {
@@ -35,5 +39,19 @@ bool	create_circle(t_input_circle const *input)
 	object.circle.onb.w = object.circle.normal;
 	calc_onb(object.circle.onb.w, \
 		&(object.circle.onb.u), &(object.circle.onb.v));
+	if (!set_primitive(&object, input))
+		return (false);
 	return (create_object(&object));
+}
+
+static bool	set_primitive(t_object *object, t_input_circle const *input)
+{
+	t_primitive_frame	frame;
+
+	frame.type = UNIT_DISC;
+	frame.basis = basis_from_dir(object->circle.normal);
+	frame.origin = input->center;
+	frame.scale = vec3(input->radius, input->radius, 1.0f);
+	frame.z_range = (t_range){.max = 0.0f, .min = 0.0f};
+	return (build_primitive(&frame, &(object->primitive)));
 }

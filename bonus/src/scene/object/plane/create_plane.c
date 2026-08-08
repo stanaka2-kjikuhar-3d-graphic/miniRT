@@ -3,18 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   create_plane.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 02:42:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/07 01:22:01 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
+#include "matrix.h"
 #include "object.h"
+#include "vector.h"
 
 #include "../object_private.h"
+
+static bool	set_primitive(t_object *object, t_input_plane const *input);
 
 bool	create_plane(t_input_plane const *input)
 {
@@ -34,5 +38,20 @@ bool	create_plane(t_input_plane const *input)
 	object.plane.onb.w = object.plane.normal;
 	calc_onb(object.plane.onb.w, \
 		&(object.plane.onb.u), &(object.plane.onb.v));
+	if (!set_primitive(&object, input))
+		return (false);
 	return (create_object(&object));
+}
+
+static bool	set_primitive(t_object *object, t_input_plane const *input)
+{
+	t_primitive_frame	frame;
+
+	frame.type = UNIT_PLANE;
+	frame.basis = basis_from_dir(object->plane.normal);
+	frame.origin = input->center;
+	frame.scale = vec3(input->option.pattern_size, \
+			input->option.pattern_size, 1.0f);
+	frame.z_range = (t_range){.max = 0.0f, .min = 0.0f};
+	return (build_primitive(&frame, &(object->primitive)));
 }

@@ -44,6 +44,7 @@
 # define ERROR_MUST_BE_EVEN "must be an even number"
 # define ERROR_TOO_SMALL "too small, half of it underflows to 0"
 # define ERROR_HB_RADIUS "must exceed center_diameter"
+# define ERROR_DEGENERATE_SCALE "shape is too small to place in the scene"
 
 /* Material option */
 # define ERROR_OPTION_FORMAT "missing '=' separator"

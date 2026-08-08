@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 00:55:13 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/01 19:40:58 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/06 21:33:45 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,5 @@
 
 t_vec2	calc_paraboloid_uv(t_paraboloid const *paraboloid, t_vec3 point)
 {
-	t_quadric	quad;
-
-	paraboloid_to_quadric(paraboloid, &quad);
-	return (calc_quadric_uv(&quad, &paraboloid->onb, point));
+	return (calc_quadric_uv(&(paraboloid->quadric), &paraboloid->onb, point));
 }
