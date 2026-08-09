@@ -93,6 +93,9 @@ t_vec3	calc_paraboloid_normal(\
 			t_paraboloid const *paraboloid, t_ray const *ray, t_vec3 point);
 void	calc_onb(t_vec3 n, t_vec3 *tangent, t_vec3 *bitangent);
 t_mat3	basis_from_dir(t_vec3 dir);
+t_aabb	transform_aabb(t_mat4 const *m, t_vec3 center, t_vec3 extent);
+t_aabb	calc_aabb_from_extent(t_vec3 center, t_vec3 extent);
+t_aabb	union_aabb(t_aabb a, t_aabb b);
 bool	build_primitive(t_primitive_frame const *frame, t_primitive *out);
 t_mat4	unit_quadric(enum e_primitive_type type);
 float	calc_primitive_intersection(\

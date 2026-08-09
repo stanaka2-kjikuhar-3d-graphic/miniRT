@@ -6,19 +6,22 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 05:59:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/09 02:11:30 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/09 14:00:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include <stdbool.h>
 
+#include "config.h"
 #include "matrix.h"
 #include "object.h"
 #include "vector.h"
 
 #include "../object_private.h"
 
-static bool	set_primitive(t_object *object, t_input_circle const *input);
+static bool		set_primitive(t_object *object, t_input_circle const *input);
+static t_aabb	calc_circle_aabb(t_circle const *circle);
 
 bool	create_circle(t_input_circle const *input)
 {
@@ -41,6 +44,7 @@ bool	create_circle(t_input_circle const *input)
 		&(object.circle.onb.u), &(object.circle.onb.v));
 	if (!set_primitive(&object, input))
 		return (false);
+	object.aabb = calc_circle_aabb(&(object.circle));
 	return (create_object(&object));
 }
 
@@ -54,4 +58,16 @@ static bool	set_primitive(t_object *object, t_input_circle const *input)
 	frame.scale = vec3(input->radius, input->radius, 1.0f);
 	frame.z_range = (t_range){.min = 0.0f, .max = 0.0f};
 	return (build_primitive(&frame, &(object->primitive)));
+}
+
+static t_aabb	calc_circle_aabb(t_circle const *circle)
+{
+	t_vec3	extent;
+
+	extent = vec3(\
+		circle->radius * sqrtf(1.0f - circle->normal.x * circle->normal.x), \
+		circle->radius * sqrtf(1.0f - circle->normal.y * circle->normal.y), \
+		circle->radius * sqrtf(1.0f - circle->normal.z * circle->normal.z) \
+	);
+	return (calc_aabb_from_extent(circle->center, extent));
 }

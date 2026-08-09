@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/09 02:10:58 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/09 02:25:28 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,10 @@ typedef struct s_primitive
 
 typedef struct s_aabb
 {
-	
+	t_range	x;
+	t_range	y;
+	t_range	z;
 }	t_aabb;
-
 
 enum e_object_type
 {
@@ -217,6 +218,7 @@ typedef struct s_object
 	t_material			material;
 	t_uv				uv;
 	t_primitive			primitive;
+	t_aabb				aabb;
 	enum e_object_type	type;
 	union
 	{

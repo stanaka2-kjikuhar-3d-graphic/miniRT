@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/09 02:14:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/09 15:05:59 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 
 #include "../object_private.h"
 
-static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type);
-static void	set_cylinder_uv(\
-				t_object *object, t_input_cylinder const *input);
-static bool	set_primitive(t_object *object, t_input_cylinder const *input);
+static bool		add_cap_circle(t_object const *object, enum e_uv_type uv_type);
+static void		set_cylinder_uv(\
+					t_object *object, t_input_cylinder const *input);
+static bool		set_primitive(t_object *object, t_input_cylinder const *input);
+static t_aabb	calc_cylinder_aabb(t_cylinder const *cylinder);
 
 bool	create_cylinder(t_input_cylinder const *input)
 {
@@ -41,6 +42,7 @@ bool	create_cylinder(t_input_cylinder const *input)
 		&(object.cylinder.onb.u), &(object.cylinder.onb.v));
 	if (!set_primitive(&object, input))
 		return (false);
+	object.aabb = calc_cylinder_aabb(&(object.cylinder));
 	if (!create_object(&object))
 		return (false);
 	return (add_cap_circle(&object, UV_UPPER_CAP) \
@@ -97,4 +99,25 @@ static void	set_cylinder_uv(t_object *object, t_input_cylinder const *input)
 	object->uv.u_range = (t_range){.min = 0.0f, .max = 1.0f};
 	cap_ratio = input->radius / (2.0f * (input->radius + input->half_height));
 	object->uv.v_range = (t_range){.min = cap_ratio, .max = 1.0f - cap_ratio};
+}
+
+static t_aabb	calc_cylinder_aabb(t_cylinder const *cylinder)
+{
+	t_vec3	circle_extent;
+	t_vec3	top;
+	t_vec3	bottom;
+
+	circle_extent = vec3(\
+		cylinder->radius * sqrtf(1.0f - cylinder->dir.x * cylinder->dir.x), \
+		cylinder->radius * sqrtf(1.0f - cylinder->dir.y * cylinder->dir.y), \
+		cylinder->radius * sqrtf(1.0f - cylinder->dir.z * cylinder->dir.z) \
+	);
+	top = vec3_add(cylinder->center, \
+			vec3_scale(cylinder->half_height, cylinder->dir));
+	bottom = vec3_sub(cylinder->center, \
+			vec3_scale(cylinder->half_height, cylinder->dir));
+	return (union_aabb(\
+				calc_aabb_from_extent(top, circle_extent), \
+				calc_aabb_from_extent(bottom, circle_extent) \
+			));
 }

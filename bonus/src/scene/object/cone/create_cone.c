@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/09 02:12:35 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/09 14:50:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@
 
 #include "../object_private.h"
 
-static bool	add_lower_cap_circle(t_object const *object);
-static bool	set_primitive(t_object *object, t_input_cone const *input);
-static void	set_cone_uv(t_object *object, t_input_cone const *input);
+static bool		add_lower_cap_circle(t_object const *object);
+static bool		set_primitive(t_object *object, t_input_cone const *input);
+static void		set_cone_uv(t_object *object, t_input_cone const *input);
+static t_aabb	calc_cone_aabb(t_cone const *cone);
 
 bool	create_cone(t_input_cone const *input)
 {
@@ -43,6 +44,7 @@ bool	create_cone(t_input_cone const *input)
 	cone_to_quadric(&(object.cone), &(object.cone.quadric));
 	if (!set_primitive(&object, input))
 		return (false);
+	object.aabb = calc_cone_aabb(&(object.cone));
 	if (!create_object(&object))
 		return (false);
 	return (add_lower_cap_circle(&object));
@@ -96,4 +98,29 @@ static bool	set_primitive(t_object *object, t_input_cone const *input)
 	frame.scale = vec3(input->radius, input->radius, input->height);
 	frame.z_range = (t_range){.min = 0.0f, .max = 1.0f};
 	return (build_primitive(&frame, &(object->primitive)));
+}
+
+static t_aabb	calc_cone_aabb(t_cone const *cone)
+{
+	t_vec3	circle_extent;
+	t_aabb	circle_aabb;
+	t_vec3	height;
+	t_aabb	height_aabb;
+
+	circle_extent = vec3(\
+		cone->radius * sqrtf(1.0f - cone->dir.x * cone->dir.x), \
+		cone->radius * sqrtf(1.0f - cone->dir.y * cone->dir.y), \
+		cone->radius * sqrtf(1.0f - cone->dir.z * cone->dir.z) \
+	);
+	circle_aabb = calc_aabb_from_extent(cone->center, circle_extent);
+	height = vec3_scale(cone->height, cone->dir);
+	height_aabb = (t_aabb){\
+		.x = (t_range){.min = fminf(cone->center.x, cone->center.x + height.x), \
+					.max = fmaxf(cone->center.x, cone->center.x + height.x)}, \
+		.y = (t_range){.min = fminf(cone->center.y, cone->center.y + height.y), \
+					.max = fmaxf(cone->center.y, cone->center.y + height.y)}, \
+		.z = (t_range){.min = fminf(cone->center.z, cone->center.z + height.z), \
+					.max = fmaxf(cone->center.z, cone->center.z + height.z)}, \
+	};
+	return (union_aabb(circle_aabb, height_aabb));
 }

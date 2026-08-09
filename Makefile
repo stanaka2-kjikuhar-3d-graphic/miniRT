@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/08 21:45:23 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/08/09 14:48:12 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -337,7 +337,10 @@ SRCS	+=	calc_onb.c \
 			basis_from_dir.c \
 			adjust_uv_range.c \
 			set_material.c \
-			set_uv_checker.c
+			set_uv_checker.c \
+			calc_aabb_from_extent.c \
+			union_aabb.c \
+			transform_aabb.c
 
 # scene/viewport
 SRCS	+=	viewport.c
