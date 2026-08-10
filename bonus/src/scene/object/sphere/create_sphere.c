@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/09 02:17:11 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/11 00:12:23 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 #include "../object_private.h"
 
-static bool	set_primitive(t_object *object, t_input_sphere const *input);
+static bool		set_primitive(t_object *object, t_input_sphere const *input);
+static t_aabb	calc_sphere_aabb(t_sphere const *sphere);
 
 bool	create_sphere(t_input_sphere const *input)
 {
@@ -39,6 +40,7 @@ bool	create_sphere(t_input_sphere const *input)
 		.w = vec3(0.0f, 0.0f, 1.0f)};
 	if (!set_primitive(&object, input))
 		return (false);
+	object.aabb = calc_sphere_aabb(&(object.sphere));
 	return (create_object(&object));
 }
 
@@ -52,4 +54,10 @@ static bool	set_primitive(t_object *object, t_input_sphere const *input)
 	frame.scale = vec3(input->radius, input->radius, input->radius);
 	frame.z_range = (t_range){.min = -1.0f, .max = 1.0f};
 	return (build_primitive(&frame, &(object->primitive)));
+}
+
+static t_aabb	calc_sphere_aabb(t_sphere const *sphere)
+{
+	return (calc_aabb_from_extent(sphere->center, \
+				vec3(sphere->radius, sphere->radius, sphere->radius)));
 }

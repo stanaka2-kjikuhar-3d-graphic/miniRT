@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 19:05:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/09 02:16:09 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/11 00:37:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 
 #include "../object_private.h"
 
-static bool	set_primitive(\
-				t_object *object, t_input_paraboloid const *input);
+static bool		set_primitive(\
+					t_object *object, t_input_paraboloid const *input);
+static t_aabb	calc_paraboloid_aabb(t_primitive const *primitive);
 
 bool	create_paraboloid(t_input_paraboloid const *input)
 {
@@ -46,6 +47,7 @@ bool	create_paraboloid(t_input_paraboloid const *input)
 	paraboloid_to_quadric(&(object.paraboloid), &(object.paraboloid.quadric));
 	if (!set_primitive(&object, input))
 		return (false);
+	object.aabb = calc_paraboloid_aabb(&(object.primitive));
 	return (create_object(&object));
 }
 
@@ -65,4 +67,10 @@ static bool	set_primitive(t_object *object, t_input_paraboloid const *input)
 	frame.scale = vec3(radius, radius, input->height);
 	frame.z_range = (t_range){.min = 0.0f, .max = 1.0f};
 	return (build_primitive(&frame, &(object->primitive)));
+}
+
+static t_aabb	calc_paraboloid_aabb(t_primitive const *primitive)
+{
+	return (transform_aabb(&(primitive->to_world), \
+				vec3(0.0f, 0.0f, 0.5f), vec3(1.0f, 1.0f, 0.5f)));
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/09 14:50:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/10 19:29:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ static t_aabb	calc_cone_aabb(t_cone const *cone)
 {
 	t_vec3	circle_extent;
 	t_aabb	circle_aabb;
-	t_vec3	height;
-	t_aabb	height_aabb;
+	t_vec3	vertex;
+	t_aabb	vertex_aabb;
 
 	circle_extent = vec3(\
 		cone->radius * sqrtf(1.0f - cone->dir.x * cone->dir.x), \
@@ -113,14 +113,7 @@ static t_aabb	calc_cone_aabb(t_cone const *cone)
 		cone->radius * sqrtf(1.0f - cone->dir.z * cone->dir.z) \
 	);
 	circle_aabb = calc_aabb_from_extent(cone->center, circle_extent);
-	height = vec3_scale(cone->height, cone->dir);
-	height_aabb = (t_aabb){\
-		.x = (t_range){.min = fminf(cone->center.x, cone->center.x + height.x), \
-					.max = fmaxf(cone->center.x, cone->center.x + height.x)}, \
-		.y = (t_range){.min = fminf(cone->center.y, cone->center.y + height.y), \
-					.max = fmaxf(cone->center.y, cone->center.y + height.y)}, \
-		.z = (t_range){.min = fminf(cone->center.z, cone->center.z + height.z), \
-					.max = fmaxf(cone->center.z, cone->center.z + height.z)}, \
-	};
-	return (union_aabb(circle_aabb, height_aabb));
+	vertex = vec3_add(cone->center, vec3_scale(cone->height, cone->dir));
+	vertex_aabb = calc_aabb_from_extent(vertex, vec3(0.0f, 0.0f, 0.0f));
+	return (union_aabb(circle_aabb, vertex_aabb));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_private.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/07 22:25:35 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/11 00:36:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_vec3	calc_paraboloid_normal(\
 			t_paraboloid const *paraboloid, t_ray const *ray, t_vec3 point);
 void	calc_onb(t_vec3 n, t_vec3 *tangent, t_vec3 *bitangent);
 t_mat3	basis_from_dir(t_vec3 dir);
-t_aabb	transform_aabb(t_mat4 const *m, t_vec3 center, t_vec3 extent);
+t_aabb	transform_aabb(t_mat4 const *to_world, t_vec3 center, t_vec3 extent);
 t_aabb	calc_aabb_from_extent(t_vec3 center, t_vec3 extent);
 t_aabb	union_aabb(t_aabb a, t_aabb b);
 bool	build_primitive(t_primitive_frame const *frame, t_primitive *out);
@@ -112,5 +112,6 @@ t_mat4	calc_hyperboloid_local_q(float a, float b, float c);
 void	hyperboloid_to_quadric(\
 			t_hyperboloid const *hyperboloid, t_quadric *out);
 void	build_quadric(t_quadric_frame const *frame, t_quadric *out);
+float	mul_extent(float a, float b);
 
 #endif

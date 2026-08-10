@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/09 02:25:28 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/10 18:37:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ typedef struct s_plane
 {
 	t_vec3	center;
 	t_vec3	normal;
+	t_vec2	half_size;
 	t_onb	onb;
 }	t_plane;
 
@@ -271,6 +272,7 @@ typedef struct s_input_plane
 		t_material_option	material;
 		float				pattern_size;
 		t_ivec2				checker_count;
+		t_vec2				half_size;
 	}					option;
 }	t_input_plane;
 

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 19:47:07 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/09 02:15:26 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/11 00:50:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@
 
 #include "../object_private.h"
 
-static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type);
-static void	set_hyperboloid_uv(\
-				t_object *object, t_input_hyperboloid const *input);
-static bool	set_primitive(\
-				t_object *object, t_input_hyperboloid const *input);
+static bool		add_cap_circle(t_object const *object, enum e_uv_type uv_type);
+static void		set_hyperboloid_uv(\
+					t_object *object, t_input_hyperboloid const *input);
+static bool		set_primitive(\
+					t_object *object, t_input_hyperboloid const *input);
+static t_aabb	calc_hyperboloid_aabb(t_primitive const *primitive);
 
 bool	create_hyperboloid(t_input_hyperboloid const *input)
 {
@@ -45,6 +46,7 @@ bool	create_hyperboloid(t_input_hyperboloid const *input)
 		&(object.hyperboloid), &(object.hyperboloid.quadric));
 	if (!set_primitive(&object, input))
 		return (false);
+	object.aabb = calc_hyperboloid_aabb(&(object.primitive));
 	if (!create_object(&object))
 		return (false);
 	return (add_cap_circle(&object, UV_UPPER_CAP) \
@@ -116,4 +118,15 @@ static bool	set_primitive(t_object *object, t_input_hyperboloid const *input)
 	frame.z_range.max = input->half_height / c;
 	frame.z_range.min = -frame.z_range.max;
 	return (build_primitive(&frame, &(object->primitive)));
+}
+
+static t_aabb	calc_hyperboloid_aabb(t_primitive const *primitive)
+{
+	float	zc;
+	float	r;
+
+	zc = primitive->z_range.max;
+	r = sqrtf(1.0f + zc * zc);
+	return (transform_aabb(&(primitive->to_world), \
+				vec3(0.0f, 0.0f, 0.0f), vec3(r, r, zc)));
 }

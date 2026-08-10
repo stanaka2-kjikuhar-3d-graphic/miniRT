@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/09 14:48:12 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/08/10 19:00:36 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -212,8 +212,7 @@ SRCS	+=	parse_vec3.c \
 			parse_coordinate.c \
 			parse_brightness.c \
 			parse_fov.c \
-			parse_radius.c \
-			parse_half_height.c \
+			parse_half_size.c \
 			parse_angle.c \
 			parse_texture.c \
 			parse_bool.c \
@@ -340,7 +339,8 @@ SRCS	+=	calc_onb.c \
 			set_uv_checker.c \
 			calc_aabb_from_extent.c \
 			union_aabb.c \
-			transform_aabb.c
+			transform_aabb.c \
+			mul_extent.c
 
 # scene/viewport
 SRCS	+=	viewport.c
