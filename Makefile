@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/10 19:00:36 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/08/11 02:36:11 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -276,7 +276,8 @@ SRCS	+=	object.c \
 			calc_object_normal.c \
 			calc_object_tbn.c \
 			calc_bump_mapping.c \
-			calc_normal_mapping.c
+			calc_normal_mapping.c \
+			calc_aabb_intersection.c
 # scene/object/sphere
 SRCS	+=	create_sphere.c \
 			calc_sphere_intersection.c \

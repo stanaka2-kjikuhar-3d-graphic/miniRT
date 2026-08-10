@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/10 18:37:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/11 02:35:39 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -361,6 +361,8 @@ bool	create_paraboloid(t_input_paraboloid const *input);
 bool	get_next_object(t_object const **object);
 void	cleanup_objects(void);
 float	calc_object_intersection(t_object const *object, t_ray const *ray);
+float	calc_aabb_intersection(\
+			t_vec3 ray_origin, t_vec3 ray_inv_dir, t_aabb const *aabb);
 t_vec2	calc_object_uv(t_object const *object, t_vec3 point);
 t_color	calc_object_color(t_object const *object, t_vec2 uv);
 t_vec3	calc_object_normal(\
