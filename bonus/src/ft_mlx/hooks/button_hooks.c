@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:32:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 23:56:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/09 00:28:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ int	button_press_hook(unsigned int button, int x, int y)
 	}
 	else if (button == Button4)
 	{
-		if (change_viewport_fov(1.0))
+		if (change_viewport_fov(-1.0))
 			set_render_flag(true);
 	}
 	else if (button == Button5)
 	{
-		if (change_viewport_fov(-1.0))
+		if (change_viewport_fov(1.0))
 			set_render_flag(true);
 	}
 	return (0);

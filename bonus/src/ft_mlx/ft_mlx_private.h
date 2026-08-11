@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 17:32:52 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/15 12:58:00 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/09 00:38:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@
 
 # include "vector.h"
 # include "ft_mlx.h"
+
+enum e_camera_action
+{
+	CAMERA_ACTION_MOVE_FORWARD,
+	CAMERA_ACTION_MOVE_BACK,
+	CAMERA_ACTION_MOVE_RIGHT,
+	CAMERA_ACTION_MOVE_LEFT,
+	CAMERA_ACTION_MOVE_UP,
+	CAMERA_ACTION_MOVE_DOWN
+};
 
 typedef struct s_key
 {
