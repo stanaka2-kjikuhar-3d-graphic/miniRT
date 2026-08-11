@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 20:37:31 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 02:58:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/08 23:52:38 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include "ft_error.h"
 
 #include "../parser_private.h"
+
+#define REQUIRED_COUNT 6
 
 static bool	parse_hyperboloid_required(\
 				char const **elements, t_input_hyperboloid *input);
@@ -29,13 +31,13 @@ bool	parse_hyperboloid(char const **elements)
 	t_input_hyperboloid	input;
 
 	count = count_split(elements);
-	if (count < 7)
+	if (count < REQUIRED_COUNT)
 	{
 		print_line_error(ERROR_FIELDS_COUNT, HINT_HB);
 		return (false);
 	}
 	if (!parse_hyperboloid_required(elements, &input) \
-		|| !parse_hyperboloid_optional(elements + 7, &input))
+		|| !parse_hyperboloid_optional(elements + REQUIRED_COUNT, &input))
 	{
 		return (false);
 	}
@@ -45,8 +47,7 @@ bool	parse_hyperboloid(char const **elements)
 static bool	parse_hyperboloid_required(\
 	char const **elements, t_input_hyperboloid *input)
 {
-	t_required_field		fields[6];
-	size_t const			count = sizeof(fields) / sizeof(t_required_field);
+	t_required_field	fields[REQUIRED_COUNT];
 
 	fields[0] = build_required_field(REQUIRED_COORDINATE, &(input->center));
 	fields[1] = build_required_field(REQUIRED_DIR, &(input->dir));
@@ -57,7 +58,7 @@ static bool	parse_hyperboloid_required(\
 	fields[4] = build_required_field(REQUIRED_HALF_HEIGHT, \
 		&(input->half_height));
 	fields[5] = build_required_field(REQUIRED_COLOR, &(input->albedo));
-	if (!parse_required_fields(elements, fields, count))
+	if (!parse_required_fields(elements, fields, REQUIRED_COUNT))
 		return (false);
 	set_error_field("cap_diameter", elements[4]);
 	if (input->center_radius >= input->cap_radius)
