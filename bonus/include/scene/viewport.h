@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 00:24:54 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 00:25:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/07 23:19:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 typedef struct s_viewport
 {
 	t_ivec2		pixel_size;
+	int			pixel_count;
 	t_vec2		pixel_half_size;
 	float		aspect_ratio;
 	float		fov;

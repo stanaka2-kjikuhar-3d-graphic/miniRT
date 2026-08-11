@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 23:55:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 23:56:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/07 23:38:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdbool.h>
 
-void	renderer(void);
+bool	renderer(void);
 void	set_render_flag(bool status);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:15:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 00:21:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/07 23:32:56 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,32 +27,19 @@
 
 static t_ray	calc_ray(t_ivec2 pixel);
 
-void	phong(void)
+void	phong(t_ivec2 pixel)
 {
-	t_viewport const	*viewport;
-	t_ivec2				pixel;
 	t_ray				ray;
 	t_hit				hit;
 
-	viewport = get_viewport();
-	pixel.y = 0;
-	while (pixel.y < viewport->pixel_size.height)
+	ray = calc_ray(pixel);
+	hit = phong_intersection(&ray);
+	if (hit.object != NULL)
+		put_color_to_window_image(pixel, phong_lighting(&ray, &hit));
+	else
 	{
-		pixel.x = 0;
-		while (pixel.x < viewport->pixel_size.width)
-		{
-			ray = calc_ray(pixel);
-			hit = intersection(&ray);
-			if (hit.object != NULL)
-				put_color_to_window_image(pixel, phong_lighting(&ray, &hit));
-			else
-			{
-				put_color_to_window_image(pixel, \
-					(t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
-			}
-			++(pixel.x);
-		}
-		++(pixel.y);
+		put_color_to_window_image(pixel, \
+			(t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
 	}
 }
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/07 22:28:19 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/08/08 21:45:23 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,6 +109,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 						path_tracing \
 						phong \
 						$(addprefix phong/, \
+							intersection \
 							lighting \
 							shading \
 						) \
@@ -235,8 +236,9 @@ SRCS	+=	renderer.c \
 			put_color_to_window_image.c
 
 # renderer/phong
-SRCS	+=	phong.c \
-			intersection.c
+SRCS	+=	phong.c
+# renderer/phong/intersection
+SRCS	+=	phong_intersection.c
 # renderer/phong/lighting
 SRCS	+=	phong_lighting.c \
 			phong_lighting_ambient.c \
@@ -444,7 +446,7 @@ DEPFLAGS	= -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.d
 $(DEP_DIR)/%.d: ;
 
 # -------------------------- #
-#         LIBFT Rule         #
+#           LIBFT            #
 # -------------------------- #
 
 LIBFT_DIR	:= libft
@@ -460,7 +462,7 @@ override LDFLAGS	+= -L$(LIBFT_DIR)
 override LDLIBS		+= -lft
 
 # -------------------------- #
-#       LIBMLX Rule          #
+#           LIBMLX           #
 # -------------------------- #
 
 LIBMLX_DIR	:= minilibx
@@ -492,10 +494,11 @@ endif
 override LDLIBS	+= -lmlx -lXext -lX11
 
 # -------------------------- #
-#       Library Rules        #
+#          Library           #
 # -------------------------- #
 
 override LDLIBS	+= -lm
+override CFLAGS	+= -pthread
 
 # -------------------------- #
 #        Build Rules         #

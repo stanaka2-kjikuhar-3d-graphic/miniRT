@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:28:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 23:54:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/08 01:37:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#include "mlx.h"
+
 #include "config.h"
 #include "renderer.h"
-
-#ifdef DEBUG 
-# include "mlx.h"
-# include "ft_mlx.h"
-#endif
+#include "ft_mlx.h"
 
 static bool	frame_per_second(void);
 
@@ -31,7 +29,8 @@ int	loop_hook(void *param)
 	(void)param;
 	if (frame_per_second())
 	{
-		renderer();
+		if (!renderer())
+			mlx_loop_end(get_mlx_ptr());
 	}
 	return (0);
 }
