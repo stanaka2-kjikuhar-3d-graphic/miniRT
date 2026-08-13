@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 19:47:07 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/13 16:55:12 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/14 00:27:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ bool	create_hyperboloid(t_input_hyperboloid const *input)
 	if (!set_primitive(&object, input))
 		return (false);
 	object.aabb = calc_hyperboloid_aabb(&(object.hyperboloid));
+	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
 	if (!create_object(&object))
 		return (false);
 	return (add_cap_circle(&object, UV_UPPER_CAP) \

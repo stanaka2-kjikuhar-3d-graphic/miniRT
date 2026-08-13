@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/11 02:36:11 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/08/14 00:28:21 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -341,7 +341,8 @@ SRCS	+=	calc_onb.c \
 			calc_aabb_from_extent.c \
 			union_aabb.c \
 			transform_aabb.c \
-			mul_extent.c
+			mul_extent.c \
+			calc_aabb_centroid.c
 
 # scene/viewport
 SRCS	+=	viewport.c

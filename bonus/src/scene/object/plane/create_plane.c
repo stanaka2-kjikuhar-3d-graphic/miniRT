@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/10 20:02:45 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/14 00:27:31 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ bool	create_plane(t_input_plane const *input)
 	if (!set_primitive(&object, input))
 		return (false);
 	object.aabb = calc_plane_aabb(&(object.plane));
+	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
 	return (create_object(&object));
 }
 

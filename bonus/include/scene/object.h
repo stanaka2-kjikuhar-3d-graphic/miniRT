@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/11 02:35:39 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/13 23:58:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,7 @@ typedef struct s_object
 	t_uv				uv;
 	t_primitive			primitive;
 	t_aabb				aabb;
+	t_vec3				aabb_centroid;
 	enum e_object_type	type;
 	union
 	{

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/11 00:36:49 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/14 00:25:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,6 @@ void	hyperboloid_to_quadric(\
 			t_hyperboloid const *hyperboloid, t_quadric *out);
 void	build_quadric(t_quadric_frame const *frame, t_quadric *out);
 float	mul_extent(float a, float b);
+t_vec3	calc_aabb_centroid(t_aabb const *aabb);
 
 #endif

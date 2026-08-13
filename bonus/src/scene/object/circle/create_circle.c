@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 05:59:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/10 19:29:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/14 00:26:37 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ bool	create_circle(t_input_circle const *input)
 	if (!set_primitive(&object, input))
 		return (false);
 	object.aabb = calc_circle_aabb(&(object.circle));
+	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
 	return (create_object(&object));
 }
 
