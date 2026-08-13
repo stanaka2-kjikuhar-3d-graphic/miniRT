@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 05:59:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/14 00:26:37 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/14 01:26:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ bool	create_circle(t_input_circle const *input)
 	object.uv.u_range = input->option.u_range;
 	object.uv.v_range = input->option.v_range;
 	object.circle.onb.w = object.circle.normal;
-	calc_onb(object.circle.onb.w, \
-		&(object.circle.onb.u), &(object.circle.onb.v));
+	set_onb(object.circle.normal, &(object.circle.onb));
 	if (!set_primitive(&object, input))
 		return (false);
 	object.aabb = calc_circle_aabb(&(object.circle));
 	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
+	object.has_bounded_aabb = has_bounded_aabb(&(object.aabb));
 	return (create_object(&object));
 }
 

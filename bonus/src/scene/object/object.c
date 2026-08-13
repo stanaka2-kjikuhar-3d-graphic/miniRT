@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 21:05:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 01:01:56 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/14 01:30:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ bool	get_next_object(t_object const **object)
 	else
 		++(*object);
 	return (true);
+}
+
+t_object const	*get_object(size_t i)
+{
+	return (&g_objects[i]);
+}
+
+size_t	get_object_count(void)
+{
+	return (g_count);
 }
 
 bool	create_object(t_object const *object)

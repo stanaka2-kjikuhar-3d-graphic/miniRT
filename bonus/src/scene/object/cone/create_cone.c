@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/14 00:26:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/14 01:18:37 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,13 @@ bool	create_cone(t_input_cone const *input)
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
 	set_cone_uv(&object, input);
-	object.cone.onb.w = object.cone.dir;
-	calc_onb(object.cone.onb.w, \
-		&(object.cone.onb.u), &(object.cone.onb.v));
+	set_onb(object.cone.dir, &(object.cone.onb));
 	cone_to_quadric(&(object.cone), &(object.cone.quadric));
 	if (!set_primitive(&object, input))
 		return (false);
 	object.aabb = calc_cone_aabb(&(object.cone));
 	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
+	object.has_bounded_aabb = has_bounded_aabb(&(object.aabb));
 	if (!create_object(&object))
 		return (false);
 	return (add_lower_cap_circle(&object));

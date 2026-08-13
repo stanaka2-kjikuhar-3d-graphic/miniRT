@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/14 00:27:00 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/14 01:18:45 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,12 @@ bool	create_cylinder(t_input_cylinder const *input)
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
 	set_cylinder_uv(&object, input);
-	object.cylinder.onb.w = object.cylinder.dir;
-	calc_onb(object.cylinder.onb.w, \
-		&(object.cylinder.onb.u), &(object.cylinder.onb.v));
+	set_onb(object.cylinder.dir, &(object.cylinder.onb));
 	if (!set_primitive(&object, input))
 		return (false);
 	object.aabb = calc_cylinder_aabb(&(object.cylinder));
 	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
+	object.has_bounded_aabb = has_bounded_aabb(&(object.aabb));
 	if (!create_object(&object))
 		return (false);
 	return (add_cap_circle(&object, UV_UPPER_CAP) \

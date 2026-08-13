@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/14 00:26:26 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/14 01:19:12 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ bool	create_sphere(t_input_sphere const *input)
 		return (false);
 	object.aabb = calc_sphere_aabb(&(object.sphere));
 	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
+	object.has_bounded_aabb = has_bounded_aabb(&(object.aabb));
 	return (create_object(&object));
 }
 

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/14 00:27:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/14 01:19:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,12 @@ bool	create_plane(t_input_plane const *input)
 	object.uv.u_range = (t_range){.min = 0.0f, .max = 1.0f};
 	object.uv.v_range = (t_range){.min = 0.0f, .max = 1.0f};
 	object.plane.half_size = input->option.half_size;
-	object.plane.onb.w = object.plane.normal;
-	calc_onb(object.plane.onb.w, \
-		&(object.plane.onb.u), &(object.plane.onb.v));
+	set_onb(object.plane.normal, &(object.plane.onb));
 	if (!set_primitive(&object, input))
 		return (false);
 	object.aabb = calc_plane_aabb(&(object.plane));
 	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
+	object.has_bounded_aabb = has_bounded_aabb(&(object.aabb));
 	return (create_object(&object));
 }
 

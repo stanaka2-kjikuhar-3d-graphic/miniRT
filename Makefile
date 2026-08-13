@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/14 00:28:21 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/08/14 01:29:57 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -333,7 +333,7 @@ SRCS	+=	quadric_eval.c \
 			calc_quadric_uv.c \
 			build_quadric.c
 # scene/object/internal
-SRCS	+=	calc_onb.c \
+SRCS	+=	set_onb.c \
 			basis_from_dir.c \
 			adjust_uv_range.c \
 			set_material.c \
@@ -342,7 +342,8 @@ SRCS	+=	calc_onb.c \
 			union_aabb.c \
 			transform_aabb.c \
 			mul_extent.c \
-			calc_aabb_centroid.c
+			calc_aabb_centroid.c \
+			has_bounded_aabb.c
 
 # scene/viewport
 SRCS	+=	viewport.c

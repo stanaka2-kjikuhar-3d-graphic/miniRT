@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/13 23:58:53 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/14 01:13:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,7 @@ typedef struct s_object
 	t_primitive			primitive;
 	t_aabb				aabb;
 	t_vec3				aabb_centroid;
+	bool				has_bounded_aabb;
 	enum e_object_type	type;
 	union
 	{
@@ -352,37 +353,40 @@ typedef struct s_input_paraboloid
 	}					option;
 }	t_input_paraboloid;
 
-bool	create_sphere(t_input_sphere const *input);
-bool	create_plane(t_input_plane const *input);
-bool	create_cylinder(t_input_cylinder const *input);
-bool	create_circle(t_input_circle const *input);
-bool	create_cone(t_input_cone const *input);
-bool	create_hyperboloid(t_input_hyperboloid const *input);
-bool	create_paraboloid(t_input_paraboloid const *input);
-bool	get_next_object(t_object const **object);
-void	cleanup_objects(void);
-float	calc_object_intersection(t_object const *object, t_ray const *ray);
-float	calc_aabb_intersection(\
-			t_vec3 ray_origin, t_vec3 ray_inv_dir, t_aabb const *aabb);
-t_vec2	calc_object_uv(t_object const *object, t_vec3 point);
-t_color	calc_object_color(t_object const *object, t_vec2 uv);
-t_vec3	calc_object_normal(\
-			t_object const *object, t_ray const *ray, t_vec3 point);
-t_onb	calc_object_tbn(t_object const *object, t_vec3 point, t_vec3 normal);
-t_vec3	calc_bump_mapping(\
-			t_object const *object, t_vec2 uv, t_onb const *tbn);
-t_vec3	calc_normal_mapping(\
-			t_object const *object, t_vec2 uv, t_onb const *tbn);
-
-float	quadric_eval(t_mat4 const *q, t_vec4 p);
-int		solve_quadratic(float a, float b, float c, float roots[2]);
-t_mat4	quadric_to_world(\
-			t_mat4 const *q_local, t_mat4 const *local_to_world);
-bool	quadric_in_bounds(t_quadric const *q, t_vec3 point);
-float	calc_quadric_intersection(t_quadric const *q, t_ray const *ray);
-t_vec3	calc_quadric_normal(\
-			t_quadric const *q, t_ray const *ray, t_vec3 point);
-t_vec2	calc_quadric_uv(\
-			t_quadric const *q, t_onb const *onb, t_vec3 point);
+bool			create_sphere(t_input_sphere const *input);
+bool			create_plane(t_input_plane const *input);
+bool			create_cylinder(t_input_cylinder const *input);
+bool			create_circle(t_input_circle const *input);
+bool			create_cone(t_input_cone const *input);
+bool			create_hyperboloid(t_input_hyperboloid const *input);
+bool			create_paraboloid(t_input_paraboloid const *input);
+bool			get_next_object(t_object const **object);
+t_object const	*get_object(size_t i);
+size_t			get_object_count(void);
+void			cleanup_objects(void);
+float			calc_object_intersection(\
+					t_object const *object, t_ray const *ray);
+float			calc_aabb_intersection(\
+					t_vec3 ray_origin, t_vec3 ray_inv_dir, t_aabb const *aabb);
+t_vec2			calc_object_uv(t_object const *object, t_vec3 point);
+t_color			calc_object_color(t_object const *object, t_vec2 uv);
+t_vec3			calc_object_normal(\
+					t_object const *object, t_ray const *ray, t_vec3 point);
+t_onb			calc_object_tbn(\
+					t_object const *object, t_vec3 point, t_vec3 normal);
+t_vec3			calc_bump_mapping(\
+					t_object const *object, t_vec2 uv, t_onb const *tbn);
+t_vec3			calc_normal_mapping(\
+					t_object const *object, t_vec2 uv, t_onb const *tbn);
+float			quadric_eval(t_mat4 const *q, t_vec4 p);
+int				solve_quadratic(float a, float b, float c, float roots[2]);
+t_mat4			quadric_to_world(\
+					t_mat4 const *q_local, t_mat4 const *local_to_world);
+bool			quadric_in_bounds(t_quadric const *q, t_vec3 point);
+float			calc_quadric_intersection(t_quadric const *q, t_ray const *ray);
+t_vec3			calc_quadric_normal(\
+					t_quadric const *q, t_ray const *ray, t_vec3 point);
+t_vec2			calc_quadric_uv(\
+					t_quadric const *q, t_onb const *onb, t_vec3 point);
 
 #endif

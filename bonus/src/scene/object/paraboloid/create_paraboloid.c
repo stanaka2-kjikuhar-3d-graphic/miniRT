@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 19:05:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/14 00:27:23 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/14 01:22:24 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,13 @@ bool	create_paraboloid(t_input_paraboloid const *input)
 	object.uv.u_per_v = (float)(2.0f * M_PI * top_radius) / input->height;
 	object.uv.u_range = (t_range){.min = 0.0f, .max = 1.0f};
 	object.uv.v_range = (t_range){.min = 0.0f, .max = 1.0f};
-	object.paraboloid.onb.w = object.paraboloid.dir;
-	calc_onb(object.paraboloid.onb.w, \
-		&(object.paraboloid.onb.u), &(object.paraboloid.onb.v));
+	set_onb(object.paraboloid.dir, &(object.paraboloid.onb));
 	paraboloid_to_quadric(&(object.paraboloid), &(object.paraboloid.quadric));
 	if (!set_primitive(&object, input))
 		return (false);
 	object.aabb = calc_paraboloid_aabb(&(object.primitive));
 	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
+	object.has_bounded_aabb = has_bounded_aabb(&(object.aabb));
 	return (create_object(&object));
 }
 
