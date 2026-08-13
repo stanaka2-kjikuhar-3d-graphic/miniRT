@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 19:47:07 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/11 00:50:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/13 16:55:12 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		set_hyperboloid_uv(\
 					t_object *object, t_input_hyperboloid const *input);
 static bool		set_primitive(\
 					t_object *object, t_input_hyperboloid const *input);
-static t_aabb	calc_hyperboloid_aabb(t_primitive const *primitive);
+static t_aabb	calc_hyperboloid_aabb(t_hyperboloid const *hyperboloid);
 
 bool	create_hyperboloid(t_input_hyperboloid const *input)
 {
@@ -46,7 +46,7 @@ bool	create_hyperboloid(t_input_hyperboloid const *input)
 		&(object.hyperboloid), &(object.hyperboloid.quadric));
 	if (!set_primitive(&object, input))
 		return (false);
-	object.aabb = calc_hyperboloid_aabb(&(object.primitive));
+	object.aabb = calc_hyperboloid_aabb(&(object.hyperboloid));
 	if (!create_object(&object))
 		return (false);
 	return (add_cap_circle(&object, UV_UPPER_CAP) \
@@ -120,13 +120,26 @@ static bool	set_primitive(t_object *object, t_input_hyperboloid const *input)
 	return (build_primitive(&frame, &(object->primitive)));
 }
 
-static t_aabb	calc_hyperboloid_aabb(t_primitive const *primitive)
+static t_aabb	calc_hyperboloid_aabb(t_hyperboloid const *hyperboloid)
 {
-	float	zc;
-	float	r;
+	t_vec3	circle_extent;
+	t_vec3	top;
+	t_vec3	bottom;
 
-	zc = primitive->z_range.max;
-	r = sqrtf(1.0f + zc * zc);
-	return (transform_aabb(&(primitive->to_world), \
-				vec3(0.0f, 0.0f, 0.0f), vec3(r, r, zc)));
+	circle_extent = vec3(\
+		hyperboloid->cap_radius \
+			* sqrtf(1.0f - hyperboloid->dir.x * hyperboloid->dir.x), \
+		hyperboloid->cap_radius \
+			* sqrtf(1.0f - hyperboloid->dir.y * hyperboloid->dir.y), \
+		hyperboloid->cap_radius \
+			* sqrtf(1.0f - hyperboloid->dir.z * hyperboloid->dir.z) \
+	);
+	top = vec3_add(hyperboloid->center, \
+			vec3_scale(hyperboloid->half_height, hyperboloid->dir));
+	bottom = vec3_sub(hyperboloid->center, \
+			vec3_scale(hyperboloid->half_height, hyperboloid->dir));
+	return (union_aabb(\
+				calc_aabb_from_extent(top, circle_extent), \
+				calc_aabb_from_extent(bottom, circle_extent) \
+			));
 }
