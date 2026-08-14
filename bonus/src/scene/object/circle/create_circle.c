@@ -13,9 +13,11 @@
 #include <math.h>
 #include <stdbool.h>
 
+#include "aabb.h"
 #include "config.h"
 #include "matrix.h"
 #include "object.h"
+#include "range.h"
 #include "vector.h"
 
 #include "../object_private.h"

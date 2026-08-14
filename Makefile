@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/14 01:29:57 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/08/14 13:08:14 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,6 +86,7 @@ override CFLAGS	+= -Wconversion -Wno-sign-conversion -Wshadow
 INCLUDE_DIRS		:=	bonus/include \
 						$(addprefix bonus/include/, \
 							scene \
+							types \
 							utils \
 						)
 
@@ -133,6 +134,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 						viewport \
 					) \
 					$(addprefix utils/, \
+						aabb \
 						color \
 						ft_error \
 						matrix \
@@ -337,16 +339,19 @@ SRCS	+=	set_onb.c \
 			basis_from_dir.c \
 			adjust_uv_range.c \
 			set_material.c \
-			set_uv_checker.c \
+			set_uv_checker.c
+
+# scene/viewport
+SRCS	+=	viewport.c
+
+# utils/aabb
+SRCS	+=	initial_aabb.c \
 			calc_aabb_from_extent.c \
 			union_aabb.c \
 			transform_aabb.c \
 			mul_extent.c \
 			calc_aabb_centroid.c \
 			has_bounded_aabb.c
-
-# scene/viewport
-SRCS	+=	viewport.c
 
 # utils/color
 SRCS	+=	add_color.c \

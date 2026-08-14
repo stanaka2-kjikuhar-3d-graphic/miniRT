@@ -16,6 +16,8 @@
 #include "vector.h"
 #include "matrix.h"
 #include "object.h"
+#include "range.h"
+#include "aabb.h"
 
 #include "../object_private.h"
 

@@ -13,7 +13,9 @@
 #include <math.h>
 #include <stdbool.h>
 
+#include "aabb.h"
 #include "object.h"
+#include "range.h"
 #include "ray.h"
 #include "vector.h"
 

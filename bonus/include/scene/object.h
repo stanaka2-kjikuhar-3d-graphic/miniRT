@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/14 01:13:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/14 12:43:07 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include "ray.h"
 # include "ft_mlx.h"
 # include "matrix.h"
+# include "range.h"
+# include "aabb.h"
 
 enum e_pattern_type
 {
@@ -63,12 +65,6 @@ enum e_uv_type
 	UV_UPPER_CAP,
 	UV_LOWER_CAP,
 };
-
-typedef struct s_range
-{
-	float	min;
-	float	max;
-}	t_range;
 
 typedef struct s_uv
 {
@@ -120,13 +116,6 @@ typedef struct s_primitive
 	t_mat4					to_local;
 	t_range					z_range;
 }	t_primitive;
-
-typedef struct s_aabb
-{
-	t_range	x;
-	t_range	y;
-	t_range	z;
-}	t_aabb;
 
 enum e_object_type
 {

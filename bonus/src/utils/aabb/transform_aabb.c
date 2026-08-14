@@ -6,17 +6,15 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 03:31:39 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/09 03:58:37 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/14 12:56:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
+#include "aabb.h"
 #include "matrix.h"
-#include "object.h"
 #include "vector.h"
-
-#include "../object_private.h"
 
 static t_vec3	transform_extent(t_mat4 const *m, t_vec3 extent);
 

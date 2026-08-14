@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   has_bounded_aabb.c                                 :+:      :+:    :+:   */
+/*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/14 01:11:43 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/14 01:15:41 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/16 20:13:46 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/14 12:41:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include <stdbool.h>
+#ifndef RAY_H
+# define RAY_H
 
-#include "object.h"
+# include "vector.h"
 
-bool	has_bounded_aabb(t_aabb const *aabb)
+typedef struct s_ray
 {
-	return (isfinite(aabb->x.min) && isfinite(aabb->x.max)
-		&& isfinite(aabb->y.min) && isfinite(aabb->y.max)
-		&& isfinite(aabb->z.min) && isfinite(aabb->z.max));
-}
+	t_vec3	dir;
+	t_vec3	origin;
+}	t_ray;
+
+#endif
