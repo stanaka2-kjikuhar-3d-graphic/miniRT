@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light_private.h                                    :+:      :+:    :+:   */
+/*   access_dynamic_array.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/21 15:35:16 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 00:36:54 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/08/16 00:18:26 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/16 00:19:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIGHT_PRIVATE_H
-# define LIGHT_PRIVATE_H
+#include "dynamic_array.h"
 
-# include <stdbool.h>
-
-# include "light.h"
-
-bool	create_light(t_light const *light);
-void	set_dist_attenuation(t_dist_attenuation *attenuation, float range);
-float	calc_dist_attenuation(\
-			t_dist_attenuation const *attenuation, float dist);
-
-#endif
+void	*access_dynamic_array(t_dynamic_array const *dynamic_array, size_t i)
+{
+	return ((char *)(dynamic_array->data) + (i * dynamic_array->type_size));
+}

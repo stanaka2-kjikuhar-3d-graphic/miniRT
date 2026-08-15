@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 23:56:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/15 04:13:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 00:39:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ typedef struct s_bvh_node
 	{
 		struct s_bvh_branch
 		{
-			t_bvh_node const	*left;
-			t_bvh_node const	*right;
+			struct s_bvh_node const	*left;
+			struct s_bvh_node const	*right;
 		}	branch;
 		struct s_bvh_leaves
 		{

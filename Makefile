@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/14 13:08:14 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/08/16 00:38:40 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -401,7 +401,10 @@ SRCS	+=	vec2.c
 SRCS	+=	ivec2.c
 
 # utils/dynamic_array
-SRCS	+=	grow_dynamic_array.c
+SRCS	+=	access_dynamic_array.c \
+			add_dynamic_array.c \
+			cleanup_dynamic_array.c \
+			grow_dynamic_array.c
 # scene/object/primitive
 SRCS	+=	build_primitive.c \
 			unit_quadric.c \
