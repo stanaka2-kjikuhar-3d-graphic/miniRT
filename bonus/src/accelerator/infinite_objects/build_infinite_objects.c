@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 19:17:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 20:10:00 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 20:13:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 
 #include "./infinite_objects_private.h"
 
-static size_t	count_infinite_object(void);
+static size_t	count_infinite_objects(void);
 static void		register_infinite_objects(void);
 
 bool	build_infinite_objects(void)
 {
 	size_t	count;
 
-	count = count_infinite_object();
+	count = count_infinite_objects();
 	if (!allocate_infinite_objects(count))
 		return (false);
 	if (count == 0)
@@ -33,7 +33,7 @@ bool	build_infinite_objects(void)
 	return (true);
 }
 
-static size_t	count_infinite_object(void)
+static size_t	count_infinite_objects(void)
 {
 	size_t			count;
 	t_object const	*object;
