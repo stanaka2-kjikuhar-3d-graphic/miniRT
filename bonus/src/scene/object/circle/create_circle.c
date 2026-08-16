@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 05:59:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/07 01:22:26 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/16 21:33:03 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,15 @@
 
 #include "../object_private.h"
 
-static bool	set_primitive(t_object *object, t_input_circle const *input);
+static bool	set_primitive(\
+				t_object *object, t_input_circle const *input, t_vec3 normal);
 
 bool	create_circle(t_input_circle const *input)
 {
 	t_object	object;
+	t_vec3		normal;
 
-	object.type = OBJ_CIRCLE;
-	object.circle.center = input->center;
-	object.circle.normal = vec3_normalize(input->normal);
-	object.circle.radius = input->radius;
+	normal = vec3_normalize(input->normal);
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
 	object.uv.type = input->option.uv_type;
@@ -36,20 +35,18 @@ bool	create_circle(t_input_circle const *input)
 	object.uv.u_per_v = input->option.u_per_v;
 	object.uv.u_range = input->option.u_range;
 	object.uv.v_range = input->option.v_range;
-	object.circle.onb.w = object.circle.normal;
-	calc_onb(object.circle.onb.w, \
-		&(object.circle.onb.u), &(object.circle.onb.v));
-	if (!set_primitive(&object, input))
+	if (!set_primitive(&object, input, normal))
 		return (false);
 	return (create_object(&object));
 }
 
-static bool	set_primitive(t_object *object, t_input_circle const *input)
+static bool	set_primitive(\
+	t_object *object, t_input_circle const *input, t_vec3 normal)
 {
 	t_primitive_frame	frame;
 
 	frame.type = UNIT_DISC;
-	frame.basis = basis_from_dir(object->circle.normal);
+	frame.basis = basis_from_dir(normal);
 	frame.origin = input->center;
 	frame.scale = vec3(input->radius, input->radius, 1.0f);
 	frame.z_range = (t_range){.max = 0.0f, .min = 0.0f};
