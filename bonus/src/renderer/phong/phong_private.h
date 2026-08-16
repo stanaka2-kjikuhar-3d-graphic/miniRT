@@ -35,6 +35,8 @@ typedef struct s_hit
 t_hit	phong_intersection(t_ray const *ray);
 void	bvh_intersection(t_hit *hit, t_ray const *ray);
 void	infinite_objects_intersection(t_hit *hit, t_ray const *ray);
+bool	bvh_shading(t_ray const *ray, float dist);
+bool	infinite_objects_shading(t_ray const *ray, float dist);
 t_color	phong_lighting(t_ray const *ray, t_hit const *hit);
 void	phong_lighting_ambient(t_color *color, \
 			t_hit const *hit, t_ambient_light const *light);

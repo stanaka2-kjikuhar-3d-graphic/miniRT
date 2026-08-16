@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 20:29:13 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 22:07:58 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 22:13:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,19 +83,19 @@ static void	traverse_bvh_branch_front_to_back(t_hit *hit, t_ray const *ray, \
 static void	traverse_bvh_leaves(\
 	t_hit *hit, t_ray const *ray, size_t start, size_t count)
 {
-	t_object const	*object;
-	float			t;
+	t_aabb_leaf const	*leaf;
+	float				t;
 
 	while (count--)
 	{
-		object = get_aabb_leaf(start)->object;
-		t = calc_aabb_intersection(&(object->aabb), ray);
+		leaf = get_aabb_leaf(start);
+		t = calc_aabb_intersection(&(leaf->aabb), ray);
 		if (t <= hit->t)
 		{
-			t = calc_object_intersection(object, ray);
+			t = calc_object_intersection(leaf->object, ray);
 			if (EPSILON < t && t < hit->t)
 			{
-				hit->object = object;
+				hit->object = leaf->object;
 				hit->t = t;
 			}
 		}
