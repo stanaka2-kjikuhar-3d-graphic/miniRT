@@ -6,16 +6,18 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 17:37:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 01:30:52 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 20:58:52 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "matrix.h"
 #include "object.h"
 #include "color.h"
 #include "ft_mlx.h"
 
-t_vec3	calc_normal_mapping(t_object const *object, t_vec2 uv, t_onb const *tbn)
+t_vec3	calc_normal_mapping(\
+	t_object const *object, t_vec2 uv, t_mat3 const *tbn)
 {
 	t_color	color;
 	t_vec3	normal;
@@ -29,9 +31,5 @@ t_vec3	calc_normal_mapping(t_object const *object, t_vec2 uv, t_onb const *tbn)
 	};
 	if (object->material.directx_normal_map)
 		normal.y = -normal.y;
-	return (vec3_normalize(vec3_add(vec3_add(\
-			vec3_scale(normal.x, tbn->u), \
-			vec3_scale(normal.y, tbn->v)), \
-			vec3_scale(normal.z, tbn->w)) \
-	));
+	return (vec3_normalize(mat3_mul_vec3(tbn, normal)));
 }

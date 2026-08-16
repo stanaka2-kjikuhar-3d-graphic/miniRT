@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/06 21:34:01 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/16 20:59:31 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -355,11 +355,11 @@ t_vec2	calc_object_uv(t_object const *object, t_vec3 point);
 t_color	calc_object_color(t_object const *object, t_vec2 uv);
 t_vec3	calc_object_normal(\
 			t_object const *object, t_ray const *ray, t_vec3 point);
-t_onb	calc_object_tbn(t_object const *object, t_vec3 point, t_vec3 normal);
+t_mat3	calc_object_tbn(t_object const *object, t_vec3 point, t_vec3 normal);
 t_vec3	calc_bump_mapping(\
-			t_object const *object, t_vec2 uv, t_onb const *tbn);
+			t_object const *object, t_vec2 uv, t_mat3 const *tbn);
 t_vec3	calc_normal_mapping(\
-			t_object const *object, t_vec2 uv, t_onb const *tbn);
+			t_object const *object, t_vec2 uv, t_mat3 const *tbn);
 
 float	quadric_eval(t_mat4 const *q, t_vec4 p);
 int		solve_quadratic(float a, float b, float c, float roots[2]);

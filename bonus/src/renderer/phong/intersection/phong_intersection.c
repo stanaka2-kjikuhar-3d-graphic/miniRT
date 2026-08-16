@@ -6,13 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 22:46:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/06 22:00:57 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 20:59:14 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
 #include "config.h"
+#include "matrix.h"
 #include "object.h"
 #include "ray.h"
 
@@ -45,7 +46,7 @@ t_hit	phong_intersection(t_ray const *ray)
 
 static void	set_hit_record(t_ray const *ray, t_hit *hit)
 {
-	t_onb	tbn;
+	t_mat3	tbn;
 
 	hit->point = vec3_add(ray->origin, vec3_scale(hit->t, ray->dir));
 	hit->uv = calc_object_uv(hit->object, hit->point);

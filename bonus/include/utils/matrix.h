@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 21:43:59 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/16 18:46:51 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/16 20:28:44 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ bool	mat4_is_valid_scale(t_vec3 scale);
 
 t_mat3	mat3_from_mat4(t_mat4 const *m);
 t_vec3	mat3_mul_t_vec3(t_mat3 const *m, t_vec3 v);
+t_vec3	mat3_mul_vec3(t_mat3 const *m, t_vec3 v);
+t_mat3	mat3_from_columns(t_vec3 x, t_vec3 y, t_vec3 z);
 
 float	mat4_minor(t_mat4 const *m, int row, int col);
 float	mat4_cofactor(t_mat4 const *m, int row, int col);
