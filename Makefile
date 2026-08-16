@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/08 21:45:23 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/08/16 16:53:48 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -395,7 +395,8 @@ SRCS	+=	grow_dynamic_array.c
 SRCS	+=	build_primitive.c \
 			unit_quadric.c \
 			calc_planar_intersection.c \
-			calc_primitive_intersection.c
+			calc_primitive_intersection.c \
+			solve_unit_form.c
 
 # utils/matrix
 SRCS	+=	mat4_identity.c \
