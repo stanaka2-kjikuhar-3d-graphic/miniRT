@@ -1,5 +1,10 @@
 # 汎用二次曲面（Quadric）エンジン
 
+> **この文書は旧実装（`t_quadric` エンジン）を前提に書かれている。**
+> 現在は形状を正準形と4x4行列で持ち、交差・法線・UV・接空間はすべて正準ローカル空間で解いている。
+> 実装は [primitive_intersection.md](primitive_intersection.md)、[primitive_normal.md](primitive_normal.md)、[primitive_uv.md](primitive_uv.md)、[primitive_tbn.md](primitive_tbn.md) を参照。
+> 正準形そのものの導出は今も有効だが、「スケールは不要」など持ち上げ方に関する記述はすでに当てはまらない。
+
 球、円柱、円錐、双曲面、放物面はすべて `pᵀQp = 0` という1つの形で表せる。
 個別の交差判定の式を形状ごとに書く代わりに、対称行列 `Q` 1つに形、向き、位置、スケールを畳み込み、交差と法線を `Q` だけから導く。
 この仕組みを**二次曲面エンジン**と呼んでいる。`t_quadric`（`include/scene/object.h`）と実装（`src/scene/object/quadric/`）がこれにあたる。

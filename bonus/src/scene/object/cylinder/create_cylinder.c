@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/07 01:22:19 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/16 21:34:04 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,46 +19,43 @@
 
 #include "../object_private.h"
 
-static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type);
+static bool	add_cap_circle(t_object const *object, \
+				t_input_cylinder const *input, t_vec3 dir, enum e_uv_type type);
 static void	set_cylinder_uv(\
 				t_object *object, t_input_cylinder const *input);
-static bool	set_primitive(t_object *object, t_input_cylinder const *input);
+static bool	set_primitive(\
+				t_object *object, t_input_cylinder const *input, t_vec3 dir);
 
 bool	create_cylinder(t_input_cylinder const *input)
 {
 	t_object	object;
+	t_vec3		dir;
 
-	object.type = OBJ_CYLINDER;
-	object.cylinder.center = input->center;
-	object.cylinder.dir = vec3_normalize(input->dir);
-	object.cylinder.radius = input->radius;
-	object.cylinder.half_height = input->half_height;
+	dir = vec3_normalize(input->dir);
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
 	set_cylinder_uv(&object, input);
-	object.cylinder.onb.w = object.cylinder.dir;
-	calc_onb(object.cylinder.onb.w, \
-		&(object.cylinder.onb.u), &(object.cylinder.onb.v));
-	if (!set_primitive(&object, input))
+	if (!set_primitive(&object, input, dir))
 		return (false);
 	if (!create_object(&object))
 		return (false);
-	return (add_cap_circle(&object, UV_UPPER_CAP) \
-				&& add_cap_circle(&object, UV_LOWER_CAP));
+	return (add_cap_circle(&object, input, dir, UV_UPPER_CAP) \
+				&& add_cap_circle(&object, input, dir, UV_LOWER_CAP));
 }
 
-static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type)
+static bool	add_cap_circle(t_object const *object, \
+	t_input_cylinder const *src, t_vec3 dir, enum e_uv_type uv_type)
 {
 	t_input_circle	input;
 
 	input.albedo = object->material.albedo;
 	if (uv_type == UV_UPPER_CAP)
-		input.normal = object->cylinder.dir;
+		input.normal = dir;
 	else
-		input.normal = vec3_scale(-1.0f, object->cylinder.dir);
-	input.center = vec3_add(object->cylinder.center, \
-						vec3_scale(object->cylinder.half_height, input.normal));
-	input.radius = object->cylinder.radius;
+		input.normal = vec3_scale(-1.0f, dir);
+	input.center = vec3_add(src->center, \
+						vec3_scale(src->half_height, input.normal));
+	input.radius = src->radius;
 	set_option_from_material(&(input.option.material), &(object->material));
 	input.option.uv_type = uv_type;
 	input.option.pattern_size = input.radius * 2.0f;
@@ -74,12 +71,13 @@ static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type)
 	return (create_circle(&input));
 }
 
-static bool	set_primitive(t_object *object, t_input_cylinder const *input)
+static bool	set_primitive(\
+	t_object *object, t_input_cylinder const *input, t_vec3 dir)
 {
 	t_primitive_frame	frame;
 
 	frame.type = UNIT_CYLINDER;
-	frame.basis = basis_from_dir(object->cylinder.dir);
+	frame.basis = basis_from_dir(dir);
 	frame.origin = input->center;
 	frame.scale = vec3(input->radius, input->radius, input->half_height);
 	frame.z_range = (t_range){.max = 1.0f, .min = -1.0f};

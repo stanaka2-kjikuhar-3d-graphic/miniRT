@@ -6,7 +6,7 @@
 #    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/16 20:53:20 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/08/16 21:41:55 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -279,59 +279,22 @@ SRCS	+=	object.c \
 			calc_bump_mapping.c \
 			calc_normal_mapping.c
 # scene/object/sphere
-SRCS	+=	create_sphere.c \
-			calc_sphere_intersection.c \
-			calc_sphere_normal.c \
-			calc_sphere_uv.c \
-			calc_sphere_tbn.c
+SRCS	+=	create_sphere.c
 # scene/object/plane
-SRCS	+=	create_plane.c \
-			calc_plane_intersection.c \
-			calc_plane_normal.c \
-			calc_plane_uv.c \
-			calc_plane_tbn.c
+SRCS	+=	create_plane.c
 # scene/object/cylinder
-SRCS	+=	create_cylinder.c \
-			calc_cylinder_intersection.c \
-			calc_cylinder_normal.c \
-			calc_cylinder_uv.c \
-			calc_cylinder_tbn.c
+SRCS	+=	create_cylinder.c
 # scene/object/circle
-SRCS	+=	create_circle.c \
-			calc_circle_intersection.c \
-			calc_circle_normal.c \
-			calc_circle_uv.c \
-			calc_circle_tbn.c
+SRCS	+=	create_circle.c
 # scene/object/cone
-SRCS	+=	create_cone.c \
-			calc_cone_intersection.c \
-			calc_cone_normal.c \
-			calc_cone_uv.c \
-			calc_cone_local_q.c \
-			cone_quadric.c
+SRCS	+=	create_cone.c
 # scene/object/hyperboloid
-SRCS	+=	create_hyperboloid.c \
-			calc_hyperboloid_intersection.c \
-			calc_hyperboloid_normal.c \
-			calc_hyperboloid_uv.c \
-			calc_hyperboloid_local_q.c \
-			hyperboloid_quadric.c
+SRCS	+=	create_hyperboloid.c
 # scene/object/paraboloid
-SRCS	+=	create_paraboloid.c \
-			calc_paraboloid_intersection.c \
-			calc_paraboloid_normal.c \
-			calc_paraboloid_uv.c \
-			calc_paraboloid_local_q.c \
-			paraboloid_quadric.c
+SRCS	+=	create_paraboloid.c
 # scene/object/quadric
 SRCS	+=	quadric_eval.c \
-			solve_quadratic.c \
-			quadric_to_world.c \
-			quadric_in_bounds.c \
-			calc_quadric_intersection.c \
-			calc_quadric_normal.c \
-			calc_quadric_uv.c \
-			build_quadric.c
+			solve_quadratic.c
 # scene/object/internal
 SRCS	+=	calc_onb.c \
 			basis_from_dir.c \
