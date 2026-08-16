@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 17:21:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 18:49:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 21:55:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,17 @@ typedef struct s_bvh_node
 		}	branch;
 		struct s_bvh_leaves
 		{
-			t_aabb_leaf const	*start;
-			size_t				count;
+			size_t	start;
+			size_t	count;
 		}	leaves;
 	};
 }	t_bvh_node;
 
-bool	build_accelerator(void);
-void	cleanup_accelerator(void);
+bool				build_accelerator(void);
+void				cleanup_accelerator(void);
+t_object const		*get_infinite_object(size_t i);
+size_t				get_infinite_object_count(void);
+t_bvh_node const	*get_bvh_node(size_t i);
+t_aabb_leaf const	*get_aabb_leaf(size_t i);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 22:11:43 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 19:27:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 21:32:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ bool	allocate_bvh(size_t bounded_aabb_count)
 void	register_bvh_node(t_bvh_node const *node, size_t i)
 {
 	g_bvh[i] = *node;
+}
+
+t_bvh_node const	*get_bvh_node(size_t i)
+{
+	if (g_bvh == NULL)
+		return (NULL);
+	return (&(g_bvh[i]));
 }
 
 void	cleanup_bvh(void)

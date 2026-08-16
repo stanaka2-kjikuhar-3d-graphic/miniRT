@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:38:36 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/03 04:11:00 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 22:09:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ bool	phong_shading(t_hit const *hit, t_vec3 light_dir, float light_dist)
 	object = NULL;
 	while (get_next_object(&object))
 	{
-		t = calc_object_intersection(object, &shadow_ray);
-		if (t != t || t <= 0.0f || light_dist - EPSILON <= t)
+		t = calc_aabb_intersection(&(object->aabb), &shadow_ray);
+		if (isnan(t))
 			continue ;
-		return (true);
+		t = calc_object_intersection(object, &shadow_ray);
+		if (0.0f < t && t < light_dist - EPSILON)
+			return (true);
 	}
 	return (false);
 }

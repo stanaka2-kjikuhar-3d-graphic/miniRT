@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 22:46:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/11 02:42:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 21:34:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,12 @@ static void	set_hit_record(t_ray const *ray, t_hit *hit);
 
 t_hit	phong_intersection(t_ray const *ray)
 {
-	t_vec3			ray_inv_dir;
-	t_object const	*object;
-	t_hit			hit;
-	float			t;
+	t_hit	hit;
 
-	ray_inv_dir = vec3(1.0f / ray->dir.x, 1.0f / ray->dir.y, 1.0f / ray->dir.z);
 	hit.object = NULL;
 	hit.t = INFINITY;
-	object = NULL;
-	while (get_next_object(&object))
-	{
-		t = calc_aabb_intersection(ray->origin, ray_inv_dir, &(object->aabb));
-		if (isnan(t) || hit.t < t)
-			continue ;
-		t = calc_object_intersection(object, ray);
-		if (EPSILON < t && t < hit.t)
-		{
-			hit.object = object;
-			hit.t = t;
-		}
-	}
+	infinite_objects_intersection(&hit, ray);
+	bvh_intersection(&hit, ray);
 	if (hit.object != NULL)
 		set_hit_record(ray, &hit);
 	return (hit);

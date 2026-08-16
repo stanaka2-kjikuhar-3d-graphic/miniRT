@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/14 12:43:07 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 21:03:07 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -355,8 +355,7 @@ size_t			get_object_count(void);
 void			cleanup_objects(void);
 float			calc_object_intersection(\
 					t_object const *object, t_ray const *ray);
-float			calc_aabb_intersection(\
-					t_vec3 ray_origin, t_vec3 ray_inv_dir, t_aabb const *aabb);
+float			calc_aabb_intersection(t_aabb const *aabb, t_ray const *ray);
 t_vec2			calc_object_uv(t_object const *object, t_vec3 point);
 t_color			calc_object_color(t_object const *object, t_vec2 uv);
 t_vec3			calc_object_normal(\

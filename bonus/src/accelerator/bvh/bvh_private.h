@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:50:19 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 20:04:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 21:24:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ bool				allocate_bvh(size_t bounded_aabb_count);
 void				register_bvh_node(t_bvh_node const *node, size_t i);
 bool				allocate_aabb_leaves(size_t bounded_aabb_count);
 void				register_aabb_leaf(t_aabb_leaf const *aabb_leaf, size_t i);
-t_aabb_leaf const	*get_aabb_leaf(size_t i);
 void				swap_aabb_leaves(size_t a, size_t b);
 size_t				calc_bin_index(t_aabb_leaf const *aabb_leaf, \
 						t_bin_partition const *partition);

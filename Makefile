@@ -260,7 +260,9 @@ SRCS	+=	renderer.c \
 # renderer/phong
 SRCS	+=	phong.c
 # renderer/phong/intersection
-SRCS	+=	phong_intersection.c
+SRCS	+=	phong_intersection.c \
+			bvh_intersection.c \
+			infinite_objects_intersection.c
 # renderer/phong/lighting
 SRCS	+=	phong_lighting.c \
 			phong_lighting_ambient.c \
