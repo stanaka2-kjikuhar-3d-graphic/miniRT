@@ -6,7 +6,7 @@
 #    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/16 16:53:48 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/08/16 19:01:52 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -396,7 +396,8 @@ SRCS	+=	build_primitive.c \
 			unit_quadric.c \
 			calc_planar_intersection.c \
 			calc_primitive_intersection.c \
-			solve_unit_form.c
+			solve_unit_form.c \
+			calc_primitive_normal.c
 
 # utils/matrix
 SRCS	+=	mat4_identity.c \
@@ -406,6 +407,7 @@ SRCS	+=	mat4_identity.c \
 			mat4_transform_point.c \
 			mat4_transform_dir.c \
 			mat3_from_mat4.c \
+			mat3_mul_t_vec3.c \
 			mat4_translate.c \
 			mat4_scale.c \
 			mat4_rotate.c \
