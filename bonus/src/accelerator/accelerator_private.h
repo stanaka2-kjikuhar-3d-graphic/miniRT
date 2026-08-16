@@ -20,7 +20,7 @@
 bool	build_bvh(void);
 void	cleanup_bvh(void);
 void	cleanup_aabb_leaves(void);
-bool	build_infinite_linear(void);
-void	cleanup_infinite_linear(void);
+bool	build_infinite_objects(void);
+void	cleanup_infinite_objects(void);
 
 #endif

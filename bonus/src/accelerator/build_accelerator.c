@@ -18,7 +18,7 @@ bool	build_accelerator(void)
 {
 	if (!build_bvh())
 		return (false);
-	if (!build_infinite_linear())
+	if (!build_infinite_objects())
 		return (false);
 	return (true);
 }

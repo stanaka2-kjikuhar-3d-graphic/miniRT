@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_infinite_linear.c                            :+:      :+:    :+:   */
+/*   build_infinite_objects.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,17 +15,17 @@
 
 #include "object.h"
 
-#include "./infinite_linear_private.h"
+#include "./infinite_objects_private.h"
 
 static size_t	count_infinite_object(void);
 static void		register_infinite_objects(void);
 
-bool	build_infinite_linear(void)
+bool	build_infinite_objects(void)
 {
 	size_t	count;
 
 	count = count_infinite_object();
-	if (!allocate_infinite_linear(count))
+	if (!allocate_infinite_objects(count))
 		return (false);
 	if (count == 0)
 		return (true);
@@ -58,6 +58,6 @@ static void	register_infinite_objects(void)
 	while (get_next_object(&object))
 	{
 		if (!object->has_bounded_aabb)
-			register_infinite_linear(object, i++);
+			register_infinite_object(object, i++);
 	}
 }

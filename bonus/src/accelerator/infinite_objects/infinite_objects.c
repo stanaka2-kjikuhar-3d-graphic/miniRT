@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   infinite_linear.c                                  :+:      :+:    :+:   */
+/*   infinite_objects.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -16,17 +16,17 @@
 #include "ft_error.h"
 #include "object.h"
 
-#include "./infinite_linear_private.h"
+#include "./infinite_objects_private.h"
 
-static t_object const	**g_infinite_linear = NULL;
+static t_object const	**g_infinite_objects = NULL;
 
-bool	allocate_infinite_linear(size_t infinite_count)
+bool	allocate_infinite_objects(size_t infinite_count)
 {
-	cleanup_infinite_linear();
+	cleanup_infinite_objects();
 	if (infinite_count == 0)
 		return (true);
-	g_infinite_linear = malloc(sizeof(t_object *) * infinite_count);
-	if (g_infinite_linear == NULL)
+	g_infinite_objects = malloc(sizeof(t_object *) * infinite_count);
+	if (g_infinite_objects == NULL)
 	{
 		print_errno();
 		return (false);
@@ -34,13 +34,13 @@ bool	allocate_infinite_linear(size_t infinite_count)
 	return (true);
 }
 
-void	register_infinite_linear(t_object const *object, size_t i)
+void	register_infinite_object(t_object const *object, size_t i)
 {
-	g_infinite_linear[i] = object;
+	g_infinite_objects[i] = object;
 }
 
-void	cleanup_infinite_linear(void)
+void	cleanup_infinite_objects(void)
 {
-	free(g_infinite_linear);
-	g_infinite_linear = NULL;
+	free(g_infinite_objects);
+	g_infinite_objects = NULL;
 }

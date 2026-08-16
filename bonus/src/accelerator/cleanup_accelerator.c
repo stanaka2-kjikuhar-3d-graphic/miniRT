@@ -16,5 +16,5 @@ void	cleanup_accelerator(void)
 {
 	cleanup_bvh();
 	cleanup_aabb_leaves();
-	cleanup_infinite_linear();
+	cleanup_infinite_objects();
 }
