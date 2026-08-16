@@ -6,22 +6,12 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 21:41:48 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/16 21:42:40 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECT_PRIVATE_H
 # define OBJECT_PRIVATE_H
-
-typedef struct s_perp_cylinder
-{
-	t_vec3	ray;
-	float	ray_len;
-	t_vec3	to_cylinder;
-	float	nearest_t;
-	float	squared_nearest_dist;
-	float	half_chord;
-}	t_perp_cylinder;
 
 typedef struct s_quadric_coeffs
 {
@@ -38,15 +28,6 @@ typedef struct s_primitive_frame
 	t_vec3					scale;
 	t_range					z_range;
 }	t_primitive_frame;
-
-typedef struct s_quadric_frame
-{
-	t_mat4	local_q;
-	t_onb	onb;
-	t_vec3	center;
-	float	h_min;
-	float	h_max;
-}	t_quadric_frame;
 
 bool	create_object(t_object const *object);
 void	set_material_from_option(t_material *material, t_color albedo, \

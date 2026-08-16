@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 20:59:31 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/16 21:42:31 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,6 @@ typedef struct s_uv
 	t_range			v_range;
 }	t_uv;
 
-typedef struct s_onb
-{
-	t_vec3	u;
-	t_vec3	v;
-	t_vec3	w;
-}	t_onb;
-
 /*
 each shape is a unit form in local space, placed by to_world.
 
@@ -121,108 +114,11 @@ typedef struct s_primitive
 	t_range					z_range;
 }	t_primitive;
 
-enum e_object_type
-{
-	OBJ_SPHERE,
-	OBJ_PLANE,
-	OBJ_CYLINDER,
-	OBJ_CIRCLE,
-	OBJ_CONE,
-	OBJ_HYPERBOLOID,
-	OBJ_PARABOLOID,
-	OBJ_QUADRIC
-};
-
-typedef struct s_quadric
-{
-	t_mat4	q;
-	t_vec3	axis;
-	t_vec3	center;
-	float	h_min;
-	float	h_max;
-	bool	finite;
-}	t_quadric;
-
-typedef struct s_sphere
-{
-	t_vec3	center;
-	float	radius;
-	t_onb	onb;
-}	t_sphere;
-
-typedef struct s_plane
-{
-	t_vec3	center;
-	t_vec3	normal;
-	t_onb	onb;
-}	t_plane;
-
-typedef struct s_cylinder
-{
-	t_vec3	center;
-	t_vec3	dir;
-	float	radius;
-	float	half_height;
-	t_onb	onb;
-}	t_cylinder;
-
-typedef struct s_circle
-{
-	t_vec3	center;
-	t_vec3	normal;
-	float	radius;
-	t_onb	onb;
-}	t_circle;
-
-typedef struct s_cone
-{
-	t_vec3		center;
-	t_vec3		dir;
-	float		radius;
-	float		height;
-	float		generatrix;
-	t_onb		onb;
-	t_quadric	quadric;
-}	t_cone;
-
-typedef struct s_hyperboloid
-{
-	t_vec3		center;
-	t_vec3		dir;
-	float		center_radius;
-	float		cap_radius;
-	float		half_height;
-	t_onb		onb;
-	t_quadric	quadric;
-}	t_hyperboloid;
-
-typedef struct s_paraboloid
-{
-	t_vec3		center;
-	t_vec3		dir;
-	float		quadratic_coefficient;
-	float		height;
-	t_onb		onb;
-	t_quadric	quadric;
-}	t_paraboloid;
-
 typedef struct s_object
 {
 	t_material			material;
 	t_uv				uv;
 	t_primitive			primitive;
-	enum e_object_type	type;
-	union
-	{
-		t_sphere		sphere;
-		t_plane			plane;
-		t_circle		circle;
-		t_cylinder		cylinder;
-		t_cone			cone;
-		t_hyperboloid	hyperboloid;
-		t_paraboloid	paraboloid;
-		t_quadric		quadric;
-	};
 }	t_object;
 
 typedef struct s_material_option
@@ -363,13 +259,5 @@ t_vec3	calc_normal_mapping(\
 
 float	quadric_eval(t_mat4 const *q, t_vec4 p);
 int		solve_quadratic(float a, float b, float c, float roots[2]);
-t_mat4	quadric_to_world(\
-			t_mat4 const *q_local, t_mat4 const *local_to_world);
-bool	quadric_in_bounds(t_quadric const *q, t_vec3 point);
-float	calc_quadric_intersection(t_quadric const *q, t_ray const *ray);
-t_vec3	calc_quadric_normal(\
-			t_quadric const *q, t_ray const *ray, t_vec3 point);
-t_vec2	calc_quadric_uv(\
-			t_quadric const *q, t_onb const *onb, t_vec3 point);
 
 #endif
