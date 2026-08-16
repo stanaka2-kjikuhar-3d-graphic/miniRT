@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/16 00:38:40 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/08/16 20:00:22 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,6 +98,11 @@ override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 
 SRC_DIRS	:= bonus/src
 SRC_DIRS	+= $(addprefix bonus/src/, \
+					accelerator \
+					$(addprefix accelerator/, \
+						bvh \
+						infinite_linear \
+					) \
 					parser \
 					$(addprefix parser/, \
 						read_next_line \
@@ -230,6 +235,22 @@ SRCS	+=	is_blank_line.c \
 			is_option_id.c \
 			count_split.c \
 			free_split.c
+
+# accelerator
+SRCS	+=	build_accelerator.c \
+			cleanup_accelerator.c
+# accelerator/bvh
+SRCS	+=	bvh.c \
+			aabb_leaves.c \
+			build_bvh.c \
+			build_binned_bvh.c \
+			calc_best_bin_partition.c \
+			calc_bin_index.c \
+			calc_sah_cost.c \
+			add_leaf_node.c
+# accelerator/infinite_linear
+SRCS	+=	infinite_linear.c \
+			build_infinite_linear.c
 
 # renderer
 SRCS	+=	renderer.c \
@@ -403,6 +424,7 @@ SRCS	+=	ivec2.c
 # utils/dynamic_array
 SRCS	+=	access_dynamic_array.c \
 			add_dynamic_array.c \
+			allocate_dynamic_array.c \
 			cleanup_dynamic_array.c \
 			grow_dynamic_array.c
 # scene/object/primitive

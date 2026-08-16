@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 17:55:01 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 18:49:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #include "ft_mlx.h"
 #include "renderer.h"
 #include "ft_error.h"
+#include "accelerator.h"
 
 static bool	is_valid_argument(int argc, char const *argv[]);
 static void	cleanup(void);
@@ -39,7 +40,7 @@ int	main(int argc, char const *argv[])
 	init_color_lut();
 	if (!create_mlx_connection())
 		return (EXIT_FAILURE);
-	if (!parser(argv[1]) || !setup_mlx_window())
+	if (!parser(argv[1]) || !build_accelerator() || !setup_mlx_window())
 	{
 		cleanup();
 		return (EXIT_FAILURE);
@@ -72,5 +73,6 @@ static void	cleanup(void)
 {
 	cleanup_objects();
 	cleanup_lights();
+	cleanup_accelerator();
 	cleanup_mlx();
 }

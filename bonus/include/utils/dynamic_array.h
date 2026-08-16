@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/25 23:07:15 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 00:27:23 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 01:45:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_dynamic_array
 	size_t const	type_size;
 }	t_dynamic_array;
 
+bool	allocate_dynamic_array(t_dynamic_array *dynamic_array, size_t new_size);
 bool	add_dynamic_array(t_dynamic_array *dynamic_array, void const *data);
 bool	grow_dynamic_array(t_dynamic_array *dynamic_array);
 void	*access_dynamic_array(t_dynamic_array const *dynamic_array, size_t i);

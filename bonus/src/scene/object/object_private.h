@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/14 12:57:51 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 18:56:38 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,5 @@ t_mat4	calc_hyperboloid_local_q(float a, float b, float c);
 void	hyperboloid_to_quadric(\
 			t_hyperboloid const *hyperboloid, t_quadric *out);
 void	build_quadric(t_quadric_frame const *frame, t_quadric *out);
-
 
 #endif

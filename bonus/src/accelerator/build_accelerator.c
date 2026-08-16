@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderer_private.h                                 :+:      :+:    :+:   */
+/*   build_accelerator.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/23 23:56:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 17:21:43 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/08/13 21:10:11 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/16 17:55:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERER_PRIVATE_H
-# define RENDERER_PRIVATE_H
+#include <stdbool.h>
 
-# include <stdbool.h>
+#include "./accelerator_private.h"
 
-# include "config.h"
-# include "object.h"
-# include "vector.h"
-# include "color.h"
-# include "aabb.h"
-
-bool	check_render_flag(void);
-void	phong(t_ivec2 pixel);
-void	put_color_to_window_image(t_ivec2 pixel, t_color color);
-
-#endif
+bool	build_accelerator(void)
+{
+	if (!build_bvh())
+		return (false);
+	if (!build_infinite_linear())
+		return (false);
+	return (true);
+}

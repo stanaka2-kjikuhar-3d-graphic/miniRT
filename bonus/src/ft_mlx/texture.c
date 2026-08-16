@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 19:06:13 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 00:31:35 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 19:14:00 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 #include "./ft_mlx_private.h"
 
-
 static t_dynamic_array	g_texture_dicts = (t_dynamic_array){\
 											.data = NULL, \
 											.capacity = 0, \
@@ -30,6 +29,7 @@ static t_dynamic_array	g_texture_dicts = (t_dynamic_array){\
 											.type_size = sizeof(t_texture_dict) \
 										};
 
+static bool	create_texture_dict(char *filepath, t_texture_dict *texture_dict);
 static bool	create_image_from_xpm(t_image *image, char *xpm);
 
 t_image	*get_texture(char *filepath)
@@ -54,26 +54,33 @@ bool	create_texture(char *filepath)
 
 	if (get_texture(filepath) != NULL)
 		return (true);
-	texture_dict.texture = malloc(sizeof(t_image));
-	texture_dict.filepath = ft_strdup(filepath);
-	if (texture_dict.texture == NULL || texture_dict.filepath == NULL)
-	{
-		print_errno();
-		free(texture_dict.texture);
-		free(texture_dict.filepath);
+	if (!create_texture_dict(filepath, &texture_dict))
 		return (false);
-	}
-	if (!create_image_from_xpm(texture_dict.texture, filepath))
-	{
-		free(texture_dict.texture);
-		free(texture_dict.filepath);
-		return (false);
-	}
 	if (!add_dynamic_array(&g_texture_dicts, &texture_dict))
 	{
 		mlx_destroy_image(get_mlx_ptr(), texture_dict.texture->ptr);
 		free(texture_dict.texture);
 		free(texture_dict.filepath);
+		return (false);
+	}
+	return (true);
+}
+
+static bool	create_texture_dict(char *filepath, t_texture_dict *texture_dict)
+{
+	texture_dict->texture = malloc(sizeof(t_image));
+	texture_dict->filepath = ft_strdup(filepath);
+	if (texture_dict->texture == NULL || texture_dict->filepath == NULL)
+	{
+		print_errno();
+		free(texture_dict->texture);
+		free(texture_dict->filepath);
+		return (false);
+	}
+	if (!create_image_from_xpm(texture_dict->texture, filepath))
+	{
+		free(texture_dict->texture);
+		free(texture_dict->filepath);
 		return (false);
 	}
 	return (true);
@@ -99,7 +106,7 @@ static bool	create_image_from_xpm(t_image *image, char *xpm)
 	return (true);
 }
 
-void	cleanup_texture_dict(void)
+void	cleanup_textures(void)
 {
 	size_t			i;
 	t_texture_dict	*texture_dict;

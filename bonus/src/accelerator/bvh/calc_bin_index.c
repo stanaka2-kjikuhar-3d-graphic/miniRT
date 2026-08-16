@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_leaf_node.c                                    :+:      :+:    :+:   */
+/*   calc_bin_index.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/14 13:44:12 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/15 04:13:13 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/08/16 15:20:00 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/16 18:38:59 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
-#include "../renderer_private.h"
+#include "config.h"
+#include "accelerator.h"
 
-t_bvh_node const	*add_leaf_node(t_bvh_node **bvh, \
-	t_aabb_leaf *aabb_leaves, size_t count, t_aabb const *aabb)
+#include "./bvh_private.h"
+
+size_t	calc_bin_index(\
+	t_aabb_leaf const *aabb_leaf, t_bin_partition const *partition)
 {
-	t_bvh_node	*leaf_node;
+	size_t	bin_index;
 
-	leaf_node = (*bvh)++;
-	leaf_node->aabb = *aabb;
-	leaf_node->has_leaf = true;
-	leaf_node->leaves.start = aabb_leaves;
-	leaf_node->leaves.count = count;
-	return (leaf_node);
+	bin_index = (size_t)((aabb_leaf->centroid[partition->axis] \
+						- partition->range.min) / partition->delta);
+	if (bin_index >= BVH_BIN)
+		bin_index = BVH_BIN - 1;
+	return (bin_index);
 }

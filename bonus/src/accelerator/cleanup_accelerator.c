@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_accelerator.c                                :+:      :+:    :+:   */
+/*   cleanup_accelerator.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/13 21:10:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/13 21:15:18 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/08/16 18:45:44 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/16 18:49:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include "./accelerator_private.h"
 
-bool	build_accelerator(void)
+void	cleanup_accelerator(void)
 {
-	return (true);
+	cleanup_bvh();
+	cleanup_aabb_leaves();
+	cleanup_infinite_linear();
 }

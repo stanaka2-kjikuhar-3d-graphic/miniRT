@@ -1,0 +1,63 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   build_infinite_linear.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/16 19:17:37 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/16 20:10:00 by stanaka2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdbool.h>
+#include <stddef.h>
+
+#include "object.h"
+
+#include "./infinite_linear_private.h"
+
+static size_t	count_infinite_object(void);
+static void		register_infinite_objects(void);
+
+bool	build_infinite_linear(void)
+{
+	size_t	count;
+
+	count = count_infinite_object();
+	if (!allocate_infinite_linear(count))
+		return (false);
+	if (count == 0)
+		return (true);
+	register_infinite_objects();
+	return (true);
+}
+
+static size_t	count_infinite_object(void)
+{
+	size_t			count;
+	t_object const	*object;
+
+	count = 0;
+	object = NULL;
+	while (get_next_object(&object))
+	{
+		if (!object->has_bounded_aabb)
+			++count;
+	}
+	return (count);
+}
+
+static void	register_infinite_objects(void)
+{
+	t_object const	*object;
+	size_t			i;
+
+	object = NULL;
+	i = 0;
+	while (get_next_object(&object))
+	{
+		if (!object->has_bounded_aabb)
+			register_infinite_linear(object, i++);
+	}
+}

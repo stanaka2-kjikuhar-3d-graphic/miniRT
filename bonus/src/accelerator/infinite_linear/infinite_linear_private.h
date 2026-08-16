@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderer_private.h                                 :+:      :+:    :+:   */
+/*   infinite_linear_private.h                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/23 23:56:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 17:21:43 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/08/16 19:15:02 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/16 20:07:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERER_PRIVATE_H
-# define RENDERER_PRIVATE_H
+#ifndef INFINITE_LINEAR_PRIVATE_H
+# define INFINITE_LINEAR_PRIVATE_H
 
 # include <stdbool.h>
+# include <stddef.h>
 
-# include "config.h"
 # include "object.h"
-# include "vector.h"
-# include "color.h"
-# include "aabb.h"
 
-bool	check_render_flag(void);
-void	phong(t_ivec2 pixel);
-void	put_color_to_window_image(t_ivec2 pixel, t_color color);
+# include "../accelerator_private.h"
+
+bool			allocate_infinite_linear(size_t infinite_count);
+void			register_infinite_linear(t_object const *object, size_t i);
 
 #endif
