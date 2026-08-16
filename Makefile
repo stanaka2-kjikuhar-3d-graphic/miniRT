@@ -6,7 +6,7 @@
 #    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/16 16:53:48 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/08/16 18:47:09 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -406,6 +406,7 @@ SRCS	+=	mat4_identity.c \
 			mat4_transform_point.c \
 			mat4_transform_dir.c \
 			mat3_from_mat4.c \
+			mat3_mul_t_vec3.c \
 			mat4_translate.c \
 			mat4_scale.c \
 			mat4_rotate.c \
