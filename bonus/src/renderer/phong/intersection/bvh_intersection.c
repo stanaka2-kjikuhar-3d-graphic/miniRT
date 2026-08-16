@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 20:29:13 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 22:13:11 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 22:25:28 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ static void	traverse_bvh_leaves(\
 
 void	bvh_intersection(t_hit *hit, t_ray const *ray)
 {
-	t_bvh_node const	*branch;
+	t_bvh_node const	*root;
 	float				t;
 
-	branch = get_bvh_node(0);
-	if (branch == NULL)
+	root = get_bvh_node(0);
+	if (root == NULL)
 		return ;
-	t = calc_aabb_intersection(&(branch->aabb), ray);
+	t = calc_aabb_intersection(&(root->aabb), ray);
 	if (isnan(t) || hit->t < t)
 		return ;
-	traverse_bvh_branch(hit, ray, branch);
+	traverse_bvh_branch(hit, ray, root);
 }
 
 static void	traverse_bvh_branch(\
