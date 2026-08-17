@@ -60,7 +60,7 @@ static bool	parse_hyperboloid_required(\
 	fields[5] = build_required_field(REQUIRED_COLOR, &(input->albedo));
 	if (!parse_required_fields(elements, fields, REQUIRED_COUNT))
 		return (false);
-	set_error_field("cap_diameter", elements[4]);
+	set_error_field("cap_diameter", elements[3]);
 	if (input->center_radius >= input->cap_radius)
 	{
 		print_field_error(ERROR_HB_RADIUS, NULL);

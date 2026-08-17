@@ -1,5 +1,10 @@
 # 放物面（paraboloid）の正準形
 
+> **この文書は旧実装（`t_quadric` エンジン）を前提に書かれている。**
+> 現在は形状を正準形と4x4行列で持ち、交差・法線・UV・接空間はすべて正準ローカル空間で解いている。
+> 実装は [primitive_intersection.md](primitive_intersection.md)、[primitive_normal.md](primitive_normal.md)、[primitive_uv.md](primitive_uv.md)、[primitive_tbn.md](primitive_tbn.md) を参照。
+> 正準形そのものの導出は今も有効だが、「スケールは不要」など持ち上げ方に関する記述はすでに当てはまらない。
+
 放物面も [quadric.md](quadric.md) の二次曲面エンジンに、正準形 `Q_local` を1つ載せるだけで実装できる。
 円錐（[cone.md](cone.md)）・双曲面（[hyperboloid.md](hyperboloid.md)）と異なり、放物面の正準形は**線形項**を持つ点が特徴である。
 

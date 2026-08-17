@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/14 01:18:45 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/17 22:34:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,48 +21,50 @@
 
 #include "../object_private.h"
 
-static bool		add_cap_circle(t_object const *object, enum e_uv_type uv_type);
+static bool		add_cap_circle(t_object const *object, \
+					t_input_cylinder const *input, t_vec3 dir, \
+					enum e_uv_type type);
 static void		set_cylinder_uv(\
 					t_object *object, t_input_cylinder const *input);
-static bool		set_primitive(t_object *object, t_input_cylinder const *input);
-static t_aabb	calc_cylinder_aabb(t_cylinder const *cylinder);
+static bool		set_primitive(\
+					t_object *object, t_input_cylinder const *input, \
+					t_vec3 dir);
+static t_aabb	calc_cylinder_aabb(\
+					t_input_cylinder const *input, t_vec3 dir);
 
 bool	create_cylinder(t_input_cylinder const *input)
 {
 	t_object	object;
+	t_vec3		dir;
 
-	object.type = OBJ_CYLINDER;
-	object.cylinder.center = input->center;
-	object.cylinder.dir = vec3_normalize(input->dir);
-	object.cylinder.radius = input->radius;
-	object.cylinder.half_height = input->half_height;
+	dir = vec3_normalize(input->dir);
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
 	set_cylinder_uv(&object, input);
-	set_onb(object.cylinder.dir, &(object.cylinder.onb));
-	if (!set_primitive(&object, input))
+	if (!set_primitive(&object, input, dir))
 		return (false);
-	object.aabb = calc_cylinder_aabb(&(object.cylinder));
+	object.aabb = calc_cylinder_aabb(input, dir);
 	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
 	object.has_bounded_aabb = has_bounded_aabb(&(object.aabb));
 	if (!create_object(&object))
 		return (false);
-	return (add_cap_circle(&object, UV_UPPER_CAP) \
-				&& add_cap_circle(&object, UV_LOWER_CAP));
+	return (add_cap_circle(&object, input, dir, UV_UPPER_CAP) \
+				&& add_cap_circle(&object, input, dir, UV_LOWER_CAP));
 }
 
-static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type)
+static bool	add_cap_circle(t_object const *object, \
+	t_input_cylinder const *src, t_vec3 dir, enum e_uv_type uv_type)
 {
 	t_input_circle	input;
 
 	input.albedo = object->material.albedo;
 	if (uv_type == UV_UPPER_CAP)
-		input.normal = object->cylinder.dir;
+		input.normal = dir;
 	else
-		input.normal = vec3_scale(-1.0f, object->cylinder.dir);
-	input.center = vec3_add(object->cylinder.center, \
-						vec3_scale(object->cylinder.half_height, input.normal));
-	input.radius = object->cylinder.radius;
+		input.normal = vec3_scale(-1.0f, dir);
+	input.center = vec3_add(src->center, \
+						vec3_scale(src->half_height, input.normal));
+	input.radius = src->radius;
 	set_option_from_material(&(input.option.material), &(object->material));
 	input.option.uv_type = uv_type;
 	input.option.pattern_size = input.radius * 2.0f;
@@ -78,12 +80,13 @@ static bool	add_cap_circle(t_object const *object, enum e_uv_type uv_type)
 	return (create_circle(&input));
 }
 
-static bool	set_primitive(t_object *object, t_input_cylinder const *input)
+static bool	set_primitive(\
+	t_object *object, t_input_cylinder const *input, t_vec3 dir)
 {
 	t_primitive_frame	frame;
 
 	frame.type = UNIT_CYLINDER;
-	frame.basis = basis_from_dir(object->cylinder.dir);
+	frame.basis = calc_onb(dir);
 	frame.origin = input->center;
 	frame.scale = vec3(input->radius, input->radius, input->half_height);
 	frame.z_range = (t_range){.min = -1.0f, .max = 1.0f};
@@ -103,21 +106,21 @@ static void	set_cylinder_uv(t_object *object, t_input_cylinder const *input)
 	object->uv.v_range = (t_range){.min = cap_ratio, .max = 1.0f - cap_ratio};
 }
 
-static t_aabb	calc_cylinder_aabb(t_cylinder const *cylinder)
+static t_aabb	calc_cylinder_aabb(t_input_cylinder const *input, t_vec3 dir)
 {
 	t_vec3	circle_extent;
 	t_vec3	top;
 	t_vec3	bottom;
 
 	circle_extent = vec3(\
-		cylinder->radius * sqrtf(1.0f - cylinder->dir.x * cylinder->dir.x), \
-		cylinder->radius * sqrtf(1.0f - cylinder->dir.y * cylinder->dir.y), \
-		cylinder->radius * sqrtf(1.0f - cylinder->dir.z * cylinder->dir.z) \
+		input->radius * sqrtf(1.0f - dir.x * dir.x), \
+		input->radius * sqrtf(1.0f - dir.y * dir.y), \
+		input->radius * sqrtf(1.0f - dir.z * dir.z) \
 	);
-	top = vec3_add(cylinder->center, \
-			vec3_scale(cylinder->half_height, cylinder->dir));
-	bottom = vec3_sub(cylinder->center, \
-			vec3_scale(cylinder->half_height, cylinder->dir));
+	top = vec3_add(input->center, \
+			vec3_scale(input->half_height, dir));
+	bottom = vec3_sub(input->center, \
+			vec3_scale(input->half_height, dir));
 	return (union_aabb(\
 				calc_aabb_from_extent(top, circle_extent), \
 				calc_aabb_from_extent(bottom, circle_extent) \

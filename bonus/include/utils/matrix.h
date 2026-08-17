@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 21:43:59 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/07 01:04:59 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/16 20:28:44 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,24 @@
 # include "vector.h"
 
 /*
+a basis vector index. rows are world axes (e_axis), columns are the
+local basis vectors, so m[Y_AXIS][U_AXIS] is u.y.
+*/
+enum e_basis
+{
+	U_AXIS,
+	V_AXIS,
+	W_AXIS,
+};
+
+/*
 t_mat3: basis vectors are COLUMNS.
 
-              X_AXIS   Y_AXIS   Z_AXIS
+              U_AXIS   V_AXIS   W_AXIS
            +----------------------------+
-    row 0  |   u.x      v.x      w.x    |
-    row 1  |   u.y      v.y      w.y    |
-    row 2  |   u.z      v.z      w.z    |
+    X_AXIS |   u.x      v.x      w.x    |
+    Y_AXIS |   u.y      v.y      w.y    |
+    Z_AXIS |   u.z      v.z      w.z    |
            +----------------------------+
 
   local -> world :  M * p
@@ -59,6 +70,9 @@ t_mat4	mat4_world_to_local(\
 bool	mat4_is_valid_scale(t_vec3 scale);
 
 t_mat3	mat3_from_mat4(t_mat4 const *m);
+t_vec3	mat3_mul_t_vec3(t_mat3 const *m, t_vec3 v);
+t_vec3	mat3_mul_vec3(t_mat3 const *m, t_vec3 v);
+t_mat3	mat3_from_columns(t_vec3 u, t_vec3 v, t_vec3 w);
 
 float	mat4_minor(t_mat4 const *m, int row, int col);
 float	mat4_cofactor(t_mat4 const *m, int row, int col);
