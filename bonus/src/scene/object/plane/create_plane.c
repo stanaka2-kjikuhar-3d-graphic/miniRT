@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/17 22:32:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/18 20:10:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static bool	set_primitive(\
 	frame.type = UNIT_PLANE;
 	frame.basis = *basis;
 	frame.origin = input->center;
-	frame.scale = vec3(input->option.half_size.u, \
-			input->option.half_size.v, 1.0f);
+	frame.scale = vec3(input->option.pattern_size, \
+			input->option.pattern_size, 1.0f);
 	frame.z_range = (t_range){.min = 0.0f, .max = 0.0f};
 	return (build_primitive(&frame, &(object->primitive)));
 }
