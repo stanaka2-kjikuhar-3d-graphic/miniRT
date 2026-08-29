@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 21:42:31 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/29 19:20:33 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_material
 	bool				directx_normal_map;
 	bool				metalness;
 	float				shininess;
+	float				reflectivity;
 }	t_material;
 
 enum e_uv_type
@@ -134,6 +135,7 @@ typedef struct s_material_option
 	float				bump_strength;
 	bool				metalness;
 	float				shininess;
+	float				reflectivity;
 }	t_material_option;
 
 // input

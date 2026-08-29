@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 00:57:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/07 23:46:20 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/29 19:29:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,8 @@
 # define DEFAULT_PATTERN_SIZE 10.0f
 # define DEFAULT_BUMP_STRENGTH 1.0f
 # define DEFAULT_CHECKER_COUNT 4
+# define DEFAULT_REFLECTIVITY 0.0f
+
+# define MAX_RECURSION_DEPTH 5
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/26 22:07:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/03 22:12:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/29 19:23:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ static const t_optional_field	g_optional_fields[OPTIONAL_FIELD_COUNT] = {\
 	[OPTIONAL_SHININESS] = {NULL, "shininess", parse_shininess, \
 		"shininess=x [0.0 <= x]", FIELD_FLOAT, \
 		{.number = DEFAULT_SHININESS}}, \
+	[OPTIONAL_REFLECTIVITY] = {NULL, "reflectivity", parse_reflectivity, \
+		"reflectivity=x [0.0 <= x <= 1.0]", FIELD_FLOAT, \
+		{.number = DEFAULT_REFLECTIVITY}}, \
 	[OPTIONAL_PATTERN_SIZE] = {NULL, "pattern_size", parse_size, \
 		"pattern_size=x [0.0 < x]", FIELD_FLOAT, \
 		{.number = DEFAULT_PATTERN_SIZE}}, \
