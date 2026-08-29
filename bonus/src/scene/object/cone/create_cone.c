@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/29 16:25:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/29 22:03:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static bool	add_lower_cap_circle(t_object const *object, \
 
 /*
   the unit cone has its apex at z = 0 and opens toward +z,
-  so the frame sits at the apex and looks back along -dir.
+  so the frame sits at the apex and its w axis looks back along -dir.
 */
 static bool	set_cone_primitive(\
 	t_object *object, t_input_cone const *input, t_vec3 dir)
@@ -94,7 +94,10 @@ static bool	set_cone_primitive(\
 	t_primitive_frame	frame;
 
 	frame.type = UNIT_CONE;
-	frame.basis = calc_onb(vec3_scale(-1.0f, dir));
+	frame.basis = calc_onb(dir);
+	frame.basis.m[X_AXIS][W_AXIS] *= -1;
+	frame.basis.m[Y_AXIS][W_AXIS] *= -1;
+	frame.basis.m[Z_AXIS][W_AXIS] *= -1;
 	frame.origin = vec3_add(input->center, \
 			vec3_scale(input->height, dir));
 	frame.scale = vec3(input->radius, input->radius, input->height);
