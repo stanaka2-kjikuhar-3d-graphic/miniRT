@@ -42,10 +42,35 @@ uv.u = (atan2f(p.y, p.x) + M_PI) / (2.0f * M_PI);
 一葉双曲面だけ `z_max` で割るのは、正準形の z 範囲がオブジェクトごとに変わるからである。
 `t_primitive` が持つ `z_range` をそのまま使う。
 
-平面と円盤は方位角を使わない。
+円盤は `u` に方位角を使うが `v` は半径である。
+平面は方位角を使わない。
 
-- **平面**：`u = frac(x - 0.5)`、`v = frac(y - 0.5)`。`pattern_size` はスケールに吸収済みなので、割り算が式から消える
-- **円盤**：`u` は方位角、`v` は `hypot(x, y)`。半径もスケールに吸収されている。`UV_LOWER_CAP` のときに `u` と `v` を反転する分岐は従来どおり
+- **平面**：`u = frac(x * pattern_scale.u - 0.5)`、`v = frac(y * pattern_scale.v - 0.5)`
+- **円盤**：`u` は方位角、`v` は `hypot(x, y)`。半径はスケールに吸収されている。`UV_LOWER_CAP` のときに `u` と `v` を反転する分岐は従来どおり
+
+## 2.1 平面の pattern_scale
+
+平面のスケールには `pattern_size` ではなく境界（`half_size`）が入っているので、
+模様の周期はスケールに吸収できない。
+そこで「ローカル1単位が何タイル分か」を `t_uv` に持たせ、UV 側で掛ける。
+
+```c
+object->uv.pattern_scale = (t_vec2){
+	.u = frame.scale.x / input->option.pattern_size,
+	.v = frame.scale.y / input->option.pattern_size};
+```
+
+`frame.scale` を決めるその場で作るので、型と係数が食い違わない。
+
+| 正準形 | スケール | `pattern_scale` | `p * pattern_scale` |
+| --- | --- | --- | --- |
+| `INFINITE_PLANE` | `(1, 1, 1)` | `1 / pattern_size` | `world / pattern_size` |
+| `UNIT_PLANE` | `(half_size.u, half_size.v, 1)` | `half_size / pattern_size` | `world / pattern_size` |
+
+どちらも最終的に `world / pattern_size` になるので、**1タイルは常に world 空間で `pattern_size` の正方形**である。
+板の大きさを変えても模様の密度は変わらず、有界な平面は無限平面を切り取ったものとして振る舞う。
+
+タイルが world で正方形であることから、`u_per_v` は型にも `half_size` にもよらず常に `1.0` になる。
 
 ## 3. 円錐の u が鏡像になっている（既知の問題）
 
@@ -64,7 +89,7 @@ uv.u = (atan2f(p.y, p.x) + M_PI) / (2.0f * M_PI);
 ## 4. 遠い交点での frac
 
 平面の `u` と `v` は `frac()` を通すので、交点が原点から遠いと精度が落ちる。
-無限平面をかすめるレイでは交点が数万単位まで飛ぶことがあり、`pattern_size` で割った商が float の有効桁を超える。
+無限平面をかすめるレイでは交点が数万単位まで飛ぶことがあり、`pattern_scale` を掛けた積が float の有効桁を超える。
 
 これは world 空間で計算していた頃と同じ性質で、この変更で悪化も改善もしない。
 実測では、交点までの距離を100以下に絞ると差が `3e-2` から `3e-5` に落ちた。

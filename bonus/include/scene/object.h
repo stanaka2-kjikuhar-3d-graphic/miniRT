@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/17 22:26:52 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/29 21:23:35 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_uv
 {
 	enum e_uv_type	type;
 	float			pattern_size;
+	t_vec2			pattern_scale;
 	t_ivec2			checker_count;
 	t_vec2			checker_size;
 	float			u_per_v;
@@ -80,26 +81,33 @@ typedef struct s_uv
 /*
 each shape is a unit form in local space, placed by to_world.
 
-    UNIT_SPHERE        x^2 + y^2 + z^2 = 1
-    UNIT_CYLINDER      x^2 + y^2       = 1     z in [-1, 1]
-    UNIT_CONE          x^2 + y^2 - z^2 = 0     z in [ 0, 1]
-    UNIT_HYPERBOLOID   x^2 + y^2 - z^2 = 1     z in [-zc, zc]
-    UNIT_PARABOLOID    x^2 + y^2 - z   = 0     z in [ 0, 1]
-    UNIT_PLANE         z = 0
+    INFINITE_PLANE     z = 0, |x| <= half_size.x, |y| <= half_size.y
+    UNIT_PLANE         z = 0, |x| <= 1, |y| <= 1
     UNIT_DISC          z = 0, x^2 + y^2 <= 1
+    UNIT_SPHERE        x^2 + y^2 + z^2 = 1     z_range [-1, 1]
+    UNIT_CYLINDER      x^2 + y^2       = 1     z_range [-1, 1]
+    UNIT_CONE          x^2 + y^2 - z^2 = 0     z_range [ 0, 1]
+    UNIT_HYPERBOLOID   x^2 + y^2 - z^2 = 1     z_range [-zc, zc]
+    UNIT_PARABOLOID    x^2 + y^2 - z   = 0     z_range [ 0, 1]
 
   UNIT_HYPERBOLOID keeps zc per object: the unit form fixes both scales,
   so the z bound cannot be normalized to 1 as well.
+
+  INFINITE_PLANE keeps half_size per object for the same reason: u_size
+  and v_size may be given one at a time, and an infinite half cannot be
+  folded into the scale. UNIT_PLANE is the case where both are finite,
+  so there the bound is normalized to 1.
 */
 enum e_primitive_type
 {
+	INFINITE_PLANE,
+	UNIT_PLANE,
+	UNIT_DISC,
 	UNIT_SPHERE,
 	UNIT_CYLINDER,
 	UNIT_CONE,
 	UNIT_HYPERBOLOID,
 	UNIT_PARABOLOID,
-	UNIT_PLANE,
-	UNIT_DISC
 };
 
 typedef struct s_primitive
@@ -107,7 +115,11 @@ typedef struct s_primitive
 	enum e_primitive_type	type;
 	t_mat4					to_world;
 	t_mat4					to_local;
-	t_range					z_range;
+	union
+	{
+		t_range				z_range;
+		t_vec2				half_size;
+	};
 }	t_primitive;
 
 typedef struct s_object
@@ -261,7 +273,5 @@ t_vec3			calc_bump_mapping(\
 					t_object const *object, t_vec2 uv, t_mat3 const *tbn);
 t_vec3			calc_normal_mapping(\
 					t_object const *object, t_vec2 uv, t_mat3 const *tbn);
-float			quadric_eval(t_mat4 const *q, t_vec4 p);
-int				solve_quadratic(float a, float b, float c, float roots[2]);
 
 #endif

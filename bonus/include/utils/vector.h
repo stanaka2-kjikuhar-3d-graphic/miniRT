@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:33:20 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/01 15:42:48 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/29 13:25:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,16 @@ typedef struct s_vec2
 
 typedef struct s_vec3
 {
-	float	x;
-	float	y;
-	float	z;
+	union
+	{
+		float	e[3];
+		struct
+		{
+			float	x;
+			float	y;
+			float	z;
+		};
+	};
 }	t_vec3;
 
 typedef struct s_vec4

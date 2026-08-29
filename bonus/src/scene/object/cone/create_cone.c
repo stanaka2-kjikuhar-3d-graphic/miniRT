@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/17 22:35:05 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/29 16:25:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 static bool		add_lower_cap_circle(t_object const *object, \
 					t_input_cone const *input, t_vec3 dir);
-static bool		set_primitive(\
+static bool		set_cone_primitive(\
 					t_object *object, t_input_cone const *input, t_vec3 dir);
 static void		set_cone_uv(t_object *object, t_input_cone const *input);
 static t_aabb	calc_cone_aabb(t_input_cone const *input, t_vec3 dir);
@@ -37,7 +37,7 @@ bool	create_cone(t_input_cone const *input)
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
 	set_cone_uv(&object, input);
-	if (!set_primitive(&object, input, dir))
+	if (!set_cone_primitive(&object, input, dir))
 		return (false);
 	object.aabb = calc_cone_aabb(input, dir);
 	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
@@ -88,7 +88,7 @@ static bool	add_lower_cap_circle(t_object const *object, \
   the unit cone has its apex at z = 0 and opens toward +z,
   so the frame sits at the apex and looks back along -dir.
 */
-static bool	set_primitive(\
+static bool	set_cone_primitive(\
 	t_object *object, t_input_cone const *input, t_vec3 dir)
 {
 	t_primitive_frame	frame;

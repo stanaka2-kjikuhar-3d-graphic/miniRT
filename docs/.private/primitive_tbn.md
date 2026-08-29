@@ -11,51 +11,85 @@
 接ベクトルは面に沿う変位そのものなので、点の差と同じく `to_world` の線形部で移る。
 
 ```c
-static t_vec3	to_world_dir(t_primitive const *prim, t_vec3 v)
-{
-	return (vec3_normalize(mat4_transform_dir(&(prim->to_world), v)));
-}
+tangent = vec3_normalize(mat4_transform_dir(&(prim->to_world), \
+							calc_local_tangent(prim, point, uv_type)));
 ```
 
 法線と接線で使う行列が違うのは、両者が別の量だからである。
 法線は「面に垂直である」という関係で決まり、接線は「面に沿う」という向きで決まる。
 非等方スケールのもとでは、この2つは別々の変換に従う。
 
-## 2. 正準形ごとの接空間
+## 2. 常に T を求めて B は外積で作る
 
 `+u` の向きと `+v` の向きは UV の取り方（[primitive_uv.md](primitive_uv.md)）から決まる。
+`u` は平面以外のすべてで方位角 `u = (θ + π) / 2π` なので、`T` はローカルで方位角方向 `(-y, x, 0)` に決まる。
+平面だけ `u = x` に比例するので `(1, 0, 0)` である。
 
-| 正準形 | ローカルで決める側 | もう一方 |
+```c
+if (prim->type == INFINITE_PLANE || prim->type == UNIT_PLANE)
+	return (vec3(1.0f, 0.0f, 0.0f));
+local = mat4_transform_point(&(prim->to_local), point);
+if (local.x * local.x + local.y * local.y < EPSILON * EPSILON)
+	return (vec3(1.0f, 0.0f, 0.0f));
+if (uv_type == UV_LOWER_CAP)
+	return (vec3(local.y, -local.x, 0.0f));
+return (vec3(-local.y, local.x, 0.0f));
+```
+
+`B` は `T` と `N` の外積で作る。
+型ごとに違うのは外積の順序だけである。
+
+```c
+if (is_left_hand_tbn_type(prim->type))
+	return (mat3_from_columns(tangent, vec3_cross(tangent, normal), normal));
+return (mat3_from_columns(tangent, vec3_cross(normal, tangent), normal));
+```
+
+## 2.1 外積の順序を決めるもの
+
+`T × B` が `+N` になる型と `-N` になる型がある。
+後者が `is_left_hand_tbn_type` で、理由は2種類ある。
+
+| 正準形 | `T × B` | 理由 |
 | --- | --- | --- |
-| 球、円錐、一葉双曲面、放物面 | `T` = 方位角方向 | `B` = `T × N` または `N × T` |
-| 円柱 | `B` = `(0, 0, -1)` | `T` = `N × B` |
-| 円盤 | `B` = 半径方向（下キャップは反転） | `T` = `N × B` |
-| 平面 | `T` = `(1, 0, 0)` | `B` = `N × T` |
+| 平面、円錐、放物面 | `+N` | `v` が `+z`（平面は `+y`）を向く |
+| 球、円柱、一葉双曲面 | `-N` | `v` の式が `0.5 - z / …` で `-z` を向く。軸が1本反転している |
+| 円盤 | `-N` | 軸の反転はない。`(u, v) = (方位角, 半径)` が `(r, θ, z)` の順を入れ替えている |
 
-`B` を `T × N` にするか `N × T` にするかは、`v` が `z` とともに増えるかどうかで決まる。
-円錐と放物面は `v = z` なので `N × T`、球と一葉双曲面と円柱は `v` が `z` とともに減るので `T × N` になる。
+円柱座標 `(r, θ, z)` は右手系なので、側面型は `T = θ`、`N ≒ r` として `B = +z` なら右手系、`B = -z` なら左手系になる。
+円盤は `N = z` の側にあり、残る2軸を `(θ, r)` の順で使うため、軸を反転させなくても左手系になる。
+
+球と円柱と一葉双曲面が `-z` 向きなのは、上端で `v = 0` にしてキャップの円盤と辻褄を合わせるためである（[primitive_uv.md](primitive_uv.md) 2節）。
+つまりこの表の出どころは `calc_primitive_uv.c` の `v` の式であり、片方だけ変えると法線マップが静かに反転する。
 
 この組分けが world 空間の見た目と噛み合っていないことに注意する。
 world ではどの形状も `v` が上から下へ流れるが、円錐だけローカル `+z` が `-dir` を向くため、ローカル座標では関係が逆転する。
 放物面はさらに world でも逆を向いている（#91）。
 
-## 3. 接線は点ではなく法線から取る
+## 3. 接線は法線ではなく交点から取る
 
 方位角方向の接線は、ローカル座標を xy 平面で90度回せば得られる。
-このとき回す対象は**交点ではなく法線**にする。
+このとき回す対象は**法線ではなく交点**にする。
 
-```c
-basis = mat3_from_mat4(&(prim->to_world));
-local = mat3_mul_t_vec3(&basis, normal);
-return (vec3(-local.y, local.x, 0.0f));
-```
+回転体は法線の xy 成分が交点と同じ方位角を持つ（球は法線 ∝ 交点、円柱は `(x, y, 0)`、円錐と一葉双曲面は `(x, y, -z)`、放物面は `(2x, 2y, -1)`）ので、
+どちらから取っても同じ接線になる。
 
-法線はレイと同じ向きを向いていたら反転される（[primitive_normal.md](primitive_normal.md) 4節）。
-交点から接線を取ると、この反転に接線が追従しない。
-球の内側から当たったときに、法線だけ裏返って接空間が右手系と左手系のあいだで壊れることになる。
+**円盤だけが成立しない。**
+円盤の法線は面全体で `(0, 0, 1)` の定数なので、方位角を持たない。
+法線から取ると `local.x² + local.y² < EPSILON²` のフォールバックに常に落ち、
+どの点でも `(1, 0, 0)` という定数が返ってしまう。
+一方 `u` は方位角なので、`T` は点ごとに回らなければならない。
 
-`mat3_mul_t_vec3` に `to_world` の線形部を渡しているのは、法線を world からローカルへ戻すためである。
-`n_world ∝ (M⁻¹)ᵀ n_local` の両辺に `Mᵀ` を掛けると `n_local ∝ Mᵀ n_world` になる。
+以前はこのために円盤と円柱だけ `B` を先に求めて `T = N × B` で回す別経路を持っていたが、
+接線を交点から取れば縮退そのものが起きないので、経路は1本で足りる。
+
+`UV_LOWER_CAP` で `u` が反転する分岐がここにあるのも、下キャップの `T` を反転させるためである
+（[primitive_uv.md](primitive_uv.md) 2節。`disc_uv` は `u` と `v` の両方を反転するので、
+`T` を反転させれば `B` は外積の側から自動的に反転する）。
+
+なお法線はレイと同じ向きを向いていたら反転される（[primitive_normal.md](primitive_normal.md) 4節）。
+交点から取った `T` はこの反転に追従しないので、内側から当たったときは `T` が固定されて `B` が裏返る。
+`T` と `B` のどちらが裏返るかが変わるだけで、`T × B` と `N` の関係は保たれるため手系は壊れない。
 
 ## 4. バンプと法線マッピングが行列の積になる
 
@@ -80,6 +114,16 @@ return (vec3_normalize(mat3_mul_vec3(tbn, vec3(du, dv, 1.0f))));
 
 正準形から求める方式ではこの区別が消えるので、3種にも接空間が入る。
 これは挙動の変化であり、この3種にバンプマップを指定したシーンでは見た目が変わる。
+
+## 6. 現在の構成
+
+`calc_primitive_tbn.c` は3関数で閉じている。
+
+| 関数 | 役割 |
+| --- | --- |
+| `calc_primitive_tbn` | `T` を world に移し、外積の順序を選んで列に並べる |
+| `calc_local_tangent` | ローカルの `T`。平面は `(1, 0, 0)`、他は交点の方位角方向 |
+| `is_left_hand_tbn_type` | `T × B` が `-N` になる型（2.1節） |
 
 ---
 参考: [primitive_normal.md](primitive_normal.md)（法線は逆転置で戻す）、[primitive_uv.md](primitive_uv.md)（`u` と `v` の向き）、[matrix.md](matrix.md)（`t_mat3` の基底の持ち方）

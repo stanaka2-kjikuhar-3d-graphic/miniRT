@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/17 22:34:04 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/29 16:24:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ static bool		add_cap_circle(t_object const *object, \
 					enum e_uv_type type);
 static void		set_cylinder_uv(\
 					t_object *object, t_input_cylinder const *input);
-static bool		set_primitive(\
-					t_object *object, t_input_cylinder const *input, \
-					t_vec3 dir);
+static bool		set_cylinder_primitive(t_object *object, \
+					t_input_cylinder const *input, t_vec3 dir);
 static t_aabb	calc_cylinder_aabb(\
 					t_input_cylinder const *input, t_vec3 dir);
 
@@ -41,7 +40,7 @@ bool	create_cylinder(t_input_cylinder const *input)
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
 	set_cylinder_uv(&object, input);
-	if (!set_primitive(&object, input, dir))
+	if (!set_cylinder_primitive(&object, input, dir))
 		return (false);
 	object.aabb = calc_cylinder_aabb(input, dir);
 	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
@@ -80,7 +79,7 @@ static bool	add_cap_circle(t_object const *object, \
 	return (create_circle(&input));
 }
 
-static bool	set_primitive(\
+static bool	set_cylinder_primitive(\
 	t_object *object, t_input_cylinder const *input, t_vec3 dir)
 {
 	t_primitive_frame	frame;
