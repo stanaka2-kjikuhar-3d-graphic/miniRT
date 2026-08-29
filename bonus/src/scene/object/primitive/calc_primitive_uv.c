@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 19:25:41 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/29 21:38:59 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/29 22:17:58 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ static t_vec2	lateral_uv(t_primitive const *prim, t_vec3 p)
 		uv.v = 0.5f - p.z / 2.0f;
 	else if (prim->type == UNIT_HYPERBOLOID)
 		uv.v = 0.5f - p.z / (2.0f * prim->z_range.max);
+	else if (prim->type == UNIT_PARABOLOID)
+		uv.v = 1.0f - p.z;
 	else
 		uv.v = p.z;
 	return (uv);

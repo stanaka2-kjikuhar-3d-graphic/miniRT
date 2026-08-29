@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 20:33:12 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/29 21:11:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/29 22:18:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static t_vec3	calc_local_tangent(\
 types whose T x B is -N. the reason differs between the two groups, and
 both come from the v of calc_primitive_uv.c. See docs/primitive_tbn.md.
 
-    UNIT_SPHERE / UNIT_CYLINDER / UNIT_HYPERBOLOID
-        v = 0.5 - z / ... runs along -z, so one axis is flipped.
+    UNIT_SPHERE / UNIT_CYLINDER / UNIT_HYPERBOLOID / UNIT_PARABOLOID
+        v runs along -z, so one axis is flipped.
     UNIT_DISC
         no axis is flipped, but (u, v) = (azimuth, radius) reverses the
         right handed (r, theta, z).
@@ -67,5 +67,6 @@ both come from the v of calc_primitive_uv.c. See docs/primitive_tbn.md.
 static bool	is_left_hand_tbn_type(enum e_primitive_type type)
 {
 	return (type == UNIT_SPHERE || type == UNIT_CYLINDER \
-				|| type == UNIT_HYPERBOLOID || type == UNIT_DISC);
+			|| type == UNIT_HYPERBOLOID || type == UNIT_PARABOLOID \
+			|| type == UNIT_DISC);
 }

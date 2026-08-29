@@ -33,11 +33,22 @@ uv.u = (atan2f(p.y, p.x) + M_PI) / (2.0f * M_PI);
 | `UNIT_CYLINDER` | `0.5 - z / 2` |
 | `UNIT_CONE` | `z` |
 | `UNIT_HYPERBOLOID` | `0.5 - z / (2 z_max)` |
-| `UNIT_PARABOLOID` | `z` |
+| `UNIT_PARABOLOID` | `1 - z` |
 
 円柱と一葉双曲面が上端で `v = 0` になる向きなのは、キャップの円盤（`add_cap_circle`）が
 その向きを前提に `v_range` を割り当てているためである（[hyperboloid.md](hyperboloid.md) 5節）。
 以前は `calc_hyperboloid_uv` が戻り値を反転して辻褄を合わせていたが、この式では符号がそのまま入っている。
+
+揃える基準は「ローカルの z」ではなく「world の上下」である。
+どの形状も world の上が `v = 0` になる。
+
+| 正準形 | ローカル `+z` の world 向き | `z = 0` の world 位置 | `v` |
+| --- | --- | --- | --- |
+| 円錐 | `-dir` | 上（頂点） | `z` |
+| 放物面 | `+dir` | 下（頂点） | `1 - z` |
+
+円錐が `v = z` のままで揃うのは、フレームの `w` 軸が `-dir` を向いているぶんが式の符号を肩代わりしているからである（[create_cone.c](../bonus/src/scene/object/cone/create_cone.c)）。
+放物面は `+dir` に開くのが正しい配置なので `w` を裏返せず、式側で反転する。
 
 一葉双曲面だけ `z_max` で割るのは、正準形の z 範囲がオブジェクトごとに変わるからである。
 `t_primitive` が持つ `z_range` をそのまま使う。
