@@ -6,7 +6,7 @@
 #    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/16 21:41:55 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/08/29 17:41:30 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,11 +107,10 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 					renderer \
 					$(addprefix renderer/, \
 						path_tracing \
+						intersection \
 						phong \
 						$(addprefix phong/, \
-							intersection \
 							lighting \
-							shading \
 						) \
 					) \
 					$(addprefix scene/, \
@@ -235,10 +234,12 @@ SRCS	+=	renderer.c \
 			render_flag.c \
 			put_color_to_window_image.c
 
+# renderer/intersection
+SRCS	+=	find_closest_hit.c \
+			is_in_shadow.c
+
 # renderer/phong
 SRCS	+=	phong.c
-# renderer/phong/intersection
-SRCS	+=	phong_intersection.c
 # renderer/phong/lighting
 SRCS	+=	phong_lighting.c \
 			phong_lighting_ambient.c \
@@ -246,8 +247,6 @@ SRCS	+=	phong_lighting.c \
 			phong_lighting_spot.c \
 			phong_lighting_directional.c \
 			phong_specular_dot.c
-# renderer/phong/shading
-SRCS	+=	phong_shading.c
 
 # scene/camera
 SRCS	+=	camera.c \

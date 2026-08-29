@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phong_intersection.c                               :+:      :+:    :+:   */
+/*   find_closest_hit.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/16 22:46:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 20:59:14 by kjikuhar         ###   ########.fr       */
+/*   Created: 2026/08/29 17:26:03 by kjikuhar          #+#    #+#             */
+/*   Updated: 2026/08/29 17:35:40 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 #include "object.h"
 #include "ray.h"
 
-#include "../phong_private.h"
+#include "./intersection.h"
 
 static void	set_hit_record(t_ray const *ray, t_hit *hit);
 
-t_hit	phong_intersection(t_ray const *ray)
+t_hit	find_closest_hit(t_ray const *ray)
 {
 	t_object const	*object;
 	t_hit			hit;
