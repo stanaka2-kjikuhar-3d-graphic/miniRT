@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_primitive_normal.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 18:51:33 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/16 19:01:04 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/29 14:43:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,12 @@ static t_vec3	local_normal(enum e_primitive_type type, t_vec3 point)
 	t_mat4	q;
 	t_vec4	gradient;
 
-	if (type == UNIT_PLANE || type == UNIT_DISC)
+	if (is_planar_primitive(type))
 		return (vec3(0.0f, 0.0f, 1.0f));
-	q = unit_quadric(type);
-	gradient = mat4_mul_vec4(&q, vec4_from_point(point));
-	return (vec3(gradient.x, gradient.y, gradient.z));
+	else
+	{
+		q = unit_quadric(type);
+		gradient = mat4_mul_vec4(&q, vec4_from_point(point));
+		return (vec3(gradient.x, gradient.y, gradient.z));
+	}
 }

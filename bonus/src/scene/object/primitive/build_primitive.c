@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_primitive.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 01:12:33 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/07 22:27:29 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/29 18:57:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,14 @@
     | basis  (R)  |                | to_world  = M   |
     | origin (T)  |  ---- M --->   | to_local  = M^-1|
     | scale  (S)  |                | z_range         |
-    +-------------+                +-----------------+
+    | z_range     |                |   or half_size  |
+    |   or        |                +-----------------+
+    |   half_size |
+    +-------------+
+
+  z_range and half_size share a union, so only the member the type
+  actually reads is written: half_size for INFINITE_PLANE, z_range for
+  the quadrics. UNIT_PLANE and UNIT_DISC read neither.
 
   false when a scale component is too small to invert.
 */
@@ -40,6 +47,9 @@ bool	build_primitive(t_primitive_frame const *frame, t_primitive *out)
 			&(frame->basis), frame->origin, frame->scale);
 	out->to_local = mat4_world_to_local(\
 			&(frame->basis), frame->origin, frame->scale);
-	out->z_range = frame->z_range;
+	if (frame->type == INFINITE_PLANE)
+		out->half_size = frame->half_size;
+	else if (is_quadric_primitive(frame->type))
+		out->z_range = frame->z_range;
 	return (true);
 }

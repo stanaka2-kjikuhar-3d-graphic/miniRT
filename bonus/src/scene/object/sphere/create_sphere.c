@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/17 22:31:01 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/29 16:21:42 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 
 #include "../object_private.h"
 
-static bool		set_primitive(t_object *object, t_input_sphere const *input);
+static bool		set_sphere_primitive(\
+					t_object *object, t_input_sphere const *input);
 static t_aabb	calc_sphere_aabb(t_input_sphere const *input);
 
 bool	create_sphere(t_input_sphere const *input)
@@ -33,7 +34,7 @@ bool	create_sphere(t_input_sphere const *input)
 	object.uv.u_per_v = 2.0f;
 	object.uv.u_range = (t_range){.min = 0.0f, .max = 1.0f};
 	object.uv.v_range = (t_range){.min = 0.0f, .max = 1.0f};
-	if (!set_primitive(&object, input))
+	if (!set_sphere_primitive(&object, input))
 		return (false);
 	object.aabb = calc_sphere_aabb(input);
 	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
@@ -41,7 +42,7 @@ bool	create_sphere(t_input_sphere const *input)
 	return (create_object(&object));
 }
 
-static bool	set_primitive(t_object *object, t_input_sphere const *input)
+static bool	set_sphere_primitive(t_object *object, t_input_sphere const *input)
 {
 	t_primitive_frame	frame;
 

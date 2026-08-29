@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_object_uv.c                                   :+:      :+:    :+:   */
+/*   is_quadric_primitive.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/03 19:39:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/29 15:10:22 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/08/29 17:22:59 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/29 17:25:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdbool.h>
+
 #include "object.h"
 
-#include "./object_private.h"
-
-t_vec2	calc_object_uv(t_object const *object, t_vec3 point)
+bool	is_quadric_primitive(enum e_primitive_type type)
 {
-	t_vec2	uv;
-
-	uv = calc_primitive_uv(&(object->primitive), point, &(object->uv));
-	return (adjust_uv_range(uv, object->uv.u_range, object->uv.v_range));
+	return (type == UNIT_SPHERE || type == UNIT_CYLINDER \
+		|| type == UNIT_CONE || type == UNIT_HYPERBOLOID \
+		|| type == UNIT_PARABOLOID);
 }

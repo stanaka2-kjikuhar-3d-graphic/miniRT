@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 19:47:07 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/17 22:36:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/29 16:23:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool		add_cap_circle(t_object const *object, \
 					enum e_uv_type type);
 static void		set_hyperboloid_uv(\
 					t_object *object, t_input_hyperboloid const *input);
-static bool		set_primitive(t_object *object, \
+static bool		set_hyperboloid_primitive(t_object *object, \
 					t_input_hyperboloid const *input, t_vec3 dir);
 static t_aabb	calc_hyperboloid_aabb(\
 					t_input_hyperboloid const *input, t_vec3 dir);
@@ -40,7 +40,7 @@ bool	create_hyperboloid(t_input_hyperboloid const *input)
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
 	set_hyperboloid_uv(&object, input);
-	if (!set_primitive(&object, input, dir))
+	if (!set_hyperboloid_primitive(&object, input, dir))
 		return (false);
 	object.aabb = calc_hyperboloid_aabb(input, dir);
 	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
@@ -95,14 +95,12 @@ static bool	add_cap_circle(t_object const *object, \
 }
 
 /*
-  the unit form fixes both scales, so the z bound stays per object.
-
     scale  = (center_radius, center_radius, c)
     c      = half_height * center_radius / sqrt(cap^2 - center^2)
     z_max  = half_height / c = sqrt((cap / center)^2 - 1)
 */
-static bool	set_primitive(t_object *object, \
-	t_input_hyperboloid const *input, t_vec3 dir)
+static bool	set_hyperboloid_primitive(\
+	t_object *object, t_input_hyperboloid const *input, t_vec3 dir)
 {
 	t_primitive_frame	frame;
 	float				radius_diff;

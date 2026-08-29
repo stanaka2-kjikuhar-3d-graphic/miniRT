@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_primitive_tbn.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 20:33:12 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/16 20:52:39 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/29 21:11:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,66 +19,53 @@
 
 #include "../object_private.h"
 
-static t_vec3	local_tangent(t_primitive const *prim, t_vec3 normal);
-static t_vec3	local_bitangent(\
-					t_primitive const *prim, t_vec3 point, \
-					enum e_uv_type uv_type);
-static t_vec3	to_world_dir(t_primitive const *prim, t_vec3 v);
-static bool		v_grows_with_z(enum e_primitive_type type);
+static t_vec3	calc_local_tangent(\
+				t_primitive const *prim, t_vec3 point, enum e_uv_type uv_type);
+static bool		is_left_hand_tbn_type(enum e_primitive_type type);
 
 /* Tangent frame T, B, N in the columns. See docs/primitive_tbn.md. */
 t_mat3	calc_primitive_tbn(t_primitive const *prim, t_vec3 point, \
 			t_vec3 normal, enum e_uv_type uv_type)
 {
-	t_vec3	v;
+	t_vec3	tangent;
 
-	if (prim->type == UNIT_CYLINDER || prim->type == UNIT_DISC)
+	tangent = vec3_normalize(mat4_transform_dir(&(prim->to_world), \
+								calc_local_tangent(prim, point, uv_type)));
+	if (is_left_hand_tbn_type(prim->type))
 	{
-		v = to_world_dir(prim, local_bitangent(prim, point, uv_type));
-		return (mat3_from_columns(vec3_cross(normal, v), v, normal));
+		return (mat3_from_columns(\
+					tangent, vec3_cross(tangent, normal), normal));
 	}
-	v = to_world_dir(prim, local_tangent(prim, normal));
-	if (v_grows_with_z(prim->type))
-		return (mat3_from_columns(v, vec3_cross(normal, v), normal));
-	return (mat3_from_columns(v, vec3_cross(v, normal), normal));
+	return (mat3_from_columns(tangent, vec3_cross(normal, tangent), normal));
 }
 
-static t_vec3	local_tangent(t_primitive const *prim, t_vec3 normal)
-{
-	t_mat3	basis;
-	t_vec3	local;
-
-	if (prim->type == UNIT_PLANE)
-		return (vec3(1.0f, 0.0f, 0.0f));
-	basis = mat3_from_mat4(&(prim->to_world));
-	local = mat3_mul_t_vec3(&basis, normal);
-	if (local.x * local.x + local.y * local.y < EPSILON * EPSILON)
-		return (vec3(1.0f, 0.0f, 0.0f));
-	return (vec3(-local.y, local.x, 0.0f));
-}
-
-static t_vec3	local_bitangent(\
+static t_vec3	calc_local_tangent(\
 	t_primitive const *prim, t_vec3 point, enum e_uv_type uv_type)
 {
 	t_vec3	local;
 
-	if (prim->type == UNIT_CYLINDER)
-		return (vec3(0.0f, 0.0f, -1.0f));
+	if (prim->type == INFINITE_PLANE || prim->type == UNIT_PLANE)
+		return (vec3(1.0f, 0.0f, 0.0f));
 	local = mat4_transform_point(&(prim->to_local), point);
-	if (uv_type == UV_LOWER_CAP)
-		return (vec3(-local.x, -local.y, 0.0f));
 	if (local.x * local.x + local.y * local.y < EPSILON * EPSILON)
 		return (vec3(1.0f, 0.0f, 0.0f));
-	return (vec3(local.x, local.y, 0.0f));
+	if (uv_type == UV_LOWER_CAP)
+		return (vec3(local.y, -local.x, 0.0f));
+	return (vec3(-local.y, local.x, 0.0f));
 }
 
-static t_vec3	to_world_dir(t_primitive const *prim, t_vec3 v)
-{
-	return (vec3_normalize(mat4_transform_dir(&(prim->to_world), v)));
-}
+/*
+types whose T x B is -N. the reason differs between the two groups, and
+both come from the v of calc_primitive_uv.c. See docs/primitive_tbn.md.
 
-static bool	v_grows_with_z(enum e_primitive_type type)
+    UNIT_SPHERE / UNIT_CYLINDER / UNIT_HYPERBOLOID
+        v = 0.5 - z / ... runs along -z, so one axis is flipped.
+    UNIT_DISC
+        no axis is flipped, but (u, v) = (azimuth, radius) reverses the
+        right handed (r, theta, z).
+*/
+static bool	is_left_hand_tbn_type(enum e_primitive_type type)
 {
-	return (type == UNIT_PLANE || type == UNIT_CONE \
-		|| type == UNIT_PARABOLOID);
+	return (type == UNIT_SPHERE || type == UNIT_CYLINDER \
+				|| type == UNIT_HYPERBOLOID || type == UNIT_DISC);
 }

@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quadric_eval.c                                     :+:      :+:    :+:   */
+/*   is_planar.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/31 17:19:48 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/06 22:21:10 by kjikuhar         ###   ########.fr       */
+/*   Created: 2026/08/25 21:22:19 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/25 21:25:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
-#include "matrix.h"
+#include <stdbool.h>
 
-float	quadric_eval(t_mat4 const *q, t_vec4 p)
+#include "object.h"
+
+bool	is_planar_primitive(enum e_primitive_type type)
 {
-	return (vec4_dot(p, mat4_mul_vec4(q, p)));
+	return (type == UNIT_PLANE || type == UNIT_DISC || type == INFINITE_PLANE);
 }
