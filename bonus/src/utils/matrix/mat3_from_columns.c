@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mat3_from_columns.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 20:19:41 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/16 20:28:22 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/30 19:22:01 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ basis vectors go in as columns.
     Z_AXIS |   u.z      v.z      w.z  |
            +--------------------------+
 */
-/* a column is not contiguous, so .row cannot be used here. */
 t_mat3	mat3_from_columns(t_vec3 u, t_vec3 v, t_vec3 w)
 {
 	return ((t_mat3){.m = {\
