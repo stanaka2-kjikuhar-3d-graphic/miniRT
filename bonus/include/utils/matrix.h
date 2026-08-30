@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 21:43:59 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/30 18:50:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/30 19:28:15 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,6 @@
 # include <stddef.h>
 
 # include "vector.h"
-
-/*
-a basis vector index. rows are world axes (e_axis), columns are the
-local basis vectors, so m[Y_AXIS][U_AXIS] is u.y.
-*/
-enum e_basis
-{
-	U_AXIS,
-	V_AXIS,
-	W_AXIS,
-};
 
 /*
 t_mat3: basis vectors are COLUMNS.

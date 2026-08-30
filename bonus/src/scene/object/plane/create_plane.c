@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/29 17:38:28 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/30 19:25:57 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,12 @@ static t_aabb	calc_plane_aabb(\
 
 	half_size = input->option.half_size;
 	extent = vec3(\
-		mul_extent(half_size.u, fabsf(basis->m[X_AXIS][U_AXIS])) \
-			+ mul_extent(half_size.v, fabsf(basis->m[X_AXIS][V_AXIS])), \
-		mul_extent(half_size.u, fabsf(basis->m[Y_AXIS][U_AXIS])) \
-			+ mul_extent(half_size.v, fabsf(basis->m[Y_AXIS][V_AXIS])), \
-		mul_extent(half_size.u, fabsf(basis->m[Z_AXIS][U_AXIS])) \
-			+ mul_extent(half_size.v, fabsf(basis->m[Z_AXIS][V_AXIS])) \
+		mul_extent(half_size.u, fabsf(basis->row[X_AXIS].u)) \
+			+ mul_extent(half_size.v, fabsf(basis->row[X_AXIS].v)), \
+		mul_extent(half_size.u, fabsf(basis->row[Y_AXIS].u)) \
+			+ mul_extent(half_size.v, fabsf(basis->row[Y_AXIS].v)), \
+		mul_extent(half_size.u, fabsf(basis->row[Z_AXIS].u)) \
+			+ mul_extent(half_size.v, fabsf(basis->row[Z_AXIS].v)) \
 	);
 	return (calc_aabb_from_extent(input->center, extent));
 }
