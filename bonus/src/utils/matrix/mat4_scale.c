@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mat4_scale.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 22:54:37 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/22 22:54:38 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/30 18:50:39 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 t_mat4	mat4_scale(t_vec3 s)
 {
-	t_mat4	result;
-
-	result = mat4_identity();
-	result.m[0][0] = s.x;
-	result.m[1][1] = s.y;
-	result.m[2][2] = s.z;
-	return (result);
+	return ((t_mat4){.m = {\
+		{s.x, 0.0f, 0.0f, 0.0f}, \
+		{0.0f, s.y, 0.0f, 0.0f}, \
+		{0.0f, 0.0f, s.z, 0.0f}, \
+		{0.0f, 0.0f, 0.0f, 1.0f} \
+	}});
 }

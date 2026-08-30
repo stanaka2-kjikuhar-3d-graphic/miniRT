@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 21:43:59 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/16 20:28:44 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/30 18:50:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define MATRIX_H
 
 # include <stdbool.h>
+# include <assert.h>
+# include <stddef.h>
 
 # include "vector.h"
 
@@ -40,16 +42,62 @@ t_mat3: basis vectors are COLUMNS.
 
   local -> world :  M * p
   world -> local :  transpose(M) * p   (orthonormal basis only)
+
+  row[] and x, y, z name ROWS, not the basis vectors. a column is not
+  contiguous, so a function that builds one writes m[][] by hand.
 */
 typedef struct s_mat3
 {
-	float	m[3][3];
+	union
+	{
+		float	m[3][3];
+		t_vec3	row[3];
+		struct
+		{
+			t_vec3	x;
+			t_vec3	y;
+			t_vec3	z;
+		};
+	};
 }	t_mat3;
+
+# define MAT3_ASSERTION "Error\nmemory alignment of t_mat3."
+
+static_assert(sizeof(float [3][3]) == sizeof(t_vec3 [3]), MAT3_ASSERTION);
+
+static_assert(offsetof(t_mat3, x) == 0, MAT3_ASSERTION " x != m[0]");
+static_assert(offsetof(t_mat3, y) == sizeof(t_vec3), \
+				MAT3_ASSERTION " y != m[1]");
+static_assert(offsetof(t_mat3, z) == 2 * sizeof(t_vec3), \
+				MAT3_ASSERTION " z != m[2]");
 
 typedef struct s_mat4
 {
-	float	m[4][4];
+	union
+	{
+		float	m[4][4];
+		t_vec4	row[4];
+		struct
+		{
+			t_vec4	x;
+			t_vec4	y;
+			t_vec4	z;
+			t_vec4	w;
+		};
+	};
 }	t_mat4;
+
+# define MAT4_ASSERTION "Error\nmemory alignment of t_mat4."
+
+static_assert(sizeof(float [4][4]) == sizeof(t_vec4 [4]), MAT4_ASSERTION);
+
+static_assert(offsetof(t_mat4, x) == 0, MAT4_ASSERTION " x != m[0]");
+static_assert(offsetof(t_mat4, y) == sizeof(t_vec4), \
+				MAT4_ASSERTION " y != m[1]");
+static_assert(offsetof(t_mat4, z) == 2 * sizeof(t_vec4), \
+				MAT4_ASSERTION " z != m[2]");
+static_assert(offsetof(t_mat4, w) == 3 * sizeof(t_vec4), \
+				MAT4_ASSERTION " w != m[3]");
 
 t_mat4	mat4_identity(void);
 t_mat4	mat4_mul(t_mat4 const *a, t_mat4 const *b);

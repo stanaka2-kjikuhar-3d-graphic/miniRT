@@ -23,6 +23,7 @@ basis vectors go in as columns.
     Z_AXIS |   u.z      v.z      w.z  |
            +--------------------------+
 */
+/* a column is not contiguous, so .row cannot be used here. */
 t_mat3	mat3_from_columns(t_vec3 u, t_vec3 v, t_vec3 w)
 {
 	return ((t_mat3){.m = {\

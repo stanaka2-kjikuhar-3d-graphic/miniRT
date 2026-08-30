@@ -6,12 +6,15 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:33:20 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/29 13:25:18 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/30 16:19:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_H
 # define VECTOR_H
+
+# include <assert.h>
+# include <stddef.h>
 
 enum e_axis
 {
@@ -75,16 +78,47 @@ typedef struct s_vec3
 			float	y;
 			float	z;
 		};
+		struct
+		{
+			float	u;
+			float	v;
+			float	w;
+		};
 	};
 }	t_vec3;
 
+# define VEC3_ASSERTION "Error\nmemory alignment of t_vec3."
+
+static_assert(offsetof(t_vec3, x) == 0, VEC3_ASSERTION " x != e[0]");
+static_assert(offsetof(t_vec3, y) == sizeof(float), \
+				VEC3_ASSERTION " y != e[1]");
+static_assert(offsetof(t_vec3, z) == 2 * sizeof(float), \
+				VEC3_ASSERTION " z != e[2]");
+
 typedef struct s_vec4
 {
-	float	x;
-	float	y;
-	float	z;
-	float	w;
+	union
+	{
+		float	e[4];
+		struct
+		{
+			float	x;
+			float	y;
+			float	z;
+			float	w;
+		};
+	};
 }	t_vec4;
+
+# define VEC4_ASSERTION "Error\nmemory alignment of t_vec4."
+
+static_assert(offsetof(t_vec4, x) == 0, VEC4_ASSERTION " x != e[0]");
+static_assert(offsetof(t_vec4, y) == sizeof(float), \
+				VEC4_ASSERTION " y != e[1]");
+static_assert(offsetof(t_vec4, z) == 2 * sizeof(float), \
+				VEC4_ASSERTION " z != e[2]");
+static_assert(offsetof(t_vec4, w) == 3 * sizeof(float), \
+				VEC4_ASSERTION " w != e[3]");
 
 t_ivec2	ivec2(int x, int y);
 

@@ -26,7 +26,6 @@ static bool	check_separator(const char *element, enum e_axis axis);
 bool	parse_vec3(char const *element, void *value)
 {
 	t_vec3 *const	vector = (t_vec3 *)value;
-	float *const	v[3] = {&vector->x, &vector->y, &vector->z};
 	enum e_axis		axis;
 
 	axis = X_AXIS;
@@ -34,7 +33,7 @@ bool	parse_vec3(char const *element, void *value)
 	{
 		if (!parse_axis(element))
 			return (false);
-		*(v[axis]) = (float)ft_strtod(element, (char **)&element);
+		vector->e[axis] = (float)ft_strtod(element, (char **)&element);
 		if (!check_separator(element, axis))
 			return (false);
 		++element;
