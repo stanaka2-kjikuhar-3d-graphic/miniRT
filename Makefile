@@ -6,7 +6,7 @@
 #    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/29 19:30:15 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/08/30 16:52:53 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,6 +108,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 					$(addprefix renderer/, \
 						path_tracing \
 						intersection \
+						raytracer \
 						phong \
 						$(addprefix phong/, \
 							lighting \
@@ -233,11 +234,16 @@ SRCS	+=	is_blank_line.c \
 # renderer
 SRCS	+=	renderer.c \
 			render_flag.c \
-			put_color_to_window_image.c
+			put_color_to_window_image.c \
+			camera_ray.c
 
 # renderer/intersection
 SRCS	+=	find_closest_hit.c \
 			is_in_shadow.c
+
+# renderer/raytracer
+SRCS	+=	raytrace_pixel.c \
+			trace_ray.c
 
 # renderer/phong
 SRCS	+=	phong.c
