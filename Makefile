@@ -6,7 +6,7 @@
 #    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/30 16:52:53 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/08/30 16:53:17 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -245,8 +245,6 @@ SRCS	+=	find_closest_hit.c \
 SRCS	+=	raytrace_pixel.c \
 			trace_ray.c
 
-# renderer/phong
-SRCS	+=	phong.c
 # renderer/phong/lighting
 SRCS	+=	phong_lighting.c \
 			phong_lighting_ambient.c \
