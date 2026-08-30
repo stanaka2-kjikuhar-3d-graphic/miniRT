@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/29 22:03:11 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/30 19:27:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ static bool	set_cone_primitive(\
 
 	frame.type = UNIT_CONE;
 	frame.basis = calc_onb(dir);
-	frame.basis.m[X_AXIS][W_AXIS] *= -1;
-	frame.basis.m[Y_AXIS][W_AXIS] *= -1;
-	frame.basis.m[Z_AXIS][W_AXIS] *= -1;
+	frame.basis.row[X_AXIS].w *= -1;
+	frame.basis.row[Y_AXIS].w *= -1;
+	frame.basis.row[Z_AXIS].w *= -1;
 	frame.origin = vec3_add(input->center, \
 			vec3_scale(input->height, dir));
 	frame.scale = vec3(input->radius, input->radius, input->height);
