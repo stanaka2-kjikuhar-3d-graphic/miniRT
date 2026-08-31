@@ -51,10 +51,10 @@ A = (M⁻¹)ᵀ
 
 ```c
 inv = mat3_from_mat4(&(prim->to_local));
-normal = vec3_normalize(mat3_mul_t_vec3(&inv, n_local));
+normal = vec3_normalize(mat3_mul_transposed(&inv, n_local));
 ```
 
-`mat3_mul_t_vec3()` は転置行列を組み立てずに、各列との内積として計算する。
+`mat3_mul_transposed()` は転置行列を組み立てずに、各列との内積として計算する。
 `t_mat3` は基底を列に持つので（[matrix.md](matrix.md)）、転置した積は列方向の内積になる。
 
 正規化するため、逆転置に掛かる定数倍は結果に影響しない。

@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/25 21:28:50 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/08/31 21:02:23 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -403,13 +403,14 @@ SRCS	+=	access_dynamic_array.c \
 
 # utils/matrix
 SRCS	+=	mat4_identity.c \
+			mat4_diagonal.c \
 			mat4_mul.c \
 			mat4_transpose.c \
 			mat4_mul_vec4.c \
 			mat4_transform_point.c \
 			mat4_transform_dir.c \
 			mat3_from_mat4.c \
-			mat3_mul_t_vec3.c \
+			mat3_mul_transposed.c \
 			mat3_mul_vec3.c \
 			mat3_from_columns.c \
 			mat4_translate.c \
