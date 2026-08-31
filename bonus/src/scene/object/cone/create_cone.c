@@ -25,7 +25,7 @@ static bool		add_lower_cap_circle(t_object const *object, \
 					t_input_cone const *input, t_vec3 dir);
 static bool		set_cone_primitive(\
 					t_object *object, t_input_cone const *input, t_vec3 dir);
-static void		set_cone_uv(t_object *object, t_input_cone const *input);
+static void		set_cone_uv(t_uv *uv, t_input_cone const *input);
 static t_aabb	calc_cone_aabb(t_input_cone const *input, t_vec3 dir);
 
 bool	create_cone(t_input_cone const *input)
@@ -36,7 +36,7 @@ bool	create_cone(t_input_cone const *input)
 	dir = vec3_normalize(input->dir);
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
-	set_cone_uv(&object, input);
+	set_cone_uv(&(object.uv), input);
 	if (!set_cone_primitive(&object, input, dir))
 		return (false);
 	object.aabb = calc_cone_aabb(input, dir);
@@ -47,21 +47,21 @@ bool	create_cone(t_input_cone const *input)
 	return (add_lower_cap_circle(&object, input, dir));
 }
 
-static void	set_cone_uv(t_object *object, t_input_cone const *input)
+static void	set_cone_uv(t_uv *uv, t_input_cone const *input)
 {
 	float	cap_ratio;
 	float	generatrix;
 
 	generatrix \
 		= sqrtf(input->radius * input->radius + input->height * input->height);
-	object->uv.type = UV_DEFAULT;
-	set_uv_checker(&(object->uv), input->option.checker_count);
-	object->uv.u_per_v = (float)(2.0f * M_PI * input->radius) \
-							/ (input->radius + generatrix);
-	object->uv.u_range = (t_range){.min = 0.0f, .max = 1.0f};
+	uv->type = UV_DEFAULT;
+	set_uv_checker(uv, input->option.checker_count);
+	uv->u_per_v = (float)(2.0f * M_PI * input->radius) \
+					/ (input->radius + generatrix);
+	uv->u_range = (t_range){.min = 0.0f, .max = 1.0f};
 	cap_ratio = input->radius \
-					/ (2.0f * (input->radius + generatrix));
-	object->uv.v_range = (t_range){.min = 0.0f, .max = 1.0f - cap_ratio};
+				/ (2.0f * (input->radius + generatrix));
+	uv->v_range = (t_range){.min = 0.0f, .max = 1.0f - cap_ratio};
 }
 
 static bool	add_lower_cap_circle(t_object const *object, \

@@ -19,6 +19,7 @@
 
 #include "../object_private.h"
 
+static void		set_sphere_uv(t_uv *uv, t_input_sphere const *input);
 static bool		set_sphere_primitive(\
 					t_object *object, t_input_sphere const *input);
 static t_aabb	calc_sphere_aabb(t_input_sphere const *input);
@@ -29,17 +30,22 @@ bool	create_sphere(t_input_sphere const *input)
 
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
-	object.uv.type = UV_DEFAULT;
-	set_uv_checker(&(object.uv), input->option.checker_count);
-	object.uv.u_per_v = 2.0f;
-	object.uv.u_range = (t_range){.min = 0.0f, .max = 1.0f};
-	object.uv.v_range = (t_range){.min = 0.0f, .max = 1.0f};
+	set_sphere_uv(&(object.uv), input);
 	if (!set_sphere_primitive(&object, input))
 		return (false);
 	object.aabb = calc_sphere_aabb(input);
 	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
 	object.has_bounded_aabb = has_bounded_aabb(&(object.aabb));
 	return (create_object(&object));
+}
+
+static void	set_sphere_uv(t_uv *uv, t_input_sphere const *input)
+{
+	uv->type = UV_DEFAULT;
+	set_uv_checker(uv, input->option.checker_count);
+	uv->u_per_v = 2.0f;
+	uv->u_range = (t_range){.min = 0.0f, .max = 1.0f};
+	uv->v_range = (t_range){.min = 0.0f, .max = 1.0f};
 }
 
 static bool	set_sphere_primitive(t_object *object, t_input_sphere const *input)
