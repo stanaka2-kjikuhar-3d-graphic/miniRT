@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 01:12:02 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/29 14:40:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/31 21:00:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,19 @@ t_mat4	unit_quadric(enum e_primitive_type type)
 {
 	t_mat4	q;
 
-	q = mat4_identity();
-	q.m[3][3] = -1.0f;
-	if (type == UNIT_CYLINDER)
-		q.m[2][2] = 0.0f;
+	if (type == UNIT_SPHERE)
+		return (mat4_diagonal(vec4(1.0f, 1.0f, 1.0f, -1.0f)));
+	else if (type == UNIT_CYLINDER)
+		return (mat4_diagonal(vec4(1.0f, 1.0f, 0.0f, -1.0f)));
 	else if (type == UNIT_CONE)
-	{
-		q.m[2][2] = -1.0f;
-		q.m[3][3] = 0.0f;
-	}
+		return (mat4_diagonal(vec4(1.0f, 1.0f, -1.0f, 0.0f)));
 	else if (type == UNIT_HYPERBOLOID)
-		q.m[2][2] = -1.0f;
-	else if (type == UNIT_PARABOLOID)
+		return (mat4_diagonal(vec4(1.0f, 1.0f, -1.0f, -1.0f)));
+	else
 	{
-		q.m[2][2] = 0.0f;
-		q.m[3][3] = 0.0f;
+		q = mat4_diagonal(vec4(1.0f, 1.0f, 0.0f, 0.0f));
 		q.m[2][3] = -0.5f;
 		q.m[3][2] = -0.5f;
+		return (q);
 	}
-	return (q);
 }

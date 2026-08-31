@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 16:42:19 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/25 21:17:32 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/31 21:10:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ static t_quadric_coeffs	local_coefficients(t_mat4 const *q, t_ray const *local)
 {
 	t_vec4				origin;
 	t_vec4				dir;
-	t_quadric_coeffs	coef;
+	t_quadric_coeffs	coeffs;
 
 	origin = vec4_from_point(local->origin);
 	dir = vec4_from_dir(local->dir);
-	coef.a = vec4_dot(dir, mat4_mul_vec4(q, dir));
-	coef.b = vec4_dot(dir, mat4_mul_vec4(q, origin)) * 2.0f;
-	coef.c = vec4_dot(origin, mat4_mul_vec4(q, origin));
-	return (coef);
+	coeffs.a = vec4_dot(dir, mat4_mul_vec4(q, dir));
+	coeffs.b = vec4_dot(dir, mat4_mul_vec4(q, origin)) * 2.0f;
+	coeffs.c = vec4_dot(origin, mat4_mul_vec4(q, origin));
+	return (coeffs);
 }
 
 static t_roots	solve_linear(float b, float c)
