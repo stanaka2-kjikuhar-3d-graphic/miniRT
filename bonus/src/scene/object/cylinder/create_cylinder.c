@@ -24,8 +24,7 @@
 static bool		add_cap_circle(t_object const *object, \
 					t_input_cylinder const *input, t_vec3 dir, \
 					enum e_uv_type type);
-static void		set_cylinder_uv(\
-					t_object *object, t_input_cylinder const *input);
+static void		set_cylinder_uv(t_uv *uv, t_input_cylinder const *input);
 static bool		set_cylinder_primitive(t_object *object, \
 					t_input_cylinder const *input, t_vec3 dir);
 static t_aabb	calc_cylinder_aabb(\
@@ -39,7 +38,7 @@ bool	create_cylinder(t_input_cylinder const *input)
 	dir = vec3_normalize(input->dir);
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
-	set_cylinder_uv(&object, input);
+	set_cylinder_uv(&(object.uv), input);
 	if (!set_cylinder_primitive(&object, input, dir))
 		return (false);
 	object.aabb = calc_cylinder_aabb(input, dir);
@@ -92,17 +91,17 @@ static bool	set_cylinder_primitive(\
 	return (build_primitive(&frame, &(object->primitive)));
 }
 
-static void	set_cylinder_uv(t_object *object, t_input_cylinder const *input)
+static void	set_cylinder_uv(t_uv *uv, t_input_cylinder const *input)
 {
 	float	cap_ratio;
 
-	object->uv.type = UV_DEFAULT;
-	set_uv_checker(&(object->uv), input->option.checker_count);
-	object->uv.u_per_v = (float)(2.0f * M_PI * input->radius) \
-								/ (2.0f * (input->radius + input->half_height));
-	object->uv.u_range = (t_range){.min = 0.0f, .max = 1.0f};
+	uv->type = UV_DEFAULT;
+	set_uv_checker(uv, input->option.checker_count);
+	uv->u_per_v = (float)(2.0f * M_PI * input->radius) \
+					/ (2.0f * (input->radius + input->half_height));
+	uv->u_range = (t_range){.min = 0.0f, .max = 1.0f};
 	cap_ratio = input->radius / (2.0f * (input->radius + input->half_height));
-	object->uv.v_range = (t_range){.min = cap_ratio, .max = 1.0f - cap_ratio};
+	uv->v_range = (t_range){.min = cap_ratio, .max = 1.0f - cap_ratio};
 }
 
 static t_aabb	calc_cylinder_aabb(t_input_cylinder const *input, t_vec3 dir)
