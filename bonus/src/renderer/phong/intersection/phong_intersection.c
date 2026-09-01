@@ -27,8 +27,7 @@ t_hit	phong_intersection(t_ray const *ray)
 	t_hit			hit;
 	float			t;
 
-	hit.object = NULL;
-	hit.t = INFINITY;
+	hit = (t_hit){.object = NULL, .t = INFINITY};
 	object = NULL;
 	while (get_next_object(&object))
 	{
