@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install norminette
-        run: pip install norminette
+        run: pip install norminette==3.3.55
       - name: Run norminette
         run: norminette bonus/src bonus/include libft
 
