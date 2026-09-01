@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "ask": [
+      "Read(bonus/**)",
+      "Read(libft/**)"
+    ],
+    "deny": [
+      "Edit(bonus/**)",
+      "Edit(libft/**)"
+    ]
+  }
+}
