@@ -104,7 +104,7 @@ static bool	set_primitive(t_object *object, \
 					- input->center_radius * input->center_radius;
 	c = input->half_height * input->center_radius / sqrtf(radius_diff);
 	frame.type = UNIT_HYPERBOLOID;
-	frame.basis = basis_from_dir(dir);
+	frame.basis = calc_onb(dir);
 	frame.origin = input->center;
 	frame.scale = vec3(input->center_radius, input->center_radius, c);
 	frame.z_range.max = input->half_height / c;

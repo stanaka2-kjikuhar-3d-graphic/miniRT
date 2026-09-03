@@ -54,7 +54,7 @@ static bool	set_primitive(t_object *object, \
 
 	radius = sqrtf(input->quadratic_coefficient * input->height);
 	frame.type = UNIT_PARABOLOID;
-	frame.basis = basis_from_dir(dir);
+	frame.basis = calc_onb(dir);
 	frame.origin = input->center;
 	frame.scale = vec3(radius, radius, input->height);
 	frame.z_range = (t_range){.max = 1.0f, .min = 0.0f};

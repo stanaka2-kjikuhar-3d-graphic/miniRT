@@ -77,7 +77,7 @@ static bool	set_primitive(\
 	t_primitive_frame	frame;
 
 	frame.type = UNIT_CYLINDER;
-	frame.basis = basis_from_dir(dir);
+	frame.basis = calc_onb(dir);
 	frame.origin = input->center;
 	frame.scale = vec3(input->radius, input->radius, input->half_height);
 	frame.z_range = (t_range){.max = 1.0f, .min = -1.0f};

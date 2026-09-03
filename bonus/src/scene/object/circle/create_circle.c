@@ -46,7 +46,7 @@ static bool	set_primitive(\
 	t_primitive_frame	frame;
 
 	frame.type = UNIT_DISC;
-	frame.basis = basis_from_dir(normal);
+	frame.basis = calc_onb(normal);
 	frame.origin = input->center;
 	frame.scale = vec3(input->radius, input->radius, 1.0f);
 	frame.z_range = (t_range){.max = 0.0f, .min = 0.0f};
