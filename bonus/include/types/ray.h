@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanup_mlx.c                                      :+:      :+:    :+:   */
+/*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/29 05:39:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 19:12:05 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/16 20:13:46 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/14 12:41:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./ft_mlx_private.h"
+#ifndef RAY_H
+# define RAY_H
 
-void	cleanup_mlx(void)
+# include "vector.h"
+
+typedef struct s_ray
 {
-	cleanup_textures();
-	cleanup_images();
-	cleanup_window();
-	cleanup_mlx_connection();
-}
+	t_vec3	dir;
+	t_vec3	origin;
+}	t_ray;
+
+#endif

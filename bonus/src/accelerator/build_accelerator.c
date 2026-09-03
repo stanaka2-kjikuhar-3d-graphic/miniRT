@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanup_mlx.c                                      :+:      :+:    :+:   */
+/*   build_accelerator.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/29 05:39:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 19:12:05 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/08/13 21:10:11 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/16 17:55:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./ft_mlx_private.h"
+#include <stdbool.h>
 
-void	cleanup_mlx(void)
+#include "./accelerator_private.h"
+
+bool	build_accelerator(void)
 {
-	cleanup_textures();
-	cleanup_images();
-	cleanup_window();
-	cleanup_mlx_connection();
+	if (!build_bvh())
+		return (false);
+	if (!build_infinite_objects())
+		return (false);
+	return (true);
 }

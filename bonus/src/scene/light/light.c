@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 22:13:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 01:01:45 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 00:41:36 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,46 +19,35 @@
 #include "light.h"
 #include "dynamic_array.h"
 
-static t_light	*g_lights;
-static size_t	g_capacity;
-static size_t	g_count;
+static t_dynamic_array	g_lights = (t_dynamic_array){\
+										.data = NULL, \
+										.capacity = 0, \
+										.used = 0, \
+										.type_size = sizeof(t_light) \
+									};
 
 bool	get_next_light(t_light const **light)
 {
+	t_light const	*last;
+
+	if (g_lights.used == 0)
+		return (false);
+	last = access_dynamic_array(&g_lights, g_lights.used - 1);
+	if (*light == last)
+		return (false);
 	if (*light == NULL)
-	{
-		if (g_count == 0)
-			return (false);
-		*light = &(g_lights[0]);
-		return (true);
-	}
+		*light = (t_light const *)(g_lights.data);
 	else
-	{
-		if (*light == &(g_lights[g_count - 1]))
-			return (false);
 		++(*light);
-		return (true);
-	}
+	return (true);
 }
 
-bool	create_light(t_light *light)
+bool	create_light(t_light const *light)
 {
-	if (g_count == g_capacity && !grow_dynamic_array(\
-						(void **)(&g_lights), &g_capacity, sizeof(t_light)))
-	{
-		return (false);
-	}
-	g_lights[g_count] = *light;
-	++g_count;
-	return (true);
+	return (add_dynamic_array(&g_lights, light));
 }
 
 void	cleanup_lights(void)
 {
-	if (g_lights == NULL)
-		return ;
-	free(g_lights);
-	g_lights = NULL;
-	g_capacity = 0;
-	g_count = 0;
+	cleanup_dynamic_array(&g_lights);
 }

@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanup_mlx.c                                      :+:      :+:    :+:   */
+/*   accelerator_private.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/29 05:39:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 19:12:05 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/08/16 17:16:15 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/16 20:02:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./ft_mlx_private.h"
+#ifndef ACCELERATOR_PRIVATE_H
+# define ACCELERATOR_PRIVATE_H
 
-void	cleanup_mlx(void)
-{
-	cleanup_textures();
-	cleanup_images();
-	cleanup_window();
-	cleanup_mlx_connection();
-}
+# include <stdbool.h>
+
+# include "accelerator.h"
+
+bool	build_bvh(void);
+void	cleanup_bvh(void);
+void	cleanup_aabb_leaves(void);
+bool	build_infinite_objects(void);
+void	cleanup_infinite_objects(void);
+
+#endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grow_dynamic_array.c                               :+:      :+:    :+:   */
+/*   allocate_dynamic_array.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/25 22:53:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/15 22:48:42 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/08/16 01:45:00 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/16 01:45:00 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,19 @@
 
 #include "ft_stdlib.h"
 
-bool	grow_dynamic_array(t_dynamic_array *dynamic_array)
+bool	allocate_dynamic_array(t_dynamic_array *dynamic_array, size_t new_size)
 {
 	void	*tmp;
 
+	if (new_size <= dynamic_array->capacity)
+		return (true);
 	if (dynamic_array->data == NULL)
-		tmp = malloc(dynamic_array->type_size);
+		tmp = malloc(dynamic_array->type_size * new_size);
 	else
 	{
 		tmp = ft_realloc(dynamic_array->data, \
 						dynamic_array->type_size * dynamic_array->capacity, \
-						dynamic_array->type_size * dynamic_array->capacity * 2);
+						dynamic_array->type_size * new_size);
 	}
 	if (tmp == NULL)
 	{
@@ -37,9 +39,6 @@ bool	grow_dynamic_array(t_dynamic_array *dynamic_array)
 		return (false);
 	}
 	dynamic_array->data = tmp;
-	if (dynamic_array->capacity == 0)
-		dynamic_array->capacity = 1;
-	else
-		dynamic_array->capacity *= 2;
+	dynamic_array->capacity = new_size;
 	return (true);
 }
