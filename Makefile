@@ -86,6 +86,7 @@ override CFLAGS	+= -Wconversion -Wno-sign-conversion -Wshadow
 INCLUDE_DIRS		:=	bonus/include \
 						$(addprefix bonus/include/, \
 							scene \
+							types \
 							utils \
 						)
 
@@ -133,6 +134,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 						viewport \
 					) \
 					$(addprefix utils/, \
+						aabb \
 						color \
 						ft_error \
 						matrix \
@@ -212,8 +214,7 @@ SRCS	+=	parse_vec3.c \
 			parse_coordinate.c \
 			parse_brightness.c \
 			parse_fov.c \
-			parse_radius.c \
-			parse_half_height.c \
+			parse_half_size.c \
 			parse_angle.c \
 			parse_texture.c \
 			parse_bool.c \
@@ -277,7 +278,8 @@ SRCS	+=	object.c \
 			calc_object_normal.c \
 			calc_object_tbn.c \
 			calc_bump_mapping.c \
-			calc_normal_mapping.c
+			calc_normal_mapping.c \
+			calc_aabb_intersection.c
 # scene/object/sphere
 SRCS	+=	create_sphere.c
 # scene/object/plane
@@ -297,13 +299,21 @@ SRCS	+=	quadric_eval.c \
 			solve_quadratic.c
 # scene/object/internal
 SRCS	+=	calc_onb.c \
-			basis_from_dir.c \
 			adjust_uv_range.c \
 			set_material.c \
 			set_uv_checker.c
 
 # scene/viewport
 SRCS	+=	viewport.c
+
+# utils/aabb
+SRCS	+=	initial_aabb.c \
+			calc_aabb_from_extent.c \
+			union_aabb.c \
+			transform_aabb.c \
+			mul_extent.c \
+			calc_aabb_centroid.c \
+			has_bounded_aabb.c
 
 # utils/color
 SRCS	+=	add_color.c \

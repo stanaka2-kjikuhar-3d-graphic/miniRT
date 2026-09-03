@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 21:42:31 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/17 22:26:52 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include "ray.h"
 # include "ft_mlx.h"
 # include "matrix.h"
+# include "range.h"
+# include "aabb.h"
 
 enum e_pattern_type
 {
@@ -63,12 +65,6 @@ enum e_uv_type
 	UV_UPPER_CAP,
 	UV_LOWER_CAP,
 };
-
-typedef struct s_range
-{
-	float	max;
-	float	min;
-}	t_range;
 
 typedef struct s_uv
 {
@@ -119,6 +115,9 @@ typedef struct s_object
 	t_material			material;
 	t_uv				uv;
 	t_primitive			primitive;
+	t_aabb				aabb;
+	t_vec3				aabb_centroid;
+	bool				has_bounded_aabb;
 }	t_object;
 
 typedef struct s_material_option
@@ -159,6 +158,7 @@ typedef struct s_input_plane
 		t_material_option	material;
 		float				pattern_size;
 		t_ivec2				checker_count;
+		t_vec2				half_size;
 	}					option;
 }	t_input_plane;
 
@@ -237,27 +237,31 @@ typedef struct s_input_paraboloid
 	}					option;
 }	t_input_paraboloid;
 
-bool	create_sphere(t_input_sphere const *input);
-bool	create_plane(t_input_plane const *input);
-bool	create_cylinder(t_input_cylinder const *input);
-bool	create_circle(t_input_circle const *input);
-bool	create_cone(t_input_cone const *input);
-bool	create_hyperboloid(t_input_hyperboloid const *input);
-bool	create_paraboloid(t_input_paraboloid const *input);
-bool	get_next_object(t_object const **object);
-void	cleanup_objects(void);
-float	calc_object_intersection(t_object const *object, t_ray const *ray);
-t_vec2	calc_object_uv(t_object const *object, t_vec3 point);
-t_color	calc_object_color(t_object const *object, t_vec2 uv);
-t_vec3	calc_object_normal(\
-			t_object const *object, t_ray const *ray, t_vec3 point);
-t_mat3	calc_object_tbn(t_object const *object, t_vec3 point, t_vec3 normal);
-t_vec3	calc_bump_mapping(\
-			t_object const *object, t_vec2 uv, t_mat3 const *tbn);
-t_vec3	calc_normal_mapping(\
-			t_object const *object, t_vec2 uv, t_mat3 const *tbn);
-
-float	quadric_eval(t_mat4 const *q, t_vec4 p);
-int		solve_quadratic(float a, float b, float c, float roots[2]);
+bool			create_sphere(t_input_sphere const *input);
+bool			create_plane(t_input_plane const *input);
+bool			create_cylinder(t_input_cylinder const *input);
+bool			create_circle(t_input_circle const *input);
+bool			create_cone(t_input_cone const *input);
+bool			create_hyperboloid(t_input_hyperboloid const *input);
+bool			create_paraboloid(t_input_paraboloid const *input);
+bool			get_next_object(t_object const **object);
+t_object const	*get_object(size_t i);
+size_t			get_object_count(void);
+void			cleanup_objects(void);
+float			calc_object_intersection(\
+					t_object const *object, t_ray const *ray);
+float			calc_aabb_intersection(t_aabb const *aabb, t_ray const *ray);
+t_vec2			calc_object_uv(t_object const *object, t_vec3 point);
+t_color			calc_object_color(t_object const *object, t_vec2 uv);
+t_vec3			calc_object_normal(\
+					t_object const *object, t_ray const *ray, t_vec3 point);
+t_mat3			calc_object_tbn(\
+					t_object const *object, t_vec3 point, t_vec3 normal);
+t_vec3			calc_bump_mapping(\
+					t_object const *object, t_vec2 uv, t_mat3 const *tbn);
+t_vec3			calc_normal_mapping(\
+					t_object const *object, t_vec2 uv, t_mat3 const *tbn);
+float			quadric_eval(t_mat4 const *q, t_vec4 p);
+int				solve_quadratic(float a, float b, float c, float roots[2]);
 
 #endif

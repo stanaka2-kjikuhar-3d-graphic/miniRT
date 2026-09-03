@@ -6,10 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 19:25:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:45:42 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/10 19:17:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include <stdbool.h>
 
 #include "ft_stdlib.h"
@@ -31,6 +32,11 @@ bool	parse_float(char const *element, void *value)
 	if (*element != '\0')
 	{
 		print_field_error(ERROR_INVALID_CHARACTER, NULL);
+		return (false);
+	}
+	if (isinf(*floating_point))
+	{
+		print_field_error(ERROR_MUST_BE_FINITE, HINT_FLOAT_FINITE);
 		return (false);
 	}
 	return (true);
