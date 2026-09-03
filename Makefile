@@ -212,8 +212,7 @@ SRCS	+=	parse_vec3.c \
 			parse_coordinate.c \
 			parse_brightness.c \
 			parse_fov.c \
-			parse_radius.c \
-			parse_half_height.c \
+			parse_half_size.c \
 			parse_angle.c \
 			parse_texture.c \
 			parse_bool.c \

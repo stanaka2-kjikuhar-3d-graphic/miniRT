@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:22:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/08 23:52:38 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/10 18:38:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ static bool	parse_plane_optional(\
 	init_optional_fields(fields);
 	bind_material_option(fields, &(input->option.material));
 	fields[OPTIONAL_PATTERN_SIZE].value = &(input->option.pattern_size);
+	fields[OPTIONAL_U_SIZE].value = &(input->option.half_size.u);
+	fields[OPTIONAL_V_SIZE].value = &(input->option.half_size.v);
 	fields[OPTIONAL_CHECKER_COUNT_U_EVEN].value \
 		= &(input->option.checker_count.u);
 	fields[OPTIONAL_CHECKER_COUNT_V_EVEN].value \
