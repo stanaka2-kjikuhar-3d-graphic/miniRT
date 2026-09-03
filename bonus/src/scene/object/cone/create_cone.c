@@ -88,7 +88,7 @@ static bool	set_primitive(\
 	t_primitive_frame	frame;
 
 	frame.type = UNIT_CONE;
-	frame.basis = basis_from_dir(vec3_scale(-1.0f, dir));
+	frame.basis = calc_onb(vec3_scale(-1.0f, dir));
 	frame.origin = vec3_add(input->center, \
 			vec3_scale(input->height, dir));
 	frame.scale = vec3(input->radius, input->radius, input->height);

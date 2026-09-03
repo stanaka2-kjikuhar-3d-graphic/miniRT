@@ -16,25 +16,18 @@
 /*
 basis vectors go in as columns.
 
-              x        y        z
+              U_AXIS   V_AXIS   W_AXIS
            +--------------------------+
-    row 0  |  x.x      y.x      z.x   |
-    row 1  |  x.y      y.y      z.y   |
-    row 2  |  x.z      y.z      z.z   |
+    X_AXIS |   u.x      v.x      w.x  |
+    Y_AXIS |   u.y      v.y      w.y  |
+    Z_AXIS |   u.z      v.z      w.z  |
            +--------------------------+
 */
-t_mat3	mat3_from_columns(t_vec3 x, t_vec3 y, t_vec3 z)
+t_mat3	mat3_from_columns(t_vec3 u, t_vec3 v, t_vec3 w)
 {
-	t_mat3	m;
-
-	m.m[0][X_AXIS] = x.x;
-	m.m[1][X_AXIS] = x.y;
-	m.m[2][X_AXIS] = x.z;
-	m.m[0][Y_AXIS] = y.x;
-	m.m[1][Y_AXIS] = y.y;
-	m.m[2][Y_AXIS] = y.z;
-	m.m[0][Z_AXIS] = z.x;
-	m.m[1][Z_AXIS] = z.y;
-	m.m[2][Z_AXIS] = z.z;
-	return (m);
+	return ((t_mat3){.m = {\
+		{u.x, v.x, w.x}, \
+		{u.y, v.y, w.y}, \
+		{u.z, v.z, w.z} \
+	}});
 }

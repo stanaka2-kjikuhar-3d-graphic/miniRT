@@ -46,7 +46,7 @@ static bool	set_primitive(\
 	t_primitive_frame	frame;
 
 	frame.type = UNIT_PLANE;
-	frame.basis = basis_from_dir(normal);
+	frame.basis = calc_onb(normal);
 	frame.origin = input->center;
 	frame.scale = vec3(input->option.pattern_size, \
 			input->option.pattern_size, 1.0f);

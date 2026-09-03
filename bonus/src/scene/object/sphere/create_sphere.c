@@ -40,7 +40,7 @@ static bool	set_primitive(t_object *object, t_input_sphere const *input)
 	t_primitive_frame	frame;
 
 	frame.type = UNIT_SPHERE;
-	frame.basis = basis_from_dir(vec3(0.0f, 0.0f, 1.0f));
+	frame.basis = calc_onb(vec3(0.0f, 0.0f, 1.0f));
 	frame.origin = input->center;
 	frame.scale = vec3(input->radius, input->radius, input->radius);
 	frame.z_range = (t_range){.max = 1.0f, .min = -1.0f};

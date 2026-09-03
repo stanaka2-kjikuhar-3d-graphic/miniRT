@@ -296,7 +296,6 @@ SRCS	+=	quadric_eval.c \
 			solve_quadratic.c
 # scene/object/internal
 SRCS	+=	calc_onb.c \
-			basis_from_dir.c \
 			adjust_uv_range.c \
 			set_material.c \
 			set_uv_checker.c
