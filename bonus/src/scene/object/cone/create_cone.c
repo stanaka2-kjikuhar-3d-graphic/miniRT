@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cone.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 21:35:05 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/17 22:35:05 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@
 #include "vector.h"
 #include "matrix.h"
 #include "object.h"
+#include "range.h"
+#include "aabb.h"
 
 #include "../object_private.h"
 
-static bool	add_lower_cap_circle(t_object const *object, \
-				t_input_cone const *input, t_vec3 dir);
-static bool	set_primitive(\
-				t_object *object, t_input_cone const *input, t_vec3 dir);
-static void	set_cone_uv(t_object *object, t_input_cone const *input);
+static bool		add_lower_cap_circle(t_object const *object, \
+					t_input_cone const *input, t_vec3 dir);
+static bool		set_primitive(\
+					t_object *object, t_input_cone const *input, t_vec3 dir);
+static void		set_cone_uv(t_object *object, t_input_cone const *input);
+static t_aabb	calc_cone_aabb(t_input_cone const *input, t_vec3 dir);
 
 bool	create_cone(t_input_cone const *input)
 {
@@ -36,6 +39,9 @@ bool	create_cone(t_input_cone const *input)
 	set_cone_uv(&object, input);
 	if (!set_primitive(&object, input, dir))
 		return (false);
+	object.aabb = calc_cone_aabb(input, dir);
+	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
+	object.has_bounded_aabb = has_bounded_aabb(&(object.aabb));
 	if (!create_object(&object))
 		return (false);
 	return (add_lower_cap_circle(&object, input, dir));
@@ -52,10 +58,10 @@ static void	set_cone_uv(t_object *object, t_input_cone const *input)
 	set_uv_checker(&(object->uv), input->option.checker_count);
 	object->uv.u_per_v = (float)(2.0f * M_PI * input->radius) \
 							/ (input->radius + generatrix);
-	object->uv.u_range = (t_range){.max = 1.0f, .min = 0.0f};
+	object->uv.u_range = (t_range){.min = 0.0f, .max = 1.0f};
 	cap_ratio = input->radius \
 					/ (2.0f * (input->radius + generatrix));
-	object->uv.v_range = (t_range){.max = 1.0f - cap_ratio, .min = 0.0f};
+	object->uv.v_range = (t_range){.min = 0.0f, .max = 1.0f - cap_ratio};
 }
 
 static bool	add_lower_cap_circle(t_object const *object, \
@@ -72,9 +78,9 @@ static bool	add_lower_cap_circle(t_object const *object, \
 	input.option.pattern_size = input.radius * 2.0f;
 	input.option.u_per_v = object->uv.u_per_v;
 	input.option.checker_count = object->uv.checker_count;
-	input.option.u_range = (t_range){.max = 1.0f, .min = 0.0f};
+	input.option.u_range = (t_range){.min = 0.0f, .max = 1.0f};
 	input.option.v_range = (t_range){\
-		.max = 1.0f, .min = object->uv.v_range.max};
+		.min = object->uv.v_range.max, .max = 1.0f};
 	return (create_circle(&input));
 }
 
@@ -92,6 +98,24 @@ static bool	set_primitive(\
 	frame.origin = vec3_add(input->center, \
 			vec3_scale(input->height, dir));
 	frame.scale = vec3(input->radius, input->radius, input->height);
-	frame.z_range = (t_range){.max = 1.0f, .min = 0.0f};
+	frame.z_range = (t_range){.min = 0.0f, .max = 1.0f};
 	return (build_primitive(&frame, &(object->primitive)));
+}
+
+static t_aabb	calc_cone_aabb(t_input_cone const *input, t_vec3 dir)
+{
+	t_vec3	circle_extent;
+	t_aabb	circle_aabb;
+	t_vec3	vertex;
+	t_aabb	vertex_aabb;
+
+	circle_extent = vec3(\
+		input->radius * sqrtf(1.0f - dir.x * dir.x), \
+		input->radius * sqrtf(1.0f - dir.y * dir.y), \
+		input->radius * sqrtf(1.0f - dir.z * dir.z) \
+	);
+	circle_aabb = calc_aabb_from_extent(input->center, circle_extent);
+	vertex = vec3_add(input->center, vec3_scale(input->height, dir));
+	vertex_aabb = calc_aabb_from_extent(vertex, vec3(0.0f, 0.0f, 0.0f));
+	return (union_aabb(circle_aabb, vertex_aabb));
 }
