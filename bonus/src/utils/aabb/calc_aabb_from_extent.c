@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   adjust_uv_range.c                                  :+:      :+:    :+:   */
+/*   calc_aabb_from_extent.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/05 21:55:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/05 22:04:54 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/08/09 14:30:00 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/14 12:56:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "object.h"
+#include "aabb.h"
 #include "range.h"
 #include "vector.h"
 
-t_vec2	adjust_uv_range(t_vec2 uv, t_range u_range, t_range v_range)
+t_aabb	calc_aabb_from_extent(t_vec3 center, t_vec3 extent)
 {
-	float	u_size;
-	float	v_size;
-
-	u_size = u_range.max - u_range.min;
-	v_size = v_range.max - v_range.min;
-	return ((t_vec2){\
-		.u = uv.u * u_size + u_range.min, \
-		.v = uv.v * v_size + v_range.min \
+	return ((t_aabb){\
+		.x = (t_range){.min = center.x - extent.x, \
+						.max = center.x + extent.x}, \
+		.y = (t_range){.min = center.y - extent.y, \
+						.max = center.y + extent.y}, \
+		.z = (t_range){.min = center.z - extent.z, \
+						.max = center.z + extent.z} \
 	});
 }
