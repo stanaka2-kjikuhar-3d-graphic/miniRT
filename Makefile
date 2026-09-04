@@ -101,6 +101,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 					accelerator \
 					$(addprefix accelerator/, \
 						bvh \
+						infinite_objects \
 					) \
 					parser \
 					$(addprefix parser/, \
@@ -235,6 +236,9 @@ SRCS	+=	is_blank_line.c \
 			count_split.c \
 			free_split.c
 
+# accelerator
+SRCS	+=	build_accelerator.c \
+			cleanup_accelerator.c
 # accelerator/bvh
 SRCS	+=	bvh.c \
 			aabb_leaves.c \
@@ -244,6 +248,9 @@ SRCS	+=	bvh.c \
 			calc_bin_index.c \
 			calc_sah_cost.c \
 			add_leaf_node.c
+# accelerator/infinite_objects
+SRCS	+=	infinite_objects.c \
+			build_infinite_objects.c
 
 # renderer
 SRCS	+=	renderer.c \
