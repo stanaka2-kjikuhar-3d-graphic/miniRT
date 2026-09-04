@@ -363,7 +363,11 @@ SRCS	+=	vec2.c
 SRCS	+=	ivec2.c
 
 # utils/dynamic_array
-SRCS	+=	grow_dynamic_array.c
+SRCS	+=	access_dynamic_array.c \
+			add_dynamic_array.c \
+			allocate_dynamic_array.c \
+			cleanup_dynamic_array.c \
+			grow_dynamic_array.c
 # scene/object/primitive
 SRCS	+=	build_primitive.c \
 			unit_quadric.c \

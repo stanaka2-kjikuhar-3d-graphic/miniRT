@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   cleanup_dynamic_array.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/16 20:13:46 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 03:11:32 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/08/15 23:25:40 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/15 23:40:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
+#include <stdlib.h>
 
-# include "vector.h"
+#include "dynamic_array.h"
 
-typedef struct s_ray
+void	cleanup_dynamic_array(t_dynamic_array *dynamic_array)
 {
-	t_vec3	dir;
-	t_vec3	origin;
-}	t_ray;
-
-#endif
+	if (dynamic_array->data == NULL)
+		return ;
+	free(dynamic_array->data);
+	dynamic_array->data = NULL;
+	dynamic_array->capacity = 0;
+	dynamic_array->used = 0;
+}
