@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/31 21:02:23 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/09/04 22:02:29 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,6 +86,7 @@ override CFLAGS	+= -Wconversion -Wno-sign-conversion -Wshadow
 INCLUDE_DIRS		:=	bonus/include \
 						$(addprefix bonus/include/, \
 							scene \
+							view \
 							types \
 							utils \
 						)
@@ -135,6 +136,8 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 							primitive \
 							internal \
 						) \
+					) \
+					$(addprefix view/, \
 						viewport \
 					) \
 					$(addprefix utils/, \
@@ -276,8 +279,9 @@ SRCS	+=	phong_shading.c \
 
 # scene/camera
 SRCS	+=	camera.c \
-			change_camera_pos.c \
-			change_camera_dir.c \
+			set_camera_pos.c \
+			set_camera_dir.c \
+			change_camera_fov.c \
 			rotate_camera.c
 # scene/camera/internal
 SRCS	+=	calc_camera_dir.c \
@@ -335,7 +339,7 @@ SRCS	+=	calc_onb.c \
 			set_material.c \
 			set_uv_checker.c
 
-# scene/viewport
+# view/viewport
 SRCS	+=	viewport.c
 
 # utils/aabb
