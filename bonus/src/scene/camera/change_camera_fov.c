@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera.c                                           :+:      :+:    :+:   */
+/*   change_camera_fov.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 22:13:24 by stanaka2          #+#    #+#             */
+/*   Created: 2026/09/04 20:53:37 by stanaka2          #+#    #+#             */
 /*   Updated: 2026/09/04 22:00:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-
-#include "ft_math.h"
-#include "vector.h"
+#include "config.h"
 #include "camera.h"
 #include "viewport.h"
 
 #include "./camera_private.h"
 
-static t_camera	g_camera;
-
-t_camera const	*get_camera(void)
+bool	change_camera_fov(float degree)
 {
-	return (&g_camera);
-}
+	t_camera	*camera;
 
-t_camera	*get_mutable_camera(void)
-{
-	return (&g_camera);
-}
-
-void	set_camera(t_input_camera const *input)
-{
-	set_camera_pos(input->pos);
-	set_camera_dir(input->dir);
-	g_camera.fov = input->fov;
-	set_viewport(g_camera.fov);
+	camera = get_mutable_camera();
+	if (camera->fov + degree <= EPSILON \
+		|| 180.0f - EPSILON <= camera->fov + degree)
+	{
+		return (false);
+	}
+	camera->fov = camera->fov + degree;
+	change_viewport(camera->fov);
+	return (true);
 }

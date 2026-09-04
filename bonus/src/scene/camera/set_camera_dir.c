@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   change_camera_dir.c                                :+:      :+:    :+:   */
+/*   set_camera_dir.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 15:48:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 00:24:19 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/04 21:37:29 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 #include "./camera_private.h"
 
-void	change_camera_dir(t_vec3 dir)
+void	set_camera_dir(t_vec3 dir)
 {
 	t_camera	*camera;
 
