@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/09/04 23:31:30 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/09/05 13:01:27 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@
 #         Build Mode         #
 # -------------------------- #
 
-# BUILD_MODE	?= develop
-BUILD_MODE	?= review
+BUILD_MODE	?= develop
+# BUILD_MODE	?= review
 # BUILD_MODE	?= default
 
 BUILD_TARGET	:= bonus
