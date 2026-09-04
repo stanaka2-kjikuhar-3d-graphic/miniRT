@@ -98,6 +98,10 @@ override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 
 SRC_DIRS	:= bonus/src
 SRC_DIRS	+= $(addprefix bonus/src/, \
+					accelerator \
+					$(addprefix accelerator/, \
+						bvh \
+					) \
 					parser \
 					$(addprefix parser/, \
 						read_next_line \
@@ -230,6 +234,16 @@ SRCS	+=	is_blank_line.c \
 			is_option_id.c \
 			count_split.c \
 			free_split.c
+
+# accelerator/bvh
+SRCS	+=	bvh.c \
+			aabb_leaves.c \
+			build_bvh.c \
+			build_binned_bvh.c \
+			calc_best_bin_partition.c \
+			calc_bin_index.c \
+			calc_sah_cost.c \
+			add_leaf_node.c
 
 # renderer
 SRCS	+=	renderer.c \
