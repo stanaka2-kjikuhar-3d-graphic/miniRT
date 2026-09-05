@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/25 23:55:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 18:32:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/05 21:02:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,18 @@
 
 void	print_line_error(char const *msg, char const *hint)
 {
-	ft_dprintf(STDERR_FILENO, "Error\n");
-	ft_dprintf(STDERR_FILENO, "line %zu: %s\n", \
-				get_error_line_number(), get_error_line());
-	ft_dprintf(STDERR_FILENO, "%s\n", msg);
+	ft_putstr_fd("Error\n", STDERR_FILENO);
+	ft_putstr_fd("line ", STDERR_FILENO);
+	print_nbr(get_error_line_number(), STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putstr_fd((char *)get_error_line(), STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
+	ft_putstr_fd((char *)msg, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 	if (hint != NULL)
-		ft_dprintf(STDERR_FILENO, "USAGE: %s\n", hint);
+	{
+		ft_putstr_fd("USAGE: ", STDERR_FILENO);
+		ft_putstr_fd((char *)hint, STDERR_FILENO);
+		ft_putstr_fd("\n", STDERR_FILENO);
+	}
 }

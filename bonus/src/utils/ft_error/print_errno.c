@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 12:20:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/15 21:39:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/05 21:01:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	print_errno(void)
 	char	*msg;
 
 	msg = strerror(errno);
-	ft_dprintf(STDERR_FILENO, "Error\n");
-	ft_dprintf(STDERR_FILENO, "%s\n", msg);
+	ft_putendl_fd("Error\n", STDERR_FILENO);
+	ft_putendl_fd(msg, STDERR_FILENO);
+	ft_putendl_fd("\n", STDERR_FILENO);
 }
