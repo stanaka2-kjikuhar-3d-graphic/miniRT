@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 14:12:31 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/01 20:36:52 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/05 23:29:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	if (!lst || !f || !del)
 		return (NULL);
 	new_lst = NULL;
+	new_lst_end = NULL;
 	while (lst)
 	{
 		new = node_map(lst, f, del);
