@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/09/05 13:01:27 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/09/05 20:01:52 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,14 +102,11 @@ override CFLAGS	+= -Wconversion -Wno-sign-conversion -Wshadow
 # -------------------------- #
 
 ifeq ($(BUILD_TARGET), mandatory)
-INCLUDE_DIRS		:=	mandatory/include \
-						$(addprefix mandatory/include/, \
-							scene \
-							view \
-							types \
-							utils \
-						)
+
+INCLUDE_DIRS		:=	mandatory/include
+
 else
+
 INCLUDE_DIRS		:=	bonus/include \
 						$(addprefix bonus/include/, \
 							scene \
@@ -117,6 +114,7 @@ INCLUDE_DIRS		:=	bonus/include \
 							types \
 							utils \
 						)
+
 endif
 
 override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
@@ -126,68 +124,9 @@ override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 # -------------------------- #
 
 ifeq ($(BUILD_TARGET), mandatory)
+
 SRC_DIRS	:= mandatory/src
-SRC_DIRS	+= $(addprefix mandatory/src/, \
-					accelerator \
-					$(addprefix accelerator/, \
-						bvh \
-						infinite_objects \
-					) \
-					parser \
-					$(addprefix parser/, \
-						read_next_line \
-						parse_setting \
-						parse_field \
-						internal \
-					) \
-					renderer \
-					$(addprefix renderer/, \
-						path_tracing \
-						phong \
-						$(addprefix phong/, \
-							intersection \
-							lighting \
-							shading \
-						) \
-					) \
-					$(addprefix scene/, \
-						camera camera/internal \
-						light \
-						object \
-						$(addprefix object/, \
-							circle \
-							cylinder \
-							cone \
-							hyperboloid \
-							paraboloid \
-							plane \
-							sphere \
-							primitive \
-							internal \
-						) \
-					) \
-					$(addprefix view/, \
-						viewport \
-					) \
-					$(addprefix utils/, \
-						aabb \
-						color \
-						ft_error \
-						matrix \
-						matrix/internal \
-						$(addprefix vector/, \
-							vec3 \
-							vec4 \
-							vec2 \
-							ivec2 \
-						) \
-						dynamic_array \
-					) \
-					ft_mlx \
-					$(addprefix ft_mlx/, \
-						hooks \
-					) \
-				)
+
 else
 SRC_DIRS	:= bonus/src
 SRC_DIRS	+= $(addprefix bonus/src/, \
@@ -260,270 +199,8 @@ $(foreach dir, $(SRC_DIRS), $(eval vpath %.c $(dir)))
 # -------------------------- #
 
 ifeq ($(BUILD_TARGET), mandatory)
+
 SRCS	:=	main.c
-
-# ft_mlx
-SRCS	+=	mlx_ptr.c \
-			win_ptr.c \
-			image.c \
-			texture.c \
-			cleanup_mlx.c \
-			setup_mlx_window.c \
-			setup_mlx_hooks.c \
-			get_pixel_addr.c \
-			get_uv_pixel_addr.c \
-			calc_uv_pixel.c \
-			put_color.c
-
-# ft_mlx/hooks
-SRCS	+=	expose_hook.c \
-			loop_hook.c \
-			key_press_hook.c \
-			key_release_hook.c \
-			button_hooks.c
-
-# parser
-SRCS	+=	parser.c \
-			read_file_as_line_list.c \
-			parse_settings.c
-# parser/read_next_line
-SRCS	+=	read_next_line.c
-# parser/parse_setting
-SRCS	+=	parse_ambient_light.c \
-			parse_point_light.c \
-			parse_spot_light.c \
-			parse_directional_light.c \
-			parse_camera.c \
-			parse_plane.c \
-			parse_sphere.c \
-			parse_cylinder.c \
-			parse_cone.c \
-			parse_hyperboloid.c \
-			parse_paraboloid.c \
-			parse_required_fields.c \
-			build_required_field.c \
-			init_optional_fields.c \
-			bind_material_option.c \
-			parse_optional_fields.c \
-			get_pattern_type.c \
-			get_normal_type.c
-# parser/parse_field
-SRCS	+=	parse_vec3.c \
-			parse_float.c \
-			parse_color.c \
-			parse_dir.c \
-			parse_coordinate.c \
-			parse_brightness.c \
-			parse_fov.c \
-			parse_half_size.c \
-			parse_angle.c \
-			parse_texture.c \
-			parse_bool.c \
-			parse_shininess.c \
-			parse_size.c \
-			parse_long.c \
-			parse_checker_count.c \
-			parse_checker_count_even.c
-# parser/internal
-SRCS	+=	is_blank_line.c \
-			is_comment_line.c \
-			is_setting_id.c \
-			is_option_id.c \
-			count_split.c \
-			free_split.c
-
-# accelerator
-SRCS	+=	build_accelerator.c \
-			cleanup_accelerator.c
-# accelerator/bvh
-SRCS	+=	bvh.c \
-			aabb_leaves.c \
-			build_bvh.c \
-			build_binned_bvh.c \
-			calc_best_bin_partition.c \
-			calc_bin_index.c \
-			calc_sah_cost.c \
-			add_leaf_node.c
-# accelerator/infinite_objects
-SRCS	+=	infinite_objects.c \
-			build_infinite_objects.c
-
-# renderer
-SRCS	+=	renderer.c \
-			render_flag.c \
-			put_color_to_window_image.c
-
-# renderer/phong
-SRCS	+=	phong.c
-# renderer/phong/intersection
-SRCS	+=	phong_intersection.c \
-			bvh_intersection.c \
-			infinite_objects_intersection.c
-# renderer/phong/lighting
-SRCS	+=	phong_lighting.c \
-			phong_lighting_ambient.c \
-			phong_lighting_point.c \
-			phong_lighting_spot.c \
-			phong_lighting_directional.c \
-			phong_specular_dot.c
-# renderer/phong/shading
-SRCS	+=	phong_shading.c \
-			bvh_shading.c \
-			infinite_objects_shading.c
-
-# scene/camera
-SRCS	+=	camera.c \
-			set_camera_pos.c \
-			set_camera_dir.c \
-			change_camera_fov.c \
-			rotate_camera.c
-# scene/camera/internal
-SRCS	+=	calc_camera_dir.c \
-			calc_camera_right.c \
-			calc_camera_up.c
-
-# scene/light
-SRCS	+=	light.c \
-			ambient_light.c \
-			point_light.c \
-			spot_light.c \
-			directional_light.c \
-			set_dist_attenuation.c \
-			calc_dist_attenuation.c \
-			check_cutoff.c
-
-# scene/object
-SRCS	+=	object.c \
-			calc_object_intersection.c \
-			calc_object_uv.c \
-			calc_object_color.c \
-			calc_object_normal.c \
-			calc_object_tbn.c \
-			calc_bump_mapping.c \
-			calc_normal_mapping.c \
-			calc_aabb_intersection.c
-# scene/object/sphere
-SRCS	+=	create_sphere.c
-# scene/object/plane
-SRCS	+=	create_plane.c
-# scene/object/cylinder
-SRCS	+=	create_cylinder.c
-# scene/object/circle
-SRCS	+=	create_circle.c
-# scene/object/cone
-SRCS	+=	create_cone.c
-# scene/object/hyperboloid
-SRCS	+=	create_hyperboloid.c
-# scene/object/paraboloid
-SRCS	+=	create_paraboloid.c
-# scene/object/primitive
-SRCS	+=	build_primitive.c \
-			unit_quadric.c \
-			calc_primitive_intersection.c \
-			calc_planar_intersection.c \
-			calc_quadric_intersection.c \
-			calc_primitive_normal.c \
-			calc_primitive_uv.c \
-			calc_primitive_tbn.c \
-			is_planar_primitive.c \
-			is_quadric_primitive.c
-# scene/object/internal
-SRCS	+=	calc_onb.c \
-			adjust_uv_range.c \
-			set_material.c \
-			set_uv_checker.c
-
-# view/viewport
-SRCS	+=	viewport.c
-
-# utils/aabb
-SRCS	+=	initial_aabb.c \
-			calc_aabb_from_extent.c \
-			union_aabb.c \
-			transform_aabb.c \
-			mul_extent.c \
-			calc_aabb_centroid.c \
-			has_bounded_aabb.c
-
-# utils/color
-SRCS	+=	add_color.c \
-			mul_color.c \
-			scale_color.c \
-			init_color_lut.c \
-			decode_color.c \
-			encode_color.c \
-			srgb.c \
-			gamma.c \
-			average_rgb.c \
-			convert_uint_to_color.c
-
-# utils/ft_error
-SRCS	+=	error_line.c \
-			error_field.c \
-			print_error.c \
-			print_argument_error.c \
-			print_texture_error.c \
-			print_errno.c \
-			print_line_error.c \
-			print_field_error.c
-
-# utils/vector/vec3
-SRCS	+=	vec3.c \
-			vec3_add.c \
-			vec3_sub.c \
-			vec3_scale.c \
-			vec3_div.c \
-			vec3_dot.c \
-			vec3_cross.c \
-			vec3_length.c \
-			vec3_normalize.c \
-			vec3_rotate.c
-
-# utils/vector/vec4
-SRCS	+=	vec4.c \
-			vec4_from_point.c \
-			vec4_from_dir.c \
-			vec4_to_vec3.c \
-			vec4_dot.c
-
-# utils/vector/vec2
-SRCS	+=	vec2.c
-
-# utils/vector/ivec2
-SRCS	+=	ivec2.c
-
-# utils/dynamic_array
-SRCS	+=	access_dynamic_array.c \
-			add_dynamic_array.c \
-			allocate_dynamic_array.c \
-			cleanup_dynamic_array.c \
-			grow_dynamic_array.c
-
-# utils/matrix
-SRCS	+=	mat4_identity.c \
-			mat4_diagonal.c \
-			mat4_mul.c \
-			mat4_transpose.c \
-			mat4_mul_vec4.c \
-			mat4_transform_point.c \
-			mat4_transform_dir.c \
-			mat3_from_mat4.c \
-			mat3_mul_transposed.c \
-			mat3_mul_vec3.c \
-			mat3_from_columns.c \
-			mat4_translate.c \
-			mat4_scale.c \
-			mat4_rotate.c \
-			mat4_basis.c \
-			mat4_local_to_world.c \
-			mat4_world_to_local.c \
-			mat4_is_valid_scale.c \
-			mat4_inverse.c
-
-# utils/matrix/internal
-SRCS	+=	mat4_minor.c \
-			mat4_cofactor.c \
-			mat4_det.c
 
 else
 
