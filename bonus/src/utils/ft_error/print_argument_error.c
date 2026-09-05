@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 18:33:19 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 18:34:00 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/05 21:00:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 void	print_argument_error(char const *program_name)
 {
-	ft_dprintf(STDERR_FILENO, "Error\n");
-	ft_dprintf(STDERR_FILENO, "USAGE: %s *.rt\n", program_name);
+	ft_putstr_fd("Error\n", STDERR_FILENO);
+	ft_putstr_fd("USAGE: ", STDERR_FILENO);
+	ft_putstr_fd((char *)program_name, STDERR_FILENO);
+	ft_putstr_fd(" *.rt\n", STDERR_FILENO);
 }
