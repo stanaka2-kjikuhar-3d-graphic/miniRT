@@ -33,26 +33,62 @@ uv.u = (atan2f(p.y, p.x) + M_PI) / (2.0f * M_PI);
 | `UNIT_CYLINDER` | `0.5 - z / 2` |
 | `UNIT_CONE` | `z` |
 | `UNIT_HYPERBOLOID` | `0.5 - z / (2 z_max)` |
-| `UNIT_PARABOLOID` | `z` |
+| `UNIT_PARABOLOID` | `1 - z` |
 
 円柱と一葉双曲面が上端で `v = 0` になる向きなのは、キャップの円盤（`add_cap_circle`）が
 その向きを前提に `v_range` を割り当てているためである（[hyperboloid.md](hyperboloid.md) 5節）。
 以前は `calc_hyperboloid_uv` が戻り値を反転して辻褄を合わせていたが、この式では符号がそのまま入っている。
 
+揃える基準は「ローカルの z」ではなく「world の上下」である。
+どの形状も world の上が `v = 0` になる。
+
+| 正準形 | ローカル `+z` の world 向き | `z = 0` の world 位置 | `v` |
+| --- | --- | --- | --- |
+| 円錐 | `-dir` | 上（頂点） | `z` |
+| 放物面 | `+dir` | 下（頂点） | `1 - z` |
+
+円錐が `v = z` のままで揃うのは、フレームの `w` 軸が `-dir` を向いているぶんが式の符号を肩代わりしているからである（[create_cone.c](../bonus/src/scene/object/cone/create_cone.c)）。
+放物面は `+dir` に開くのが正しい配置なので `w` を裏返せず、式側で反転する。
+
 一葉双曲面だけ `z_max` で割るのは、正準形の z 範囲がオブジェクトごとに変わるからである。
 `t_primitive` が持つ `z_range` をそのまま使う。
 
-平面と円盤は方位角を使わない。
+円盤は `u` に方位角を使うが `v` は半径である。
+平面は方位角を使わない。
 
-- **平面**：`u = frac(x - 0.5)`、`v = frac(y - 0.5)`。`pattern_size` はスケールに吸収済みなので、割り算が式から消える
-- **円盤**：`u` は方位角、`v` は `hypot(x, y)`。半径もスケールに吸収されている。`UV_LOWER_CAP` のときに `u` と `v` を反転する分岐は従来どおり
+- **平面**：`u = frac(x * pattern_scale.u - 0.5)`、`v = frac(y * pattern_scale.v - 0.5)`
+- **円盤**：`u` は方位角、`v` は `hypot(x, y)`。半径はスケールに吸収されている。`UV_LOWER_CAP` のときに `u` と `v` を反転する分岐は従来どおり
+
+## 2.1 平面の pattern_scale
+
+平面のスケールには `pattern_size` ではなく境界（`half_size`）が入っているので、
+模様の周期はスケールに吸収できない。
+そこで「ローカル1単位が何タイル分か」を `t_uv` に持たせ、UV 側で掛ける。
+
+```c
+object->uv.pattern_scale = (t_vec2){
+	.u = frame.scale.x / input->option.pattern_size,
+	.v = frame.scale.y / input->option.pattern_size};
+```
+
+`frame.scale` を決めるその場で作るので、型と係数が食い違わない。
+
+| 正準形 | スケール | `pattern_scale` | `p * pattern_scale` |
+| --- | --- | --- | --- |
+| `INFINITE_PLANE` | `(1, 1, 1)` | `1 / pattern_size` | `world / pattern_size` |
+| `UNIT_PLANE` | `(half_size.u, half_size.v, 1)` | `half_size / pattern_size` | `world / pattern_size` |
+
+どちらも最終的に `world / pattern_size` になるので、**1タイルは常に world 空間で `pattern_size` の正方形**である。
+板の大きさを変えても模様の密度は変わらず、有界な平面は無限平面を切り取ったものとして振る舞う。
+
+タイルが world で正方形であることから、`u_per_v` は型にも `half_size` にもよらず常に `1.0` になる。
 
 ## 3. 円錐の u が鏡像になっている（既知の問題）
 
 正準形の円錐は頂点が `z = 0` にあるので、フレームの z 軸は `-dir` を向く。
 このとき x 軸と y 軸をどう取るかで `u` の継ぎ目の位置が決まる。
 
-`create_cone.c` は `basis_from_dir(-dir)` でフレームを組んでいるが、`calc_onb()` は `dir` と `-dir` で `v` の符号が反転する。
+`create_cone.c` は `calc_onb(-dir)` でフレームを組んでいるが、`calc_onb()` は `dir` と `-dir` で `v` の符号が反転する。
 そのため `atan2(p.y, p.x)` の符号が変わり、`u` が `1 - u` になる。
 
 旧実装の `cone_quadric.c` は `w` だけ反転させ、`u` と `v` は `+dir` のものを残していた。
@@ -64,7 +100,7 @@ uv.u = (atan2f(p.y, p.x) + M_PI) / (2.0f * M_PI);
 ## 4. 遠い交点での frac
 
 平面の `u` と `v` は `frac()` を通すので、交点が原点から遠いと精度が落ちる。
-無限平面をかすめるレイでは交点が数万単位まで飛ぶことがあり、`pattern_size` で割った商が float の有効桁を超える。
+無限平面をかすめるレイでは交点が数万単位まで飛ぶことがあり、`pattern_scale` を掛けた積が float の有効桁を超える。
 
 これは world 空間で計算していた頃と同じ性質で、この変更で悪化も改善もしない。
 実測では、交点までの距離を100以下に絞ると差が `3e-2` から `3e-5` に落ちた。

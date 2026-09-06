@@ -3,12 +3,27 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/16 21:41:55 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/09/05 20:33:53 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+# -------------------------- #
+#         Build Mode         #
+# -------------------------- #
+
+BUILD_MODE	?= develop
+# BUILD_MODE	?= review
+# BUILD_MODE	?= default
+
+BUILD_TARGET	:= bonus
+ifeq ($(BUILD_MODE),review)
+ifneq ($(filter bonus,$(MAKECMDGOALS)),bonus)
+BUILD_TARGET	:= mandatory
+endif
+endif
 
 # -------------------------- #
 #       Phony Targets        #
@@ -21,22 +36,26 @@
 # -------------------------- #
 
 ifeq ($(filter san,$(MAKECMDGOALS)),san)
-override CFLAGS += -g -fsanitize=address,undefined
+override CFLAGS	+= -g -fsanitize=address,undefined
 endif
 
 ifeq ($(filter debug,$(MAKECMDGOALS)),debug)
-override CFLAGS += -g
+override CFLAGS	+= -g
 endif
 
-EXTRA_FLAGS :=	MAKEFLAGS='$(MAKEFLAGS)' \
-				CFLAGS='$(CFLAGS)' \
-				CPPFLAGS='$(CPPFLAGS)'
+ifneq ($(BUILD_MODE), develop)
+override CFLAGS	+= -O3
+endif
+
+EXTRA_FLAGS		:=	MAKEFLAGS='$(MAKEFLAGS)' \
+					CFLAGS='$(CFLAGS)' \
+					CPPFLAGS='$(CPPFLAGS)'
 
 # -------------------------- #
 #      Makefile Setting      #
 # -------------------------- #
 
-OS	:= $(shell uname -s)
+OS						:= $(shell uname -s)
 
 override MAKEFLAGS		+= -j --no-print-directory
 
@@ -73,21 +92,30 @@ NAME	:= miniRT
 #       Compiler Flags       #
 # -------------------------- #
 
-CC	:= cc
+CC				:= cc
 
 override CFLAGS	+= -Wall -Wextra -Werror
-# when submit, it should change -W3
 override CFLAGS	+= -Wconversion -Wno-sign-conversion -Wshadow
 
 # -------------------------- #
 #          Include           #
 # -------------------------- #
 
+ifeq ($(BUILD_TARGET), mandatory)
+
+INCLUDE_DIRS		:=	mandatory/include
+
+else
+
 INCLUDE_DIRS		:=	bonus/include \
 						$(addprefix bonus/include/, \
 							scene \
+							view \
+							types \
 							utils \
 						)
+
+endif
 
 override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 
@@ -95,8 +123,18 @@ override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 #     Source Directories     #
 # -------------------------- #
 
+ifeq ($(BUILD_TARGET), mandatory)
+
+SRC_DIRS	:= mandatory/src
+
+else
 SRC_DIRS	:= bonus/src
 SRC_DIRS	+= $(addprefix bonus/src/, \
+					accelerator \
+					$(addprefix accelerator/, \
+						bvh \
+						infinite_objects \
+					) \
 					parser \
 					$(addprefix parser/, \
 						read_next_line \
@@ -126,13 +164,15 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 							paraboloid \
 							plane \
 							sphere \
-							quadric \
 							primitive \
 							internal \
 						) \
+					) \
+					$(addprefix view/, \
 						viewport \
 					) \
 					$(addprefix utils/, \
+						aabb \
 						color \
 						ft_error \
 						matrix \
@@ -150,12 +190,19 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 						hooks \
 					) \
 				)
+endif
 
 $(foreach dir, $(SRC_DIRS), $(eval vpath %.c $(dir)))
 
 # -------------------------- #
 #        Source Files        #
 # -------------------------- #
+
+ifeq ($(BUILD_TARGET), mandatory)
+
+SRCS	:=	main.c
+
+else
 
 SRCS	:=	main.c
 
@@ -212,8 +259,7 @@ SRCS	+=	parse_vec3.c \
 			parse_coordinate.c \
 			parse_brightness.c \
 			parse_fov.c \
-			parse_radius.c \
-			parse_half_height.c \
+			parse_half_size.c \
 			parse_angle.c \
 			parse_texture.c \
 			parse_bool.c \
@@ -230,6 +276,22 @@ SRCS	+=	is_blank_line.c \
 			count_split.c \
 			free_split.c
 
+# accelerator
+SRCS	+=	build_accelerator.c \
+			cleanup_accelerator.c
+# accelerator/bvh
+SRCS	+=	bvh.c \
+			aabb_leaves.c \
+			build_bvh.c \
+			build_binned_bvh.c \
+			calc_best_bin_partition.c \
+			calc_bin_index.c \
+			calc_sah_cost.c \
+			add_leaf_node.c
+# accelerator/infinite_objects
+SRCS	+=	infinite_objects.c \
+			build_infinite_objects.c
+
 # renderer
 SRCS	+=	renderer.c \
 			render_flag.c \
@@ -238,7 +300,9 @@ SRCS	+=	renderer.c \
 # renderer/phong
 SRCS	+=	phong.c
 # renderer/phong/intersection
-SRCS	+=	phong_intersection.c
+SRCS	+=	phong_intersection.c \
+			bvh_intersection.c \
+			infinite_objects_intersection.c
 # renderer/phong/lighting
 SRCS	+=	phong_lighting.c \
 			phong_lighting_ambient.c \
@@ -247,12 +311,15 @@ SRCS	+=	phong_lighting.c \
 			phong_lighting_directional.c \
 			phong_specular_dot.c
 # renderer/phong/shading
-SRCS	+=	phong_shading.c
+SRCS	+=	phong_shading.c \
+			bvh_shading.c \
+			infinite_objects_shading.c
 
 # scene/camera
 SRCS	+=	camera.c \
-			change_camera_pos.c \
-			change_camera_dir.c \
+			set_camera_pos.c \
+			set_camera_dir.c \
+			change_camera_fov.c \
 			rotate_camera.c
 # scene/camera/internal
 SRCS	+=	calc_camera_dir.c \
@@ -277,7 +344,8 @@ SRCS	+=	object.c \
 			calc_object_normal.c \
 			calc_object_tbn.c \
 			calc_bump_mapping.c \
-			calc_normal_mapping.c
+			calc_normal_mapping.c \
+			calc_aabb_intersection.c
 # scene/object/sphere
 SRCS	+=	create_sphere.c
 # scene/object/plane
@@ -292,18 +360,34 @@ SRCS	+=	create_cone.c
 SRCS	+=	create_hyperboloid.c
 # scene/object/paraboloid
 SRCS	+=	create_paraboloid.c
-# scene/object/quadric
-SRCS	+=	quadric_eval.c \
-			solve_quadratic.c
+# scene/object/primitive
+SRCS	+=	build_primitive.c \
+			unit_quadric.c \
+			calc_primitive_intersection.c \
+			calc_planar_intersection.c \
+			calc_quadric_intersection.c \
+			calc_primitive_normal.c \
+			calc_primitive_uv.c \
+			calc_primitive_tbn.c \
+			is_planar_primitive.c \
+			is_quadric_primitive.c
 # scene/object/internal
 SRCS	+=	calc_onb.c \
-			basis_from_dir.c \
 			adjust_uv_range.c \
 			set_material.c \
 			set_uv_checker.c
 
-# scene/viewport
+# view/viewport
 SRCS	+=	viewport.c
+
+# utils/aabb
+SRCS	+=	initial_aabb.c \
+			calc_aabb_from_extent.c \
+			union_aabb.c \
+			transform_aabb.c \
+			mul_extent.c \
+			calc_aabb_centroid.c \
+			has_bounded_aabb.c
 
 # utils/color
 SRCS	+=	add_color.c \
@@ -325,7 +409,8 @@ SRCS	+=	error_line.c \
 			print_texture_error.c \
 			print_errno.c \
 			print_line_error.c \
-			print_field_error.c
+			print_field_error.c \
+			print_nbr.c
 
 # utils/vector/vec3
 SRCS	+=	vec3.c \
@@ -353,26 +438,22 @@ SRCS	+=	vec2.c
 SRCS	+=	ivec2.c
 
 # utils/dynamic_array
-SRCS	+=	grow_dynamic_array.c
-# scene/object/primitive
-SRCS	+=	build_primitive.c \
-			unit_quadric.c \
-			calc_planar_intersection.c \
-			calc_primitive_intersection.c \
-			solve_unit_form.c \
-			calc_primitive_normal.c \
-			calc_primitive_uv.c \
-			calc_primitive_tbn.c
+SRCS	+=	access_dynamic_array.c \
+			add_dynamic_array.c \
+			allocate_dynamic_array.c \
+			cleanup_dynamic_array.c \
+			grow_dynamic_array.c
 
 # utils/matrix
 SRCS	+=	mat4_identity.c \
+			mat4_diagonal.c \
 			mat4_mul.c \
 			mat4_transpose.c \
 			mat4_mul_vec4.c \
 			mat4_transform_point.c \
 			mat4_transform_dir.c \
 			mat3_from_mat4.c \
-			mat3_mul_t_vec3.c \
+			mat3_mul_transposed.c \
 			mat3_mul_vec3.c \
 			mat3_from_columns.c \
 			mat4_translate.c \
@@ -388,6 +469,7 @@ SRCS	+=	mat4_identity.c \
 SRCS	+=	mat4_minor.c \
 			mat4_cofactor.c \
 			mat4_det.c
+endif
 
 # -------------------------- #
 #        Object Files        #
@@ -444,7 +526,7 @@ install:
 
 uninstall:
 	@$(RM) -r $(LIBMLX_DIR)
-	@printf "[miniRT] $(GREEN)Uninstall Complete:$(DEF_COLOR) $(LIBMLX_DIR)\n"
+	@printf "[miniRT] $(GREEN)Remove Complete:$(DEF_COLOR) $(LIBMLX_DIR)\n"
 
 $(LIBMLX_DIR):
 	@$(MAKE) install
@@ -468,7 +550,10 @@ override LDLIBS	+= -lmlx -lXext -lX11
 # -------------------------- #
 
 override LDLIBS	+= -lm
+
+ifneq ($(BUILD_TARGET), mandatory)
 override CFLAGS	+= -pthread
+endif
 
 # -------------------------- #
 #        Build Rules         #
@@ -525,7 +610,7 @@ test:
 	@bash test/test.sh
 
 norm:
-	@norminette -o bonus/src bonus/include $(LIBFT_DIR) | grep Error || true
+	@norminette -o mandatory/src mandatory/include bonus/src bonus/include $(LIBFT_DIR) | grep Error || true
 
 # -------------------------- #
 #    ANSI Escape Sequence    #

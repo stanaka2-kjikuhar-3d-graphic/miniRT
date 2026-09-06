@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   is_planar.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/16 20:13:46 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 03:11:32 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/08/25 21:22:19 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/25 21:25:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
+#include <stdbool.h>
 
-# include "vector.h"
+#include "object.h"
 
-typedef struct s_ray
+bool	is_planar_primitive(enum e_primitive_type type)
 {
-	t_vec3	dir;
-	t_vec3	origin;
-}	t_ray;
-
-#endif
+	return (type == UNIT_PLANE || type == UNIT_DISC || type == INFINITE_PLANE);
+}

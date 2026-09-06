@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 16:50:32 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/09 00:47:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/04 21:38:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,16 @@ static void	camera_move_action(enum e_camera_action action)
 
 	camera = get_camera();
 	if (action == CAMERA_ACTION_MOVE_FORWARD)
-		change_camera_pos(vec3_add(camera->pos, camera->dir));
+		set_camera_pos(vec3_add(camera->pos, camera->dir));
 	else if (action == CAMERA_ACTION_MOVE_BACK)
-		change_camera_pos(vec3_add(camera->pos, vec3_scale(-1, camera->dir)));
+		set_camera_pos(vec3_add(camera->pos, vec3_scale(-1, camera->dir)));
 	else if (action == CAMERA_ACTION_MOVE_RIGHT)
-		change_camera_pos(vec3_add(camera->pos, camera->right));
+		set_camera_pos(vec3_add(camera->pos, camera->right));
 	else if (action == CAMERA_ACTION_MOVE_LEFT)
-		change_camera_pos(vec3_add(camera->pos, vec3_scale(-1, camera->right)));
+		set_camera_pos(vec3_add(camera->pos, vec3_scale(-1, camera->right)));
 	else if (action == CAMERA_ACTION_MOVE_UP)
-		change_camera_pos(vec3_add(camera->pos, camera->up));
+		set_camera_pos(vec3_add(camera->pos, camera->up));
 	else if (action == CAMERA_ACTION_MOVE_DOWN)
-		change_camera_pos(vec3_add(camera->pos, vec3_scale(-1, camera->up)));
+		set_camera_pos(vec3_add(camera->pos, vec3_scale(-1, camera->up)));
 	set_render_flag(true);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mat4_world_to_local.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 03:02:19 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/07 22:28:12 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/30 19:11:42 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,16 @@ t_mat4	mat4_world_to_local(t_mat3 const *basis, t_vec3 origin, t_vec3 scale)
 /* row i of the 3x3 block is basis column i divided by that axis' scale. */
 static void	set_rotation_scale(t_mat4 *m, t_mat3 const *basis, t_vec3 scale)
 {
-	float	s[3];
-	int		row;
-	int		col;
+	int	row;
+	int	col;
 
-	s[X_AXIS] = scale.x;
-	s[Y_AXIS] = scale.y;
-	s[Z_AXIS] = scale.z;
 	row = 0;
 	while (row < 3)
 	{
 		col = 0;
 		while (col < 3)
 		{
-			m->m[row][col] = basis->m[col][row] / s[row];
+			m->m[row][col] = basis->m[col][row] / scale.e[row];
 			++col;
 		}
 		++row;
@@ -65,14 +61,14 @@ static void	set_rotation_scale(t_mat4 *m, t_mat3 const *basis, t_vec3 scale)
 /* the 4th column carries -origin, already rotated and scaled. */
 static void	set_translation(t_mat4 *m, t_vec3 origin)
 {
-	int	row;
+	t_vec4	vec4_origin;
+	int		i;
 
-	row = 0;
-	while (row < 3)
+	vec4_origin = vec4(origin.x, origin.y, origin.z, 0.0f);
+	i = 0;
+	while (i < 3)
 	{
-		m->m[row][3] = -(m->m[row][0] * origin.x \
-						+ m->m[row][1] * origin.y \
-						+ m->m[row][2] * origin.z);
-		++row;
+		m->row[i].w = -(vec4_dot(m->row[i], vec4_origin));
+		++i;
 	}
 }

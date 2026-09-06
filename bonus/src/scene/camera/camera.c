@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 22:13:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 01:24:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/04 22:00:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "ft_math.h"
 #include "vector.h"
 #include "camera.h"
+#include "viewport.h"
 
 #include "./camera_private.h"
 
@@ -32,6 +33,8 @@ t_camera	*get_mutable_camera(void)
 
 void	set_camera(t_input_camera const *input)
 {
-	change_camera_pos(input->pos);
-	change_camera_dir(input->dir);
+	set_camera_pos(input->pos);
+	set_camera_dir(input->dir);
+	g_camera.fov = input->fov;
+	set_viewport(g_camera.fov);
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 01:09:47 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 00:32:20 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/30 16:03:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,30 @@
 
 # include <stdint.h>
 # include <stdbool.h>
+# include <assert.h>
+# include <stddef.h>
 
 typedef struct s_color
 {
-	float	r;
-	float	g;
-	float	b;
+	union
+	{
+		float	channels[3];
+		struct
+		{
+			float	r;
+			float	g;
+			float	b;
+		};
+	};
 }	t_color;
+
+# define COLOR_ASSERTION "Error\nmemory alignment of t_color."
+
+static_assert(offsetof(t_color, r) == 0, COLOR_ASSERTION " r != channels[0]");
+static_assert(offsetof(t_color, g) == sizeof(float), \
+				COLOR_ASSERTION " g != channels[1]");
+static_assert(offsetof(t_color, b) == 2 * sizeof(float), \
+				COLOR_ASSERTION " b != channels[2]");
 
 enum e_color_channel
 {

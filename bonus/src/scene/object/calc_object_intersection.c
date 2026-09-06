@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_object_intersection.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 00:50:10 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 17:39:05 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/29 17:41:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

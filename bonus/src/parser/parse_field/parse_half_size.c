@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_radius.c                                     :+:      :+:    :+:   */
+/*   parse_half_size.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/11 23:40:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/26 00:46:18 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/11 23:46:11 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/10 17:49:45 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@
 
 #include "../parser_private.h"
 
-bool	parse_radius(char const *element, void *value)
+bool	parse_half_size(char const *element, void *value)
 {
-	float *const	radius = (float *)value;
-	float			diameter;
+	float *const	half_size = (float *)value;
+	float			size;
 
-	if (!parse_float(element, &diameter))
+	if (!parse_float(element, &size))
 		return (false);
-	if (diameter <= 0.0f)
+	if (size <= 0.0f)
 	{
 		print_field_error(ERROR_OUT_OF_RANGE, HINT_POSITIVE);
 		return (false);
 	}
-	*radius = diameter / 2.0f;
-	if (*radius == 0.0f)
+	*half_size = size / 2.0f;
+	if (*half_size == 0.0f)
 	{
 		print_field_error(ERROR_TOO_SMALL, NULL);
 		return (false);

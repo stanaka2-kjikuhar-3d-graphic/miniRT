@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 21:42:31 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/31 22:02:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include "ray.h"
 # include "ft_mlx.h"
 # include "matrix.h"
+# include "range.h"
+# include "aabb.h"
 
 enum e_pattern_type
 {
@@ -64,16 +66,11 @@ enum e_uv_type
 	UV_LOWER_CAP,
 };
 
-typedef struct s_range
-{
-	float	max;
-	float	min;
-}	t_range;
-
 typedef struct s_uv
 {
 	enum e_uv_type	type;
 	float			pattern_size;
+	t_vec2			pattern_scale;
 	t_ivec2			checker_count;
 	t_vec2			checker_size;
 	float			u_per_v;
@@ -84,26 +81,33 @@ typedef struct s_uv
 /*
 each shape is a unit form in local space, placed by to_world.
 
-    UNIT_SPHERE        x^2 + y^2 + z^2 = 1
-    UNIT_CYLINDER      x^2 + y^2       = 1     z in [-1, 1]
-    UNIT_CONE          x^2 + y^2 - z^2 = 0     z in [ 0, 1]
-    UNIT_HYPERBOLOID   x^2 + y^2 - z^2 = 1     z in [-zc, zc]
-    UNIT_PARABOLOID    x^2 + y^2 - z   = 0     z in [ 0, 1]
-    UNIT_PLANE         z = 0
+    INFINITE_PLANE     z = 0, |x| <= half_size.x, |y| <= half_size.y
+    UNIT_PLANE         z = 0, |x| <= 1, |y| <= 1
     UNIT_DISC          z = 0, x^2 + y^2 <= 1
+    UNIT_SPHERE        x^2 + y^2 + z^2 = 1     z_range [-1, 1]
+    UNIT_CYLINDER      x^2 + y^2       = 1     z_range [-1, 1]
+    UNIT_CONE          x^2 + y^2 - z^2 = 0     z_range [ 0, 1]
+    UNIT_HYPERBOLOID   x^2 + y^2 - z^2 = 1     z_range [-zc, zc]
+    UNIT_PARABOLOID    x^2 + y^2 - z   = 0     z_range [ 0, 1]
 
   UNIT_HYPERBOLOID keeps zc per object: the unit form fixes both scales,
   so the z bound cannot be normalized to 1 as well.
+
+  INFINITE_PLANE keeps half_size per object for the same reason: u_size
+  and v_size may be given one at a time, and an infinite half cannot be
+  folded into the scale. UNIT_PLANE is the case where both are finite,
+  so there the bound is normalized to 1.
 */
 enum e_primitive_type
 {
+	INFINITE_PLANE,
+	UNIT_PLANE,
+	UNIT_DISC,
 	UNIT_SPHERE,
 	UNIT_CYLINDER,
 	UNIT_CONE,
 	UNIT_HYPERBOLOID,
 	UNIT_PARABOLOID,
-	UNIT_PLANE,
-	UNIT_DISC
 };
 
 typedef struct s_primitive
@@ -111,14 +115,21 @@ typedef struct s_primitive
 	enum e_primitive_type	type;
 	t_mat4					to_world;
 	t_mat4					to_local;
-	t_range					z_range;
+	union
+	{
+		t_range	z_range;
+		t_vec2	half_size;
+	};
 }	t_primitive;
 
 typedef struct s_object
 {
-	t_material			material;
-	t_uv				uv;
-	t_primitive			primitive;
+	t_material	material;
+	t_uv		uv;
+	t_primitive	primitive;
+	t_aabb		aabb;
+	t_vec3		aabb_centroid;
+	bool		has_bounded_aabb;
 }	t_object;
 
 typedef struct s_material_option
@@ -139,49 +150,50 @@ typedef struct s_material_option
 // input
 typedef struct s_input_sphere
 {
-	t_vec3				center;
-	float				radius;
-	t_color				albedo;
+	t_vec3	center;
+	float	radius;
+	t_color	albedo;
 	struct	s_sphere_option
 	{
 		t_material_option	material;
 		t_ivec2				checker_count;
-	}					option;
+	}	option;
 }	t_input_sphere;
 
 typedef struct s_input_plane
 {
-	t_vec3				center;
-	t_vec3				normal;
-	t_color				albedo;
+	t_vec3	center;
+	t_vec3	normal;
+	t_color	albedo;
 	struct	s_plane_option
 	{
 		t_material_option	material;
 		float				pattern_size;
 		t_ivec2				checker_count;
-	}					option;
+		t_vec2				half_size;
+	}	option;
 }	t_input_plane;
 
 typedef struct s_input_cylinder
 {
-	t_vec3				center;
-	t_vec3				dir;
-	float				radius;
-	float				half_height;
-	t_color				albedo;
+	t_vec3	center;
+	t_vec3	dir;
+	float	radius;
+	float	half_height;
+	t_color	albedo;
 	struct	s_cylinder_option
 	{
 		t_material_option	material;
 		t_ivec2				checker_count;
-	}					option;
+	}	option;
 }	t_input_cylinder;
 
 typedef struct s_input_circle
 {
-	t_vec3				center;
-	t_vec3				normal;
-	float				radius;
-	t_color				albedo;
+	t_vec3	center;
+	t_vec3	normal;
+	float	radius;
+	t_color	albedo;
 	struct	s_circle_option
 	{
 		t_material_option	material;
@@ -191,73 +203,75 @@ typedef struct s_input_circle
 		float				u_per_v;
 		t_range				u_range;
 		t_range				v_range;
-	}					option;
+	}	option;
 }	t_input_circle;
 
 typedef struct s_input_cone
 {
-	t_vec3				center;
-	t_vec3				dir;
-	float				radius;
-	float				height;
-	t_color				albedo;
+	t_vec3	center;
+	t_vec3	dir;
+	float	radius;
+	float	height;
+	t_color	albedo;
 	struct	s_cone_option
 	{
 		t_material_option	material;
 		t_ivec2				checker_count;
-	}					option;
+	}	option;
 }	t_input_cone;
 
 typedef struct s_input_hyperboloid
 {
-	t_vec3				center;
-	t_vec3				dir;
-	float				center_radius;
-	float				cap_radius;
-	float				half_height;
-	t_color				albedo;
+	t_vec3	center;
+	t_vec3	dir;
+	float	center_radius;
+	float	cap_radius;
+	float	half_height;
+	t_color	albedo;
 	struct	s_hyperboloid_option
 	{
 		t_material_option	material;
 		t_ivec2				checker_count;
-	}					option;
+	}	option;
 }	t_input_hyperboloid;
 
 typedef struct s_input_paraboloid
 {
-	t_vec3				center;
-	t_vec3				dir;
-	float				quadratic_coefficient;
-	float				height;
-	t_color				albedo;
+	t_vec3	center;
+	t_vec3	dir;
+	float	quadratic_coefficient;
+	float	height;
+	t_color	albedo;
 	struct	s_paraboloid_option
 	{
 		t_material_option	material;
 		t_ivec2				checker_count;
-	}					option;
+	}	option;
 }	t_input_paraboloid;
 
-bool	create_sphere(t_input_sphere const *input);
-bool	create_plane(t_input_plane const *input);
-bool	create_cylinder(t_input_cylinder const *input);
-bool	create_circle(t_input_circle const *input);
-bool	create_cone(t_input_cone const *input);
-bool	create_hyperboloid(t_input_hyperboloid const *input);
-bool	create_paraboloid(t_input_paraboloid const *input);
-bool	get_next_object(t_object const **object);
-void	cleanup_objects(void);
-float	calc_object_intersection(t_object const *object, t_ray const *ray);
-t_vec2	calc_object_uv(t_object const *object, t_vec3 point);
-t_color	calc_object_color(t_object const *object, t_vec2 uv);
-t_vec3	calc_object_normal(\
-			t_object const *object, t_ray const *ray, t_vec3 point);
-t_mat3	calc_object_tbn(t_object const *object, t_vec3 point, t_vec3 normal);
-t_vec3	calc_bump_mapping(\
-			t_object const *object, t_vec2 uv, t_mat3 const *tbn);
-t_vec3	calc_normal_mapping(\
-			t_object const *object, t_vec2 uv, t_mat3 const *tbn);
-
-float	quadric_eval(t_mat4 const *q, t_vec4 p);
-int		solve_quadratic(float a, float b, float c, float roots[2]);
+bool			create_sphere(t_input_sphere const *input);
+bool			create_plane(t_input_plane const *input);
+bool			create_cylinder(t_input_cylinder const *input);
+bool			create_circle(t_input_circle const *input);
+bool			create_cone(t_input_cone const *input);
+bool			create_hyperboloid(t_input_hyperboloid const *input);
+bool			create_paraboloid(t_input_paraboloid const *input);
+bool			get_next_object(t_object const **object);
+t_object const	*get_object(size_t i);
+size_t			get_object_count(void);
+void			cleanup_objects(void);
+float			calc_object_intersection(\
+					t_object const *object, t_ray const *ray);
+float			calc_aabb_intersection(t_aabb const *aabb, t_ray const *ray);
+t_vec2			calc_object_uv(t_object const *object, t_vec3 point);
+t_color			calc_object_color(t_object const *object, t_vec2 uv);
+t_vec3			calc_object_normal(\
+					t_object const *object, t_ray const *ray, t_vec3 point);
+t_mat3			calc_object_tbn(\
+					t_object const *object, t_vec3 point, t_vec3 normal);
+t_vec3			calc_bump_mapping(\
+					t_object const *object, t_vec2 uv, t_mat3 const *tbn);
+t_vec3			calc_normal_mapping(\
+					t_object const *object, t_vec2 uv, t_mat3 const *tbn);
 
 #endif

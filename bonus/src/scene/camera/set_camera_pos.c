@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   change_camera_dir.c                                :+:      :+:    :+:   */
+/*   set_camera_pos.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/21 15:48:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 00:24:19 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/21 15:48:16 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/09/04 21:38:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <math.h>
-
-#include "ft_math.h"
 
 #include "vector.h"
 #include "camera.h"
 
 #include "./camera_private.h"
 
-void	change_camera_dir(t_vec3 dir)
+void	set_camera_pos(t_vec3 pos)
 {
-	t_camera	*camera;
-
-	camera = get_mutable_camera();
-	camera->dir = dir;
-	camera->pitch = asinf(camera->dir.z) * (float)RAD_TO_DEG;
-	camera->yaw = atan2f(camera->dir.x, camera->dir.y) * (float)RAD_TO_DEG;
-	camera->right = calc_camera_right(camera->yaw);
-	camera->up = calc_camera_up(camera->right, camera->dir);
+	get_mutable_camera()->pos = pos;
 }

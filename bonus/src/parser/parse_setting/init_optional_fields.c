@@ -6,10 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/26 22:07:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/03 22:12:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/30 16:06:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include <stddef.h>
 
 #include "config.h"
@@ -21,10 +22,10 @@ static const t_optional_field	g_optional_fields[OPTIONAL_FIELD_COUNT] = {\
 		"texture=file.xpm", FIELD_IMAGE, {.image = NULL}}, \
 	[OPTIONAL_CHECKER_COLOR1] = {NULL, "checker_color1", parse_color, \
 		"checker_color1=R,G,B [0 <= R,G,B <= 255]", \
-		FIELD_COLOR, {.color = {0.0f, 0.0f, 0.0f}}}, \
+		FIELD_COLOR, {.color = {.r = 0.0f, .g = 0.0f, .b = 0.0f}}}, \
 	[OPTIONAL_CHECKER_COLOR2] = {NULL, "checker_color2", parse_color, \
 		"checker_color2=R,G,B [0 <= R,G,B <= 255]", \
-		FIELD_COLOR, {.color = {1.0f, 1.0f, 1.0f}}}, \
+		FIELD_COLOR, {.color = {.r = 1.0f, .g = 1.0f, .b = 1.0f}}}, \
 	[OPTIONAL_BUMP_MAP] = {NULL, "bump_map", parse_texture, \
 		"bump_map=file.xpm", FIELD_IMAGE, {.image = NULL}}, \
 	[OPTIONAL_NORMAL_MAP] = {NULL, "normal_map", parse_texture, \
@@ -42,6 +43,10 @@ static const t_optional_field	g_optional_fields[OPTIONAL_FIELD_COUNT] = {\
 	[OPTIONAL_PATTERN_SIZE] = {NULL, "pattern_size", parse_size, \
 		"pattern_size=x [0.0 < x]", FIELD_FLOAT, \
 		{.number = DEFAULT_PATTERN_SIZE}}, \
+	[OPTIONAL_U_SIZE] = {NULL, "u_size", parse_half_size, \
+		"u_size=x [0.0 < x]", FIELD_FLOAT, {.number = INFINITY}}, \
+	[OPTIONAL_V_SIZE] = {NULL, "v_size", parse_half_size, \
+		"v_size=x [0.0 < x]", FIELD_FLOAT, {.number = INFINITY}}, \
 	[OPTIONAL_CHECKER_COUNT_U] = {NULL, "checker_count_u", \
 		parse_checker_count, "checker_count_u=n [2 <= n <= 1024]", \
 		FIELD_INT, {.integer = DEFAULT_CHECKER_COUNT}}, \

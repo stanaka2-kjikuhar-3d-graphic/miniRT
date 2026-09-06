@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mat4_mul_vec4.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 22:54:01 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/06 22:15:36 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/30 18:48:05 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,10 @@
 /* result = m * v: each component is the dot of a matrix row with v. */
 t_vec4	mat4_mul_vec4(t_mat4 const *m, t_vec4 v)
 {
-	t_vec4	result;
-
-	result.x = m->m[0][0] * v.x + m->m[0][1] * v.y \
-				+ m->m[0][2] * v.z + m->m[0][3] * v.w;
-	result.y = m->m[1][0] * v.x + m->m[1][1] * v.y \
-				+ m->m[1][2] * v.z + m->m[1][3] * v.w;
-	result.z = m->m[2][0] * v.x + m->m[2][1] * v.y \
-				+ m->m[2][2] * v.z + m->m[2][3] * v.w;
-	result.w = m->m[3][0] * v.x + m->m[3][1] * v.y \
-				+ m->m[3][2] * v.z + m->m[3][3] * v.w;
-	return (result);
+	return ((t_vec4){
+		.x = vec4_dot(m->row[0], v), \
+		.y = vec4_dot(m->row[1], v), \
+		.z = vec4_dot(m->row[2], v), \
+		.w = vec4_dot(m->row[3], v) \
+	});
 }

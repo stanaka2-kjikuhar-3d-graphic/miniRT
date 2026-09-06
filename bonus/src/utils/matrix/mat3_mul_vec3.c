@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mat3_mul_vec3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 20:18:33 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/16 20:28:07 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/30 17:28:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ m * v: every component is one ROW of m dotted with v.
 */
 t_vec3	mat3_mul_vec3(t_mat3 const *m, t_vec3 v)
 {
-	t_vec3	result;
-
-	result.x = m->m[0][0] * v.x + m->m[0][1] * v.y + m->m[0][2] * v.z;
-	result.y = m->m[1][0] * v.x + m->m[1][1] * v.y + m->m[1][2] * v.z;
-	result.z = m->m[2][0] * v.x + m->m[2][1] * v.y + m->m[2][2] * v.z;
-	return (result);
+	return ((t_vec3){
+		.x = vec3_dot(m->row[0], v), \
+		.y = vec3_dot(m->row[1], v), \
+		.z = vec3_dot(m->row[2], v)
+	});
 }

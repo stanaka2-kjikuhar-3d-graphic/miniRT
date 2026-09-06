@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 20:21:43 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 13:39:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/04 21:49:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@
 t_vec3	calc_camera_right(float yaw)
 {
 	yaw *= (float)DEG_TO_RAD;
-	return ((t_vec3){.x = cosf(yaw), .y = -sinf(yaw), .z = 0.0});
+	return ((t_vec3){.x = cosf(yaw), .y = -sinf(yaw), .z = 0.0f});
 }

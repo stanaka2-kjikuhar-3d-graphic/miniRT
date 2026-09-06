@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quadric_eval.c                                     :+:      :+:    :+:   */
+/*   build_accelerator.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/31 17:19:48 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/06 22:21:10 by kjikuhar         ###   ########.fr       */
+/*   Created: 2026/08/13 21:10:11 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/16 17:55:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
-#include "matrix.h"
+#include <stdbool.h>
 
-float	quadric_eval(t_mat4 const *q, t_vec4 p)
+#include "./accelerator_private.h"
+
+bool	build_accelerator(void)
 {
-	return (vec4_dot(p, mat4_mul_vec4(q, p)));
+	if (!build_bvh())
+		return (false);
+	if (!build_infinite_objects())
+		return (false);
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 18:33:12 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 18:33:49 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/05 21:02:34 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@
 
 void	print_texture_error(char const *path, char const *msg)
 {
-	ft_dprintf(STDERR_FILENO, "Error\n");
+	ft_putstr_fd("Error\n", STDERR_FILENO);
 	if (path != NULL && *path != '\0')
-		ft_dprintf(STDERR_FILENO, "%s\n", path);
-	ft_dprintf(STDERR_FILENO, "%s\n", msg);
+	{
+		ft_putstr_fd((char *)path, STDERR_FILENO);
+		ft_putstr_fd("\n", STDERR_FILENO);
+	}
+	ft_putstr_fd((char *)msg, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 }

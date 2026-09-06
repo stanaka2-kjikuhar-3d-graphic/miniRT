@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:40 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/28 23:27:43 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/30 16:02:23 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 # define FT_MLX_H
 
 # include <stdbool.h>
+# include <assert.h>
 
 # include "vector.h"
+
+static_assert(sizeof(int) == 4, "Error\n32bit int type is required");
 
 enum e_image_id
 {
