@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/05 22:54:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/07 22:40:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ typedef struct s_object
 {
 	t_color		albedo;
 	t_primitive	primitive;
-	t_aabb		aabb;
-	t_vec3		aabb_centroid;
-	bool		has_bounded_aabb;
+	t_aabb_info	aabb_info;
 }	t_object;
 
 // input

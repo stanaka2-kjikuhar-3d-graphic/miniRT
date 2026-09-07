@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 15:20:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 18:38:59 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/06 15:36:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	calc_bin_index(\
 {
 	size_t	bin_index;
 
-	bin_index = (size_t)((aabb_leaf->centroid[partition->axis] \
+	bin_index = (size_t)((aabb_leaf->centroid.e[partition->axis] \
 						- partition->range.min) / partition->delta);
 	if (bin_index >= BVH_BIN)
 		bin_index = BVH_BIN - 1;

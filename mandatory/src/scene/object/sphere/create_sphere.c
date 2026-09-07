@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/05 22:12:00 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/07 22:49:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 
 #include "../object_private.h"
 
-static bool		set_sphere_primitive(\
-					t_object *object, t_input_sphere const *input);
-static t_aabb	calc_sphere_aabb(t_input_sphere const *input);
+static bool	set_sphere_primitive(t_object *object, t_input_sphere const *input);
+static void	set_sphere_aabb_info(\
+				t_aabb_info *aabb_info, t_input_sphere const *input);
 
 bool	create_sphere(t_input_sphere const *input)
 {
@@ -30,9 +30,7 @@ bool	create_sphere(t_input_sphere const *input)
 	object.albedo = input->albedo;
 	if (!set_sphere_primitive(&object, input))
 		return (false);
-	object.aabb = calc_sphere_aabb(input);
-	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
-	object.has_bounded_aabb = has_bounded_aabb(&(object.aabb));
+	set_sphere_aabb_info(&(object.aabb_info), input);
 	return (create_object(&object));
 }
 
@@ -48,8 +46,11 @@ static bool	set_sphere_primitive(t_object *object, t_input_sphere const *input)
 	return (build_primitive(&frame, &(object->primitive)));
 }
 
-static t_aabb	calc_sphere_aabb(t_input_sphere const *input)
+static void	set_sphere_aabb_info(\
+	t_aabb_info *aabb_info, t_input_sphere const *input)
 {
-	return (calc_aabb_from_extent(input->center, \
-				vec3(input->radius, input->radius, input->radius)));
+	aabb_info->aabb = calc_aabb_from_extent(input->center, \
+						vec3(input->radius, input->radius, input->radius));
+	aabb_info->centroid = calc_aabb_centroid(&(aabb_info->aabb));
+	aabb_info->has_bounded_aabb = has_bounded_aabb(&(aabb_info->aabb));
 }

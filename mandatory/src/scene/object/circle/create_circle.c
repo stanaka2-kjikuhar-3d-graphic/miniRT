@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 05:59:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/05 22:08:51 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/07 22:45:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@
 
 #include "../object_private.h"
 
-static bool		set_circle_primitive(\
-					t_object *object, t_input_circle const *input, \
-					t_vec3 normal);
-static t_aabb	calc_circle_aabb(\
-					t_input_circle const *input, t_vec3 normal);
+static bool	set_circle_primitive(\
+				t_object *object, t_input_circle const *input, t_vec3 normal);
+static void	set_circle_aabb_info(t_aabb_info *aabb_info, \
+				t_input_circle const *input, t_vec3 normal);
 
 bool	create_circle(t_input_circle const *input)
 {
@@ -37,9 +36,7 @@ bool	create_circle(t_input_circle const *input)
 	normal = vec3_normalize(input->normal);
 	if (!set_circle_primitive(&object, input, normal))
 		return (false);
-	object.aabb = calc_circle_aabb(input, normal);
-	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
-	object.has_bounded_aabb = has_bounded_aabb(&(object.aabb));
+	set_circle_aabb_info(&(object.aabb_info), input, normal);
 	return (create_object(&object));
 }
 
@@ -55,7 +52,8 @@ static bool	set_circle_primitive(\
 	return (build_primitive(&frame, &(object->primitive)));
 }
 
-static t_aabb	calc_circle_aabb(t_input_circle const *input, t_vec3 normal)
+static void	set_circle_aabb_info(\
+	t_aabb_info *aabb_info, t_input_circle const *input, t_vec3 normal)
 {
 	t_vec3	extent;
 
@@ -64,5 +62,7 @@ static t_aabb	calc_circle_aabb(t_input_circle const *input, t_vec3 normal)
 		input->radius * sqrtf(1.0f - normal.y * normal.y), \
 		input->radius * sqrtf(1.0f - normal.z * normal.z) \
 	);
-	return (calc_aabb_from_extent(input->center, extent));
+	aabb_info->aabb = calc_aabb_from_extent(input->center, extent);
+	aabb_info->centroid = calc_aabb_centroid(&(aabb_info->aabb));
+	aabb_info->has_bounded_aabb = has_bounded_aabb(&(aabb_info->aabb));
 }

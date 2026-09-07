@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 19:17:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 20:13:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/07 05:20:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static size_t	count_infinite_objects(void)
 	object = NULL;
 	while (get_next_object(&object))
 	{
-		if (!object->has_bounded_aabb)
+		if (!(object->aabb_info.has_bounded_aabb))
 			++count;
 	}
 	return (count);
@@ -57,7 +57,7 @@ static void	register_infinite_objects(void)
 	i = 0;
 	while (get_next_object(&object))
 	{
-		if (!object->has_bounded_aabb)
+		if (!(object->aabb_info.has_bounded_aabb))
 			register_infinite_object(object, i++);
 	}
 }

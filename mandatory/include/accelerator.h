@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 17:21:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 21:55:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/07 22:41:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 typedef struct s_aabb_leaf
 {
 	t_aabb			aabb;
-	float			centroid[3];
+	t_vec3			centroid;
 	t_object const	*object;
 }	t_aabb_leaf;
 

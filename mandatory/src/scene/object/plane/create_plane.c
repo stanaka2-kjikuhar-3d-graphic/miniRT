@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/05 22:11:53 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/07 22:50:35 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@
 
 #include "../object_private.h"
 
-static bool		set_plane_primitive(\
-					t_object *object, t_input_plane const *input, \
-					t_mat3 const *basis);
-static t_aabb	calc_plane_aabb(\
-					t_input_plane const *input, t_mat3 const *basis);
+static bool	set_plane_primitive(t_object *object, \
+				t_input_plane const *input, t_mat3 const *basis);
+static void	set_plane_aabb_info(t_aabb_info *aabb_info, \
+				t_input_plane const *input, t_mat3 const *basis);
 
 bool	create_plane(t_input_plane const *input)
 {
@@ -36,9 +35,7 @@ bool	create_plane(t_input_plane const *input)
 	basis = calc_onb(vec3_normalize(input->normal));
 	if (!set_plane_primitive(&object, input, &basis))
 		return (false);
-	object.aabb = calc_plane_aabb(input, &basis);
-	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
-	object.has_bounded_aabb = has_bounded_aabb(&(object.aabb));
+	set_plane_aabb_info(&(object.aabb_info), input, &basis);
 	return (create_object(&object));
 }
 
@@ -54,8 +51,8 @@ static bool	set_plane_primitive(\
 	return (build_primitive(&frame, &(object->primitive)));
 }
 
-static t_aabb	calc_plane_aabb(\
-	t_input_plane const *input, t_mat3 const *basis)
+static void	set_plane_aabb_info(\
+	t_aabb_info *aabb_info, t_input_plane const *input, t_mat3 const *basis)
 {
 	t_vec3	extent;
 
@@ -67,5 +64,7 @@ static t_aabb	calc_plane_aabb(\
 		mul_extent(INFINITY, fabsf(basis->row[Z_AXIS].u)) \
 			+ mul_extent(INFINITY, fabsf(basis->row[Z_AXIS].v)) \
 	);
-	return (calc_aabb_from_extent(input->center, extent));
+	aabb_info->aabb = calc_aabb_from_extent(input->center, extent);
+	aabb_info->centroid = calc_aabb_centroid(&(aabb_info->aabb));
+	aabb_info->has_bounded_aabb = has_bounded_aabb(&(aabb_info->aabb));
 }
