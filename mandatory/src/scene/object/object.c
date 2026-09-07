@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 21:05:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 00:42:05 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/07 23:00:39 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 #include "dynamic_array.h"
 
 static t_dynamic_array	g_objects = (t_dynamic_array){\
-										.data = NULL, \
-										.capacity = 0, \
-										.used = 0, \
 										.type_size = sizeof(t_object) \
 									};
 
