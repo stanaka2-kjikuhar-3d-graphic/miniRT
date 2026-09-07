@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 15:39:17 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 19:25:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/06 15:37:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ static t_range	calc_centroid_range(\
 	{
 		aabb_leaf = get_aabb_leaf(start + i);
 		centroid_range.min \
-			= fminf(centroid_range.min, aabb_leaf->centroid[axis]);
+			= fminf(centroid_range.min, aabb_leaf->centroid.e[axis]);
 		centroid_range.max \
-			= fmaxf(centroid_range.max, aabb_leaf->centroid[axis]);
+			= fmaxf(centroid_range.max, aabb_leaf->centroid.e[axis]);
 		++i;
 	}
 	return (centroid_range);

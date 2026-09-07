@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 19:05:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/31 21:26:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/07 22:21:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@
 
 #include "../object_private.h"
 
-static void		set_paraboloid_uv(t_uv *uv, t_input_paraboloid const *input);
-static bool		set_paraboloid_primitive(t_object *object, \
-					t_input_paraboloid const *input, t_vec3 dir);
-static t_aabb	calc_paraboloid_aabb(t_primitive const *primitive);
+static void	set_paraboloid_uv(t_uv *uv, t_input_paraboloid const *input);
+static bool	set_paraboloid_primitive(t_object *object, \
+				t_input_paraboloid const *input, t_vec3 dir);
+static void	set_paraboloid_aabb_info(\
+				t_aabb_info *aabb_info, t_primitive const *primitive);
 
 bool	create_paraboloid(t_input_paraboloid const *input)
 {
@@ -37,9 +38,7 @@ bool	create_paraboloid(t_input_paraboloid const *input)
 	set_paraboloid_uv(&(object.uv), input);
 	if (!set_paraboloid_primitive(&object, input, dir))
 		return (false);
-	object.aabb = calc_paraboloid_aabb(&(object.primitive));
-	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
-	object.has_bounded_aabb = has_bounded_aabb(&(object.aabb));
+	set_paraboloid_aabb_info(&(object.aabb_info), &(object.primitive));
 	return (create_object(&object));
 }
 
@@ -74,8 +73,11 @@ static bool	set_paraboloid_primitive(t_object *object, \
 	return (build_primitive(&frame, &(object->primitive)));
 }
 
-static t_aabb	calc_paraboloid_aabb(t_primitive const *primitive)
+static void	set_paraboloid_aabb_info(\
+	t_aabb_info *aabb_info, t_primitive const *primitive)
 {
-	return (transform_aabb(&(primitive->to_world), \
-				vec3(0.0f, 0.0f, 0.5f), vec3(1.0f, 1.0f, 0.5f)));
+	aabb_info->aabb = transform_aabb(&(primitive->to_world), \
+						vec3(0.0f, 0.0f, 0.5f), vec3(1.0f, 1.0f, 0.5f));
+	aabb_info->centroid = calc_aabb_centroid(&(aabb_info->aabb));
+	aabb_info->has_bounded_aabb = has_bounded_aabb(&(aabb_info->aabb));
 }

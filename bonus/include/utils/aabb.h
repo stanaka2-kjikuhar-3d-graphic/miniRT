@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 12:42:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/14 13:07:59 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/06 20:27:55 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdbool.h>
 
 # include "matrix.h"
+# include "vector.h"
 # include "range.h"
 
 typedef struct s_aabb
@@ -24,6 +25,13 @@ typedef struct s_aabb
 	t_range	y;
 	t_range	z;
 }	t_aabb;
+
+typedef struct s_aabb_info
+{
+	t_aabb	aabb;
+	t_vec3	centroid;
+	bool	has_bounded_aabb;
+}	t_aabb_info;
 
 t_aabb	initial_aabb(void);
 t_aabb	transform_aabb(t_mat4 const *to_world, t_vec3 center, t_vec3 extent);
