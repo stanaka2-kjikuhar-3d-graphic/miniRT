@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_planar_intersection.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 02:12:47 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/07 22:27:33 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/29 17:47:59 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,6 @@
 
 #include "../object_private.h"
 
-/*
-UNIT_PLANE is z = 0 and UNIT_DISC adds x^2 + y^2 <= 1, so neither one is
-a quadric: unit_quadric hands back a form that has no root, and both are
-solved here instead.
-
-  the local ray already carries the world t, so t is returned as it is.
-*/
 float	calc_planar_intersection(t_primitive const *prim, t_ray const *local)
 {
 	float	t;
@@ -37,12 +30,16 @@ float	calc_planar_intersection(t_primitive const *prim, t_ray const *local)
 	t = -local->origin.z / local->dir.z;
 	if (t < 0.0f)
 		return (NAN);
-	if (prim->type == UNIT_DISC)
+	x = fabsf(local->origin.x + t * local->dir.x);
+	y = fabsf(local->origin.y + t * local->dir.y);
+	if (prim->type == INFINITE_PLANE \
+		&& (prim->half_size.x < x || prim->half_size.y < y))
 	{
-		x = local->origin.x + t * local->dir.x;
-		y = local->origin.y + t * local->dir.y;
-		if (x * x + y * y > 1.0f)
-			return (NAN);
+		return (NAN);
 	}
+	else if (prim->type == UNIT_PLANE && (1.0f < x || 1.0f < y))
+		return (NAN);
+	else if (prim->type == UNIT_DISC && (1.0f < x * x + y * y))
+		return (NAN);
 	return (t);
 }

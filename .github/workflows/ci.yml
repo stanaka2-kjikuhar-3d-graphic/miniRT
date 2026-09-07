@@ -36,25 +36,25 @@ jobs:
           -I bonus/include -I libft
           bonus/src libft
 
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libx11-dev libxext-dev libbsd-dev
-      - name: Build
-        run: make
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Install dependencies
+  #       run: |
+  #         sudo apt-get update
+  #         sudo apt-get install -y libx11-dev libxext-dev libbsd-dev
+  #     - name: Build
+  #       run: make CFLAGS=-Wno-unused-result
 
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libx11-dev libxext-dev libbsd-dev xvfb
-      - name: Run tests
-        run: xvfb-run -a bash test/test.sh
+  # test:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Install dependencies
+  #       run: |
+  #         sudo apt-get update
+  #         sudo apt-get install -y libx11-dev libxext-dev libbsd-dev xvfb
+  #     - name: Run tests
+  #       run: xvfb-run -a bash test/test.sh

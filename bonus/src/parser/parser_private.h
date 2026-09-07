@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 01:57:47 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/10 18:02:31 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ enum e_optional_field
 	OPTIONAL_METALNESS,
 	OPTIONAL_SHININESS,
 	OPTIONAL_PATTERN_SIZE,
+	OPTIONAL_U_SIZE,
+	OPTIONAL_V_SIZE,
 	OPTIONAL_CHECKER_COUNT_U,
 	OPTIONAL_CHECKER_COUNT_V,
 	OPTIONAL_CHECKER_COUNT_U_EVEN,
@@ -153,10 +155,9 @@ bool				is_option_id(char const *id, char const *optional_element);
 bool				parse_color(char const *element, void *value);
 bool				parse_coordinate(char const *element, void *value);
 bool				parse_brightness(char const *element, void *value);
-bool				parse_radius(char const *element, void *value);
 bool				parse_dir(char const *element, void *value);
 bool				parse_fov(char const *element, void *value);
-bool				parse_half_height(char const *element, void *value);
+bool				parse_half_size(char const *element, void *value);
 bool				parse_angle(char const *element, void *value);
 bool				parse_float(char const *s, void *value);
 bool				parse_vec3(char const *s, void *value);
