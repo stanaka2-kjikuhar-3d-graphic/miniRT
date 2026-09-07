@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/29 16:24:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/07 22:19:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,13 @@
 
 #include "../object_private.h"
 
-static bool		add_cap_circle(t_object const *object, \
-					t_input_cylinder const *input, t_vec3 dir, \
-					enum e_uv_type type);
-static void		set_cylinder_uv(t_uv *uv, t_input_cylinder const *input);
-static bool		set_cylinder_primitive(t_object *object, \
-					t_input_cylinder const *input, t_vec3 dir);
-static t_aabb	calc_cylinder_aabb(\
-					t_input_cylinder const *input, t_vec3 dir);
+static bool	add_cap_circle(t_object const *object, \
+				t_input_cylinder const *input, t_vec3 dir, enum e_uv_type type);
+static void	set_cylinder_uv(t_uv *uv, t_input_cylinder const *input);
+static bool	set_cylinder_primitive(t_object *object, \
+				t_input_cylinder const *input, t_vec3 dir);
+static void	set_cylinder_aabb_info(t_aabb_info *aabb_info, \
+				t_input_cylinder const *input, t_vec3 dir);
 
 bool	create_cylinder(t_input_cylinder const *input)
 {
@@ -41,9 +40,7 @@ bool	create_cylinder(t_input_cylinder const *input)
 	set_cylinder_uv(&(object.uv), input);
 	if (!set_cylinder_primitive(&object, input, dir))
 		return (false);
-	object.aabb = calc_cylinder_aabb(input, dir);
-	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
-	object.has_bounded_aabb = has_bounded_aabb(&(object.aabb));
+	set_cylinder_aabb_info(&(object.aabb_info), input, dir);
 	if (!create_object(&object))
 		return (false);
 	return (add_cap_circle(&object, input, dir, UV_UPPER_CAP) \
@@ -104,7 +101,8 @@ static void	set_cylinder_uv(t_uv *uv, t_input_cylinder const *input)
 	uv->v_range = (t_range){.min = cap_ratio, .max = 1.0f - cap_ratio};
 }
 
-static t_aabb	calc_cylinder_aabb(t_input_cylinder const *input, t_vec3 dir)
+static void	set_cylinder_aabb_info(\
+	t_aabb_info *aabb_info, t_input_cylinder const *input, t_vec3 dir)
 {
 	t_vec3	circle_extent;
 	t_vec3	top;
@@ -119,8 +117,10 @@ static t_aabb	calc_cylinder_aabb(t_input_cylinder const *input, t_vec3 dir)
 			vec3_scale(input->half_height, dir));
 	bottom = vec3_sub(input->center, \
 			vec3_scale(input->half_height, dir));
-	return (union_aabb(\
-				calc_aabb_from_extent(top, circle_extent), \
-				calc_aabb_from_extent(bottom, circle_extent) \
-			));
+	aabb_info->aabb = union_aabb(\
+						calc_aabb_from_extent(top, circle_extent), \
+						calc_aabb_from_extent(bottom, circle_extent) \
+					);
+	aabb_info->centroid = calc_aabb_centroid(&(aabb_info->aabb));
+	aabb_info->has_bounded_aabb = has_bounded_aabb(&(aabb_info->aabb));
 }
