@@ -2,6 +2,7 @@
 
 PASS=0
 FAIL=0
+TOTAL_FAIL=0
 PROGRAM=./miniRT
 TIMEOUT=60
 ERROR_LOG=test/error.log
@@ -113,6 +114,7 @@ done
 
 echo -e "${GREEN}$PASS passed${NC}, ${RED}$FAIL failed${NC}"
 echo ""
+TOTAL_FAIL=$((TOTAL_FAIL + FAIL))
 
 # invalid: exit 1を期待
 echo "=== Invalid test ==="
@@ -138,6 +140,11 @@ for case_dir in test/invalid/*/; do
 done
 
 echo -e "${GREEN}$PASS passed${NC}, ${RED}$FAIL failed${NC}"
+TOTAL_FAIL=$((TOTAL_FAIL + FAIL))
 
 rm -f $ERROR_LOG
 make fclean
+
+if [ $TOTAL_FAIL -gt 0 ]; then
+	exit 1
+fi
