@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 17:32:52 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/09 00:38:51 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/16 19:12:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_texture_dict
 void	cleanup_mlx_connection(void);
 void	cleanup_window(void);
 void	cleanup_images(void);
-void	cleanup_texture_dict(void);
+void	cleanup_textures(void);
 int		expose_hook(void *param);
 int		loop_hook(void *param);
 int		key_press_hook(int keycode, void *param);

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "object.h"
+#include "range.h"
 #include "vector.h"
 
 t_vec2	adjust_uv_range(t_vec2 uv, t_range u_range, t_range v_range)

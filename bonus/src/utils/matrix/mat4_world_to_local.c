@@ -46,9 +46,9 @@ static void	set_rotation_scale(t_mat4 *m, t_mat3 const *basis, t_vec3 scale)
 	int		row;
 	int		col;
 
-	s[X_AXIS] = scale.x;
-	s[Y_AXIS] = scale.y;
-	s[Z_AXIS] = scale.z;
+	s[U_AXIS] = scale.x;
+	s[V_AXIS] = scale.y;
+	s[W_AXIS] = scale.z;
 	row = 0;
 	while (row < 3)
 	{

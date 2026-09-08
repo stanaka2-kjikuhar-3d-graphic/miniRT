@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   union_aabb.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/16 20:13:46 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/24 03:11:32 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/08/09 14:30:00 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/08/14 12:57:07 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
+#include <math.h>
 
-# include "vector.h"
+#include "aabb.h"
+#include "range.h"
 
-typedef struct s_ray
+t_aabb	union_aabb(t_aabb a, t_aabb b)
 {
-	t_vec3	dir;
-	t_vec3	origin;
-}	t_ray;
-
-#endif
+	return ((t_aabb){\
+		.x = (t_range){.min = fminf(a.x.min, b.x.min), \
+						.max = fmaxf(a.x.max, b.x.max)}, \
+		.y = (t_range){.min = fminf(a.y.min, b.y.min), \
+						.max = fmaxf(a.y.max, b.y.max)}, \
+		.z = (t_range){.min = fminf(a.z.min, b.z.min), \
+						.max = fmaxf(a.z.max, b.z.max)} \
+	});
+}

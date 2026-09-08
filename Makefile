@@ -86,6 +86,7 @@ override CFLAGS	+= -Wconversion -Wno-sign-conversion -Wshadow
 INCLUDE_DIRS		:=	bonus/include \
 						$(addprefix bonus/include/, \
 							scene \
+							types \
 							utils \
 						)
 
@@ -97,6 +98,11 @@ override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 
 SRC_DIRS	:= bonus/src
 SRC_DIRS	+= $(addprefix bonus/src/, \
+					accelerator \
+					$(addprefix accelerator/, \
+						bvh \
+						infinite_objects \
+					) \
 					parser \
 					$(addprefix parser/, \
 						read_next_line \
@@ -133,6 +139,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 						viewport \
 					) \
 					$(addprefix utils/, \
+						aabb \
 						color \
 						ft_error \
 						matrix \
@@ -229,6 +236,22 @@ SRCS	+=	is_blank_line.c \
 			count_split.c \
 			free_split.c
 
+# accelerator
+SRCS	+=	build_accelerator.c \
+			cleanup_accelerator.c
+# accelerator/bvh
+SRCS	+=	bvh.c \
+			aabb_leaves.c \
+			build_bvh.c \
+			build_binned_bvh.c \
+			calc_best_bin_partition.c \
+			calc_bin_index.c \
+			calc_sah_cost.c \
+			add_leaf_node.c
+# accelerator/infinite_objects
+SRCS	+=	infinite_objects.c \
+			build_infinite_objects.c
+
 # renderer
 SRCS	+=	renderer.c \
 			render_flag.c \
@@ -237,7 +260,9 @@ SRCS	+=	renderer.c \
 # renderer/phong
 SRCS	+=	phong.c
 # renderer/phong/intersection
-SRCS	+=	phong_intersection.c
+SRCS	+=	phong_intersection.c \
+			bvh_intersection.c \
+			infinite_objects_intersection.c
 # renderer/phong/lighting
 SRCS	+=	phong_lighting.c \
 			phong_lighting_ambient.c \
@@ -246,7 +271,9 @@ SRCS	+=	phong_lighting.c \
 			phong_lighting_directional.c \
 			phong_specular_dot.c
 # renderer/phong/shading
-SRCS	+=	phong_shading.c
+SRCS	+=	phong_shading.c \
+			bvh_shading.c \
+			infinite_objects_shading.c
 
 # scene/camera
 SRCS	+=	camera.c \
@@ -276,7 +303,8 @@ SRCS	+=	object.c \
 			calc_object_normal.c \
 			calc_object_tbn.c \
 			calc_bump_mapping.c \
-			calc_normal_mapping.c
+			calc_normal_mapping.c \
+			calc_aabb_intersection.c
 # scene/object/sphere
 SRCS	+=	create_sphere.c
 # scene/object/plane
@@ -296,13 +324,21 @@ SRCS	+=	quadric_eval.c \
 			solve_quadratic.c
 # scene/object/internal
 SRCS	+=	calc_onb.c \
-			basis_from_dir.c \
 			adjust_uv_range.c \
 			set_material.c \
 			set_uv_checker.c
 
 # scene/viewport
 SRCS	+=	viewport.c
+
+# utils/aabb
+SRCS	+=	initial_aabb.c \
+			calc_aabb_from_extent.c \
+			union_aabb.c \
+			transform_aabb.c \
+			mul_extent.c \
+			calc_aabb_centroid.c \
+			has_bounded_aabb.c
 
 # utils/color
 SRCS	+=	add_color.c \
@@ -352,7 +388,11 @@ SRCS	+=	vec2.c
 SRCS	+=	ivec2.c
 
 # utils/dynamic_array
-SRCS	+=	grow_dynamic_array.c
+SRCS	+=	access_dynamic_array.c \
+			add_dynamic_array.c \
+			allocate_dynamic_array.c \
+			cleanup_dynamic_array.c \
+			grow_dynamic_array.c
 # scene/object/primitive
 SRCS	+=	build_primitive.c \
 			unit_quadric.c \

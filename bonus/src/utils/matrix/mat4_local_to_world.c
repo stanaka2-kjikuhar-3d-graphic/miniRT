@@ -32,9 +32,9 @@ t_mat4	mat4_local_to_world(t_mat3 const *basis, t_vec3 origin, t_vec3 scale)
 	int		row;
 	int		col;
 
-	s[X_AXIS] = scale.x;
-	s[Y_AXIS] = scale.y;
-	s[Z_AXIS] = scale.z;
+	s[U_AXIS] = scale.x;
+	s[V_AXIS] = scale.y;
+	s[W_AXIS] = scale.z;
 	result = mat4_identity();
 	row = 0;
 	while (row < 3)
