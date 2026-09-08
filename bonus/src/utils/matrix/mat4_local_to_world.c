@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mat4_local_to_world.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 00:31:04 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/07 01:05:05 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/30 18:47:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,20 @@ M = translate(origin) * basis * scale(s)
 t_mat4	mat4_local_to_world(t_mat3 const *basis, t_vec3 origin, t_vec3 scale)
 {
 	t_mat4	result;
-	float	s[3];
 	int		row;
 	int		col;
 
-	s[U_AXIS] = scale.x;
-	s[V_AXIS] = scale.y;
-	s[W_AXIS] = scale.z;
-	result = mat4_identity();
+	result = mat4_basis(basis, origin);
 	row = 0;
 	while (row < 3)
 	{
 		col = 0;
 		while (col < 3)
 		{
-			result.m[row][col] = basis->m[row][col] * s[col];
+			result.m[row][col] *= scale.e[col];
 			++col;
 		}
 		++row;
 	}
-	result.m[0][3] = origin.x;
-	result.m[1][3] = origin.y;
-	result.m[2][3] = origin.z;
 	return (result);
 }

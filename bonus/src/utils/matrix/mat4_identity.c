@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mat4_identity.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 22:20:45 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/07/22 22:37:00 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/30 18:50:26 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,10 @@
 
 t_mat4	mat4_identity(void)
 {
-	t_mat4	identity_mat;
-	int		row;
-	int		col;
-
-	row = 0;
-	while (row < 4)
-	{
-		col = 0;
-		while (col < 4)
-		{
-			if (col == row)
-				identity_mat.m[row][col] = 1.0f;
-			else
-				identity_mat.m[row][col] = 0.0f;
-			++col;
-		}
-		++row;
-	}
-	return (identity_mat);
+	return ((t_mat4){.m = {\
+		{1.0f, 0.0f, 0.0f, 0.0f}, \
+		{0.0f, 1.0f, 0.0f, 0.0f}, \
+		{0.0f, 0.0f, 1.0f, 0.0f}, \
+		{0.0f, 0.0f, 0.0f, 1.0f}, \
+	}});
 }

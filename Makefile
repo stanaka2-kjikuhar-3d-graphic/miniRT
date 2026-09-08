@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/08/16 21:41:55 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/08/31 21:02:23 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -132,7 +132,6 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 							paraboloid \
 							plane \
 							sphere \
-							quadric \
 							primitive \
 							internal \
 						) \
@@ -319,9 +318,17 @@ SRCS	+=	create_cone.c
 SRCS	+=	create_hyperboloid.c
 # scene/object/paraboloid
 SRCS	+=	create_paraboloid.c
-# scene/object/quadric
-SRCS	+=	quadric_eval.c \
-			solve_quadratic.c
+# scene/object/primitive
+SRCS	+=	build_primitive.c \
+			unit_quadric.c \
+			calc_primitive_intersection.c \
+			calc_planar_intersection.c \
+			calc_quadric_intersection.c \
+			calc_primitive_normal.c \
+			calc_primitive_uv.c \
+			calc_primitive_tbn.c \
+			is_planar_primitive.c \
+			is_quadric_primitive.c
 # scene/object/internal
 SRCS	+=	calc_onb.c \
 			adjust_uv_range.c \
@@ -393,25 +400,17 @@ SRCS	+=	access_dynamic_array.c \
 			allocate_dynamic_array.c \
 			cleanup_dynamic_array.c \
 			grow_dynamic_array.c
-# scene/object/primitive
-SRCS	+=	build_primitive.c \
-			unit_quadric.c \
-			calc_planar_intersection.c \
-			calc_primitive_intersection.c \
-			solve_unit_form.c \
-			calc_primitive_normal.c \
-			calc_primitive_uv.c \
-			calc_primitive_tbn.c
 
 # utils/matrix
 SRCS	+=	mat4_identity.c \
+			mat4_diagonal.c \
 			mat4_mul.c \
 			mat4_transpose.c \
 			mat4_mul_vec4.c \
 			mat4_transform_point.c \
 			mat4_transform_dir.c \
 			mat3_from_mat4.c \
-			mat3_mul_t_vec3.c \
+			mat3_mul_transposed.c \
 			mat3_mul_vec3.c \
 			mat3_from_columns.c \
 			mat4_translate.c \

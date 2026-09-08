@@ -29,7 +29,7 @@ local.dir    = mat4_transform_dir(to_local, ray->dir);
 
 上の等式は `d_local` の長さに関係なく成り立つ。
 それでも実装では単位長に直す。
-理由は数学ではなく、`solve_quadratic` の縮退判定にある。
+理由は数学ではなく、二次と一次を切り替える縮退判定にある。
 
 `to_local` は方向ベクトルを `1 / scale` で縮める。
 正準形の `Q`（[quadric.md](quadric.md)、`unit_quadric`）は成分が `{0, ±1, ±1/2}` の定数行列なので、二次の係数はスケールの2乗で小さくなる。
@@ -38,11 +38,11 @@ local.dir    = mat4_transform_dir(to_local, ray->dir);
 a = d_localᵀ Q d_local  ≒  1 / scale²
 ```
 
-一方、`solve_quadratic` が「二次ではなく一次だ」と判断する閾値は絶対値である。
+一方、`calc_quadric_intersection` が「二次ではなく一次だ」と判断する閾値は絶対値である。
 
 ```c
-if (fabsf(a) < EPSILON)          /* EPSILON = 1e-6 */
-	return (solve_linear(b, c, roots));
+if (fabsf(coeffs.a) < EPSILON)   /* EPSILON = 1e-6 */
+	return (select_local_t(prim, local, solve_linear(coeffs.b, coeffs.c)));
 ```
 
 この2つを突き合わせると、破綻する形状の大きさが決まる。
@@ -76,18 +76,26 @@ s = t・|d_local|
 ```c
 len = vec3_length(local.dir);
 local.dir = vec3_div(len, local.dir);
-return (solve_unit_form(prim, &local) / len);
+return (calc_quadric_intersection(prim, &local) / len);
 ```
 
 `len` が `EPSILON` を下回る入力は弾く。
 `mat4_is_valid_scale` がスケールの下限しか見ていないため、大きさが `1e6` を超える形状ではここに落ちる。
 
-## 3. plane と disc を正規化しない理由
+## 3. 平面と円盤を正規化しない理由
 
-`UNIT_PLANE` と `UNIT_DISC` は正規化せず、`calc_planar_intersection` にそのまま渡す。
+`is_planar_primitive` が真になる3種（`INFINITE_PLANE`、`UNIT_PLANE`、`UNIT_DISC`）は正規化せず、
+`calc_planar_intersection` にそのまま渡す。
 
-この2つのスケールは `(s, s, 1)` であり、z 成分を触らない。
-したがって `d_local.z` は `d_world.z` そのもの、すなわち法線と方向の内積に等しい。
+3種ともスケールの z 成分が 1 である。
+
+| 正準形 | スケール |
+| --- | --- |
+| `INFINITE_PLANE` | `(1, 1, 1)` |
+| `UNIT_PLANE` | `(half_size.u, half_size.v, 1)` |
+| `UNIT_DISC` | `(r, r, 1)` |
+
+z を触らないので `d_local.z` は `d_world.z` そのもの、すなわち法線と方向の内積に等しい。
 
 ```c
 if (fabsf(local->dir.z) < EPSILON)
@@ -95,13 +103,38 @@ if (fabsf(local->dir.z) < EPSILON)
 ```
 
 この比較は、world 空間で判定していた頃の `fabsf(vec3_dot(plane->normal, ray->dir)) < EPSILON` と同じ量を見ている。
-ここで正規化すると、`|d_local|` に `pattern_size` が混ざり、平行とみなす角度が模様の大きさで変わってしまう。
+ここで正規化すると `|d_local|` に形状の大きさが混ざり、平行とみなす角度が板の寸法で変わってしまう。
 
 そもそも平面と円盤は一次方程式なので、2節の縮退問題は起きない。
 
+## 3.1 平面3種の境界判定
+
+`t` を求めたあとの範囲判定だけが型ごとに違う。
+
+```c
+x = fabsf(local->origin.x + t * local->dir.x);
+y = fabsf(local->origin.y + t * local->dir.y);
+if (prim->type == INFINITE_PLANE
+	&& (prim->half_size.x < x || prim->half_size.y < y))
+	return (NAN);
+else if (prim->type == UNIT_PLANE && (1.0f < x || 1.0f < y))
+	return (NAN);
+else if (prim->type == UNIT_DISC && (1.0f < x * x + y * y))
+	return (NAN);
+```
+
+`UNIT_PLANE` はスケールに `half_size` を吸収済みなので `±1` の比較で済む。
+`INFINITE_PLANE` はスケールが `(1, 1, 1)` なのでローカル座標が world 座標そのままであり、
+`t_primitive` が持つ `half_size` と直接比べる。
+
+この2つを分けているのは、`u_size` と `v_size` の**片方だけ**が指定された場合を扱うためである。
+両方が有限なら `UNIT_PLANE` としてスケールに畳めるが、片方が `INFINITY` だとスケールに入れられない。
+`INFINITE_PLANE` 側は軸ごとに `INFINITY` と比較でき、無限の軸では比較が常に偽になって境界が効かなくなる。
+`half_size` が両方 `INFINITY` のときが、境界を持たない本来の無限平面である。
+
 ## 4. キャップ判定が1回の比較になる理由
 
-どの正準形も、切り出しの範囲は z 軸方向だけで表せる（[quadric.md](quadric.md) の `h_min` と `h_max` に相当する）。
+二次曲面はどれも、切り出しの範囲が z 軸方向だけで表せる（[quadric.md](quadric.md) の `h_min` と `h_max` に相当する）。
 world 空間では軸との内積を取る必要があったが、ローカルでは z 成分がそのまま高さである。
 
 ```c
@@ -112,6 +145,20 @@ return (prim->z_range.min <= z && z <= prim->z_range.max);
 `z_range` の値は型ごとにほぼ定数で、球は `[-1, 1]`、円錐と放物面は `[0, 1]`、円柱は `[-1, 1]` になる。
 一葉双曲面だけはオブジェクトごとに変わる。
 くびれの半径と端の半径の比で正準形での上限が決まってしまい、`±1` に正規化する自由度が残らないからである（[hyperboloid.md](hyperboloid.md)）。
+
+平面3種は `z_range` を使わない。
+`t_primitive` では `z_range` と `half_size` が共用体になっており、`build_primitive` が型で書き分ける。
+
+```c
+if (frame->type == INFINITE_PLANE)
+	out->half_size = frame->half_size;
+else if (is_quadric_primitive(frame->type))
+	out->z_range = frame->z_range;
+```
+
+`UNIT_PLANE` と `UNIT_DISC` はどちらのメンバも書かず、読む側もいない。
+`half_size` を読むのは `calc_planar_intersection` の `INFINITE_PLANE` 分岐だけ、
+`z_range` を読むのは `calc_quadric_intersection` と `lateral_uv` の一葉双曲面分岐だけである。
 
 ## 5. 旧実装が持っていた弱点
 

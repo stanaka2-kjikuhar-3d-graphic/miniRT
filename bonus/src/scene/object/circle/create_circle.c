@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 05:59:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/17 22:33:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/29 17:36:38 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 
 #include "../object_private.h"
 
-static bool		set_primitive(\
+static void		set_circle_uv(t_uv *uv, t_input_circle const *input);
+static bool		set_circle_primitive(\
 					t_object *object, t_input_circle const *input, \
 					t_vec3 normal);
 static t_aabb	calc_circle_aabb(\
@@ -36,13 +37,8 @@ bool	create_circle(t_input_circle const *input)
 	normal = vec3_normalize(input->normal);
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
-	object.uv.type = input->option.uv_type;
-	object.uv.pattern_size = input->option.pattern_size;
-	set_uv_checker(&(object.uv), input->option.checker_count);
-	object.uv.u_per_v = input->option.u_per_v;
-	object.uv.u_range = input->option.u_range;
-	object.uv.v_range = input->option.v_range;
-	if (!set_primitive(&object, input, normal))
+	set_circle_uv(&(object.uv), input);
+	if (!set_circle_primitive(&object, input, normal))
 		return (false);
 	object.aabb = calc_circle_aabb(input, normal);
 	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
@@ -50,7 +46,17 @@ bool	create_circle(t_input_circle const *input)
 	return (create_object(&object));
 }
 
-static bool	set_primitive(\
+static void	set_circle_uv(t_uv *uv, t_input_circle const *input)
+{
+	uv->type = input->option.uv_type;
+	uv->pattern_size = input->option.pattern_size;
+	set_uv_checker(uv, input->option.checker_count);
+	uv->u_per_v = input->option.u_per_v;
+	uv->u_range = input->option.u_range;
+	uv->v_range = input->option.v_range;
+}
+
+static bool	set_circle_primitive(\
 	t_object *object, t_input_circle const *input, t_vec3 normal)
 {
 	t_primitive_frame	frame;
@@ -59,7 +65,6 @@ static bool	set_primitive(\
 	frame.basis = calc_onb(normal);
 	frame.origin = input->center;
 	frame.scale = vec3(input->radius, input->radius, 1.0f);
-	frame.z_range = (t_range){.min = 0.0f, .max = 0.0f};
 	return (build_primitive(&frame, &(object->primitive)));
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_primitive_intersection.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 02:04:11 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/16 18:09:52 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/08/25 21:26:29 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,18 @@ float	calc_primitive_intersection(\
 	float	len;
 
 	local = ray_to_local(&(prim->to_local), ray);
-	if (prim->type == UNIT_PLANE || prim->type == UNIT_DISC)
+	if (is_planar_primitive(prim->type))
+	{
 		return (calc_planar_intersection(prim, &local));
-	len = vec3_length(local.dir);
-	if (len < EPSILON)
-		return (NAN);
-	local.dir = vec3_div(len, local.dir);
-	return (solve_unit_form(prim, &local) / len);
+	}
+	else
+	{
+		len = vec3_length(local.dir);
+		if (len < EPSILON)
+			return (NAN);
+		local.dir = vec3_div(len, local.dir);
+		return (calc_quadric_intersection(prim, &local) / len);
+	}
 }
 
 static t_ray	ray_to_local(t_mat4 const *to_local, t_ray const *ray)
