@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:51:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/05 22:41:25 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/31 22:02:56 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ typedef struct s_point_light
 
 typedef struct s_spot_light
 {
-	t_color				radiance;
-	t_color				color;
-	float				brightness;
-	t_vec3				pos;
-	t_vec3				dir;
+	t_color	radiance;
+	t_color	color;
+	float	brightness;
+	t_vec3	pos;
+	t_vec3	dir;
 	struct s_spot_angle
 	{
 		float	outer;

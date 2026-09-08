@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/29 21:23:35 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/31 22:02:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,19 +117,19 @@ typedef struct s_primitive
 	t_mat4					to_local;
 	union
 	{
-		t_range				z_range;
-		t_vec2				half_size;
+		t_range	z_range;
+		t_vec2	half_size;
 	};
 }	t_primitive;
 
 typedef struct s_object
 {
-	t_material			material;
-	t_uv				uv;
-	t_primitive			primitive;
-	t_aabb				aabb;
-	t_vec3				aabb_centroid;
-	bool				has_bounded_aabb;
+	t_material	material;
+	t_uv		uv;
+	t_primitive	primitive;
+	t_aabb		aabb;
+	t_vec3		aabb_centroid;
+	bool		has_bounded_aabb;
 }	t_object;
 
 typedef struct s_material_option
@@ -150,50 +150,50 @@ typedef struct s_material_option
 // input
 typedef struct s_input_sphere
 {
-	t_vec3				center;
-	float				radius;
-	t_color				albedo;
+	t_vec3	center;
+	float	radius;
+	t_color	albedo;
 	struct	s_sphere_option
 	{
 		t_material_option	material;
 		t_ivec2				checker_count;
-	}					option;
+	}	option;
 }	t_input_sphere;
 
 typedef struct s_input_plane
 {
-	t_vec3				center;
-	t_vec3				normal;
-	t_color				albedo;
+	t_vec3	center;
+	t_vec3	normal;
+	t_color	albedo;
 	struct	s_plane_option
 	{
 		t_material_option	material;
 		float				pattern_size;
 		t_ivec2				checker_count;
 		t_vec2				half_size;
-	}					option;
+	}	option;
 }	t_input_plane;
 
 typedef struct s_input_cylinder
 {
-	t_vec3				center;
-	t_vec3				dir;
-	float				radius;
-	float				half_height;
-	t_color				albedo;
+	t_vec3	center;
+	t_vec3	dir;
+	float	radius;
+	float	half_height;
+	t_color	albedo;
 	struct	s_cylinder_option
 	{
 		t_material_option	material;
 		t_ivec2				checker_count;
-	}					option;
+	}	option;
 }	t_input_cylinder;
 
 typedef struct s_input_circle
 {
-	t_vec3				center;
-	t_vec3				normal;
-	float				radius;
-	t_color				albedo;
+	t_vec3	center;
+	t_vec3	normal;
+	float	radius;
+	t_color	albedo;
 	struct	s_circle_option
 	{
 		t_material_option	material;
@@ -203,50 +203,50 @@ typedef struct s_input_circle
 		float				u_per_v;
 		t_range				u_range;
 		t_range				v_range;
-	}					option;
+	}	option;
 }	t_input_circle;
 
 typedef struct s_input_cone
 {
-	t_vec3				center;
-	t_vec3				dir;
-	float				radius;
-	float				height;
-	t_color				albedo;
+	t_vec3	center;
+	t_vec3	dir;
+	float	radius;
+	float	height;
+	t_color	albedo;
 	struct	s_cone_option
 	{
 		t_material_option	material;
 		t_ivec2				checker_count;
-	}					option;
+	}	option;
 }	t_input_cone;
 
 typedef struct s_input_hyperboloid
 {
-	t_vec3				center;
-	t_vec3				dir;
-	float				center_radius;
-	float				cap_radius;
-	float				half_height;
-	t_color				albedo;
+	t_vec3	center;
+	t_vec3	dir;
+	float	center_radius;
+	float	cap_radius;
+	float	half_height;
+	t_color	albedo;
 	struct	s_hyperboloid_option
 	{
 		t_material_option	material;
 		t_ivec2				checker_count;
-	}					option;
+	}	option;
 }	t_input_hyperboloid;
 
 typedef struct s_input_paraboloid
 {
-	t_vec3				center;
-	t_vec3				dir;
-	float				quadratic_coefficient;
-	float				height;
-	t_color				albedo;
+	t_vec3	center;
+	t_vec3	dir;
+	float	quadratic_coefficient;
+	float	height;
+	t_color	albedo;
 	struct	s_paraboloid_option
 	{
 		t_material_option	material;
 		t_ivec2				checker_count;
-	}					option;
+	}	option;
 }	t_input_paraboloid;
 
 bool			create_sphere(t_input_sphere const *input);
