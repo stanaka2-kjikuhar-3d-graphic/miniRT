@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/31 22:02:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/06 15:45:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,7 @@ typedef struct s_object
 	t_material	material;
 	t_uv		uv;
 	t_primitive	primitive;
-	t_aabb		aabb;
-	t_vec3		aabb_centroid;
-	bool		has_bounded_aabb;
+	t_aabb_info	aabb_info;
 }	t_object;
 
 typedef struct s_material_option

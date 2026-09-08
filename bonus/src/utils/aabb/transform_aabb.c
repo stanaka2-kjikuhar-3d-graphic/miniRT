@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 03:31:39 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/14 12:56:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/06 15:14:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 
 static t_vec3	transform_extent(t_mat4 const *m, t_vec3 extent);
 
-/*
-extent must be finite: an infinite local box would hit 0 * INFINITY here
-and produce NaN, so unbounded shapes never reach this function.
-*/
 t_aabb	transform_aabb(t_mat4 const *to_world, t_vec3 center, t_vec3 extent)
 {
 	t_vec3	world_center;

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/30 19:27:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/07 22:09:28 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@
 
 #include "../object_private.h"
 
-static bool		add_lower_cap_circle(t_object const *object, \
+static bool	add_lower_cap_circle(t_object const *object, \
 					t_input_cone const *input, t_vec3 dir);
-static bool		set_cone_primitive(\
+static bool	set_cone_primitive(\
 					t_object *object, t_input_cone const *input, t_vec3 dir);
-static void		set_cone_uv(t_uv *uv, t_input_cone const *input);
-static t_aabb	calc_cone_aabb(t_input_cone const *input, t_vec3 dir);
+static void	set_cone_uv(t_uv *uv, t_input_cone const *input);
+static void	set_cone_aabb_info(t_aabb_info *aabb_info, \
+					t_input_cone const *input, t_vec3 dir);
 
 bool	create_cone(t_input_cone const *input)
 {
@@ -39,9 +40,7 @@ bool	create_cone(t_input_cone const *input)
 	set_cone_uv(&(object.uv), input);
 	if (!set_cone_primitive(&object, input, dir))
 		return (false);
-	object.aabb = calc_cone_aabb(input, dir);
-	object.aabb_centroid = calc_aabb_centroid(&(object.aabb));
-	object.has_bounded_aabb = has_bounded_aabb(&(object.aabb));
+	set_cone_aabb_info(&(object.aabb_info), input, dir);
 	if (!create_object(&object))
 		return (false);
 	return (add_lower_cap_circle(&object, input, dir));
@@ -105,7 +104,8 @@ static bool	set_cone_primitive(\
 	return (build_primitive(&frame, &(object->primitive)));
 }
 
-static t_aabb	calc_cone_aabb(t_input_cone const *input, t_vec3 dir)
+static void	set_cone_aabb_info(\
+	t_aabb_info *aabb_info, t_input_cone const *input, t_vec3 dir)
 {
 	t_vec3	circle_extent;
 	t_aabb	circle_aabb;
@@ -120,5 +120,7 @@ static t_aabb	calc_cone_aabb(t_input_cone const *input, t_vec3 dir)
 	circle_aabb = calc_aabb_from_extent(input->center, circle_extent);
 	vertex = vec3_add(input->center, vec3_scale(input->height, dir));
 	vertex_aabb = calc_aabb_from_extent(vertex, vec3(0.0f, 0.0f, 0.0f));
-	return (union_aabb(circle_aabb, vertex_aabb));
+	aabb_info->aabb = union_aabb(circle_aabb, vertex_aabb);
+	aabb_info->centroid = calc_aabb_centroid(&(aabb_info->aabb));
+	aabb_info->has_bounded_aabb = has_bounded_aabb(&(aabb_info->aabb));
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 23:52:36 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 20:00:34 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/07 05:20:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static size_t	count_bounded_aabb(void)
 	object = NULL;
 	while (get_next_object(&object))
 	{
-		if (object->has_bounded_aabb)
+		if (object->aabb_info.has_bounded_aabb)
 			++count;
 	}
 	return (count);
@@ -64,8 +64,8 @@ static t_aabb	calc_all_aabb(void)
 	object = NULL;
 	while (get_next_object(&object))
 	{
-		if (object->has_bounded_aabb)
-			all_aabb = union_aabb(all_aabb, object->aabb);
+		if (object->aabb_info.has_bounded_aabb)
+			all_aabb = union_aabb(all_aabb, object->aabb_info.aabb);
 	}
 	return (all_aabb);
 }
@@ -80,12 +80,10 @@ static void	register_aabb_leaves(void)
 	i = 0;
 	while (get_next_object(&object))
 	{
-		if (object->has_bounded_aabb)
+		if (object->aabb_info.has_bounded_aabb)
 		{
-			aabb_leaf.aabb = object->aabb;
-			aabb_leaf.centroid[X_AXIS] = object->aabb_centroid.x;
-			aabb_leaf.centroid[Y_AXIS] = object->aabb_centroid.y;
-			aabb_leaf.centroid[Z_AXIS] = object->aabb_centroid.z;
+			aabb_leaf.aabb = object->aabb_info.aabb;
+			aabb_leaf.centroid = object->aabb_info.centroid;
 			aabb_leaf.object = object;
 			register_aabb_leaf(&aabb_leaf, i++);
 		}
