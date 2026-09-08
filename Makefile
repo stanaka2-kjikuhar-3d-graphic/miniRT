@@ -14,7 +14,7 @@
 #       Phony Targets        #
 # -------------------------- #
 
-.PHONY: all bonus clean fclean re install uninstall norm san debug test help
+.PHONY: all bonus clean fclean re install uninstall norm san debug test unit help
 
 # -------------------------- #
 #         Extra Flags        #
@@ -61,6 +61,7 @@ help:
 	@printf "$(YELLOW)san$(DEF_COLOR)        Build with -g -fsanitize=address,undefined\n"
 	@printf "$(YELLOW)debug$(DEF_COLOR)      Build with -g debug symbols\n"
 	@printf "$(YELLOW)norm$(DEF_COLOR)       Run norminette\n"
+	@printf "$(YELLOW)unit$(DEF_COLOR)       Run matrix unit tests\n"
 	@printf "$(GRAY)help$(DEF_COLOR)       Show make rules\n"
 
 # -------------------------- #
@@ -562,6 +563,9 @@ debug:
 
 test:
 	@bash test/test.sh
+
+unit:
+	@bash test/unit/run_unit_tests.sh
 
 norm:
 	@norminette -o bonus/src bonus/include $(LIBFT_DIR) | grep Error || true
