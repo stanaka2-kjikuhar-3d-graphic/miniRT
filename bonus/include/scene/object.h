@@ -159,6 +159,7 @@ typedef struct s_input_plane
 		t_material_option	material;
 		float				pattern_size;
 		t_ivec2				checker_count;
+		t_vec2				half_size;
 	}					option;
 }	t_input_plane;
 

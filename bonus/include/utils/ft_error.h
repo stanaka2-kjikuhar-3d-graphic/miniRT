@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 00:51:01 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/08/10 19:17:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define ERROR_MUST_BE_BOOL "must be true or false"
 # define ERROR_MUST_BE_NORMALIZED "must be a unit vector"
 # define ERROR_MUST_BE_EVEN "must be an even number"
+# define ERROR_MUST_BE_FINITE "must be a finite number"
 # define ERROR_TOO_SMALL "too small, half of it underflows to 0"
 # define ERROR_HB_RADIUS "must exceed center_diameter"
 # define ERROR_DEGENERATE_SCALE "shape is too small to place in the scene"
@@ -80,6 +81,7 @@
 # define HINT_COLOR_RANGE "0 <= x <= 255"
 # define HINT_CHECKER_COUNT "2 <= n <= 1024"
 # define HINT_CHECKER_COUNT_EVEN "2 <= n <= 1024, even number"
+# define HINT_FLOAT_FINITE "FLT_MIN <= x <= FLT_MAX"
 
 /* Hint: field syntax */
 # define HINT_VECTOR "x,y,z"
