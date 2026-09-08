@@ -6,9 +6,24 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/09/04 22:02:29 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/09/05 20:01:52 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+# -------------------------- #
+#         Build Mode         #
+# -------------------------- #
+
+BUILD_MODE	?= develop
+# BUILD_MODE	?= review
+# BUILD_MODE	?= default
+
+BUILD_TARGET	:= bonus
+ifeq ($(BUILD_MODE),review)
+ifneq ($(filter bonus,$(MAKECMDGOALS)),bonus)
+BUILD_TARGET	:= mandatory
+endif
+endif
 
 # -------------------------- #
 #       Phony Targets        #
@@ -21,22 +36,26 @@
 # -------------------------- #
 
 ifeq ($(filter san,$(MAKECMDGOALS)),san)
-override CFLAGS += -g -fsanitize=address,undefined
+override CFLAGS	+= -g -fsanitize=address,undefined
 endif
 
 ifeq ($(filter debug,$(MAKECMDGOALS)),debug)
-override CFLAGS += -g
+override CFLAGS	+= -g
 endif
 
-EXTRA_FLAGS :=	MAKEFLAGS='$(MAKEFLAGS)' \
-				CFLAGS='$(CFLAGS)' \
-				CPPFLAGS='$(CPPFLAGS)'
+ifneq ($(BUILD_MODE), develop)
+override CFLAGS	+= -O3
+endif
+
+EXTRA_FLAGS		:=	MAKEFLAGS='$(MAKEFLAGS)' \
+					CFLAGS='$(CFLAGS)' \
+					CPPFLAGS='$(CPPFLAGS)'
 
 # -------------------------- #
 #      Makefile Setting      #
 # -------------------------- #
 
-OS	:= $(shell uname -s)
+OS						:= $(shell uname -s)
 
 override MAKEFLAGS		+= -j --no-print-directory
 
@@ -73,15 +92,20 @@ NAME	:= miniRT
 #       Compiler Flags       #
 # -------------------------- #
 
-CC	:= cc
+CC				:= cc
 
 override CFLAGS	+= -Wall -Wextra -Werror
-# when submit, it should change -W3
 override CFLAGS	+= -Wconversion -Wno-sign-conversion -Wshadow
 
 # -------------------------- #
 #          Include           #
 # -------------------------- #
+
+ifeq ($(BUILD_TARGET), mandatory)
+
+INCLUDE_DIRS		:=	mandatory/include
+
+else
 
 INCLUDE_DIRS		:=	bonus/include \
 						$(addprefix bonus/include/, \
@@ -91,12 +115,19 @@ INCLUDE_DIRS		:=	bonus/include \
 							utils \
 						)
 
+endif
+
 override CPPFLAGS	+= $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 
 # -------------------------- #
 #     Source Directories     #
 # -------------------------- #
 
+ifeq ($(BUILD_TARGET), mandatory)
+
+SRC_DIRS	:= mandatory/src
+
+else
 SRC_DIRS	:= bonus/src
 SRC_DIRS	+= $(addprefix bonus/src/, \
 					accelerator \
@@ -159,12 +190,19 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 						hooks \
 					) \
 				)
+endif
 
 $(foreach dir, $(SRC_DIRS), $(eval vpath %.c $(dir)))
 
 # -------------------------- #
 #        Source Files        #
 # -------------------------- #
+
+ifeq ($(BUILD_TARGET), mandatory)
+
+SRCS	:=	main.c
+
+else
 
 SRCS	:=	main.c
 
@@ -430,6 +468,7 @@ SRCS	+=	mat4_identity.c \
 SRCS	+=	mat4_minor.c \
 			mat4_cofactor.c \
 			mat4_det.c
+endif
 
 # -------------------------- #
 #        Object Files        #
@@ -486,7 +525,7 @@ install:
 
 uninstall:
 	@$(RM) -r $(LIBMLX_DIR)
-	@printf "[miniRT] $(GREEN)Uninstall Complete:$(DEF_COLOR) $(LIBMLX_DIR)\n"
+	@printf "[miniRT] $(GREEN)Remove Complete:$(DEF_COLOR) $(LIBMLX_DIR)\n"
 
 $(LIBMLX_DIR):
 	@$(MAKE) install
@@ -510,7 +549,10 @@ override LDLIBS	+= -lmlx -lXext -lX11
 # -------------------------- #
 
 override LDLIBS	+= -lm
+
+ifneq ($(BUILD_TARGET), mandatory)
 override CFLAGS	+= -pthread
+endif
 
 # -------------------------- #
 #        Build Rules         #
@@ -567,7 +609,7 @@ test:
 	@bash test/test.sh
 
 norm:
-	@norminette -o bonus/src bonus/include $(LIBFT_DIR) | grep Error || true
+	@norminette -o mandatory/src mandatory/include bonus/src bonus/include $(LIBFT_DIR) | grep Error || true
 
 # -------------------------- #
 #    ANSI Escape Sequence    #
