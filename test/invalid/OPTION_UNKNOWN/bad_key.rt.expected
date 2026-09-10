@@ -1,4 +1,4 @@
 Error
 line 4: sp 0,0,20 20 255,0,0 unknown=1
 option 'unknown=1': unknown key
-USAGE: texture=file.xpm checker_color1=R,G,B [0 <= R,G,B <= 255] checker_color2=R,G,B [0 <= R,G,B <= 255] bump_map=file.xpm normal_map=file.xpm directx_normal_map=true/false bump_strength=x [0.0 < x] metalness=true/false shininess=x [0.0 <= x] checker_count_v=n [2 <= n <= 1024] checker_count_u=n [2 <= n <= 1024, even number]
+USAGE: texture=file.xpm checker_color1=R,G,B [0 <= R,G,B <= 255] checker_color2=R,G,B [0 <= R,G,B <= 255] bump_map=file.xpm normal_map=file.xpm directx_normal_map=true/false bump_strength=x [0.0 < x] metalness=true/false shininess=x [0.0 <= x] reflectivity=x [0.0 <= x <= 1.0] checker_count_v=n [2 <= n <= 1024] checker_count_u=n [2 <= n <= 1024, even number]
