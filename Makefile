@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/09/05 20:33:53 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/09/10 21:31:04 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,6 +109,7 @@ else
 
 INCLUDE_DIRS		:=	bonus/include \
 						$(addprefix bonus/include/, \
+							renderer \
 							scene \
 							view \
 							types \
@@ -144,12 +145,11 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 					) \
 					renderer \
 					$(addprefix renderer/, \
+						intersection \
 						path_tracing \
 						phong \
 						$(addprefix phong/, \
-							intersection \
 							lighting \
-							shading \
 						) \
 					) \
 					$(addprefix scene/, \
@@ -297,12 +297,15 @@ SRCS	+=	renderer.c \
 			render_flag.c \
 			put_color_to_window_image.c
 
+# renderer/intersection
+SRCS	+=	find_closest_hit.c \
+			bvh_intersection.c \
+			infinite_objects_intersection.c \
+			is_in_shadow.c \
+			bvh_shading.c \
+			infinite_objects_shading.c
 # renderer/phong
 SRCS	+=	phong.c
-# renderer/phong/intersection
-SRCS	+=	phong_intersection.c \
-			bvh_intersection.c \
-			infinite_objects_intersection.c
 # renderer/phong/lighting
 SRCS	+=	phong_lighting.c \
 			phong_lighting_ambient.c \
@@ -310,10 +313,6 @@ SRCS	+=	phong_lighting.c \
 			phong_lighting_spot.c \
 			phong_lighting_directional.c \
 			phong_specular_dot.c
-# renderer/phong/shading
-SRCS	+=	phong_shading.c \
-			bvh_shading.c \
-			infinite_objects_shading.c
 
 # scene/camera
 SRCS	+=	camera.c \

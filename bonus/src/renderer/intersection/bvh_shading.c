@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 22:20:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 22:35:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/10 21:24:58 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "object.h"
 #include "accelerator.h"
 
-#include "../phong_private.h"
+#include "intersection_private.h"
 
 static bool	shadow_traverse_node(t_ray const *ray, float dist, \
 				t_bvh_node const *node);
