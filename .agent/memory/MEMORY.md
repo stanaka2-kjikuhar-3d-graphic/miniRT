@@ -1,0 +1,2 @@
+- [Header Updated only on real change](feedback_header_updated_only_on_real_change.md) — don't bump 42-header `Updated:`/commit a file unless its content actually changed
+- [Memory lives in repo .agent/memory](feedback_memory_lives_in_repo_agent_dir.md) — 実体はリポジトリ内、ハーネス側は symlink。移動後は claude-memory-relink
