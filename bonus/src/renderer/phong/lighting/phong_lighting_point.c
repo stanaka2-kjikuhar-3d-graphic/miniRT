@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 03:38:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/06 19:35:11 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/09/10 21:29:12 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	phong_lighting_point(t_color *color, \
 	light_dir = vec3_scale(1.0f / light_dist, to_light);
 	attenuation = calc_point_light_attenuation(light, light_dist);
 	if (!check_cutoff(light->radiance, attenuation) \
-		&& !phong_shading(hit, light_dir, light_dist))
+		&& !is_in_shadow(hit, light_dir, light_dist))
 	{
 		*color = add_color(*color, \
 			calc_diffuse_color(hit, light, attenuation));

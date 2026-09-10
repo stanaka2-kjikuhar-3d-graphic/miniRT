@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:05:47 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/06 19:50:58 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/09/10 21:28:37 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_color	calc_specular_color(t_ray const *ray, t_hit const *hit, \
 void	phong_lighting_directional(t_color *color, \
 	t_ray const *ray, t_hit const *hit, t_directional_light const *light)
 {
-	if (!phong_shading(hit, vec3_scale(-1.0f, light->dir), INFINITY))
+	if (!is_in_shadow(hit, vec3_scale(-1.0f, light->dir), INFINITY))
 	{
 		*color = add_color(*color, calc_diffuse_color(hit, light));
 		*color = add_color(*color, calc_specular_color(ray, hit, light));

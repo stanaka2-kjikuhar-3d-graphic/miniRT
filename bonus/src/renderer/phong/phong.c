@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:15:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/04 22:00:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/10 21:30:26 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	phong(t_ivec2 pixel)
 	t_hit				hit;
 
 	ray = calc_ray(pixel);
-	hit = phong_intersection(&ray);
+	hit = find_closest_hit(&ray);
 	if (hit.object != NULL)
 		put_color_to_window_image(pixel, phong_lighting(&ray, &hit));
 	else
