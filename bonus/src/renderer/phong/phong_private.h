@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:35:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/10 21:27:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/10 22:37:49 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@
 # include "light.h"
 # include "color.h"
 
-# include "intersection.h"
+# include "phong.h"
 
-t_color	phong_lighting(t_ray const *ray, t_hit const *hit);
 void	phong_lighting_ambient(t_color *color, \
 			t_hit const *hit, t_ambient_light const *light);
 void	phong_lighting_point(t_color *color, \
