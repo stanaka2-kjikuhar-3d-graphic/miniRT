@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:38:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/04 22:00:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/10 23:48:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	*rendering(void *arg)
 	{
 		pixel.y = pixel_num / viewport->pixel_size.x;
 		pixel.x = pixel_num % viewport->pixel_size.x;
-		phong(pixel);
+		raytrace_pixel(pixel);
 		pixel_num += THREAD_COUNT;
 	}
 	return (NULL);
