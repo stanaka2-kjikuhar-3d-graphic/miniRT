@@ -5,3 +5,6 @@ minilibx
 libft.a
 miniRT
 .vscode
+# clangd (LSP)
+compile_commands.json
+.cache
