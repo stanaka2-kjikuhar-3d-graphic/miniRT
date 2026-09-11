@@ -1,0 +1,10 @@
+-Ibonus/include
+-Ibonus/include/scene
+-Ibonus/include/types
+-Ibonus/include/utils
+-Ilibft/include
+-Ilibft/ft_printf/include
+-Iminilibx
+-I/usr/X11/include
+-Wall
+-Wextra
