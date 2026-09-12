@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 20:29:13 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 22:25:28 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/10 21:24:05 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "object.h"
 #include "accelerator.h"
 
-#include "../phong_private.h"
+#include "intersection_private.h"
 
 static void	traverse_bvh_branch(t_hit *hit, t_ray const *ray, \
 				t_bvh_node const *branch);
