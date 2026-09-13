@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 14:06:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/08 23:50:57 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/13 16:54:07 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdbool.h>
 
 #include "ft_error.h"
-#include "light.h"
+#include "light_factory.h"
 
 #include "../parser_private.h"
 

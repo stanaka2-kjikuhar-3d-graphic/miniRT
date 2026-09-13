@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/09/13 18:02:05 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/09/13 18:03:28 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -153,18 +153,26 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 						) \
 					) \
 					$(addprefix scene/, \
-						camera camera/internal \
+						camera \
+						$(addprefix camera/, \
+							factory \
+							internal \
+						) \
 						light \
+						$(addprefix light/, \
+							factory \
+							$(addprefix factory/, \
+								internal \
+							) \
+							internal \
+						) \
 						object \
 						$(addprefix object/, \
-							circle \
-							cylinder \
-							cone \
-							hyperboloid \
-							paraboloid \
-							plane \
-							sphere \
 							primitive \
+							factory \
+							$(addprefix factory/, \
+								internal \
+							) \
 							internal \
 						) \
 					) \
@@ -321,8 +329,11 @@ SRCS	+=	phong_lighting.c \
 SRCS	+=	camera.c \
 			set_camera_pos.c \
 			set_camera_dir.c \
+			set_camera_fov.c \
 			change_camera_fov.c \
 			rotate_camera.c
+# scene/camera/factory
+SRCS	+=	create_camera.c
 # scene/camera/internal
 SRCS	+=	calc_camera_dir.c \
 			calc_camera_right.c \
@@ -330,13 +341,18 @@ SRCS	+=	calc_camera_dir.c \
 
 # scene/light
 SRCS	+=	light.c \
-			ambient_light.c \
-			point_light.c \
-			spot_light.c \
-			directional_light.c \
-			set_dist_attenuation.c \
-			calc_dist_attenuation.c \
-			check_cutoff.c
+			check_cutoff.c \
+			calc_point_light_attenuation.c \
+			calc_spot_light_attenuation.c
+# scene/light/internal
+SRCS	+=	calc_dist_attenuation.c
+# scene/light/factory
+SRCS	+=	create_ambient_light.c \
+			create_point_light.c \
+			create_spot_light.c \
+			create_directional_light.c
+# scene/light/factory/internal
+SRCS	+=	set_dist_attenuation.c
 
 # scene/object
 SRCS	+=	object.c \
@@ -348,23 +364,21 @@ SRCS	+=	object.c \
 			calc_bump_mapping.c \
 			calc_normal_mapping.c \
 			calc_aabb_intersection.c
-# scene/object/sphere
-SRCS	+=	create_sphere.c
-# scene/object/plane
-SRCS	+=	create_plane.c
-# scene/object/cylinder
-SRCS	+=	create_cylinder.c
-# scene/object/circle
-SRCS	+=	create_circle.c
-# scene/object/cone
-SRCS	+=	create_cone.c
-# scene/object/hyperboloid
-SRCS	+=	create_hyperboloid.c
-# scene/object/paraboloid
-SRCS	+=	create_paraboloid.c
-# scene/object/primitive
+# scene/object/factory
+SRCS	+=	create_sphere.c \
+			create_plane.c \
+			create_cylinder.c \
+			create_circle.c \
+			create_cone.c \
+			create_hyperboloid.c \
+			create_paraboloid.c
+# scene/object/factory/internal
 SRCS	+=	build_primitive.c \
-			unit_quadric.c \
+			calc_onb.c \
+			set_material.c \
+			set_uv_checker.c
+# scene/object/primitive
+SRCS	+=	unit_quadric.c \
 			calc_primitive_intersection.c \
 			calc_planar_intersection.c \
 			calc_quadric_intersection.c \
@@ -374,10 +388,7 @@ SRCS	+=	build_primitive.c \
 			is_planar_primitive.c \
 			is_quadric_primitive.c
 # scene/object/internal
-SRCS	+=	calc_onb.c \
-			adjust_uv_range.c \
-			set_material.c \
-			set_uv_checker.c
+SRCS	+=	adjust_uv_range.c
 
 # view/viewport
 SRCS	+=	viewport.c

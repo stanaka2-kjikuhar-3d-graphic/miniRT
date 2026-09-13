@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/27 12:00:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 02:09:24 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/09/13 14:59:56 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/09/13 15:00:01 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 #include "../parser_private.h"
 
-void	bind_material_option(\
-	t_optional_field *fields, t_material_option *option)
+void	bind_input_material_option(\
+	t_optional_field *fields, t_input_material_option *option)
 {
 	fields[OPTIONAL_TEXTURE].value = &(option->texture);
 	fields[OPTIONAL_CHECKER_COLOR1].value = &(option->checker_color1);

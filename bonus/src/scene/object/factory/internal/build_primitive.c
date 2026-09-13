@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 01:12:33 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/29 18:57:25 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/13 17:08:00 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include "matrix.h"
 #include "object.h"
 
-#include "../object_private.h"
+#include "../object_factory_private.h"
+#include "../../object_private.h"
 
 /*
         frame                          t_primitive

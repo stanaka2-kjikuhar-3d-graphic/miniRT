@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light_private.h                                    :+:      :+:    :+:   */
+/*   calc_point_light_attenuation.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/21 15:35:16 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/13 17:29:45 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/09/13 17:26:53 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/09/13 17:39:37 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIGHT_PRIVATE_H
-# define LIGHT_PRIVATE_H
+#include "light.h"
 
-# include <stdbool.h>
+#include "./light_private.h"
 
-# include "light.h"
-
-bool	create_light(t_light const *light);
-float	calc_dist_attenuation(\
-			t_dist_attenuation const *attenuation, float dist);
-
-#endif
+float	calc_point_light_attenuation(t_point_light const *light, float dist)
+{
+	return (calc_dist_attenuation(&(light->attenuation), dist));
+}

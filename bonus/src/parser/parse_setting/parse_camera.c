@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:09:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/04 22:00:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/13 16:55:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdbool.h>
 
 #include "ft_error.h"
-#include "camera.h"
+#include "camera_factory.h"
 #include "viewport.h"
 
 #include "../parser_private.h"
@@ -36,7 +36,7 @@ bool	parse_camera(char const **elements)
 	}
 	if (!parse_camera_required(elements, &input))
 		return (false);
-	set_camera(&input);
+	create_camera(&input);
 	return (true);
 }
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   directional_light.c                                :+:      :+:    :+:   */
+/*   create_directional_light.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 20:34:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 17:03:45 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/13 17:44:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 #include "color.h"
 #include "light.h"
+#include "light_factory.h"
 
-#include "./light_private.h"
+#include "../light_private.h"
 
 bool	create_directional_light(t_input_directional_light const *input)
 {

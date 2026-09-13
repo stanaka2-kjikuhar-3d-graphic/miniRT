@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/10 18:02:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/13 16:58:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@
 # include "vector.h"
 # include "color.h"
 # include "object.h"
-
-# define NORMALIZED_EPSILON 0.001f // 1e-3
+# include "object_factory.h"
 
 enum e_setting
 {
@@ -145,8 +144,8 @@ bool				parse_required_fields(char const **elements, \
 t_required_field	build_required_field(\
 						enum e_required_field field, void *value);
 void				init_optional_fields(t_optional_field *fields);
-void				bind_material_option(\
-					t_optional_field *fields, t_material_option *option);
+void				bind_input_material_option(t_optional_field *fields, \
+						t_input_material_option *option);
 bool				parse_optional_fields(char const **optional_elements, \
 						t_optional_field const *fields);
 enum e_pattern_type	get_pattern_type(char const **optional_elements);

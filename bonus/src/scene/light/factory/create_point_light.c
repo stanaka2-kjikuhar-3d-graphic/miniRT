@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   uniform_infinite_light.c                           :+:      :+:    :+:   */
+/*   create_point_light.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/23 20:27:48 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 17:03:56 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/21 15:36:55 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/09/13 17:44:05 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
+#include "config.h"
 #include "color.h"
 #include "light.h"
+#include "light_factory.h"
 
-#include "./light_private.h"
+#include "./light_factory_private.h"
+#include "../light_private.h"
 
-bool	create_uniform_infinite_light(\
-	t_input_uniform_infinite_light const *input)
+bool	create_point_light(t_input_point_light const *input)
 {
 	t_light	light;
 
-	light.type = UNIFORM_INFINITE_LIGHT;
-	light.uniform_infinite.color = input->color;
-	light.uniform_infinite.brightness = input->brightness;
-	light.uniform_infinite.radiance \
-		= scale_color(input->brightness, input->color);
+	light.type = POINT_LIGHT;
+	light.point.color = input->color;
+	light.point.brightness = input->brightness;
+	light.point.radiance = scale_color(input->brightness, input->color);
+	light.point.pos = input->pos;
+	set_dist_attenuation(&(light.point.attenuation), LIGHT_RANGE);
 	return (create_light(&light));
 }

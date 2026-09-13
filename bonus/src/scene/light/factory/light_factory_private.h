@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_uv_checker.c                                   :+:      :+:    :+:   */
+/*   light_factory_private.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/02 03:10:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 03:03:06 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/09/13 17:28:12 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/09/13 17:30:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "object.h"
-#include "vector.h"
+#ifndef LIGHT_FACTORY_PRIVATE_H
+# define LIGHT_FACTORY_PRIVATE_H
 
-#include "../object_private.h"
+void	set_dist_attenuation(t_dist_attenuation *attenuation, float range);
 
-void	set_uv_checker(t_uv *uv, t_ivec2 checker_count)
-{
-	uv->checker_count = checker_count;
-	uv->checker_size = (t_vec2){\
-		.u = 1.0f / (float)checker_count.u, \
-		.v = 1.0f / (float)checker_count.v};
-}
+#endif

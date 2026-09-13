@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/07 22:18:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/13 17:06:39 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 #include "matrix.h"
 #include "object.h"
 #include "range.h"
+#include "object_factory.h"
 
+#include "./object_factory_private.h"
 #include "../object_private.h"
 
 static void	set_sphere_uv(t_uv *uv, t_input_sphere const *input);

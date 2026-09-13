@@ -6,14 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:17:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/08 23:52:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/13 16:53:07 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdbool.h>
 
-#include "object.h"
+#include "object_factory.h"
 #include "ft_error.h"
 
 #include "../parser_private.h"
@@ -61,7 +61,7 @@ static bool	parse_sphere_optional(\
 	t_optional_field	fields[OPTIONAL_FIELD_COUNT];
 
 	init_optional_fields(fields);
-	bind_material_option(fields, &(input->option.material));
+	bind_input_material_option(fields, &(input->option.material));
 	fields[OPTIONAL_CHECKER_COUNT_U_EVEN].value \
 		= &(input->option.checker_count.u);
 	fields[OPTIONAL_CHECKER_COUNT_U_EVEN].default_value.integer *= 2;

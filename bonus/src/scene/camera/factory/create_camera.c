@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light_private.h                                    :+:      :+:    :+:   */
+/*   create_camera.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/21 15:35:16 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/13 17:29:45 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/09/13 15:32:32 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/09/13 16:59:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIGHT_PRIVATE_H
-# define LIGHT_PRIVATE_H
+#include "camera.h"
+#include "camera_factory.h"
+#include "viewport.h"
 
-# include <stdbool.h>
-
-# include "light.h"
-
-bool	create_light(t_light const *light);
-float	calc_dist_attenuation(\
-			t_dist_attenuation const *attenuation, float dist);
-
-#endif
+void	create_camera(t_input_camera const *input)
+{
+	set_camera_pos(input->pos);
+	set_camera_dir(input->dir);
+	set_camera_fov(input->fov);
+	set_viewport(input->fov);
+}

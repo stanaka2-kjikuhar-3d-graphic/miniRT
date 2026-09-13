@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 05:59:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/07 22:09:20 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/13 17:06:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 #include "object.h"
 #include "range.h"
 #include "vector.h"
+#include "object_factory.h"
 
+#include "./object_factory_private.h"
 #include "../object_private.h"
 
 static void	set_circle_uv(t_uv *uv, t_input_circle const *input);

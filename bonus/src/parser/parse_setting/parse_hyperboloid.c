@@ -6,14 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 20:37:31 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/08 23:52:38 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/13 16:53:43 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdbool.h>
 
-#include "object.h"
+#include "object_factory.h"
 #include "ft_error.h"
 
 #include "../parser_private.h"
@@ -75,7 +75,7 @@ static bool	parse_hyperboloid_optional(\
 	t_optional_field	fields[OPTIONAL_FIELD_COUNT];
 
 	init_optional_fields(fields);
-	bind_material_option(fields, &(input->option.material));
+	bind_input_material_option(fields, &(input->option.material));
 	fields[OPTIONAL_CHECKER_COUNT_U_EVEN].value \
 		= &(input->option.checker_count.u);
 	fields[OPTIONAL_CHECKER_COUNT_V].value = &(input->option.checker_count.v);

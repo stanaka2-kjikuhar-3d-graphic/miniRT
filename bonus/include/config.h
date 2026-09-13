@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 00:57:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 18:54:33 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/13 16:58:15 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define THREAD_COUNT 16
 
 # define EPSILON 0.000001f // 1e-6
+# define NORMALIZED_EPSILON 0.001f // 1e-3
 
 # define ENCODING_SRGB 0
 # define ENCODING_GAMMA 1

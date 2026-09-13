@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera.h                                           :+:      :+:    :+:   */
+/*   camera_factory.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/12 00:05:19 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/13 17:52:58 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/09/13 16:01:17 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/09/13 16:40:34 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAMERA_H
-# define CAMERA_H
-
-# include <stdbool.h>
+#ifndef CAMERA_FACTORY_H
+# define CAMERA_FACTORY_H
 
 # include "vector.h"
 
-typedef struct s_camera
+typedef struct s_input_camera
 {
 	t_vec3	pos;
 	t_vec3	dir;
-	t_vec3	right;
-	t_vec3	up;
-	float	pitch;
-	float	yaw;
 	float	fov;
-}	t_camera;
+}	t_input_camera;
 
-t_camera const	*get_camera(void);
-void			set_camera_pos(t_vec3 pos);
-void			set_camera_dir(t_vec3 dir);
-void			set_camera_fov(float fov);
-bool			change_camera_fov(float degree);
-void			rotate_camera_pitch(float degree);
-void			rotate_camera_yaw(float degree);
+void	create_camera(t_input_camera const *input);
 
 #endif

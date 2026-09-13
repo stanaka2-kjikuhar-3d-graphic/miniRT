@@ -6,14 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:22:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/10 18:38:10 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/13 16:53:28 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdbool.h>
 
-#include "object.h"
+#include "object_factory.h"
 #include "ft_error.h"
 
 #include "../parser_private.h"
@@ -61,7 +61,7 @@ static bool	parse_plane_optional(\
 	t_optional_field	fields[OPTIONAL_FIELD_COUNT];
 
 	init_optional_fields(fields);
-	bind_material_option(fields, &(input->option.material));
+	bind_input_material_option(fields, &(input->option.material));
 	fields[OPTIONAL_PATTERN_SIZE].value = &(input->option.pattern_size);
 	fields[OPTIONAL_U_SIZE].value = &(input->option.half_size.u);
 	fields[OPTIONAL_V_SIZE].value = &(input->option.half_size.v);

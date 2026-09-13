@@ -6,16 +6,16 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 12:00:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 01:59:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/13 17:08:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "object.h"
-
-#include "../object_private.h"
+#include "color.h"
+#include "../object_factory_private.h"
 
 void	set_material_from_option(t_material *material, t_color albedo, \
-			t_material_option const *option)
+			t_input_material_option const *option)
 {
 	material->albedo = albedo;
 	material->pattern_type = option->pattern_type;
@@ -31,7 +31,7 @@ void	set_material_from_option(t_material *material, t_color albedo, \
 	material->shininess = option->shininess;
 }
 
-void	set_option_from_material(t_material_option *option, \
+void	set_option_from_material(t_input_material_option *option, \
 			t_material const *material)
 {
 	option->pattern_type = material->pattern_type;

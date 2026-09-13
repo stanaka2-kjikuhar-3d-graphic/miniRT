@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ambient_light.c                                    :+:      :+:    :+:   */
+/*   create_uniform_infinite_light.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/21 14:06:04 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/29 05:56:14 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/06/23 20:27:48 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/09/13 17:44:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 #include "color.h"
 #include "light.h"
+#include "light_factory.h"
 
-#include "./light_private.h"
+#include "../light_private.h"
 
-bool	create_ambient_light(t_input_ambient_light const *input)
+bool	create_uniform_infinite_light(\
+	t_input_uniform_infinite_light const *input)
 {
 	t_light	light;
 
-	light.type = AMBIENT_LIGHT;
-	light.ambient.color = input->color;
-	light.ambient.brightness = input->brightness;
-	light.ambient.radiance = scale_color(input->brightness, input->color);
+	light.type = UNIFORM_INFINITE_LIGHT;
+	light.uniform_infinite.color = input->color;
+	light.uniform_infinite.brightness = input->brightness;
+	light.uniform_infinite.radiance \
+		= scale_color(input->brightness, input->color);
 	return (create_light(&light));
 }

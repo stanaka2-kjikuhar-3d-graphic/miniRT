@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/07 22:19:20 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/13 17:06:55 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 #include "object.h"
 #include "range.h"
 #include "aabb.h"
+#include "object_factory.h"
 
+#include "./object_factory_private.h"
 #include "../object_private.h"
 
 static bool	add_cap_circle(t_object const *object, \

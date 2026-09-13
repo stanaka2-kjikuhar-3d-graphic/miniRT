@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 23:37:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 16:22:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/13 16:58:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ due to norminette=3.3.55 bug.
 #include "ft_string.h"
 #include "ft_stdio.h"
 
+#include "config.h"
 #include "vector.h"
 #include "ft_error.h"
 
