@@ -60,7 +60,7 @@ v = (h - h_min) / (h_max - h_min)
 円錐は `h_min = 0`（頂点）なので、この式は `v = h / height` と一致する。
 双曲面・放物面（[hyperboloid.md](hyperboloid.md), [paraboloid.md](paraboloid.md)）も同じ `calc_quadric_uv` を呼ぶだけで、`h_min`/`h_max` の違いだけで各形状に合ったUVが得られる。
 
-底面の円は既存の `OBJ_CIRCLE` を別オブジェクトとして重ねる方式（`add_lower_cap_circle`）をそのまま使う。
+底面の円は既存の `OBJ_DISC` を別オブジェクトとして重ねる方式（`add_lower_cap_disc`）をそのまま使う。
 
 ## 5. 有限化
 

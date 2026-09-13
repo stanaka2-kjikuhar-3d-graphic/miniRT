@@ -35,7 +35,7 @@ uv.u = (atan2f(p.y, p.x) + M_PI) / (2.0f * M_PI);
 | `UNIT_HYPERBOLOID` | `0.5 - z / (2 z_max)` |
 | `UNIT_PARABOLOID` | `z` |
 
-円柱と一葉双曲面が上端で `v = 0` になる向きなのは、キャップの円盤（`add_cap_circle`）が
+円柱と一葉双曲面が上端で `v = 0` になる向きなのは、キャップの円盤（`add_cap_disc`）が
 その向きを前提に `v_range` を割り当てているためである（[hyperboloid.md](hyperboloid.md) 5節）。
 以前は `calc_hyperboloid_uv` が戻り値を反転して辻褄を合わせていたが、この式では符号がそのまま入っている。
 

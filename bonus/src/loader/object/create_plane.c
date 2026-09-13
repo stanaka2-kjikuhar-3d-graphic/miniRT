@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/07 22:16:33 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/17 07:06:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,24 @@
 #include "object.h"
 #include "range.h"
 #include "vector.h"
+#include "loader.h"
+#include "object_loader.h"
 
-#include "../object_private.h"
+#include "./object_loader_private.h"
 
-static void	set_plane_uv(t_uv *uv, t_input_plane const *input);
+static void	set_plane_uv(t_uv *uv, t_plane_input const *input);
 static bool	set_plane_primitive(t_object *object, \
-				t_input_plane const *input, t_mat3 const *basis);
+				t_plane_input const *input, t_mat3 const *basis);
 static void	set_plane_aabb_info(t_aabb_info *aabb_info, \
-				t_input_plane const *input, t_mat3 const *basis);
+				t_plane_input const *input, t_mat3 const *basis);
 
-bool	create_plane(t_input_plane const *input)
+bool	create_plane(t_scene_input const *scene_input)
 {
-	t_object	object;
-	t_mat3		basis;
+	t_plane_input const	*input;
+	t_object			object;
+	t_mat3				basis;
 
+	input = &(scene_input->plane);
 	basis = calc_onb(vec3_normalize(input->normal));
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
@@ -42,7 +46,7 @@ bool	create_plane(t_input_plane const *input)
 	return (create_object(&object));
 }
 
-static void	set_plane_uv(t_uv *uv, t_input_plane const *input)
+static void	set_plane_uv(t_uv *uv, t_plane_input const *input)
 {
 	uv->type = UV_DEFAULT;
 	uv->pattern_size = input->option.pattern_size;
@@ -66,7 +70,7 @@ static void	set_plane_uv(t_uv *uv, t_input_plane const *input)
 }
 
 static bool	set_plane_primitive(\
-	t_object *object, t_input_plane const *input, t_mat3 const *basis)
+	t_object *object, t_plane_input const *input, t_mat3 const *basis)
 {
 	t_primitive_frame	frame;
 
@@ -89,7 +93,7 @@ static bool	set_plane_primitive(\
 }
 
 static void	set_plane_aabb_info(t_aabb_info *aabb_info, \
-	t_input_plane const *input, t_mat3 const *basis)
+	t_plane_input const *input, t_mat3 const *basis)
 {
 	t_vec2	half_size;
 	t_vec3	extent;

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/10 18:02:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/17 07:50:31 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include "vector.h"
 # include "color.h"
 # include "object.h"
-
-# define NORMALIZED_EPSILON 0.001f // 1e-3
+# include "loader.h"
+# include "object_loader.h"
 
 enum e_setting
 {
@@ -44,7 +44,7 @@ typedef struct s_setting_parser
 	char const	*id;
 	char const	*missing_err;
 	char const	*dup_err;
-	bool		(*parse)(char const **);
+	bool		(*parse)(char const **, t_scene_input *);
 }	t_setting_parser;
 
 enum e_required_field
@@ -126,27 +126,33 @@ bool				read_next_line(int fd, char **next_line);
 bool				is_blank_line(char const *line);
 bool				is_comment_line(char const *line);
 bool				is_setting_id(char const *id, char const *line);
-bool				parse_settings(t_list **line_list);
+bool				parse_settings(t_list **line_list, t_list **scene_input);
 size_t				count_split(char const **split);
 void				free_split(char **split);
-bool				parse_ambient_light(char const **elements);
-bool				parse_point_light(char const **elements);
-bool				parse_camera(char const **elements);
-bool				parse_spot_light(char const **elements);
-bool				parse_directional_light(char const **elements);
-bool				parse_sphere(char const **elements);
-bool				parse_plane(char const **elements);
-bool				parse_cylinder(char const **elements);
-bool				parse_cone(char const **elements);
-bool				parse_hyperboloid(char const **elements);
-bool				parse_paraboloid(char const **elements);
+bool				parse_ambient_light(\
+						char const **elements, t_scene_input *input);
+bool				parse_point_light(\
+						char const **elements, t_scene_input *input);
+bool				parse_camera(char const **elements, t_scene_input *input);
+bool				parse_spot_light(\
+						char const **elements, t_scene_input *input);
+bool				parse_directional_light(\
+						char const **elements, t_scene_input *input);
+bool				parse_sphere(char const **elements, t_scene_input *input);
+bool				parse_plane(char const **elements, t_scene_input *input);
+bool				parse_cylinder(char const **elements, t_scene_input *input);
+bool				parse_cone(char const **elements, t_scene_input *input);
+bool				parse_hyperboloid(\
+						char const **elements, t_scene_input *input);
+bool				parse_paraboloid(\
+						char const **elements, t_scene_input *input);
 bool				parse_required_fields(char const **elements, \
 						t_required_field const *fields, size_t count);
 t_required_field	build_required_field(\
 						enum e_required_field field, void *value);
 void				init_optional_fields(t_optional_field *fields);
-void				bind_material_option(\
-					t_optional_field *fields, t_material_option *option);
+void				bind_material_option_input(t_optional_field *fields, \
+						t_material_option_input *option);
 bool				parse_optional_fields(char const **optional_elements, \
 						t_optional_field const *fields);
 enum e_pattern_type	get_pattern_type(char const **optional_elements);

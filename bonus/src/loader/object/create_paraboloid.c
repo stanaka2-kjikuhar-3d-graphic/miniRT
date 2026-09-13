@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 19:05:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/07 22:21:47 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/17 07:06:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,24 @@
 #include "object.h"
 #include "range.h"
 #include "aabb.h"
+#include "loader.h"
+#include "object_loader.h"
 
-#include "../object_private.h"
+#include "./object_loader_private.h"
 
-static void	set_paraboloid_uv(t_uv *uv, t_input_paraboloid const *input);
+static void	set_paraboloid_uv(t_uv *uv, t_paraboloid_input const *input);
 static bool	set_paraboloid_primitive(t_object *object, \
-				t_input_paraboloid const *input, t_vec3 dir);
+				t_paraboloid_input const *input, t_vec3 dir);
 static void	set_paraboloid_aabb_info(\
 				t_aabb_info *aabb_info, t_primitive const *primitive);
 
-bool	create_paraboloid(t_input_paraboloid const *input)
+bool	create_paraboloid(t_scene_input const *scene_input)
 {
-	t_object	object;
-	t_vec3		dir;
+	t_paraboloid_input const	*input;
+	t_object					object;
+	t_vec3						dir;
 
+	input = &(scene_input->paraboloid);
 	dir = vec3_normalize(input->dir);
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
@@ -42,7 +46,7 @@ bool	create_paraboloid(t_input_paraboloid const *input)
 	return (create_object(&object));
 }
 
-static void	set_paraboloid_uv(t_uv *uv, t_input_paraboloid const *input)
+static void	set_paraboloid_uv(t_uv *uv, t_paraboloid_input const *input)
 {
 	float	top_radius;
 
@@ -59,7 +63,7 @@ static void	set_paraboloid_uv(t_uv *uv, t_input_paraboloid const *input)
   taking sz = height gives s = sqrt(a * height) and Z in [0, 1].
 */
 static bool	set_paraboloid_primitive(t_object *object, \
-	t_input_paraboloid const *input, t_vec3 dir)
+	t_paraboloid_input const *input, t_vec3 dir)
 {
 	t_primitive_frame	frame;
 	float				radius;

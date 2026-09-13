@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_circle.c                                    :+:      :+:    :+:   */
+/*   create_disc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 05:59:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/07 22:09:20 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/17 07:06:57 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,35 @@
 #include "object.h"
 #include "range.h"
 #include "vector.h"
+#include "loader.h"
+#include "object_loader.h"
 
-#include "../object_private.h"
+#include "./object_loader_private.h"
 
-static void	set_circle_uv(t_uv *uv, t_input_circle const *input);
-static bool	set_circle_primitive(\
-				t_object *object, t_input_circle const *input, t_vec3 normal);
-static void	set_circle_aabb_info(t_aabb_info *aabb_info, \
-				t_input_circle const *input, t_vec3 normal);
+static void	set_disc_uv(t_uv *uv, t_disc_input const *input);
+static bool	set_disc_primitive(\
+				t_object *object, t_disc_input const *input, t_vec3 normal);
+static void	set_disc_aabb_info(t_aabb_info *aabb_info, \
+				t_disc_input const *input, t_vec3 normal);
 
-bool	create_circle(t_input_circle const *input)
+bool	create_disc(t_scene_input const *scene_input)
 {
-	t_object	object;
-	t_vec3		normal;
+	t_disc_input const	*input;
+	t_object			object;
+	t_vec3				normal;
 
+	input = &(scene_input->disc);
 	normal = vec3_normalize(input->normal);
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
-	set_circle_uv(&(object.uv), input);
-	if (!set_circle_primitive(&object, input, normal))
+	set_disc_uv(&(object.uv), input);
+	if (!set_disc_primitive(&object, input, normal))
 		return (false);
-	set_circle_aabb_info(&(object.aabb_info), input, normal);
+	set_disc_aabb_info(&(object.aabb_info), input, normal);
 	return (create_object(&object));
 }
 
-static void	set_circle_uv(t_uv *uv, t_input_circle const *input)
+static void	set_disc_uv(t_uv *uv, t_disc_input const *input)
 {
 	uv->type = input->option.uv_type;
 	uv->pattern_size = input->option.pattern_size;
@@ -53,8 +57,8 @@ static void	set_circle_uv(t_uv *uv, t_input_circle const *input)
 	uv->v_range = input->option.v_range;
 }
 
-static bool	set_circle_primitive(\
-	t_object *object, t_input_circle const *input, t_vec3 normal)
+static bool	set_disc_primitive(\
+	t_object *object, t_disc_input const *input, t_vec3 normal)
 {
 	t_primitive_frame	frame;
 
@@ -65,8 +69,8 @@ static bool	set_circle_primitive(\
 	return (build_primitive(&frame, &(object->primitive)));
 }
 
-static void	set_circle_aabb_info(\
-	t_aabb_info *aabb_info, t_input_circle const *input, t_vec3 normal)
+static void	set_disc_aabb_info(\
+	t_aabb_info *aabb_info, t_disc_input const *input, t_vec3 normal)
 {
 	t_vec3	extent;
 

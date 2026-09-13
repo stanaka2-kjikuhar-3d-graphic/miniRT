@@ -6,14 +6,15 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 20:37:35 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/08 23:52:38 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/17 00:25:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdbool.h>
 
-#include "object.h"
+#include "loader.h"
+#include "object_loader.h"
 #include "ft_error.h"
 
 #include "../parser_private.h"
@@ -21,14 +22,13 @@
 #define REQUIRED_COUNT 5
 
 static bool	parse_cone_required(\
-				char const **elements, t_input_cone *input);
+				char const **elements, t_cone_input *input);
 static bool	parse_cone_optional(\
-				char const **optional_elements, t_input_cone *input);
+				char const **optional_elements, t_cone_input *input);
 
-bool	parse_cone(char const **elements)
+bool	parse_cone(char const **elements, t_scene_input *input)
 {
-	size_t			count;
-	t_input_cone	input;
+	size_t	count;
 
 	count = count_split(elements);
 	if (count < REQUIRED_COUNT)
@@ -36,16 +36,17 @@ bool	parse_cone(char const **elements)
 		print_line_error(ERROR_FIELDS_COUNT, HINT_CO);
 		return (false);
 	}
-	if (!parse_cone_required(elements, &input) \
-		|| !parse_cone_optional(elements + REQUIRED_COUNT, &input))
+	input->type = CONE_INPUT;
+	if (!parse_cone_required(elements, &(input->cone)) \
+		|| !parse_cone_optional(elements + REQUIRED_COUNT, &(input->cone)))
 	{
 		return (false);
 	}
-	return (create_cone(&input));
+	return (true);
 }
 
 static bool	parse_cone_required(\
-	char const **elements, t_input_cone *input)
+	char const **elements, t_cone_input *input)
 {
 	t_required_field	fields[REQUIRED_COUNT];
 
@@ -58,12 +59,12 @@ static bool	parse_cone_required(\
 }
 
 static bool	parse_cone_optional(\
-	char const **optional_elements, t_input_cone *input)
+	char const **optional_elements, t_cone_input *input)
 {
 	t_optional_field	fields[OPTIONAL_FIELD_COUNT];
 
 	init_optional_fields(fields);
-	bind_material_option(fields, &(input->option.material));
+	bind_material_option_input(fields, &(input->option.material));
 	fields[OPTIONAL_CHECKER_COUNT_U_EVEN].value \
 		= &(input->option.checker_count.u);
 	fields[OPTIONAL_CHECKER_COUNT_V].value = &(input->option.checker_count.v);

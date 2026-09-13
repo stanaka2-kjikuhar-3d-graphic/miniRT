@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/07 22:18:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/17 07:07:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,23 @@
 #include "matrix.h"
 #include "object.h"
 #include "range.h"
+#include "loader.h"
+#include "object_loader.h"
 
-#include "../object_private.h"
+#include "./object_loader_private.h"
 
-static void	set_sphere_uv(t_uv *uv, t_input_sphere const *input);
+static void	set_sphere_uv(t_uv *uv, t_sphere_input const *input);
 static bool	set_sphere_primitive(\
-				t_object *object, t_input_sphere const *input);
+				t_object *object, t_sphere_input const *input);
 static void	set_sphere_aabb_info(\
-				t_aabb_info *aabb_info, t_input_sphere const *input);
+				t_aabb_info *aabb_info, t_sphere_input const *input);
 
-bool	create_sphere(t_input_sphere const *input)
+bool	create_sphere(t_scene_input const *scene_input)
 {
-	t_object	object;
+	t_sphere_input const	*input;
+	t_object				object;
 
+	input = &(scene_input->sphere);
 	set_material_from_option(&(object.material), input->albedo, \
 		&(input->option.material));
 	set_sphere_uv(&(object.uv), input);
@@ -38,7 +42,7 @@ bool	create_sphere(t_input_sphere const *input)
 	return (create_object(&object));
 }
 
-static void	set_sphere_uv(t_uv *uv, t_input_sphere const *input)
+static void	set_sphere_uv(t_uv *uv, t_sphere_input const *input)
 {
 	uv->type = UV_DEFAULT;
 	set_uv_checker(uv, input->option.checker_count);
@@ -47,7 +51,7 @@ static void	set_sphere_uv(t_uv *uv, t_input_sphere const *input)
 	uv->v_range = (t_range){.min = 0.0f, .max = 1.0f};
 }
 
-static bool	set_sphere_primitive(t_object *object, t_input_sphere const *input)
+static bool	set_sphere_primitive(t_object *object, t_sphere_input const *input)
 {
 	t_primitive_frame	frame;
 
@@ -60,7 +64,7 @@ static bool	set_sphere_primitive(t_object *object, t_input_sphere const *input)
 }
 
 static void	set_sphere_aabb_info(\
-	t_aabb_info *aabb_info, t_input_sphere const *input)
+	t_aabb_info *aabb_info, t_sphere_input const *input)
 {
 	aabb_info->aabb = calc_aabb_from_extent(input->center, \
 						vec3(input->radius, input->radius, input->radius));

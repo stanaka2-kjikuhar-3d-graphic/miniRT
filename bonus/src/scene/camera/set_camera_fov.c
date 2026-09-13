@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_uv_checker.c                                   :+:      :+:    :+:   */
+/*   set_camera_fov.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/02 03:10:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 03:03:06 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/09/13 15:34:23 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/09/13 17:10:23 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "object.h"
 #include "vector.h"
+#include "camera.h"
 
-#include "../object_private.h"
+#include "./camera_private.h"
 
-void	set_uv_checker(t_uv *uv, t_ivec2 checker_count)
+void	set_camera_fov(float fov)
 {
-	uv->checker_count = checker_count;
-	uv->checker_size = (t_vec2){\
-		.u = 1.0f / (float)checker_count.u, \
-		.v = 1.0f / (float)checker_count.v};
+	get_mutable_camera()->fov = fov;
 }

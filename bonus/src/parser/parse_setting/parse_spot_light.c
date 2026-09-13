@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 04:26:53 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/08 23:51:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/17 00:30:05 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 #include <stdbool.h>
 
 #include "ft_error.h"
-#include "light.h"
+#include "loader.h"
+#include "light_loader.h"
 
 #include "../parser_private.h"
 
 #define REQUIRED_COUNT 5
 
 static bool	parse_spot_light_required(\
-				char const **elements, t_input_spot_light *input);
+				char const **elements, t_spot_light_input *input);
 
-bool	parse_spot_light(char const **elements)
+bool	parse_spot_light(char const **elements, t_scene_input *input)
 {
-	size_t				count;
-	t_input_spot_light	input;
+	size_t	count;
 
 	count = count_split(elements);
 	if (count != REQUIRED_COUNT)
@@ -34,13 +34,14 @@ bool	parse_spot_light(char const **elements)
 		print_line_error(ERROR_FIELDS_COUNT, HINT_SL);
 		return (false);
 	}
-	if (!parse_spot_light_required(elements, &input))
+	input->type = SPOT_LIGHT_INPUT;
+	if (!parse_spot_light_required(elements, &(input->spot_light)))
 		return (false);
-	return (create_spot_light(&input));
+	return (true);
 }
 
 static bool	parse_spot_light_required(\
-	char const **elements, t_input_spot_light *input)
+	char const **elements, t_spot_light_input *input)
 {
 	t_required_field	fields[REQUIRED_COUNT];
 

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/29 17:30:47 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/17 07:06:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,6 @@ typedef struct s_roots
 	float	t[2];
 }	t_roots;
 
-typedef struct s_primitive_frame
-{
-	enum e_primitive_type	type;
-	t_mat3					basis;
-	t_vec3					origin;
-	t_vec3					scale;
-	union
-	{
-		t_range				z_range;
-		t_vec2				half_size;
-	};
-}	t_primitive_frame;
-
-bool	create_object(t_object const *object);
-void	set_material_from_option(t_material *material, t_color albedo, \
-			t_material_option const *option);
-void	set_option_from_material(t_material_option *option, \
-			t_material const *material);
-void	set_uv_checker(t_uv *uv, t_ivec2 checker_count);
-t_mat3	calc_onb(t_vec3 n);
-bool	build_primitive(t_primitive_frame const *frame, t_primitive *out);
 t_mat4	unit_quadric(enum e_primitive_type type);
 float	calc_primitive_intersection(\
 			t_primitive const *prim, t_ray const *ray);

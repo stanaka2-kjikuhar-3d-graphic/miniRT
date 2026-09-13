@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:15:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/25 23:44:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/16 23:11:35 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 #include "./parser_private.h"
 
-bool	parser(char const *filename)
+bool	parser(char const *filename, t_list **scene_input)
 {
 	int		fd;
 	t_list	*line_list;
@@ -38,7 +38,7 @@ bool	parser(char const *filename)
 		return (false);
 	}
 	close(fd);
-	if (!parse_settings(&line_list))
+	if (!parse_settings(&line_list, scene_input))
 	{
 		ft_lstclear(&line_list, free);
 		return (false);

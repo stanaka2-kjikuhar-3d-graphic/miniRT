@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   directional_light.c                                :+:      :+:    :+:   */
+/*   create_camera.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/23 20:34:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 17:03:45 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/09/13 15:32:32 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/09/17 07:52:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
-#include "color.h"
-#include "light.h"
+#include "camera.h"
+#include "loader.h"
+#include "camera_loader.h"
+#include "viewport.h"
 
-#include "./light_private.h"
-
-bool	create_directional_light(t_input_directional_light const *input)
+bool	create_camera(t_scene_input const *scene_input)
 {
-	t_light	light;
+	t_camera_input const	*input;
 
-	light.type = DIRECTIONAL_LIGHT;
-	light.directional.color = input->color;
-	light.directional.brightness = input->brightness;
-	light.directional.radiance = scale_color(input->brightness, input->color);
-	light.directional.dir = input->dir;
-	return (create_light(&light));
+	input = &(scene_input->camera);
+	set_camera_pos(input->pos);
+	set_camera_dir(input->dir);
+	set_camera_fov(input->fov);
+	set_viewport(input->fov);
+	return (true);
 }

@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/09/13 18:02:05 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/09/17 07:17:13 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,6 +109,8 @@ else
 
 INCLUDE_DIRS		:=	bonus/include \
 						$(addprefix bonus/include/, \
+							builder \
+							loader \
 							renderer \
 							scene \
 							view \
@@ -131,10 +133,14 @@ SRC_DIRS	:= mandatory/src
 else
 SRC_DIRS	:= bonus/src
 SRC_DIRS	+= $(addprefix bonus/src/, \
-					accelerator \
-					$(addprefix accelerator/, \
-						bvh \
-						infinite_objects \
+					builder \
+					$(addprefix builder/, \
+						rebased_world_converter \
+						accelerator \
+						$(addprefix accelerator/, \
+							bvh \
+							infinite_objects \
+						) \
 					) \
 					parser \
 					$(addprefix parser/, \
@@ -152,18 +158,29 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 							lighting \
 						) \
 					) \
-					$(addprefix scene/, \
-						camera camera/internal \
+					loader \
+					$(addprefix loader/, \
+						camera \
 						light \
+						$(addprefix light/, \
+							internal \
+						) \
 						object \
 						$(addprefix object/, \
-							circle \
-							cylinder \
-							cone \
-							hyperboloid \
-							paraboloid \
-							plane \
-							sphere \
+							internal \
+						) \
+					) \
+					$(addprefix scene/, \
+						camera \
+						$(addprefix camera/, \
+							internal \
+						) \
+						light \
+						$(addprefix light/, \
+							internal \
+						) \
+						object \
+						$(addprefix object/, \
 							primitive \
 							internal \
 						) \
@@ -279,10 +296,14 @@ SRCS	+=	is_blank_line.c \
 			count_split.c \
 			free_split.c
 
-# accelerator
+# builder
+SRCS	+=	builder.c
+# builder/rebased_world_converter
+SRCS	+=	rebase_world_space.c
+# builder/accelerator
 SRCS	+=	build_accelerator.c \
 			cleanup_accelerator.c
-# accelerator/bvh
+# builder/accelerator/bvh
 SRCS	+=	bvh.c \
 			aabb_leaves.c \
 			build_bvh.c \
@@ -291,9 +312,35 @@ SRCS	+=	bvh.c \
 			calc_bin_index.c \
 			calc_sah_cost.c \
 			add_leaf_node.c
-# accelerator/infinite_objects
+# builder/accelerator/infinite_objects
 SRCS	+=	infinite_objects.c \
 			build_infinite_objects.c
+
+# loader
+SRCS	+=	loader.c
+# loader/camera
+SRCS	+=	create_camera.c
+# loader/light
+SRCS	+=	create_ambient_light.c \
+			create_point_light.c \
+			create_spot_light.c \
+			create_directional_light.c \
+			create_uniform_infinite_light.c
+# loader/light/internal
+SRCS	+=	set_dist_attenuation.c
+# loader/object
+SRCS	+=	create_sphere.c \
+			create_plane.c \
+			create_cylinder.c \
+			create_disc.c \
+			create_cone.c \
+			create_hyperboloid.c \
+			create_paraboloid.c
+# loader/object/internal
+SRCS	+=	build_primitive.c \
+			calc_onb.c \
+			set_material.c \
+			set_uv_checker.c
 
 # renderer
 SRCS	+=	renderer.c \
@@ -321,6 +368,7 @@ SRCS	+=	phong_lighting.c \
 SRCS	+=	camera.c \
 			set_camera_pos.c \
 			set_camera_dir.c \
+			set_camera_fov.c \
 			change_camera_fov.c \
 			rotate_camera.c
 # scene/camera/internal
@@ -330,13 +378,11 @@ SRCS	+=	calc_camera_dir.c \
 
 # scene/light
 SRCS	+=	light.c \
-			ambient_light.c \
-			point_light.c \
-			spot_light.c \
-			directional_light.c \
-			set_dist_attenuation.c \
-			calc_dist_attenuation.c \
-			check_cutoff.c
+			check_cutoff.c \
+			calc_point_light_attenuation.c \
+			calc_spot_light_attenuation.c
+# scene/light/internal
+SRCS	+=	calc_dist_attenuation.c
 
 # scene/object
 SRCS	+=	object.c \
@@ -348,23 +394,8 @@ SRCS	+=	object.c \
 			calc_bump_mapping.c \
 			calc_normal_mapping.c \
 			calc_aabb_intersection.c
-# scene/object/sphere
-SRCS	+=	create_sphere.c
-# scene/object/plane
-SRCS	+=	create_plane.c
-# scene/object/cylinder
-SRCS	+=	create_cylinder.c
-# scene/object/circle
-SRCS	+=	create_circle.c
-# scene/object/cone
-SRCS	+=	create_cone.c
-# scene/object/hyperboloid
-SRCS	+=	create_hyperboloid.c
-# scene/object/paraboloid
-SRCS	+=	create_paraboloid.c
 # scene/object/primitive
-SRCS	+=	build_primitive.c \
-			unit_quadric.c \
+SRCS	+=	unit_quadric.c \
 			calc_primitive_intersection.c \
 			calc_planar_intersection.c \
 			calc_quadric_intersection.c \
@@ -374,10 +405,7 @@ SRCS	+=	build_primitive.c \
 			is_planar_primitive.c \
 			is_quadric_primitive.c
 # scene/object/internal
-SRCS	+=	calc_onb.c \
-			adjust_uv_range.c \
-			set_material.c \
-			set_uv_checker.c
+SRCS	+=	adjust_uv_range.c
 
 # view/viewport
 SRCS	+=	viewport.c

@@ -6,14 +6,15 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:17:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/08 23:52:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/17 00:28:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdbool.h>
 
-#include "object.h"
+#include "loader.h"
+#include "object_loader.h"
 #include "ft_error.h"
 
 #include "../parser_private.h"
@@ -21,14 +22,13 @@
 #define REQUIRED_COUNT 3
 
 static bool	parse_sphere_required(\
-				char const **elements, t_input_sphere *input);
+				char const **elements, t_sphere_input *input);
 static bool	parse_sphere_optional(\
-				char const **optional_elements, t_input_sphere *input);
+				char const **optional_elements, t_sphere_input *input);
 
-bool	parse_sphere(char const **elements)
+bool	parse_sphere(char const **elements, t_scene_input *input)
 {
 	size_t			count;
-	t_input_sphere	input;
 
 	count = count_split(elements);
 	if (count < REQUIRED_COUNT)
@@ -36,16 +36,17 @@ bool	parse_sphere(char const **elements)
 		print_line_error(ERROR_FIELDS_COUNT, HINT_SP);
 		return (false);
 	}
-	if (!parse_sphere_required(elements, &input) \
-		|| !parse_sphere_optional(elements + REQUIRED_COUNT, &input))
+	input->type = SPHERE_INPUT;
+	if (!parse_sphere_required(elements, &(input->sphere)) \
+		|| !parse_sphere_optional(elements + REQUIRED_COUNT, &(input->sphere)))
 	{
 		return (false);
 	}
-	return (create_sphere(&input));
+	return (true);
 }
 
 static bool	parse_sphere_required(\
-	char const **elements, t_input_sphere *input)
+	char const **elements, t_sphere_input *input)
 {
 	t_required_field	fields[REQUIRED_COUNT];
 
@@ -56,12 +57,12 @@ static bool	parse_sphere_required(\
 }
 
 static bool	parse_sphere_optional(\
-	char const **optional_elements, t_input_sphere *input)
+	char const **optional_elements, t_sphere_input *input)
 {
 	t_optional_field	fields[OPTIONAL_FIELD_COUNT];
 
 	init_optional_fields(fields);
-	bind_material_option(fields, &(input->option.material));
+	bind_material_option_input(fields, &(input->option.material));
 	fields[OPTIONAL_CHECKER_COUNT_U_EVEN].value \
 		= &(input->option.checker_count.u);
 	fields[OPTIONAL_CHECKER_COUNT_U_EVEN].default_value.integer *= 2;

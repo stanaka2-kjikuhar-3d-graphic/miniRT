@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:09:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/04 22:00:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/17 00:23:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 #include <stdbool.h>
 
 #include "ft_error.h"
-#include "camera.h"
+#include "loader.h"
+#include "camera_loader.h"
 #include "viewport.h"
 
 #include "../parser_private.h"
 
 #define REQUIRED_COUNT 3
 
-static bool	parse_camera_required(char const **elements, t_input_camera *input);
+static bool	parse_camera_required(char const **elements, t_camera_input *input);
 
-bool	parse_camera(char const **elements)
+bool	parse_camera(char const **elements, t_scene_input *input)
 {
-	size_t			count;
-	t_input_camera	input;
+	size_t	count;
 
 	count = count_split(elements);
 	if (count != REQUIRED_COUNT)
@@ -34,13 +34,13 @@ bool	parse_camera(char const **elements)
 		print_line_error(ERROR_FIELDS_COUNT, HINT_C);
 		return (false);
 	}
-	if (!parse_camera_required(elements, &input))
+	input->type = CAMERA_INPUT;
+	if (!parse_camera_required(elements, &(input->camera)))
 		return (false);
-	set_camera(&input);
 	return (true);
 }
 
-static bool	parse_camera_required(char const **elements, t_input_camera *input)
+static bool	parse_camera_required(char const **elements, t_camera_input *input)
 {
 	t_required_field	fields[REQUIRED_COUNT];
 

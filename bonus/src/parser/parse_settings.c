@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/08 23:50:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/17 07:50:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 #include "ft_string.h"
 
 #include "ft_error.h"
+#include "loader.h"
 
 #include "./parser_private.h"
 
-static bool		parse_line(char *line, bool *used);
-static bool		parse_setting(char const **elements, bool *used);
-static bool		validate_required_setting(bool const *used);
+static bool	parse_line(char *line, bool *used, t_list **scene_input);
+static bool	parse_setting(\
+				char const **elements, bool *used, t_scene_input *input);
+static bool	validate_required_setting(bool const *used);
 
 static const t_setting_parser	g_setting_parsers[SETTING_ID_COUNT] = {\
 	[SETTING_AMBIENT_LIGHT] \
@@ -41,7 +43,7 @@ static const t_setting_parser	g_setting_parsers[SETTING_ID_COUNT] = {\
 	[SETTING_PARABOLOID] = {"pb", NULL, NULL, parse_paraboloid} \
 };
 
-bool	parse_settings(t_list **line_list)
+bool	parse_settings(t_list **line_list, t_list **scene_input)
 {
 	char	*line;
 	size_t	line_number;
@@ -53,8 +55,8 @@ bool	parse_settings(t_list **line_list)
 	{
 		line = ft_lst_pop_front(line_list);
 		set_error_line(++line_number, line);
-		if (!is_blank_line(line) && !is_comment_line(line) \
-			&& !parse_line(line, used))
+		if (!is_blank_line(line) && !is_comment_line(line)
+			&& !parse_line(line, used, scene_input))
 		{
 			free(line);
 			return (false);
@@ -64,17 +66,26 @@ bool	parse_settings(t_list **line_list)
 	return (validate_required_setting(used));
 }
 
-static bool	parse_line(char *line, bool *used)
+static bool	parse_line(char *line, bool *used, t_list **scene_input)
 {
-	char	**elements;
+	t_scene_input	*input;
+	char			**elements;
 
+	input = malloc(sizeof(t_scene_input));
+	if (input == NULL || !ft_lst_push_back(scene_input, input))
+	{
+		print_errno();
+		free(input);
+		return (false);
+	}
 	elements = ft_split_set(line, " \f\r\t\v");
 	if (elements == NULL)
 	{
 		print_errno();
+		free_split(elements);
 		return (false);
 	}
-	if (!parse_setting((char const **)elements, used))
+	if (!parse_setting((char const **)elements, used, input))
 	{
 		free_split(elements);
 		return (false);
@@ -83,7 +94,8 @@ static bool	parse_line(char *line, bool *used)
 	return (true);
 }
 
-static bool	parse_setting(char const **elements, bool *used)
+static bool	parse_setting(\
+	char const **elements, bool *used, t_scene_input *input)
 {
 	enum e_setting	idx;
 
@@ -99,14 +111,13 @@ static bool	parse_setting(char const **elements, bool *used)
 		print_line_error(ERROR_ID_UNKNOWN, NULL);
 		return (false);
 	}
-	if (used[idx] == true \
-		&& g_setting_parsers[idx].dup_err != NULL)
+	if (used[idx] == true && g_setting_parsers[idx].dup_err != NULL)
 	{
 		print_line_error(g_setting_parsers[idx].dup_err, NULL);
 		return (false);
 	}
 	used[idx] = true;
-	return (g_setting_parsers[idx].parse(elements + 1));
+	return (g_setting_parsers[idx].parse(elements + 1, input));
 }
 
 static bool	validate_required_setting(bool const *used)

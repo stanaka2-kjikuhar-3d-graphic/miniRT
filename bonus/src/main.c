@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 18:49:21 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/17 07:18:07 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,17 @@
 #include "renderer.h"
 #include "ft_error.h"
 #include "accelerator.h"
+#include "builder.h"
+#include "loader.h"
 
 static bool	is_valid_argument(int argc, char const *argv[]);
 static void	cleanup(void);
 
 int	main(int argc, char const *argv[])
 {
+	t_list	*scene_input;
+
+	scene_input = NULL;
 	if (!is_valid_argument(argc, argv))
 	{
 		print_argument_error(argv[0]);
@@ -40,8 +45,12 @@ int	main(int argc, char const *argv[])
 	init_color_lut();
 	if (!create_mlx_connection())
 		return (EXIT_FAILURE);
-	if (!parser(argv[1]) || !build_accelerator() || !setup_mlx_window())
+	if (!parser(argv[1], &scene_input) \
+		|| !loader(&scene_input) \
+		|| !builder() \
+		|| !setup_mlx_window())
 	{
+		ft_lstclear(&scene_input, free);
 		cleanup();
 		return (EXIT_FAILURE);
 	}

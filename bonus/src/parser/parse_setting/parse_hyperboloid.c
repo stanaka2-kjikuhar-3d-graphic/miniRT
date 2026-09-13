@@ -6,14 +6,15 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 20:37:31 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/08 23:52:38 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/17 07:51:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdbool.h>
 
-#include "object.h"
+#include "loader.h"
+#include "object_loader.h"
 #include "ft_error.h"
 
 #include "../parser_private.h"
@@ -21,14 +22,13 @@
 #define REQUIRED_COUNT 6
 
 static bool	parse_hyperboloid_required(\
-				char const **elements, t_input_hyperboloid *input);
+				char const **elements, t_hyperboloid_input *input);
 static bool	parse_hyperboloid_optional(\
-				char const **optional_elements, t_input_hyperboloid *input);
+				char const **optional_elements, t_hyperboloid_input *input);
 
-bool	parse_hyperboloid(char const **elements)
+bool	parse_hyperboloid(char const **elements, t_scene_input *input)
 {
-	size_t				count;
-	t_input_hyperboloid	input;
+	size_t	count;
 
 	count = count_split(elements);
 	if (count < REQUIRED_COUNT)
@@ -36,16 +36,18 @@ bool	parse_hyperboloid(char const **elements)
 		print_line_error(ERROR_FIELDS_COUNT, HINT_HB);
 		return (false);
 	}
-	if (!parse_hyperboloid_required(elements, &input) \
-		|| !parse_hyperboloid_optional(elements + REQUIRED_COUNT, &input))
+	input->type = HYPERBOLOID_INPUT;
+	if (!parse_hyperboloid_required(elements, &(input->hyperboloid)) \
+		|| !parse_hyperboloid_optional(\
+				elements + REQUIRED_COUNT, &(input->hyperboloid)))
 	{
 		return (false);
 	}
-	return (create_hyperboloid(&input));
+	return (true);
 }
 
 static bool	parse_hyperboloid_required(\
-	char const **elements, t_input_hyperboloid *input)
+	char const **elements, t_hyperboloid_input *input)
 {
 	t_required_field	fields[REQUIRED_COUNT];
 
@@ -70,12 +72,12 @@ static bool	parse_hyperboloid_required(\
 }
 
 static bool	parse_hyperboloid_optional(\
-	char const **optional_elements, t_input_hyperboloid *input)
+	char const **optional_elements, t_hyperboloid_input *input)
 {
 	t_optional_field	fields[OPTIONAL_FIELD_COUNT];
 
 	init_optional_fields(fields);
-	bind_material_option(fields, &(input->option.material));
+	bind_material_option_input(fields, &(input->option.material));
 	fields[OPTIONAL_CHECKER_COUNT_U_EVEN].value \
 		= &(input->option.checker_count.u);
 	fields[OPTIONAL_CHECKER_COUNT_V].value = &(input->option.checker_count.v);
