@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   transform_ray.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/16 20:13:46 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/14 12:41:09 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/09/11 20:37:01 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/09/13 14:32:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
+#include "ray.h"
+#include "matrix.h"
 
-# include "vector.h"
-
-typedef struct s_ray
+t_ray	transform_ray(t_mat4 const *transform, t_ray const *ray)
 {
-	t_vec3	dir;
-	t_vec3	origin;
-}	t_ray;
-
-#endif
+	return ((t_ray){\
+		.origin = mat4_transform_point(transform, ray->origin), \
+		.dir = mat4_transform_dir(transform, ray->dir) \
+	});
+}
