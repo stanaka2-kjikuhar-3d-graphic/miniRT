@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/09/10 21:31:04 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/09/13 18:02:05 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -176,7 +176,10 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 						color \
 						ft_error \
 						matrix \
-						matrix/internal \
+						$(addprefix matrix/, \
+							internal \
+						) \
+						ray \
 						$(addprefix vector/, \
 							vec3 \
 							vec4 \
@@ -468,6 +471,11 @@ SRCS	+=	mat4_identity.c \
 SRCS	+=	mat4_minor.c \
 			mat4_cofactor.c \
 			mat4_det.c
+
+# utils/ray
+SRCS	+=	calc_ray.c \
+			transform_ray.c
+
 endif
 
 # -------------------------- #
