@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/04 21:22:10 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/10/04 21:22:12 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -298,6 +298,7 @@ SRCS	+=	infinite_objects.c \
 SRCS	+=	renderer.c \
 			render_flag.c \
 			render_mode.c \
+			render_pixel.c \
 			put_color_to_window_image.c \
 			camera_ray.c
 
