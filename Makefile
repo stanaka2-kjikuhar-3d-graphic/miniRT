@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/04 21:21:44 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/10/04 21:22:10 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -312,6 +312,9 @@ SRCS	+=	find_closest_hit.c \
 # renderer/raytracer
 SRCS	+=	raytrace_pixel.c \
 			trace_ray.c
+
+# renderer/phong
+SRCS	+=	phong_pixel.c
 
 # renderer/phong/lighting
 SRCS	+=	phong_lighting.c \
