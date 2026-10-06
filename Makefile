@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/04 21:22:12 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/10/04 22:36:18 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -315,7 +315,8 @@ SRCS	+=	raytrace_pixel.c \
 			trace_ray.c
 
 # renderer/phong
-SRCS	+=	phong_pixel.c
+SRCS	+=	phong_pixel.c \
+					phong_mode.c
 
 # renderer/phong/lighting
 SRCS	+=	phong_lighting.c \
