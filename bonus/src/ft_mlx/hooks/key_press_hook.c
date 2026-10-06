@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 16:50:32 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 21:18:32 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/06 22:26:39 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 #include "ft_mlx.h"
 #include "camera.h"
 #include "renderer.h"
+#include "phong.h"
 
 #include "../ft_mlx_private.h"
 
 static void	camera_move_action(enum e_camera_action action);
 static void	switch_render_mode(void);
+static void	switch_phong_mode(void);
 
 int	key_press_hook(int keycode, void *param)
 {
@@ -42,6 +44,8 @@ int	key_press_hook(int keycode, void *param)
 		camera_move_action(CAMERA_ACTION_MOVE_DOWN);
 	else if (keycode == XK_m)
 		switch_render_mode();
+	else if (keycode == XK_b)
+		switch_phong_mode();
 	return (0);
 }
 
@@ -53,6 +57,17 @@ static void	switch_render_mode(void)
 	if (next >= RENDER_MODE_COUNT)
 		next = RENDER_MODE_RAYTRACE;
 	set_render_mode(next);
+	set_render_flag(true);
+}
+
+static void	switch_phong_mode(void)
+{
+	enum e_phong_mode	next;
+
+	next = (enum e_phong_mode)(get_phong_mode() + 1);
+	if (next >= PHONG_MODE_COUNT)
+		next = PHONG_MODE_PHONG;
+	set_phong_mode(next);
 	set_render_flag(true);
 }
 
