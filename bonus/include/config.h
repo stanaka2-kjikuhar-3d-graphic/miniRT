@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 00:57:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 18:54:33 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/06 22:25:41 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,6 @@
 # define COLOR_ENCODING_MODE ENCODING_SRGB
 # define GAMMA 2.2
 
-# define PHONG_MODEL 0
-# define BLINN_PHONG_MODEL 1
-# define RENDERING_MODEL PHONG_MODEL
-
 # define FRAME_RATE 24
 # define SEC_TO_USEC 1000000
 
@@ -45,18 +41,14 @@
 # define LIGHT_RANGE 3250.0f
 # define LIGHT_COLOR_CUTOFF 0.000001f // 1e-6
 
-# if RENDERING_MODEL == PHONG_MODEL
-#  define DEFAULT_SHININESS 32.0f
-# elif RENDERING_MODEL == BLINN_PHONG_MODEL
-#  define DEFAULT_SHININESS 8.0f
-# else
-#  error "Error"
-#  error "invalid RENDERING_MODEL"
-# endif
+# define DEFAULT_SHININESS 32.0f
 
 # define DEFAULT_PATTERN_SIZE 10.0f
 # define DEFAULT_BUMP_STRENGTH 1.0f
 # define DEFAULT_CHECKER_COUNT 4
+# define DEFAULT_REFLECTIVITY 0.0f
+
+# define MAX_RECURSION_DEPTH 5
 
 # define BVH_BIN 16
 # define BVH_LEAF_MAX 4

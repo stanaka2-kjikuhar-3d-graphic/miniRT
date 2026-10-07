@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/10 19:17:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/15 22:25:01 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@
 # define HINT_CHECKER_COUNT "2 <= n <= 1024"
 # define HINT_CHECKER_COUNT_EVEN "2 <= n <= 1024, even number"
 # define HINT_FLOAT_FINITE "FLT_MIN <= x <= FLT_MAX"
+# define HINT_RATIO_RANGE "0.0 <= x <= 1.0"
 
 /* Hint: field syntax */
 # define HINT_VECTOR "x,y,z"

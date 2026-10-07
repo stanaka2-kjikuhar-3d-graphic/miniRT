@@ -6,13 +6,12 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 20:45:00 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/06 20:47:26 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/06 22:26:13 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_math.h"
 
-#include "config.h"
 #include "ray.h"
 
 #include "../phong_private.h"
@@ -24,7 +23,7 @@ static float	calc_blinn_phong_specular_dot(t_ray const *ray, \
 
 float	calc_specular_dot(t_ray const *ray, t_hit const *hit, t_vec3 to_light)
 {
-	if (RENDERING_MODEL == BLINN_PHONG_MODEL)
+	if (get_phong_mode() == PHONG_MODE_BLINN_PHONG)
 		return (calc_blinn_phong_specular_dot(ray, hit, to_light));
 	return (calc_phong_specular_dot(ray, hit, to_light));
 }

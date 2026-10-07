@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 02:56:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/31 17:05:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/09/10 22:39:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "ray.h"
 #include "light.h"
 
+#include "phong.h"
 #include "../phong_private.h"
 
 t_color	phong_lighting(t_ray const *ray, t_hit const *hit)

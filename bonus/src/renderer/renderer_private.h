@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 23:56:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 17:21:43 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/04 21:22:12 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@
 # include "vector.h"
 # include "color.h"
 # include "aabb.h"
+# include "ray.h"
 
 bool	check_render_flag(void);
-void	phong(t_ivec2 pixel);
+t_ray	calc_camera_ray(t_ivec2 pixel);
+void	render_pixel(t_ivec2 pixel);
+void	raytrace_pixel(t_ivec2 pixel);
+void	phong_pixel(t_ivec2 pixel);
 void	put_color_to_window_image(t_ivec2 pixel, t_color color);
 
 #endif

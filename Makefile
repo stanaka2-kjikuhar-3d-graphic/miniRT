@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/09/10 21:31:04 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/10/04 22:36:18 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -147,6 +147,7 @@ SRC_DIRS	+= $(addprefix bonus/src/, \
 					$(addprefix renderer/, \
 						intersection \
 						path_tracing \
+						raytracer \
 						phong \
 						$(addprefix phong/, \
 							lighting \
@@ -264,6 +265,7 @@ SRCS	+=	parse_vec3.c \
 			parse_texture.c \
 			parse_bool.c \
 			parse_shininess.c \
+			parse_reflectivity.c \
 			parse_size.c \
 			parse_long.c \
 			parse_checker_count.c \
@@ -295,7 +297,10 @@ SRCS	+=	infinite_objects.c \
 # renderer
 SRCS	+=	renderer.c \
 			render_flag.c \
-			put_color_to_window_image.c
+			render_mode.c \
+			render_pixel.c \
+			put_color_to_window_image.c \
+			camera_ray.c
 
 # renderer/intersection
 SRCS	+=	find_closest_hit.c \
@@ -304,8 +309,15 @@ SRCS	+=	find_closest_hit.c \
 			is_in_shadow.c \
 			bvh_shading.c \
 			infinite_objects_shading.c
+
+# renderer/raytracer
+SRCS	+=	raytrace_pixel.c \
+			trace_ray.c
+
 # renderer/phong
-SRCS	+=	phong.c
+SRCS	+=	phong_pixel.c \
+					phong_mode.c
+
 # renderer/phong/lighting
 SRCS	+=	phong_lighting.c \
 			phong_lighting_ambient.c \
