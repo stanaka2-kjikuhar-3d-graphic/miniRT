@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 12:00:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/10 22:13:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/07 21:40:16 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	set_material_from_option(t_material *material, t_color albedo, \
 	material->metalness = option->metalness;
 	material->shininess = option->shininess;
 	material->reflectivity = option->reflectivity;
+	material->ior = option->ior;
 }
 
 void	set_option_from_material(t_material_option *option, \
@@ -47,4 +48,5 @@ void	set_option_from_material(t_material_option *option, \
 	option->metalness = material->metalness;
 	option->shininess = material->shininess;
 	option->reflectivity = material->reflectivity;
+	option->ior = material->ior;
 }

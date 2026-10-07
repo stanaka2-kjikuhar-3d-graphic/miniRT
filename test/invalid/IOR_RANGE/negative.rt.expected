@@ -1,0 +1,4 @@
+Error
+line 4: sp 0,0,20 20 255,0,0 ior=-1.5
+ior '-1.5': out of range
+USAGE: 0 <= x

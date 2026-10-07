@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 12:00:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/10 22:10:47 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/07 21:10:06 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void	bind_material_option(\
 	fields[OPTIONAL_METALNESS].value = &(option->metalness);
 	fields[OPTIONAL_SHININESS].value = &(option->shininess);
 	fields[OPTIONAL_REFLECTIVITY].value = &(option->reflectivity);
+	fields[OPTIONAL_IOR].value = &(option->ior);
 }
