@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/10 21:08:12 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/09/10 21:18:44 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/07 22:21:55 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_hit
 	t_vec2			uv;
 	t_vec3			normal;
 	t_color			color;
+	bool			is_front_face;
 }	t_hit;
 
 t_hit	find_closest_hit(t_ray const *ray);

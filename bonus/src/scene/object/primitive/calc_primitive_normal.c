@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 18:51:33 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/31 06:47:28 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/07 22:23:15 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ t_vec3	calc_primitive_normal(\
 	t_vec3	local;
 	t_vec3	normal;
 
+	(void)ray;
 	local = mat4_transform_point(&(prim->to_local), point);
 	inv = mat3_from_mat4(&(prim->to_local));
 	normal = vec3_normalize(\
 			mat3_mul_transposed(&inv, local_normal(prim->type, local)));
-	if (vec3_dot(normal, ray->dir) > 0.0f)
-		return (vec3_scale(-1.0f, normal));
 	return (normal);
 }
 
