@@ -1,0 +1,4 @@
+Error
+line 4: sp 0,0,20 20 255,0,0 reflectivity=-0.1
+reflectivity '-0.1': out of range
+USAGE: 0.0 <= x <= 1.0
