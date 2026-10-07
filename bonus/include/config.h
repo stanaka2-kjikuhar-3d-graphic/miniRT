@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 00:57:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/06 22:25:41 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/07 21:30:08 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define DEFAULT_BUMP_STRENGTH 1.0f
 # define DEFAULT_CHECKER_COUNT 4
 # define DEFAULT_REFLECTIVITY 0.0f
+# define DEFAULT_IOR 0.0f
 
 # define MAX_RECURSION_DEPTH 5
 

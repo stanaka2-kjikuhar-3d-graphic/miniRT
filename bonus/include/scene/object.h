@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/10 22:05:02 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/07 21:31:00 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_material
 	bool				metalness;
 	float				shininess;
 	float				reflectivity;
+	float				ior;
 }	t_material;
 
 enum e_uv_type
@@ -145,6 +146,7 @@ typedef struct s_material_option
 	bool				metalness;
 	float				shininess;
 	float				reflectivity;
+	float				ior;
 }	t_material_option;
 
 // input
