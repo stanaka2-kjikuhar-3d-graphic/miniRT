@@ -32,7 +32,7 @@ typedef struct s_mat4            // アフィン変換
 `row[i]` は `m[i]` と同じメモリを指すので、行と v の内積は `vec3_dot(m->row[i], v)` と
 書ける（`mat3_mul_vec3`, `mat4_mul_vec4`）。一方、列はストライド付きの並びなので union
 では名指しできない。列を組む・読む関数は `m[][]` を手書きする（`mat3_from_columns`,
-`mat3_mul_transposed`, `calc_onb`）。
+`mat3_mul_transposed`, `mat3_build_onb`）。
 
 この重なりは `static_assert` で固定している。`sizeof(float[3][3]) == sizeof(t_vec3[3])`
 が `t_vec3` にパディングの無いことを保証し（＝`row[i]` と `m[i]` の先頭が一致する）、
@@ -83,7 +83,7 @@ typedef struct s_mat4            // アフィン変換
 | `mat3_mul_vec3(m, v)` | `m · v`。各成分は m の**行**と v の内積 |
 | `mat3_mul_transposed(m, v)` | `transpose(m) · v`。転置を組まず、各成分は m の**列**と v の内積 |
 
-`mat3_from_columns` は ONB（`calc_onb`）や TBN（`calc_primitive_tbn`）を組むのに使う。
+`mat3_from_columns` は ONB（`mat3_build_onb`）や TBN（`calc_primitive_tbn`）を組むのに使う。
 列に T, B, N を入れた行列に `mat3_mul_vec3` を掛けると接空間 → world の変換になり
 （`calc_normal_mapping`, `calc_bump_mapping`）、`mat3_mul_transposed` は逆転置による
 法線変換に使う（`calc_primitive_normal`。詳細は [primitive_normal.md](primitive_normal.md)）。
@@ -95,12 +95,12 @@ typedef struct s_mat4            // アフィン変換
 | `mat4_translate(t)` | 平行移動（右列に `t`） |
 | `mat4_scale(s)` | 各軸スケール（対角に `s`） |
 | `mat4_rotate(axis, degree)` | `axis` まわりに `degree` 度回転（Rodrigues。列＝回転後の基底ベクトル） |
-| `mat4_basis(basis, origin)` | 上位3x3 に基底 `t_mat3`、右列に `origin` を置く |
+| `mat4_build_basis(basis, origin)` | 上位3x3 に基底 `t_mat3`、右列に `origin` を置く |
 | `mat4_local_to_world(basis, origin, scale)` | `translate(origin) · basis · scale(s)` を直接組む |
 | `mat4_world_to_local(basis, origin, scale)` | その逆行列 `scale(1/s) · transpose(basis) · translate(-origin)` を閉形式で組む |
 | `mat4_is_valid_scale(scale)` | 各軸の \|scale\| が `EPSILON` 以上かを検証する |
 
-`mat4_basis` は正規直交基底（ONB）と中心から local→world の M を組む。基底を `t_mat3`
+`mat4_build_basis` は正規直交基底（ONB）と中心から local→world の M を組む。基底を `t_mat3`
 で受け取るため、`matrix` は上位レイヤ（scene）の型に依存しない。
 
 ```

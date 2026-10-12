@@ -77,7 +77,7 @@ c = oᵀQo   (o は点。w=1 なので位置・定数項が効く)
 
 ## 4. ワールド空間への変換
 
-`Q` はローカル空間（標準形、たとえば原点中心、軸はz軸、半径1）で定義し、`local_to_world` 行列 `M`（[matrix.md](matrix.md) の `mat4_basis` などで組む）を使ってワールド空間に座標変換する。
+`Q` はローカル空間（標準形、たとえば原点中心、軸はz軸、半径1）で定義し、`local_to_world` 行列 `M`（[matrix.md](matrix.md) の `mat4_build_basis` などで組む）を使ってワールド空間に座標変換する。
 
 ワールド点 `p_w` とローカル点 `p_l` の関係は `p_w = M·p_l`、つまり `p_l = M⁻¹·p_w` である。
 これをローカルの式に代入する。
@@ -94,7 +94,7 @@ p_wᵀ (M⁻ᵀ Q_local M⁻¹) p_w = 0
 `Q_world` には向き（ONB）、位置、スケールが全て含まれる。
 そのため、交差（`a=dᵀQd, b=2oᵀQd, c=oᵀQo`）と法線（`∇=Q·p`）は `t_quadric.q`（ワールド空間の `Q`）だけで完結し、`t_quadric` は別途 ONB を持たない。
 
-円錐・双曲面・放物面（[cone.md](cone.md), [hyperboloid.md](hyperboloid.md), [paraboloid.md](paraboloid.md)）は、この節の手順（ONBから基底を組む → `mat4_basis` → `quadric_to_world`）と5節の `t_quadric` の各フィールド（`axis`/`center`/`h_min`/`h_max`）への詰め込みが完全に共通のパターンになる。
+円錐・双曲面・放物面（[cone.md](cone.md), [hyperboloid.md](hyperboloid.md), [paraboloid.md](paraboloid.md)）は、この節の手順（ONBから基底を組む → `mat4_build_basis` → `quadric_to_world`）と5節の `t_quadric` の各フィールド（`axis`/`center`/`h_min`/`h_max`）への詰め込みが完全に共通のパターンになる。
 これをまとめたのが `build_quadric` である。
 
 ```c
@@ -127,7 +127,7 @@ bool	finite;  // 軸方向クランプの有無
 `finite = false` のときは常に `true` を返す。
 これは円柱の `check_cylinder_height` と同じ役割を、汎用二次曲面向けに切り出したものである。
 
-キャップ（円柱の上下の円など）は `Q` の範囲外にある平面なので、`OBJ_CIRCLE` を別オブジェクトとして重ねる既存の方式をそのまま使う。
+キャップ（円柱の上下の円など）は `Q` の範囲外にある平面なので、`OBJ_DISC` を別オブジェクトとして重ねる既存の方式をそのまま使う。
 
 ## 6. UV座標（円筒投影）
 
@@ -152,7 +152,7 @@ v      = (h - h_min) / (h_max - h_min)
 ## 例: sphere / cylinder の Q
 
 単位形状（ローカル空間）の `Q_local` は次の通りである。
-実際のスケール、位置、向きは `local_to_world` 側（`mat4_scale`, `mat4_basis` など）で与え、`quadric_to_world` でQを計算する。
+実際のスケール、位置、向きは `local_to_world` 側（`mat4_scale`, `mat4_build_basis` など）で与え、`quadric_to_world` でQを計算する。
 
 **球**（半径1、原点中心）: `x² + y² + z² - 1 = 0`
 

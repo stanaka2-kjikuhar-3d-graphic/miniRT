@@ -35,7 +35,7 @@ uv.u = (atan2f(p.y, p.x) + M_PI) / (2.0f * M_PI);
 | `UNIT_HYPERBOLOID` | `0.5 - z / (2 z_max)` |
 | `UNIT_PARABOLOID` | `1 - z` |
 
-円柱と一葉双曲面が上端で `v = 0` になる向きなのは、キャップの円盤（`add_cap_circle`）が
+円柱と一葉双曲面が上端で `v = 0` になる向きなのは、キャップの円盤（`add_cap_disc`）が
 その向きを前提に `v_range` を割り当てているためである（[hyperboloid.md](hyperboloid.md) 5節）。
 以前は `calc_hyperboloid_uv` が戻り値を反転して辻褄を合わせていたが、この式では符号がそのまま入っている。
 
@@ -67,8 +67,8 @@ uv.u = (atan2f(p.y, p.x) + M_PI) / (2.0f * M_PI);
 
 ```c
 object->uv.pattern_scale = (t_vec2){
-	.u = frame.scale.x / input->option.pattern_size,
-	.v = frame.scale.y / input->option.pattern_size};
+	.u = frame.scale.x / input->pattern_size,
+	.v = frame.scale.y / input->pattern_size};
 ```
 
 `frame.scale` を決めるその場で作るので、型と係数が食い違わない。
@@ -88,7 +88,7 @@ object->uv.pattern_scale = (t_vec2){
 正準形の円錐は頂点が `z = 0` にあるので、フレームの z 軸は `-dir` を向く。
 このとき x 軸と y 軸をどう取るかで `u` の継ぎ目の位置が決まる。
 
-`create_cone.c` は `calc_onb(-dir)` でフレームを組んでいるが、`calc_onb()` は `dir` と `-dir` で `v` の符号が反転する。
+`create_cone.c` は `mat3_build_onb(-dir)` でフレームを組んでいるが、`mat3_build_onb()` は `dir` と `-dir` で `v` の符号が反転する。
 そのため `atan2(p.y, p.x)` の符号が変わり、`u` が `1 - u` になる。
 
 旧実装の `cone_quadric.c` は `w` だけ反転させ、`u` と `v` は `+dir` のものを残していた。
