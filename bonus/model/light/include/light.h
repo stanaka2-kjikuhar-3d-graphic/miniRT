@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:51:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/12 14:56:21 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/14 07:05:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ enum e_light_type
 
 typedef struct s_light
 {
+	size_t				id;
 	enum e_light_type	type;
 	union
 	{

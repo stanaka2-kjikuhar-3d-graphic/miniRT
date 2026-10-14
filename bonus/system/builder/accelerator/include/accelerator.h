@@ -15,23 +15,7 @@
 # define ACCELERATOR_H
 
 # include <stdbool.h>
-# include <stddef.h>
 
-# include "aabb.h"
-# include "object.h"
-
-typedef struct s_aabb_leaf
-{
-	t_aabb			aabb;
-	t_vec3			centroid;
-	t_object const	*object;
-}	t_aabb_leaf;
-
-bool				build_accelerator(void);
-t_object const		*get_infinite_object(size_t i);
-size_t				get_infinite_object_count(void);
-t_aabb_leaf const	*get_aabb_leaf(size_t i);
-void				cleanup_infinite_objects(void);
-void				cleanup_aabb_leaves(void);
+bool	build_accelerator(void);
 
 #endif

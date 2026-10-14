@@ -6,20 +6,18 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 12:36:35 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 23:22:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/15 06:13:12 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include <stdbool.h>
 #include <stddef.h>
 
 #include "aabb.h"
 #include "config.h"
-#include "range.h"
 #include "bvh.h"
 
-#include "./bvh_private.h"
+#include "../accelerator_private.h"
 
 static void	separate_left_and_right_bins(size_t start, size_t count, \
 					t_bin_partition const *partition);
@@ -62,13 +60,13 @@ static void	separate_left_and_right_bins(size_t start, size_t count, \
 	right = start + count - 1;
 	while (left < right)
 	{
-		while (calc_bin_index(get_aabb_leaf(left), partition) \
+		while (calc_bin_index(get_bvh_leaf(left), partition) \
 				<= partition->index)
 			++left;
-		while (calc_bin_index(get_aabb_leaf(right), partition) \
+		while (calc_bin_index(get_bvh_leaf(right), partition) \
 				> partition->index)
 			--right;
 		if (left < right)
-			swap_aabb_leaves(left++, right--);
+			swap_bvh_leaves(left++, right--);
 	}
 }

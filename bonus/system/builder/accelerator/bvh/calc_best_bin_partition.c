@@ -6,18 +6,20 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 15:39:17 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/06 15:37:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/15 06:14:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include <stddef.h>
 
+#include "object.h"
 #include "aabb.h"
 #include "config.h"
 #include "range.h"
+#include "bvh.h"
 
-#include "./bvh_private.h"
+#include "../accelerator_private.h"
 
 static t_range	calc_centroid_range(\
 					size_t start, size_t count, enum e_axis axis);
@@ -59,17 +61,17 @@ static t_range	calc_centroid_range(\
 {
 	t_range				centroid_range;
 	size_t				i;
-	t_aabb_leaf const	*aabb_leaf;
+	t_object const		*object;
 
 	centroid_range = (t_range){.min = INFINITY, .max = -INFINITY};
 	i = 0;
 	while (i < count)
 	{
-		aabb_leaf = get_aabb_leaf(start + i);
+		object = get_bvh_leaf(start + i);
 		centroid_range.min \
-			= fminf(centroid_range.min, aabb_leaf->centroid.e[axis]);
+			= fminf(centroid_range.min, object->aabb_info.centroid.e[axis]);
 		centroid_range.max \
-			= fmaxf(centroid_range.max, aabb_leaf->centroid.e[axis]);
+			= fmaxf(centroid_range.max, object->aabb_info.centroid.e[axis]);
 		++i;
 	}
 	return (centroid_range);
@@ -100,9 +102,9 @@ static void	set_best_bin_partition(size_t start, size_t count, \
 static void	set_bins(size_t start, size_t count, \
 	t_bin *bins, t_bin_partition const *partition)
 {
-	size_t				i;
-	t_aabb_leaf const	*aabb_leaf;
-	size_t				bin_index;
+	size_t			i;
+	t_object const	*object;
+	size_t			bin_index;
 
 	i = 0;
 	while (i < BVH_BIN)
@@ -110,10 +112,10 @@ static void	set_bins(size_t start, size_t count, \
 	i = 0;
 	while (i < count)
 	{
-		aabb_leaf = get_aabb_leaf(start + i);
-		bin_index = calc_bin_index(aabb_leaf, partition);
+		object = get_bvh_leaf(start + i);
+		bin_index = calc_bin_index(object, partition);
 		bins[bin_index].aabb \
-			= union_aabb(bins[bin_index].aabb, aabb_leaf->aabb);
+			= union_aabb(bins[bin_index].aabb, object->aabb_info.aabb);
 		++(bins[bin_index].count);
 		++i;
 	}

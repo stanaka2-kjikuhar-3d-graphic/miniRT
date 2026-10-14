@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/10 20:33:58 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/13 23:43:29 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,7 @@ static bool	is_valid_argument(int argc, char const *argv[])
 
 static void	cleanup(void)
 {
-	cleanup_objects();
+	cleanup_object();
 	cleanup_lights();
-	cleanup_bvh();
-	cleanup_aabb_leaves();
-	cleanup_infinite_objects();
 	cleanup_mlx();
 }

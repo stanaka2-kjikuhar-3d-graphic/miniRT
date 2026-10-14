@@ -6,13 +6,12 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 22:46:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/12 15:59:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/15 06:24:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
-#include "config.h"
 #include "matrix.h"
 #include "object.h"
 #include "ray.h"
@@ -27,7 +26,7 @@ t_hit	find_closest_hit(t_ray const *ray)
 	t_hit	hit;
 
 	hit = (t_hit){.object = NULL, .t = INFINITY};
-	infinite_objects_intersection(&hit, ray);
+	flat_list_intersection(&hit, ray);
 	bvh_intersection(&hit, ray);
 	if (hit.object != NULL)
 		set_hit_record(ray, &hit);

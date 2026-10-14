@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   infinite_objects_shading.c                         :+:      :+:    :+:   */
+/*   bvh_count.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/16 22:20:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 21:31:37 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/10/12 20:23:03 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/10/14 00:11:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
 #include <stddef.h>
 
-#include "config.h"
-#include "object.h"
-#include "accelerator.h"
+static size_t	g_count;
 
-#include "../intersection_private.h"
-
-bool	infinite_objects_shading(t_ray const *ray, float dist)
+size_t	get_bvh_count(void)
 {
-	size_t const	count = get_infinite_object_count();
-	size_t			i;
-	float			t;
+	return (g_count);
+}
 
-	i = 0;
-	while (i < count)
-	{
-		t = calc_object_intersection(get_infinite_object(i), ray);
-		if (0.0f < t && t < dist)
-			return (true);
-		++i;
-	}
-	return (false);
+void	set_bvh_count(size_t count)
+{
+	g_count = count;
+}
+
+void	clear_bvh_count(void)
+{
+	g_count = 0;
 }
