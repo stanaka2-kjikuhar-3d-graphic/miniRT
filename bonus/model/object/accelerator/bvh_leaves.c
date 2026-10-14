@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bvh.c                                              :+:      :+:    :+:   */
+/*   bvh_leaves.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/15 22:11:43 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 23:23:52 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/10/12 19:38:32 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/10/15 06:05:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
-#include <stddef.h>
 #include <stdlib.h>
 
 #include "logger.h"
+#include "object.h"
 
-#include "bvh.h"
+static size_t	*g_bvh_leaves = NULL;
 
-static t_bvh_node	*g_bvh = NULL;
-
-bool	allocate_bvh(size_t bounded_aabb_count)
+bool	allocate_bvh_leaves(size_t count)
 {
-	cleanup_bvh();
-	if (bounded_aabb_count == 0)
+	if (count == 0)
 		return (true);
-	g_bvh = malloc((2 * bounded_aabb_count - 1) * sizeof(t_bvh_node));
-	if (g_bvh == NULL)
+	g_bvh_leaves = malloc(sizeof(size_t) * count);
+	if (g_bvh_leaves == NULL)
 	{
 		print_log_errno(LOG_ERROR);
 		return (false);
@@ -34,20 +31,27 @@ bool	allocate_bvh(size_t bounded_aabb_count)
 	return (true);
 }
 
-void	register_bvh_node(t_bvh_node const *node, size_t i)
+void	register_bvh_leaf(size_t i, size_t object_id)
 {
-	g_bvh[i] = *node;
+	g_bvh_leaves[i] = object_id;
 }
 
-t_bvh_node const	*get_bvh_node(size_t i)
+t_object const	*get_bvh_leaf(size_t i)
 {
-	if (g_bvh == NULL)
-		return (NULL);
-	return (&(g_bvh[i]));
+	return (get_object(g_bvh_leaves[i]));
 }
 
-void	cleanup_bvh(void)
+void	swap_bvh_leaves(size_t a, size_t b)
 {
-	free(g_bvh);
-	g_bvh = NULL;
+	size_t	tmp;
+
+	tmp = g_bvh_leaves[a];
+	g_bvh_leaves[a] = g_bvh_leaves[b];
+	g_bvh_leaves[b] = tmp;
+}
+
+void	cleanup_bvh_leaves(void)
+{
+	free(g_bvh_leaves);
+	g_bvh_leaves = NULL;
 }

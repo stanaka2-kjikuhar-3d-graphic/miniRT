@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/11 18:28:38 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/10/12 19:27:56 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,35 +109,36 @@ INCLUDE_DIRS	:=	mandatory/include
 else
 
 INCLUDE_DIRS	:=	bonus \
-					$(addprefix bonus/, \
-						logger \
-						controller/hook/include \
-						parser/include \
-						$(addprefix model/, \
-							bvh/include \
-							camera/include \
-							image/include \
-							light/include \
-							object/include \
-							viewport/include \
-							window/include \
-						) \
-						$(addprefix system/, \
-							builder/include \
-							builder/accelerator/include \
-							loader/include \
-							renderer/include \
-						) \
-						$(addprefix types/, \
-							aabb/include \
-							color/include \
-							dynamic_array/include \
-							id/include \
-							matrix/include \
-							primitive/include \
-							range/include \
-							ray/include \
-							vector/include \
+					$(addsuffix /include, \
+						$(addprefix bonus/, \
+							logger \
+							controller/hook \
+							parser \
+							$(addprefix model/, \
+								camera \
+								image \
+								light \
+								object \
+								viewport \
+								window \
+							) \
+							$(addprefix system/, \
+								builder \
+								builder/accelerator \
+								loader \
+								renderer \
+							) \
+							$(addprefix types/, \
+								aabb \
+								color \
+								dynamic_array \
+								id \
+								matrix \
+								primitive \
+								range \
+								ray \
+								vector \
+							) \
 						) \
 					)
 
@@ -163,7 +164,6 @@ SRC_DIRS	+= $(addprefix bonus/, \
 						internal \
 					) \
 					$(addprefix model/, \
-						bvh \
 						camera $(addprefix camera/, \
 							internal \
 						) \
@@ -175,6 +175,7 @@ SRC_DIRS	+= $(addprefix bonus/, \
 							) \
 						) \
 						object $(addprefix object/, \
+							accelerator \
 							aabb_info $(addprefix aabb_info/, \
 								internal \
 							) \
@@ -202,14 +203,13 @@ SRC_DIRS	+= $(addprefix bonus/, \
 							rebased_world_converter \
 							accelerator $(addprefix accelerator/, \
 								bvh \
-								infinite_objects \
 							) \
 						) \
 						renderer $(addprefix renderer/, \
 							internal \
 							intersection $(addprefix intersection/, \
 								bvh \
-								infinite_objects \
+								flat_list \
 								internal \
 							) \
 							lighting $(addprefix lighting/, \
@@ -338,16 +338,11 @@ SRCS	+=	rebase_world_space.c
 # builder/accelerator
 SRCS	+=	build_accelerator.c
 # builder/accelerator/bvh
-SRCS	+=	aabb_leaves.c \
-			build_bvh.c \
-			build_binned_bvh.c \
+SRCS	+=	build_binned_bvh.c \
 			calc_best_bin_partition.c \
 			calc_bin_index.c \
 			calc_sah_cost.c \
 			add_leaf_node.c
-# builder/accelerator/infinite_objects
-SRCS	+=	infinite_objects.c \
-			build_infinite_objects.c
 
 # loader
 SRCS	+=	loader.c
@@ -384,9 +379,9 @@ SRCS	+=	find_closest_hit.c \
 # renderer/intersection/bvh
 SRCS	+=	bvh_intersection.c \
 			bvh_shading.c
-# renderer/intersection/infinite_objects
-SRCS	+=	infinite_objects_intersection.c \
-			infinite_objects_shading.c
+# renderer/intersection/flat_list
+SRCS	+=	flat_list_intersection.c \
+			flat_list_shading.c
 # renderer/intersection/internal
 SRCS	+=	calc_aabb_intersection.c \
 			calc_object_intersection.c \
@@ -418,9 +413,6 @@ SRCS	+=	adjust_uv_range.c \
 			calc_primitive_normal.c \
 			calc_primitive_tbn.c \
 			calc_primitive_uv.c
-
-# model/bvh
-SRCS	+=	bvh.c
 
 # model/camera
 SRCS	+=	camera.c \
@@ -454,7 +446,15 @@ SRCS	+=	set_dist_attenuation.c
 
 # model/object
 SRCS	+=	object.c \
-			object_id.c
+			object_id.c \
+			object_array.c \
+			cleanup_object.c
+# model/object/accelerator
+SRCS	+=	bvh_count.c \
+			bvh_leaves.c \
+			bvh_nodes.c \
+			flat_list_count.c \
+			flat_list.c
 # model/object/aabb_info
 SRCS	+=	get_aabb_info.c \
 			set_aabb_info.c \

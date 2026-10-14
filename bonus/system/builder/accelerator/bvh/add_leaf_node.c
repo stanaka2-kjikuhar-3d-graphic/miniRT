@@ -6,18 +6,17 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:44:12 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 23:22:39 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/15 06:15:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
 #include "bvh.h"
+#include "aabb.h"
 
-#include "./bvh_private.h"
-
-void	add_leaf_node(size_t bvh_index, size_t start, size_t count, \
-	t_aabb const *aabb)
+void	add_leaf_node(\
+	size_t bvh_index, size_t start, size_t count, t_aabb const *aabb)
 {
 	t_bvh_node	leaf_node;
 
