@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 06:28:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/06 20:50:10 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/15 07:33:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	add_object_id(size_t index, size_t *id)
 	return (add_dynamic_array(&g_object_ids, &new_id));
 }
 
-size_t	get_object_id(size_t id)
+size_t	get_object_index(size_t id)
 {
 	return (((t_id *)access_dynamic_array(&g_object_ids, id))->index);
 }

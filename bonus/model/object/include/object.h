@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/09 22:24:04 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/14 00:20:37 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ typedef struct s_uv
 
 typedef struct s_object
 {
+	size_t		id;
 	t_vec3		world_pos;
 	t_vec3		world_move;
 	t_material	material;
@@ -157,10 +158,11 @@ typedef struct s_object
 	t_aabb_info	aabb_info;
 }	t_object;
 
+void				cleanup_object(void);
 bool				create_object(size_t *id);
 t_object const		*get_object(size_t id);
+t_object const		*get_object_by_index(size_t i);
 size_t				get_object_count(void);
-void				cleanup_objects(void);
 t_primitive const	*get_primitive(size_t id);
 bool				set_cone_primitive(size_t id, t_cone const *cone);
 bool				set_cylinder_primitive(\

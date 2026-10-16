@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/07 21:32:29 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/10/12 19:27:56 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,18 +104,43 @@ override CFLAGS	+= -Wconversion -Wno-sign-conversion -Wshadow
 
 ifeq ($(BUILD_TARGET), mandatory)
 
-INCLUDE_DIRS		:=	mandatory/include
+INCLUDE_DIRS	:=	mandatory/include
 
 else
 
-INCLUDE_DIRS		:=	bonus/include \
-						$(addprefix bonus/include/, \
-							renderer \
-							scene \
-							view \
-							types \
-							utils \
-						)
+INCLUDE_DIRS	:=	bonus \
+					$(addsuffix /include, \
+						$(addprefix bonus/, \
+							logger \
+							controller/hook \
+							parser \
+							$(addprefix model/, \
+								camera \
+								image \
+								light \
+								object \
+								viewport \
+								window \
+							) \
+							$(addprefix system/, \
+								builder \
+								builder/accelerator \
+								loader \
+								renderer \
+							) \
+							$(addprefix types/, \
+								aabb \
+								color \
+								dynamic_array \
+								id \
+								matrix \
+								primitive \
+								range \
+								ray \
+								vector \
+							) \
+						) \
+					)
 
 endif
 
@@ -130,66 +155,94 @@ ifeq ($(BUILD_TARGET), mandatory)
 SRC_DIRS	:= mandatory/src
 
 else
-SRC_DIRS	:= bonus/src
-SRC_DIRS	+= $(addprefix bonus/src/, \
-					accelerator \
-					$(addprefix accelerator/, \
-						bvh \
-						infinite_objects \
+SRC_DIRS	:= bonus
+SRC_DIRS	+= $(addprefix bonus/, \
+					$(addprefix controller/, \
+						hook \
 					) \
-					parser \
-					$(addprefix parser/, \
+					logger $(addprefix logger/, \
+						internal \
+					) \
+					$(addprefix model/, \
+						camera $(addprefix camera/, \
+							internal \
+						) \
+						image \
+						light $(addprefix light/, \
+							type \
+							radiance $(addprefix radiance/, \
+								internal \
+							) \
+						) \
+						object $(addprefix object/, \
+							accelerator \
+							aabb_info $(addprefix aabb_info/, \
+								internal \
+							) \
+							material \
+							primitive $(addprefix primitive/, \
+								internal \
+							) \
+							uv $(addprefix uv/, \
+								uv_checker \
+								uv_layout \
+								uv_pattern \
+							) \
+						) \
+						viewport \
+						window \
+					) \
+					parser $(addprefix parser/, \
 						read_next_line \
 						parse_setting \
 						parse_field \
 						internal \
 					) \
-					renderer \
-					$(addprefix renderer/, \
-						intersection \
-						path_tracing \
-						raytracer \
-						phong \
-						$(addprefix phong/, \
-							lighting \
+					$(addprefix system/, \
+						builder $(addprefix builder/, \
+							rebased_world_converter \
+							accelerator $(addprefix accelerator/, \
+								bvh \
+							) \
 						) \
-					) \
-					$(addprefix scene/, \
-						camera camera/internal \
-						light \
-						object \
-						$(addprefix object/, \
-							circle \
-							cylinder \
-							cone \
-							hyperboloid \
-							paraboloid \
-							plane \
-							sphere \
-							primitive \
+						renderer $(addprefix renderer/, \
 							internal \
+							intersection $(addprefix intersection/, \
+								bvh \
+								flat_list \
+								internal \
+							) \
+							lighting $(addprefix lighting/, \
+								attenuation \
+								phong \
+							) \
+							surface $(addprefix surface/, \
+								internal \
+							) \
+						) \
+						loader $(addprefix loader/, \
+							camera \
+							light \
+							object $(addprefix object/, \
+								internal \
+							) \
 						) \
 					) \
-					$(addprefix view/, \
-						viewport \
-					) \
-					$(addprefix utils/, \
+					$(addprefix types/, \
 						aabb \
 						color \
-						ft_error \
-						matrix \
-						matrix/internal \
+						dynamic_array \
+						matrix $(addprefix matrix/, \
+							internal \
+						) \
+						primitive \
+						ray \
 						$(addprefix vector/, \
 							vec3 \
 							vec4 \
 							vec2 \
 							ivec2 \
 						) \
-						dynamic_array \
-					) \
-					ft_mlx \
-					$(addprefix ft_mlx/, \
-						hooks \
 					) \
 				)
 endif
@@ -208,7 +261,7 @@ else
 
 SRCS	:=	main.c
 
-# ft_mlx
+# window
 SRCS	+=	mlx_ptr.c \
 			win_ptr.c \
 			image.c \
@@ -221,7 +274,7 @@ SRCS	+=	mlx_ptr.c \
 			calc_uv_pixel.c \
 			put_color.c
 
-# ft_mlx/hooks
+# window/hooks
 SRCS	+=	expose_hook.c \
 			loop_hook.c \
 			key_press_hook.c \
@@ -249,7 +302,7 @@ SRCS	+=	parse_ambient_light.c \
 			parse_required_fields.c \
 			build_required_field.c \
 			init_optional_fields.c \
-			bind_material_option.c \
+			bind_material_input.c \
 			parse_optional_fields.c \
 			get_pattern_type.c \
 			get_normal_type.c
@@ -266,8 +319,6 @@ SRCS	+=	parse_vec3.c \
 			parse_texture.c \
 			parse_bool.c \
 			parse_shininess.c \
-			parse_reflectivity.c \
-			parse_ior.c \
 			parse_size.c \
 			parse_long.c \
 			parse_checker_count.c \
@@ -280,129 +331,206 @@ SRCS	+=	is_blank_line.c \
 			count_split.c \
 			free_split.c
 
-# accelerator
-SRCS	+=	build_accelerator.c \
-			cleanup_accelerator.c
-# accelerator/bvh
-SRCS	+=	bvh.c \
-			aabb_leaves.c \
-			build_bvh.c \
-			build_binned_bvh.c \
+# builder
+SRCS	+=	builder.c
+# builder/rebased_world_converter
+SRCS	+=	rebase_world_space.c
+# builder/accelerator
+SRCS	+=	build_accelerator.c
+# builder/accelerator/bvh
+SRCS	+=	build_binned_bvh.c \
 			calc_best_bin_partition.c \
 			calc_bin_index.c \
 			calc_sah_cost.c \
 			add_leaf_node.c
-# accelerator/infinite_objects
-SRCS	+=	infinite_objects.c \
-			build_infinite_objects.c
+
+# loader
+SRCS	+=	loader.c
+# loader/camera
+SRCS	+=	load_camera.c
+# loader/light
+SRCS	+=	load_ambient_light.c \
+			load_point_light.c \
+			load_spot_light.c \
+			load_directional_light.c \
+			load_uniform_infinite_light.c
+# loader/object
+SRCS	+=	load_sphere.c \
+			load_plane.c \
+			load_cylinder.c \
+			load_disc.c \
+			load_cone.c \
+			load_hyperboloid.c \
+			load_paraboloid.c
+# loader/object/internal
+SRCS	+=	expand_to_material.c \
+			calc_cap_disc.c
 
 # renderer
 SRCS	+=	renderer.c \
+			phong.c
+# renderer/internal
+SRCS	+=	calc_ray.c \
 			render_flag.c \
-			render_mode.c \
-			render_pixel.c \
-			put_color_to_window_image.c \
-			camera_ray.c
-
+			put_color_to_window_image.c
 # renderer/intersection
 SRCS	+=	find_closest_hit.c \
-			bvh_intersection.c \
-			infinite_objects_intersection.c \
-			is_in_shadow.c \
-			bvh_shading.c \
-			infinite_objects_shading.c
-
-# renderer/raytracer
-SRCS	+=	raytrace_pixel.c \
-			trace_ray.c
-
-# renderer/phong
-SRCS	+=	phong_pixel.c \
-					phong_mode.c
-
-# renderer/phong/lighting
-SRCS	+=	phong_lighting.c \
-			phong_lighting_ambient.c \
+			is_in_shadow.c
+# renderer/intersection/bvh
+SRCS	+=	bvh_intersection.c \
+			bvh_shading.c
+# renderer/intersection/flat_list
+SRCS	+=	flat_list_intersection.c \
+			flat_list_shading.c
+# renderer/intersection/internal
+SRCS	+=	calc_aabb_intersection.c \
+			calc_object_intersection.c \
+			calc_planar_intersection.c \
+			calc_primitive_intersection.c \
+			calc_quadric_intersection.c
+# renderer/lighting
+SRCS	+=	phong_lighting.c
+# renderer/lighting/attenuation
+SRCS	+=	calc_dist_attenuation.c \
+			calc_point_light_attenuation.c \
+			calc_spot_light_attenuation.c \
+			check_cutoff.c
+# renderer/lighting/phong
+SRCS	+=	phong_lighting_ambient.c \
+			phong_lighting_directional.c \
 			phong_lighting_point.c \
 			phong_lighting_spot.c \
-			phong_lighting_directional.c \
 			phong_specular_dot.c
+# renderer/surface
+SRCS	+=	calc_bump_mapping.c \
+			calc_normal_mapping.c \
+			calc_object_color.c \
+			calc_object_normal.c \
+			calc_object_tbn.c \
+			calc_object_uv.c
+# renderer/surface/internal
+SRCS	+=	adjust_uv_range.c \
+			calc_primitive_normal.c \
+			calc_primitive_tbn.c \
+			calc_primitive_uv.c
 
-# scene/camera
+# model/camera
 SRCS	+=	camera.c \
 			set_camera_pos.c \
 			set_camera_dir.c \
+			set_camera_fov.c \
 			change_camera_fov.c \
 			rotate_camera.c
-# scene/camera/internal
+# model/camera/internal
 SRCS	+=	calc_camera_dir.c \
 			calc_camera_right.c \
 			calc_camera_up.c
 
-# scene/light
+# model/light
 SRCS	+=	light.c \
-			ambient_light.c \
-			point_light.c \
-			spot_light.c \
-			directional_light.c \
-			set_dist_attenuation.c \
-			calc_dist_attenuation.c \
-			check_cutoff.c
+			light_id.c
+# model/light/type
+SRCS	+=	set_ambient_light.c \
+			set_directional_light.c \
+			set_point_light.c \
+			set_spot_light.c \
+			set_uniform_infinite_light.c
+# model/light/radiance
+SRCS	+=	set_ambient_light_radiance.c \
+			set_directional_light_radiance.c \
+			set_point_light_radiance.c \
+			set_spot_light_radiance.c \
+			set_uniform_infinite_light_radiance.c
+# model/light/radiance/internal
+SRCS	+=	set_dist_attenuation.c
 
-# scene/object
+# model/object
 SRCS	+=	object.c \
-			calc_object_intersection.c \
-			calc_object_uv.c \
-			calc_object_color.c \
-			calc_object_normal.c \
-			calc_object_tbn.c \
-			calc_bump_mapping.c \
-			calc_normal_mapping.c \
-			calc_aabb_intersection.c
-# scene/object/sphere
-SRCS	+=	create_sphere.c
-# scene/object/plane
-SRCS	+=	create_plane.c
-# scene/object/cylinder
-SRCS	+=	create_cylinder.c
-# scene/object/circle
-SRCS	+=	create_circle.c
-# scene/object/cone
-SRCS	+=	create_cone.c
-# scene/object/hyperboloid
-SRCS	+=	create_hyperboloid.c
-# scene/object/paraboloid
-SRCS	+=	create_paraboloid.c
-# scene/object/primitive
-SRCS	+=	build_primitive.c \
-			unit_quadric.c \
-			calc_primitive_intersection.c \
-			calc_planar_intersection.c \
-			calc_quadric_intersection.c \
-			calc_primitive_normal.c \
-			calc_primitive_uv.c \
-			calc_primitive_tbn.c \
-			is_planar_primitive.c \
-			is_quadric_primitive.c
-# scene/object/internal
-SRCS	+=	calc_onb.c \
-			adjust_uv_range.c \
-			set_material.c \
+			object_id.c \
+			object_array.c \
+			cleanup_object.c
+# model/object/accelerator
+SRCS	+=	bvh_count.c \
+			bvh_leaves.c \
+			bvh_nodes.c \
+			flat_list_count.c \
+			flat_list.c
+# model/object/aabb_info
+SRCS	+=	get_aabb_info.c \
+			set_aabb_info.c \
+			set_sphere_aabb_info.c \
+			set_plane_aabb_info.c \
+			set_cylinder_aabb_info.c \
+			set_disc_aabb_info.c \
+			set_cone_aabb_info.c \
+			set_hyperboloid_aabb_info.c \
+			set_paraboloid_aabb_info.c
+# model/object/aabb_info/internal
+SRCS	+=	mul_extent.c
+# model/object/material
+SRCS	+=	get_material.c \
+			set_material.c
+# model/object/primitive
+SRCS	+=	get_primitive.c \
+			set_primitive.c \
+			set_sphere_primitive.c \
+			set_plane_primitive.c \
+			set_cylinder_primitive.c \
+			set_disc_primitive.c \
+			set_cone_primitive.c \
+			set_hyperboloid_primitive.c \
+			set_paraboloid_primitive.c
+# model/object/primitive/internal
+SRCS	+=	build_primitive.c
+# model/object/uv/uv_checker
+SRCS	+=	get_uv_checker.c \
 			set_uv_checker.c
+# model/object/uv/uv_layout
+SRCS	+=	get_uv_layout.c \
+			set_uv_layout.c \
+			set_sphere_uv_layout.c \
+			set_plane_uv_layout.c \
+			set_cylinder_uv_layout.c \
+			set_disc_uv_layout.c \
+			set_cone_uv_layout.c \
+			set_hyperboloid_uv_layout.c \
+			set_paraboloid_uv_layout.c
+# model/object/uv/uv_pattern
+SRCS	+=	get_uv_pattern.c \
+			set_uv_pattern.c \
+			set_disc_uv_pattern.c \
+			set_plane_uv_pattern.c
 
 # view/viewport
 SRCS	+=	viewport.c
 
-# utils/aabb
+# logger
+SRCS	+=	log_line.c \
+			log_field.c \
+			print_log_msg.c \
+			print_log_program.c \
+			print_log_file.c \
+			print_log_errno.c \
+			print_log_line.c \
+			print_log_field.c \
+			print_log_hint.c \
+			print_log_hints.c
+# logger/internal
+SRCS	+=	get_logging_fd.c \
+			print_log_level.c \
+			print_log_str.c \
+			print_log_nbr.c \
+
+
+# types/aabb
 SRCS	+=	initial_aabb.c \
 			calc_aabb_from_extent.c \
 			union_aabb.c \
 			transform_aabb.c \
-			mul_extent.c \
 			calc_aabb_centroid.c \
 			has_bounded_aabb.c
 
-# utils/color
+# types/color
 SRCS	+=	add_color.c \
 			mul_color.c \
 			scale_color.c \
@@ -414,18 +542,7 @@ SRCS	+=	add_color.c \
 			average_rgb.c \
 			convert_uint_to_color.c
 
-# utils/ft_error
-SRCS	+=	error_line.c \
-			error_field.c \
-			print_error.c \
-			print_argument_error.c \
-			print_texture_error.c \
-			print_errno.c \
-			print_line_error.c \
-			print_field_error.c \
-			print_nbr.c
-
-# utils/vector/vec3
+# types/vector/vec3
 SRCS	+=	vec3.c \
 			vec3_add.c \
 			vec3_sub.c \
@@ -437,27 +554,27 @@ SRCS	+=	vec3.c \
 			vec3_normalize.c \
 			vec3_rotate.c
 
-# utils/vector/vec4
+# types/vector/vec4
 SRCS	+=	vec4.c \
 			vec4_from_point.c \
 			vec4_from_dir.c \
 			vec4_to_vec3.c \
 			vec4_dot.c
 
-# utils/vector/vec2
+# types/vector/vec2
 SRCS	+=	vec2.c
 
-# utils/vector/ivec2
+# types/vector/ivec2
 SRCS	+=	ivec2.c
 
-# utils/dynamic_array
+# types/dynamic_array
 SRCS	+=	access_dynamic_array.c \
 			add_dynamic_array.c \
 			allocate_dynamic_array.c \
 			cleanup_dynamic_array.c \
 			grow_dynamic_array.c
 
-# utils/matrix
+# types/matrix
 SRCS	+=	mat4_identity.c \
 			mat4_diagonal.c \
 			mat4_mul.c \
@@ -472,16 +589,26 @@ SRCS	+=	mat4_identity.c \
 			mat4_translate.c \
 			mat4_scale.c \
 			mat4_rotate.c \
-			mat4_basis.c \
+			mat4_build_basis.c \
 			mat4_local_to_world.c \
 			mat4_world_to_local.c \
 			mat4_is_valid_scale.c \
-			mat4_inverse.c
+			mat4_inverse.c \
+			mat3_build_onb.c
 
-# utils/matrix/internal
+# types/matrix/internal
 SRCS	+=	mat4_minor.c \
 			mat4_cofactor.c \
 			mat4_det.c
+
+# types/primitive
+SRCS	+=	is_planar_primitive.c \
+			is_quadric_primitive.c \
+			unit_quadric.c
+
+# types/ray
+SRCS	+=	transform_ray.c
+
 endif
 
 # -------------------------- #

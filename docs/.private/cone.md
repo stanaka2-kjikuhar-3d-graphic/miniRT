@@ -35,11 +35,11 @@ Q_local = diag(1, 1, -k², 0)
 
 - ローカル原点 → ワールド頂点 `apex = center + dir · height`
 - ローカル+z → ワールド `-dir`（頂点から底面へ向かう方向。`z` が増えるほど円錐が広がるため、頂点から離れる向きに一致させる）
-- ローカルx, y → 既存の `onb.u`, `onb.v`（`dir` に直交する正規直交基底。`create_cone` で `calc_onb` により構築済み）
+- ローカルx, y → 既存の `onb.u`, `onb.v`（`dir` に直交する正規直交基底。`create_cone` で `mat3_build_onb` により構築済み）
 
 このとき **スケールは不要**である。
 `k` は既にワールド座標の `radius/height` そのものを使って求めているため、`local_to_world` を回転と平行移動だけの剛体変換にしても、ローカル距離とワールド距離が一致する。
-[matrix.md](matrix.md) の `mat4_basis` で基底と原点から行列を組み、[quadric.md](quadric.md) の `quadric_to_world` で `Q_world = M⁻ᵀQ_local M⁻¹` を求める。
+[matrix.md](matrix.md) の `mat4_build_basis` で基底と原点から行列を組み、[quadric.md](quadric.md) の `quadric_to_world` で `Q_world = M⁻ᵀQ_local M⁻¹` を求める。
 
 ## 3. 交差と法線
 
@@ -60,7 +60,7 @@ v = (h - h_min) / (h_max - h_min)
 円錐は `h_min = 0`（頂点）なので、この式は `v = h / height` と一致する。
 双曲面・放物面（[hyperboloid.md](hyperboloid.md), [paraboloid.md](paraboloid.md)）も同じ `calc_quadric_uv` を呼ぶだけで、`h_min`/`h_max` の違いだけで各形状に合ったUVが得られる。
 
-底面の円は既存の `OBJ_CIRCLE` を別オブジェクトとして重ねる方式（`add_lower_cap_circle`）をそのまま使う。
+底面の円は既存の `OBJ_DISC` を別オブジェクトとして重ねる方式（`add_lower_cap_disc`）をそのまま使う。
 
 ## 5. 有限化
 
@@ -74,4 +74,4 @@ h_max  = height （底面の高さまで）
 ```
 
 ---
-参考: [quadric.md](quadric.md)（二次曲面エンジン全体）、[matrix.md](matrix.md)（`mat4_basis` によるローカル→ワールド変換）
+参考: [quadric.md](quadric.md)（二次曲面エンジン全体）、[matrix.md](matrix.md)（`mat4_build_basis` によるローカル→ワールド変換）

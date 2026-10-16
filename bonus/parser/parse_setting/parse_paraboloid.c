@@ -1,0 +1,82 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_paraboloid.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/22 20:37:29 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/10/10 15:11:57 by stanaka2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stddef.h>
+#include <stdbool.h>
+
+#include "loader.h"
+#include "loader_object.h"
+#include "logger.h"
+
+#include "../parser_private.h"
+
+#define REQUIRED_COUNT 5
+
+static bool	parse_paraboloid_required(\
+				char const **elements, t_paraboloid_input *input);
+static bool	parse_paraboloid_optional(\
+				char const **optional_elements, t_paraboloid_input *input);
+
+bool	parse_paraboloid(char const **elements, t_scene_input *input)
+{
+	size_t	count;
+
+	count = count_split(elements);
+	if (count < REQUIRED_COUNT)
+	{
+		print_log_line(LOG_ERROR, ERROR_FIELDS_COUNT);
+		print_log_hint(LOG_ERROR, HINT_PB);
+		return (false);
+	}
+	input->type = PARABOLOID_INPUT;
+	if (!parse_paraboloid_required(elements, &(input->paraboloid)) \
+		|| !parse_paraboloid_optional(\
+				elements + REQUIRED_COUNT, &(input->paraboloid)))
+	{
+		return (false);
+	}
+	return (true);
+}
+
+static bool	parse_paraboloid_required(\
+	char const **elements, t_paraboloid_input *input)
+{
+	t_required_field	fields[REQUIRED_COUNT];
+
+	fields[0] = build_required_field(REQUIRED_COORDINATE, \
+					&(input->paraboloid.center));
+	fields[1] = build_required_field(REQUIRED_DIR, \
+					&(input->paraboloid.dir));
+	fields[2] = build_required_field(REQUIRED_COEFFICIENT, \
+					&(input->paraboloid.quadratic_coefficient));
+	fields[3] = build_required_field(REQUIRED_HEIGHT, \
+					&(input->paraboloid.height));
+	fields[4] = build_required_field(REQUIRED_COLOR, \
+					&(input->material.albedo));
+	return (parse_required_fields(elements, fields, REQUIRED_COUNT));
+}
+
+static bool	parse_paraboloid_optional(\
+	char const **optional_elements, t_paraboloid_input *input)
+{
+	t_optional_field	fields[OPTIONAL_FIELD_COUNT];
+
+	init_optional_fields(fields);
+	bind_material_input(fields, &(input->material));
+	fields[OPTIONAL_CHECKER_COUNT_U_EVEN].value = &(input->checker_count.u);
+	fields[OPTIONAL_CHECKER_COUNT_V].value = &(input->checker_count.v);
+	if (!parse_optional_fields(optional_elements, fields))
+		return (false);
+	input->material.pattern_type = get_pattern_type(optional_elements);
+	input->material.normal_type = get_normal_type(optional_elements);
+	return (true);
+}
