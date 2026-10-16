@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/11 19:24:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/11 19:24:32 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/15 07:32:56 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	add_light_id(size_t index, size_t *id)
 	return (add_dynamic_array(&g_light_ids, &new_id));
 }
 
-size_t	get_light_id(size_t id)
+size_t	get_light_index(size_t id)
 {
 	return (((t_id *)access_dynamic_array(&g_light_ids, id))->index);
 }

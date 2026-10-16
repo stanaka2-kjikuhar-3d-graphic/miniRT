@@ -6,13 +6,12 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 22:46:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 21:30:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/15 06:24:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
-#include "config.h"
 #include "matrix.h"
 #include "object.h"
 #include "ray.h"
@@ -27,7 +26,7 @@ t_hit	find_closest_hit(t_ray const *ray)
 	t_hit	hit;
 
 	hit = (t_hit){.object = NULL, .t = INFINITY};
-	infinite_objects_intersection(&hit, ray);
+	flat_list_intersection(&hit, ray);
 	bvh_intersection(&hit, ray);
 	if (hit.object != NULL)
 		set_hit_record(ray, &hit);
@@ -42,6 +41,12 @@ static void	set_hit_record(t_ray const *ray, t_hit *hit)
 	hit->uv = calc_object_uv(hit->object, hit->point);
 	hit->color = calc_object_color(hit->object, hit->uv);
 	hit->normal = calc_object_normal(hit->object, ray, hit->point);
+	hit->is_front_face = true;
+	if (vec3_dot(hit->normal, ray->dir) > 0.0f)
+	{
+		hit->is_front_face = false;
+		hit->normal = vec3_scale(-1.0f, hit->normal);
+	}
 	if (hit->object->material.normal_type != NORMAL_OBJECT)
 	{
 		tbn = calc_object_tbn(hit->object, hit->point, hit->normal);

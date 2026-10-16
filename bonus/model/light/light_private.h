@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/11 19:31:12 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/11 19:35:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/15 07:33:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "light.h"
 
 bool	add_light_id(size_t index, size_t *id);
-size_t	get_light_id(size_t id);
+size_t	get_light_index(size_t id);
 void	cleanup_light_ids(void);
 t_light	*get_mutable_light(size_t id);
 
