@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/02 03:10:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/07 22:08:37 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 01:15:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 #include "object.h"
 #include "vector.h"
+#include "id.h"
 
 #include "../../object_private.h"
 
-void	set_uv_checker(size_t id, t_ivec2 checker_count)
+void	set_uv_checker(t_id object_id, t_ivec2 checker_count)
 {
 	t_uv_checker	checker;
 	t_object		*object;
@@ -26,6 +27,6 @@ void	set_uv_checker(size_t id, t_ivec2 checker_count)
 	checker.size = (t_vec2){\
 		.u = 1.0f / (float)checker_count.u, \
 		.v = 1.0f / (float)checker_count.v};
-	object = get_mutable_object(id);
+	object = get_mutable_object(object_id);
 	object->uv.checker = checker;
 }

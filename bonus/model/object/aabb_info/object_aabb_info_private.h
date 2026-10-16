@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 23:13:06 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/09 07:15:25 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 01:07:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 # include <stddef.h>
 
 # include "aabb.h"
+# include "id.h"
 
-void	set_aabb_info(size_t id, t_aabb_info const *aabb_info);
+void	set_aabb_info(t_id object_id, t_aabb_info const *aabb_info);
 float	mul_extent(float a, float b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 22:02:06 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/10 20:50:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 01:07:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "vector.h"
 # include "matrix.h"
 # include "primitive.h"
+# include "id.h"
 
 typedef struct s_primitive_frame
 {
@@ -34,6 +35,6 @@ typedef struct s_primitive_frame
 
 bool	build_primitive(t_primitive_frame const *frame, t_primitive *out);
 t_mat3	mat3_build_onb(t_vec3 n);
-void	set_primitive(size_t id, t_primitive const *primitive);
+void	set_primitive(t_id object_id, t_primitive const *primitive);
 
 #endif

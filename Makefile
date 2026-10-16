@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/12 19:27:56 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/10/17 00:59:41 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -428,6 +428,7 @@ SRCS	+=	calc_camera_dir.c \
 
 # model/light
 SRCS	+=	light.c \
+			light2.c \
 			light_id.c
 # model/light/type
 SRCS	+=	set_ambient_light.c \
@@ -446,8 +447,8 @@ SRCS	+=	set_dist_attenuation.c
 
 # model/object
 SRCS	+=	object.c \
+			object2.c \
 			object_id.c \
-			object_array.c \
 			cleanup_object.c
 # model/object/accelerator
 SRCS	+=	bvh_count.c \
@@ -753,7 +754,7 @@ unit:
 	@bash test/unit/run_unit_tests.sh
 
 norm:
-	@norminette -o mandatory/src mandatory/include bonus/src bonus/include $(LIBFT_DIR) | grep Error || true
+	@norminette -o mandatory bonus $(LIBFT_DIR) | grep Error || true
 
 # -------------------------- #
 #    ANSI Escape Sequence    #

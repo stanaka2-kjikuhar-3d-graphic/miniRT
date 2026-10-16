@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 12:00:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/09 07:13:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 01:21:52 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 #include "color.h"
 #include "../loader_object_private.h"
 
-t_material	expand_to_material(\
-	t_color albedo, t_material_input const *input)
+t_material	expand_to_material(t_material_input const *input)
 {
 	return ((t_material){\
-		.albedo = albedo, \
+		.albedo = input->albedo, \
 		.pattern_type = input->pattern_type, \
 		.texture = input->texture, \
 		.checker = input->checker, \

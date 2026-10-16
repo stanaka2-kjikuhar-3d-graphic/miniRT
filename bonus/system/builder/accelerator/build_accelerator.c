@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 21:10:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/15 06:53:49 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/16 07:44:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 #include "./accelerator_private.h"
 
-static void	count_each_object(void);
+static void		count_each_object(void);
 static void		partition_objects(void);
 static t_aabb	calc_all_aabb(void);
 

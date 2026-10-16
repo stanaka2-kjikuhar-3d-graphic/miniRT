@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 06:39:25 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/06 20:50:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 01:42:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef struct s_id
 {
-	size_t	index;
+	size_t	id;
 }	t_id;
 
 #endif
