@@ -1,42 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object_array.c                                     :+:      :+:    :+:   */
+/*   light2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/13 22:51:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/15 06:20:14 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/10/17 00:09:39 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/10/17 01:07:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include <stddef.h>
 
-#include "object.h"
+#include "light.h"
 #include "dynamic_array.h"
+#include "id.h"
 
-#include "object_private.h"
+#include "./light_private.h"
 
-size_t	get_object_count(void)
+size_t	get_light_count(void)
 {
-	return (get_mutable_object_array()->used);
+	return (get_mutable_light_array()->used);
 }
 
-bool	create_object(size_t *id)
+bool	create_light(t_id *light_id)
 {
-	t_object	object;
+	t_light	light;
 
-	if (!add_object_id(get_mutable_object_array()->used, &(object.id)) \
-			|| !add_dynamic_array(get_mutable_object_array(), &object))
+	if (!add_light_id(get_mutable_light_array()->used, &(light.id)) \
+			|| !add_dynamic_array(get_mutable_light_array(), &light))
 	{
 		return (false);
 	}
-	*id = object.id;
+	*light_id = light.id;
 	return (true);
 }
 
-void	cleanup_objects(void)
+void	cleanup_lights(void)
 {
-	cleanup_dynamic_array(get_mutable_object_array());
+	cleanup_dynamic_array(get_mutable_light_array());
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 02:56:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/05 05:53:15 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/16 21:58:42 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_color	phong_lighting(t_ray const *ray, t_hit const *hit)
 	i = 0;
 	while (i < light_count)
 	{
-		light = get_light(i);
+		light = get_light_by_index(i);
 		if (light->type == AMBIENT_LIGHT)
 			phong_lighting_ambient(&color, hit, &(light->ambient));
 		else if (light->type == POINT_LIGHT)

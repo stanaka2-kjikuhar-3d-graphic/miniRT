@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 06:28:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/15 07:33:33 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 13:30:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,18 @@
 #include "dynamic_array.h"
 
 static t_dynamic_array	g_object_ids = (t_dynamic_array){\
-										.type_size = sizeof(t_id) \
+										.type_size = sizeof(size_t) \
 									};
 
-bool	add_object_id(size_t index, size_t *id)
+bool	add_object_id(size_t index, t_id *object_id)
 {
-	t_id	new_id;
-
-	new_id.index = index;
-	*id = g_object_ids.used;
-	return (add_dynamic_array(&g_object_ids, &new_id));
+	object_id->id = g_object_ids.used;
+	return (add_dynamic_array(&g_object_ids, &index));
 }
 
-size_t	get_object_index(size_t id)
+size_t	get_object_index(t_id object_id)
 {
-	return (((t_id *)access_dynamic_array(&g_object_ids, id))->index);
+	return ((*(size_t *)access_dynamic_array(&g_object_ids, object_id.id)));
 }
 
 void	cleanup_object_ids(void)

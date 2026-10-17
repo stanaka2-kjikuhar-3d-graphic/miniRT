@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 21:30:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/10 20:50:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 01:15:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 #include "vector.h"
 #include "primitive.h"
 #include "object.h"
+#include "id.h"
 
 #include "./object_primitive_private.h"
 
-bool	set_plane_primitive(size_t id, t_plane const *plane)
+bool	set_plane_primitive(t_id object_id, t_plane const *plane)
 {
 	t_primitive_frame	frame;
 	t_primitive			prim;
@@ -41,6 +42,6 @@ bool	set_plane_primitive(size_t id, t_plane const *plane)
 	frame.origin = plane->center;
 	if (!build_primitive(&frame, &prim))
 		return (false);
-	set_primitive(id, &prim);
+	set_primitive(object_id, &prim);
 	return (true);
 }
