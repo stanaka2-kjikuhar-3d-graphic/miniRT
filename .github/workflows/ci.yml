@@ -20,7 +20,7 @@ jobs:
       - name: Install norminette
         run: pip install norminette==3.3.55
       - name: Run norminette
-        run: norminette bonus/src bonus/include libft
+        run: norminette bonus libft
 
   cppcheck:
     runs-on: ubuntu-latest
@@ -33,8 +33,8 @@ jobs:
           cppcheck --error-exitcode=1
           --enable=warning,performance,portability
           --inline-suppr
-          -I bonus/include -I libft
-          bonus/src libft
+          -I libft
+          bonus libft
 
   build:
     runs-on: ubuntu-latest
