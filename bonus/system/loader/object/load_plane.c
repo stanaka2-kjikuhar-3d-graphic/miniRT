@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 01:22:18 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 17:00:24 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ bool	load_plane(t_scene_input const *scene_input)
 	set_material(object_id, &material);
 	set_plane_uv_layout(object_id, UV_DEFAULT);
 	set_uv_checker(object_id, input->checker_count);
-	set_plane_uv_pattern(object_id, input->pattern_size, input->plane.half_size);
+	set_plane_uv_pattern(\
+		object_id, input->pattern_size, input->plane.half_size);
 	set_plane_aabb_info(object_id, &(input->plane));
 	return (true);
 }

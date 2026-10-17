@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 22:31:57 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 01:15:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 17:00:24 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 
 #include "./object_aabb_info_private.h"
 
-void	set_hyperboloid_aabb_info(t_id object_id, t_hyperboloid const *hyperboloid)
+void	set_hyperboloid_aabb_info(\
+	t_id object_id, t_hyperboloid const *hyperboloid)
 {
 	t_aabb_info	aabb_info;
 	t_vec3		disc_extent;
