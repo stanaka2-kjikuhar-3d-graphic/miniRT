@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/09 22:31:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/12 15:08:19 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 16:34:35 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ t_material_input	calc_cap_disc_material(t_material const *material)
 		.directx_normal_map = material->directx_normal_map, \
 		.bump_strength = material->bump_strength, \
 		.metalness = material->metalness, \
-		.shininess = material->shininess \
+		.shininess = material->shininess, \
+		.reflectivity = material->reflectivity, \
+		.ior = material->ior \
 	});
 }
 

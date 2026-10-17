@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/13 22:41:30 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/10 08:18:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 16:34:35 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_material_input
 	float				bump_strength;
 	bool				metalness;
 	float				shininess;
+	float				reflectivity;
+	float				ior;
 }	t_material_input;
 
 typedef struct s_sphere_input

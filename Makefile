@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/17 00:59:41 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/10/17 16:55:00 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -319,6 +319,8 @@ SRCS	+=	parse_vec3.c \
 			parse_texture.c \
 			parse_bool.c \
 			parse_shininess.c \
+			parse_reflectivity.c \
+			parse_ior.c \
 			parse_size.c \
 			parse_long.c \
 			parse_checker_count.c \
