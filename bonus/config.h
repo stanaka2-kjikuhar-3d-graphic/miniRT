@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 00:57:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 16:43:49 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/17 16:43:52 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@
 # define DEFAULT_CHECKER_COUNT 4
 # define DEFAULT_REFLECTIVITY 0.0f
 # define DEFAULT_IOR 0.0f
+
+# define MAX_RECURSION_DEPTH 2
 
 # define BVH_BIN 16
 # define BVH_LEAF_MAX 4
