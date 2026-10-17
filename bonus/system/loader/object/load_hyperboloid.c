@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 19:47:07 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 01:22:18 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 17:00:24 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ static bool	add_cap_disc(\
 	input.disc.radius = hyperboloid->cap_radius;
 	input.material = calc_cap_disc_material(get_material(object_id));
 	input.uv_layout = calc_cap_disc_uv_layout(\
-		type, get_uv_layout(object_id)->aspect, get_uv_layout(object_id)->v_range);
+		type, get_uv_layout(object_id)->aspect, \
+		get_uv_layout(object_id)->v_range);
 	input.pattern_size = calc_cap_disc_pattern_size(input.disc.radius);
 	input.checker_count = get_uv_checker(object_id)->count;
 	scene_input.type = DISC_INPUT;

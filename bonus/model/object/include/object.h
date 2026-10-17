@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 01:07:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 17:00:24 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,8 @@ bool				set_hyperboloid_primitive(\
 bool				set_paraboloid_primitive(\
 						t_id object_id, t_paraboloid const *paraboloid);
 bool				set_plane_primitive(t_id object_id, t_plane const *plane);
-bool				set_sphere_primitive(t_id object_id, t_sphere const *sphere);
+bool				set_sphere_primitive(\
+						t_id object_id, t_sphere const *sphere);
 t_material const	*get_material(t_id object_id);
 void				set_material(t_id object_id, t_material const *material);
 t_uv_layout const	*get_uv_layout(t_id object_id);
@@ -182,7 +183,8 @@ void				set_cone_uv_layout(t_id object_id, \
 						enum e_uv_type type, t_cone const *cone);
 void				set_cylinder_uv_layout(t_id object_id, \
 						enum e_uv_type type, t_cylinder const *cylinder);
-void				set_disc_uv_layout(t_id object_id, t_uv_layout const *layout);
+void				set_disc_uv_layout(\
+						t_id object_id, t_uv_layout const *layout);
 void				set_hyperboloid_uv_layout(t_id object_id, \
 						enum e_uv_type type, t_hyperboloid const *hyperboloid);
 void				set_paraboloid_uv_layout(t_id object_id, \
@@ -204,6 +206,7 @@ void				set_hyperboloid_aabb_info(\
 void				set_paraboloid_aabb_info(\
 						t_id object_id, t_primitive const *primitive);
 void				set_plane_aabb_info(t_id object_id, t_plane const *plane);
-void				set_sphere_aabb_info(t_id object_id, t_sphere const *sphere);
+void				set_sphere_aabb_info(\
+						t_id object_id, t_sphere const *sphere);
 
 #endif
