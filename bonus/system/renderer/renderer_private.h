@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 23:56:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/12 16:25:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 16:34:35 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_hit
 }	t_hit;
 
 bool	check_render_flag(void);
-void	phong(t_ivec2 pixel);
+void	raytrace(t_ivec2 pixel);
 void	put_color_to_window_image(t_ivec2 pixel, t_color color);
 
 // intersection
