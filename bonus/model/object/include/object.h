@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:50:04 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:12:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include "vector.h"
 # include "color.h"
 # include "ray.h"
-# include "image.h"
 # include "matrix.h"
 # include "range.h"
 # include "aabb.h"
