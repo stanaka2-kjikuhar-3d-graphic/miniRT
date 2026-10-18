@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 19:38:32 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:04:15 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:57:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include "logger.h"
 #include "object.h"
-#include "id.h"
 
 static t_id	*g_bvh_leaves = NULL;
 
@@ -23,7 +22,7 @@ bool	allocate_bvh_leaves(size_t count)
 {
 	if (count == 0)
 		return (true);
-	g_bvh_leaves = malloc(sizeof(t_id) * count);
+	g_bvh_leaves = malloc(sizeof(t_object_id) * count);
 	if (g_bvh_leaves == NULL)
 	{
 		print_log_errno(LOG_ERROR);
@@ -32,7 +31,7 @@ bool	allocate_bvh_leaves(size_t count)
 	return (true);
 }
 
-void	register_bvh_leaf(size_t i, t_id id)
+void	register_bvh_leaf(size_t i, t_object_id id)
 {
 	g_bvh_leaves[i] = id;
 }

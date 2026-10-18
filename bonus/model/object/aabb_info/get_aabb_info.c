@@ -6,19 +6,16 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/09 22:11:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:57:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:37:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-
 #include "object.h"
 #include "aabb.h"
-#include "id.h"
 
 #include "../object_private.h"
 
-t_aabb_info const	*get_aabb_info(t_id id)
+t_aabb_info const	*get_aabb_info(t_object_id id)
 {
 	t_object	*object;
 

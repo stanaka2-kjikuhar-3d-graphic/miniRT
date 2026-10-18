@@ -6,18 +6,15 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 20:15:34 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:57:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:00:39 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-
 #include "object.h"
-#include "id.h"
 
 #include "../../object_private.h"
 
-void	set_uv_layout(t_id id, t_uv_layout const *layout)
+void	set_uv_layout(t_object_id id, t_uv_layout const *layout)
 {
 	t_object	*object;
 

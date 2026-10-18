@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/26 22:07:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 16:44:12 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:34:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <stddef.h>
 
 #include "config.h"
-#include "id.h"
 
 #include "../parser_private.h"
 

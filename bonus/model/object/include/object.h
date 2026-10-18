@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:50:04 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:34:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@
 # include "vector.h"
 # include "color.h"
 # include "ray.h"
-# include "image.h"
 # include "matrix.h"
 # include "range.h"
 # include "aabb.h"
 # include "primitive.h"
 # include "texture.h"
+# include "id.h"
+
+typedef t_id	t_object_id;
 
 typedef struct s_sphere
 {
@@ -160,49 +162,53 @@ typedef struct s_object
 }	t_object;
 
 void				cleanup_object(void);
-bool				create_object(t_id *id);
-t_object const		*get_object(t_id id);
+bool				create_object(t_object_id *id);
+t_object const		*get_object(t_object_id id);
 t_object const		*get_object_by_index(size_t i);
 size_t				get_object_count(void);
-t_primitive const	*get_primitive(t_id id);
-bool				set_cone_primitive(t_id id, t_cone const *cone);
-bool				set_cylinder_primitive(t_id id, t_cylinder const *cylinder);
-bool				set_disc_primitive(t_id id, t_disc const *disc);
+t_primitive const	*get_primitive(t_object_id id);
+bool				set_cone_primitive(t_object_id id, t_cone const *cone);
+bool				set_cylinder_primitive(\
+						t_object_id id, t_cylinder const *cylinder);
+bool				set_disc_primitive(t_object_id id, t_disc const *disc);
 bool				set_hyperboloid_primitive(\
 						t_id id, t_hyperboloid const *hyperboloid);
 bool				set_paraboloid_primitive(\
 						t_id id, t_paraboloid const *paraboloid);
-bool				set_plane_primitive(t_id id, t_plane const *plane);
-bool				set_sphere_primitive(t_id id, t_sphere const *sphere);
-t_material const	*get_material(t_id id);
-void				set_material(t_id id, t_material const *material);
-t_uv_layout const	*get_uv_layout(t_id id);
-void				set_cone_uv_layout(t_id id, \
+bool				set_plane_primitive(t_object_id id, t_plane const *plane);
+bool				set_sphere_primitive(\
+						t_object_id id, t_sphere const *sphere);
+t_material const	*get_material(t_object_id id);
+void				set_material(t_object_id id, t_material const *material);
+t_uv_layout const	*get_uv_layout(t_object_id id);
+void				set_cone_uv_layout(t_object_id id, \
 						enum e_uv_type type, t_cone const *cone);
-void				set_cylinder_uv_layout(t_id id, \
+void				set_cylinder_uv_layout(t_object_id id, \
 						enum e_uv_type type, t_cylinder const *cylinder);
-void				set_disc_uv_layout(t_id id, t_uv_layout const *layout);
-void				set_hyperboloid_uv_layout(t_id id, \
+void				set_disc_uv_layout(\
+						t_object_id id, t_uv_layout const *layout);
+void				set_hyperboloid_uv_layout(t_object_id id, \
 						enum e_uv_type type, t_hyperboloid const *hyperboloid);
-void				set_paraboloid_uv_layout(t_id id, \
+void				set_paraboloid_uv_layout(t_object_id id, \
 						enum e_uv_type type, t_paraboloid const *paraboloid);
-void				set_plane_uv_layout(t_id id, enum e_uv_type type);
-void				set_sphere_uv_layout(t_id id, enum e_uv_type type);
-t_uv_checker const	*get_uv_checker(t_id id);
-void				set_uv_checker(t_id id, t_ivec2 checker_count);
-void				set_disc_uv_pattern(t_id id, float pattern_size);
+void				set_plane_uv_layout(t_object_id id, enum e_uv_type type);
+void				set_sphere_uv_layout(t_object_id id, enum e_uv_type type);
+t_uv_checker const	*get_uv_checker(t_object_id id);
+void				set_uv_checker(t_object_id id, t_ivec2 checker_count);
+void				set_disc_uv_pattern(t_object_id id, float pattern_size);
 void				set_plane_uv_pattern(\
 						t_id id, float pattern_size, t_vec2 half_size);
-t_aabb_info const	*get_aabb_info(t_id id);
-void				set_cone_aabb_info(t_id id, t_cone const *cone);
+t_aabb_info const	*get_aabb_info(t_object_id id);
+void				set_cone_aabb_info(t_object_id id, t_cone const *cone);
 void				set_cylinder_aabb_info(\
 						t_id id, t_cylinder const *cylinder);
-void				set_disc_aabb_info(t_id id, t_disc const *disc);
+void				set_disc_aabb_info(t_object_id id, t_disc const *disc);
 void				set_hyperboloid_aabb_info(\
 						t_id id, t_hyperboloid const *hyperboloid);
 void				set_paraboloid_aabb_info(\
 						t_id id, t_primitive const *primitive);
-void				set_plane_aabb_info(t_id id, t_plane const *plane);
-void				set_sphere_aabb_info(t_id id, t_sphere const *sphere);
+void				set_plane_aabb_info(t_object_id id, t_plane const *plane);
+void				set_sphere_aabb_info(\
+						t_object_id id, t_sphere const *sphere);
 
 #endif

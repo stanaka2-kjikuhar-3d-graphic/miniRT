@@ -6,19 +6,18 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 21:10:23 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:57:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:01:15 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include <math.h>
 
 #include "vector.h"
-#include "id.h"
 
 #include "./uv_pattern_private.h"
 
-void	set_plane_uv_pattern(t_id id, float pattern_size, t_vec2 half_size)
+void	set_plane_uv_pattern(\
+	t_object_id id, float pattern_size, t_vec2 half_size)
 {
 	t_uv_pattern	pattern;
 
