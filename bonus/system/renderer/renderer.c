@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:38:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 22:43:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 07:53:58 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include "vector.h"
 #include "logger.h"
 #include "window.h"
+#include "window_buffer.h"
 
 #include "./renderer_private.h"
 
@@ -34,8 +35,8 @@ bool	renderer(void)
 	{
 		if (!multi_threads_rendering())
 			return (false);
-		mlx_put_image_to_window(\
-			get_mlx_ptr(), get_win_ptr(), get_image(IMG_WINDOW)->ptr, 0, 0);
+		mlx_put_image_to_window(get_mlx_ptr(), get_win_ptr(), \
+					get_window_buffer_ptr(MAIN_WINDOW_BUFFER), 0, 0);
 		set_render_flag(false);
 	}
 	return (true);

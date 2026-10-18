@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/26 22:07:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/30 16:06:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 16:44:12 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 #include <stddef.h>
 
 #include "config.h"
+#include "id.h"
 
 #include "../parser_private.h"
 
 static const t_optional_field	g_optional_fields[OPTIONAL_FIELD_COUNT] = {\
 	[OPTIONAL_TEXTURE] = {NULL, "texture", parse_texture, \
-		"texture=file.xpm", FIELD_IMAGE, {.image = NULL}}, \
+		"texture=file.xpm", FIELD_ID, {.id = {.is_valid = false}}}, \
 	[OPTIONAL_CHECKER_COLOR1] = {NULL, "checker_color1", parse_color, \
 		"checker_color1=R,G,B [0 <= R,G,B <= 255]", \
 		FIELD_COLOR, {.color = {.r = 0.0f, .g = 0.0f, .b = 0.0f}}}, \
@@ -27,9 +28,9 @@ static const t_optional_field	g_optional_fields[OPTIONAL_FIELD_COUNT] = {\
 		"checker_color2=R,G,B [0 <= R,G,B <= 255]", \
 		FIELD_COLOR, {.color = {.r = 1.0f, .g = 1.0f, .b = 1.0f}}}, \
 	[OPTIONAL_BUMP_MAP] = {NULL, "bump_map", parse_texture, \
-		"bump_map=file.xpm", FIELD_IMAGE, {.image = NULL}}, \
+		"bump_map=file.xpm", FIELD_ID, {.id = {.is_valid = false}}}, \
 	[OPTIONAL_NORMAL_MAP] = {NULL, "normal_map", parse_texture, \
-		"normal_map=file.xpm", FIELD_IMAGE, {.image = NULL}}, \
+		"normal_map=file.xpm", FIELD_ID, {.id = {.is_valid = false}}}, \
 	[OPTIONAL_DIRECTX_NORMAL_MAP] = {NULL, "directx_normal_map", parse_bool, \
 		"directx_normal_map=true/false", FIELD_BOOL, {.boolean = false}}, \
 	[OPTIONAL_BUMP_STRENGTH] = {NULL, "bump_strength", parse_size, \

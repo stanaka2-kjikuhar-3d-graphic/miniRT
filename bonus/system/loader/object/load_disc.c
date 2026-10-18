@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 05:59:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 01:22:18 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 08:46:28 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,20 @@
 
 bool	load_disc(t_scene_input const *scene_input)
 {
-	t_id				object_id;
+	t_id				id;
 	t_disc_input const	*input;
 	t_material			material;
 
-	if (!create_object(&object_id))
+	if (!create_object(&id))
 		return (false);
 	input = &(scene_input->disc);
 	material = expand_to_material(&(input->material));
-	if (!set_disc_primitive(object_id, &(input->disc)))
+	if (!set_disc_primitive(id, &(input->disc)))
 		return (false);
-	set_material(object_id, &material);
-	set_disc_uv_layout(object_id, &(input->uv_layout));
-	set_uv_checker(object_id, input->checker_count);
-	set_disc_uv_pattern(object_id, input->pattern_size);
-	set_disc_aabb_info(object_id, &(input->disc));
+	set_material(id, &material);
+	set_disc_uv_layout(id, &(input->uv_layout));
+	set_uv_checker(id, input->checker_count);
+	set_disc_uv_pattern(id, input->pattern_size);
+	set_disc_aabb_info(id, &(input->disc));
 	return (true);
 }

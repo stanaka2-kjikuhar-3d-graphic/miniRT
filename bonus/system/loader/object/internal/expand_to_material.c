@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 12:00:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 01:21:52 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 08:21:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ t_material	expand_to_material(t_material_input const *input)
 	return ((t_material){\
 		.albedo = input->albedo, \
 		.pattern_type = input->pattern_type, \
-		.texture = input->texture, \
+		.texture_id = input->texture_id, \
 		.checker = input->checker, \
 		.normal_type = input->normal_type, \
-		.bump_map = input->bump_map, \
-		.normal_map = input->normal_map, \
+		.bump_map_id = input->bump_map_id, \
+		.normal_map_id = input->normal_map_id, \
 		.directx_normal_map = input->directx_normal_map, \
 		.bump_strength = input->bump_strength, \
 		.metalness = input->metalness, \

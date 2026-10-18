@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/08 21:52:07 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 15:34:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ enum e_optional_field
 
 enum e_field_type
 {
-	FIELD_IMAGE,
+	FIELD_ID,
 	FIELD_COLOR,
 	FIELD_BOOL,
 	FIELD_FLOAT,
@@ -104,7 +104,7 @@ enum e_field_type
 
 typedef union u_field_value
 {
-	t_image	*image;
+	t_id	id;
 	t_color	color;
 	bool	boolean;
 	float	number;
