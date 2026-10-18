@@ -6,18 +6,16 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:08:50 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:19:07 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:38:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include <stddef.h>
 
 #include "ft_math.h"
 
 #include "light.h"
 #include "vector.h"
-#include "id.h"
 
 #include "../light_private.h"
 

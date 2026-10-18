@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 22:02:06 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:18:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:58:42 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "vector.h"
 # include "matrix.h"
 # include "primitive.h"
-# include "id.h"
 
 typedef struct s_primitive_frame
 {

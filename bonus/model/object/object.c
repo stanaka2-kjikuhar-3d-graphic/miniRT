@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 21:05:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:18:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:01:48 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 #include "object.h"
 #include "dynamic_array.h"
-#include "id.h"
 
 #include "./object_private.h"
 

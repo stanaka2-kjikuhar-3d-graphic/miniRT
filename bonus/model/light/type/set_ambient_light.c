@@ -6,15 +6,12 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:26:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:19:07 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:37:56 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-
 #include "light.h"
 #include "color.h"
-#include "id.h"
 
 #include "../light_private.h"
 

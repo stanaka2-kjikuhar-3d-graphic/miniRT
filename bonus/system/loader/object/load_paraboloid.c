@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 19:05:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:26:37 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:04:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "object.h"
 #include "loader.h"
 #include "loader_object.h"
-#include "id.h"
 
 #include "./loader_object_private.h"
 

@@ -6,14 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/09 22:09:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:18:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:59:58 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-
 #include "object.h"
-#include "id.h"
 
 #include "../../object_private.h"
 

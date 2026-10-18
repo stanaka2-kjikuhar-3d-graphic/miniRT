@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 22:13:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:19:07 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:36:05 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 #include "light.h"
 #include "dynamic_array.h"
-#include "id.h"
 
 #include "./light_private.h"
 

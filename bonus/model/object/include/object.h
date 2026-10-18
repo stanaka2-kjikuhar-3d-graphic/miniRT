@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:28:32 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:34:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "aabb.h"
 # include "primitive.h"
 # include "texture.h"
+# include "id.h"
 
 typedef t_id	t_object_id;
 

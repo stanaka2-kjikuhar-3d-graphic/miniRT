@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:26:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:04:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "range.h"
 #include "loader.h"
 #include "loader_object.h"
-#include "id.h"
 
 #include "./loader_object_private.h"
 #include "../loader_private.h"

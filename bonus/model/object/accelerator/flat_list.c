@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 17:21:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:19:58 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:57:59 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 #include "object.h"
 #include "dynamic_array.h"
-#include "id.h"
 
 static t_dynamic_array	g_flat_list = (t_dynamic_array){\
 										.type_size = sizeof(t_object_id) \

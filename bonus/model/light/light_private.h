@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/11 19:31:12 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:19:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:31:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdbool.h>
 # include <stddef.h>
 
-# include "id.h"
 # include "light.h"
 # include "dynamic_array.h"
 

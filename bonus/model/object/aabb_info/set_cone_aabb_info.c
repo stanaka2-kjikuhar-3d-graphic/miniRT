@@ -6,17 +6,15 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 22:32:02 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:18:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:57:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include <math.h>
 
 #include "object.h"
 #include "aabb.h"
 #include "vector.h"
-#include "id.h"
 
 #include "./object_aabb_info_private.h"
 
