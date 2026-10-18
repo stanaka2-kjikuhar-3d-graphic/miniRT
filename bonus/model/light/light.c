@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 22:13:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 01:06:28 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 08:54:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ t_dynamic_array	*get_mutable_light_array(void)
 	return (&g_lights);
 }
 
-t_light const	*get_light(t_id light_id)
+t_light const	*get_light(t_id id)
 {
-	return (access_dynamic_array(&g_lights, get_light_index(light_id)));
+	return (access_dynamic_array(&g_lights, get_light_index(id)));
 }
 
 t_light const	*get_light_by_index(size_t i)
@@ -37,7 +37,7 @@ t_light const	*get_light_by_index(size_t i)
 	return (access_dynamic_array(&g_lights, i));
 }
 
-t_light	*get_mutable_light(t_id light_id)
+t_light	*get_mutable_light(t_id id)
 {
-	return (access_dynamic_array(&g_lights, get_light_index(light_id)));
+	return (access_dynamic_array(&g_lights, get_light_index(id)));
 }
