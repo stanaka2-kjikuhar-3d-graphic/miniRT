@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:47:04 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:26:58 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 bool	load_sphere(t_scene_input const *scene_input)
 {
-	t_id					id;
+	t_object_id				id;
 	t_sphere_input const	*input;
 	t_material				material;
 

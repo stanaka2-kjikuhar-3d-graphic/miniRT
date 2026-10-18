@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 22:02:06 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:50:56 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:18:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ typedef struct s_primitive_frame
 
 bool	build_primitive(t_primitive_frame const *frame, t_primitive *out);
 t_mat3	mat3_build_onb(t_vec3 n);
-void	set_primitive(t_id id, t_primitive const *primitive);
+void	set_primitive(t_object_id id, t_primitive const *primitive);
 
 #endif

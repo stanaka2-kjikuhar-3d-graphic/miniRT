@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:57:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:27:05 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 #include "../loader_private.h"
 
 static bool	add_cap_disc(enum e_uv_type uv_type, \
-						t_id id, t_cylinder const *cylinder);
+						t_object_id id, t_cylinder const *cylinder);
 
 bool	load_cylinder(t_scene_input const *scene_input)
 {
-	t_id					id;
+	t_object_id				id;
 	t_cylinder_input const	*input;
 	t_material				material;
 
@@ -46,7 +46,7 @@ bool	load_cylinder(t_scene_input const *scene_input)
 }
 
 static bool	add_cap_disc(\
-	enum e_uv_type type, t_id id, t_cylinder const *cylinder)
+	enum e_uv_type type, t_object_id id, t_cylinder const *cylinder)
 {
 	t_scene_input	scene_input;
 	t_disc_input	input;

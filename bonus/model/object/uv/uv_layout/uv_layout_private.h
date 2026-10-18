@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 21:02:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:50:56 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:18:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@
 # include "range.h"
 # include "id.h"
 
-void	set_uv_layout(t_id id, t_uv_layout const *layout);
+void	set_uv_layout(t_object_id id, t_uv_layout const *layout);
 
 #endif

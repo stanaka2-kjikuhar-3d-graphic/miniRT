@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 21:30:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:57:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:18:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
   x^2 + y^2 = a * z  ->  X^2 + Y^2 = Z  needs s^2 = a * sz.
   taking sz = height gives s = sqrt(a * height) and Z in [0, 1].
 */
-bool	set_paraboloid_primitive(t_id id, t_paraboloid const *paraboloid)
+bool	set_paraboloid_primitive(t_object_id id, t_paraboloid const *paraboloid)
 {
 	t_primitive_frame	frame;
 	t_primitive			prim;

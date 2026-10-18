@@ -6,28 +6,28 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/11 19:24:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:53:37 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:26:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include <stddef.h>
 
-#include "id.h"
+#include "light.h"
 #include "dynamic_array.h"
 
 static t_dynamic_array	g_light_ids = (t_dynamic_array){\
 										.type_size = sizeof(size_t) \
 									};
 
-bool	add_light_id(size_t index, t_id *id)
+bool	add_light_id(size_t index, t_light_id *id)
 {
 	id->is_valid = true;
 	id->id = g_light_ids.used;
 	return (add_dynamic_array(&g_light_ids, &index));
 }
 
-size_t	get_light_index(t_id id)
+size_t	get_light_index(t_light_id id)
 {
 	return ((*(size_t *)access_dynamic_array(&g_light_ids, id.id)));
 }

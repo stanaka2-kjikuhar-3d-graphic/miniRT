@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 20:27:48 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:47:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:29:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 bool	load_uniform_infinite_light(t_scene_input const *scene_input)
 {
-	t_id									id;
+	t_light_id								id;
 	t_uniform_infinite_light_input const	*input;
 
 	if (!create_light(&id))

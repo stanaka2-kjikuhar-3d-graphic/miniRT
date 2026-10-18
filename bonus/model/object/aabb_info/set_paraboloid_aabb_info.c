@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 22:31:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:57:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:18:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 #include "./object_aabb_info_private.h"
 
-void	set_paraboloid_aabb_info(t_id id, t_primitive const *primitive)
+void	set_paraboloid_aabb_info(t_object_id id, t_primitive const *primitive)
 {
 	t_aabb_info	aabb_info;
 

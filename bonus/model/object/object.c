@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 21:05:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:55:01 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:18:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ t_dynamic_array	*get_mutable_object_array(void)
 	return (&g_objects);
 }
 
-t_object const	*get_object(t_id id)
+t_object const	*get_object(t_object_id id)
 {
 	return (access_dynamic_array(&g_objects, get_object_index(id)));
 }
 
-t_object	*get_mutable_object(t_id id)
+t_object	*get_mutable_object(t_object_id id)
 {
 	return (access_dynamic_array(&g_objects, get_object_index(id)));
 }

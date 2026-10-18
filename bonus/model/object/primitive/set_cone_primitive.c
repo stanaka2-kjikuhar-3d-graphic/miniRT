@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 21:29:53 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:57:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:18:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
   the unit cone has its apex at z = 0 and opens toward +z,
   so the frame sits at the apex and its w axis looks back along -dir.
 */
-bool	set_cone_primitive(t_id id, t_cone const *cone)
+bool	set_cone_primitive(t_object_id id, t_cone const *cone)
 {
 	t_primitive_frame	frame;
 	t_primitive			prim;

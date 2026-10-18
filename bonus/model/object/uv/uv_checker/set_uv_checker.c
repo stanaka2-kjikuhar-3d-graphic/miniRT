@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/02 03:10:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:57:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:18:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 #include "../../object_private.h"
 
-void	set_uv_checker(t_id id, t_ivec2 checker_count)
+void	set_uv_checker(t_object_id id, t_ivec2 checker_count)
 {
 	t_uv_checker	checker;
 	t_object		*object;

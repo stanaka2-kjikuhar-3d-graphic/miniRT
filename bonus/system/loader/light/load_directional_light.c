@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 20:34:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:47:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:27:28 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 bool	load_directional_light(t_scene_input const *scene_input)
 {
-	t_id							id;
+	t_light_id						id;
 	t_directional_light_input const	*input;
 
 	if (!create_light(&id))

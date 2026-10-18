@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 19:05:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:46:52 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:26:37 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 bool	load_paraboloid(t_scene_input const *scene_input)
 {
-	t_id						id;
+	t_object_id					id;
 	t_paraboloid_input const	*input;
 	t_material					material;
 
