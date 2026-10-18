@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/17 00:09:39 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 01:07:04 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 08:54:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	get_light_count(void)
 	return (get_mutable_light_array()->used);
 }
 
-bool	create_light(t_id *light_id)
+bool	create_light(t_id *id)
 {
 	t_light	light;
 
@@ -33,7 +33,7 @@ bool	create_light(t_id *light_id)
 	{
 		return (false);
 	}
-	*light_id = light.id;
+	*id = light.id;
 	return (true);
 }
 

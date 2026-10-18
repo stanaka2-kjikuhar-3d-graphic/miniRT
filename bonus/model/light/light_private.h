@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/11 19:31:12 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 00:47:39 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 08:52:39 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 # include "light.h"
 # include "dynamic_array.h"
 
-bool			add_light_id(size_t index, t_id *light_id);
-size_t			get_light_index(t_id light_id);
+bool			add_light_id(size_t index, t_id *id);
+size_t			get_light_index(t_id id);
 void			cleanup_light_ids(void);
 t_dynamic_array	*get_mutable_light_array(void);
-t_light			*get_mutable_light(t_id light_id);
+t_light			*get_mutable_light(t_id id);
 
 #endif
