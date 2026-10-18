@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 01:22:18 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 08:47:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@
 
 bool	load_sphere(t_scene_input const *scene_input)
 {
-	t_id					object_id;
+	t_id					id;
 	t_sphere_input const	*input;
 	t_material				material;
 
-	if (!create_object(&object_id))
+	if (!create_object(&id))
 		return (false);
 	input = &(scene_input->sphere);
 	material = expand_to_material(&(input->material));
-	if (!set_sphere_primitive(object_id, &(input->sphere)))
+	if (!set_sphere_primitive(id, &(input->sphere)))
 		return (false);
-	set_material(object_id, &material);
-	set_sphere_uv_layout(object_id, UV_DEFAULT);
-	set_uv_checker(object_id, input->checker_count);
-	set_sphere_aabb_info(object_id, &(input->sphere));
+	set_material(id, &material);
+	set_sphere_uv_layout(id, UV_DEFAULT);
+	set_uv_checker(id, input->checker_count);
+	set_sphere_aabb_info(id, &(input->sphere));
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 05:39:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 16:44:12 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 15:20:01 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	cleanup_mlx(void)
 {
-	cleanup_textures();
-	cleanup_images();
 	cleanup_window();
 	cleanup_mlx_connection();
 }

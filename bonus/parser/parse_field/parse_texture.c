@@ -6,20 +6,19 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 03:08:26 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 22:33:01 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 08:43:57 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
-#include "image.h"
+#include "texture.h"
 
 bool	parse_texture(char const *element, void *value)
 {
-	t_image **const	texture = (t_image **)value;
+	t_texture_id *const	texture_id = (t_id *)value;
 
-	if (!create_texture((char *)element))
+	if (!create_texture((char *)element, texture_id))
 		return (false);
-	*texture = get_texture((char *)element);
 	return (true);
 }
