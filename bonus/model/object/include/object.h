@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 10:20:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 11:08:29 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ typedef struct s_uv
 
 typedef struct s_object
 {
-	t_id		id;
+	t_object_id	id;
 	t_vec3		world_pos;
 	t_vec3		world_move;
 	t_material	material;
@@ -174,9 +174,9 @@ bool				set_cylinder_primitive(\
 						t_object_id id, t_cylinder const *cylinder);
 bool				set_disc_primitive(t_object_id id, t_disc const *disc);
 bool				set_hyperboloid_primitive(\
-						t_id id, t_hyperboloid const *hyperboloid);
+						t_object_id id, t_hyperboloid const *hyperboloid);
 bool				set_paraboloid_primitive(\
-						t_id id, t_paraboloid const *paraboloid);
+						t_object_id id, t_paraboloid const *paraboloid);
 bool				set_plane_primitive(t_object_id id, t_plane const *plane);
 bool				set_sphere_primitive(\
 						t_object_id id, t_sphere const *sphere);
@@ -199,16 +199,16 @@ t_uv_checker const	*get_uv_checker(t_object_id id);
 void				set_uv_checker(t_object_id id, t_ivec2 checker_count);
 void				set_disc_uv_pattern(t_object_id id, float pattern_size);
 void				set_plane_uv_pattern(\
-						t_id id, float pattern_size, t_vec2 half_size);
+						t_object_id id, float pattern_size, t_vec2 half_size);
 t_aabb_info const	*get_aabb_info(t_object_id id);
 void				set_cone_aabb_info(t_object_id id, t_cone const *cone);
 void				set_cylinder_aabb_info(\
-						t_id id, t_cylinder const *cylinder);
+						t_object_id id, t_cylinder const *cylinder);
 void				set_disc_aabb_info(t_object_id id, t_disc const *disc);
 void				set_hyperboloid_aabb_info(\
-						t_id id, t_hyperboloid const *hyperboloid);
+						t_object_id id, t_hyperboloid const *hyperboloid);
 void				set_paraboloid_aabb_info(\
-						t_id id, t_primitive const *primitive);
+						t_object_id id, t_primitive const *primitive);
 void				set_plane_aabb_info(t_object_id id, t_plane const *plane);
 void				set_sphere_aabb_info(\
 						t_object_id id, t_sphere const *sphere);

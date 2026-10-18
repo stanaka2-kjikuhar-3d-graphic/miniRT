@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/18 10:33:31 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/10/18 11:25:07 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -210,7 +210,6 @@ SRC_DIRS	+= $(addprefix bonus/, \
 							) \
 						) \
 						renderer $(addprefix renderer/, \
-							internal \
 							raytracer \
 							intersection $(addprefix intersection/, \
 								bvh \
