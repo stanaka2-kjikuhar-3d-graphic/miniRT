@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 21:29:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 01:15:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 08:57:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
     z_scale = half_height * center_radius / sqrt(cap^2 - center^2)
     z_max  = half_height / c = sqrt((cap / center)^2 - 1)
 */
-bool	set_hyperboloid_primitive(t_id object_id, t_hyperboloid const *hyperboloid)
+bool	set_hyperboloid_primitive(t_id id, t_hyperboloid const *hyperboloid)
 {
 	t_primitive_frame	frame;
 	t_primitive			prim;
@@ -46,6 +46,6 @@ bool	set_hyperboloid_primitive(t_id object_id, t_hyperboloid const *hyperboloid)
 	frame.z_range.min = -frame.z_range.max;
 	if (!build_primitive(&frame, &prim))
 		return (false);
-	set_primitive(object_id, &prim);
+	set_primitive(id, &prim);
 	return (true);
 }
