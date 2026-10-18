@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:34:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:20:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ typedef struct s_material
 	bool				directx_normal_map;
 	bool				metalness;
 	float				shininess;
+	float				reflectivity;
+	float				ior;
 }	t_material;
 
 enum e_uv_type
