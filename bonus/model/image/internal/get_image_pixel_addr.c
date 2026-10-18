@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_uv_pixel.c                                    :+:      :+:    :+:   */
+/*   get_image_pixel_addr.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 18:16:53 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 22:36:13 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/05/23 17:55:08 by kjikuhar          #+#    #+#             */
+/*   Updated: 2026/10/18 02:18:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "image.h"
 #include "vector.h"
 
-t_ivec2	calc_uv_pixel(t_image *image, t_vec2 uv)
-{
-	t_ivec2	pixel;
+#include "../image_private.h"
 
-	if (uv.u < 0.0f)
-		pixel.x = 0;
-	else if (1.0f <= uv.u)
-		pixel.x = image->width - 1;
-	else
-		pixel.x = (int)((float)image->width * uv.u);
-	if (uv.v < 0.0f)
-		pixel.y = 0;
-	else if (1.0f <= uv.v)
-		pixel.y = image->height - 1;
-	else
-		pixel.y = (int)((float)image->height * uv.v);
-	return (pixel);
+unsigned int	*get_image_pixel_addr(t_image *image, t_ivec2 pixel)
+{
+	return ((unsigned int *)(image->pixel \
+				+ pixel.y * image->line_size \
+				+ pixel.x * image->bits_per_pixel / 8));
 }

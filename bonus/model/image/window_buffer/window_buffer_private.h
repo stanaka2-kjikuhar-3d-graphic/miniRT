@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_uv_pixel_addr.c                                :+:      :+:    :+:   */
+/*   window_buffer_private.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 17:50:36 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 22:32:24 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/10/18 08:09:08 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/10/18 08:41:52 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "image.h"
-#include "vector.h"
+#ifndef WINDOW_BUFFER_PRIVATE_H
+# define WINDOW_BUFFER_PRIVATE_H
 
-unsigned int	*get_uv_pixel_addr(t_image *image, t_vec2 uv)
-{
-	return (get_pixel_addr(image, calc_uv_pixel(image, uv)));
-}
+# include "window_buffer.h"
+
+# include "../image_private.h"
+
+t_image	*get_window_buffer(enum e_window_buffer_id id);
+
+#endif
