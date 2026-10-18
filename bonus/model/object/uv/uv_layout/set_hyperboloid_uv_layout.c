@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 07:08:57 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 10:00:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 11:10:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "./uv_layout_private.h"
 
 void	set_hyperboloid_uv_layout(\
-	t_id id, enum e_uv_type type, t_hyperboloid const *hyperboloid)
+	t_object_id id, enum e_uv_type type, t_hyperboloid const *hyperboloid)
 {
 	t_uv_layout	layout;
 	float		cap_ratio;

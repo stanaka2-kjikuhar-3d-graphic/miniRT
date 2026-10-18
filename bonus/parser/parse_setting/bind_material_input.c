@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/13 14:59:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:20:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:21:00 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,6 @@ void	bind_material_input(\
 	fields[OPTIONAL_BUMP_STRENGTH].value = &(material->bump_strength);
 	fields[OPTIONAL_METALNESS].value = &(material->metalness);
 	fields[OPTIONAL_SHININESS].value = &(material->shininess);
+	fields[OPTIONAL_REFLECTIVITY].value = &(material->reflectivity);
+	fields[OPTIONAL_IOR].value = &(material->ior);
 }
