@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 23:16:10 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 01:15:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 08:57:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 
 #include "../object_private.h"
 
-void	set_material(t_id object_id, t_material const *material)
+void	set_material(t_id id, t_material const *material)
 {
 	t_object	*object;
 
-	object = get_mutable_object(object_id);
+	object = get_mutable_object(id);
 	object->material = *material;
 }

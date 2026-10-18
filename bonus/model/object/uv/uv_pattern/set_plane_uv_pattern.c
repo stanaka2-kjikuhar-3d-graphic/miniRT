@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 21:10:23 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 01:15:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 08:57:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 #include "./uv_pattern_private.h"
 
-void	set_plane_uv_pattern(t_id object_id, float pattern_size, t_vec2 half_size)
+void	set_plane_uv_pattern(t_id id, float pattern_size, t_vec2 half_size)
 {
 	t_uv_pattern	pattern;
 
@@ -36,5 +36,5 @@ void	set_plane_uv_pattern(t_id object_id, float pattern_size, t_vec2 half_size)
 		pattern.scale.u = 1.0f / pattern_size;
 		pattern.scale.v = 1.0f / pattern_size;
 	}
-	set_uv_pattern(object_id, &pattern);
+	set_uv_pattern(id, &pattern);
 }

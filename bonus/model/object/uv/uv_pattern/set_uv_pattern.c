@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 22:09:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 01:15:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 08:57:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 
 #include "../../object_private.h"
 
-void	set_uv_pattern(t_id object_id, t_uv_pattern const *pattern)
+void	set_uv_pattern(t_id id, t_uv_pattern const *pattern)
 {
 	t_object	*object;
 
-	object = get_mutable_object(object_id);
+	object = get_mutable_object(id);
 	object->uv.pattern = *pattern;
 }

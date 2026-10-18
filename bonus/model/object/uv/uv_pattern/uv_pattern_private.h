@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 22:16:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 01:07:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 08:50:56 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 # include "object.h"
 # include "id.h"
 
-void	set_uv_pattern(t_id object_id, t_uv_pattern const *pattern);
+void	set_uv_pattern(t_id id, t_uv_pattern const *pattern);
 
 #endif
