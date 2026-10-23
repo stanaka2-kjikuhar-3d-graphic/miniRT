@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 00:51:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/29 00:55:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/24 06:41:23 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "object.h"
 
-#include "../parser_private.h"
+#include "../parse_setting_private.h"
 
 enum e_normal_type	get_normal_type(char const **optional_elements)
 {

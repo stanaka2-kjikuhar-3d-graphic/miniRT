@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 23:31:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/11 14:28:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/22 23:23:43 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 #include "vector.h"
 #include "../parser_private.h"
 
-bool	parse_coordinate(char const *element, void *value)
+bool	parse_coordinate(char const *element, t_vec3 *coordinate)
 {
-	t_vec3 *const	pos = (t_vec3 *)value;
-
-	if (!parse_vec3(element, pos))
+	if (!parse_vec3(element, coordinate))
 		return (false);
 	return (true);
 }

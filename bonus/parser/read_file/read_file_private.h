@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_required_fields.c                            :+:      :+:    :+:   */
+/*   read_file_private.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/11 14:59:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/23 20:07:48 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/04/19 16:40:07 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/10/24 06:31:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include <stddef.h>
+#ifndef READ_FILE_PRIVATE_H
+# define READ_FILE_PRIVATE_H
 
-#include "logger.h"
+# include <stddef.h>
+# include <unistd.h>
 
-#include "../parser_private.h"
+# define BUFFER_SIZE 1024
 
-bool	parse_required_fields(char const **elements, \
-			t_required_field const *fields, size_t count)
+typedef struct s_buf
 {
-	size_t	i;
+	char	data[BUFFER_SIZE];
+	char	*head;
+	ssize_t	read_bytes;
+	char	*newline;
+}	t_buf;
 
-	i = 0;
-	while (i < count)
-	{
-		set_log_field(fields[i].field, elements[i]);
-		if (!fields[i].parse(elements[i], fields[i].value))
-			return (false);
-		++i;
-	}
-	return (true);
-}
+typedef struct s_line
+{
+	char	*data;
+	size_t	len;
+}	t_line;
+
+bool	read_next_line(int fd, char **next_line);
+
+#endif

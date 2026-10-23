@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 16:58:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 07:38:04 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/24 06:43:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "loader.h"
 #include "loader_light.h"
 
-#include "../parser_private.h"
+#include "./parse_setting_private.h"
 
 #define REQUIRED_COUNT 3
 
@@ -49,8 +49,8 @@ static bool	parse_directional_light_required(\
 {
 	t_required_field	fields[REQUIRED_COUNT];
 
-	fields[0] = build_required_field(REQUIRED_DIR, &(input->dir));
-	fields[1] = build_required_field(REQUIRED_BRIGHTNESS, &(input->brightness));
-	fields[2] = build_required_field(REQUIRED_COLOR, &(input->color));
+	fields[0] = bind_required_field(REQUIRED_DIR, &(input->dir));
+	fields[1] = bind_required_field(REQUIRED_BRIGHTNESS, &(input->brightness));
+	fields[2] = bind_required_field(REQUIRED_COLOR, &(input->color));
 	return (parse_required_fields(elements, fields, REQUIRED_COUNT));
 }

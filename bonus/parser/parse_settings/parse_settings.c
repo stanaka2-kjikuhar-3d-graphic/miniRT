@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 00:13:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/24 06:24:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 #include "logger.h"
 #include "loader.h"
 
-#include "./parser_private.h"
+#include "./parse_settings_private.h"
+#include "../parser_private.h"
 
 static bool	parse_line(char *line, bool *used, t_list **scene_input);
 static bool	parse_setting(\

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 09:26:53 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 00:12:18 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/24 06:32:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 #include "logger.h"
 
-#include "./parser_private.h"
+#include "./read_file_private.h"
+#include "../parser_private.h"
 
 bool	read_file_as_line_list(int fd, t_list **line_list)
 {

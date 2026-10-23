@@ -23,10 +23,9 @@
 static bool	parse_axis(const char *element);
 static bool	check_separator(const char *element, enum e_axis axis);
 
-bool	parse_vec3(char const *element, void *value)
+bool	parse_vec3(char const *element, t_vec3 *vector)
 {
-	t_vec3 *const	vector = (t_vec3 *)value;
-	enum e_axis		axis;
+	enum e_axis	axis;
 
 	axis = X_AXIS;
 	while (axis <= Z_AXIS)

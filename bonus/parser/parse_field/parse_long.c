@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/02 00:01:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 00:39:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/20 00:07:31 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@
 
 static bool	parse_format(const char *element);
 
-bool	parse_long(char const *element, void *value)
+bool	parse_long(char const *element, long *num)
 {
-	long *const	num = (long *)value;
-
 	if (!parse_format(element))
 		return (false);
 	*num = ft_strtol(element, NULL, 10);

@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_next_line_private.h                           :+:      :+:    :+:   */
+/*   is_option_id.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/19 16:40:07 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/02 21:10:22 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/07/03 02:33:05 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/10/24 06:46:36 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef READ_NEXT_LINE_PRIVATE_H
-# define READ_NEXT_LINE_PRIVATE_H
+#include <stdbool.h>
+#include <stddef.h>
 
-# include <stddef.h>
-# include <unistd.h>
+#include "ft_string.h"
 
-# define BUFFER_SIZE 1024
+#include "../parse_setting_private.h"
 
-typedef struct s_buf
+bool	is_option_id(char const *id, char const *optional_element)
 {
-	char	data[BUFFER_SIZE];
-	char	*head;
-	ssize_t	read_bytes;
-	char	*newline;
-}	t_buf;
-
-typedef struct s_line
-{
-	char	*data;
 	size_t	len;
-}	t_line;
 
-#endif
+	len = ft_strlen(id);
+	return (ft_strncmp(id, optional_element, len) == 0 \
+				&& optional_element[len] == '=');
+}

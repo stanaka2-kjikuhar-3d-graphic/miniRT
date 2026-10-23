@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 13:23:13 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/01 20:45:09 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/20 00:33:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	ft_putnbr_fd(int n, int fd)
 {
 	unsigned int	num;
 
-	num = n;
+	num = (unsigned int)n;
 	if (n < 0)
 	{
-		num = -n;
+		num = (unsigned int)((-(n + 1)) + 1);
 		write(fd, "-", 1);
 	}
 	if (num >= 10)
