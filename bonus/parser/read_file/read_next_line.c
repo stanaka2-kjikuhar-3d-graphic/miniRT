@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 13:53:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 00:12:18 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/24 06:16:15 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 #include "logger.h"
 
-#include "./read_next_line_private.h"
+#include "./read_file_private.h"
 
 static bool	read_file(int fd, t_buf *buf, t_line *line);
 static bool	append_to_line(t_buf *buf, t_line *line);

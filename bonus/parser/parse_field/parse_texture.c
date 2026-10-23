@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 03:08:26 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:43:57 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/20 00:09:36 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 #include "texture.h"
 
-bool	parse_texture(char const *element, void *value)
+bool	parse_texture(char const *element, t_texture_id *id)
 {
-	t_texture_id *const	texture_id = (t_id *)value;
-
-	if (!create_texture((char *)element, texture_id))
+	if (!create_texture((char *)element, id))
 		return (false);
 	return (true);
 }

@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/18 11:25:07 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/10/24 06:17:20 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -197,10 +197,14 @@ SRC_DIRS	+= $(addprefix bonus/, \
 						window \
 					) \
 					parser $(addprefix parser/, \
-						read_next_line \
-						parse_setting \
+						read_file \
+						parse_setting $(addprefix parse_setting/, \
+							internal \
+						) \
+						parse_settings $(addprefix parse_settings/, \
+							internal \
+						) \
 						parse_field \
-						internal \
 					) \
 					$(addprefix system/, \
 						builder $(addprefix builder/, \
@@ -299,11 +303,10 @@ SRCS	+=	expose_hook.c \
 			button_hooks.c
 
 # parser
-SRCS	+=	parser.c \
-			read_file_as_line_list.c \
-			parse_settings.c
-# parser/read_next_line
-SRCS	+=	read_next_line.c
+SRCS	+=	parser.c
+# parser/read_file
+SRCS	+=	read_next_line.c \
+			read_file_as_line_list.c
 # parser/parse_setting
 SRCS	+=	parse_ambient_light.c \
 			parse_point_light.c \
@@ -315,14 +318,27 @@ SRCS	+=	parse_ambient_light.c \
 			parse_cylinder.c \
 			parse_cone.c \
 			parse_hyperboloid.c \
-			parse_paraboloid.c \
-			parse_required_fields.c \
-			build_required_field.c \
-			init_optional_fields.c \
-			bind_material_input.c \
-			parse_optional_fields.c \
+			parse_paraboloid.c
+# parser/parse_setting/internal
+SRCS	+=	bind_field_value.c \
+			bind_material_fields.c \
+			count_split.c \
+			get_normal_type.c \
 			get_pattern_type.c \
-			get_normal_type.c
+			is_option_id.c \
+			optional_fields.c \
+			parse_field.c \
+			parse_optional_fields.c \
+			parse_required_fields.c \
+			required_fields.c \
+			set_default_field_value.c
+# parser/parse_settings
+SRCS	+=	parse_settings.c
+# parser/parse_settings/internal
+SRCS	+=	free_split.c \
+			is_blank_line.c \
+			is_comment_line.c \
+			is_setting_id.c
 # parser/parse_field
 SRCS	+=	parse_vec3.c \
 			parse_float.c \
@@ -342,14 +358,6 @@ SRCS	+=	parse_vec3.c \
 			parse_long.c \
 			parse_checker_count.c \
 			parse_checker_count_even.c
-# parser/internal
-SRCS	+=	is_blank_line.c \
-			is_comment_line.c \
-			is_setting_id.c \
-			is_option_id.c \
-			count_split.c \
-			free_split.c
-
 # builder
 SRCS	+=	builder.c
 # builder/rebased_world_converter

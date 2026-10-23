@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:11:18 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/09/24 01:07:39 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/20 00:00:55 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@
 static bool	check_separator(const char *element, enum e_color_channel i);
 static bool	parse_color_channel(char const **element, long *channel);
 
-bool	parse_color(char const *element, void *value)
+bool	parse_color(char const *element, t_color *color)
 {
-	t_color *const			color = (t_color *)value;
 	long					channels[3];
 	unsigned int			rgb;
 	enum e_color_channel	i;

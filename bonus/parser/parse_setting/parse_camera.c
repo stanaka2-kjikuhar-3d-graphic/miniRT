@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:09:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 07:37:51 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/24 06:43:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "loader_camera.h"
 #include "viewport.h"
 
-#include "../parser_private.h"
+#include "./parse_setting_private.h"
 
 #define REQUIRED_COUNT 3
 
@@ -45,8 +45,8 @@ static bool	parse_camera_required(char const **elements, t_camera_input *input)
 {
 	t_required_field	fields[REQUIRED_COUNT];
 
-	fields[0] = build_required_field(REQUIRED_COORDINATE, &(input->pos));
-	fields[1] = build_required_field(REQUIRED_DIR, &(input->dir));
-	fields[2] = build_required_field(REQUIRED_FOV, &(input->fov));
+	fields[0] = bind_required_field(REQUIRED_COORDINATE, &(input->pos));
+	fields[1] = bind_required_field(REQUIRED_DIR, &(input->dir));
+	fields[2] = bind_required_field(REQUIRED_FOV, &(input->fov));
 	return (parse_required_fields(elements, fields, REQUIRED_COUNT));
 }

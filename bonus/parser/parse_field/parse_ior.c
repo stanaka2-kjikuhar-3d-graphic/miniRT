@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ior.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 21:15:11 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/17 16:34:35 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/20 00:07:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 
 #include "../parser_private.h"
 
-bool	parse_ior(char const *element, void *value)
+bool	parse_ior(char const *element, float *ior)
 {
-	float *const	ior = (float *)value;
-
 	if (!parse_float(element, ior))
 		return (false);
 	if (*ior < 0.0f)

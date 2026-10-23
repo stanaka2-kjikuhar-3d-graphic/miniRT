@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 23:37:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/06 21:54:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/20 00:01:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ due to norminette=3.3.55 bug.
 
 static bool	build_normalized_hint(t_vec3 dir, char *hint);
 
-bool	parse_dir(char const *element, void *value)
+bool	parse_dir(char const *element, t_vec3 *dir)
 {
-	t_vec3 *const	dir = (t_vec3 *)value;
-	float			length;
-	char			hint[64];
+	float	length;
+	char	hint[64];
 
 	if (!parse_vec3(element, dir))
 		return (false);

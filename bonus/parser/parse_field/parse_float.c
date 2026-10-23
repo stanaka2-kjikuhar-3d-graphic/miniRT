@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 19:25:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 00:41:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/20 00:02:06 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,17 @@
 
 static bool	parse_floating_point(const char *element);
 
-bool	parse_float(char const *element, void *value)
+bool	parse_float(char const *element, float *num)
 {
-	float *const	floating_point = (float *)value;
-
 	if (!parse_floating_point(element))
 		return (false);
-	*floating_point = (float)ft_strtod(element, (char **)&element);
+	*num = (float)ft_strtod(element, (char **)&element);
 	if (*element != '\0')
 	{
 		print_log_field(LOG_ERROR, ERROR_INVALID_CHARACTER);
 		return (false);
 	}
-	if (isinf(*floating_point))
+	if (isinf(*num))
 	{
 		print_log_field(LOG_ERROR, ERROR_MUST_BE_FINITE);
 		print_log_hint(LOG_ERROR, HINT_FLOAT_FINITE);
