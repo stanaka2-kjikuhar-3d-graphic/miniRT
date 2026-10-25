@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 19:25:41 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/09 07:15:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 17:09:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_vec2	disc_uv(t_vec3 p, enum e_uv_type uv_type);
 
 /* UV from the canonical local point. See docs/primitive_uv.md. */
 t_vec2	calc_primitive_uv(\
-	t_primitive const *prim, t_vec3 point, t_uv const *uv)
+	t_primitive const *prim, t_vec3 point, t_uv_info const *uv)
 {
 	t_vec3	local;
 

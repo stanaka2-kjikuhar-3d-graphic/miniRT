@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 17:00:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 17:10:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,19 +145,19 @@ typedef struct s_uv_pattern
 	t_vec2	scale;
 }	t_uv_pattern;
 
-typedef struct s_uv
+typedef struct s_uv_info
 {
 	t_uv_layout		layout;
 	t_uv_checker	checker;
 	t_uv_pattern	pattern;
-}	t_uv;
+}	t_uv_info;
 
 typedef struct s_object
 {
 	t_object_id	id;
 	t_material	material;
-	t_uv		uv;
 	t_primitive	primitive;
+	t_uv_info	uv_info;
 	t_aabb_info	aabb_info;
 }	t_object;
 

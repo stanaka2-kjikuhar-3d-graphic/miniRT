@@ -66,7 +66,7 @@ uv.u = (atan2f(p.y, p.x) + M_PI) / (2.0f * M_PI);
 そこで「ローカル1単位が何タイル分か」を `t_uv` に持たせ、UV 側で掛ける。
 
 ```c
-object->uv.pattern_scale = (t_vec2){
+object->uv_info.pattern_scale = (t_vec2){
 	.u = frame.scale.x / input->pattern_size,
 	.v = frame.scale.y / input->pattern_size};
 ```

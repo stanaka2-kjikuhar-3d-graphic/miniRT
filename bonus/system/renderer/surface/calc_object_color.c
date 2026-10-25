@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 02:28:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:38:45 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 17:10:43 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_color	calc_object_color(t_object const *object, t_vec2 uv)
 {
 	if (object->material.pattern_type == PATTERN_CHECKER)
 	{
-		if (is_even_cell(uv, object->uv.checker.size))
+		if (is_even_cell(uv, object->uv_info.checker.size))
 			return (object->material.checker.color1);
 		return (object->material.checker.color2);
 	}

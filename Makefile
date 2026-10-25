@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/25 16:58:19 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/10/25 17:12:36 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -186,7 +186,7 @@ SRC_DIRS	+= $(addprefix bonus/, \
 							primitive $(addprefix primitive/, \
 								internal \
 							) \
-							uv $(addprefix uv/, \
+							uv_info $(addprefix uv_info/, \
 								uv_checker \
 								uv_layout \
 								uv_pattern \
@@ -511,10 +511,10 @@ SRCS	+=	get_primitive.c \
 			set_paraboloid_primitive.c
 # model/object/primitive/internal
 SRCS	+=	build_primitive.c
-# model/object/uv/uv_checker
+# model/object/uv_info/uv_checker
 SRCS	+=	get_uv_checker.c \
 			set_uv_checker.c
-# model/object/uv/uv_layout
+# model/object/uv_info/uv_layout
 SRCS	+=	get_uv_layout.c \
 			set_uv_layout.c \
 			set_sphere_uv_layout.c \
@@ -524,7 +524,7 @@ SRCS	+=	get_uv_layout.c \
 			set_cone_uv_layout.c \
 			set_hyperboloid_uv_layout.c \
 			set_paraboloid_uv_layout.c
-# model/object/uv/uv_pattern
+# model/object/uv_info/uv_pattern
 SRCS	+=	get_uv_pattern.c \
 			set_uv_pattern.c \
 			set_disc_uv_pattern.c \

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 17:37:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:38:11 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 17:10:43 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_vec3	calc_bump_mapping(\
 				(t_vec2){.u = uv.u, .v = uv.v + pixel_size.v}));
 	return (vec3_normalize(mat3_mul_vec3(tbn, vec3(\
 		object->material.bump_strength \
-			* height_diff.u * 0.5f / object->uv.layout.aspect, \
+			* height_diff.u * 0.5f / object->uv_info.layout.aspect, \
 		object->material.bump_strength * height_diff.v * 0.5f, \
 		1.0f))));
 }
