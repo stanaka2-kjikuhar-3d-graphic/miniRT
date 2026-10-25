@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_material.c                                     :+:      :+:    :+:   */
+/*   material_private.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/09 22:10:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:58:26 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/10/25 20:40:06 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/10/25 21:52:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "object.h"
+#ifndef MATERIAL_PRIVATE_H
+# define MATERIAL_PRIVATE_H
 
-#include "../object_private.h"
+# include <stddef.h>
+# include <stdbool.h>
 
-t_material const	*get_material(t_object_id id)
-{
-	t_object	*object;
+# include "material.h"
 
-	object = get_mutable_object(id);
-	return (&(object->material));
-}
+bool		add_material_id(size_t index, t_material_id *id);
+size_t		get_material_index(t_material_id id);
+t_material	*get_mutable_material(t_material_id id);
+bool		create_material(t_material_id *id);
+
+#endif

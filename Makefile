@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/25 17:12:36 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/10/25 22:17:42 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -497,8 +497,10 @@ SRCS	+=	get_aabb_info.c \
 # model/object/aabb_info/internal
 SRCS	+=	mul_extent.c
 # model/object/material
-SRCS	+=	get_material.c \
-			set_material.c
+SRCS	+=	material.c \
+			material_id.c \
+			get_object_material.c \
+			set_object_material.c
 # model/object/primitive
 SRCS	+=	get_primitive.c \
 			set_primitive.c \

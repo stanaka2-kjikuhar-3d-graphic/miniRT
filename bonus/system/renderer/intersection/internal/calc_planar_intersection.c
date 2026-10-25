@@ -6,14 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 02:12:47 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/04 21:31:51 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 22:26:52 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
 #include "config.h"
-#include "object.h"
 #include "ray.h"
 #include "vector.h"
 

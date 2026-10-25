@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 07:42:48 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 10:01:51 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 20:44:19 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ bool			add_object_id(size_t index, t_object_id *id);
 size_t			get_object_index(t_object_id id);
 void			cleanup_objects(void);
 void			cleanup_object_ids(void);
+void			cleanup_materials(void);
+void			cleanup_material_ids(void);
 void			cleanup_bvh_nodes(void);
 void			cleanup_bvh_leaves(void);
 void			cleanup_flat_list(void);

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 17:10:09 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 22:18:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,10 @@
 # include <stdbool.h>
 
 # include "vector.h"
-# include "color.h"
-# include "ray.h"
-# include "matrix.h"
 # include "range.h"
 # include "aabb.h"
+# include "material.h"
 # include "primitive.h"
-# include "texture.h"
 # include "id.h"
 
 typedef t_id	t_object_id;
@@ -81,43 +78,6 @@ typedef struct s_paraboloid
 	float	height;
 }	t_paraboloid;
 
-enum e_pattern_type
-{
-	PATTERN_SOLID,
-	PATTERN_TEXTURE,
-	PATTERN_CHECKER
-};
-
-typedef struct s_checker_color
-{
-	t_color	color1;
-	t_color	color2;
-}	t_checker_color;
-
-enum e_normal_type
-{
-	NORMAL_OBJECT,
-	BUMP_MAP,
-	NORMAL_MAP
-};
-
-typedef struct s_material
-{
-	enum e_pattern_type	pattern_type;
-	t_color				albedo;
-	t_texture_id		texture_id;
-	t_checker_color		checker;
-	enum e_normal_type	normal_type;
-	t_texture_id		bump_map_id;
-	float				bump_strength;
-	t_texture_id		normal_map_id;
-	bool				directx_normal_map;
-	bool				metalness;
-	float				shininess;
-	float				reflectivity;
-	float				ior;
-}	t_material;
-
 enum e_uv_type
 {
 	UV_DEFAULT,
@@ -154,11 +114,11 @@ typedef struct s_uv_info
 
 typedef struct s_object
 {
-	t_object_id	id;
-	t_material	material;
-	t_primitive	primitive;
-	t_uv_info	uv_info;
-	t_aabb_info	aabb_info;
+	t_object_id		id;
+	t_material_id	material_id;
+	t_primitive		primitive;
+	t_uv_info		uv_info;
+	t_aabb_info		aabb_info;
 }	t_object;
 
 void				cleanup_object(void);
@@ -178,8 +138,9 @@ bool				set_paraboloid_primitive(\
 bool				set_plane_primitive(t_object_id id, t_plane const *plane);
 bool				set_sphere_primitive(\
 						t_object_id id, t_sphere const *sphere);
-t_material const	*get_material(t_object_id id);
-void				set_material(t_object_id id, t_material const *material);
+t_material const	*get_object_material(t_object_id id);
+bool				set_object_material(\
+						t_object_id id, t_material const *material);
 t_uv_layout const	*get_uv_layout(t_object_id id);
 void				set_cone_uv_layout(t_object_id id, \
 						enum e_uv_type type, t_cone const *cone);

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 16:42:19 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/04 21:55:48 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 22:26:36 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include "config.h"
 #include "matrix.h"
-#include "object.h"
 #include "ray.h"
 #include "vector.h"
 #include "primitive.h"

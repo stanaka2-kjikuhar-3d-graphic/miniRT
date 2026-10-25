@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/10 22:03:03 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/18 10:47:00 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 21:15:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static float	calc_ray_offset(t_hit const *hit)
 
 static float	calc_eta_ratio(t_hit const *hit)
 {
-	float const	ior = hit->object->material.ior;
+	float const	ior = hit->material->ior;
 
 	if (hit->is_front_face)
 		return (1.0f / ior);

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 02:28:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 17:10:43 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 21:31:45 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,28 @@
 #include <stdbool.h>
 
 #include "object.h"
+#include "material.h"
 #include "color.h"
 #include "vector.h"
 #include "texture.h"
 
 static bool	is_even_cell(t_vec2 uv, t_vec2 size);
 
-t_color	calc_object_color(t_object const *object, t_vec2 uv)
+t_color	calc_object_color(\
+	t_object const *object, t_material const *material, t_vec2 uv)
 {
-	if (object->material.pattern_type == PATTERN_CHECKER)
+	if (material->pattern_type == PATTERN_CHECKER)
 	{
 		if (is_even_cell(uv, object->uv_info.checker.size))
-			return (object->material.checker.color1);
-		return (object->material.checker.color2);
+			return (material->checker.color1);
+		return (material->checker.color2);
 	}
-	else if (object->material.pattern_type == PATTERN_TEXTURE)
+	else if (material->pattern_type == PATTERN_TEXTURE)
 	{
 		return (decode_color(\
-					get_texture_uv_pixel(object->material.texture_id, uv)));
+					get_texture_uv_pixel(material->texture_id, uv)));
 	}
-	return (object->material.albedo);
+	return (material->albedo);
 }
 
 static bool	is_even_cell(t_vec2 uv, t_vec2 checker_size)

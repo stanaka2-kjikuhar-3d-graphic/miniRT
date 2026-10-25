@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_material.c                                     :+:      :+:    :+:   */
+/*   set_object_material.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/07 23:16:10 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:58:31 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/10/25 22:16:28 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/10/25 22:16:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "object.h"
+#include "material.h"
 
+#include "./material_private.h"
 #include "../object_private.h"
 
-void	set_material(t_object_id id, t_material const *material)
+bool	set_object_material(t_object_id id, t_material const *material)
 {
 	t_object	*object;
 
 	object = get_mutable_object(id);
-	object->material = *material;
+	if (!create_material(&(object->material_id)))
+		return (false);
+	*get_mutable_material(object->material_id) = *material;
+	return (true);
 }
