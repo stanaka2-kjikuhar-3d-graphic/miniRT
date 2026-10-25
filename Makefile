@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/24 06:17:20 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/10/25 16:58:19 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,7 +124,6 @@ INCLUDE_DIRS	:=	bonus \
 							) \
 							$(addprefix system/, \
 								builder \
-								builder/accelerator \
 								loader \
 								renderer \
 							) \
@@ -360,8 +359,6 @@ SRCS	+=	parse_vec3.c \
 			parse_checker_count_even.c
 # builder
 SRCS	+=	builder.c
-# builder/rebased_world_converter
-SRCS	+=	rebase_world_space.c
 # builder/accelerator
 SRCS	+=	build_accelerator.c
 # builder/accelerator/bvh

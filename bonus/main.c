@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/13 23:43:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 16:58:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 #include "image.h"
 #include "renderer.h"
 #include "logger.h"
-#include "accelerator.h"
 #include "builder.h"
 #include "loader.h"
 #include "bvh.h"

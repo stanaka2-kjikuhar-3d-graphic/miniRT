@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 00:05:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 11:08:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 17:00:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,8 +155,6 @@ typedef struct s_uv
 typedef struct s_object
 {
 	t_object_id	id;
-	t_vec3		world_pos;
-	t_vec3		world_move;
 	t_material	material;
 	t_uv		uv;
 	t_primitive	primitive;
