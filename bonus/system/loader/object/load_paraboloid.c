@@ -6,13 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 19:05:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 22:16:04 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 22:08:32 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
 #include "object.h"
+#include "material.h"
 #include "loader.h"
 #include "loader_object.h"
 

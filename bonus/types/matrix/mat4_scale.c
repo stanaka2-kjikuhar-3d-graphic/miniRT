@@ -6,10 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 22:54:37 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/30 18:50:39 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:39:55 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "vector.h"
 #include "matrix.h"
 
 t_mat4	mat4_scale(t_vec3 s)

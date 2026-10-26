@@ -6,14 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/09 22:10:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 22:16:36 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:09:34 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "object.h"
 #include "material.h"
 
-#include "./material_private.h"
 #include "../object_private.h"
 
 t_material const	*get_object_material(t_object_id id)

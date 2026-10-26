@@ -6,10 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 22:54:01 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/30 18:48:05 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:38:42 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "vector.h"
 #include "matrix.h"
 
 /* result = m * v: each component is the dot of a matrix row with v. */

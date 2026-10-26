@@ -6,10 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 22:54:44 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/30 18:55:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:38:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "vector.h"
 #include "matrix.h"
 
 /* Columns = basis vectors rotated by Rodrigues (reuses vec3_rotate). */

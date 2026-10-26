@@ -6,10 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 03:02:19 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/30 19:11:42 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:39:40 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "vector.h"
 #include "matrix.h"
 
 static void	set_rotation_scale(\

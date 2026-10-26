@@ -15,8 +15,10 @@
 #include "config.h"
 #include "object.h"
 #include "flat_list.h"
+#include "ray.h"
 
 #include "../intersection_private.h"
+#include "../../renderer_private.h"
 
 void	flat_list_intersection(t_hit *hit, t_ray const *ray)
 {

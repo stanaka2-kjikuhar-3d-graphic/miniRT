@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 03:39:13 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 21:28:59 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:51:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "light.h"
 
 #include "../lighting_private.h"
+#include "../../renderer_private.h"
 
 static t_color	calc_ambient_color(\
 	t_hit const *hit, t_ambient_light const *light);

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 23:56:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 21:54:53 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:24:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdbool.h>
 
-# include "config.h"
 # include "object.h"
 # include "vector.h"
 # include "color.h"

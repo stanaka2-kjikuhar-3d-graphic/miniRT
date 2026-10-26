@@ -6,14 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 22:46:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 16:34:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:52:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include <stddef.h>
 
-#include "matrix.h"
-#include "object.h"
 #include "ray.h"
 
 #include "./intersection_private.h"

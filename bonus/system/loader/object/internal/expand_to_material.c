@@ -6,12 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 12:00:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 21:34:59 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 22:09:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "material.h"
-#include "color.h"
+#include "loader_object.h"
+
 #include "../loader_object_private.h"
 
 t_material	expand_to_material(t_material_input const *input)

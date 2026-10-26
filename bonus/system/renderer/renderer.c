@@ -6,12 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:38:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 10:22:45 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:50:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include <pthread.h>
+#include <stddef.h>
 
 #include "mlx.h"
 

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:10:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/04 22:00:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:03:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "ft_math.h"
 
 #include "config.h"
-#include "vector.h"
 #include "viewport.h"
 
 static t_viewport	g_viewport;

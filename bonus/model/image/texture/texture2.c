@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/17 14:44:31 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:48:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:04:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "mlx.h"
 #include "ft_string.h"
 
-#include "image.h"
 #include "window.h"
 #include "logger.h"
 #include "dynamic_array.h"

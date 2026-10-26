@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 02:12:47 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/25 22:26:52 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:49:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "config.h"
 #include "ray.h"
-#include "vector.h"
+#include "primitive.h"
 
 #include "../intersection_private.h"
 

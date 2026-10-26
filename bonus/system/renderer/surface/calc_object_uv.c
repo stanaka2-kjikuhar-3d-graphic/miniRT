@@ -6,11 +6,12 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 19:39:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 19:13:31 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:43:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "object.h"
+#include "vector.h"
 
 #include "./surface_private.h"
 

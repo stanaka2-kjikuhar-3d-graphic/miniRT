@@ -6,12 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 00:06:48 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 00:46:18 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:40:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include <stddef.h>
+
+#include "logger.h"
 
 #include "./logger_private.h"
 

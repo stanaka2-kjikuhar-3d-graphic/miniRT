@@ -6,10 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 16:50:32 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 22:05:42 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:42:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdbool.h>
 #include <X11/keysym.h>
 
 #include "mlx.h"

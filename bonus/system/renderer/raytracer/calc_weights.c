@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/10 22:03:03 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/25 22:25:15 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:44:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "ray.h"
 
 #include "./raytracer_private.h"
+#include "../renderer_private.h"
 
 t_weights	calc_weights(t_ray const *ray, t_hit const *hit, int depth)
 {

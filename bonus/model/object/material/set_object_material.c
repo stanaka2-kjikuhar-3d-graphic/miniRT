@@ -6,9 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/25 22:16:28 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 22:16:33 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 22:13:34 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdbool.h>
 
 #include "object.h"
 #include "material.h"

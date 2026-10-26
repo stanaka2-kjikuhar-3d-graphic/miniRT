@@ -6,29 +6,25 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 16:58:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 22:11:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdbool.h>
-#include <unistd.h>
 
 #include "mlx.h"
-#include "ft_stdio.h"
 #include "ft_string.h"
+#include "ft_lst.h"
 
 #include "color.h"
 #include "parser.h"
 #include "light.h"
 #include "object.h"
 #include "window.h"
-#include "image.h"
-#include "renderer.h"
 #include "logger.h"
 #include "builder.h"
 #include "loader.h"
-#include "bvh.h"
 
 static bool	is_valid_argument(int argc, char const *argv[]);
 static void	cleanup(void);

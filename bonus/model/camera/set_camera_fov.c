@@ -6,11 +6,10 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/13 15:34:23 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/13 17:10:23 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:09:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
 #include "camera.h"
 
 #include "./camera_private.h"

@@ -6,15 +6,15 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 22:20:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/15 06:11:34 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:52:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include <stddef.h>
 
-#include "object.h"
 #include "flat_list.h"
+#include "ray.h"
 
 #include "../intersection_private.h"
 

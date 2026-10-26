@@ -6,15 +6,12 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:05:47 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 21:30:26 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:03:01 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
-#include "ft_math.h"
-
-#include "config.h"
 #include "color.h"
 #include "ray.h"
 #include "light.h"

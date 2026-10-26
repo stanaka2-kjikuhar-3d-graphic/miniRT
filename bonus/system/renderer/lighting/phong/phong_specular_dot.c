@@ -6,17 +6,16 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 20:45:00 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/04 21:56:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:52:57 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "ft_math.h"
 
 #include "config.h"
 #include "ray.h"
 #include "vector.h"
 
 #include "../lighting_private.h"
+#include "../../renderer_private.h"
 
 static float	calc_phong_specular_dot(t_ray const *ray, \
 					t_hit const *hit, t_vec3 to_light);
