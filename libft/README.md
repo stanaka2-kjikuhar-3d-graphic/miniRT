@@ -87,8 +87,11 @@ make re     # fclean してから再ビルド
 |------|------|
 | `ft_abs_uint(n)` | int の絶対値を unsigned int で返す |
 | `ft_abs_ulong(n)` | long の絶対値を unsigned long で返す |
+| `ft_abs_uintmax(n)` | intmax_t の絶対値を uintmax_t で返す |
 | `ft_atoi(nptr)` | 文字列を int に変換 |
+| `ft_strtol(nptr, endptr, base)` | 文字列を指定基数で long に変換し、未解析位置を `endptr` に格納 |
 | `ft_atof(str)` | 文字列を double に変換 |
+| `ft_strtod(nptr, endptr)` | 文字列を double に変換し、未解析位置を `endptr` に格納（符号・基数・小数部・指数部を個別に走査し、IEEE 754 double にエンコード） |
 | `ft_calloc(nmemb, size)` | ゼロ初期化したメモリを確保 |
 | `ft_itoa(n)` | int を文字列に変換（malloc） |
 | `ft_realloc(ptr, old_size, new_size)` | メモリを再確保（失敗時は元 ptr を free しない） |
@@ -255,6 +258,47 @@ macOS（`__APPLE__`）と Linux で一部挙動が異なります（UTF-8 最大
 
 ---
 
+## ft_strtod
+
+文字列を `double` に変換する関数群です。標準の `strtod` / `atof` 相当の機能を、IEEE 754 倍精度に正確に丸めて実装しています。
+
+```c
+double ft_strtod(const char *nptr, char **endptr);
+double ft_atof(const char *nptr);
+```
+
+- 戻り値: 変換した `double` 値。
+- `endptr` が非 `NULL` の場合、解析を終えた次の文字へのポインタを格納する。
+- `ft_atof(nptr)` は `ft_strtod(nptr, NULL)` 相当のラッパー。
+
+### サポートする入力
+
+| 種類 | 例 |
+| ------ | ------ |
+| 10 進小数 | `3.14`, `-0.5`, `42` |
+| 10 進指数形式 | `1.5e-10`, `2E+3` |
+| 16 進小数（C99 形式） | `0x1.8p3`, `0xA.Bp-2` |
+| 符号 | 先頭の `+` / `-` |
+| 特殊値リテラル | `inf` / `infinity` / `nan`（大文字小文字を問わない） |
+
+### 変換アルゴリズム
+
+精度誤差を避けるため、浮動小数点演算を一切使わず、**10 進数字を巨大な固定小数点配列**（整数部 309 桁＋小数部 1075 桁＝計 1384 桁）として保持して変換します。
+
+1. **走査（scan）**: 符号 → 特殊値リテラル → 基数（10 進 / 16 進）→ 仮数部の数字 → 指数部、の順に文字列を読み進め、各桁を固定小数点配列に格納する
+2. **有効桁の特定**: 非ゼロ桁の範囲（`msd` 〜 `lsd`）を求め、ゼロや無駄な桁を除外
+3. **2 進化**: 配列の 2 倍 / 半分（`double_array` / `half_array`）を繰り返して 2 進の指数と 52 ビット仮数を抽出
+4. **丸め**: 追跡精度を超えて捨てた桁を **sticky bit** として記録し、最近接偶数丸め（round-half-to-even）を適用
+5. **エンコード**: 符号・指数・仮数を `union` 経由でビット列に組み立て、`double` を生成。オーバーフローは `inf`、アンダーフローは非正規化数として処理
+
+### 対応する特殊ケース
+
+- NaN・正負の無限大（`inf` / `-inf`）
+- 非正規化数（subnormal）・正負のゼロ
+- 整数部オーバーフロー時の無限大化
+
+---
+
 ## ディレクトリ構成
 
 ```
@@ -274,6 +318,7 @@ libft/
 ├── string/
 ├── lst/
 ├── math/
+├── ft_strtod/
 ├── get_next_line/
 └── Makefile
 ```

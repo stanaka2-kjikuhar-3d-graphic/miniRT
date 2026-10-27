@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf/ft_printf.h"
+#include <stddef.h>
+
+#include "ft_printf/types.h"
 #include "./print_utils_internal.h"
 
 void	pf_print_padding(t_ctx *ctx, size_t padding)

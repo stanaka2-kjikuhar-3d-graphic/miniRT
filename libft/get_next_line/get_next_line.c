@@ -6,9 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 00:47:51 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/01 21:03:43 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/27 07:34:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdbool.h>
 
 #include "ft_stdlib.h"
 #include "./get_next_line.h"

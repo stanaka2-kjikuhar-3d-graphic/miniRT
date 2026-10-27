@@ -6,14 +6,18 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 22:56:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/28 18:43:52 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/27 06:40:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+#include <stdbool.h>
+#include <sys/types.h>
 #include <unistd.h>
 
 #include "ft_string.h"
 #include "ft_printf/ft_printf.h"
+#include "ft_printf/types.h"
 #include "./print_utils_internal.h"
 
 static void	pf_print_to_fd(t_ctx *ctx, const char *s, size_t len);
@@ -23,7 +27,7 @@ void	pf_print_strn(t_ctx *ctx, const char *s, size_t len)
 {
 	if (ctx->has_error || len == 0)
 		return ;
-	if (PRINTF_RESULT_LIMIT < ctx->count + len)
+	if (PRINTF_RESULT_LIMIT - ctx->count < len)
 	{
 		len = PRINTF_RESULT_LIMIT - ctx->count;
 		ctx->has_error = true;
