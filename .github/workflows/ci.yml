@@ -33,6 +33,7 @@ jobs:
           cppcheck --error-exitcode=1
           --enable=warning,performance,portability
           --inline-suppr
+          --suppressions-list=.github/workflows/cppcheck-suppress
           -I libft
           bonus libft
 

@@ -1,0 +1,3 @@
+# cppcheck suppression file
+# False positive: radix_point is always initialized when pf_float_init returns true
+nullPointerRedundantCheck:libft/ft_printf/print_conversion/floating_point/utils/pf_get_decimal_exponent.c:32

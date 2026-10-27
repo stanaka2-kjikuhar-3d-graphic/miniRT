@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 15:39:17 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/26 22:11:10 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/27 20:45:19 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ t_bin_partition	calc_best_bin_partition(size_t start, size_t count)
 	enum e_axis		axis;
 
 	best = (t_bin_partition){.cost = INFINITY};
-	axis = X_AXIS;
+	current.axis = X_AXIS;
+	current.range = calc_centroid_range(start, count, X_AXIS);
+	axis = Y_AXIS;
 	while (axis <= Z_AXIS)
 	{
 		range = calc_centroid_range(start, count, axis);
-		if (axis == X_AXIS \
-			|| current.range.max - current.range.min < range.max - range.min)
+		if (current.range.max - current.range.min < range.max - range.min)
 		{
 			current.axis = axis;
 			current.range = range;
