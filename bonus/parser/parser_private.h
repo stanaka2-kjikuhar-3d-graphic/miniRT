@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 15:34:53 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:21:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ enum e_optional_field
 	OPTIONAL_BUMP_STRENGTH,
 	OPTIONAL_METALNESS,
 	OPTIONAL_SHININESS,
+	OPTIONAL_REFLECTIVITY,
+	OPTIONAL_IOR,
 	OPTIONAL_PATTERN_SIZE,
 	OPTIONAL_U_SIZE,
 	OPTIONAL_V_SIZE,
@@ -171,6 +173,8 @@ bool				parse_texture(char const *element, void *value);
 bool				parse_size(char const *element, void *value);
 bool				parse_bool(char const *element, void *value);
 bool				parse_shininess(char const *element, void *value);
+bool				parse_reflectivity(char const *element, void *value);
+bool				parse_ior(char const *element, void *value);
 bool				parse_long(char const *element, void *value);
 bool				parse_checker_count(char const *element, void *value);
 bool				parse_checker_count_even(char const *element, void *value);

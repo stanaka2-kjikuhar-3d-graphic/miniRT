@@ -6,20 +6,19 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 07:08:07 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:57:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:20:48 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include <math.h>
 
 #include "object.h"
 #include "range.h"
-#include "id.h"
 
 #include "./uv_layout_private.h"
 
-void	set_cone_uv_layout(t_id id, enum e_uv_type type, t_cone const *cone)
+void	set_cone_uv_layout(\
+	t_object_id id, enum e_uv_type type, t_cone const *cone)
 {
 	t_uv_layout	layout;
 	float		generatrix;

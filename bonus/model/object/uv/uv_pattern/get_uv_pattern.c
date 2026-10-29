@@ -6,18 +6,15 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/09 22:08:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 17:29:57 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:00:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-
 #include "object.h"
-#include "id.h"
 
 #include "../../object_private.h"
 
-t_uv_pattern const	*get_uv_pattern(t_id id)
+t_uv_pattern const	*get_uv_pattern(t_object_id id)
 {
 	t_object	*object;
 

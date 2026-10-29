@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:51:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:51:07 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 11:08:15 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include "color.h"
 # include "vector.h"
 # include "id.h"
+
+typedef t_id	t_light_id;
 
 typedef struct s_dist_attenuation
 {
@@ -87,7 +89,7 @@ enum e_light_type
 
 typedef struct s_light
 {
-	t_id				id;
+	t_light_id			id;
 	enum e_light_type	type;
 	union
 	{
@@ -99,25 +101,25 @@ typedef struct s_light
 	};
 }	t_light;
 
-t_light const	*get_light(t_id id);
+t_light const	*get_light(t_light_id id);
 t_light const	*get_light_by_index(size_t i);
 size_t			get_light_count(void);
-bool			create_light(t_id *id);
+bool			create_light(t_light_id *id);
 void			cleanup_lights(void);
-void			set_ambient_light(t_id id);
-void			set_directional_light(t_id id, t_vec3 dir);
-void			set_point_light(t_id id, t_vec3 pos);
+void			set_ambient_light(t_light_id id);
+void			set_directional_light(t_light_id id, t_vec3 dir);
+void			set_point_light(t_light_id id, t_vec3 pos);
 void			set_spot_light(\
-					t_id id, t_vec3 pos, t_vec3 dir, float outer_angle);
-void			set_uniform_infinite_light(t_id id);
+					t_light_id id, t_vec3 pos, t_vec3 dir, float outer_angle);
+void			set_uniform_infinite_light(t_light_id id);
 void			set_ambient_light_radiance(\
-					t_id id, t_color color, float brightness);
+					t_light_id id, t_color color, float brightness);
 void			set_directional_light_radiance(\
-					t_id id, t_color color, float brightness);
+					t_light_id id, t_color color, float brightness);
 void			set_point_light_radiance(\
-					t_id id, t_color color, float brightness);
+					t_light_id id, t_color color, float brightness);
 void			set_spot_light_radiance(\
-					t_id id, t_color color, float brightness);
+					t_light_id id, t_color color, float brightness);
 void			set_uniform_infinite_light_radiance(\
-					t_id id, t_color color, float brightness);
+					t_light_id id, t_color color, float brightness);
 #endif

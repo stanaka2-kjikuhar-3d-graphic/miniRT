@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:47:04 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:04:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 #include "object.h"
 #include "loader.h"
 #include "loader_object.h"
-#include "id.h"
 
 #include "./loader_object_private.h"
 
 bool	load_sphere(t_scene_input const *scene_input)
 {
-	t_id					id;
+	t_object_id				id;
 	t_sphere_input const	*input;
 	t_material				material;
 

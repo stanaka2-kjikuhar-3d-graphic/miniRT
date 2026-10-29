@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/17 00:59:41 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/10/18 11:25:07 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -167,7 +167,11 @@ SRC_DIRS	+= $(addprefix bonus/, \
 						camera $(addprefix camera/, \
 							internal \
 						) \
-						image \
+						image $(addprefix image/, \
+							internal \
+							texture \
+							window_buffer \
+						) \
 						light $(addprefix light/, \
 							type \
 							radiance $(addprefix radiance/, \
@@ -206,7 +210,7 @@ SRC_DIRS	+= $(addprefix bonus/, \
 							) \
 						) \
 						renderer $(addprefix renderer/, \
-							internal \
+							raytracer \
 							intersection $(addprefix intersection/, \
 								bvh \
 								flat_list \
@@ -261,18 +265,31 @@ else
 
 SRCS	:=	main.c
 
-# window
+# model/window
 SRCS	+=	mlx_ptr.c \
 			win_ptr.c \
-			image.c \
-			texture.c \
 			cleanup_mlx.c \
 			setup_mlx_window.c \
-			setup_mlx_hooks.c \
-			get_pixel_addr.c \
-			get_uv_pixel_addr.c \
-			calc_uv_pixel.c \
-			put_color.c
+			setup_mlx_hooks.c
+
+# model/image
+SRCS	+=	cleanup_image.c
+# model/image/internal
+SRCS	+=	calc_image_uv_pixel.c \
+			get_image_pixel_addr.c \
+			get_image_pixel.c \
+			get_image_uv_pixel.c
+# model/image/texture
+SRCS	+=	get_texture_pixel.c \
+			get_texture_size.c \
+			get_texture_uv_pixel.c \
+			texture_id.c \
+			texture.c \
+			texture2.c
+# model/image/window_buffer
+SRCS	+=	get_window_buffer_pixel.c \
+			put_color.c \
+			window_buffer.c
 
 # window/hooks
 SRCS	+=	expose_hook.c \
@@ -319,6 +336,8 @@ SRCS	+=	parse_vec3.c \
 			parse_texture.c \
 			parse_bool.c \
 			parse_shininess.c \
+			parse_reflectivity.c \
+			parse_ior.c \
 			parse_size.c \
 			parse_long.c \
 			parse_checker_count.c \
@@ -368,10 +387,13 @@ SRCS	+=	expand_to_material.c \
 
 # renderer
 SRCS	+=	renderer.c \
-			phong.c
-# renderer/internal
-SRCS	+=	calc_ray.c \
-			render_flag.c \
+			render_flag.c
+# renderer/raytracer
+SRCS	+=	raytrace.c \
+			trace_ray.c \
+			calc_weights.c \
+			spawn_ray.c \
+			calc_ray.c \
 			put_color_to_window_image.c
 # renderer/intersection
 SRCS	+=	find_closest_hit.c \
@@ -407,7 +429,8 @@ SRCS	+=	calc_bump_mapping.c \
 			calc_object_color.c \
 			calc_object_normal.c \
 			calc_object_tbn.c \
-			calc_object_uv.c
+			calc_object_uv.c \
+			set_hit_record.c
 # renderer/surface/internal
 SRCS	+=	adjust_uv_range.c \
 			calc_primitive_normal.c \

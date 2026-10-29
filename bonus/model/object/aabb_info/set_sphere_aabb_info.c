@@ -6,20 +6,17 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 22:31:51 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:57:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:57:43 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stddef.h>
 
 #include "object.h"
 #include "aabb.h"
 #include "vector.h"
-#include "id.h"
 
 #include "./object_aabb_info_private.h"
 
-void	set_sphere_aabb_info(t_id id, t_sphere const *sphere)
+void	set_sphere_aabb_info(t_object_id id, t_sphere const *sphere)
 {
 	t_aabb_info	aabb_info;
 
