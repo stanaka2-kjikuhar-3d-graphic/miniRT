@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/12 16:02:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 00:40:26 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/20 00:08:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 
 #include "../parser_private.h"
 
-bool	parse_size(char const *element, void *value)
+bool	parse_size(char const *element, float *size)
 {
-	float *const	size = (float *)value;
-
 	if (!parse_float(element, size))
 		return (false);
 	if (*size <= 0.0f)

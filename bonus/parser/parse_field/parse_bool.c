@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 01:20:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 00:29:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/19 23:54:59 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 
 #include "logger.h"
 
-bool	parse_bool(char const *element, void *value)
+bool	parse_bool(char const *element, bool *boolean)
 {
-	bool *const	boolean = (bool *)value;
-
 	if (ft_strcmp("true", element) == 0)
 		*boolean = true;
 	else if (ft_strcmp("false", element) == 0)

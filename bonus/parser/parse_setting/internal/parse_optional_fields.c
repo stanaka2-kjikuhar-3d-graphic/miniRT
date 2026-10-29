@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 15:53:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:12:30 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/24 06:41:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,22 @@
 
 #include "logger.h"
 
-#include "../parser_private.h"
+#include "../parse_setting_private.h"
 
-static void						set_default_optional_fields(\
-	t_optional_field const *fields);
-static bool						parse_optional_field(\
-	char const *element, t_optional_field const *fields, bool *used);
-static enum e_optional_field	find_field_index(\
-	char const *element, t_optional_field const *fields);
+static bool						parse_optional_field(char const *element, \
+									t_optional_field const *fields, bool *used);
+static enum e_optional_field	find_field_index(char const *element, \
+									t_optional_field const *fields);
 static void						print_option_hints(\
-	t_optional_field const *fields);
+									t_optional_field const *fields);
 
 bool	parse_optional_fields(\
-	char const **optional_elements, t_optional_field const *fields)
+	char const **optional_elements, t_optional_field *fields)
 {
 	bool	used[OPTIONAL_FIELD_COUNT];
 	size_t	i;
 
-	set_default_optional_fields(fields);
+	set_default_values(fields);
 	ft_bzero(used, sizeof(used));
 	i = 0;
 	while (optional_elements[i] != NULL)
@@ -50,75 +48,47 @@ bool	parse_optional_fields(\
 	return (true);
 }
 
-static void	set_default_optional_fields(t_optional_field const *fields)
-{
-	enum e_optional_field	idx;
-
-	idx = 0;
-	while (idx < OPTIONAL_FIELD_COUNT)
-	{
-		if (fields[idx].value != NULL)
-		{
-			if (fields[idx].field_type == FIELD_ID)
-			{
-				*(t_id *)fields[idx].value \
-					= fields[idx].default_value.id;
-			}
-			else if (fields[idx].field_type == FIELD_COLOR)
-				*(t_color *)fields[idx].value = fields[idx].default_value.color;
-			else if (fields[idx].field_type == FIELD_BOOL)
-				*(bool *)fields[idx].value = fields[idx].default_value.boolean;
-			else if (fields[idx].field_type == FIELD_FLOAT)
-				*(float *)fields[idx].value = fields[idx].default_value.number;
-			else if (fields[idx].field_type == FIELD_INT)
-				*(int *)fields[idx].value = fields[idx].default_value.integer;
-		}
-		++idx;
-	}
-}
-
 static bool	parse_optional_field(\
 	char const *element, t_optional_field const *fields, bool *used)
 {
-	char const				*equal;
-	enum e_optional_field	idx;
+	char const *const		equal = ft_strchr(element, '=');
+	enum e_optional_field	i;
 
-	equal = ft_strchr(element, '=');
 	if (equal == NULL)
 	{
 		print_log_field(LOG_ERROR, ERROR_OPTION_FORMAT);
 		print_log_hint(LOG_ERROR, HINT_OPTION_FORMAT);
 		return (false);
 	}
-	idx = find_field_index(element, fields);
-	if (idx == OPTIONAL_FIELD_COUNT)
+	i = find_field_index(element, fields);
+	if (i == OPTIONAL_FIELD_COUNT)
 	{
 		print_log_field(LOG_ERROR, ERROR_OPTION_UNKNOWN);
 		print_option_hints(fields);
 		return (false);
 	}
-	if (used[idx])
+	if (used[i])
 	{
 		print_log_field(LOG_ERROR, ERROR_OPTION_DUP);
 		return (false);
 	}
-	used[idx] = true;
-	set_log_field(fields[idx].key, equal + 1);
-	return (fields[idx].parse(equal + 1, fields[idx].value));
+	used[i] = true;
+	set_log_field(fields[i].key, equal + 1);
+	return (parse_field(fields[i].field_type, \
+				fields[i].parser, equal + 1, fields[i].value));
 }
 
 static enum e_optional_field	find_field_index(\
 	char const *element, t_optional_field const *fields)
 {
-	enum e_optional_field	idx;
+	enum e_optional_field	i;
 
-	idx = 0;
-	while (idx < OPTIONAL_FIELD_COUNT)
+	i = 0;
+	while (i < OPTIONAL_FIELD_COUNT)
 	{
-		if (fields[idx].value != NULL \
-			&& is_option_id(fields[idx].key, element))
-			return (idx);
-		++idx;
+		if (fields[i].is_set && is_option_id(fields[i].key, element))
+			return (i);
+		++i;
 	}
 	return (OPTIONAL_FIELD_COUNT);
 }
@@ -133,7 +103,7 @@ static void	print_option_hints(t_optional_field const *fields)
 	j = 0;
 	while (i < OPTIONAL_FIELD_COUNT)
 	{
-		if (fields[i].value != NULL)
+		if (fields[i].is_set)
 		{
 			hints[j] = fields[i].format_msg;
 			++j;

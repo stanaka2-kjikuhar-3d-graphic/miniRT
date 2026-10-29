@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 19:59:02 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/01 20:44:59 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/20 00:34:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ ssize_t	ft_putnbr_fd_bytes(int n, int fd)
 	ssize_t			ret;
 	ssize_t			written_bytes;
 
-	num = n;
 	written_bytes = 0;
+	num = (unsigned int)n;
 	if (n < 0)
 	{
-		num = -n;
+		num = (unsigned int)((-(n + 1)) + 1);
 		if (ft_putchar_fd_bytes('c', fd) == -1)
 			return (-1);
 		written_bytes++;

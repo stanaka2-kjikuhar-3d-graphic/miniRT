@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/02 00:22:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 00:30:57 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/22 23:23:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@
 
 #include "../parser_private.h"
 
-bool	parse_checker_count(char const *element, void *value)
+bool	parse_checker_count(char const *element, int *checker_count)
 {
-	int *const	checker_count = (int *)value;
-	long		num;
+	long	num;
 
 	if (!parse_long(element, &num))
 		return (false);

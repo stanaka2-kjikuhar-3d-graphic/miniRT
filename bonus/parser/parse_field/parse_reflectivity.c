@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_reflectivity.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/29 19:14:27 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/17 16:34:35 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/20 00:07:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 
 #include "../parser_private.h"
 
-bool	parse_reflectivity(char const *element, void *value)
+bool	parse_reflectivity(char const *element, float *reflectivity)
 {
-	float *const	reflectivity = (float *)value;
-
 	if (!parse_float(element, reflectivity))
 		return (false);
 	if (*reflectivity < 0.0f || 1.0f < *reflectivity)

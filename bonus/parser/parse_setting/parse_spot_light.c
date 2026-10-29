@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 04:26:53 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 07:38:04 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/24 06:44:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "loader.h"
 #include "loader_light.h"
 
-#include "../parser_private.h"
+#include "./parse_setting_private.h"
 
 #define REQUIRED_COUNT 5
 
@@ -46,10 +46,10 @@ static bool	parse_spot_light_required(\
 {
 	t_required_field	fields[REQUIRED_COUNT];
 
-	fields[0] = build_required_field(REQUIRED_COORDINATE, &(input->pos));
-	fields[1] = build_required_field(REQUIRED_BRIGHTNESS, &(input->brightness));
-	fields[2] = build_required_field(REQUIRED_COLOR, &(input->color));
-	fields[3] = build_required_field(REQUIRED_DIR, &(input->dir));
-	fields[4] = build_required_field(REQUIRED_ANGLE, &(input->outer_angle));
+	fields[0] = bind_required_field(REQUIRED_COORDINATE, &(input->pos));
+	fields[1] = bind_required_field(REQUIRED_BRIGHTNESS, &(input->brightness));
+	fields[2] = bind_required_field(REQUIRED_COLOR, &(input->color));
+	fields[3] = bind_required_field(REQUIRED_DIR, &(input->dir));
+	fields[4] = bind_required_field(REQUIRED_ANGLE, &(input->outer_angle));
 	return (parse_required_fields(elements, fields, REQUIRED_COUNT));
 }

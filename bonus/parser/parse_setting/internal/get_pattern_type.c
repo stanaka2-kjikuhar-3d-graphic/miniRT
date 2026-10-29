@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 19:38:30 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/02 01:29:10 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/24 06:41:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "object.h"
 
-#include "../parser_private.h"
+#include "../parse_setting_private.h"
 
 enum e_pattern_type	get_pattern_type(char const **optional_elements)
 {
