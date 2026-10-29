@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/24 06:17:20 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/10/25 22:17:42 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,7 +124,6 @@ INCLUDE_DIRS	:=	bonus \
 							) \
 							$(addprefix system/, \
 								builder \
-								builder/accelerator \
 								loader \
 								renderer \
 							) \
@@ -187,7 +186,7 @@ SRC_DIRS	+= $(addprefix bonus/, \
 							primitive $(addprefix primitive/, \
 								internal \
 							) \
-							uv $(addprefix uv/, \
+							uv_info $(addprefix uv_info/, \
 								uv_checker \
 								uv_layout \
 								uv_pattern \
@@ -360,8 +359,6 @@ SRCS	+=	parse_vec3.c \
 			parse_checker_count_even.c
 # builder
 SRCS	+=	builder.c
-# builder/rebased_world_converter
-SRCS	+=	rebase_world_space.c
 # builder/accelerator
 SRCS	+=	build_accelerator.c
 # builder/accelerator/bvh
@@ -500,8 +497,10 @@ SRCS	+=	get_aabb_info.c \
 # model/object/aabb_info/internal
 SRCS	+=	mul_extent.c
 # model/object/material
-SRCS	+=	get_material.c \
-			set_material.c
+SRCS	+=	material.c \
+			material_id.c \
+			get_object_material.c \
+			set_object_material.c
 # model/object/primitive
 SRCS	+=	get_primitive.c \
 			set_primitive.c \
@@ -514,10 +513,10 @@ SRCS	+=	get_primitive.c \
 			set_paraboloid_primitive.c
 # model/object/primitive/internal
 SRCS	+=	build_primitive.c
-# model/object/uv/uv_checker
+# model/object/uv_info/uv_checker
 SRCS	+=	get_uv_checker.c \
 			set_uv_checker.c
-# model/object/uv/uv_layout
+# model/object/uv_info/uv_layout
 SRCS	+=	get_uv_layout.c \
 			set_uv_layout.c \
 			set_sphere_uv_layout.c \
@@ -527,7 +526,7 @@ SRCS	+=	get_uv_layout.c \
 			set_cone_uv_layout.c \
 			set_hyperboloid_uv_layout.c \
 			set_paraboloid_uv_layout.c
-# model/object/uv/uv_pattern
+# model/object/uv_info/uv_pattern
 SRCS	+=	get_uv_pattern.c \
 			set_uv_pattern.c \
 			set_disc_uv_pattern.c \

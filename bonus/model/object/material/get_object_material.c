@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_material.c                                     :+:      :+:    :+:   */
+/*   get_object_material.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/09 22:10:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:58:26 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 22:16:36 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "object.h"
+#include "material.h"
 
+#include "./material_private.h"
 #include "../object_private.h"
 
-t_material const	*get_material(t_object_id id)
+t_material const	*get_object_material(t_object_id id)
 {
 	t_object	*object;
 
 	object = get_mutable_object(id);
-	return (&(object->material));
+	return (get_material(object->material_id));
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 05:59:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 10:04:39 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 22:16:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ bool	load_disc(t_scene_input const *scene_input)
 	material = expand_to_material(&(input->material));
 	if (!set_disc_primitive(id, &(input->disc)))
 		return (false);
-	set_material(id, &material);
+	if (!set_object_material(id, &material))
+		return (false);
 	set_disc_uv_layout(id, &(input->uv_layout));
 	set_uv_checker(id, input->checker_count);
 	set_disc_uv_pattern(id, input->pattern_size);

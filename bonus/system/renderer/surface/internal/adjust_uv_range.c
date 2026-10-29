@@ -6,11 +6,10 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 21:55:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/05 22:04:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 22:23:24 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "object.h"
 #include "range.h"
 #include "vector.h"
 

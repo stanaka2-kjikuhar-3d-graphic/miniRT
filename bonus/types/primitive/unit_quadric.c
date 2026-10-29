@@ -6,13 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 01:12:02 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/04 21:43:03 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 22:26:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
-#include "object.h"
 #include "vector.h"
+
+#include "primitive.h"
 
 /*
 Q of the unit form, as p^T Q p = 0.

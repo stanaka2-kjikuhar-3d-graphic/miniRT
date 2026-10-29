@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 10:21:56 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 22:16:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ bool	load_cylinder(t_scene_input const *scene_input)
 	material = expand_to_material(&(input->material));
 	if (!set_cylinder_primitive(id, &(input->cylinder)))
 		return (false);
-	set_material(id, &material);
+	if (!set_object_material(id, &material))
+		return (false);
 	set_cylinder_uv_layout(id, UV_DEFAULT, &(input->cylinder));
 	set_uv_checker(id, input->checker_count);
 	set_cylinder_aabb_info(id, &(input->cylinder));
@@ -54,7 +55,7 @@ static bool	add_cap_disc(\
 	input.disc.center = vec3_add(cylinder->center, \
 						vec3_scale(cylinder->half_height, input.disc.normal));
 	input.disc.radius = cylinder->radius;
-	input.material = calc_cap_disc_material(get_material(id));
+	input.material = calc_cap_disc_material(get_object_material(id));
 	input.uv_layout = calc_cap_disc_uv_layout(type, \
 		get_uv_layout(id)->aspect, get_uv_layout(id)->v_range);
 	input.pattern_size = calc_cap_disc_pattern_size(input.disc.radius);

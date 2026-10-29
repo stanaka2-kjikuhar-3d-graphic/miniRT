@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 22:51:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/09 07:13:47 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 17:10:43 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@
 t_mat3	calc_object_tbn(t_object const *object, t_vec3 point, t_vec3 normal)
 {
 	return (calc_primitive_tbn(&(object->primitive), point, normal, \
-			object->uv.layout.type));
+			object->uv_info.layout.type));
 }

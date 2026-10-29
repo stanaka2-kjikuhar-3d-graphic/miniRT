@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rebase_world_space.c                               :+:      :+:    :+:   */
+/*   set_object_material.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/16 22:35:14 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/17 07:53:02 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/10/25 22:16:28 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/10/25 22:16:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include "object.h"
+#include "material.h"
 
-#include "vector.h"
-#include "camera.h"
+#include "./material_private.h"
+#include "../object_private.h"
 
-static bool	rebase_camera(t_vec3 rebased_origin);
-
-bool	rebase_world_space(t_vec3 rebased_origin)
+bool	set_object_material(t_object_id id, t_material const *material)
 {
-	if (!rebase_camera(rebased_origin))
+	t_object	*object;
+
+	object = get_mutable_object(id);
+	if (!create_material(&(object->material_id)))
 		return (false);
-	return (true);
-}
-
-static bool	rebase_camera(t_vec3 rebased_origin)
-{
-	set_camera_pos(vec3_add(\
-		vec3_sub(get_camera()->world_pos, rebased_origin), \
-		get_camera()->world_move) \
-	);
+	*get_mutable_material(object->material_id) = *material;
 	return (true);
 }

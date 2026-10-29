@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 19:39:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/09 07:14:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 19:13:31 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_vec2	calc_object_uv(t_object const *object, t_vec3 point)
 {
 	t_vec2	uv;
 
-	uv = calc_primitive_uv(&(object->primitive), point, &(object->uv));
+	uv = calc_primitive_uv(&(object->primitive), point, &(object->uv_info));
 	return (adjust_uv_range(uv, \
-				object->uv.layout.u_range, object->uv.layout.v_range));
+			object->uv_info.layout.u_range, object->uv_info.layout.v_range));
 }

@@ -6,11 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 12:00:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 10:21:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 21:34:59 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "object.h"
+#include "material.h"
 #include "color.h"
 #include "../loader_object_private.h"
 

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 10:22:40 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 22:16:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ bool	load_plane(t_scene_input const *scene_input)
 	material = expand_to_material(&(input->material));
 	if (!set_plane_primitive(id, &(input->plane)))
 		return (false);
-	set_material(id, &material);
+	if (!set_object_material(id, &material))
+		return (false);
 	set_plane_uv_layout(id, UV_DEFAULT);
 	set_uv_checker(id, input->checker_count);
 	set_plane_uv_pattern(id, input->pattern_size, input->plane.half_size);

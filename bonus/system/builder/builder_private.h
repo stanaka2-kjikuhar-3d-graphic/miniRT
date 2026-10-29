@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/17 02:26:53 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/17 02:27:37 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 16:53:36 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <stdbool.h>
 
-# include "vector.h"
-
-bool	rebase_world_space(t_vec3 rebased_origin);
+bool	build_accelerator(void);
 
 #endif

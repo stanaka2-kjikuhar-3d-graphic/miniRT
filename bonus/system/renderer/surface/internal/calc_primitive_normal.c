@@ -6,12 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 18:51:33 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/12 15:59:36 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 22:27:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
-#include "object.h"
 #include "ray.h"
 #include "vector.h"
 #include "primitive.h"

@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_uv_layout.c                                    :+:      :+:    :+:   */
+/*   material_private.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/07 20:15:34 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 10:00:39 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/10/25 20:40:06 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/10/25 21:52:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "object.h"
+#ifndef MATERIAL_PRIVATE_H
+# define MATERIAL_PRIVATE_H
 
-#include "../../object_private.h"
+# include <stddef.h>
+# include <stdbool.h>
 
-void	set_uv_layout(t_object_id id, t_uv_layout const *layout)
-{
-	t_object	*object;
+# include "material.h"
 
-	object = get_mutable_object(id);
-	object->uv.layout = *layout;
-}
+bool		add_material_id(size_t index, t_material_id *id);
+size_t		get_material_index(t_material_id id);
+t_material	*get_mutable_material(t_material_id id);
+bool		create_material(t_material_id *id);
+
+#endif

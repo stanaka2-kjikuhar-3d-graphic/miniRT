@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_planar.c                                        :+:      :+:    :+:   */
+/*   is_planar_primitive.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/25 21:22:19 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/25 21:25:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/25 22:22:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
-#include "object.h"
+#include "primitive.h"
 
 bool	is_planar_primitive(enum e_primitive_type type)
 {
