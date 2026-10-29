@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 01:31:53 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 16:34:35 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@
 # define HINT_FOV_RANGE "0 < x < 180"
 # define HINT_ANGLE_RANGE "0 <= x <= 180"
 # define HINT_COLOR_RANGE "0 <= x <= 255"
+# define HINT_RATIO_RANGE "0.0 <= x <= 1.0"
 # define HINT_CHECKER_COUNT "2 <= n <= 1024"
 # define HINT_CHECKER_COUNT_EVEN "2 <= n <= 1024, even number"
 # define HINT_FLOAT_FINITE "FLT_MIN <= x <= FLT_MAX"
