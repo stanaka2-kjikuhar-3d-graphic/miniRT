@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   norminette:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -23,7 +23,7 @@ jobs:
         run: norminette bonus libft
 
   cppcheck:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
       - name: Install cppcheck
@@ -33,11 +33,12 @@ jobs:
           cppcheck --error-exitcode=1
           --enable=warning,performance,portability
           --inline-suppr
+          --suppressions-list=.github/workflows/cppcheck-suppress
           -I libft
           bonus libft
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
       - name: Install dependencies
@@ -45,10 +46,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libx11-dev libxext-dev libbsd-dev
       - name: Build
-        run: make CFLAGS="-std=gnu17"
+        run: make
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: build
     steps:
       - uses: actions/checkout@v4

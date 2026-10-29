@@ -16,7 +16,7 @@ NC='\033[0m'
 
 # ビルド
 echo "=== Building ==="
-make re CFLAGS="-std=gnu17 -g -fsanitize=address,undefined" CPPFLAGS="-DDEBUG"
+make re CFLAGS="-g -fsanitize=address,undefined" CPPFLAGS="-DDEBUG"
 
 if [ $? -ne 0 ]; then
 	echo -e "${RED}Build failed${NC}"
