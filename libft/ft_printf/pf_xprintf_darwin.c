@@ -11,7 +11,10 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include <stdarg.h>
+#include <stddef.h>
 #include "ft_printf/ft_printf.h"
+#include "ft_printf/types.h"
 #include "ft_printf/read_conversion.h"
 #include "ft_printf/print_conversion.h"
 #include "ft_printf/print_utils.h"

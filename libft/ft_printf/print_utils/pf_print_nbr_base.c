@@ -10,10 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
 #include <stdint.h>
 
-#include "ft_printf/ft_printf.h"
 #include "ft_printf/print_utils.h"
+#include "ft_printf/types.h"
 
 void	pf_print_nbr_base(\
 	t_ctx *ctx, uintmax_t num, char *base, size_t base_size)

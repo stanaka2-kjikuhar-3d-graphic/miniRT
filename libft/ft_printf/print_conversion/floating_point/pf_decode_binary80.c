@@ -6,12 +6,12 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 02:31:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/12 16:19:42 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/27 06:44:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdint.h>
 #include "ft_string.h"
-#include "ft_printf/ft_printf.h"
 #include "./floating_point_internal.h"
 
 static void	set_float_value_type(t_pf_float *fp);

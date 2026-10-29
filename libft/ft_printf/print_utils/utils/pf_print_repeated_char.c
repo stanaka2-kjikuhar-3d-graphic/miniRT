@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
 #include "ft_string.h"
-#include "ft_printf/ft_printf.h"
 #include "ft_printf/print_utils.h"
+#include "ft_printf/types.h"
 #include "../print_utils_internal.h"
 
 void	pf_print_repeated_char(t_ctx *ctx, char c, size_t count)

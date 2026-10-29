@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdarg.h>
 #include "ft_printf/ft_printf.h"
+#include "ft_printf/types.h"
 #include "ft_printf/print_utils.h"
 
 void	pf_conv_c(va_list *ap, t_ctx *ctx, t_conv *conv)

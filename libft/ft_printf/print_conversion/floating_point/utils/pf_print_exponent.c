@@ -10,8 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
 #include "ft_stdlib.h"
 #include "ft_printf/ft_printf.h"
+#include "ft_printf/types.h"
 #include "ft_printf/print_utils.h"
 
 void	pf_print_decimal_exponent(t_ctx *ctx, t_conv *conv, int decimal_exp)

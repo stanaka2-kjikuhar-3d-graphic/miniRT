@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
 #include <stdint.h>
-#include <stdbool.h>
 
 #include "../ft_strtod_internal.h"
 

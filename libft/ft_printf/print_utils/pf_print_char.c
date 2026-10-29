@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf/ft_printf.h"
+#include <stddef.h>
 #include "ft_printf/print_utils.h"
+#include "ft_printf/types.h"
 
 void	pf_print_char(t_ctx *ctx, char c)
 {

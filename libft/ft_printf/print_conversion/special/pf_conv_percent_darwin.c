@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
 #include "ft_printf/ft_printf.h"
+#include "ft_printf/types.h"
 #include "ft_printf/print_utils.h"
 
 void	pf_conv_percent(t_ctx *ctx, t_conv *conv)

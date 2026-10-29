@@ -6,14 +6,19 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 00:45:15 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/07/28 18:45:21 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/27 06:40:37 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+#include <limits.h>
+#include <stdbool.h>
+#include <sys/types.h>
 #include <unistd.h>
 
 #include "ft_string.h"
 #include "ft_printf/ft_printf.h"
+#include "ft_printf/types.h"
 #include "../print_conversion/character/character_internal.h"
 
 static void	pf_print_utf8_to_fd(\
@@ -26,7 +31,7 @@ void	pf_print_utf8(t_ctx *ctx, const unsigned char *utf8_str, size_t len)
 {
 	if (ctx->has_error || len == 0)
 		return ;
-	if (PRINTF_RESULT_LIMIT < ctx->count + len)
+	if (PRINTF_RESULT_LIMIT - ctx->count < len)
 	{
 		len = PRINTF_RESULT_LIMIT - ctx->count;
 		ctx->has_error = true;

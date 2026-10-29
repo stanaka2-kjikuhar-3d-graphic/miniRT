@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/24 21:27:03 by stanaka2          #+#    #+#              #
-#    Updated: 2026/06/14 20:09:22 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/06/23 12:47:23 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,8 +77,6 @@ CC := cc
 
 override CFLAGS += -Wall -Wextra -Werror
 override CFLAGS += -Wconversion -Wno-sign-conversion -Wshadow
-# position independent so the archive links into a PIE executable (gcc default)
-override CFLAGS += -fPIE
 
 override ARFLAGS := -rcs
 

@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdbool.h>
+
 #include "../ft_strtod_internal.h"
 
 void	strtod_scan_sign(const char **nptr, t_to_double *to_double)
