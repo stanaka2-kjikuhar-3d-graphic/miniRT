@@ -6,13 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 19:38:30 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/24 06:41:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:41:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
-#include "object.h"
+#include "material.h"
 
 #include "../parse_setting_private.h"
 

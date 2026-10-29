@@ -6,12 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 16:42:19 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/25 22:26:36 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:08:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include <stdbool.h>
 
 #include "config.h"
 #include "matrix.h"

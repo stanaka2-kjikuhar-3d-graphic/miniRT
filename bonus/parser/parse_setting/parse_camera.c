@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:09:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/24 06:43:30 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:04:52 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "logger.h"
 #include "loader.h"
 #include "loader_camera.h"
-#include "viewport.h"
 
 #include "./parse_setting_private.h"
 

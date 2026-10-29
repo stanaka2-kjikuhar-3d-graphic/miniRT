@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/10 22:03:03 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/25 21:15:21 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:45:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "ray.h"
 
 #include "./raytracer_private.h"
+#include "../renderer_private.h"
 
 static float	calc_ray_offset(t_hit const *hit);
 static float	calc_eta_ratio(t_hit const *hit);

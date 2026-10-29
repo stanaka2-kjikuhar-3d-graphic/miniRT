@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 20:21:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/09 07:19:12 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:38:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "matrix.h"
 # include "range.h"
+# include "vector.h"
+# include <stdbool.h>
 
 /*
 each shape is a unit form in local space, placed by to_world.

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 20:29:13 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/15 06:55:07 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:50:38 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 #include "config.h"
 #include "object.h"
 #include "bvh.h"
+#include "ray.h"
 
 #include "../intersection_private.h"
+#include "../../renderer_private.h"
 
 static void	traverse_bvh_branch(t_hit *hit, t_ray const *ray, \
 				t_bvh_node const *branch);

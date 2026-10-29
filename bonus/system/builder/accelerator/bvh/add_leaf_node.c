@@ -6,10 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:44:12 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/15 06:15:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 22:10:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdbool.h>
 #include <stddef.h>
 
 #include "bvh.h"

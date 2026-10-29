@@ -6,14 +6,17 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 16:41:09 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/18 10:55:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:49:24 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stddef.h>
 
 #include "color.h"
 #include "ray.h"
 
 #include "./raytracer_private.h"
+#include "../renderer_private.h"
 
 static t_color	calc_local(t_ray const *ray, t_hit const *hit, float weight);
 static t_color	calc_reflected(t_ray const *ray, \

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 15:39:17 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/15 06:14:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 22:11:10 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "config.h"
 #include "range.h"
 #include "bvh.h"
+#include "vector.h"
 
 #include "../accelerator_private.h"
 

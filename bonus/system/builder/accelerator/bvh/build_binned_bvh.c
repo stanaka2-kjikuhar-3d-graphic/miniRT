@@ -6,11 +6,12 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 12:36:35 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/15 06:13:12 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 22:10:58 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include <stdbool.h>
 #include <stddef.h>
 
 #include "aabb.h"

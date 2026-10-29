@@ -6,15 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 01:09:47 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/30 16:03:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:23:37 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COLOR_H
 # define COLOR_H
 
-# include <stdint.h>
-# include <stdbool.h>
 # include <assert.h>
 # include <stddef.h>
 

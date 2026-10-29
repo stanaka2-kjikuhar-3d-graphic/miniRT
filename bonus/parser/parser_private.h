@@ -6,14 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/24 06:46:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:23:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_PRIVATE_H
 # define PARSER_PRIVATE_H
 
-# include <stddef.h>
 # include <stdbool.h>
 
 # include "ft_lst.h"

@@ -6,11 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 15:36:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 10:04:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 22:10:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
+#include <stdbool.h>
 
 #include "light.h"
 #include "loader.h"

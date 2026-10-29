@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 22:20:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/15 06:55:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:51:52 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stddef.h>
 
 #include "object.h"
+#include "ray.h"
 #include "bvh.h"
 
 #include "../intersection_private.h"

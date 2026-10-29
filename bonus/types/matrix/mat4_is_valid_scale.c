@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   mat4_is_valid_scale.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 00:32:10 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/07 01:05:02 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:39:24 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include <stdbool.h>
 
 #include "config.h"
+#include "vector.h"
 #include "matrix.h"
 
 /*

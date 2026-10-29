@@ -6,16 +6,15 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:32:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 16:44:12 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 22:18:59 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdbool.h>
+
 #include <X11/X.h>
 
-#include "mlx.h"
-
 #include "config.h"
-#include "window.h"
 #include "vector.h"
 #include "camera.h"
 #include "renderer.h"

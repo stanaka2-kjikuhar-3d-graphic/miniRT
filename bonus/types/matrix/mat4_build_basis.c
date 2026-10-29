@@ -6,10 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 07:44:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/16 07:44:26 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:38:56 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "vector.h"
 #include "matrix.h"
 
 /* local->world M: upper 3x3 = basis, 4th column = origin. */

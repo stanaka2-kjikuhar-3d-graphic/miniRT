@@ -6,11 +6,10 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 16:11:18 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/20 00:00:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:07:29 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
 #include <stdbool.h>
 
 #include "ft_ctype.h"

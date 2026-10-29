@@ -6,12 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/21 07:18:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/24 06:45:10 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:42:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include <stddef.h>
+#include <stdbool.h>
 
 #include "config.h"
 

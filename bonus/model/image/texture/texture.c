@@ -6,12 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 19:06:13 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:49:11 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 22:11:48 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "image.h"
 #include "dynamic_array.h"
+
+#include "texture.h"
 
 #include "./texture_private.h"
 #include "../image_private.h"

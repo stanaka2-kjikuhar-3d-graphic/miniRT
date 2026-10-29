@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:15:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 10:54:47 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:49:35 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "ray.h"
 
 #include "./raytracer_private.h"
+#include "../renderer_private.h"
 
 void	raytrace(t_ivec2 pixel)
 {

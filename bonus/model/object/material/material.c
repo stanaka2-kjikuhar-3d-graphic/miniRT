@@ -6,11 +6,9 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/25 20:32:04 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 22:06:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:09:58 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stddef.h>
 
 #include "material.h"
 #include "dynamic_array.h"
