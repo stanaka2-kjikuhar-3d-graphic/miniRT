@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 17:37:11 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 22:32:39 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 08:28:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 #include "matrix.h"
 #include "object.h"
 #include "color.h"
-#include "image.h"
+#include "texture.h"
 
 t_vec3	calc_normal_mapping(\
 	t_object const *object, t_vec2 uv, t_mat3 const *tbn)
 {
-	t_color	color;
-	t_vec3	normal;
+	t_texture_id	id;
+	t_color			color;
+	t_vec3			normal;
 
-	color = convert_uint_to_color(\
-				*get_uv_pixel_addr(object->material.normal_map, uv));
+	id = object->material.normal_map_id;
+	color = convert_uint_to_color(get_texture_uv_pixel(id, uv));
 	normal = (t_vec3){\
 		.x = color.r * 2.0f - 1.0f, \
 		.y = 1.0f - color.g * 2.0f, \

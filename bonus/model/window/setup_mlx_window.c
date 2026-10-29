@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 05:38:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 22:41:47 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:12:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 #include "mlx.h"
 
 #include "config.h"
-#include "image.h"
 #include "window.h"
+#include "window_buffer.h"
 
 bool	setup_mlx_window(void)
 {
-	if (!create_image(IMG_WINDOW, WINDOW_WIDTH, WINDOW_HEIGHT) \
+	if (!create_window_buffer(MAIN_WINDOW_BUFFER, WINDOW_WIDTH, WINDOW_HEIGHT) \
 		|| !create_window(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE))
 	{
 		return (false);

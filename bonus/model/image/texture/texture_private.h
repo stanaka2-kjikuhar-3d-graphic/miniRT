@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 17:01:07 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:48:36 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:21:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@
 # include <stdbool.h>
 # include <stddef.h>
 
-# include "id.h"
+# include "texture.h"
 # include "dynamic_array.h"
 
 # include "../image_private.h"
-
-typedef t_id	t_texture_id;
 
 typedef struct s_texture
 {

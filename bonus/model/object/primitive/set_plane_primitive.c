@@ -6,22 +6,20 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 21:30:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:57:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:59:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include <stdbool.h>
 #include <math.h>
 
 #include "vector.h"
 #include "primitive.h"
 #include "object.h"
-#include "id.h"
 
 #include "./object_primitive_private.h"
 
-bool	set_plane_primitive(t_id id, t_plane const *plane)
+bool	set_plane_primitive(t_object_id id, t_plane const *plane)
 {
 	t_primitive_frame	frame;
 	t_primitive			prim;
