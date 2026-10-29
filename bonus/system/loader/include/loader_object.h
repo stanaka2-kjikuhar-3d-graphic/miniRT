@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/13 22:41:30 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/10 08:18:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:21:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,26 @@
 
 # include <stdbool.h>
 
-# include "image.h"
 # include "color.h"
 # include "vector.h"
 # include "object.h"
+# include "texture.h"
 
 typedef struct s_material_input
 {
 	t_color				albedo;
 	enum e_pattern_type	pattern_type;
-	t_image				*texture;
+	t_texture_id		texture_id;
 	t_checker_color		checker;
 	enum e_normal_type	normal_type;
-	t_image				*bump_map;
-	t_image				*normal_map;
+	t_texture_id		bump_map_id;
+	t_texture_id		normal_map_id;
 	bool				directx_normal_map;
 	float				bump_strength;
 	bool				metalness;
 	float				shininess;
+	float				reflectivity;
+	float				ior;
 }	t_material_input;
 
 typedef struct s_sphere_input

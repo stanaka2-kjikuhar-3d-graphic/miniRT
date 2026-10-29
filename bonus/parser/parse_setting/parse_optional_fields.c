@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 15:53:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 22:33:39 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:12:30 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 #include "color.h"
 #include "object.h"
-#include "image.h"
 
 #include "logger.h"
 
@@ -60,10 +59,10 @@ static void	set_default_optional_fields(t_optional_field const *fields)
 	{
 		if (fields[idx].value != NULL)
 		{
-			if (fields[idx].field_type == FIELD_IMAGE)
+			if (fields[idx].field_type == FIELD_ID)
 			{
-				*(t_image **)fields[idx].value \
-					= fields[idx].default_value.image;
+				*(t_id *)fields[idx].value \
+					= fields[idx].default_value.id;
 			}
 			else if (fields[idx].field_type == FIELD_COLOR)
 				*(t_color *)fields[idx].value = fields[idx].default_value.color;

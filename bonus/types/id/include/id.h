@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 06:39:25 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 01:42:10 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/17 15:43:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 # define ID_H
 
 # include <stddef.h>
-# include <stdint.h>
+# include <stdbool.h>
 
 typedef struct s_id
 {
+	bool	is_valid;
 	size_t	id;
 }	t_id;
 
