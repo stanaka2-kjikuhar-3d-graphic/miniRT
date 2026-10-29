@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 21:34:36 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 07:38:04 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/29 23:31:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "loader_camera.h"
 # include "loader_light.h"
 # include "loader_object.h"
+# include "loader_obj.h"
 
 enum e_scene_input
 {
@@ -37,6 +38,8 @@ enum e_scene_input
 	CONE_INPUT,
 	HYPERBOLOID_INPUT,
 	PARABOLOID_INPUT,
+	// obj
+	OBJ_INPUT,
 	// count
 	SCENE_INPUT_COUNT
 };
@@ -62,9 +65,12 @@ typedef struct s_scene_input
 		t_cone_input					cone;
 		t_hyperboloid_input				hyperboloid;
 		t_paraboloid_input				paraboloid;
+		// obj
+		t_obj_input						obj;
 	};
 }	t_scene_input;
 
-bool	loader(t_list **scene_input);
+bool	load_input(t_list **scene_input);
+bool	load_input(t_list **scene_input);
 
 #endif

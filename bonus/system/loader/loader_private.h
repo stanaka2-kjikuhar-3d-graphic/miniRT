@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 00:13:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/08 22:59:19 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/29 22:43:42 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,18 @@ bool	load_disc(t_scene_input const *scene_input);
 bool	load_cone(t_scene_input const *scene_input);
 bool	load_hyperboloid(t_scene_input const *scene_input);
 bool	load_paraboloid(t_scene_input const *scene_input);
+bool	load_obj(t_scene_input const *scene_input);
 
-typedef struct s_loader
+void	delete_obj_input(void *scene_input);
+
+typedef struct s_load_input
 {
 	bool	(*load)(t_scene_input const *);
-}	t_loader;
+}	t_load_input;
+
+typedef struct s_delete_input
+{
+	void	(*delete)(void *);
+}	t_delete_input;
 
 #endif
