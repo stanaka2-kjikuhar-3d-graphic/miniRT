@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.c                                            :+:      :+:    :+:   */
+/*   window_buffer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/29 16:03:43 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 22:41:38 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 08:10:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,28 @@
 #include "ft_string.h"
 
 #include "logger.h"
-#include "image.h"
 #include "window.h"
+#include "window_buffer.h"
 
-static t_image	g_images[IMG_COUNT];
+#include "../image_private.h"
 
-t_image	*get_image(enum e_image_id id)
+static t_image	g_window_buffers[WINDOW_BUFFER_COUNT];
+
+t_image	*get_window_buffer(enum e_window_buffer_id id)
 {
-	return (&(g_images[id]));
+	return (&(g_window_buffers[id]));
 }
 
-bool	create_image(enum e_image_id id, int width, int height)
+void	*get_window_buffer_ptr(enum e_window_buffer_id id)
+{
+	return (g_window_buffers[id].ptr);
+}
+
+bool	create_window_buffer(enum e_window_buffer_id id, int width, int height)
 {
 	t_image	*image;
 
-	image = &(g_images[id]);
+	image = &(g_window_buffers[id]);
 	image->width = width;
 	image->height = height;
 	image->ptr = mlx_new_image(get_mlx_ptr(), image->width, image->height);
@@ -53,17 +60,17 @@ bool	create_image(enum e_image_id id, int width, int height)
 	return (true);
 }
 
-void	cleanup_images(void)
+void	cleanup_window_buffers(void)
 {
-	enum e_image_id	id;
+	enum e_window_buffer_id	id;
 
 	id = 0;
-	while (id < IMG_COUNT)
+	while (id < WINDOW_BUFFER_COUNT)
 	{
-		if (g_images[id].ptr != NULL)
+		if (g_window_buffers[id].ptr != NULL)
 		{
-			mlx_destroy_image(get_mlx_ptr(), g_images[id].ptr);
-			ft_bzero(&(g_images[id]), sizeof(t_image));
+			mlx_destroy_image(get_mlx_ptr(), g_window_buffers[id].ptr);
+			ft_bzero(&(g_window_buffers[id]), sizeof(t_image));
 		}
 		++id;
 	}

@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_pixel_addr.c                                   :+:      :+:    :+:   */
+/*   cleanup_image.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/23 17:55:08 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/04 22:36:23 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/10/17 15:20:16 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/10/18 08:42:07 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "image.h"
-#include "vector.h"
+#include "./image_private.h"
 
-unsigned int	*get_pixel_addr(t_image *image, t_ivec2 pixel)
+void	cleanup_image(void)
 {
-	return ((unsigned int *)(image->pixel \
-				+ pixel.y * image->line_size \
-				+ pixel.x * image->bits_per_pixel / 8));
+	cleanup_window_buffers();
+	cleanup_textures();
 }
