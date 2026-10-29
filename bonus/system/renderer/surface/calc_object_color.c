@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 02:28:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/09 07:13:56 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 08:38:45 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "object.h"
 #include "color.h"
 #include "vector.h"
-#include "image.h"
+#include "texture.h"
 
 static bool	is_even_cell(t_vec2 uv, t_vec2 size);
 
@@ -31,7 +31,7 @@ t_color	calc_object_color(t_object const *object, t_vec2 uv)
 	else if (object->material.pattern_type == PATTERN_TEXTURE)
 	{
 		return (decode_color(\
-					*get_uv_pixel_addr(object->material.texture, uv)));
+					get_texture_uv_pixel(object->material.texture_id, uv)));
 	}
 	return (object->material.albedo);
 }

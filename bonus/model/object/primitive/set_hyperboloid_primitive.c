@@ -6,18 +6,16 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 21:29:58 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 17:00:24 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:20:40 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include <stdbool.h>
 #include <math.h>
 
 #include "vector.h"
 #include "primitive.h"
 #include "object.h"
-#include "id.h"
 
 #include "./object_primitive_private.h"
 
@@ -27,7 +25,7 @@
     z_max  = half_height / c = sqrt((cap / center)^2 - 1)
 */
 bool	set_hyperboloid_primitive(\
-	t_id object_id, t_hyperboloid const *hyperboloid)
+	t_object_id id, t_hyperboloid const *hyperboloid)
 {
 	t_primitive_frame	frame;
 	t_primitive			prim;
@@ -47,6 +45,6 @@ bool	set_hyperboloid_primitive(\
 	frame.z_range.min = -frame.z_range.max;
 	if (!build_primitive(&frame, &prim))
 		return (false);
-	set_primitive(object_id, &prim);
+	set_primitive(id, &prim);
 	return (true);
 }

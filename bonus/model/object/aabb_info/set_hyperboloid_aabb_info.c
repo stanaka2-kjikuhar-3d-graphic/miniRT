@@ -6,22 +6,20 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 22:31:57 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 17:00:24 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:19:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include <math.h>
 
 #include "object.h"
 #include "aabb.h"
 #include "vector.h"
-#include "id.h"
 
 #include "./object_aabb_info_private.h"
 
 void	set_hyperboloid_aabb_info(\
-	t_id object_id, t_hyperboloid const *hyperboloid)
+	t_object_id id, t_hyperboloid const *hyperboloid)
 {
 	t_aabb_info	aabb_info;
 	t_vec3		disc_extent;
@@ -46,5 +44,5 @@ void	set_hyperboloid_aabb_info(\
 					);
 	aabb_info.centroid = calc_aabb_centroid(&(aabb_info.aabb));
 	aabb_info.has_bounded_aabb = has_bounded_aabb(&(aabb_info.aabb));
-	set_aabb_info(object_id, &aabb_info);
+	set_aabb_info(id, &aabb_info);
 }

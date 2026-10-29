@@ -6,21 +6,19 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 07:08:22 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 01:15:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 11:10:29 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include <math.h>
 
 #include "object.h"
 #include "range.h"
-#include "id.h"
 
 #include "./uv_layout_private.h"
 
 void	set_cylinder_uv_layout(\
-	t_id object_id, enum e_uv_type type, t_cylinder const *cylinder)
+	t_object_id id, enum e_uv_type type, t_cylinder const *cylinder)
 {
 	t_uv_layout	layout;
 	float		cap_ratio;
@@ -32,5 +30,5 @@ void	set_cylinder_uv_layout(\
 					/ (2.0f * (cylinder->radius + cylinder->half_height));
 	layout.u_range = (t_range){.min = 0.0f, .max = 1.0f};
 	layout.v_range = (t_range){.min = cap_ratio, .max = 1.0f - cap_ratio};
-	set_uv_layout(object_id, &layout);
+	set_uv_layout(id, &layout);
 }

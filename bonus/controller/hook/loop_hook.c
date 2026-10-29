@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:28:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 22:40:57 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:11:55 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 #include "config.h"
 #include "renderer.h"
 #include "window.h"
-#include "image.h"
 
 static bool	frame_per_second(void);
 

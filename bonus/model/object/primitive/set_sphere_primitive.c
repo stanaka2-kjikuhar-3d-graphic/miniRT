@@ -6,22 +6,20 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 21:07:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 01:15:46 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/18 09:59:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include <stdbool.h>
 
 #include "vector.h"
 #include "primitive.h"
 #include "object.h"
 #include "range.h"
-#include "id.h"
 
 #include "./object_primitive_private.h"
 
-bool	set_sphere_primitive(t_id object_id, t_sphere const *sphere)
+bool	set_sphere_primitive(t_object_id id, t_sphere const *sphere)
 {
 	t_primitive_frame	frame;
 	t_primitive			prim;
@@ -33,6 +31,6 @@ bool	set_sphere_primitive(t_id object_id, t_sphere const *sphere)
 	frame.z_range = (t_range){.min = -1.0f, .max = 1.0f};
 	if (!build_primitive(&frame, &prim))
 		return (false);
-	set_primitive(object_id, &prim);
+	set_primitive(id, &prim);
 	return (true);
 }

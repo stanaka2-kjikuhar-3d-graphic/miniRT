@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/09 22:31:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 16:34:35 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:21:32 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ t_material_input	calc_cap_disc_material(t_material const *material)
 	return ((t_material_input){\
 		.albedo = material->albedo, \
 		.pattern_type = material->pattern_type, \
-		.texture = material->texture, \
+		.texture_id = material->texture_id, \
 		.checker = material->checker, \
 		.normal_type = material->normal_type, \
-		.bump_map = material->bump_map, \
-		.normal_map = material->normal_map, \
+		.bump_map_id = material->bump_map_id, \
+		.normal_map_id = material->normal_map_id, \
 		.directx_normal_map = material->directx_normal_map, \
 		.bump_strength = material->bump_strength, \
 		.metalness = material->metalness, \

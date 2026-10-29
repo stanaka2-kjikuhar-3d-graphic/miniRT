@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 17:00:24 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:22:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,32 @@
 #include "range.h"
 #include "loader.h"
 #include "loader_object.h"
-#include "id.h"
 
 #include "./loader_object_private.h"
 #include "../loader_private.h"
 
-static bool	add_lower_cap_disc(t_id object_id, t_cone const *cone);
+static bool	add_lower_cap_disc(t_object_id id, t_cone const *cone);
 
 bool	load_cone(t_scene_input const *scene_input)
 {
-	t_id				object_id;
+	t_object_id			id;
 	t_cone_input const	*input;
 	t_material			material;
 
-	if (!create_object(&object_id))
+	if (!create_object(&id))
 		return (false);
 	input = &(scene_input->cone);
 	material = expand_to_material(&(input->material));
-	if (!set_cone_primitive(object_id, &(input->cone)))
+	if (!set_cone_primitive(id, &(input->cone)))
 		return (false);
-	set_material(object_id, &material);
-	set_cone_uv_layout(object_id, UV_DEFAULT, &(input->cone));
-	set_uv_checker(object_id, input->checker_count);
-	set_cone_aabb_info(object_id, &(input->cone));
-	return (add_lower_cap_disc(object_id, &(input->cone)));
+	set_material(id, &material);
+	set_cone_uv_layout(id, UV_DEFAULT, &(input->cone));
+	set_uv_checker(id, input->checker_count);
+	set_cone_aabb_info(id, &(input->cone));
+	return (add_lower_cap_disc(id, &(input->cone)));
 }
 
-static bool	add_lower_cap_disc(t_id object_id, t_cone const *cone)
+static bool	add_lower_cap_disc(t_object_id id, t_cone const *cone)
 {
 	t_scene_input	scene_input;
 	t_disc_input	input;
@@ -51,12 +50,11 @@ static bool	add_lower_cap_disc(t_id object_id, t_cone const *cone)
 	input.disc.normal = calc_cap_disc_normal(UV_LOWER_CAP, cone->dir);
 	input.disc.center = cone->center;
 	input.disc.radius = cone->radius;
-	input.material = calc_cap_disc_material(get_material(object_id));
-	input.uv_layout = calc_cap_disc_uv_layout(\
-		UV_LOWER_CAP, get_uv_layout(object_id)->aspect, \
-		get_uv_layout(object_id)->v_range);
+	input.material = calc_cap_disc_material(get_material(id));
+	input.uv_layout = calc_cap_disc_uv_layout(UV_LOWER_CAP, \
+		get_uv_layout(id)->aspect, get_uv_layout(id)->v_range);
 	input.pattern_size = calc_cap_disc_pattern_size(input.disc.radius);
-	input.checker_count = get_uv_checker(object_id)->count;
+	input.checker_count = get_uv_checker(id)->count;
 	scene_input.type = DISC_INPUT;
 	scene_input.disc = input;
 	return (load_disc(&scene_input));

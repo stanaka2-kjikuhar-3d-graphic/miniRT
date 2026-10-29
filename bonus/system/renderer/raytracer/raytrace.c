@@ -3,19 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/30 16:40:21 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/17 16:31:22 by kjikuhar         ###   ########.fr       */
+/*   Created: 2026/06/16 16:15:11 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/10/18 10:54:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 #include "ray.h"
-#include "color.h"
 
-#include "./renderer_private.h"
-#include "./raytracer/raytracer_private.h"
+#include "./raytracer_private.h"
 
 void	raytrace(t_ivec2 pixel)
 {

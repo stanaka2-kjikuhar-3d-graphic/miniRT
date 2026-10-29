@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer_private.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 16:39:37 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/17 16:34:35 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:54:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "ray.h"
 # include "color.h"
+# include "vector.h"
 
 # include "../renderer_private.h"
 
@@ -30,5 +31,6 @@ t_weights	calc_weights(t_ray const *ray, t_hit const *hit, int depth);
 float		calc_sin2_transmitted(t_ray const *ray, t_hit const *hit);
 t_ray		calc_reflect_ray(t_ray const *ray, t_hit const *hit);
 t_ray		calc_refract_ray(t_ray const *ray, t_hit const *hit);
+void		put_color_to_window_image(t_ivec2 pixel, t_color color);
 
 #endif

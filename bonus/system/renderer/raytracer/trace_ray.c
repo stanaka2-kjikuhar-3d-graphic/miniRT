@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trace_ray.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 16:41:09 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/17 16:34:35 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/18 10:55:24 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 #include "./raytracer_private.h"
 
 static t_color	calc_local(t_ray const *ray, t_hit const *hit, float weight);
-static t_color	calc_reflected(t_ray const *ray, t_hit const *hit, \
-				float weight, int depth);
-static t_color	calc_refracted(t_ray const *ray, t_hit const *hit, \
-				float weight, int depth);
+static t_color	calc_reflected(t_ray const *ray, \
+					t_hit const *hit, float weight, int depth);
+static t_color	calc_refracted(t_ray const *ray, \
+					t_hit const *hit, float weight, int depth);
 
 t_color	trace_ray(t_ray ray, int depth)
 {
@@ -32,6 +32,7 @@ t_color	trace_ray(t_ray ray, int depth)
 	hit = find_closest_hit(&ray);
 	if (hit.object == NULL)
 		return ((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
+	set_hit_record(&ray, &hit);
 	weights = calc_weights(&ray, &hit, depth);
 	local = calc_local(&ray, &hit, weights.local);
 	reflected = calc_reflected(&ray, &hit, weights.reflected, depth);
