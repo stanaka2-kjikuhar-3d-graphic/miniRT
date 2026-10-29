@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/17 15:21:39 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/10/18 11:25:07 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -210,7 +210,7 @@ SRC_DIRS	+= $(addprefix bonus/, \
 							) \
 						) \
 						renderer $(addprefix renderer/, \
-							internal \
+							raytracer \
 							intersection $(addprefix intersection/, \
 								bvh \
 								flat_list \
@@ -336,6 +336,8 @@ SRCS	+=	parse_vec3.c \
 			parse_texture.c \
 			parse_bool.c \
 			parse_shininess.c \
+			parse_reflectivity.c \
+			parse_ior.c \
 			parse_size.c \
 			parse_long.c \
 			parse_checker_count.c \
@@ -385,10 +387,13 @@ SRCS	+=	expand_to_material.c \
 
 # renderer
 SRCS	+=	renderer.c \
-			phong.c
-# renderer/internal
-SRCS	+=	calc_ray.c \
-			render_flag.c \
+			render_flag.c
+# renderer/raytracer
+SRCS	+=	raytrace.c \
+			trace_ray.c \
+			calc_weights.c \
+			spawn_ray.c \
+			calc_ray.c \
 			put_color_to_window_image.c
 # renderer/intersection
 SRCS	+=	find_closest_hit.c \

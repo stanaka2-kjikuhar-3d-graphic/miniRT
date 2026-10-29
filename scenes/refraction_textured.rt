@@ -1,0 +1,8 @@
+A 0.2 255,255,255
+C 0,-250,60 0,0.980581,-0.196116 70
+L -100,-150,200 0.7 255,255,255
+pl 0,0,0 0,0,1 200,200,200
+pl 0,150,0 0,-1,0 255,255,255 checker_color1=40,40,40 checker_color2=230,230,230
+sp 0,0,55 55 255,255,255 ior=1.5
+sp 0,90,40 40 255,255,255 texture=texture/Earth.xpm
+sp -100,40,30 30 255,255,255 texture=texture/moon.xpm bump_map=texture/moon_height.xpm
