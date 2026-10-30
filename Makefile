@@ -196,14 +196,18 @@ SRC_DIRS	+= $(addprefix bonus/, \
 						window \
 					) \
 					parser $(addprefix parser/, \
-						read_file \
-						parse_setting $(addprefix parse_setting/, \
-							internal \
+						internal $(addprefix internal/, \
+							read_file \
 						) \
-						parse_settings $(addprefix parse_settings/, \
-							internal \
+						scene_parser $(addprefix scene_parser/, \
+							parse_field \
+							parse_setting $(addprefix parse_setting/, \
+								internal \
+							) \
+							parse_settings $(addprefix parse_settings/, \
+								internal \
+							) \
 						) \
-						parse_field \
 					) \
 					$(addprefix system/, \
 						builder $(addprefix builder/, \
@@ -302,44 +306,17 @@ SRCS	+=	expose_hook.c \
 			key_release_hook.c \
 			button_hooks.c
 
-# parser
-SRCS	+=	parse_scene.c
-# parser/read_file
+# parser/internal
+SRCS	+=	count_split.c \
+			free_split.c \
+			is_blank_line.c \
+			is_comment_line.c
+# parser/internal/read_file
 SRCS	+=	read_next_line.c \
 			read_file_as_line_list.c
-# parser/parse_setting
-SRCS	+=	parse_ambient_light.c \
-			parse_point_light.c \
-			parse_spot_light.c \
-			parse_directional_light.c \
-			parse_camera.c \
-			parse_plane.c \
-			parse_sphere.c \
-			parse_cylinder.c \
-			parse_cone.c \
-			parse_hyperboloid.c \
-			parse_paraboloid.c
-# parser/parse_setting/internal
-SRCS	+=	bind_field_value.c \
-			bind_material_fields.c \
-			count_split.c \
-			get_normal_type.c \
-			get_pattern_type.c \
-			is_option_id.c \
-			optional_fields.c \
-			parse_field.c \
-			parse_optional_fields.c \
-			parse_required_fields.c \
-			required_fields.c \
-			set_default_field_value.c
-# parser/parse_settings
-SRCS	+=	parse_settings.c
-# parser/parse_settings/internal
-SRCS	+=	free_split.c \
-			is_blank_line.c \
-			is_comment_line.c \
-			is_setting_id.c
-# parser/parse_field
+# parser/scene_parser
+SRCS	+=	parse_scene.c
+# parser/scene_parser/parse_field
 SRCS	+=	parse_vec3.c \
 			parse_float.c \
 			parse_color.c \
@@ -358,6 +335,34 @@ SRCS	+=	parse_vec3.c \
 			parse_long.c \
 			parse_checker_count.c \
 			parse_checker_count_even.c
+# parser/scene_parser/parse_setting
+SRCS	+=	parse_ambient_light.c \
+			parse_point_light.c \
+			parse_spot_light.c \
+			parse_directional_light.c \
+			parse_camera.c \
+			parse_plane.c \
+			parse_sphere.c \
+			parse_cylinder.c \
+			parse_cone.c \
+			parse_hyperboloid.c \
+			parse_paraboloid.c
+# parser/scene_parser/parse_setting/internal
+SRCS	+=	bind_field_value.c \
+			bind_material_fields.c \
+			get_normal_type.c \
+			get_pattern_type.c \
+			is_option_id.c \
+			optional_fields.c \
+			parse_field.c \
+			parse_optional_fields.c \
+			parse_required_fields.c \
+			required_fields.c \
+			set_default_field_value.c
+# parser/scene_parser/parse_settings
+SRCS	+=	parse_settings.c
+# parser/scene_parser/parse_settings/internal
+SRCS	+=	is_setting_id.c
 # builder
 SRCS	+=	build_scene.c
 # builder/accelerator
