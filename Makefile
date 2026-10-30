@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/25 22:17:42 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/10/30 21:21:14 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -233,6 +233,7 @@ SRC_DIRS	+= $(addprefix bonus/, \
 							object $(addprefix object/, \
 								internal \
 							) \
+							obj \
 						) \
 					) \
 					$(addprefix types/, \
@@ -302,7 +303,7 @@ SRCS	+=	expose_hook.c \
 			button_hooks.c
 
 # parser
-SRCS	+=	parser.c
+SRCS	+=	parse_scene.c
 # parser/read_file
 SRCS	+=	read_next_line.c \
 			read_file_as_line_list.c
@@ -358,7 +359,7 @@ SRCS	+=	parse_vec3.c \
 			parse_checker_count.c \
 			parse_checker_count_even.c
 # builder
-SRCS	+=	builder.c
+SRCS	+=	build_scene.c
 # builder/accelerator
 SRCS	+=	build_accelerator.c
 # builder/accelerator/bvh
@@ -369,7 +370,8 @@ SRCS	+=	build_binned_bvh.c \
 			add_leaf_node.c
 
 # loader
-SRCS	+=	loader.c
+SRCS	+=	load_input_list.c \
+			delete_input.c
 # loader/camera
 SRCS	+=	load_camera.c
 # loader/light
@@ -386,12 +388,15 @@ SRCS	+=	load_sphere.c \
 			load_cone.c \
 			load_hyperboloid.c \
 			load_paraboloid.c
+# loader/obj
+SRCS	+=	load_obj.c \
+			delete_obj_input.c
 # loader/object/internal
 SRCS	+=	expand_to_material.c \
 			calc_cap_disc.c
 
 # renderer
-SRCS	+=	renderer.c \
+SRCS	+=	render_scene.c \
 			render_flag.c
 # renderer/raytracer
 SRCS	+=	raytrace.c \
