@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/13 15:32:32 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/08 23:00:53 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/30 07:33:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 #include "loader_camera.h"
 #include "viewport.h"
 
-bool	load_camera(t_scene_input const *scene_input)
+bool	load_camera(t_input const *input)
 {
-	t_camera_input const	*input;
+	t_camera_input const	*camera;
 
-	input = &(scene_input->camera);
-	set_camera_pos(input->pos);
-	set_camera_dir(input->dir);
-	set_camera_fov(input->fov);
-	set_viewport(input->fov);
+	camera = &(input->camera);
+	set_camera_pos(camera->pos);
+	set_camera_dir(camera->dir);
+	set_camera_fov(camera->fov);
+	set_viewport(camera->fov);
 	return (true);
 }

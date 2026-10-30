@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:21 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 22:16:04 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/30 07:43:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@
 
 #include "./loader_object_private.h"
 
-bool	load_sphere(t_scene_input const *scene_input)
+bool	load_sphere(t_input const *input)
 {
 	t_object_id				id;
-	t_sphere_input const	*input;
+	t_sphere_input const	*sphere;
 	t_material				material;
 
 	if (!create_object(&id))
 		return (false);
-	input = &(scene_input->sphere);
-	material = expand_to_material(&(input->material));
-	if (!set_sphere_primitive(id, &(input->sphere)))
+	sphere = &(input->sphere);
+	material = expand_to_material(&(sphere->material));
+	if (!set_sphere_primitive(id, &(sphere->sphere)))
 		return (false);
 	if (!set_object_material(id, &material))
 		return (false);
 	set_sphere_uv_layout(id, UV_DEFAULT);
-	set_uv_checker(id, input->checker_count);
-	set_sphere_aabb_info(id, &(input->sphere));
+	set_uv_checker(id, sphere->checker_count);
+	set_sphere_aabb_info(id, &(sphere->sphere));
 	return (true);
 }
