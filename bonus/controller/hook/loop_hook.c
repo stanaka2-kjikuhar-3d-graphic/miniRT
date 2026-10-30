@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 20:28:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:11:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/30 07:28:57 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	loop_hook(void *param)
 	(void)param;
 	if (frame_per_second())
 	{
-		if (!renderer())
+		if (!render_scene())
 			mlx_loop_end(get_mlx_ptr());
 	}
 	return (0);
@@ -42,7 +42,7 @@ int	loop_hook(void *param)
 	(void)param;
 	if (frame_per_second())
 	{
-		renderer();
+		render_scene();
 		mlx_loop_end(get_mlx_ptr());
 	}
 	return (0);

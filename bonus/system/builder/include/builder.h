@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/17 00:54:17 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/17 00:55:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/30 07:25:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include <stdbool.h>
 
-bool	builder(void);
+bool	build_scene(void);
 
 #endif

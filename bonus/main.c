@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 16:58:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/30 21:21:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static void	cleanup(void);
 
 int	main(int argc, char const *argv[])
 {
-	t_list	*scene_input;
+	t_list	*input_list;
 
-	scene_input = NULL;
+	input_list = NULL;
 	if (!is_valid_argument(argc, argv))
 	{
 		print_log_program(LOG_ERROR, argv[0]);
@@ -46,12 +46,12 @@ int	main(int argc, char const *argv[])
 	init_color_lut();
 	if (!create_mlx_connection())
 		return (EXIT_FAILURE);
-	if (!parser(argv[1], &scene_input) \
-		|| !loader(&scene_input) \
-		|| !builder() \
+	if (!parse_scene(argv[1], &input_list) \
+		|| !load_input_list(&input_list) \
+		|| !build_scene() \
 		|| !setup_mlx_window())
 	{
-		ft_lstclear(&scene_input, free);
+		ft_lstclear(&input_list, delete_input);
 		cleanup();
 		return (EXIT_FAILURE);
 	}
