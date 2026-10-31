@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/25 22:17:42 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/10/31 21:25:51 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -392,9 +392,12 @@ SRCS	+=	expand_to_material.c \
 
 # renderer
 SRCS	+=	renderer.c \
-			render_flag.c
+			render_flag.c \
+			render_mode.c \
+			render_pixel.c
 # renderer/raytracer
 SRCS	+=	raytrace.c \
+			phong_pixel.c \
 			trace_ray.c \
 			calc_weights.c \
 			spawn_ray.c \
@@ -416,7 +419,8 @@ SRCS	+=	calc_aabb_intersection.c \
 			calc_primitive_intersection.c \
 			calc_quadric_intersection.c
 # renderer/lighting
-SRCS	+=	phong_lighting.c
+SRCS	+=	phong_lighting.c \
+			phong_mode.c
 # renderer/lighting/attenuation
 SRCS	+=	calc_dist_attenuation.c \
 			calc_point_light_attenuation.c \
