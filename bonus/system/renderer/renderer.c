@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:38:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/31 21:25:43 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/31 21:28:14 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,19 +74,21 @@ static void	*rendering(void *arg)
 	t_render_thread		*state;
 	int					pixel_num;
 	t_ivec2				pixel;
+	uint32_t			seed;
 
 	viewport = get_viewport();
 	state = (t_render_thread *)arg;
-	if (state->seed == 0)
-		state->seed = ((uint32_t)(PIXEL_SAMPLE_SEED + state->id) \
-						* 2654435761u) | 1u;
+	seed = state->seed;
+	if (seed == 0)
+		seed = ((uint32_t)(PIXEL_SAMPLE_SEED + state->id) * 2654435761u) | 1u;
 	pixel_num = state->id;
 	while (pixel_num < viewport->pixel_count)
 	{
 		pixel.y = pixel_num / viewport->pixel_size.x;
 		pixel.x = pixel_num % viewport->pixel_size.x;
-		render_pixel(pixel, &(state->seed));
+		render_pixel(pixel, &seed);
 		pixel_num += THREAD_COUNT;
 	}
+	state->seed = seed;
 	return (NULL);
 }
