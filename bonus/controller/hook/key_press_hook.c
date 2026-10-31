@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 16:50:32 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/31 21:02:58 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/31 21:16:12 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "./hook_private.h"
 
 static void	camera_move_action(enum e_camera_action action);
+static void	switch_render_mode(void);
 static void	switch_phong_mode(void);
 
 int	key_press_hook(int keycode, void *param)
@@ -42,9 +43,22 @@ int	key_press_hook(int keycode, void *param)
 		camera_move_action(CAMERA_ACTION_MOVE_UP);
 	else if (keycode == XK_Down)
 		camera_move_action(CAMERA_ACTION_MOVE_DOWN);
+	else if (keycode == XK_m)
+		switch_render_mode();
 	else if (keycode == XK_b)
 		switch_phong_mode();
 	return (0);
+}
+
+static void	switch_render_mode(void)
+{
+	enum e_render_mode	next;
+
+	next = (enum e_render_mode)(get_render_mode() + 1);
+	if (next >= RENDER_MODE_COUNT)
+		next = RENDER_MODE_RAYTRACE;
+	set_render_mode(next);
+	set_render_flag(true);
 }
 
 static void	switch_phong_mode(void)

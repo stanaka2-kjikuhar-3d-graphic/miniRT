@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 23:55:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/31 21:03:34 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/31 21:16:07 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 # define RENDERER_H
 
 # include <stdbool.h>
+
+enum e_render_mode
+{
+	RENDER_MODE_RAYTRACE,
+	RENDER_MODE_PHONG,
+	RENDER_MODE_COUNT
+};
 
 enum e_phong_mode
 {
@@ -24,6 +31,8 @@ enum e_phong_mode
 
 bool				renderer(void);
 void				set_render_flag(bool status);
+enum e_render_mode	get_render_mode(void);
+void				set_render_mode(enum e_render_mode mode);
 enum e_phong_mode	get_phong_mode(void);
 void				set_phong_mode(enum e_phong_mode mode);
 
