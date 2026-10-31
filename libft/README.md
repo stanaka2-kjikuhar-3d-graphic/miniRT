@@ -147,6 +147,7 @@ typedef struct s_list
 | `ft_sqrt(x)` | 平方根 |
 | `ft_rand_r(seed)` | 再入可能な疑似乱数生成 |
 | `ft_xorshift(seed)` | XOR シフトによる高速疑似乱数生成 |
+| `ft_xorshift_range(seed, min, max)` | XOR シフトによる高速疑似乱数生成 (float の範囲内を指定) |
 
 ---
 
