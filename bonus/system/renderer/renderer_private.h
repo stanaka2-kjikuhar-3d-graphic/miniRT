@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 23:56:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/31 21:22:13 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/31 21:25:51 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RENDERER_PRIVATE_H
 
 # include <stdbool.h>
+# include <stdint.h>
 
 # include "object.h"
 # include "vector.h"
@@ -35,8 +36,14 @@ typedef struct s_hit
 	bool				is_front_face;
 }	t_hit;
 
+typedef struct s_render_thread
+{
+	int			id;
+	uint32_t	seed;
+}	t_render_thread;
+
 bool	check_render_flag(void);
-void	render_pixel(t_ivec2 pixel);
+void	render_pixel(t_ivec2 pixel, uint32_t *seed);
 void	raytrace(t_ivec2 pixel, t_vec2 sample);
 void	phong_pixel(t_ivec2 pixel, t_vec2 sample);
 
