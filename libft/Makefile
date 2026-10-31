@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/24 21:27:03 by stanaka2          #+#    #+#              #
-#    Updated: 2026/06/23 12:47:23 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/10/31 23:55:43 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -143,7 +143,7 @@ SRCS += ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
 		ft_lst_push_back.c ft_lst_push_front.c ft_lst_pop_back.c ft_lst_pop_front.c
 
 # math
-SRCS += ft_fabs.c ft_round.c ft_sqrt.c ft_rand_r.c  ft_xorshift.c
+SRCS += ft_fabs.c ft_round.c ft_sqrt.c ft_rand_r.c  ft_xorshift.c ft_xorshift_range.c
 
 # get_next_line
 SRCS += get_next_line.c
