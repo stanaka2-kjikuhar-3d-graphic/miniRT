@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 21:04:16 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/31 21:20:38 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/11/01 16:02:40 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "vector.h"
 #include "camera.h"
 #include "viewport.h"
+#include "config.h"
 
 t_ray	calc_ray(t_vec2 sample)
 {
@@ -24,15 +25,13 @@ t_ray	calc_ray(t_vec2 sample)
 
 	camera = get_camera();
 	viewport = get_viewport();
-	t.x = (sample.x / viewport->pixel_half_size.width) - 1.0f;
-	t.y = -((sample.y / viewport->pixel_half_size.height) - 1.0f);
+	t.x = (sample.x / (WINDOW_WIDTH / 2.0f)) - 1.0f;
+	t.y = -((sample.y / (WINDOW_HEIGHT / 2.0f)) - 1.0f);
 	ray.dir = vec3_normalize(\
 				vec3_add(camera->dir, \
 				vec3_add(\
-					vec3_scale(t.x * viewport->world_half_size.width, \
-									camera->right), \
-					vec3_scale(t.y * viewport->world_half_size.height, \
-									camera->up) \
+					vec3_scale(t.x * viewport->half_size.width, camera->right), \
+					vec3_scale(t.y * viewport->half_size.height, camera->up) \
 				)) \
 			);
 	ray.origin = camera->pos;

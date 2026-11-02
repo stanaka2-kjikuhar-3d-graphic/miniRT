@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 20:45:00 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/31 21:03:38 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/11/01 18:02:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "vector.h"
 
 #include "renderer.h"
+#include "render_mode.h"
+
 #include "../lighting_private.h"
 #include "../../renderer_private.h"
 
