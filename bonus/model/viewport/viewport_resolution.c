@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_flag.c                                      :+:      :+:    :+:   */
+/*   viewport_resolution.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/23 23:56:22 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/23 23:56:27 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/11/02 06:31:46 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/11/02 07:06:55 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include "viewport.h"
 
-static bool	g_render_flag;
+#include "./viewport_private.h"
 
-bool	check_render_flag(void)
+void	set_resolution_level(enum e_resolution_level level)
 {
-	return (g_render_flag);
+	get_mutable_viewport()->resolution.level = level;
 }
 
-void	set_render_flag(bool status)
+void	increment_resolution_level(void)
 {
-	g_render_flag = status;
+	t_viewport	*viewport;
+
+	viewport = get_mutable_viewport();
+	if (viewport->resolution.level < RESOLUTION_COUNT)
+		++viewport->resolution.level;
 }
