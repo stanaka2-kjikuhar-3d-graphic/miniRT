@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_mode.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 21:09:57 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/31 21:18:00 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/11/01 18:02:42 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "renderer.h"
+#include "render_mode.h"
 
 static enum e_render_mode	g_render_mode;
 
