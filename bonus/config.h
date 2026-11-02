@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 00:57:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/11/02 07:01:41 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/03 07:42:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@
 # define DEFAULT_IOR 0.0f
 
 # define MAX_RECURSION_DEPTH 10
-# define MAX_SAMPLE_COUNT 64
+# define MAX_SAMPLE_COUNT 4096
 
 # define BVH_BIN 16
 # define BVH_LEAF_MAX 4
