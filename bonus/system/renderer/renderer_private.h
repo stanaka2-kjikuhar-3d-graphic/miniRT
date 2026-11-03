@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 23:56:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/11/03 21:17:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/03 22:27:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_hit
 	t_vec3				point;
 	t_vec2				uv;
 	t_vec3				normal;
+	t_vec3				shading_normal;
 	t_color				color;
 	bool				is_front_face;
 }	t_hit;

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 03:39:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/26 21:53:15 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/03 22:31:42 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static t_color	calc_diffuse_color(\
 	float	dot;
 	t_color	diffuse;
 
-	dot = vec3_dot(hit->normal, \
+	dot = vec3_dot(hit->shading_normal, \
 						vec3_normalize(vec3_sub(light->pos, hit->point)));
 	if (dot <= 0.0f)
 		return ((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
@@ -70,7 +70,7 @@ static t_color	calc_specular_color(t_ray const *ray, \
 	t_color	specular;
 
 	to_light = vec3_normalize(vec3_sub(light->pos, hit->point));
-	if (vec3_dot(hit->normal, to_light) <= 0.0f)
+	if (vec3_dot(hit->shading_normal, to_light) <= 0.0f)
 		return ((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
 	dot = calc_specular_dot(ray, hit, to_light);
 	if (dot <= 0.0f)
