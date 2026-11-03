@@ -25,9 +25,12 @@
 ### Run
 
 ``` bash
+./miniRT scenes/sphere.rt
 ```
 
 ``` bash
+# ウィンドウを出さずに描画し、カレントディレクトリに sphere.ppm を書いて終了する
+./miniRT scenes/sphere.rt --ppm
 ```
 
 ---
