@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 15:32:32 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/03 22:36:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/31 23:57:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ int			ft_rand_r(unsigned int *seed);
 double		ft_round(double x);
 double		ft_sqrt(double x);
 uint32_t	ft_xorshift(uint32_t *seed);
+float		ft_xorshift_range(uint32_t *seed, float min, float max);
 
 #endif
