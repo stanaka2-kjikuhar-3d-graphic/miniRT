@@ -142,6 +142,81 @@ done
 echo -e "${GREEN}$PASS passed${NC}, ${RED}$FAIL failed${NC}"
 TOTAL_FAIL=$((TOTAL_FAIL + FAIL))
 
+# ppm: --ppm で画像を書き出して exit 0 とファイルの形を期待
+echo "=== PPM test ==="
+PASS=0
+FAIL=0
+
+run_ppm_test() {
+	local map=$1
+	local ppm
+	ppm=$(basename "${map%.rt}").ppm
+
+	rm -f "$ppm"
+	"$PROGRAM" "$map" --ppm 2>$ERROR_LOG &
+	PID=$!
+	(sleep $TIMEOUT; kill $PID 2>/dev/null) &
+	WATCHER=$!
+	wait $PID 2>/dev/null
+	actual_code=$?
+	kill $WATCHER 2>/dev/null
+	wait $WATCHER 2>/dev/null
+
+	if [ "$actual_code" -ne 0 ] || grep -q "ERROR: AddressSanitizer\|ERROR: LeakSanitizer\|runtime error:" $ERROR_LOG; then
+		echo -e "${RED}FAIL${NC}: ./miniRT $map --ppm (exit code: $actual_code)"
+		cat $ERROR_LOG
+		((FAIL++))
+		echo ""
+		rm -f "$ppm"
+		return
+	fi
+
+	local magic width height max_value header_bytes expected actual
+	magic=$(head -n 1 "$ppm")
+	read -r width height < <(head -n 2 "$ppm" | tail -n 1)
+	max_value=$(head -n 3 "$ppm" | tail -n 1)
+	header_bytes=$(head -n 3 "$ppm" | wc -c)
+	expected=$((header_bytes + width * height * 3))
+	actual=$(wc -c < "$ppm")
+	rm -f "$ppm"
+	if [ "$magic" != "P6" ] || [ "$max_value" != "255" ] || [ "$expected" -ne "$actual" ]; then
+		echo -e "${RED}FAIL${NC}: ./miniRT $map --ppm (ppm: magic=$magic max=$max_value size expected=$expected actual=$actual)"
+		((FAIL++))
+		echo ""
+		return
+	fi
+
+	echo -e "${GREEN}PASS${NC}: ./miniRT $map --ppm"
+	((PASS++))
+	echo ""
+}
+
+# 不正なオプションは exit 1 を期待
+run_option_test() {
+	local map=$1
+	local options=$2
+
+	"$PROGRAM" "$map" $options 2>$ERROR_LOG
+	actual_code=$?
+	if [ "$actual_code" -ne 1 ]; then
+		echo -e "${RED}FAIL${NC}: ./miniRT $map $options (exit code: expected=1, actual=$actual_code)"
+		cat $ERROR_LOG
+		((FAIL++))
+		echo ""
+		return
+	fi
+	echo -e "${GREEN}PASS${NC}: ./miniRT $map $options"
+	((PASS++))
+	echo ""
+}
+
+run_ppm_test test/valid/simple.rt
+run_option_test test/valid/simple.rt "--foo"
+run_option_test test/valid/simple.rt "--ppm --ppm"
+
+echo -e "${GREEN}$PASS passed${NC}, ${RED}$FAIL failed${NC}"
+TOTAL_FAIL=$((TOTAL_FAIL + FAIL))
+
 rm -f $ERROR_LOG
 make fclean
 
