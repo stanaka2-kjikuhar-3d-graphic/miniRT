@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 18:33:19 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 01:38:27 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/04 00:16:33 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ bool	print_log_program(enum e_log_level level, char const *program_name)
 	result = print_log_level(fd, level, true);
 	result = print_log_str("USAGE: ", fd, result);
 	result = print_log_str(program_name, fd, result);
-	result = print_log_str(" *.rt\n", fd, result);
+	result = print_log_str(" *.rt [--ppm]\n", fd, result);
 	return (result);
 }
