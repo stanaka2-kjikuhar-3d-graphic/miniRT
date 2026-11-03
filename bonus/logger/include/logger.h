@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 21:32:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/17 16:34:35 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/11/04 00:16:33 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@
 # define ERROR_MLX_IMAGE "failed to create image"
 # define ERROR_MLX_XPM_IMAGE "failed to create xpm image"
 # define ERROR_MLX_IMAGE_DATA "failed to get image data"
+
+/* PPM */
+# define ERROR_PPM_OPEN "failed to open ppm file"
+# define ERROR_PPM_WRITE "failed to write ppm file"
 
 /* Hint: scene element syntax */
 # define HINT_A "A brightness R,G,B"

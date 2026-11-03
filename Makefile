@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/31 21:25:51 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/11/04 00:16:44 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,6 +124,7 @@ INCLUDE_DIRS	:=	bonus \
 							) \
 							$(addprefix system/, \
 								builder \
+								exporter \
 								loader \
 								renderer \
 							) \
@@ -206,6 +207,7 @@ SRC_DIRS	+= $(addprefix bonus/, \
 						parse_field \
 					) \
 					$(addprefix system/, \
+						exporter \
 						builder $(addprefix builder/, \
 							rebased_world_converter \
 							accelerator $(addprefix accelerator/, \
@@ -389,6 +391,13 @@ SRCS	+=	load_sphere.c \
 # loader/object/internal
 SRCS	+=	expand_to_material.c \
 			calc_cap_disc.c
+
+# exporter
+SRCS	+=	export_ppm.c \
+			calc_ppm_path.c \
+			write_ppm_header.c \
+			write_ppm_row.c \
+			write_bytes.c
 
 # renderer
 SRCS	+=	renderer.c \
