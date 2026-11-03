@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:38:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/31 21:28:14 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/11/04 00:16:33 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,13 @@
 
 #include "./renderer_private.h"
 
-static bool	multi_threads_rendering(void);
 static void	*rendering(void *arg);
 
 bool	renderer(void)
 {
 	if (check_render_flag())
 	{
-		if (!multi_threads_rendering())
+		if (!render_to_buffer())
 			return (false);
 		mlx_put_image_to_window(get_mlx_ptr(), get_win_ptr(), \
 					get_window_buffer_ptr(MAIN_WINDOW_BUFFER), 0, 0);
@@ -43,7 +42,7 @@ bool	renderer(void)
 	return (true);
 }
 
-static bool	multi_threads_rendering(void)
+bool	render_to_buffer(void)
 {
 	bool					res;
 	pthread_t				threads[THREAD_COUNT];
