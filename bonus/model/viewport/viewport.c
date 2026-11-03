@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:10:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/11/02 07:06:39 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/03 19:04:50 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ bool	init_viewport(float fov)
 	g_viewport.sample_count = 0;
 	if (!init_resolution(&(g_viewport.resolution)))
 		return (false);
-	g_viewport.aspect_ratio = (float)WINDOW_WIDTH / WINDOW_HEIGHT;
-	g_viewport.half_size.width = tanf(fov * (float)DEG_TO_RAD * 0.5f);
+	g_viewport.aspect_ratio = (float)((double)WINDOW_WIDTH / WINDOW_HEIGHT);
+	g_viewport.half_size.width = tanf((float)(fov * DEG_TO_RAD * 0.5f));
 	g_viewport.half_size.height \
 		= g_viewport.half_size.width / g_viewport.aspect_ratio;
 	return (true);

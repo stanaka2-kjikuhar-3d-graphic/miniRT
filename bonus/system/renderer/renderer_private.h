@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 23:56:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/11/03 06:08:53 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/03 19:25:34 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct s_render_thread
 }	t_render_thread;
 
 void					render_pixel(t_ivec2 pixel, uint32_t *seed);
-t_color					raytrace(t_vec2 sample);
-t_color					phong_pixel(t_vec2 sample);
+t_color					raytrace(t_ivec2 pixel, uint32_t *seed);
+t_color					phong_pixel(t_ivec2 pixel, uint32_t *seed);
 enum e_buffering_mode	get_buffering_mode(void);
 
 // intersection
