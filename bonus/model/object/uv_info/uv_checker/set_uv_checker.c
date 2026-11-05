@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/02 03:10:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 17:10:43 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/03 19:55:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	set_uv_checker(t_object_id id, t_ivec2 checker_count)
 
 	checker.count = checker_count;
 	checker.size = (t_vec2){\
-		.u = 1.0f / (float)checker_count.u, \
-		.v = 1.0f / (float)checker_count.v};
+		.u = (float)(1.0f / (double)checker_count.u), \
+		.v = (float)(1.0f / (double)checker_count.v)};
 	object = get_mutable_object(id);
 	object->uv_info.checker = checker;
 }

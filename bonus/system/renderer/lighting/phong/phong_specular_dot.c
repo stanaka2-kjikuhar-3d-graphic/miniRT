@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 20:45:00 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/11/01 18:02:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/03 22:31:59 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static float	calc_phong_specular_dot(t_ray const *ray, \
 	t_vec3	reflection;
 
 	reflection = vec3_normalize(vec3_sub(\
-					vec3_scale(2 * vec3_dot(to_light, hit->normal), \
-						hit->normal), to_light));
+					vec3_scale(2 * vec3_dot(to_light, hit->shading_normal), \
+						hit->shading_normal), to_light));
 	return (vec3_dot(vec3_scale(-1.0f, ray->dir), reflection));
 }
 
@@ -48,5 +48,5 @@ static float	calc_blinn_phong_specular_dot(t_ray const *ray, \
 	t_vec3	halfway;
 
 	halfway = vec3_normalize(vec3_add(vec3_scale(-1.0f, ray->dir), to_light));
-	return (vec3_dot(hit->normal, halfway));
+	return (vec3_dot(hit->shading_normal, halfway));
 }
