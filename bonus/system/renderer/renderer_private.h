@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 23:56:42 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/11/03 22:27:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/06 06:40:29 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # include "color.h"
 # include "material.h"
 # include "ray.h"
-
-# define SHADOW_EPSILON 0.001f // 1e-3
 
 typedef struct s_hit
 {
