@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 22:20:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/11/03 20:51:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/06 05:24:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	flat_list_shading(t_ray const *ray, t_range range)
 	while (i < count)
 	{
 		t = calc_object_intersection(get_flat_list_node(i), ray);
-		if (range.min < t && t <= range.max)
+		if (range.min < t && t < range.max)
 			return (true);
 		++i;
 	}

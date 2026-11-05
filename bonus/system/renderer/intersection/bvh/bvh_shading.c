@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 22:20:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/11/03 20:59:59 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/06 05:24:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool	bvh_shading(t_ray const *ray, t_range range)
 	if (root == NULL)
 		return (false);
 	t = calc_aabb_intersection(&(root->aabb), ray);
-	if (isnan(t) || range.max < t)
+	if (isnan(t) || range.max <= t)
 		return (false);
 	return (shadow_traverse_node(ray, range, root));
 }
@@ -59,11 +59,11 @@ static bool	shadow_traverse_node(\
 	{
 		left = get_bvh_node(node->branch.left);
 		t = calc_aabb_intersection(&(left->aabb), ray);
-		if (t <= range.max && shadow_traverse_node(ray, range, left))
+		if (t < range.max && shadow_traverse_node(ray, range, left))
 			return (true);
 		right = get_bvh_node(node->branch.right);
 		t = calc_aabb_intersection(&(right->aabb), ray);
-		return (t <= range.max && shadow_traverse_node(ray, range, right));
+		return (t < range.max && shadow_traverse_node(ray, range, right));
 	}
 }
 
@@ -77,10 +77,10 @@ static bool	shadow_traverse_leaves(t_ray const *ray, t_range range, \
 	{
 		object = get_bvh_leaf(start);
 		t = calc_aabb_intersection(&(object->aabb_info.aabb), ray);
-		if (t <= range.max)
+		if (t < range.max)
 		{
 			t = calc_object_intersection(object, ray);
-			if (range.min < t && t <= range.max)
+			if (range.min < t && t < range.max)
 				return (true);
 		}
 		++start;

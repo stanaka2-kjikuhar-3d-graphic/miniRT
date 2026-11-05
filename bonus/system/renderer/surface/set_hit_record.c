@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/17 16:31:30 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/11/03 22:32:35 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/06 05:50:00 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static t_vec3	calc_shading_normal(t_hit *hit);
 void	set_hit_record(t_ray const *ray, t_hit *hit)
 {
 	hit->material = get_material(hit->object->material_id);
-	hit->point = vec3_add(ray->origin, vec3_scale(hit->t, ray->dir));
 	hit->uv = calc_object_uv(hit->object, hit->point);
 	hit->color = calc_object_color(hit->object, hit->material, hit->uv);
 	hit->normal = calc_object_normal(hit->object, ray, hit->point);
