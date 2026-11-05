@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:05:47 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/11/03 22:31:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/06 05:16:01 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "ray.h"
 #include "light.h"
 #include "vector.h"
+#include "config.h"
 
 #include "../lighting_private.h"
 #include "../../renderer_private.h"
@@ -42,7 +43,7 @@ static t_color	calc_diffuse_color(\
 	t_color	diffuse;
 
 	dot = vec3_dot(hit->shading_normal, vec3_scale(-1.0f, light->dir));
-	if (dot <= 0.0f)
+	if (dot <= EPSILON)
 		return ((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
 	diffuse = scale_color(dot, light->radiance);
 	return (mul_color(hit->color, diffuse));
@@ -56,10 +57,10 @@ static t_color	calc_specular_color(t_ray const *ray, \
 	t_color	specular;
 
 	to_light = vec3_scale(-1.0f, light->dir);
-	if (vec3_dot(hit->shading_normal, to_light) <= 0.0f)
+	if (vec3_dot(hit->shading_normal, to_light) <= EPSILON)
 		return ((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
 	dot = calc_specular_dot(ray, hit, to_light);
-	if (dot <= 0.0f)
+	if (dot <= EPSILON)
 		return ((t_color){.r = 0.0f, .g = 0.0f, .b = 0.0f});
 	specular = scale_color(powf(dot, hit->material->shininess), \
 							light->radiance);
