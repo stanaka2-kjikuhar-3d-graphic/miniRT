@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 16:50:32 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/31 21:16:12 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/11/02 07:06:15 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include "camera.h"
 #include "renderer.h"
 #include "vector.h"
+#include "render_mode.h"
+#include "viewport.h"
 
 #include "./hook_private.h"
 
@@ -58,7 +60,7 @@ static void	switch_render_mode(void)
 	if (next >= RENDER_MODE_COUNT)
 		next = RENDER_MODE_RAYTRACE;
 	set_render_mode(next);
-	set_render_flag(true);
+	refresh_viewport();
 }
 
 static void	switch_phong_mode(void)
@@ -69,7 +71,7 @@ static void	switch_phong_mode(void)
 	if (next >= PHONG_MODE_COUNT)
 		next = PHONG_MODE_PHONG;
 	set_phong_mode(next);
-	set_render_flag(true);
+	refresh_viewport();
 }
 
 static void	camera_move_action(enum e_camera_action action)
@@ -89,5 +91,5 @@ static void	camera_move_action(enum e_camera_action action)
 		set_camera_pos(vec3_add(camera->pos, camera->up));
 	else if (action == CAMERA_ACTION_MOVE_DOWN)
 		set_camera_pos(vec3_add(camera->pos, vec3_scale(-1, camera->up)));
-	set_render_flag(true);
+	refresh_viewport();
 }

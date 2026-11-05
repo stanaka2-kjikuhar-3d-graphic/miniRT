@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/26 22:11:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/01 15:56:59 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 #include "logger.h"
 #include "builder.h"
 #include "loader.h"
+#include "viewport.h"
+#include "camera.h"
+#include "image.h"
 
 static bool	is_valid_argument(int argc, char const *argv[]);
 static void	cleanup(void);
@@ -45,7 +48,8 @@ int	main(int argc, char const *argv[])
 	if (!parser(argv[1], &scene_input) \
 		|| !loader(&scene_input) \
 		|| !builder() \
-		|| !setup_mlx_window())
+		|| !setup_mlx_window() \
+		|| !init_viewport(get_camera()->fov))
 	{
 		ft_lstclear(&scene_input, free);
 		cleanup();
@@ -79,5 +83,7 @@ static void	cleanup(void)
 {
 	cleanup_object();
 	cleanup_lights();
+	cleanup_image();
+	cleanup_viewport();
 	cleanup_mlx();
 }

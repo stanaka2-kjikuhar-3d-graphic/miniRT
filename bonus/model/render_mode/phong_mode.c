@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   phong_mode.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 20:52:21 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/31 21:03:23 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/11/01 18:02:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "renderer.h"
+#include "render_mode.h"
 
 static enum e_phong_mode	g_phong_mode;
 

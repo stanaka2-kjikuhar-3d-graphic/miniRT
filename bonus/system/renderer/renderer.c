@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:38:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/31 21:28:14 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/11/03 06:25:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,25 @@
 #include "logger.h"
 #include "window.h"
 #include "window_buffer.h"
+#include "viewport.h"
 
 #include "./renderer_private.h"
 
 static bool	multi_threads_rendering(void);
 static void	*rendering(void *arg);
+static bool	get_pixel(size_t i, t_ivec2 *pixel);
 
 bool	renderer(void)
 {
-	if (check_render_flag())
+	if (get_viewport()->sample_count < MAX_SAMPLE_COUNT)
 	{
 		if (!multi_threads_rendering())
 			return (false);
+		set_sample_count(get_buffering_mode());
+		resolve_viewport_to_window_buffer(MAIN_WINDOW_BUFFER);
 		mlx_put_image_to_window(get_mlx_ptr(), get_win_ptr(), \
 					get_window_buffer_ptr(MAIN_WINDOW_BUFFER), 0, 0);
-		set_render_flag(false);
+		increment_resolution_level();
 	}
 	return (true);
 }
@@ -70,25 +74,43 @@ static bool	multi_threads_rendering(void)
 
 static void	*rendering(void *arg)
 {
-	t_viewport const	*viewport;
 	t_render_thread		*state;
-	int					pixel_num;
 	t_ivec2				pixel;
+	size_t				i;
 	uint32_t			seed;
 
-	viewport = get_viewport();
 	state = (t_render_thread *)arg;
 	seed = state->seed;
 	if (seed == 0)
 		seed = ((uint32_t)(PIXEL_SAMPLE_SEED + state->id) * 2654435761u) | 1u;
-	pixel_num = state->id;
-	while (pixel_num < viewport->pixel_count)
+	i = state->id;
+	while (get_pixel(i, &pixel))
 	{
-		pixel.y = pixel_num / viewport->pixel_size.x;
-		pixel.x = pixel_num % viewport->pixel_size.x;
 		render_pixel(pixel, &seed);
-		pixel_num += THREAD_COUNT;
+		i += THREAD_COUNT;
 	}
 	state->seed = seed;
 	return (NULL);
+}
+
+static bool	get_pixel(size_t i, t_ivec2 *pixel)
+{
+	t_resolution const	*resolution;
+
+	resolution = &(get_viewport()->resolution);
+	if (resolution->level < RESOLUTION_COUNT)
+	{
+		if (resolution->render_pixel_count[resolution->level] <= i)
+			return (false);
+		*pixel = resolution->render_pixel[resolution->level][i];
+		return (true);
+	}
+	else
+	{
+		pixel->height = (int)(i / (size_t)WINDOW_WIDTH);
+		pixel->width = (int)(i % (size_t)WINDOW_WIDTH);
+		if (WINDOW_HEIGHT <= pixel->height)
+			return (false);
+		return (true);
+	}
 }

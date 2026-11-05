@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture2.c                                         :+:      :+:    :+:   */
+/*   create_texture_image.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/17 14:44:31 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/26 21:04:18 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/11/01 16:55:11 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/11/01 17:19:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,56 +18,13 @@
 
 #include "window.h"
 #include "logger.h"
-#include "dynamic_array.h"
-#include "texture.h"
 
 #include "./texture_private.h"
 #include "../image_private.h"
 
-static bool	has_texture(char *filepath, t_texture_id *id);
-static bool	create_texture_image(char *filepath, t_texture *texture_dict);
 static bool	create_image_from_xpm(t_image *image, char *xpm);
 
-bool	create_texture(char *filepath, t_texture_id *id)
-{
-	t_texture	texture;
-
-	if (has_texture(filepath, id))
-		return (true);
-	if (!create_texture_image(filepath, &texture))
-		return (false);
-	if (!add_texture_id(get_mutable_texture_array()->used, &(texture.id)) \
-		|| !add_dynamic_array(get_mutable_texture_array(), &texture))
-	{
-		mlx_destroy_image(get_mlx_ptr(), texture.image->ptr);
-		free(texture.image);
-		free(texture.filepath);
-		return (false);
-	}
-	*id = texture.id;
-	return (true);
-}
-
-static bool	has_texture(char *filepath, t_texture_id *id)
-{
-	size_t		i;
-	t_texture	*texture;
-
-	i = 0;
-	while (i < get_mutable_texture_array()->used)
-	{
-		texture = access_dynamic_array(get_mutable_texture_array(), i);
-		if (ft_strcmp(filepath, texture->filepath) == 0)
-		{
-			*id = texture->id;
-			return (true);
-		}
-		++i;
-	}
-	return (false);
-}
-
-static bool	create_texture_image(char *filepath, t_texture *texture)
+bool	create_texture_image(char *filepath, t_texture *texture)
 {
 	texture->image = malloc(sizeof(t_image));
 	texture->filepath = ft_strdup(filepath);
@@ -75,13 +32,17 @@ static bool	create_texture_image(char *filepath, t_texture *texture)
 	{
 		print_log_errno(LOG_ERROR);
 		free(texture->image);
+		texture->image = NULL;
 		free(texture->filepath);
+		texture->filepath = NULL;
 		return (false);
 	}
 	if (!create_image_from_xpm(texture->image, filepath))
 	{
 		free(texture->image);
+		texture->image = NULL;
 		free(texture->filepath);
+		texture->filepath = NULL;
 		return (false);
 	}
 	return (true);
@@ -105,21 +66,4 @@ static bool	create_image_from_xpm(t_image *image, char *xpm)
 		return (false);
 	}
 	return (true);
-}
-
-void	cleanup_textures(void)
-{
-	size_t		i;
-	t_texture	*texture;
-
-	i = 0;
-	while (i < get_mutable_texture_array()->used)
-	{
-		texture = access_dynamic_array(get_mutable_texture_array(), i);
-		free(texture->filepath);
-		mlx_destroy_image(get_mlx_ptr(), texture->image->ptr);
-		free(texture->image);
-		++i;
-	}
-	cleanup_dynamic_array(get_mutable_texture_array());
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 20:53:37 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/26 22:11:38 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/02 06:39:34 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ bool	change_camera_fov(float degree)
 		return (false);
 	}
 	camera->fov = camera->fov + degree;
-	change_viewport(camera->fov);
+	change_viewport_fov(camera->fov);
 	return (true);
 }

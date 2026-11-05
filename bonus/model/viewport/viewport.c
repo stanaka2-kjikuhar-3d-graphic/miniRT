@@ -6,16 +6,23 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:10:00 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/26 21:03:25 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/02 07:06:39 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <stdbool.h>
 #include <math.h>
 
 #include "ft_math.h"
+#include "ft_string.h"
+#include "logger.h"
 
 #include "config.h"
 #include "viewport.h"
+#include "color.h"
+
+#include "./viewport_private.h"
 
 static t_viewport	g_viewport;
 
@@ -24,22 +31,40 @@ t_viewport const	*get_viewport(void)
 	return (&g_viewport);
 }
 
-void	set_viewport(float fov)
+t_viewport	*get_mutable_viewport(void)
 {
-	g_viewport.pixel_size.width = WINDOW_WIDTH;
-	g_viewport.pixel_size.height = WINDOW_HEIGHT;
-	g_viewport.pixel_count = WINDOW_WIDTH * WINDOW_HEIGHT;
-	g_viewport.pixel_half_size.width = WINDOW_WIDTH / 2.0;
-	g_viewport.pixel_half_size.height = WINDOW_HEIGHT / 2.0;
-	g_viewport.aspect_ratio = (float)WINDOW_WIDTH / WINDOW_HEIGHT;
-	g_viewport.world_half_size.width = tanf(fov * (float)DEG_TO_RAD * 0.5f);
-	g_viewport.world_half_size.height \
-		= g_viewport.world_half_size.width / g_viewport.aspect_ratio;
+	return (&g_viewport);
 }
 
-void	change_viewport(float fov)
+bool	init_viewport(float fov)
 {
-	g_viewport.world_half_size.width = tanf(fov * (float)DEG_TO_RAD * 0.5f);
-	g_viewport.world_half_size.height \
-		= g_viewport.world_half_size.width / g_viewport.aspect_ratio;
+	g_viewport.buffer \
+		= malloc(sizeof(t_color) * (size_t)WINDOW_WIDTH * WINDOW_HEIGHT);
+	if (g_viewport.buffer == NULL)
+	{
+		print_log_errno(LOG_ERROR);
+		return (false);
+	}
+	g_viewport.sample_count = 0;
+	if (!init_resolution(&(g_viewport.resolution)))
+		return (false);
+	g_viewport.aspect_ratio = (float)WINDOW_WIDTH / WINDOW_HEIGHT;
+	g_viewport.half_size.width = tanf(fov * (float)DEG_TO_RAD * 0.5f);
+	g_viewport.half_size.height \
+		= g_viewport.half_size.width / g_viewport.aspect_ratio;
+	return (true);
+}
+
+void	cleanup_viewport(void)
+{
+	enum e_resolution_level	level;
+
+	free(g_viewport.buffer);
+	level = 0;
+	while (level < RESOLUTION_COUNT)
+	{
+		free(g_viewport.resolution.render_pixel[level]);
+		++level;
+	}
+	ft_bzero(&g_viewport, sizeof(t_viewport));
 }

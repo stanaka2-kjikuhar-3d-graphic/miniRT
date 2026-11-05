@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/10/31 21:25:51 by kjikuhar         ###   ########.fr        #
+#    Updated: 2026/11/03 06:57:39 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,6 +121,7 @@ INCLUDE_DIRS	:=	bonus \
 								object \
 								viewport \
 								window \
+								render_mode \
 							) \
 							$(addprefix system/, \
 								builder \
@@ -194,6 +195,7 @@ SRC_DIRS	+= $(addprefix bonus/, \
 						) \
 						viewport \
 						window \
+						render_mode \
 					) \
 					parser $(addprefix parser/, \
 						read_file \
@@ -288,11 +290,13 @@ SRCS	+=	get_texture_pixel.c \
 			get_texture_uv_pixel.c \
 			texture_id.c \
 			texture.c \
-			texture2.c
+			create_texture_image.c
 # model/image/window_buffer
 SRCS	+=	get_window_buffer_pixel.c \
-			put_color.c \
-			window_buffer.c
+			put_color_window_buffer.c \
+			window_buffer.c \
+			create_image.c \
+			resolve_viewport_to_window_buffer.c
 
 # window/hooks
 SRCS	+=	expose_hook.c \
@@ -392,17 +396,15 @@ SRCS	+=	expand_to_material.c \
 
 # renderer
 SRCS	+=	renderer.c \
-			render_flag.c \
-			render_mode.c \
-			render_pixel.c
+			render_pixel.c \
+			get_buffering_mode.c
 # renderer/raytracer
 SRCS	+=	raytrace.c \
 			phong_pixel.c \
 			trace_ray.c \
 			calc_weights.c \
 			spawn_ray.c \
-			calc_ray.c \
-			put_color_to_window_image.c
+			calc_ray.c
 # renderer/intersection
 SRCS	+=	find_closest_hit.c \
 			is_in_shadow.c
@@ -419,8 +421,7 @@ SRCS	+=	calc_aabb_intersection.c \
 			calc_primitive_intersection.c \
 			calc_quadric_intersection.c
 # renderer/lighting
-SRCS	+=	phong_lighting.c \
-			phong_mode.c
+SRCS	+=	phong_lighting.c
 # renderer/lighting/attenuation
 SRCS	+=	calc_dist_attenuation.c \
 			calc_point_light_attenuation.c \
@@ -536,8 +537,19 @@ SRCS	+=	get_uv_pattern.c \
 			set_disc_uv_pattern.c \
 			set_plane_uv_pattern.c
 
+# model/render_mode
+SRCS	+=	render_mode.c \
+			phong_mode.c
+
 # view/viewport
-SRCS	+=	viewport.c
+SRCS	+=	viewport.c \
+			init_resolution.c \
+			resolve_viewport_color.c \
+			put_color_viewport.c \
+			refresh_viewport.c \
+			viewport_fov.c \
+			viewport_resolution.c \
+			set_sample_count.c
 
 # logger
 SRCS	+=	log_line.c \

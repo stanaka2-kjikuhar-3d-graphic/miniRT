@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_mode.c                                      :+:      :+:    :+:   */
+/*   viewport_private.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/31 21:09:57 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/31 21:18:00 by kjikuhar         ###   ########.fr       */
+/*   Created: 2026/11/01 14:15:38 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/11/02 06:50:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "renderer.h"
+#ifndef VIEWPORT_PRIVATE_H
+# define VIEWPORT_PRIVATE_H
 
-static enum e_render_mode	g_render_mode;
+# include <stdbool.h>
 
-enum e_render_mode	get_render_mode(void)
-{
-	return (g_render_mode);
-}
+# include "viewport.h"
 
-void	set_render_mode(enum e_render_mode mode)
-{
-	g_render_mode = mode;
-}
+t_viewport	*get_mutable_viewport(void);
+bool		init_resolution(t_resolution *resolution);
+
+#endif
