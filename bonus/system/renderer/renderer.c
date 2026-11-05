@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:38:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/11/03 06:25:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/05 21:10:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 #include "logger.h"
 #include "window.h"
 #include "window_buffer.h"
-#include "viewport.h"
 
 #include "./renderer_private.h"
 
