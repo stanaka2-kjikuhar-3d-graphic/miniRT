@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 00:24:54 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/11/03 21:31:47 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/07 00:17:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,19 @@ enum e_resolution_level
 	RESOLUTION_OFF
 };
 
+enum e_interpolation_type
+{
+	NEAREST_INTERPOLATION,
+	BILINEAR_INTERPOLATION
+};
+
 typedef struct s_resolution
 {
-	enum e_resolution_level	level;
-	uint8_t					scale[RESOLUTION_COUNT];
-	t_ivec2					*render_pixel[RESOLUTION_COUNT];
-	size_t					render_pixel_count[RESOLUTION_COUNT];
+	enum e_resolution_level		level;
+	enum e_interpolation_type	interpolation;
+	uint8_t						scale[RESOLUTION_COUNT];
+	t_ivec2						*render_pixel[RESOLUTION_COUNT];
+	size_t						render_pixel_count[RESOLUTION_COUNT];
 }	t_resolution;
 
 typedef struct s_viewport
