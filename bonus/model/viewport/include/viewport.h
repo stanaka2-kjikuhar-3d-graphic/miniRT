@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 00:24:54 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/11/07 00:17:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/07 18:22:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 enum e_resolution_level
 {
+	// SIXTEENTH_RESOLUTION,
 	// EIGHTH_RESOLUTION,
 	QUARTER_RESOLUTION,
 	HALF_RESOLUTION,
@@ -70,5 +71,6 @@ t_color				resolve_viewport_color(t_vec2 uv);
 void				put_color_viewport(enum e_buffering_mode mode, \
 						t_ivec2 pixel, t_color color);
 void				set_sample_count(enum e_buffering_mode mode);
+void				switch_viewport_interpolation(void);
 
 #endif

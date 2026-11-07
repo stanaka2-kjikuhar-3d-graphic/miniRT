@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/01 09:29:23 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/11/03 06:43:56 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/07 18:32:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static enum e_resolution_level	get_pixel_resolution_level(\
 bool	init_resolution(t_resolution *resolution)
 {
 	resolution->level = 0;
+	resolution->interpolation = NEAREST_INTERPOLATION;
 	set_resolution_scale(resolution);
 	if (!allocate_render_pixel(resolution))
 		return (false);

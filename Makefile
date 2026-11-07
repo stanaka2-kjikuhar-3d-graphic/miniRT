@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 13:25:37 by kjikuhar          #+#    #+#              #
-#    Updated: 2026/11/03 06:57:39 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/11/07 17:51:36 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -549,7 +549,8 @@ SRCS	+=	viewport.c \
 			refresh_viewport.c \
 			viewport_fov.c \
 			viewport_resolution.c \
-			set_sample_count.c
+			set_sample_count.c \
+			switch_viewport_interpolation.c
 
 # logger
 SRCS	+=	log_line.c \
