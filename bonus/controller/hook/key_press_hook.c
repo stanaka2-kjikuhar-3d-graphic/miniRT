@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 16:50:32 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/11/02 07:06:15 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/07 17:51:55 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	key_press_hook(int keycode, void *param)
 		switch_render_mode();
 	else if (keycode == XK_b)
 		switch_phong_mode();
+	else if (keycode == XK_i)
+		switch_viewport_interpolation();
 	return (0);
 }
 
