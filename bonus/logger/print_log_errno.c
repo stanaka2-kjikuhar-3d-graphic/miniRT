@@ -6,12 +6,12 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 12:20:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 00:46:01 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:12:19 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <errno.h>
 #include <string.h>
+#include <errno.h>
 #include <stdbool.h>
 
 #include "logger.h"

@@ -6,11 +6,10 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/30 21:49:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/07 18:35:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
@@ -84,7 +83,6 @@ static bool	parse_line(char *line, bool *used, t_list **input_list)
 	if (elements == NULL)
 	{
 		print_log_errno(LOG_ERROR);
-		free_split(elements);
 		return (false);
 	}
 	if (!parse_setting((char const **)elements, used, input))

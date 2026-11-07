@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 16:31:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:12:05 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:10:03 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 
 #include "window.h"
 #include "hook.h"
-
-#include "./window_private.h"
 
 void	setup_mlx_hooks(void)
 {

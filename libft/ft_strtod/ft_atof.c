@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+
 #include "ft_stdlib.h"
 
 double	ft_atof(const char *nptr)

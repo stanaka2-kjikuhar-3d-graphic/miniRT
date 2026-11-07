@@ -13,7 +13,10 @@
 #include <unistd.h>
 
 #include "ft_string.h"
+#include <stdarg.h>
+#include <stddef.h>
 #include "ft_printf/ft_printf.h"
+#include "ft_printf/types.h"
 
 int	ft_printf(const char *format, ...)
 {

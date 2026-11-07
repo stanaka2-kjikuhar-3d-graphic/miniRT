@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/13 22:41:30 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 10:21:16 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 22:07:45 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "vector.h"
 # include "object.h"
 # include "texture.h"
+# include "material.h"
 
 typedef struct s_material_input
 {

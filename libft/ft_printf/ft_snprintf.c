@@ -11,7 +11,10 @@
 /* ************************************************************************** */
 
 #include "ft_string.h"
+#include <stdarg.h>
+#include <stddef.h>
 #include "ft_printf/ft_printf.h"
+#include "ft_printf/types.h"
 
 int	ft_snprintf(char *str, size_t size, const char *format, ...)
 {

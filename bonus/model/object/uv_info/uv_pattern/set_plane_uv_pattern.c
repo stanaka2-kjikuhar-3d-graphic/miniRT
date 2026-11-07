@@ -6,13 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 21:10:23 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 10:20:55 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 22:13:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
 #include "vector.h"
+#include "object.h"
 
 #include "./uv_pattern_private.h"
 

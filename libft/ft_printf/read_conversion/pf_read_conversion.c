@@ -10,12 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h>
+#include <stdarg.h>
+#include <stddef.h>
 #include <stdbool.h>
 
 #include "ft_ctype.h"
 #include "ft_stdlib.h"
 #include "ft_string.h"
 #include "ft_printf/ft_printf.h"
+#include "ft_printf/types.h"
 #include "./read_conversion_internal.h"
 
 static void	read_flags(const char **format, t_conv *conv);

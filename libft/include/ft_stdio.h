@@ -14,7 +14,7 @@
 # define FT_STDIO_H
 
 # include <stddef.h>
-# include <unistd.h>
+# include <sys/types.h>
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);

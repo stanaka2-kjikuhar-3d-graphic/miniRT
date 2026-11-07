@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 15:48:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/30 07:42:33 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/07 18:36:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "vector.h"
 #include "object.h"
-#include "range.h"
+#include "material.h"
 #include "loader.h"
 #include "loader_object.h"
 

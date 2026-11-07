@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 01:32:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 21:53:34 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:43:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "range.h"
 # include "primitive.h"
 # include "ray.h"
+# include "color.h"
 # include "material.h"
 
 t_vec2	calc_object_uv(t_object const *object, t_vec3 point);

@@ -6,11 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 18:05:30 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 00:02:25 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:41:01 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "logger.h"
 
 #include "./logger_private.h"
 

@@ -10,8 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdarg.h>
+#include <stddef.h>
 #include "ft_string.h"
 #include "ft_printf/ft_printf.h"
+#include "ft_printf/types.h"
 #include "ft_printf/print_utils.h"
 #include "./character_internal.h"
 

@@ -6,11 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 13:05:50 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/01 20:43:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/27 06:47:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdio.h"
+#include <unistd.h>
 
 void	ft_putchar_fd(char c, int fd)
 {

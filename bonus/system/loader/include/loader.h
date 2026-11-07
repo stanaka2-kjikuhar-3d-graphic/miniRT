@@ -6,12 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 21:34:36 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/30 21:21:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/07 18:35:57 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LOADER_H
 # define LOADER_H
+
+# include <stdbool.h>
 
 # include "ft_lst.h"
 

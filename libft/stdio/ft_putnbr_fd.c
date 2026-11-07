@@ -6,9 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 13:23:13 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/20 00:33:09 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/27 07:33:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <unistd.h>
 
 #include "ft_stdio.h"
 

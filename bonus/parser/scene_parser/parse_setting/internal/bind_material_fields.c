@@ -6,9 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/13 14:59:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 22:08:18 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:41:39 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "loader_object.h"
 
 #include "../parse_setting_private.h"
 

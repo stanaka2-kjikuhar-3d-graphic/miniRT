@@ -6,18 +6,15 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/09 22:31:56 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/25 21:35:25 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 22:09:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdbool.h>
-#include <stddef.h>
 
 #include "object.h"
 #include "material.h"
 #include "vector.h"
-#include "loader.h"
 #include "loader_object.h"
+#include "range.h"
 
 t_material_input	calc_cap_disc_material(t_material const *material)
 {

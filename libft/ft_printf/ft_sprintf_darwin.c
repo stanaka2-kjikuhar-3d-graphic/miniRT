@@ -6,15 +6,16 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 19:51:54 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/04 14:31:06 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/27 06:44:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <stdint.h>
 
 #include "ft_string.h"
+#include <stdarg.h>
 #include "ft_printf/ft_printf.h"
+#include "ft_printf/types.h"
 
 int	ft_sprintf(char *str, const char *format, ...)
 {

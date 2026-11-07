@@ -10,10 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdarg.h>
+#include <stddef.h>
 #include <stdint.h>
-#include <unistd.h>
+#include <sys/types.h>
 
 #include "ft_printf/ft_printf.h"
+#include "ft_printf/types.h"
 
 void	pf_conv_n(va_list *ap, t_ctx *ctx, t_conv *conv)
 {

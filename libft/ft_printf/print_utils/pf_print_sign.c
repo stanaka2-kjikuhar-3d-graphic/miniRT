@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+#include <stdbool.h>
 #include "ft_printf/ft_printf.h"
+#include "ft_printf/types.h"
 #include "ft_printf/print_utils.h"
 
 void	pf_print_sign(t_ctx *ctx, t_conv *conv, bool is_negative)

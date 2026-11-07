@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-
 #include "ft_ctype.h"
 #include "ft_stdlib.h"
 #include "../ft_strtod_internal.h"

@@ -6,9 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 00:18:26 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/08/16 00:19:18 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:38:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stddef.h>
 
 #include "dynamic_array.h"
 

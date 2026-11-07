@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
+#include <stddef.h>
+
 #include <stdbool.h>
 
 #include "ft_ctype.h"

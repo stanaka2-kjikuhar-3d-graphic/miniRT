@@ -6,13 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 22:31:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:57:26 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 22:12:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "object.h"
 #include "aabb.h"
 #include "vector.h"
+#include "primitive.h"
 
 #include "./object_aabb_info_private.h"
 

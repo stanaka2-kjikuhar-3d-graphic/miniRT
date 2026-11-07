@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
 #include "../ft_strtod_internal.h"
 
 void	strtod_set_msd_and_lsd(t_to_double *to_double)

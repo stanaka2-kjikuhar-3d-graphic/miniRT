@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdarg.h>
+#include <stdbool.h>
 #include "ft_printf/ft_printf.h"
+#include "ft_printf/types.h"
 #include "./floating_point_internal.h"
 
 static void	process_conv_a(t_ctx *ctx, t_conv *conv, t_pf_float *fp);

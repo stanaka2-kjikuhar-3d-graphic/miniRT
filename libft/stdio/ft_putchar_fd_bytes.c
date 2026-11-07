@@ -6,11 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 19:40:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/01 20:43:00 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/27 06:48:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdio.h"
+#include <sys/types.h>
+
+#include <unistd.h>
 
 ssize_t	ft_putchar_fd_bytes(char c, int fd)
 {

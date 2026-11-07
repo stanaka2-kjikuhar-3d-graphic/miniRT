@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/10 22:03:03 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/25 21:15:21 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/06 06:42:51 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "ray.h"
 
 #include "./raytracer_private.h"
+#include "../renderer_private.h"
 
 static float	calc_ray_offset(t_hit const *hit);
 static float	calc_eta_ratio(t_hit const *hit);
@@ -60,7 +61,7 @@ t_ray	calc_refract_ray(t_ray const *ray, t_hit const *hit)
 
 static float	calc_ray_offset(t_hit const *hit)
 {
-	return (SHADOW_EPSILON * fmaxf(1.0f, vec3_length(hit->point)));
+	return (0.0001f * fmaxf(1.0f, vec3_length(hit->point)));
 }
 
 static float	calc_eta_ratio(t_hit const *hit)

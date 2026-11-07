@@ -6,12 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/05 20:28:17 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 00:11:12 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 22:26:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+#include <sys/types.h>
 #include <stdbool.h>
-#include <unistd.h>
 
 #include "ft_stdio.h"
 

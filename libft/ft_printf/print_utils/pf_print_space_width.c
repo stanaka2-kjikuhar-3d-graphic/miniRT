@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
 #include "ft_printf/ft_printf.h"
+#include "ft_printf/types.h"
 #include "./print_utils_internal.h"
 
 void	pf_print_space_width(t_ctx *ctx, t_conv *conv, size_t len)

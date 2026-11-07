@@ -6,10 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 16:50:32 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/04 22:05:42 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/07 17:51:55 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdbool.h>
 #include <X11/keysym.h>
 
 #include "mlx.h"
@@ -18,10 +19,14 @@
 #include "camera.h"
 #include "renderer.h"
 #include "vector.h"
+#include "render_mode.h"
+#include "viewport.h"
 
 #include "./hook_private.h"
 
 static void	camera_move_action(enum e_camera_action action);
+static void	switch_render_mode(void);
+static void	switch_phong_mode(void);
 
 int	key_press_hook(int keycode, void *param)
 {
@@ -40,7 +45,35 @@ int	key_press_hook(int keycode, void *param)
 		camera_move_action(CAMERA_ACTION_MOVE_UP);
 	else if (keycode == XK_Down)
 		camera_move_action(CAMERA_ACTION_MOVE_DOWN);
+	else if (keycode == XK_m)
+		switch_render_mode();
+	else if (keycode == XK_b)
+		switch_phong_mode();
+	else if (keycode == XK_i)
+		switch_viewport_interpolation();
 	return (0);
+}
+
+static void	switch_render_mode(void)
+{
+	enum e_render_mode	next;
+
+	next = (enum e_render_mode)(get_render_mode() + 1);
+	if (next >= RENDER_MODE_COUNT)
+		next = RENDER_MODE_RAYTRACE;
+	set_render_mode(next);
+	refresh_viewport();
+}
+
+static void	switch_phong_mode(void)
+{
+	enum e_phong_mode	next;
+
+	next = (enum e_phong_mode)(get_phong_mode() + 1);
+	if (next >= PHONG_MODE_COUNT)
+		next = PHONG_MODE_PHONG;
+	set_phong_mode(next);
+	refresh_viewport();
 }
 
 static void	camera_move_action(enum e_camera_action action)
@@ -60,5 +93,5 @@ static void	camera_move_action(enum e_camera_action action)
 		set_camera_pos(vec3_add(camera->pos, camera->up));
 	else if (action == CAMERA_ACTION_MOVE_DOWN)
 		set_camera_pos(vec3_add(camera->pos, vec3_scale(-1, camera->up)));
-	set_render_flag(true);
+	refresh_viewport();
 }

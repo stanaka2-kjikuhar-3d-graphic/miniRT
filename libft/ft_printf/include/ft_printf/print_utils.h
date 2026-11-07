@@ -13,8 +13,9 @@
 #ifndef PRINT_UTILS_H
 # define PRINT_UTILS_H
 
-# include <stdint.h>
+# include <stdbool.h>
 # include <stddef.h>
+# include <stdint.h>
 
 # include "ft_printf/types.h"
 

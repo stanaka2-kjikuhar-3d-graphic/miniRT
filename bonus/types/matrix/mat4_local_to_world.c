@@ -6,10 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 00:31:04 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/10/10 20:53:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:39:01 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "vector.h"
 #include "matrix.h"
 
 /*

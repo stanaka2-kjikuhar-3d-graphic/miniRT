@@ -6,13 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 18:01:40 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/23 20:06:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:06:12 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
-
-#include "ft_string.h"
 
 static char const	*g_log_line;
 static size_t		g_log_line_number;

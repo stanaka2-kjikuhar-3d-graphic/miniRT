@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mat4_transform_point.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 22:54:07 by kjikuhar          #+#    #+#             */
-/*   Updated: 2026/08/06 22:15:50 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:39:07 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "vector.h"
 #include "matrix.h"
 
 /* Point (w = 1): projected back with the w division. See docs/matrix.md. */

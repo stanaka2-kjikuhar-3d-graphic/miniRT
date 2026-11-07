@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/29 16:03:43 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:10:49 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/01 17:13:49 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "window.h"
 #include "window_buffer.h"
 
+#include "./window_buffer_private.h"
 #include "../image_private.h"
 
 static t_image	g_window_buffers[WINDOW_BUFFER_COUNT];
@@ -41,22 +42,8 @@ bool	create_window_buffer(enum e_window_buffer_id id, int width, int height)
 	image = &(g_window_buffers[id]);
 	image->width = width;
 	image->height = height;
-	image->ptr = mlx_new_image(get_mlx_ptr(), image->width, image->height);
-	if (image->ptr == NULL)
-	{
-		print_log_msg(LOG_ERROR, ERROR_MLX_IMAGE);
-		ft_bzero(image, sizeof(t_image));
+	if (!create_image(image))
 		return (false);
-	}
-	image->pixel = mlx_get_data_addr(image->ptr, &(image->bits_per_pixel), \
-										&(image->line_size), &(image->endian));
-	if (image->pixel == NULL)
-	{
-		print_log_msg(LOG_ERROR, ERROR_MLX_IMAGE_DATA);
-		mlx_destroy_image(get_mlx_ptr(), image->ptr);
-		ft_bzero(image, sizeof(t_image));
-		return (false);
-	}
 	return (true);
 }
 

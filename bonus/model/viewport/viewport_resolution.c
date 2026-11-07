@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_color_to_window_image.c                        :+:      :+:    :+:   */
+/*   viewport_resolution.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/28 23:41:38 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 08:24:20 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/11/02 06:31:46 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/11/02 07:06:55 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "window_buffer.h"
-#include "vector.h"
-#include "color.h"
+#include "viewport.h"
 
-void	put_color_to_window_image(t_ivec2 pixel, t_color color)
+#include "./viewport_private.h"
+
+void	set_resolution_level(enum e_resolution_level level)
 {
-	put_color(MAIN_WINDOW_BUFFER, pixel, encode_color(color));
+	get_mutable_viewport()->resolution.level = level;
+}
+
+void	increment_resolution_level(void)
+{
+	t_viewport	*viewport;
+
+	viewport = get_mutable_viewport();
+	if (viewport->resolution.level < RESOLUTION_COUNT)
+		++viewport->resolution.level;
 }

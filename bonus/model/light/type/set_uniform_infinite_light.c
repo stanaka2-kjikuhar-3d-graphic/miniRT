@@ -6,12 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:27:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/18 09:38:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:10:17 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "light.h"
-#include "vector.h"
 
 #include "../light_private.h"
 

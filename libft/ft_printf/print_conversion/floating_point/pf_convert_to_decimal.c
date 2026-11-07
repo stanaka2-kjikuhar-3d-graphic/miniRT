@@ -6,14 +6,15 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 02:07:29 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/03 21:28:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/27 07:02:12 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdint.h>
+#include <stdbool.h>
 #include <stdlib.h>
 
 #include "ft_stdlib.h"
-#include "ft_printf/ft_printf.h"
 #include "./floating_point_internal.h"
 
 static bool	convert_to_decimal_int(t_pf_float *fp);

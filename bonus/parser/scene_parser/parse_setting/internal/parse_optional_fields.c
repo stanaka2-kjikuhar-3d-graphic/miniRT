@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 15:53:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/24 06:41:50 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:07:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 #include <stddef.h>
 
 #include "ft_string.h"
-
-#include "color.h"
-#include "object.h"
 
 #include "logger.h"
 

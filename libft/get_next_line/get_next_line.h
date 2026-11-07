@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 16:40:07 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/06/01 20:22:30 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/27 07:11:56 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 
 # include <limits.h>
 # include <stddef.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdbool.h>
+# include <sys/types.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 16384

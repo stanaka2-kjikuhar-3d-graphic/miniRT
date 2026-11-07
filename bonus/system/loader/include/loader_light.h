@@ -6,14 +6,12 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/13 22:41:07 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/24 07:31:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:24:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LOADER_LIGHT_H
 # define LOADER_LIGHT_H
-
-# include <stdbool.h>
 
 # include "color.h"
 # include "vector.h"

@@ -6,29 +6,28 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:08:44 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/30 21:21:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/07 18:37:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdbool.h>
-#include <unistd.h>
 
 #include "mlx.h"
-#include "ft_stdio.h"
 #include "ft_string.h"
+#include "ft_lst.h"
 
 #include "color.h"
 #include "parser.h"
 #include "light.h"
 #include "object.h"
 #include "window.h"
-#include "image.h"
-#include "renderer.h"
 #include "logger.h"
 #include "builder.h"
 #include "loader.h"
-#include "bvh.h"
+#include "viewport.h"
+#include "camera.h"
+#include "image.h"
 
 static bool	is_valid_argument(int argc, char const *argv[]);
 static void	cleanup(void);
@@ -46,10 +45,11 @@ int	main(int argc, char const *argv[])
 	init_color_lut();
 	if (!create_mlx_connection())
 		return (EXIT_FAILURE);
-	if (!parse_scene(argv[1], &input_list) \
-		|| !load_input_list(&input_list) \
-		|| !build_scene() \
-		|| !setup_mlx_window())
+	if (!parser(argv[1], &scene_input) \
+		|| !loader(&scene_input) \
+		|| !builder() \
+		|| !setup_mlx_window() \
+		|| !init_viewport(get_camera()->fov))
 	{
 		ft_lstclear(&input_list, delete_input);
 		cleanup();
@@ -83,5 +83,7 @@ static void	cleanup(void)
 {
 	cleanup_object();
 	cleanup_lights();
+	cleanup_image();
+	cleanup_viewport();
 	cleanup_mlx();
 }

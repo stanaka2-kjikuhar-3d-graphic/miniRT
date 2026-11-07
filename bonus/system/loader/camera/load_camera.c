@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/13 15:32:32 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/30 07:33:53 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/07 18:35:52 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "camera.h"
 #include "loader.h"
 #include "loader_camera.h"
-#include "viewport.h"
 
 bool	load_camera(t_input const *input)
 {

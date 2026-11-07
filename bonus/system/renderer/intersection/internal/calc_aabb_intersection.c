@@ -6,15 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 00:58:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/09/06 15:26:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/10/26 21:08:00 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include <stdbool.h>
 
 #include "aabb.h"
-#include "object.h"
 #include "range.h"
 #include "ray.h"
 #include "vector.h"
