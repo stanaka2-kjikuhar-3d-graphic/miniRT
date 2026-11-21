@@ -6,9 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 21:04:16 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/11/01 16:02:40 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/03 21:36:36 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_math.h"
 
 #include "ray.h"
 #include "vector.h"
@@ -16,7 +18,7 @@
 #include "viewport.h"
 #include "config.h"
 
-t_ray	calc_ray(t_vec2 sample)
+t_ray	calc_ray(t_ivec2 pixel, uint32_t *seed)
 {
 	t_ray				ray;
 	t_camera const		*camera;
@@ -25,8 +27,14 @@ t_ray	calc_ray(t_vec2 sample)
 
 	camera = get_camera();
 	viewport = get_viewport();
-	t.x = (sample.x / (WINDOW_WIDTH / 2.0f)) - 1.0f;
-	t.y = -((sample.y / (WINDOW_HEIGHT / 2.0f)) - 1.0f);
+	t.x = (float)((((double)pixel.x \
+			+ ft_xorshift_range(seed, 0.0f, 1.0f)) \
+			/ ((double)WINDOW_WIDTH / 2.0)) \
+			- 1.0);
+	t.y = -(float)((((double)pixel.y \
+			+ ft_xorshift_range(seed, 0.0f, 1.0f)) \
+			/ ((double)WINDOW_HEIGHT / 2.0)) \
+			- 1.0);
 	ray.dir = vec3_normalize(\
 				vec3_add(camera->dir, \
 				vec3_add(\

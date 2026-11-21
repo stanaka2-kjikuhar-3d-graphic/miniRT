@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 22:43:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/10/26 21:04:57 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/11/05 21:11:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ static bool	parse_line(char *line, bool *used, t_list **scene_input)
 	if (elements == NULL)
 	{
 		print_log_errno(LOG_ERROR);
-		free_split(elements);
 		return (false);
 	}
 	if (!parse_setting((char const **)elements, used, input))
